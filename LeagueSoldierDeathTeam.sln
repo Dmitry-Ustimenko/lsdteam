@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueSoldierDeathTeam.Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueSoldierDeathTeam.Site", "LeagueSoldierDeathTeam.Site\LeagueSoldierDeathTeam.Site.csproj", "{7E3FEC7C-AA4F-4773-BE44-C5E09E29207A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{50325B6F-D7F4-4BF0-93C9-06330073C15F}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LSD", "LSD\LSD.sqlproj", "{CC5ADC87-A39C-49F3-A35F-F54CB6878D3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,17 @@ Global
 		{7E3FEC7C-AA4F-4773-BE44-C5E09E29207A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E3FEC7C-AA4F-4773-BE44-C5E09E29207A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E3FEC7C-AA4F-4773-BE44-C5E09E29207A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC5ADC87-A39C-49F3-A35F-F54CB6878D3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC5ADC87-A39C-49F3-A35F-F54CB6878D3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC5ADC87-A39C-49F3-A35F-F54CB6878D3C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CC5ADC87-A39C-49F3-A35F-F54CB6878D3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC5ADC87-A39C-49F3-A35F-F54CB6878D3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC5ADC87-A39C-49F3-A35F-F54CB6878D3C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CC5ADC87-A39C-49F3-A35F-F54CB6878D3C} = {50325B6F-D7F4-4BF0-93C9-06330073C15F}
 	EndGlobalSection
 EndGlobal
