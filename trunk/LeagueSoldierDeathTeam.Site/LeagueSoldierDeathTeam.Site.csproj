@@ -182,12 +182,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site\Site.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Images\Slider\001.jpg" />
+    <Content Include="Images\Slider\002.jpg" />
+    <Content Include="Images\Slider\003.jpg" />
+    <Content Include="Images\Slider\004.jpg" />
+    <Content Include="Images\arrow-down.png" />
+    <Content Include="Images\background_body.png" />
+    <Content Include="Images\background_header.png" />
+    <Content Include="Images\background_menu.png" />
+    <Content Include="Images\dividing-line.png" />
+    <Content Include="Images\icon_search.png" />
+    <Content Include="Images\test-image.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -230,17 +238,16 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.Scripts.cshtml" />
+    <Content Include="Views\Shared\_SliderPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Abstractions\Classes\Factories\" />
-    <Folder Include="Abstractions\Interfaces\" />
     <Folder Include="App_Data\" />
     <Folder Include="Classes\" />
+    <Folder Include="Content\Plugins\" />
+    <Folder Include="Scripts\Plugins\" />
+    <Folder Include="Scripts\Site\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
