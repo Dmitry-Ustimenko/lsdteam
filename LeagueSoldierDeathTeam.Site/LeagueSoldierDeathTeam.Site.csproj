@@ -182,13 +182,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Plugins\js-image-slider.css" />
     <Content Include="Content\Plugins\slider.css" />
     <Content Include="Content\Site\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\d03.png" />
     <Content Include="Images\d06.png" />
+    <Content Include="Images\d10.png" />
     <Content Include="Images\EA-DICE.png" />
     <Content Include="Images\emblem.png" />
     <Content Include="Images\frostbite.png" />
@@ -216,7 +216,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\Plugins\js-image-slider.js" />
     <Content Include="Scripts\Plugins\jssor.core.js" />
     <Content Include="Scripts\Plugins\jssor.slider.js" />
     <Content Include="Scripts\Plugins\jssor.utils.js" />

@@ -1,5 +1,5 @@
 ﻿.jssort05 .f {
-	clip: rect(8px 63px 63px 8px);
+	clip: rect(4px 226px 85px 5px);
 }
 
 .jssort05 .i {
@@ -7,8 +7,8 @@
 	background: #000;
 	filter: alpha(opacity=30);
 	opacity: .3;
-	width: 72px;
-	height: 72px;
+	width: 230px;
+	height: 90px;
 	top: 0;
 	left: 0;
 	transition: background-color .6s;
@@ -40,15 +40,39 @@
 	-o-transition: none;
 }
 
-.jssora06l, .jssora06r, .jssora06ldn, .jssora06rdn {
+.jssora10l, .jssora10r, .jssora10ldn, .jssora10rdn {
 	position: absolute;
 	cursor: pointer;
 	display: block;
-	background: url(/Images/d06.png) no-repeat;
+	background: url(/Images/d10.png) no-repeat;
 	overflow: hidden;
 }
 
-.jssora06l, .jssora06r, .jssora06ldn, .jssora06rdn {
+.jssora10l {
+	background-position: -8px -38px;
+}
+
+.jssora10r {
+	background-position: -68px -38px;
+}
+
+.jssora10l:hover {
+	background-position: -128px -38px;
+}
+
+.jssora10r:hover {
+	background-position: -188px -38px;
+}
+
+.jssora10ldn {
+	background-position: -248px -38px;
+}
+
+.jssora10rdn {
+	background-position: -308px -38px;
+}
+
+.jssora03l, .jssora03r, .jssora03ldn, .jssora03rdn {
 	position: absolute;
 	cursor: pointer;
 	display: block;
@@ -56,26 +80,26 @@
 	overflow: hidden;
 }
 
-.jssora06l {
+.jssora03l {
 	background-position: -8px -38px;
 }
 
-.jssora06r {
+.jssora03r {
 	background-position: -68px -38px;
 }
 
-.jssora06l:hover {
+.jssora03l:hover {
 	background-position: -128px -38px;
 }
 
-.jssora06r:hover {
+.jssora03r:hover {
 	background-position: -188px -38px;
 }
 
-.jssora06ldn {
+.jssora03ldn {
 	background-position: -248px -38px;
 }
 
-.jssora06rdn {
+.jssora03rdn {
 	background-position: -308px -38px;
 }

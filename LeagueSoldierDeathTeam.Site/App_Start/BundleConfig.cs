@@ -14,13 +14,11 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 			bundles.Add(new ScriptBundle("~/bundles/js").Include(
 					"~/Scripts/Plugins/jssor.core.js",
 					"~/Scripts/Plugins/jssor.utils.js",
-					"~/Scripts/Plugins/jssor.slider.js",
-					"~/Scripts/Plugins/js-image-slider.js"
+					"~/Scripts/Plugins/jssor.slider.js"
 				));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 				"~/Content/Plugins/slider.css",
-				"~/Content/Plugins/js-image-slider.css",
 
 				"~/Content/Site/Site.css"));
 		}
