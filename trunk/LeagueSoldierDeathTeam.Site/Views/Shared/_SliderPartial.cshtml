@@ -1,4 +1,62 @@
 ﻿<div class="section-slider section-radius section-shadow">
+	@*<div id="slider-container" style="position: relative; width: 1020px;height: 400px;">
+
+			<div u="slides" style="position: absolute; left: 0; top: 0; width: 1020px; height: 400px; overflow: hidden;">
+				<div>
+					<img u="image" src="/Images/Slider/001.jpg" />
+					<img u="thumb" src="/Images/Slider/001.jpg" />
+				</div>
+				<div>
+					<img u="image" src="/Images/Slider/002.jpg" />
+					<img u="thumb" src="/Images/Slider/002.jpg" />
+				</div>
+				<div>
+					<img u="image" src="/Images/Slider/003.jpg" />
+					<img u="thumb" src="/Images/Slider/003.jpg" />
+				</div>
+				<div>
+					<img u="image" src="/Images/Slider/004.jpg" />
+					<img u="thumb" src="/Images/Slider/004.jpg" />
+				</div>
+			</div>
+
+			<div u="thumbnavigator" class="jssort05" style="position: absolute; width: 500px; height: 80px; left:50px; bottom: 20px;">
+				<div u="slides" style="cursor: pointer;">
+					<div u="prototype" class="p" style="position: absolute; width: 72px; height: 72px; top: 0; left: 0; ">
+						<div class="o" style="position:absolute;top:1px;left:1px;width:72px;height:72px;overflow:hidden;">
+							<thumbnailtemplate class="b" style="width:72px;height:72px; border: none;position:absolute; TOP: 0; LEFT: 0;"></thumbnailtemplate>
+							<div class="i"></div>
+							<thumbnailtemplate class="f" style="width:72px;height:72px;border: none;position:absolute; TOP: 0; LEFT: 0;"></thumbnailtemplate>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<span u="arrowleft" class="jssora06l" style="width: 45px; height: 45px; top: 175px; left: -30px;"></span>
+			<span u="arrowright" class="jssora06r" style="width: 45px; height: 45px; top: 175px; right: -30px; "></span>
+		</div>*@
+
+	<div id="sliderFrame">
+		<div id="slider">
+			<a class="lazyImage" href="/Images/Slider/001.jpg"></a>
+			<a class="lazyImage" href="/Images/Slider/002.jpg"></a>
+			<a class="lazyImage" href="/Images/Slider/003.jpg"></a>
+			<a class="lazyImage" href="/Images/Slider/004.jpg"></a>
+		</div>
+
+		<div class="group-Wrapper">
+			<a onclick="imageSlider.previous()" class="group-Prev"></a>
+			<a onclick="imageSlider.next()" class="group-Next"></a>
+		</div>
+
+		<!--thumbnails-->
+		<div id="thumbs">
+			<div class="thumb"><img src="/Images/Slider/001.jpg" /></div>
+			<div class="thumb"><img src="/Images/Slider/002.jpg" /></div>
+			<div class="thumb"><img src="/Images/Slider/003.jpg" /></div>
+			<div class="thumb"><img src="/Images/Slider/004.jpg" /></div>
+		</div>
+	</div>
 </div>
 <div class="section section-slider-items section-radius section-shadow">
 </div>
