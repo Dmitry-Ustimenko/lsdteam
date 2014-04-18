@@ -93,104 +93,14 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 	background: url(/Images/background_menu.png) repeat-x center top;
 	border-top: 1px solid #333;
 	width: 100%;
-	min-height: 36px;
-	max-height: 36px;
+	min-height: 37px;
+	max-height: 37px;
 }
 
 	.section-menu .menu-holder {
 		width: 960px;
 		margin: 0 auto;
 	}
-
-.menu {
-	margin: 2px 10px;
-}
-
-	.menu .dividing-line {
-		width: 1px;
-		background: url(/Images/dividing-line.png) no-repeat center top;
-	}
-
-	.menu .menu-cell {
-		width: 1%;
-		vertical-align: middle;
-	}
-
-	.menu a.menu-link {
-		display: table-cell;
-		vertical-align: middle;
-		text-transform: uppercase;
-		text-decoration: none;
-		white-space: nowrap;
-		padding: 0 7px;
-	}
-
-		.menu a.menu-link span {
-			display: inline-block;
-			color: #FFF;
-			font: 14px Tahoma, Palatino Linotype;
-		}
-
-	.menu .search-cell {
-		width: auto;
-		text-align: right;
-	}
-
-.search-cell .input-group {
-	float: right;
-	height: 34px;
-	margin-right: -43px;
-	white-space: nowrap;
-	padding: 8px 10px 0;
-}
-
-.menu .search-cell .search-field {
-	color: #8f8f8f;
-	width: 180px;
-	height: 24px;
-	font-size: 12px;
-	background: url(/Images/icon_search.png) no-repeat right 2px #FFF;
-	border: 1px solid #a8acad;
-	padding: 0 5px;
-	font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
-}
-
-.caret {
-	display: inline-block;
-	width: 0;
-	height: 0;
-	margin-left: 1px;
-	margin-bottom: 3px;
-	vertical-align: middle;
-	border-top: 4px solid #bb0000;
-	border-right: 4px solid transparent;
-	border-left: 4px solid transparent;
-	border-bottom: 0 dotted;
-}
-
-.menu-cell .menu-drop {
-	position: absolute;
-	width: 155px;
-	background: #3b3b3b;
-	display: none;
-	z-index: 1000;
-	box-shadow: 3px 3px 5px #333;
-	padding: 9px 0 12px;
-}
-
-a.menu-link span.drop-arrow, .sect-comment .reply-link {
-	margin-left: 3px;
-}
-
-a.menu-drop-link {
-	color: #e1e1e1;
-	font-size: .75em;
-	display: block;
-	text-decoration: none;
-	white-space: nowrap;
-	margin: 1px 0;
-	padding: 3px 60px 3px 14px;
-}
 
 .section-radius {
 	border-radius: 5px;
@@ -492,3 +402,126 @@ a.menu-drop-link {
 	left: 0;
 	opacity: 1;
 }
+
+
+/* Navigation */
+
+.caret {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 1px;
+	margin-bottom: 3px;
+	vertical-align: middle;
+	border-top: 4px solid #bb0000;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+	border-bottom: 0 dotted;
+}
+
+.menu {
+	margin: 0 10px;
+}
+
+	.menu .dividing-line {
+		width: 2px;
+		background: url(/Images/dividing-line.png) no-repeat center top;
+	}
+
+	.menu .menu-cell {
+		width: 1%;
+		vertical-align: middle;
+		position: relative;
+		height: 34px;
+		line-height: 29px;
+	}
+
+	.menu a.menu-link {
+		display: table-cell;
+		vertical-align: middle;
+		text-transform: uppercase;
+		text-decoration: none;
+		white-space: nowrap;
+		padding: 0 7px;
+	}
+
+		.menu a.menu-link span {
+			display: inline-block;
+			color: #FFF;
+			font: 14px Tahoma, Palatino Linotype;
+		}
+
+			.menu a.menu-link span:hover {
+				text-shadow: 2px 2px 2px black, 0 0 1.5em white;
+			}
+
+	.menu .search-cell {
+		width: auto;
+		text-align: right;
+	}
+
+		.menu .search-cell .input-group {
+			float: right;
+			height: 34px;
+			margin-right: -43px;
+			white-space: nowrap;
+			padding: 8px 10px 0;
+		}
+
+		.menu .search-cell .search-field {
+			color: #8f8f8f;
+			width: 180px;
+			height: 24px;
+			font-size: 12px;
+			background: url(/Images/icon_search.png) no-repeat right 2px #FFF;
+			border: 1px solid #a8acad;
+			padding: 0 5px;
+			font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
+		}
+
+			.menu .search-cell .search-field:focus {
+				color: black;
+			}
+
+	.menu .menu-drop {
+		position: absolute;
+		left: -9999px;
+		opacity: 0;
+		-webkit-transition: 0.25s linear opacity;
+		width: auto;
+		background: #3b3b3b;
+		z-index: 1000;
+		box-shadow: 1px 2px 4px #333;
+		padding: 5px 0 5px;
+		margin-top: 1px;
+	}
+
+		.menu .menu-drop a {
+			white-space: nowrap;
+			display: block;
+		}
+
+	.menu .menu-cell:hover .menu-drop {
+		left: -3px;
+		opacity: 1;
+	}
+
+		.menu .menu-cell:hover .menu-drop a {
+			text-decoration: none;
+			-webkit-transition: -webkit-transform 0.075s linear;
+		}
+
+	.menu .menu-cell .menu-drop a.menu-drop-link {
+		color: white;
+		display: block;
+		text-decoration: none;
+		white-space: nowrap;
+		margin: 1px 0;
+		padding: 0 12px 0 12px;
+	}
+
+		.menu .menu-cell .menu-drop a.menu-drop-link:hover {
+			background: #626262;
+			color: #FFF;
+			box-shadow: inset 0 0 3px 2px rgba(0,0,0,0.2);
+		}
