@@ -68,6 +68,7 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 	width: 1020px;
 	min-height: 150px;
 	max-height: 150px;
+	margin-top: 1px;
 }
 
 .section-shadow {
@@ -82,11 +83,42 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 }
 
 .section-header {
-	min-height: 100px;
-	max-height: 100px;
+	position: relative;
+	height: 150px;
 	border-bottom: 1px solid #000;
 	border-top: 1px solid #000;
 	background: url(/Images/background_header.png) no-repeat center top;
+}
+
+.emblem {
+	position: absolute;
+	left: 53px;
+}
+
+	.emblem img.full-size {
+		width: auto;
+	}
+
+	.emblem img {
+		width: 145px;
+	}
+
+.ea-dice-emblem {
+	position: absolute;
+	right: -10px;
+	top: 75px;
+}
+
+.frostbite-emblem {
+	position: absolute;
+	right: 0;
+	top: 75px;
+}
+
+.team-name-emblem {
+	position: absolute;
+	left: 170px;
+	top: 25px;
 }
 
 .section-menu {
@@ -110,16 +142,14 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 
 .section-slider {
 	background: white;
-	margin-top: 150px;
-	min-height: 400px;
-	max-height: 400px;
+	margin-top: 200px;
+	height: 400px;
 }
 
 .section-slider-items {
 	background: white;
 	margin-top: 5px;
-	min-height: 100px;
-	max-height: 100px;
+	height: 100px;
 }
 
 .section-body {
@@ -200,6 +230,70 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 	clear: both;
 }
 
+/* Login forms */
+
+.login-buttons {
+	right: 10px;
+	position: absolute;
+}
+
+	.login-buttons .tab {
+		position: relative;
+		display: inline-block;
+		margin-top: 15px;
+	}
+
+		.login-buttons .tab > input {
+			position: relative;
+			border: 1px solid #B31919;
+			box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+			background: #B31919;
+			font-family: 'Ubuntu', 'Lato', sans-serif;
+			color: white;
+			font-weight: 700;
+			font-size: 15px;
+			text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+			cursor: pointer;
+			display: block;
+			float: left;
+			width: 120px;
+			line-height: 30px;
+			top: 2px;
+			text-align: center;
+			margin-bottom: 3px;
+		}
+
+		.login-buttons .tab .login-form {
+			position: absolute;
+			left: -9999px;
+			opacity: 0;
+		}
+
+		.login-buttons .tab:hover .login-form.login {
+			left: -180px;
+			top: 44px;
+			opacity: 1;
+		}
+
+		.login-buttons .tab:hover .login-form.register {
+			left: -230px;
+			top: 44px;
+			opacity: 1;
+		}
+
+		.login-buttons .tab:hover > input {
+			background: rgba(20, 20, 20, 0.95);
+			border: 1px solid #191919 !important;
+		}
+
+	.login-buttons .layer {
+		height: 25px;
+		width: 120px;
+		background-color: transparent;
+		top: 25px;
+		position: absolute;
+	}
+
 /* Login form */
 
 .login-form {
@@ -208,18 +302,17 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 	width: 300px;
 	padding: 10px;
 	right: 110px;
-	overflow: hidden;
-	background: #111;
+	background: rgba(20, 20, 20, 0.95);
 	border: 1px solid #191919;
 	box-shadow: inset 0 0 2px 1px rgba(255,255,255,0.08), 0 16px 10px -8px rgba(0, 0, 0, 0.6);
+	z-index: 10000;
 }
 
 	.login-form:after {
 		content: "";
 		height: 1px;
-		width: 100%;
+		width: 30%;
 		position: absolute;
-		left: 0;
 		top: 0;
 		background: -moz-linear-gradient(left, transparent, #444, #b6b6b8, #444, transparent);
 		background: -ms-linear-gradient(left, transparent, #444, #b6b6b8, #444, transparent);
@@ -229,19 +322,29 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 		background: linear-gradient(left, transparent, #444, #b6b6b8, #444, transparent);
 	}
 
+	.login-form.login:after {
+		left: 196px;
+	}
+
+	.login-form.register:after {
+		left: 236px;
+	}
+
 	.login-form:before {
 		content: "";
-		width: 300px;
-		height: 144px;
 		position: absolute;
-		top: 0;
-		left: 0;
-		background: -moz-linear-gradient(50deg, rgba(255,255,255,0.1), rgba(0,0,0,0));
-		background: -ms-linear-gradient(50deg, rgba(255,255,255,0.1), rgba(0,0,0,0));
-		background: -o-linear-gradient(50deg, rgba(255,255,255,0.1), rgba(0,0,0,0));
-		background: -webkit-linear-gradient(50deg, rgba(255,255,255,0.1), rgba(0,0,0,0));
-		background: linear-gradient(50deg, rgba(255,255,255,0.1), rgba(0,0,0,0));
-		pointer-events: none;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-bottom: 10px solid #5d5d5d;
+		top: -10px;
+	}
+
+	.login-form.login:before {
+		left: 232px;
+	}
+
+	.login-form.register:before {
+		left: 282px;
 	}
 
 	.login-form label {
@@ -325,84 +428,19 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 		text-indent: 2px;
 	}
 
-	.login-form.login p:nth-child(3), .login-form p:nth-child(4) {
+	.login-form.register {
+		width: 350px;
+	}
+
+		.login-form.register p:last-child {
+			float: right;
+			width: 50%;
+		}
+
+	.login-form.login p:nth-child(3), .login-form.login p:nth-child(4) {
 		float: left;
 		width: 50%;
 	}
-
-.login-buttons {
-	float: right;
-}
-
-.tabs {
-	position: absolute;
-	right: 10px;
-	top: 25px;
-}
-
-	.tabs > input {
-		position: relative;
-		border: 1px solid #B31919;
-		box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
-		background: #B31919;
-		font-family: 'Ubuntu', 'Lato', sans-serif;
-		color: white;
-		font-weight: 700;
-		font-size: 15px;
-		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
-		cursor: pointer;
-		display: block;
-		float: left;
-		width: 120px;
-		line-height: 30px;
-		top: 2px;
-		text-align: center;
-		margin-bottom: 3px;
-	}
-
-		.tabs > input:nth-child(2) {
-			margin-left: 5px;
-		}
-
-		.tabs > input:hover {
-			box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-		}
-
-		.tabs > input:focus {
-			background-color: #111;
-			border: 1px solid #191919 !important;
-		}
-
-#btn-login:hover ~ #tab-login,
-#btn-register:hover ~ #tab-register {
-	background: #fff;
-	border-color: #fff;
-	top: 0;
-	z-index: 3;
-}
-
-.tabs_cont {
-	background: #fff;
-	position: relative;
-	z-index: 2;
-}
-
-	.tabs_cont > div {
-		position: absolute;
-		left: -9999px;
-		top: 0;
-		opacity: 0;
-		-moz-transition: opacity .5s ease-in-out;
-		-webkit-transition: opacity .5s ease-in-out;
-		transition: opacity .5s ease-in-out;
-	}
-
-#btn-login:focus ~ .tabs_cont #tab_c1,
-#btn-register:focus ~ .tabs_cont #tab_c2 {
-	left: 0;
-	opacity: 1;
-}
-
 
 /* Navigation */
 
@@ -489,7 +527,7 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 		opacity: 0;
 		-webkit-transition: 0.25s linear opacity;
 		width: auto;
-		background: #3b3b3b;
+		background: rgba(59, 59, 59, 0.97);
 		z-index: 1000;
 		box-shadow: 1px 2px 4px #333;
 		padding: 5px 0 5px;

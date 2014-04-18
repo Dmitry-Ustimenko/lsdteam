@@ -185,6 +185,9 @@
     <Content Include="Content\Site\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\EA-DICE.png" />
+    <Content Include="Images\emblem.png" />
+    <Content Include="Images\frostbite.png" />
     <Content Include="Images\Slider\001.jpg" />
     <Content Include="Images\Slider\002.jpg" />
     <Content Include="Images\Slider\003.jpg" />
@@ -195,6 +198,7 @@
     <Content Include="Images\background_menu.png" />
     <Content Include="Images\dividing-line.png" />
     <Content Include="Images\icon_search.png" />
+    <Content Include="Images\team-name.png" />
     <Content Include="Images\test-image.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

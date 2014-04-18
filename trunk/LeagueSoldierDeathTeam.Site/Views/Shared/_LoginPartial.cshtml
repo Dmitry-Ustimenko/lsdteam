@@ -9,57 +9,53 @@
 }
 else
 {
-	<div class="tabs login-buttons">
-		<input id="btn-login" type="button" name="tab" value="Войти" />
-		<input id="btn-register" type="button" name="tab" value="Регистрация" />
-
-		<div style="clear:both"></div>
-
-		<div class="tabs_cont">
-			<div id="tab_c1">
-				<div class="login-form login">
-					<p class="clearfix">
-						<label for="login">Логин</label>
-						<input type="text" name="login" id="login" placeholder="Логин">
-					</p>
-					<p class="clearfix">
-						<label for="password">Пароль</label>
-						<input type="password" name="password" id="password" placeholder="Пароль">
-					</p>
-					<p class="clearfix">
-						<input type="checkbox" name="remember" id="remember">
-						<label for="remember">Запомнить меня</label>
-					</p>
-					<p class="clearfix">
-						<input type="submit" name="submit" value="Войти">
-					</p>
-				</div>
+	<div class="login-buttons">
+		<div class="tab">
+			<input id="btn-login" type="button" name="tab" value="Войти" />
+			<div class="layer"></div>
+			<div class="login-form login">
+				<p class="clearfix">
+					<label for="login">Логин</label>
+					<input type="text" name="login" id="login" placeholder="Логин">
+				</p>
+				<p class="clearfix">
+					<label for="password">Пароль</label>
+					<input type="password" name="password" id="password" placeholder="Пароль">
+				</p>
+				<p class="clearfix">
+					<input type="checkbox" name="remember" id="remember">
+					<label for="remember">Запомнить меня</label>
+				</p>
+				<p class="clearfix">
+					<input type="submit" name="submit" value="Войти">
+				</p>
 			</div>
-			<div id="tab_c2">
-				<div class="login-form register">
-					<p class="clearfix">
-						<label for="register-user-name">Введите имя</label>
-						<input type="text" name="register-user-name" id="register-user-name" placeholder="Введите имя">
-					</p>
-					<p class="clearfix">
-						<label for="register-password">Введите пароль</label>
-						<input type="password" name="register-password" id="register-password" placeholder="Введите пароль">
-					</p>
-					<p class="clearfix">
-						<label for="register-confirm-password">Повторите пароль</label>
-						<input type="password" name="register-confirm-password" id="register-confirm-password" placeholder="Повторите пароль">
-					</p>
-					<p class="clearfix">
-						<input type="submit" name="submit" value="Регистрация">
-					</p>
-				</div>
+		</div>
+
+		<div class="tab">
+			<input id="btn-register" type="button" name="tab" value="Регистрация" />
+			<div class="layer"></div>
+			<div class="login-form register">
+				<p class="clearfix">
+					<label for="register-user-name">Введите имя</label>
+					<input type="text" name="register-user-name" id="register-user-name" placeholder="Введите имя">
+				</p>
+				<p class="clearfix">
+					<label for="register-email">Введите Email</label>
+					<input type="text" name="register-email" id="register-email" placeholder="Введите Email">
+				</p>
+				<p class="clearfix">
+					<label for="register-password">Введите пароль</label>
+					<input type="password" name="register-password" id="register-password" placeholder="Введите пароль">
+				</p>
+				<p class="clearfix">
+					<label for="register-confirm-password">Повторите пароль</label>
+					<input type="password" name="register-confirm-password" id="register-confirm-password" placeholder="Повторите пароль">
+				</p>
+				<p class="clearfix">
+					<input type="submit" name="submit" value="Зарегистрироваться">
+				</p>
 			</div>
 		</div>
 	</div>
-
-
-	@*<ul class="nav navbar-nav navbar-right">
-			<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-			<li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-		</ul>*@
 }
