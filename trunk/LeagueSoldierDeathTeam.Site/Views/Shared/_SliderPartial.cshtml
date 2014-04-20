@@ -1,5 +1,5 @@
 ﻿<div class="section-slider section-radius section-shadow">
-	<div id="slider-container" style="position: relative; width: 1020px; height: 400px;">
+	<div id="slider" style="position: relative; width: 1020px; height: 400px;">
 		<div u="slides" style="position: absolute; left: 0; top: 0; width: 1020px; height: 400px; overflow: hidden;">
 			<div>
 				<img u="image" src="/Images/Slider/001.jpg" />
@@ -29,9 +29,6 @@
 					</div>
 				</div>
 			</div>
-
-			@*<span u="arrowleft" class="jssora10l" style="width: 45px; height: 45px; top: 175px; left: -38px;"></span>
-			<span u="arrowright" class="jssora10r" style="width: 45px; height: 45px; top: 175px; right: -38px; "></span>*@
 		</div>
 
 		<span u="arrowleft" class="jssora03l" style="width: 45px; height: 45px; top: 175px; left: -30px;"></span>
@@ -41,51 +38,8 @@
 <div class="section section-slider-items section-radius section-shadow">
 </div>
 
-<script>
+<script type="text/javascript">
 	$(document).ready(function () {
-		var _SlideshowTransitions = [{
-			$Duration: 250,
-			$Delay: 50,
-			$Cols: 7,
-			$Rows: 5,
-			$Formation: $JssorSlideshowFormations$.$FormationRandom,
-			$Assembly: 250,
-			$Opacity: 2
-		}];
-
-		var slider = new $JssorSlider$("slider-container", {
-			$AutoPlay: true,
-			$AutoPlayInterval: 4000,
-			$SlideDuration: 1000,
-			$DragOrientation: 1,
-
-			$ArrowNavigatorOptions: {
-				$Class: $JssorArrowNavigator$,
-				$ChanceToShow: 2,
-				$AutoCenter: 2
-			},
-
-			$ThumbnailNavigatorOptions: {
-				$Class: $JssorThumbnailNavigator$,
-				$ChanceToShow: 2,
-
-				$SpacingX: 10,
-				$SpacingY: 3,
-				$DisplayPieces: 4,
-
-				//$ArrowNavigatorOptions: {
-				//	$Class: $JssorArrowNavigator$,
-				//	$ChanceToShow: 2,
-				//	$AutoCenter: 2
-				//}
-			},
-
-			$SlideshowOptions: {
-				$Class: $JssorSlideshowRunner$,
-				$Transitions: _SlideshowTransitions,
-				$TransitionsOrder: 0,
-				$ShowLink: true
-			}
-		});
+		site.home.init();
 	});
 </script>
