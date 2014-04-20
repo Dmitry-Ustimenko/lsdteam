@@ -1,7 +1,11 @@
-﻿namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
+﻿using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+
+namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 {
 	public interface IAccountService
 	{
-		bool LogOn(string login, string password);
+		UserData LogOn(string login, string password);
+
+		UserData GetUser(string userName);
 	}
 }

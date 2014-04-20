@@ -20,7 +20,7 @@ namespace LeagueSoldierDeathTeam.Site
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 			var builder = new ContainerBuilder();
-			builder.RegisterControllers(Assembly.GetExecutingAssembly());
+			builder.RegisterControllers(Assembly.GetExecutingAssembly()).PropertiesAutowired();
 			builder.RegisterModule<LibraryModule>();
 
 			var diContainer = builder.Build();

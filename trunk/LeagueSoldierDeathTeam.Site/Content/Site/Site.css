@@ -22,7 +22,7 @@ footer p {
 	min-height: 200px;
 }
 
-input[type=text]:focus, input[type=password]:focus, input[type=button]:focus {
+input[type=text]:focus, input[type=password]:focus, input[type=button]:focus, input[type=submit]:focus {
 	border: 1px solid transparent !important;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -54,7 +54,45 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 	color: transparent !important;
 }
 
+a {
+	text-decoration: none;
+}
+
 /* Classes */
+
+.log-off {
+	position: absolute;
+	right: 15px;
+	top: 15px;
+	font-size: 14px;
+}
+
+	.log-off span {
+		color: white;
+		display: inline-block;
+	}
+
+	.log-off a {
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+		background: #B31919;
+		font-family: 'Ubuntu', 'Lato', sans-serif;
+		color: white;
+		font-weight: 700;
+		font-size: 15px;
+		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+		cursor: pointer;
+		display: inline-block;
+		width: 90px;
+		line-height: 30px;
+		top: 2px;
+		text-align: center;
+		margin-bottom: 3px;
+	}
+
+		.log-off a:active {
+			background: rgba(47, 47, 47, 0.95);
+			border: 1px solid #191919 !important;
+		}
 
 .cursor-pointer {
 	cursor: pointer;
@@ -158,6 +196,7 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 .section-slider-items {
 	background: rgba(40, 40, 40, 0.5);
 	margin-top: 5px;
+	margin-bottom: 5px;
 	height: 100px;
 	clear: both;
 }
@@ -292,7 +331,7 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 		}
 
 		.login-buttons .tab:hover > input {
-			background: rgba(20, 20, 20, 0.95);
+			background: rgba(47, 47, 47, 0.95);
 			border: 1px solid #191919 !important;
 		}
 
@@ -312,7 +351,7 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 	width: 300px;
 	padding: 10px;
 	right: 110px;
-	background: rgba(20, 20, 20, 0.95);
+	background: rgba(20, 20, 20, 0.9);
 	border: 1px solid #191919;
 	box-shadow: inset 0 0 2px 1px rgba(255,255,255,0.08), 0 16px 10px -8px rgba(0, 0, 0, 0.6);
 	z-index: 10000;
@@ -395,7 +434,7 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 			color: white;
 		}
 
-	.login-form input[type=button] {
+	.login-form input[type=submit] {
 		width: 100%;
 		padding: 8px 5px;
 		border: 1px solid #B31919;
@@ -410,11 +449,15 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
 	}
 
-		.login-form input[type=button]:hover {
+		.login-form input[type=submit]:focus {
+			border: none;
+		}
+
+		.login-form input[type=submit]:hover {
 			box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 		}
 
-		.login-form input[type=button]:active {
+		.login-form input[type=submit]:active {
 			background: #B31919;
 			box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
 			border-color: #000;
@@ -427,7 +470,7 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 		vertical-align: middle;
 	}
 
-	.login-form label[for=remember] {
+	.login-form label[for=RememberMe] {
 		width: auto;
 		float: none;
 		display: inline-block;

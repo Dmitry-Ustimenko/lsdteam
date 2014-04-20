@@ -1,4 +1,29 @@
 ﻿(function ($) {
+	$.fn.serializeParams = function (form) {
+		return $(form).serializeArray();
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.load = function (url, dataParam, callbackParam) {
+		var target = this;
+		site.ajax.post(url, dataParam, function (data) {
+			$(target).html(data);
+			var form = target.find("form");
+			if (form != undefined) {
+				$(form).removeData("validator");
+				$(form).removeData("unobtrusiveValidation");
+				$.validator.unobtrusive.parse($(form));
+			}
+			if ($(data).find("div.validation-summary-errors").length > 0)
+				return;
+			if (typeof (callbackParam) == 'function')
+				callbackParam(data);
+		});
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.slider = function (sliderId) {
 		var slideshowTransitions = [{
 			$Duration: 250,

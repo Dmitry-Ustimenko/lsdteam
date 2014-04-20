@@ -1,6 +1,15 @@
-﻿@if (Request.IsAuthenticated)
-{
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@{
+	Layout = null;
+}
 
+@if (Request.IsAuthenticated)
+{
+	<div class="log-off">
+		<span>@AppContext.Current.CurrentUser.UserName&nbsp;</span>
+		<a href="@(WebBuilder.BuildActionUrl<AccountController>(o => o.LogOff()))">Выйти</a>
+	</div>
 }
 else
 {
@@ -8,32 +17,14 @@ else
 		<div class="tab">
 			<input id="btn-login" type="button" name="tab" value="Войти" />
 			<div class="layer"></div>
-			<div class="login-form login">
-				@using (Html.BeginForm())
-				{
-					@Html.ValidationSummary()
-					<p class="clearfix">
-						<label for="login">Логин</label>
-						<input type="text" name="login" id="login" placeholder="Логин">
-					</p>
-					<p class="clearfix">
-						<label for="password">Пароль</label>
-						<input type="password" name="password" id="password" placeholder="Пароль">
-					</p>
-					<p class="clearfix">
-						<input type="checkbox" name="remember" id="remember">
-						<label for="remember">Запомнить меня</label>
-					</p>
-					<p class="clearfix">
-						<input type="button" value="Войти">
-					</p>
-				}
+			<div id="login" class="login-form login">
+				@{Html.RenderPartial("~/Views/Account/_LoginPartial.cshtml");}
 			</div>
 		</div>
 		<div class="tab">
 			<input id="btn-register" type="button" name="tab" value="Регистрация" />
 			<div class="layer"></div>
-			<div class="login-form register">
+			<div id="register" class="login-form register">
 				@using (Html.BeginForm())
 				{
 					@Html.ValidationSummary()
@@ -54,7 +45,7 @@ else
 						<input type="password" name="register-confirm-password" id="register-confirm-password" placeholder="Повторите пароль">
 					</p>
 					<p class="clearfix">
-						<input type="button" value="Зарегистрироваться">
+						<input type="submit" value="Зарегистрироваться">
 					</p>
 				}
 			</div>

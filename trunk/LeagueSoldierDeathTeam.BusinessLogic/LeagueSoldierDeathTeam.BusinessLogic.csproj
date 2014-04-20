@@ -43,6 +43,7 @@
     <Compile Include="Abstractions\Interfaces\Services\IAccountService.cs" />
     <Compile Include="Classes\Enums\RoleEnum.cs" />
     <Compile Include="Classes\Enums\SexEnum.cs" />
+    <Compile Include="Dto\UserData.cs" />
     <Compile Include="Factories\ServiceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
