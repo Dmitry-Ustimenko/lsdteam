@@ -1,0 +1,26 @@
+﻿@model LeagueSoldierDeathTeam.Site.Models.Account.LoginModel
+
+@{
+	Layout = null;
+}
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+	@Html.ValidationSummary()
+	<p class="clearfix">
+		@Html.LabelFor(m => m.UserName)
+		@Html.TextBoxFor(m => m.UserName, new { @placeholder = "Логин" })
+	</p>
+	<p class="clearfix">
+		@Html.LabelFor(m => m.Password)
+		@Html.TextBoxFor(m => m.Password, new { @placeholder = "Пароль" })
+	</p>
+	<p class="clearfix">
+		@Html.CheckBoxFor(m => m.RememberMe)
+		@Html.LabelFor(m => m.RememberMe)
+	</p>
+	<p class="clearfix">
+		<input type="submit" value="Войти">
+	</p>
+	@Html.HiddenFor(m => m.ReturnUrl)
+}

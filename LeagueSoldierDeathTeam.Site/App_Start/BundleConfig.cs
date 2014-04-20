@@ -8,7 +8,9 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 		{
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
 				"~/Scripts/jquery-{version}.js",
+				"~/Scripts/jquery-ui-{version}.js",
 				"~/Scripts/jquery.validate*",
+				"~/Scripts/jquery.blockUI.js",
 				"~/Scripts/modernizr-*"));
 
 			bundles.Add(new ScriptBundle("~/bundles/js").Include(
@@ -19,7 +21,7 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				"~/Scripts/Site/site.js",
 				"~/Scripts/Site/site.ajax.js",
 				"~/Scripts/Site/site.plugins.js",
-				"~/Scripts/Site/site.common.js",
+				"~/Scripts/Site/site.layout.js",
 				"~/Scripts/Site/site.home.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(

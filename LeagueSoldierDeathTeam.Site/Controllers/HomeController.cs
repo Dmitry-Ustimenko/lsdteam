@@ -1,9 +1,14 @@
 ﻿using System.Web.Mvc;
+using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : BaseController
 	{
+		public HomeController(ServiceFactoryBase serviceFactory)
+			: base(serviceFactory)
+		{ }
+
 		public ActionResult Index()
 		{
 			return View();

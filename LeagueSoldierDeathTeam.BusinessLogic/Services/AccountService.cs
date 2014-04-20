@@ -1,4 +1,5 @@
 ﻿using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 {
@@ -6,9 +7,14 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 	{
 		#region IAccountService Members
 
-		public bool LogOn(string login, string password)
+		UserData IAccountService.LogOn(string login, string password)
 		{
-			return true;
+			return new UserData { UserName = "Admin", Email = "admin@gmail.com" };
+		}
+
+		UserData IAccountService.GetUser(string userName)
+		{
+			return new UserData { UserName = "Admin", Email = "admin@gmail.com" };
 		}
 
 		#endregion
