@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{cc5adc87-a39c-49f3-a35f-f54cb6878d3c}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -36,16 +36,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>.\sql\debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineDebug>true</DefineDebug>
-    <DefineTrace>true</DefineTrace>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>false</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
   <PropertyGroup>
@@ -57,9 +58,40 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Schema Objects" />
+    <Folder Include="Schema Objects\dbo" />
+    <Folder Include="Schema Objects\dbo\Programmability" />
+    <Folder Include="Schema Objects\dbo\Programmability\Defaults" />
+    <Folder Include="Schema Objects\dbo\Programmability\Functions" />
+    <Folder Include="Schema Objects\dbo\Programmability\Rules" />
+    <Folder Include="Schema Objects\dbo\Programmability\Stored Procedures" />
+    <Folder Include="Schema Objects\dbo\Programmability\Types" />
+    <Folder Include="Schema Objects\dbo\Programmability\Types\User Defined Data Types" />
+    <Folder Include="Schema Objects\dbo\Programmability\Types\User Defined Table Types" />
+    <Folder Include="Schema Objects\dbo\Programmability\Types\User Defined Types CLR" />
+    <Folder Include="Schema Objects\dbo\Programmability\Types\XML Schema Collections" />
+    <Folder Include="Schema Objects\dbo\Service Broker" />
+    <Folder Include="Schema Objects\dbo\Service Broker\Queues" />
+    <Folder Include="Schema Objects\dbo\Synonyms" />
+    <Folder Include="Schema Objects\dbo\Tables" />
+    <Folder Include="Schema Objects\dbo\Tables\Constraints" />
+    <Folder Include="Schema Objects\dbo\Tables\Indexes" />
+    <Folder Include="Schema Objects\dbo\Tables\Keys" />
+    <Folder Include="Schema Objects\dbo\Tables\Statistics" />
+    <Folder Include="Schema Objects\dbo\Tables\Triggers" />
+    <Folder Include="Schema Objects\dbo\Views" />
+    <Folder Include="Schema Objects\dbo\Views\Indexes" />
+    <Folder Include="Schema Objects\dbo\Views\Statistics" />
+    <Folder Include="Schema Objects\dbo\Views\Triggers" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Post-Deployment" />
+    <Folder Include="Scripts\Post-Deployment\Population" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LSD.Debug.publish.xml" />
+    <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />
+    <None Include="Scripts\Post-Deployment\Population\000_dboSex.sql" />
+    <None Include="Scripts\Post-Deployment\Population\001_dboRole.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
@@ -72,5 +104,11 @@
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
       <DatabaseVariableLiteralValue>msdb</DatabaseVariableLiteralValue>
     </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema Objects\dbo\Tables\User.table.sql" />
+    <Build Include="Schema Objects\dbo\Tables\Role.table.sql" />
+    <Build Include="Schema Objects\dbo\Tables\UserRole.table.sql" />
+    <Build Include="Schema Objects\dbo\Tables\Sex.table.sql" />
   </ItemGroup>
 </Project>
