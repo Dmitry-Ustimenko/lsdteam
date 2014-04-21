@@ -9,12 +9,12 @@
 				elements: {
 				},
 				attributes: {
-					sliderId: 'slider',
+					slider: '#galleria',
 				}
 			},
 
 			init: function () {
-				$.fn.slider(site.home.settings.attributes.sliderId);
+				$.fn.slider(site.home.settings.attributes.slider);
 			},
 		};
 })();

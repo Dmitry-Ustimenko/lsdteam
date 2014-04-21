@@ -4,7 +4,7 @@
 	Layout = null;
 }
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+@using (Html.BeginForm("Login", "Account", new RouteValueDictionary { { "ReturnUrl", Request.RawUrl } }, FormMethod.Post))
 {
 	@Html.ValidationSummary()
 	<p class="clearfix">
@@ -20,7 +20,6 @@
 		@Html.LabelFor(m => m.RememberMe)
 	</p>
 	<p class="clearfix">
-		<input type="submit" value="Войти">
+		<input type="button" value="Войти">
 	</p>
-	@Html.HiddenFor(m => m.ReturnUrl)
 }

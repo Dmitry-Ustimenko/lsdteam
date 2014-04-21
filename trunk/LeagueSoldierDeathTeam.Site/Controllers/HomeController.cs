@@ -13,5 +13,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			return View();
 		}
+
+		public ActionResult Forum()
+		{
+			return View();
+		}
 	}
 }
