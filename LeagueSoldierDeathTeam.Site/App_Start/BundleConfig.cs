@@ -10,24 +10,24 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				"~/Scripts/jquery-{version}.js",
 				"~/Scripts/jquery-ui-{version}.js",
 				"~/Scripts/jquery.validate*",
-				"~/Scripts/jquery.blockUI.js",
-				"~/Scripts/modernizr-*"));
+				"~/Scripts/jquery.blockUI.js"
+				));
 
 			bundles.Add(new ScriptBundle("~/bundles/js").Include(
-				"~/Scripts/Plugins/jssor.core.js",
-				"~/Scripts/Plugins/jssor.utils.js",
-				"~/Scripts/Plugins/jssor.slider.js",
+				"~/Scripts/Plugins/galleria-1.3.5.js",
 
 				"~/Scripts/Site/site.js",
 				"~/Scripts/Site/site.ajax.js",
 				"~/Scripts/Site/site.plugins.js",
 				"~/Scripts/Site/site.layout.js",
-				"~/Scripts/Site/site.home.js"));
+				"~/Scripts/Site/site.home.js"
+				));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
-				"~/Content/Plugins/slider.css",
+				"~/Content/Plugins/galleria.classic.css",
 
-				"~/Content/Site/Site.css"));
+				"~/Content/Site/Site.css"
+				));
 		}
 	}
 }

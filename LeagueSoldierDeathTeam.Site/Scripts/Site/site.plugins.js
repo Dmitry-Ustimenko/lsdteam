@@ -5,7 +5,7 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.load = function (url, dataParam, callbackParam) {
+	$.fn.loadData = function (url, dataParam, callbackParam) {
 		var target = this;
 		site.ajax.post(url, dataParam, function (data) {
 			$(target).html(data);
@@ -25,48 +25,25 @@
 
 (function ($) {
 	$.fn.slider = function (sliderId) {
-		var slideshowTransitions = [{
-			$Duration: 250,
-			$Delay: 50,
-			$Cols: 7,
-			$Rows: 5,
-			$Formation: $JssorSlideshowFormations$.$FormationRandom,
-			$Assembly: 250,
-			$Opacity: 2
-		}];
-
-		return new $JssorSlider$(sliderId, {
-			$AutoPlay: true,
-			$AutoPlayInterval: 4000,
-			$SlideDuration: 1000,
-			$DragOrientation: 1,
-
-			$ArrowNavigatorOptions: {
-				$Class: $JssorArrowNavigator$,
-				$ChanceToShow: 2,
-				$AutoCenter: 2
-			},
-
-			$ThumbnailNavigatorOptions: {
-				$Class: $JssorThumbnailNavigator$,
-				$ChanceToShow: 2,
-
-				$SpacingX: 10,
-				$SpacingY: 3,
-				$DisplayPieces: 4,
-
-				//$ArrowNavigatorOptions: {
-				//	$Class: $JssorArrowNavigator$,
-				//	$ChanceToShow: 2,
-				//	$AutoCenter: 2
-				//}
-			},
-
-			$SlideshowOptions: {
-				$Class: $JssorSlideshowRunner$,
-				$Transitions: slideshowTransitions,
-				$TransitionsOrder: 0,
-				$ShowLink: true
+		Galleria.loadTheme('/Scripts/Plugins/galleria.classic.js');
+		Galleria.run(sliderId, {
+			autoplay: 2500,
+			transition: 'fade',
+			transitionSpeed: 1000,
+			imageCrop: true,
+			thumbCrop: 'height',
+			idleMode: false,
+			showInfo: false,
+			showCounter: false,
+			pauseOnInteraction: false,
+			imagePan: true,
+			extend: function () {
+				var gallery = this;
+				$(sliderId).mouseenter(this.proxy(function () {
+					gallery.pause();
+				})).mouseleave(this.proxy(function () {
+					gallery.play(2500);
+				}));
 			}
 		});
 	};

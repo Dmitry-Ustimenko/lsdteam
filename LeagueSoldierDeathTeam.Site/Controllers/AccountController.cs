@@ -31,8 +31,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (ModelIsValid)
 			{
 				var user = Execute(() => _accountService.LogOn(model.UserName, model.Password));
-				if (user == null)
-					throw new ArgumentException("Логин или пароль введены не верно");
+				if (user != null)
+					ModelState.AddModelError(string.Empty, "Логин или пароль введены не верно");
 
 				if (ModelIsValid)
 				{
@@ -43,7 +43,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 					return RedirectToAction<HomeController>(x => x.Index());
 				}
 			}
-			return RedirectToAction<HomeController>(x => x.Index());
+			return View("_LoginPartial", model);
 		}
 
 		public ActionResult LogOff()
