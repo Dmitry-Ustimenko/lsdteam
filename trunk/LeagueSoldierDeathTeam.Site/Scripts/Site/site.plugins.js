@@ -5,7 +5,7 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.loadData = function (url, dataParam, callbackParam) {
+	$.fn.loadData = function (url, dataParam, callbackParam, callbackError) {
 		var target = this;
 		site.ajax.post(url, dataParam, function (data) {
 			$(target).html(data);
@@ -15,8 +15,12 @@
 				$(form).removeData("unobtrusiveValidation");
 				$.validator.unobtrusive.parse($(form));
 			}
-			if ($(data).find("div.validation-summary-errors").length > 0)
+			if ($(data).find("div.validation-summary-errors").length > 0) {
+				if (typeof (callbackError) == 'function')
+					callbackError();
 				return;
+			}
+
 			if (typeof (callbackParam) == 'function')
 				callbackParam(data);
 		});
@@ -46,5 +50,32 @@
 				}));
 			}
 		});
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.initValidationSummary = function (container) {
+		var form = container.find("form");
+		$.validator.unobtrusive.parse(form);
+		form.unbind("invalid-form.validate", form.validate().settings.invalidHandler);
+		form.validate().settings.invalidHandler = $.proxy(function (event, validator) {
+			var vs = form.find("div[data-valmsg-summary=true]");
+			var ul = vs.find("ul");
+			vs.addClass("validation-summary-errors");
+			vs.removeClass("validation-summary-valid");
+			if (ul.length > 0) {
+				ul.html("");
+				for (var name in validator.errorList)
+					ul.append("<li>" + validator.errorList[name].message + "</li>");
+			}
+			else {
+				vs.html("");
+				vs.append("<ul></ul>");
+				ul = vs.find("ul");
+				for (var error in validator.errorList)
+					ul.append("<li>" + validator.errorList[error].message + "</li>");
+			}
+		}, form);
+		form.bind("invalid-form.validate", form.validate().settings.invalidHandler);
 	};
 })(jQuery);

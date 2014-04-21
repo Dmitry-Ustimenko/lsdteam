@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
+using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Models.Account;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -31,16 +33,20 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (ModelIsValid)
 			{
 				var user = Execute(() => _accountService.LogOn(model.UserName, model.Password));
-				if (user != null)
-					ModelState.AddModelError(string.Empty, "Логин или пароль введены не верно");
+				if (user == null)
+					ModelState.AddModelError(string.Empty, "Логин или пароль введены не верно.");
 
 				if (ModelIsValid)
 				{
 					_authenticationService.SignIn(user.Email, model.RememberMe);
 
-					if (!string.IsNullOrEmpty(model.ReturnUrl))
-						return Redirect(model.ReturnUrl);
-					return RedirectToAction<HomeController>(x => x.Index());
+					var json = new List<string>
+					{
+						!string.IsNullOrEmpty(model.ReturnUrl)
+							? model.ReturnUrl
+							: WebBuilder.BuildActionUrl<HomeController>(o => o.Index())
+					};
+					return Json(json, JsonRequestBehavior.AllowGet);
 				}
 			}
 			return View("_LoginPartial", model);
