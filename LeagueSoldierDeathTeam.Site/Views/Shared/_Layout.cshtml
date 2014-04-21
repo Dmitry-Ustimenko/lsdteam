@@ -26,56 +26,7 @@
 					<img class="full-size" src="/Images/team-name.png" />
 				</div>
 			</div>
-			<div class="section-menu section-shadow">
-				<table class="menu">
-					<tbody>
-						<tr>
-							<td class="dividing-line"></td>
-							<td class="menu-cell">
-								<a class="menu-link" href="javascripr:void(0);" onclick="return false;">
-									<span>Игры</span>
-									<span class="caret"></span>
-								</a>
-								<div class="menu-drop">
-									<a class="menu-drop-link" href="javascripr:void(0);">Battlefield 2</a>
-									<a class="menu-drop-link" href="javascripr:void(0);">Battlefield Bad Company 2</a>
-									<a class="menu-drop-link" href="javascripr:void(0);">Battlefield 3</a>
-									<a class="menu-drop-link" href="javascripr:void(0);">Battlefield 4</a>
-								</div>
-							</td>
-							<td class="dividing-line"></td>
-							<td class="menu-cell">
-								<a class="menu-link" href="javascripr:void(0);" onclick="return false;">
-									<span>Новости</span>
-									<span class="caret"></span>
-								</a>
-								<div class="menu-drop">
-									<a class=" menu-drop-link" href="javascripr:void(0);">Поиск</a>
-									<a class=" menu-drop-link" href="javascripr:void(0);">Последние новости</a>
-									<a class=" menu-drop-link" href="javascripr:void(0);">Популярные новости</a>
-									<a class=" menu-drop-link" href="javascripr:void(0);">Архив новостей</a>
-								</div>
-							</td>
-							<td class="dividing-line"></td>
-							<td class="menu-cell">
-								<a class="menu-link" href="javascripr:void(0);" onclick="return false;">
-									<span>Форум</span>
-								</a>
-							</td>
-							<td class="dividing-line"></td>
-							<td class="menu-cell">
-								<a class="menu-link" href="javascripr:void(0);" onclick="return false;">
-									<span>Отзыв</span>
-								</a>
-							</td>
-							<td class="dividing-line"></td>
-							<td class="search-cell">
-								<input class="search-field" name="s" type="text" placeholder="Поиск" id="search_input">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			@{Html.RenderPartial("_MenuPartial");}
 		</div>
 		<div class="section-body">
 			@RenderBody()
@@ -85,15 +36,5 @@
 			<p>&copy; @DateTime.Now.Year - Dmitry Ustimenko</p>
 		</footer>
 	</div>
-
-	<script type="text/javascript">
-		$(document).ready(function () {
-			site.layout.init({
-				urls: {
-					login: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Login(null)))',
-				}
-			});
-		});
-	</script>
 </body>
 </html>

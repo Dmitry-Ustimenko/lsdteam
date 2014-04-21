@@ -6,6 +6,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 	{
 		UserData LogOn(string login, string password);
 
+		void Register(string userName, string email, string password);
+
 		UserData GetUser(string userName);
 	}
 }

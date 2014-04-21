@@ -4,16 +4,16 @@
 	Layout = null;
 }
 
-@using (Html.BeginForm("Login", "Account", new RouteValueDictionary { { "ReturnUrl", Request.RawUrl } }, FormMethod.Post))
+@using (Html.BeginForm())
 {
 	@Html.ValidationSummary()
 	<p class="clearfix">
-		@Html.LabelFor(m => m.UserName)
-		@Html.TextBoxFor(m => m.UserName, new { @placeholder = "Логин" })
+		@Html.LabelFor(m => m.Email)
+		@Html.TextBoxFor(m => m.Email, new { @placeholder = "Введите Email" })
 	</p>
 	<p class="clearfix">
 		@Html.LabelFor(m => m.Password)
-		@Html.TextBoxFor(m => m.Password, new { @placeholder = "Пароль" })
+		@Html.PasswordFor(m => m.Password, new { @placeholder = "Введите пароль" })
 	</p>
 	<p class="clearfix">
 		@Html.CheckBoxFor(m => m.RememberMe)
@@ -22,4 +22,5 @@
 	<p class="clearfix">
 		<input type="button" value="Войти">
 	</p>
+	<input type="hidden" value="@Request.RawUrl" name="ReturnUrl" />
 }
