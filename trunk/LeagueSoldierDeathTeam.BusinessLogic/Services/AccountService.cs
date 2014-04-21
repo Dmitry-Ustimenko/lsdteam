@@ -12,6 +12,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return new UserData { UserName = "Admin", Email = "admin@gmail.com" };
 		}
 
+		void IAccountService.Register(string userName, string email, string password)
+		{
+		}
+
 		UserData IAccountService.GetUser(string userName)
 		{
 			return new UserData { UserName = "Admin", Email = "admin@gmail.com" };

@@ -26,7 +26,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Services
 				if (ticket != null)
 				{
 					model.RememberMe = ticket.IsPersistent;
-					model.UserName = ticket.Name;
+					model.Email = ticket.Name;
 				}
 			}
 

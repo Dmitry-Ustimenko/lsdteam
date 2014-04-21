@@ -1,3 +1,30 @@
-﻿@{
+﻿@model LeagueSoldierDeathTeam.Site.Models.Account.RegisterModel
+
+@{
 	Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+	@Html.ValidationSummary()
+	<input type="hidden" value="/" name="ReturnUrl" />
+	<p class="clearfix">
+		@Html.LabelFor(m => m.UserName)
+		@Html.TextBoxFor(m => m.UserName, new { @placeholder = "Введите имя" })
+	</p>
+	<p class="clearfix">
+		@Html.LabelFor(m => m.Email)
+		@Html.TextBoxFor(m => m.Email, new { @placeholder = "Введите Email" })
+	</p>
+	<p class="clearfix">
+		@Html.LabelFor(m => m.Password)
+		@Html.PasswordFor(m => m.Password, new { @placeholder = "Введите пароль" })
+	</p>
+	<p class="clearfix">
+		@Html.LabelFor(m => m.ConfirmPassword)
+		@Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder = "Повторите пароль" })
+	</p>
+	<p class="clearfix">
+		<input type="button" value="Зарегистрироваться">
+	</p>
 }

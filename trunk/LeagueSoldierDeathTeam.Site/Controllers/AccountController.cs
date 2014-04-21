@@ -32,24 +32,30 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			if (ModelIsValid)
 			{
-				var user = Execute(() => _accountService.LogOn(model.UserName, model.Password));
+				var user = Execute(() => _accountService.LogOn(model.Email, model.Password));
 				if (user == null)
 					ModelState.AddModelError(string.Empty, "Логин или пароль введены не верно.");
 
 				if (ModelIsValid)
 				{
 					_authenticationService.SignIn(user.Email, model.RememberMe);
-
-					var json = new List<string>
-					{
-						!string.IsNullOrEmpty(model.ReturnUrl)
-							? model.ReturnUrl
-							: WebBuilder.BuildActionUrl<HomeController>(o => o.Index())
-					};
-					return Json(json, JsonRequestBehavior.AllowGet);
+					return Json(model, JsonRequestBehavior.AllowGet);
 				}
 			}
 			return View("_LoginPartial", model);
+		}
+
+		[HttpPost]
+		public ActionResult Register(RegisterModel model)
+		{
+			if (ModelIsValid)
+			{
+				Execute(() => _accountService.Register(model.UserName, model.Email, model.Password));
+
+				if (ModelIsValid)
+					return Json(model, JsonRequestBehavior.AllowGet);
+			}
+			return View("_RegisterPartial", model);
 		}
 
 		public ActionResult LogOff()

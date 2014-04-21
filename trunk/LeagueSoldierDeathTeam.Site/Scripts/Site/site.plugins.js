@@ -8,21 +8,36 @@
 	$.fn.loadData = function (url, dataParam, callbackParam, callbackError) {
 		var target = this;
 		site.ajax.post(url, dataParam, function (data) {
-			$(target).html(data);
-			var form = target.find("form");
-			if (form != undefined) {
-				$(form).removeData("validator");
-				$(form).removeData("unobtrusiveValidation");
-				$.validator.unobtrusive.parse($(form));
+			try {
+				var json = $.parseJSON(data);
+				for (var key in json) {
+					if (key == "ReturnUrl") {
+						if (json[key] != null) {
+							window.location.href = json[key];
+							return;
+						}
+						window.location.href = "/";
+						return;
+					}
+				}
 			}
-			if ($(data).find("div.validation-summary-errors").length > 0) {
-				if (typeof (callbackError) == 'function')
-					callbackError();
-				return;
-			}
+			catch (e) {
+				$(target).html(data);
+				var form = target.find("form");
+				if (form != undefined) {
+					$(form).removeData("validator");
+					$(form).removeData("unobtrusiveValidation");
+					$.validator.unobtrusive.parse($(form));
+				}
+				if ($(data).find("div.validation-summary-errors").length > 0) {
+					if (typeof (callbackError) == 'function')
+						callbackError();
+					return;
+				}
 
-			if (typeof (callbackParam) == 'function')
-				callbackParam(data);
+				if (typeof (callbackParam) == 'function')
+					callbackParam(data);
+			}
 		});
 	};
 })(jQuery);

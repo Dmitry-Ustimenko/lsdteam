@@ -25,30 +25,19 @@ else
 			<input id="btn-register" type="button" name="tab" value="Регистрация" />
 			<div class="layer"></div>
 			<div id="register" class="login-form register">
-				@using (Html.BeginForm())
-				{
-					@Html.ValidationSummary()
-					<p class="clearfix">
-						<label for="register-user-name">Введите имя</label>
-						<input type="text" name="register-user-name" id="register-user-name" placeholder="Введите имя">
-					</p>
-					<p class="clearfix">
-						<label for="register-email">Введите Email</label>
-						<input type="text" name="register-email" id="register-email" placeholder="Введите Email">
-					</p>
-					<p class="clearfix">
-						<label for="register-password">Введите пароль</label>
-						<input type="password" name="register-password" id="register-password" placeholder="Введите пароль">
-					</p>
-					<p class="clearfix">
-						<label for="register-confirm-password">Повторите пароль</label>
-						<input type="password" name="register-confirm-password" id="register-confirm-password" placeholder="Повторите пароль">
-					</p>
-					<p class="clearfix">
-						<input type="button" value="Зарегистрироваться">
-					</p>
-				}
+				@{Html.RenderPartial("~/Views/Account/_RegisterPartial.cshtml");}
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			site.layout.init({
+				urls: {
+					login: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Login(null)))',
+					register: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Register(null)))',
+				}
+			});
+		});
+	</script>
 }
