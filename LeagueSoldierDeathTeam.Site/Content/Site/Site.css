@@ -326,34 +326,25 @@ a {
 
 		.login-buttons .tab .login-form {
 			position: absolute;
-			left: -9999px;
-			opacity: 0;
+			display: none;
 		}
 
-		.login-buttons .tab:hover .login-form.login {
-			left: -180px;
-			top: 44px;
-			opacity: 1;
-		}
+			.login-buttons .tab .login-form.login {
+				left: -180px;
+				top: 44px;
+				opacity: 1;
+			}
 
-		.login-buttons .tab:hover .login-form.register {
-			left: -230px;
-			top: 44px;
-			opacity: 1;
-		}
+			.login-buttons .tab .login-form.register {
+				left: -230px;
+				top: 44px;
+				opacity: 1;
+			}
 
-		.login-buttons .tab:hover > input {
+		.login-buttons .tab > .active-tab {
 			background: rgba(47, 47, 47, 0.95);
 			border: 1px solid #191919 !important;
 		}
-
-	.login-buttons .layer {
-		height: 25px;
-		width: 120px;
-		background-color: transparent;
-		top: 25px;
-		position: absolute;
-	}
 
 /* Login form */
 

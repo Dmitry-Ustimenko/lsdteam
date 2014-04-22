@@ -14,16 +14,14 @@
 else
 {
 	<div class="login-buttons">
-		<div class="tab">
+		<div id="login-tab" class="tab">
 			<input id="btn-login" type="button" name="tab" value="Войти" />
-			<div class="layer"></div>
 			<div id="login" class="login-form login">
 				@{Html.RenderPartial("~/Views/Account/_LoginPartial.cshtml");}
 			</div>
 		</div>
-		<div class="tab">
+		<div id="register-tab" class="tab">
 			<input id="btn-register" type="button" name="tab" value="Регистрация" />
-			<div class="layer"></div>
 			<div id="register" class="login-form register">
 				@{Html.RenderPartial("~/Views/Account/_RegisterPartial.cshtml");}
 			</div>
