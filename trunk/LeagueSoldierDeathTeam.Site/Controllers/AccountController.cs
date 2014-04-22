@@ -34,6 +34,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				var user = Execute(() => _accountService.LogOn(model.Email, model.Password));
 				if (ModelIsValid)
 				{
+					AppContext.CurrentUser = user;
 					_authenticationService.SignIn(user.Email, model.RememberMe);
 					return Json(model, JsonRequestBehavior.AllowGet);
 				}

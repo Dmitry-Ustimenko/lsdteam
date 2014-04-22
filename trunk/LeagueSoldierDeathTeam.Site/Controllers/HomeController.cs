@@ -14,6 +14,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return View();
 		}
 
+		[Route("forum")]
 		public ActionResult Forum()
 		{
 			return View();
