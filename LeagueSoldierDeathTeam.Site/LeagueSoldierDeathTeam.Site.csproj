@@ -148,6 +148,7 @@
     <Compile Include="Classes\AppConfig.cs" />
     <Compile Include="Classes\AppContext.cs" />
     <Compile Include="Classes\ControllerActionInfo.cs" />
+    <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
     <Compile Include="Classes\Factories\ContextFactory.cs" />
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Services\AuthenticationService.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Classes\WebBuilder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -228,7 +230,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_AuthenticationPartial.cshtml" />
@@ -239,6 +240,8 @@
     <Content Include="Lsd.logger.config" />
     <Content Include="Views\Home\Forum.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Shared\_LayoutError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -250,6 +253,10 @@
     <ProjectReference Include="..\LeagueSoldierDeathTeam.BusinessLogic\LeagueSoldierDeathTeam.BusinessLogic.csproj">
       <Project>{99f6abd6-2d0d-4a59-b29f-9024d23fa4c3}</Project>
       <Name>LeagueSoldierDeathTeam.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LeagueSoldierDeathTeam.DataBaseLayer\LeagueSoldierDeathTeam.DataBaseLayer.csproj">
+      <Project>{c4910c69-e2e4-4f85-847d-32175ffc718b}</Project>
+      <Name>LeagueSoldierDeathTeam.DataBaseLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

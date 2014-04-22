@@ -30,6 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,10 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\Factories\RepositoryFactoryBase.cs" />
+    <Compile Include="Abstractions\Interfaces\DataAccess\IUnitOfWork.cs" />
+    <Compile Include="Classes\Security\Hashing.cs" />
+    <Compile Include="DataAccess\Repositories\Repository.cs" />
     <Compile Include="Abstractions\Factories\ServiceFactoryBase.cs" />
+    <Compile Include="Abstractions\Interfaces\DataAccess\Repositories\IRepository.cs" />
     <Compile Include="Abstractions\Interfaces\Services\IAccountService.cs" />
     <Compile Include="Classes\Enums\RoleEnum.cs" />
     <Compile Include="Classes\Enums\SexEnum.cs" />
+    <Compile Include="DataAccess\Repositories\RepositoryFactory.cs" />
+    <Compile Include="DataAccess\UnitOfWork.cs" />
     <Compile Include="Dto\UserData.cs" />
     <Compile Include="Factories\ServiceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,6 +67,9 @@
       <Project>{c4910c69-e2e4-4f85-847d-32175ffc718b}</Project>
       <Name>LeagueSoldierDeathTeam.DataBaseLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\Extentions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

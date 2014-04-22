@@ -15,5 +15,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public string Activity { get; set; }
 		public DateTime DateBirth { get; set; }
 		public int? SexId { get; set; }
+
+		public UserData()
+		{
+			IsActive = true;
+		}
 	}
 }

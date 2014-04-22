@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
-using LeagueSoldierDeathTeam.Site.Classes;
+using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Models.Account;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -33,9 +32,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (ModelIsValid)
 			{
 				var user = Execute(() => _accountService.LogOn(model.Email, model.Password));
-				if (user == null)
-					ModelState.AddModelError(string.Empty, "Логин или пароль введены не верно.");
-
 				if (ModelIsValid)
 				{
 					_authenticationService.SignIn(user.Email, model.RememberMe);
@@ -50,7 +46,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			if (ModelIsValid)
 			{
-				Execute(() => _accountService.Register(model.UserName, model.Email, model.Password));
+				var data = model.CopyTo();
+				Execute(() => _accountService.Register(data));
 
 				if (ModelIsValid)
 					return Json(model, JsonRequestBehavior.AllowGet);

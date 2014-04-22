@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\DataAccess\IObjectContextProvider.cs" />
+    <Compile Include="DataAccess\ObjectContextProvider.cs" />
     <Compile Include="Model\LSD.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
