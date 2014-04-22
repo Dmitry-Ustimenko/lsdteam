@@ -10,7 +10,9 @@
 			},
 			elements: {
 				login: '#login',
-				register: '#register'
+				register: '#register',
+				loginTab: '#login-tab',
+				registerTab: '#register-tab'
 			}
 		},
 
@@ -19,8 +21,40 @@
 			var $loginForm = $(site.layout.settings.elements.login);
 			var $registerForm = $(site.layout.settings.elements.register);
 
+			site.layout.initTabs($loginForm, $registerForm);
 			site.layout.initLoginForm($loginForm);
 			site.layout.initRegisterForm($registerForm);
+		},
+
+		initTabs: function (loginForm, registerForm) {
+			var $loginTab = $(site.layout.settings.elements.loginTab);
+			var $registerTab = $(site.layout.settings.elements.registerTab);
+			var btnLogin = $loginTab.find("#btn-login");
+			var btnRegister = $registerTab.find("#btn-register");
+
+			$(document).click(function (event) {
+				var $eventTarget = $(event.target);
+
+				if ($eventTarget.closest(site.layout.settings.elements.loginTab).length) {
+					loginForm.fadeIn("fast");
+					btnLogin.addClass("active-tab");
+				}
+				else {
+					loginForm.fadeOut("fast");
+					btnLogin.removeClass("active-tab");
+				}
+
+				if ($eventTarget.closest(site.layout.settings.elements.registerTab).length) {
+					registerForm.fadeIn("fast");
+					btnRegister.addClass("active-tab");
+				}
+				else {
+					registerForm.fadeOut("fast");
+					btnRegister.removeClass("active-tab");
+				}
+
+				event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = true);
+			});
 		},
 
 		initLoginForm: function (loginForm) {
