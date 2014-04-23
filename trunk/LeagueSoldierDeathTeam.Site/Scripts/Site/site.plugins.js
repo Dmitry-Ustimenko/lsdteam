@@ -10,16 +10,10 @@
 		site.ajax.post(url, dataParam, function (data) {
 			try {
 				var json = $.parseJSON(data);
-				for (var key in json) {
-					if (key == "ReturnUrl") {
-						if (json[key] != null) {
-							window.location.href = json[key];
-							return;
-						}
-						window.location.href = "/";
-						return;
-					}
-				}
+				if (json != undefined)
+					window.location.href = window.location.pathname;
+				else
+					window.location.href = "/";
 			}
 			catch (e) {
 				$(target).html(data);

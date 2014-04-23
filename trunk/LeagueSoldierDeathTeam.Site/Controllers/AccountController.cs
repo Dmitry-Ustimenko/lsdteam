@@ -9,6 +9,7 @@ using LeagueSoldierDeathTeam.Site.Models.Account;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
+	[AllowAnonymous]
 	public class AccountController : BaseController
 	{
 		private readonly IAccountService _accountService;
