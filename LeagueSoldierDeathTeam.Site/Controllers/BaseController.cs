@@ -3,6 +3,7 @@ using System.Data.Entity.Core;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
@@ -10,6 +11,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Classes;
+using LeagueSoldierDeathTeam.Site.Classes.Factories;
 using Microsoft.Web.Mvc;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -17,6 +19,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 	public class BaseController : Controller
 	{
 		protected IAppContext AppContext { get; private set; }
+
+		protected HttpContextBase HttpContextBase
+		{
+			get
+			{
+				return ContextFactory.GetHttpContext();
+			}
+		}
 
 		protected ServiceFactoryBase ServiceFactory { get; private set; }
 

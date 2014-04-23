@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
@@ -20,6 +21,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (authenticationService == null)
 				throw new ArgumentNullException("authenticationService");
 			_authenticationService = authenticationService;
+			_authenticationService.AuthenticationManager = HttpContextBase.GetOwinContext().Authentication;
 
 			_accountService = ServiceFactory.CreateAccountService();
 		}
