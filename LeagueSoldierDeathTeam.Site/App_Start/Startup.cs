@@ -1,6 +1,7 @@
 ﻿using System;
 using LeagueSoldierDeathTeam.Site.App_Start;
 using LeagueSoldierDeathTeam.Site.Classes;
+using LeagueSoldierDeathTeam.Site.Controllers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -17,7 +18,8 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 			{
 				AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
 				CookieName = AppConfig.CookieName,
-				ExpireTimeSpan = new TimeSpan(3, 0, 0, 0)
+				ExpireTimeSpan = new TimeSpan(3, 0, 0, 0),
+				LoginPath = new PathString(WebBuilder.BuildActionUrl<HomeController>(o => o.Index()))
 			});
 
 			app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
