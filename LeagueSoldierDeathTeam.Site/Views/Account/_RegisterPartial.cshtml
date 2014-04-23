@@ -7,7 +7,6 @@
 @using (Html.BeginForm())
 {
 	@Html.ValidationSummary()
-	<input type="hidden" value="/" name="ReturnUrl" />
 	<p class="clearfix">
 		@Html.LabelFor(m => m.RegisterUserName)
 		@Html.TextBoxFor(m => m.RegisterUserName, new { @placeholder = "Введите имя" })
