@@ -1,4 +1,17 @@
 ﻿(function ($) {
+	$.fn.GetQueryParamValue = function (param) {
+		var queryString = window.location.search.substring(1);
+		var variables = queryString.split('&');
+		for (var i = 0; i < variables.length; i++) {
+			var variable = variables[i].split('=');
+			if (variable[0] == param)
+				return variable[1];
+		}
+		return undefined;
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.serializeParams = function (form) {
 		return $(form).serializeArray();
 	};
@@ -10,8 +23,13 @@
 		site.ajax.post(url, dataParam, function (data) {
 			try {
 				var json = $.parseJSON(data);
-				if (json != undefined)
-					window.location.href = window.location.pathname;
+				if (json != undefined) {
+					var returnUrl = $.fn.GetQueryParamValue("ReturnUrl");
+					if (returnUrl != undefined)
+						window.location.href = returnUrl.split("%2F").join("/");
+					else
+						window.location.href = window.location.pathname;
+				}
 				else
 					window.location.href = "/";
 			}
