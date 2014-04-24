@@ -22,8 +22,8 @@ footer p {
 	min-height: 200px;
 }
 
-input[type=text]:focus, input[type=password]:focus, input[type=button]:focus, input[type=submit]:focus {
-	border: 1px solid transparent !important;
+input[type=text]:focus, input[type=password]:focus, input[type=button]:focus, input[type=submit]:focus, button[type=submit] {
+	border: none !important;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
@@ -654,3 +654,90 @@ a {
 		text-align: center;
 		margin-top: 50px;
 	}
+
+/* External Login*/
+
+.rotate {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+.down-arrow {
+	margin-top: 45px;
+	border-top: 1px solid rgb(242, 242, 242);
+	border-bottom: 1px solid rgb(242, 242, 242);
+	padding: 9px 0;
+	width: 100%;
+	height: 10px;
+	background: url(/Images/arrow-social-down.png) no-repeat center;
+	opacity: 0.5;
+}
+
+.up-arrow {
+	background: url(/Images/arrow-social-up.png) no-repeat center;
+}
+
+.down-arrow:hover {
+	opacity: 0.9;
+	cursor: pointer;
+}
+
+.social-list {
+	height: 70px;
+	position: relative;
+	margin: 5px 0;
+	display: none;
+}
+
+.social-vk-button, .social-facebook-button {
+	position: absolute;
+	right: 10px;
+	width: 32px;
+	height: 32px;
+	opacity: 0.5;
+}
+
+.social-vk-button {
+	background: url(/Images/vk-icon.png) no-repeat top center;
+	top: 43px;
+}
+
+.social-facebook-button {
+	background: url(/Images/facebook.png) no-repeat top center;
+	top: 3px;
+}
+
+	.social-vk-button:hover {
+		background: url(/Images/vk-icon-active.png) no-repeat top center;
+	}
+
+	.social-facebook-button:hover {
+		background: url(/Images/facebook-active.png) no-repeat top center;
+	}
+
+	.social-vk-button:hover, .social-facebook-button:hover {
+		cursor: pointer;
+		opacity: 1;
+	}
+
+.social-vk-label, .social-facebook-label {
+	color: white;
+	position: absolute;
+	left: 0;
+	width: 235px;
+	opacity: 0.7;
+	cursor: default;
+	font-weight: 700;
+	text-indent: 10px;
+}
+
+.social-vk-label {
+	top: 50px;
+}
+
+.social-facebook-label {
+	top: 11px;
+}
