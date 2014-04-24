@@ -193,6 +193,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Classes\AppConfig.cs" />
     <Compile Include="Classes\AppContext.cs" />
+    <Compile Include="Classes\ChallengeResult.cs" />
     <Compile Include="Classes\ControllerActionInfo.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
     <Compile Include="Classes\Factories\ContextFactory.cs" />
@@ -208,8 +209,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Account\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="Models\Account\IdentityModels.cs" />
+    <Compile Include="Models\Account\ExternalRegisterModel.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Modules\Autofac\LibraryModule.cs" />
@@ -291,7 +291,6 @@
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Shared\_LayoutError.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
   </ItemGroup>
