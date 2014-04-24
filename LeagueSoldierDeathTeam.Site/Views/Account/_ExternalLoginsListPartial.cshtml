@@ -1,18 +1,7 @@
-﻿@using Microsoft.Owin.Security
-@{
-	var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes().ToList();
-}
-
-@if (loginProviders.Any())
+﻿@using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
 {
-	using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
-	{
-		@Html.AntiForgeryToken()
-		<div id="socialLoginList">
-			@foreach (var p in loginProviders)
-			{
-				<button type="submit" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType">@p.AuthenticationType</button>
-			}
-		</div>
-	}
+	<span class="social-facebook-label">Войти через facebook.com&nbsp;&reg;</span>
+	<button type="submit" class="social-facebook-button" id="Facebook" name="provider" value="Facebook"></button>
+	<span class="social-vk-label">Войти через vk.com&nbsp;&reg;</span>
+	<button type="submit" class="social-vk-button" id="Vkontakte" name="provider" value="Vkontakte"></button>
 }

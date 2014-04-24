@@ -220,6 +220,8 @@
     <Content Include="Content\Site\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\arrow-social-down.png" />
+    <Content Include="Images\arrow-social-up.png" />
     <Content Include="Images\classic-loader.gif" />
     <Content Include="Images\classic-map.png" />
     <Content Include="Images\d03.png" />
@@ -227,6 +229,8 @@
     <Content Include="Images\d10.png" />
     <Content Include="Images\EA-DICE.png" />
     <Content Include="Images\emblem.png" />
+    <Content Include="Images\facebook-active.png" />
+    <Content Include="Images\facebook.png" />
     <Content Include="Images\frostbite.png" />
     <Content Include="Images\navbuttons2.gif" />
     <Content Include="Images\Slider\001.jpg" />
@@ -241,6 +245,8 @@
     <Content Include="Images\icon_search.png" />
     <Content Include="Images\team-name.png" />
     <Content Include="Images\test-image.png" />
+    <Content Include="Images\vk-icon-active.png" />
+    <Content Include="Images\vk-icon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

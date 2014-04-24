@@ -27,6 +27,19 @@
 		},
 
 		initTabs: function (loginForm, registerForm) {
+			var socialArrow = loginForm.find("div.down-arrow");
+			var socialList = loginForm.find("div.social-list");
+
+			socialArrow.on("click", function () {
+				if (socialList.is(":hidden")) {
+					socialList.fadeIn("normal");
+				}
+				else
+					socialList.fadeOut("normal");
+
+				$(this).toggleClass("up-arrow");
+			});
+
 			var $loginTab = $(site.layout.settings.elements.loginTab);
 			var $registerTab = $(site.layout.settings.elements.registerTab);
 			var btnLogin = $loginTab.find("#btn-login");
