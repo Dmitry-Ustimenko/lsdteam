@@ -1,6 +1,7 @@
-﻿@{
+﻿@using LeagueSoldierDeathTeam.Site.Models.Account
+@{
 	ViewBag.Title = "Forum";
 }
 
-<h2>Forum</h2>
+@Html.Partial("~/Views/Account/_ExternalLoginsListPartial.cshtml", new ExternalLoginViewModel { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
 
