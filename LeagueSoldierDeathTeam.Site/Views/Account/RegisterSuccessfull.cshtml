@@ -1,0 +1,15 @@
+﻿@model LeagueSoldierDeathTeam.Site.Models.Account.RegisterSuccessfullModel
+
+<div class="success-body">
+	<div>
+		<h2>Регистрация прошла успешно!</h2>
+		<span>
+			На указанную вами почту
+			@if (Model != null && !string.IsNullOrWhiteSpace(Model.MailHosting))
+			{
+				<a href="@Model.MailHosting" target="_blank">(перейти)</a>
+			}
+			было выслано письмо c инструкциями по активации аккаунта.
+		</span>
+	</div>
+</div>

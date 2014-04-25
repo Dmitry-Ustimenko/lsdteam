@@ -24,6 +24,15 @@
 			try {
 				var json = $.parseJSON(data);
 				if (json != undefined) {
+					for (var key in json) {
+						if (key == "ReturnUrl") {
+							if (json[key] != null) {
+								window.location.href = json[key];
+								return;
+							}
+						}
+					}
+
 					var returnUrl = $.fn.GetQueryParamValue("ReturnUrl");
 					if (returnUrl != undefined)
 						window.location.href = returnUrl.split("%2F").join("/");
