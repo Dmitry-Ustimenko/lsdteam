@@ -118,7 +118,7 @@ a {
 	margin: 0 auto;
 }
 
-.fixed-top {
+/*.fixed-top {
 	border-top: 1px solid rgb(50, 50, 50);
 	z-index: 9999;
 	top: 0;
@@ -127,7 +127,22 @@ a {
 	min-height: 150px;
 	max-height: 150px;
 	margin-top: 1px;
+}*/
+
+.section-menu {
+	background: url(/Images/background_menu.png) repeat-x center top;
+	border-top: 1px solid #333;
+	width: 1020px;
+	min-height: 37px;
+	max-height: 37px;
+	position: fixed;
+	z-index: 9998;
 }
+
+	.section-menu .menu-holder {
+		width: 960px;
+		margin: 0 auto;
+	}
 
 .section-shadow {
 	-moz-box-shadow: 0 0 10px #000;
@@ -144,8 +159,22 @@ a {
 	position: relative;
 	height: 150px;
 	border-bottom: 1px solid #000;
-	border-top: 1px solid #000;
+	border-top: 1px solid rgb(50, 50, 50);
 	background: url(/Images/background_header.png) no-repeat center top;
+	z-index: 9999;
+	margin-top: 2px;
+}
+
+.section-message {
+	width: 100%;
+	border: 1px solid green;
+	height: 40px;
+	width: 1020px;
+	background-color: rgba(0, 80, 0, 0.5);
+	position: fixed;
+	top: 0;
+	z-index: 10000;
+	/*display: none;*/
 }
 
 .emblem {
@@ -179,19 +208,6 @@ a {
 	top: 25px;
 }
 
-.section-menu {
-	background: url(/Images/background_menu.png) repeat-x center top;
-	border-top: 1px solid #333;
-	width: 100%;
-	min-height: 37px;
-	max-height: 37px;
-}
-
-	.section-menu .menu-holder {
-		width: 960px;
-		margin: 0 auto;
-	}
-
 .section-radius {
 	border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -214,7 +230,7 @@ a {
 
 .section-body {
 	background: transparent;
-	margin-top: 200px;
+	margin-top: 45px;
 	min-height: 920px;
 }
 
@@ -679,9 +695,9 @@ a {
 				opacity: 0.5;
 			}
 
-			.success-body div span a:hover {
-				opacity: 1;
-			}
+				.success-body div span a:hover {
+					opacity: 1;
+				}
 
 /* External Login*/
 
@@ -729,9 +745,9 @@ a {
 	border: none;
 }
 
-.social-vk-button:active, .social-facebook-button:active {
-	box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
-}
+	.social-vk-button:active, .social-facebook-button:active {
+		box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
+	}
 
 .social-vk-button {
 	background: url(/Images/vk-icon.png) no-repeat top center;

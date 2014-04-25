@@ -11,6 +11,7 @@
 <body>
 	<div class="wrapper">
 		<div class="fixed-top">
+			@{Html.RenderPartial("_TopMessagePartial");}
 			<div class="section section-header section-shadow">
 				<div class="emblem">
 					<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))"><img src="/Images/emblem.png" /></a>

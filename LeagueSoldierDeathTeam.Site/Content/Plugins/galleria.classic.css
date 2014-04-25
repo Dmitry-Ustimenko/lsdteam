@@ -168,7 +168,7 @@
 	left: auto;
 	right: -15px;
 	background-position: -65px -35px;
-	z-index: 9999;
+	z-index: 5000;
 }
 
 .notouch .galleria-image-nav-left:hover,
