@@ -10,25 +10,22 @@
 </head>
 <body>
 	<div class="wrapper">
-		<div class="fixed-top">
-			@{Html.RenderPartial("_TopMessagePartial");}
-			<div class="section section-header section-shadow">
-				<div class="emblem">
-					<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))"><img src="/Images/emblem.png" /></a>
-				</div>
-				@{Html.RenderPartial("_AuthenticationPartial");}
-				<div class="frostbite-emblem">
-					<img class="full-size" src="/Images/frostbite.png" />
-				</div>
-				<div class="ea-dice-emblem">
-					<img class="full-size" src="/Images/EA-DICE.png" />
-				</div>
-				<div class="team-name-emblem">
-					<img class="full-size" src="/Images/team-name.png" />
-				</div>
+		<div class="section section-header section-shadow">
+			<div class="emblem">
+				<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))"><img src="/Images/emblem.png" /></a>
 			</div>
-			@{Html.RenderPartial("_MenuPartial");}
+			@{Html.RenderPartial("_AuthenticationPartial");}
+			<div class="frostbite-emblem">
+				<img class="full-size" src="/Images/frostbite.png" />
+			</div>
+			<div class="ea-dice-emblem">
+				<img class="full-size" src="/Images/EA-DICE.png" />
+			</div>
+			<div class="team-name-emblem">
+				<img class="full-size" src="/Images/team-name.png" />
+			</div>
 		</div>
+		@{Html.RenderPartial("_MenuPartial");}
 		<div class="section-body">
 			@RenderBody()
 		</div>

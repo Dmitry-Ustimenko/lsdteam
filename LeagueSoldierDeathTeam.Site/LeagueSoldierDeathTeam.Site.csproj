@@ -216,6 +216,7 @@
     <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\Account\RegisterSuccessfullModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Xml\MailHosting.cs" />
     <Compile Include="Modules\Autofac\LibraryModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -307,7 +308,6 @@
     <Content Include="Views\Account\ExternalRegisterConfirmation.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\RegisterSuccessfull.cshtml" />
-    <Content Include="Views\Shared\_TopMessagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
