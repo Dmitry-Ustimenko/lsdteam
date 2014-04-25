@@ -307,6 +307,7 @@
     <Content Include="Views\Account\ExternalRegisterConfirmation.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\RegisterSuccessfull.cshtml" />
+    <Content Include="Views\Shared\_TopMessagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
