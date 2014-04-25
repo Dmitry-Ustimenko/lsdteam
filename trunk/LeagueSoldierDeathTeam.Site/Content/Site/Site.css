@@ -55,6 +55,13 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 
 a {
 	text-decoration: none;
+	color: rgb(220,0,0);
+	font-style: italic;
+	opacity: 0.8;
+}
+
+a:hover {
+	opacity: 1;
 }
 
 /* Id */
@@ -777,7 +784,7 @@ a {
 	position: absolute;
 	left: 0;
 	width: 235px;
-	opacity: 0.7;
+	opacity: 0.9;
 	cursor: default;
 	font-weight: 700;
 	text-indent: 10px;

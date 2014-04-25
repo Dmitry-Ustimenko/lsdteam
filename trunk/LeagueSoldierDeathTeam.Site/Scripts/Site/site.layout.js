@@ -30,30 +30,15 @@
 		fixedMenu: function () {
 			var $sectionHeader = $(".section-header");
 			var $sectionMenu = $(".section-menu");
-			var $sectionMessage = $(".section-message");
 
+			var fixedHeight = 0;
 			var sectionHeaderHeight = $sectionHeader.height() + 4;
-			var sectionMessageHeight = $sectionMessage.height() + 2;
-
-			if (!$sectionMessage.is(":hidden")) {
-				$sectionHeader.css("margin-top", sectionMessageHeight + 2);
-				$sectionMenu.css("top", sectionHeaderHeight + sectionMessageHeight);
-			} else {
-				$sectionMenu.css("top", sectionHeaderHeight);
-			}
+			$sectionMenu.css("top", sectionHeaderHeight);
 
 			$(window).scroll(function () {
 				var top = $(this).scrollTop();
-				var fixedHeight = 0;
-				var headerHeight = sectionHeaderHeight;
-				if (!$sectionMessage.is(":hidden")) {
-					$sectionHeader.css("margin-top", sectionMessageHeight + 2);
-					headerHeight = sectionHeaderHeight + sectionMessageHeight;
-					fixedHeight = sectionMessageHeight;
-				}
-
-				if (top + fixedHeight < headerHeight)
-					$sectionMenu.css('top', (headerHeight - top));
+				if (top + fixedHeight < sectionHeaderHeight)
+					$sectionMenu.css('top', (sectionHeaderHeight - top));
 				else
 					$sectionMenu.css('top', fixedHeight);
 			});

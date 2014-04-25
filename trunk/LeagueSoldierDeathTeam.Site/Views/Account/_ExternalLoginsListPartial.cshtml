@@ -1,7 +1,7 @@
 ﻿@using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
 {
-	<span class="social-facebook-label">Войти через facebook.com&nbsp;&reg;</span>
+	<span class="social-facebook-label">Войти с помощью facebook&nbsp;&reg;</span>
 	<button type="submit" class="social-facebook-button" id="Facebook" name="provider" value="Facebook"></button>
-	<span class="social-vk-label">Войти через vk.com&nbsp;&reg;</span>
+	<span class="social-vk-label">Войти с помощью vkontakte&nbsp;&reg;</span>
 	<button type="submit" class="social-vk-button" id="Vkontakte" name="provider" value="Vkontakte"></button>
 }

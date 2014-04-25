@@ -85,9 +85,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				return View();
 
 			var emailHost = registerEmail.Substring(index);
-			if (string.IsNullOrWhiteSpace(emailHost))
-				return View();
-
 			var mailHostings = XmlParser<MailHosting>.Parse(Constants.XmlMailHostingPath, Constants.XmlMailHostingSearchName)
 				.DistinctBy(o => o.HostAttribute).ToDictionary(o => o.HostAttribute, o => o.SiteAttribute);
 			return View(new RegisterSuccessfullModel { MailHosting = mailHostings.ContainsKey(emailHost) ? mailHostings[emailHost] : string.Empty });

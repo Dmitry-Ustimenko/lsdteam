@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LeagueSoldierDeathTeam.Site.Models.Account
 {
-	public class RegisterModel
+	public class RegisterModel : BaseModel
 	{
 		[Required(ErrorMessage = "Поле 'Имя' не заполнено.")]
 		[DisplayName("Имя")]
@@ -25,7 +25,5 @@ namespace LeagueSoldierDeathTeam.Site.Models.Account
 		[DataType(DataType.Password)]
 		[Compare("RegisterPassword", ErrorMessage = "Пароли не совпадают.")]
 		public string ConfirmPassword { get; set; }
-
-		public string ReturnUrl { get; set; }
 	}
 }
