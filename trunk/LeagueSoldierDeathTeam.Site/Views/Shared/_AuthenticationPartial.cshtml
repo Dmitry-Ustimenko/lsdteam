@@ -1,5 +1,6 @@
 ﻿@using LeagueSoldierDeathTeam.Site.Classes
 @using LeagueSoldierDeathTeam.Site.Controllers
+@using LeagueSoldierDeathTeam.Site.Models.Account
 @{
 	Layout = null;
 }
@@ -17,13 +18,13 @@ else
 		<div id="login-tab" class="tab">
 			<input id="btn-login" type="button" name="tab" value="Войти" />
 			<div id="login" class="login-form login">
-				@{Html.RenderPartial("~/Views/Account/_LoginPartial.cshtml");}
+				@{Html.RenderPartial("~/Views/Account/_LoginPartial.cshtml", new LoginModel());}
 			</div>
 		</div>
 		<div id="register-tab" class="tab">
 			<input id="btn-register" type="button" name="tab" value="Регистрация" />
 			<div id="register" class="login-form register">
-				@{Html.RenderPartial("~/Views/Account/_RegisterPartial.cshtml");}
+				@{Html.RenderPartial("~/Views/Account/_RegisterPartial.cshtml", new RegisterModel());}
 			</div>
 		</div>
 	</div>

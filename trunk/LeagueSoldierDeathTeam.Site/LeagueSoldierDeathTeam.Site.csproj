@@ -166,6 +166,7 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
+    <Reference Include="System.Xml.Serialization" />
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -194,10 +195,12 @@
     <Compile Include="Classes\AppConfig.cs" />
     <Compile Include="Classes\AppContext.cs" />
     <Compile Include="Classes\ChallengeResult.cs" />
+    <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\ControllerActionInfo.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
     <Compile Include="Classes\Factories\ContextFactory.cs" />
     <Compile Include="Classes\Logger.cs" />
+    <Compile Include="Classes\Parsers\Xml\XmlParser.cs" />
     <Compile Include="Classes\Services\AuthenticationService.cs" />
     <Compile Include="Classes\SessionKeys.cs" />
     <Compile Include="Classes\SessionManager.cs" />
@@ -212,6 +215,8 @@
     <Compile Include="Models\Account\ExternalRegisterModel.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
+    <Compile Include="Models\Account\RegisterSuccessfullModel.cs" />
+    <Compile Include="Models\Xml\MailHosting.cs" />
     <Compile Include="Modules\Autofac\LibraryModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -249,6 +254,9 @@
     <Content Include="Images\vk-icon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Xml\MailHosting.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -296,8 +304,9 @@
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Shared\_LayoutError.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalRegisterConfirmation.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\RegisterSuccessfull.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -7,7 +8,10 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
 using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
+using LeagueSoldierDeathTeam.Site.Classes.Parsers.Xml;
 using LeagueSoldierDeathTeam.Site.Models.Account;
+using LeagueSoldierDeathTeam.Site.Models.Xml;
+using Microsoft.Ajax.Utilities;
 using Microsoft.Owin.Security;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -19,13 +23,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private readonly IAuthenticationService _authenticationService;
 
-		private IAuthenticationManager AuthenticationManager
-		{
-			get
-			{
-				return HttpContextBase.GetOwinContext().Authentication;
-			}
-		}
+		private IAuthenticationManager AuthenticationManager { get { return HttpContextBase.GetOwinContext().Authentication; } }
 
 		public AccountController(ServiceFactoryBase serviceFactory, IAuthenticationService authenticationService)
 			: base(serviceFactory)
@@ -67,9 +65,32 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				Execute(() => _accountService.Register(data));
 
 				if (ModelIsValid)
+				{
+					model.ReturnUrl = WebBuilder.BuildActionUrl<AccountController>(o => o.RegisterSuccessfull(model.RegisterEmail));
 					return Json(model, JsonRequestBehavior.AllowGet);
+				}
 			}
 			return View("_RegisterPartial", model);
+		}
+
+		[HttpGet]
+		[Route("register-successfully")]
+		public ActionResult RegisterSuccessfull(string registerEmail)
+		{
+			if (string.IsNullOrWhiteSpace(registerEmail))
+				return View();
+
+			var index = registerEmail.IndexOf("@", StringComparison.Ordinal);
+			if (index < 0)
+				return View();
+
+			var emailHost = registerEmail.Substring(index);
+			if (string.IsNullOrWhiteSpace(emailHost))
+				return View();
+
+			var mailHostings = XmlParser<MailHosting>.Parse(Constants.XmlMailHostingPath, Constants.XmlMailHostingSearchName)
+				.DistinctBy(o => o.HostAttribute).ToDictionary(o => o.HostAttribute, o => o.SiteAttribute);
+			return View(new RegisterSuccessfullModel { MailHosting = mailHostings.ContainsKey(emailHost) ? mailHostings[emailHost] : string.Empty });
 		}
 
 		public ActionResult LogOff()
@@ -112,7 +133,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> ExternalLoginConfirmation(ExternalRegisterModel model, string returnUrl)
+		public async Task<ActionResult> ExternalRegisterConfirmation(ExternalRegisterModel model, string returnUrl)
 		{
 			if (User.Identity.IsAuthenticated)
 				return RedirectToAction<HomeController>(o => o.Index());

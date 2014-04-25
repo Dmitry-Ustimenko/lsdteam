@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MailHostingList>
+	<MailHosting host="@gmail.com" site="https://mail.google.com/" />
+	<MailHosting host="@mail.ru" site="http://mail.ru/" />
+	<MailHosting host="@yandex.ru" site="http://www.yandex.ru/" />
+	<MailHosting host="@yandex.by" site="http://www.yandex.by/" />
+	<MailHosting host="@rambler.ru" site="http://www.rambler.ru/" />
+	<MailHosting host="@tut.by" site="http://mail.tut.by/" />
+</MailHostingList>
