@@ -5,6 +5,8 @@ namespace LeagueSoldierDeathTeam.Site.Models.Account
 {
 	public class ExternalRegisterModel
 	{
+		public string LoginProvider { get; set; }
+
 		[Required]
 		[Display(Name = "Имя")]
 		public string UserName { get; set; }

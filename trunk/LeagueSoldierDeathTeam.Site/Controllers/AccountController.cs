@@ -125,20 +125,22 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				}
 			}
 
-			ViewBag.ReturnUrl = returnUrl;
-			ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-			return View("ExternalLoginConfirmation", new ExternalRegisterModel { UserName = loginInfo.DefaultUserName });
+			return View("ExternalRegisterConfirmation", new ExternalRegisterModel
+			{
+				UserName = loginInfo.DefaultUserName,
+				Email = loginInfo.Email,
+				LoginProvider = loginInfo.Login.LoginProvider
+			});
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> ExternalRegisterConfirmation(ExternalRegisterModel model, string returnUrl)
+		public async Task<ActionResult> ExternalRegisterConfirmation(ExternalRegisterModel model)
 		{
 			if (User.Identity.IsAuthenticated)
 				return RedirectToAction<HomeController>(o => o.Index());
 
 			if (ModelState.IsValid)
 			{
-				// Get the information about the user from the external login provider
 				var info = await AuthenticationManager.GetExternalIdentityAsync("External");
 				if (info == null)
 				{
@@ -158,7 +160,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				//AddErrors(result);
 			}
 
-			ViewBag.ReturnUrl = returnUrl;
 			return View(model);
 		}
 
