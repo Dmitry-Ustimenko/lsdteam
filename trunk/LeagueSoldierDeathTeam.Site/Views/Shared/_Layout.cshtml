@@ -43,5 +43,16 @@
 			<p>&copy; @DateTime.Now.Year - Dmitry Ustimenko</p>
 		</footer>
 	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			site.layout.init({
+				urls: {
+					login: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Login(null)))',
+					register: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Register(null)))',
+				}
+			});
+		});
+	</script>
 </body>
 </html>
