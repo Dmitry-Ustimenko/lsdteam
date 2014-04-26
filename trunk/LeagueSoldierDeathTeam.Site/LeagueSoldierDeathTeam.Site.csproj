@@ -233,7 +233,8 @@
     <Content Include="Images\d03.png" />
     <Content Include="Images\d06.png" />
     <Content Include="Images\d10.png" />
-    <Content Include="Images\EA-DICE.png" />
+    <Content Include="Images\dice-logo.png" />
+    <Content Include="Images\ea-logo.png" />
     <Content Include="Images\emblem.png" />
     <Content Include="Images\facebook-active.png" />
     <Content Include="Images\facebook.png" />
