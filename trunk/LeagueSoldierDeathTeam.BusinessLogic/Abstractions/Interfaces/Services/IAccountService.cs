@@ -1,4 +1,5 @@
-﻿using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+﻿using System;
+using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 {
@@ -6,9 +7,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 	{
 		UserData LogOn(string login, string password);
 
-		void Create(UserData data);
+		void Create(UserData data, bool isExternal = false);
 
 		void Update(UserData data);
+
+		void UpdateLastActivity(int userId);
 
 		UserData GetUser(string email);
 

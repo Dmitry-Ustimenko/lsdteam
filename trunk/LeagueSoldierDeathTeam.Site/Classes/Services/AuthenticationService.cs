@@ -16,6 +16,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Services
 
 		void IAuthenticationService.SignIn(string userName, bool rememberMe)
 		{
+			AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 			var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, userName) }, DefaultAuthenticationTypes.ApplicationCookie, ClaimTypes.Name, ClaimTypes.Role);
 			AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = rememberMe }, identity);
 		}

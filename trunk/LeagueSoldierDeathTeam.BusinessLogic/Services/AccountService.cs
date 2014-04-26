@@ -50,7 +50,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return user;
 		}
 
-		void IAccountService.Create(UserData data)
+		void IAccountService.Create(UserData data, bool isExternal)
 		{
 			var users = _userRepository.Query(o => o.UserName == data.UserName);
 			if (users.Any())
@@ -66,10 +66,22 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				UserName = data.UserName,
 				Email = data.Email,
 				Password = string.Concat(hashing.Salt, hashing.Hash),
-				CreateDate = DateTime.Today,
-				IsActive = true,
-				LastActivity = DateTime.Today,
+				CreateDate = data.CreateDate,
+				IsActive = data.IsActive,
+				LastActivity = data.LastActivity,
 			};
+
+			if (isExternal)
+			{
+				if (data.UserExternalInfo == null)
+					throw new ArgumentException("Данные о провайдере и внешнем ключе отсутсвуют.");
+
+				user.UserExternalInfo = new UserExternalInfo
+				{
+					ProviderKey = data.UserExternalInfo.ProviderKey,
+					ProviderName = data.UserExternalInfo.ProviderName
+				};
+			}
 
 			var role = _roleRepository.Query(o => o.Id == (int)RoleEnum.User).SingleOrDefault();
 			if (role == null)
@@ -84,6 +96,17 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 		void IAccountService.Update(UserData data)
 		{
 			throw new NotImplementedException();
+		}
+
+		void IAccountService.UpdateLastActivity(int userId)
+		{
+			var user = _userRepository.Query(o => o.Id == userId).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("Данного пользователя не существует."));
+
+			user.LastActivity = DateTime.Now;
+
+			_unitOfWork.Commit();
 		}
 
 		UserData IAccountService.GetUser(string email)

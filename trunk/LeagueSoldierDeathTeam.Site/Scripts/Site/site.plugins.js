@@ -37,7 +37,7 @@
 					if (returnUrl != undefined)
 						window.location.href = returnUrl.split("%2F").join("/");
 					else
-						window.location.href = window.location.pathname;
+						window.location.href = "/";
 				}
 				else
 					window.location.href = "/";

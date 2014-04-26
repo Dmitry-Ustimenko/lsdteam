@@ -69,6 +69,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			AppContext = new AppContext();
 			Classes.AppContext.Current = AppContext;
 
+			if (AppContext.CurrentUser != null)
+				Execute(() => _accountService.UpdateLastActivity(AppContext.CurrentUser.Id));
+
 			if (AppContext.CurrentUser == null && authorizationContext.HttpContext.User != null && authorizationContext.HttpContext.Request.IsAuthenticated)
 			{
 				if (SessionManager.Get<UserData>(SessionKeys.User) != null)

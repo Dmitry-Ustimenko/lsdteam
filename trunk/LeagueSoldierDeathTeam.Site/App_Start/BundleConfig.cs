@@ -10,6 +10,7 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				"~/Scripts/jquery-{version}.js",
 				"~/Scripts/jquery-ui-{version}.js",
 				"~/Scripts/jquery.validate*",
+				"~/Scripts/modernizr-{version}.js",
 				"~/Scripts/jquery.blockUI.js"
 				));
 

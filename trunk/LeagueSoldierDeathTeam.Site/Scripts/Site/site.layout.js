@@ -21,12 +21,28 @@
 			var $loginForm = $(site.layout.settings.elements.login);
 			var $registerForm = $(site.layout.settings.elements.register);
 
-
+			site.layout.clearSocialHash();
 			site.layout.topPage();
 			site.layout.fixedMenu();
 			site.layout.initTabs($loginForm, $registerForm);
 			site.layout.initLoginForm($loginForm);
 			site.layout.initRegisterForm($registerForm);
+		},
+
+		clearSocialHash: function () {
+			if (window.location.hash && window.location.hash === "#_=_") {
+				if (Modernizr.history) {
+					window.history.pushState("", document.title, window.location.pathname);
+				} else {
+					var scroll = {
+						top: document.body.scrollTop,
+						left: document.body.scrollLeft
+					};
+					window.location.hash = "";
+					document.body.scrollTop = scroll.top;
+					document.body.scrollLeft = scroll.left;
+				}
+			}
 		},
 
 		topPage: function () {

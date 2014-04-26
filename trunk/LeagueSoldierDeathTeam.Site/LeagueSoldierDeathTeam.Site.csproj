@@ -197,7 +197,9 @@
     <Compile Include="Classes\ChallengeResult.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\ControllerActionInfo.cs" />
+    <Compile Include="Classes\Extensions\Models\ExternalRegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
+    <Compile Include="Classes\Extensions\StringGeneration.cs" />
     <Compile Include="Classes\Factories\ContextFactory.cs" />
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Parsers\Xml\XmlParser.cs" />
