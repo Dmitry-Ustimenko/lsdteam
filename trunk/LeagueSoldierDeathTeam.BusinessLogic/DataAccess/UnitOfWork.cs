@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity.Core.Objects;
+using System.Transactions;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.DataBaseLayer.Abstractions.DataAccess;
 
@@ -19,7 +20,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.DataAccess
 
 		public void Commit()
 		{
-			_objectContextProvider.SaveChanges();
+			using (var transaction = new TransactionScope())
+			{
+				_objectContextProvider.SaveChanges();
+				transaction.Complete();
+			}
 		}
 
 		public ObjectContext ObjectContext

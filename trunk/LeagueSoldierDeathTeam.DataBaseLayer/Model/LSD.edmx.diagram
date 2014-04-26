@@ -5,11 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ca7a0fcd105c450b8d175048a461f4aa" Name="Diagram1">
-        <EntityTypeShape EntityType="LSDDataModel.Role" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSDDataModel.Sex" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSDDataModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="LSDDataModel.FK_User_Sex" ManuallyRouted="false" />
-        <AssociationConnector Association="LSDDataModel.UserRole" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LSDDataModel.Role" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="LSDDataModel.Sex" Width="1.5" PointX="0.5" PointY="5.375" />
+        <EntityTypeShape EntityType="LSDDataModel.User" Width="1.5" PointX="0.5" PointY="2.375" />
+        <EntityTypeShape EntityType="LSDDataModel.UserInfo" Width="1.5" PointX="2.75" PointY="4" />
+        <EntityTypeShape EntityType="LSDDataModel.UserRole" Width="1.5" PointX="2.75" PointY="0.5" />
+        <AssociationConnector Association="LSDDataModel.FK_UserRole_Role" />
+        <AssociationConnector Association="LSDDataModel.FK_UserInfo_Sex" />
+        <AssociationConnector Association="LSDDataModel.FK_UserInfo_User" />
+        <AssociationConnector Association="LSDDataModel.FK_UserRole_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

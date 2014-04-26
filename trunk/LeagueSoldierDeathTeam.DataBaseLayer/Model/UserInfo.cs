@@ -12,16 +12,18 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Sex
+    public partial class UserInfo
     {
-        public Sex()
-        {
-            this.UserInfoes = new HashSet<UserInfo>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public string Activity { get; set; }
+        public Nullable<System.DateTime> DateBirth { get; set; }
+        public Nullable<int> SexId { get; set; }
+        public int UserId { get; set; }
     
-        public virtual ICollection<UserInfo> UserInfoes { get; set; }
+        public virtual Sex Sex { get; set; }
+        public virtual User User { get; set; }
     }
 }

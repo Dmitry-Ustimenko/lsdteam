@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,6 +58,7 @@
     <Compile Include="Classes\Enums\SexEnum.cs" />
     <Compile Include="DataAccess\Repositories\RepositoryFactory.cs" />
     <Compile Include="DataAccess\UnitOfWork.cs" />
+    <Compile Include="Dto\RoleData.cs" />
     <Compile Include="Dto\UserData.cs" />
     <Compile Include="Factories\ServiceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

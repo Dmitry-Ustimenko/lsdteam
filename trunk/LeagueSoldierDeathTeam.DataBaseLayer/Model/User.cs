@@ -16,22 +16,19 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
     {
         public User()
         {
-            this.Roles = new HashSet<Role>();
+            this.UserInfoes = new HashSet<UserInfo>();
+            this.UserRoles = new HashSet<UserRole>();
         }
     
         public int Id { get; set; }
         public string UserName { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Address { get; set; }
         public bool IsActive { get; set; }
-        public string Activity { get; set; }
-        public System.DateTime DateBirth { get; set; }
-        public Nullable<int> SexId { get; set; }
+        public System.DateTime CreateDate { get; set; }
+        public System.DateTime LastActivity { get; set; }
     
-        public virtual Sex Sex { get; set; }
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<UserInfo> UserInfoes { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }
