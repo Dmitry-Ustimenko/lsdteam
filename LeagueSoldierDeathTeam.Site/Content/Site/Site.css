@@ -802,3 +802,19 @@ a {
 .social-facebook-label {
 	top: 11px;
 }
+
+.arrow-page-up {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: 50px;
+	height: 50px;
+	background: url(/Images/page-up.png) no-repeat center;
+	opacity: 0.5;
+	display: none;
+}
+
+	.arrow-page-up:hover {
+		opacity: 0.8;
+		cursor: pointer;
+	}
