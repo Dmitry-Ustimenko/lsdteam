@@ -27,7 +27,10 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public bool IsActive { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastActivity { get; set; }
+        public bool IsExternal { get; set; }
+        public Nullable<int> UserExternalInfoId { get; set; }
     
+        public virtual UserExternalInfo UserExternalInfo { get; set; }
         public virtual ICollection<UserInfo> UserInfoes { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
     }
