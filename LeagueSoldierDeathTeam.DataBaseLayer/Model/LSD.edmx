@@ -30,7 +30,6 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastActivity" Type="datetime" Nullable="false" />
-          <Property Name="IsExternal" Type="bit" Nullable="false" />
           <Property Name="UserExternalInfoId" Type="int" />
         </EntityType>
         <EntityType Name="UserExternalInfo">
@@ -215,7 +214,6 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastActivity" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="IsExternal" Type="Boolean" Nullable="false" />
           <Property Name="UserExternalInfoId" Type="Int32" />
           <NavigationProperty Name="UserExternalInfo" Relationship="LSDDataModel.FK_User_UserExternalInfo" FromRole="User" ToRole="UserExternalInfo" />
           <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
@@ -347,7 +345,6 @@
             <EntityTypeMapping TypeName="LSDDataModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UserExternalInfoId" ColumnName="UserExternalInfoId" />
-                <ScalarProperty Name="IsExternal" ColumnName="IsExternal" />
                 <ScalarProperty Name="LastActivity" ColumnName="LastActivity" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />

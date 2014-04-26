@@ -13,6 +13,7 @@ using LeagueSoldierDeathTeam.Site.Models.Account;
 using LeagueSoldierDeathTeam.Site.Models.Xml;
 using Microsoft.Ajax.Utilities;
 using Microsoft.Owin.Security;
+using Constants = LeagueSoldierDeathTeam.Site.Classes.Constants;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
@@ -129,35 +130,25 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			{
 				UserName = loginInfo.DefaultUserName,
 				Email = loginInfo.Email,
-				LoginProvider = loginInfo.Login.LoginProvider
+				ProviderName = loginInfo.Login.LoginProvider,
+				ProviderKey = loginInfo.Login.ProviderKey
 			});
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> ExternalRegisterConfirmation(ExternalRegisterModel model)
+		[Route("external-register-confirmation")]
+		public ActionResult ExternalRegisterConfirmation(ExternalRegisterModel model)
 		{
 			if (User.Identity.IsAuthenticated)
 				return RedirectToAction<HomeController>(o => o.Index());
 
 			if (ModelState.IsValid)
 			{
-				var info = await AuthenticationManager.GetExternalIdentityAsync("External");
-				if (info == null)
-				{
-					return View("ExternalLoginFailure");
-				}
-				//var user = new ApplicationUser() { UserName = model.UserName };
-				//var result = await UserManager.CreateAsync(user);
-				//if (result.Succeeded)
-				//{
-				//	result = await UserManager.AddLoginAsync(user.Id, info.Login);
-				//	if (result.Succeeded)
-				//	{
-				//		await SignInAsync(user, isPersistent: false);
-				//		return RedirectToLocal(returnUrl);
-				//	}
-				//}
-				//AddErrors(result);
+				var data = model.CopyTo();
+				Execute(() => _accountService.Create(data, true));
+
+				if (ModelIsValid)
+					return RedirectToAction<AccountController>(o => o.RegisterSuccessfull(model.Email));
 			}
 
 			return View(model);

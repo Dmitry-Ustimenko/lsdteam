@@ -12,11 +12,13 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public DateTime CreateDate { get; set; }
 		public DateTime LastActivity { get; set; }
 		public int? UserExternalInfoId { get; set; }
+		public UserExternalInfoData UserExternalInfo { get; set; }
 
 		public UserData()
 		{
 			IsActive = true;
 			CreateDate = DateTime.Today;
+			LastActivity = DateTime.Today;
 			Password = "secret";
 		}
 	}

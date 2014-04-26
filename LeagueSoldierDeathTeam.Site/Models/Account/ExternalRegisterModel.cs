@@ -5,7 +5,11 @@ namespace LeagueSoldierDeathTeam.Site.Models.Account
 {
 	public class ExternalRegisterModel
 	{
-		public string LoginProvider { get; set; }
+		[Required]
+		public string ProviderName { get; set; }
+
+		[Required]
+		public string ProviderKey { get; set; }
 
 		[Required]
 		[Display(Name = "Имя")]

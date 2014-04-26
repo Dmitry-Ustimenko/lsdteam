@@ -1,6 +1,6 @@
 ﻿@model LeagueSoldierDeathTeam.Site.Models.Account.ExternalRegisterModel
 @{
-	ViewBag.Title = Model.LoginProvider + " регистрация";
+	ViewBag.Title = Model.ProviderName + " регистрация";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -26,6 +26,8 @@
 		@Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder = "Повторите пароль" })
 	</p>
 	<p class="clearfix">
-		<input type="button" value="Зарегистрироваться">
+		<input type="submit" value="Зарегистрироваться">
 	</p>
+	@Html.HiddenFor(m => m.ProviderName)
+	@Html.HiddenFor(m => m.ProviderKey)
 }
