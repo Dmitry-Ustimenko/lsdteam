@@ -21,10 +21,27 @@
 			var $loginForm = $(site.layout.settings.elements.login);
 			var $registerForm = $(site.layout.settings.elements.register);
 
+
+			site.layout.topPage();
 			site.layout.fixedMenu();
 			site.layout.initTabs($loginForm, $registerForm);
 			site.layout.initLoginForm($loginForm);
 			site.layout.initRegisterForm($registerForm);
+		},
+
+		topPage: function () {
+			var $pageUpArrow = $("div.arrow-page-up");
+			$pageUpArrow.on("click", function () {
+				$("html, body").animate({ scrollTop: 0 }, "normal");
+				return false;
+			});
+
+			$(window).scroll(function () {
+				if ($(this).scrollTop() == 0)
+					$pageUpArrow.fadeOut("normal");
+				else
+					$pageUpArrow.fadeIn("normal");
+			});
 		},
 
 		fixedMenu: function () {
