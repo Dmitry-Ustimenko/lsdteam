@@ -14,20 +14,27 @@
 </head>
 <body>
 	<div class="wrapper">
-		<div class="fixed-top">
-			<div class="section section-header section-shadow">
-				<div class="emblem">
-					<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))"><img src="/Images/emblem.png" /></a>
-				</div>
-				<div class="frostbite-emblem">
-					<img class="full-size" src="/Images/frostbite.png" />
-				</div>
-				<div class="ea-dice-emblem">
-					<img class="full-size" src="/Images/EA-DICE.png" />
-				</div>
-				<div class="team-name-emblem">
-					<img class="full-size" src="/Images/team-name.png" />
-				</div>
+		<div class="section section-header section-shadow">
+			<div class="emblem">
+				<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))"><img src="/Images/emblem.png" /></a>
+			</div>
+			<div class="ea-emblem">
+				<a href="http://www.ea.com" title="Electronic Arts" target="_blank">
+					<img class="full-size" src="/Images/ea-logo.png" alt="Electronic Arts">
+				</a>
+			</div>
+			<div class="dice-emblem">
+				<a href="http://www.dice.se" title="Digital Illusions Creative Entertainment" target="_blank">
+					<img class="full-size" src="/Images/dice-logo.png" alt="Dice">
+				</a>
+			</div>
+			<div class="frostbite-emblem">
+				<a href="http://www.dice.se/frostbite" title="Frostbite 3" target="_blank">
+					<img class="full-size" src="/Images/frostbite.png" alt="Frostbite 3">
+				</a>
+			</div>
+			<div class="team-name-emblem">
+				<img class="full-size" src="/Images/team-name.png" alt="League Soldier of Death Team" />
 			</div>
 		</div>
 		<div class="section-body">
@@ -37,6 +44,7 @@
 		<footer>
 			<p>&copy; @DateTime.Now.Year - Dmitry Ustimenko</p>
 		</footer>
+		<div class="arrow-page-up"></div>
 	</div>
 </body>
 </html>
