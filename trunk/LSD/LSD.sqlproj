@@ -111,5 +111,6 @@
     <Build Include="Schema Objects\dbo\Tables\UserRole.table.sql" />
     <Build Include="Schema Objects\dbo\Tables\Sex.table.sql" />
     <Build Include="Schema Objects\dbo\Tables\UserInfo.sql" />
+    <Build Include="Schema Objects\dbo\Tables\UserExternalInfo.table.sql" />
   </ItemGroup>
 </Project>

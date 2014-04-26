@@ -99,7 +99,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#endregion
 
-		#region Extarnal Login
+		#region External Login
 
 		[HttpPost]
 		public ActionResult ExternalLogin(string provider, string returnUrl)
@@ -113,20 +113,21 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (loginInfo == null)
 				return RedirectToAction<HomeController>(o => o.Index());
 
-			// Sign in the user with this external login provider if the user already has a login
-			//var user = await UserManager.FindAsync(loginInfo.Login);
-			//if (user != null)
-			//{
-			//	await SignInAsync(user, isPersistent: false);
-			//	return RedirectToAction(returnUrl);
-			//}
-			//else
-			//{
-			// If the user does not have an account, then prompt the user to create an account
+			var externalUser = Execute(() => _accountService.GetExternalUser(loginInfo.Login.LoginProvider, loginInfo.Login.ProviderKey));
+			if (externalUser != null)
+			{
+				var user = Execute(() => _accountService.GetUser(externalUser.Id));
+				if (user != null)
+				{
+					AppContext.CurrentUser = user;
+					_authenticationService.SignIn(user.Email, true);
+					return RedirectToAction<HomeController>(o => o.Index());
+				}
+			}
+
 			ViewBag.ReturnUrl = returnUrl;
 			ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
 			return View("ExternalLoginConfirmation", new ExternalRegisterModel { UserName = loginInfo.DefaultUserName });
-			//}
 		}
 
 		[HttpPost]

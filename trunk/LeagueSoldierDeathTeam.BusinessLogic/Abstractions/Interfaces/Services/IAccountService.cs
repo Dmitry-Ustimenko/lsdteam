@@ -12,6 +12,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 
 		UserData GetUser(string email);
 
+		UserData GetUser(int userExternalInfoId);
+
+		UserExternalInfoData GetExternalUser(string providerName, string providerKey);
+
 		RoleData GetRole(int id);
 	}
 }

@@ -8,5 +8,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories
 		public abstract IRepository<User> CreateUserRepository();
 
 		public abstract IRepository<Role> CreateRoleRepository();
+
+		public abstract IRepository<UserExternalInfo> CreateUserExternalInfoRepository();
 	}
 }

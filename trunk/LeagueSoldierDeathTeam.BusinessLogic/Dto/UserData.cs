@@ -11,6 +11,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public bool IsActive { get; set; }
 		public DateTime CreateDate { get; set; }
 		public DateTime LastActivity { get; set; }
+		public int? UserExternalInfoId { get; set; }
 
 		public UserData()
 		{

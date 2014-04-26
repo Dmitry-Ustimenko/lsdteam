@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Repositories;
@@ -19,6 +20,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		private readonly IRepository<Role> _roleRepository;
 
+		private readonly IRepository<UserExternalInfo> _userExternalInfoRepository;
+
 		public AccountService(IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
 		{
 			if (unitOfWork == null)
@@ -27,8 +30,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 			if (repositoryFactory == null)
 				throw new ArgumentNullException("repositoryFactory");
+
 			_userRepository = repositoryFactory.CreateUserRepository();
 			_roleRepository = repositoryFactory.CreateRoleRepository();
+			_userExternalInfoRepository = repositoryFactory.CreateUserExternalInfoRepository();
 		}
 
 		#region IAccountService Members
@@ -83,16 +88,22 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		UserData IAccountService.GetUser(string email)
 		{
-			return _userRepository.GetData(o => new UserData
+			return GetUser(o => o.Email == email);
+		}
+
+		UserData IAccountService.GetUser(int userExternalInfoId)
+		{
+			return GetUser(o => o.UserExternalInfoId == userExternalInfoId);
+		}
+
+		public UserExternalInfoData GetExternalUser(string providerName, string providerKey)
+		{
+			return _userExternalInfoRepository.GetData(o => new UserExternalInfoData
 			{
 				Id = o.Id,
-				UserName = o.UserName,
-				Email = o.Email,
-				IsActive = o.IsActive,
-				Password = o.Password,
-				CreateDate = o.CreateDate,
-				LastActivity = o.LastActivity
-			}, o => o.Email == email).SingleOrDefault();
+				ProviderKey = o.ProviderKey,
+				ProviderName = o.ProviderName,
+			}, o => o.ProviderName == providerName && o.ProviderKey == providerKey).SingleOrDefault();
 		}
 
 		RoleData IAccountService.GetRole(int id)
@@ -114,6 +125,21 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				return false;
 			var hashing = new Hashing(userPassword.Substring(0, 8), userPassword.Substring(8));
 			return hashing.Verify(password);
+		}
+
+		private UserData GetUser(Expression<Func<User, bool>> filter)
+		{
+			return _userRepository.GetData(o => new UserData
+			{
+				Id = o.Id,
+				UserName = o.UserName,
+				Email = o.Email,
+				IsActive = o.IsActive,
+				Password = o.Password,
+				CreateDate = o.CreateDate,
+				LastActivity = o.LastActivity,
+				UserExternalInfoId = o.UserExternalInfoId
+			}, filter).SingleOrDefault();
 		}
 
 		#endregion
