@@ -62,7 +62,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (ModelIsValid)
 			{
 				var data = model.CopyTo();
-				Execute(() => _accountService.Register(data));
+				Execute(() => _accountService.Create(data));
 
 				if (ModelIsValid)
 				{

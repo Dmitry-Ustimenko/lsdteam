@@ -76,6 +76,12 @@
     <Compile Include="Model\User.cs">
       <DependentUpon>LSD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\UserInfo.cs">
+      <DependentUpon>LSD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserRole.cs">
+      <DependentUpon>LSD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

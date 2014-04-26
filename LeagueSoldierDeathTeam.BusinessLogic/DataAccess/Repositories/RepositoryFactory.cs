@@ -21,5 +21,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.DataAccess.Repositories
 		{
 			return new Repository<User>(_unitOfWork);
 		}
+
+		public override IRepository<Role> CreateRoleRepository()
+		{
+			return new Repository<Role>(_unitOfWork);
+		}
 	}
 }

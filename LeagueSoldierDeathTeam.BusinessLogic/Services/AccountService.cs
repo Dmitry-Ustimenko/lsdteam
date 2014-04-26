@@ -4,6 +4,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Repositories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Security;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.DataBaseLayer.Model;
@@ -16,6 +17,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		private readonly IRepository<User> _userRepository;
 
+		private readonly IRepository<Role> _roleRepository;
+
 		public AccountService(IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
 		{
 			if (unitOfWork == null)
@@ -25,6 +28,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			if (repositoryFactory == null)
 				throw new ArgumentNullException("repositoryFactory");
 			_userRepository = repositoryFactory.CreateUserRepository();
+			_roleRepository = repositoryFactory.CreateRoleRepository();
 		}
 
 		#region IAccountService Members
@@ -41,7 +45,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return user;
 		}
 
-		void IAccountService.Register(UserData data)
+		void IAccountService.Create(UserData data)
 		{
 			var users = _userRepository.Query(o => o.UserName == data.UserName);
 			if (users.Any())
@@ -57,11 +61,24 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				UserName = data.UserName,
 				Email = data.Email,
 				Password = string.Concat(hashing.Salt, hashing.Hash),
-				DateBirth = DateTime.Today,
-				IsActive = true
+				CreateDate = DateTime.Today,
+				IsActive = true,
+				LastActivity = DateTime.Today,
 			};
+
+			var role = _roleRepository.Query(o => o.Id == (int)RoleEnum.User).SingleOrDefault();
+			if (role == null)
+				throw new ArgumentNullException(string.Format("role"));
+
+			user.UserRoles.Add(new UserRole { Role = role, User = user });
+
 			_userRepository.Add(user);
 			_unitOfWork.Commit();
+		}
+
+		void IAccountService.Update(UserData data)
+		{
+			throw new NotImplementedException();
 		}
 
 		UserData IAccountService.GetUser(string email)
@@ -70,16 +87,21 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			{
 				Id = o.Id,
 				UserName = o.UserName,
-				FirstName = o.FirstName,
-				LastName = o.LastName,
 				Email = o.Email,
 				IsActive = o.IsActive,
-				Activity = o.Activity,
-				Address = o.Address,
-				DateBirth = o.DateBirth,
-				SexId = o.SexId,
-				Password = o.Password
+				Password = o.Password,
+				CreateDate = o.CreateDate,
+				LastActivity = o.LastActivity
 			}, o => o.Email == email).SingleOrDefault();
+		}
+
+		RoleData IAccountService.GetRole(int id)
+		{
+			return _roleRepository.GetData(o => new RoleData
+			{
+				Id = o.Id,
+				Name = o.Name
+			}, o => o.Id == id).SingleOrDefault();
 		}
 
 		#endregion

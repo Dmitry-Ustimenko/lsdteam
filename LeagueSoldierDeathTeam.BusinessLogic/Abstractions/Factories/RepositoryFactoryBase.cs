@@ -6,5 +6,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories
 	public abstract class RepositoryFactoryBase
 	{
 		public abstract IRepository<User> CreateUserRepository();
+
+		public abstract IRepository<Role> CreateRoleRepository();
 	}
 }

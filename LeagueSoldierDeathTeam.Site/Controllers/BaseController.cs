@@ -116,7 +116,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			catch (Exception exception)
 			{
 				Logger.WriteEmergency(exception);
-				ModelState.AddModelError("Error", "An internal error occured.");
+				ModelState.AddModelError("Error", "Произошла внутренняя ошибка.");
 			}
 			return false;
 		}
@@ -146,7 +146,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			catch (Exception exception)
 			{
 				Logger.WriteEmergency(exception);
-				ModelState.AddModelError("Error", "An internal error occured.");
+				ModelState.AddModelError("Error", "Произошла внутренняя ошибка.");
 			}
 			return default(T);
 		}
@@ -194,7 +194,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			else
 			{
 				Logger.WriteEmergency(innerException);
-				ModelState.AddModelError("Error", "An internal error occured.");
+				ModelState.AddModelError("Error", "Произошла внутренняя ошибка.");
 			}
 		}
 	}
