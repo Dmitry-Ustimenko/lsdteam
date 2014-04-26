@@ -55,14 +55,14 @@ input[type=text]:focus:-ms-input-placeholder, input[type=password]:focus::-webki
 
 a {
 	text-decoration: none;
-	color: rgb(220,0,0);
-	font-style: italic;
-	opacity: 0.8;
+	/*color: rgb(220,0,0);
+	font-style: italic;*/
+	/*opacity: 0.9;*/
 }
 
-a:hover {
-	opacity: 1;
-}
+	a:hover {
+		/*opacity: 1;*/
+	}
 
 /* Id */
 
@@ -83,11 +83,13 @@ a:hover {
 	right: 15px;
 	top: 15px;
 	font-size: 14px;
+	height: 35px;
 }
 
 	.log-off span {
 		color: white;
 		display: inline-block;
+		margin-right: 5px;
 	}
 
 	.log-off a {
@@ -101,15 +103,15 @@ a:hover {
 		cursor: pointer;
 		display: inline-block;
 		width: 90px;
-		line-height: 30px;
-		top: 2px;
 		text-align: center;
-		margin-bottom: 3px;
+		vertical-align: middle;
+		padding: 7px
 	}
 
 		.log-off a:active {
-			background: rgba(47, 47, 47, 0.95);
 			border: 1px solid #191919 !important;
+			box-shadow: inset 3px 3px 3px rgba(0,0,0,0.1);
+			padding: 6px;
 		}
 
 .cursor-pointer {
@@ -197,10 +199,16 @@ a:hover {
 		width: 145px;
 	}
 
-.ea-dice-emblem {
+.dice-emblem {
 	position: absolute;
-	right: -10px;
-	top: 75px;
+	right: 88px;
+	top: 90px;
+}
+
+.ea-emblem {
+	position: absolute;
+	right: 200px;
+	top: 80px;
 }
 
 .frostbite-emblem {
@@ -724,7 +732,7 @@ a:hover {
 	width: 100%;
 	height: 10px;
 	background: url(/Images/arrow-social-down.png) no-repeat center;
-	opacity: 0.5;
+	opacity: 0.7;
 }
 
 .up-arrow {
@@ -732,7 +740,7 @@ a:hover {
 }
 
 .down-arrow:hover {
-	opacity: 0.9;
+	opacity: 1;
 	cursor: pointer;
 }
 
@@ -753,7 +761,7 @@ a:hover {
 }
 
 	.social-vk-button:active, .social-facebook-button:active {
-		box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
+		box-shadow: inset 0 0 5px rgba(0,0,0,0.8);
 	}
 
 .social-vk-button {
