@@ -84,6 +84,9 @@
 				})).mouseleave(this.proxy(function () {
 					gallery.play(2500);
 				}));
+			},
+			youtube: {
+				color: 'red'
 			}
 		});
 	};

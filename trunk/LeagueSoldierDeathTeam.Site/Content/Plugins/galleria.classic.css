@@ -29,13 +29,27 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 409px;
+	top: 405px;
 	z-index: 2;
+	background: rgba(40, 40, 40, 0.5);
+	clear: both;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.galleria-carousel {
+	-moz-box-shadow: 0 0 10px #000;
+	-webkit-box-shadow: 0 0 10px #000;
+	box-shadow: 0 0 10px #000;
 }
 
 .galleria-carousel .galleria-thumbnails-list {
-	margin-left: 30px;
-	margin-right: 30px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 4px;
 }
 
 .galleria-thumbnails .galleria-image {
@@ -190,7 +204,7 @@
 	background-position: -18px -43px;
 	position: absolute;
 	left: -13px;
-	top: 27px;
+	top: 32px;
 	height: 36px;
 	width: 26px;
 	z-index: 3;
@@ -202,7 +216,6 @@
 	background-position: -77px -43px;
 	border-right: none;
 	right: -13px;
-	top: 27px;
 	left: auto;
 }
 
