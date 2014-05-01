@@ -11,22 +11,23 @@ namespace LeagueSoldierDeathTeam.Site.Models.Account
 		[Required]
 		public string ProviderKey { get; set; }
 
-		[Required]
-		[Display(Name = "Имя")]
-		public string UserName { get; set; }
+		[Required(ErrorMessage = "Поле 'Имя' не заполнено.")]
+		[DisplayName("Имя")]
+		public string ExternalUserName { get; set; }
 
-		[Required]
-		[Display(Name = "Электронная почта")]
-		public string Email { get; set; }
+		[Required(ErrorMessage = "Поле 'Email' не заполнено.")]
+		[EmailAddress(ErrorMessage = "Email введен не верно.")]
+		[DisplayName("Электронная почта")]
+		public string ExternalEmail { get; set; }
 
 		[DisplayName("* Пароль")]
 		[DataType(DataType.Password)]
 		[StringLength(20, MinimumLength = 8, ErrorMessage = "Длина пароля от 8 до 20 символов.")]
-		public string RegisterPassword { get; set; }
+		public string ExternalPassword { get; set; }
 
 		[DisplayName("* Повторите пароль")]
 		[DataType(DataType.Password)]
-		[Compare("RegisterPassword", ErrorMessage = "Пароли не совпадают.")]
-		public string ConfirmPassword { get; set; }
+		[Compare("ExternalPassword", ErrorMessage = "Пароли не совпадают.")]
+		public string ExternalConfirmPassword { get; set; }
 	}
 }

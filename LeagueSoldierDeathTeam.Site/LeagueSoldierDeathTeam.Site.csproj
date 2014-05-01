@@ -239,6 +239,7 @@
     <Content Include="Images\ea-logo.png" />
     <Content Include="Images\emblem.png" />
     <Content Include="Images\facebook-active.png" />
+    <Content Include="Images\facebook-register.png" />
     <Content Include="Images\facebook.png" />
     <Content Include="Images\frostbite.png" />
     <Content Include="Images\navbuttons2.gif" />
@@ -257,6 +258,7 @@
     <Content Include="Images\test-image.png" />
     <Content Include="Images\vk-icon-active.png" />
     <Content Include="Images\vk-icon.png" />
+    <Content Include="Images\vk-register.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Xml\MailHosting.xml">

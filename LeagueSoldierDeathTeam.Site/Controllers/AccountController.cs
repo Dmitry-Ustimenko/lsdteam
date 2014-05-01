@@ -128,8 +128,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			return View("ExternalRegisterConfirmation", new ExternalRegisterModel
 			{
-				UserName = loginInfo.DefaultUserName,
-				Email = loginInfo.Email,
+				ExternalUserName = loginInfo.DefaultUserName,
+				ExternalEmail = loginInfo.Email,
 				ProviderName = loginInfo.Login.LoginProvider,
 				ProviderKey = loginInfo.Login.ProviderKey
 			});
@@ -148,7 +148,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				Execute(() => _accountService.Create(data, true));
 
 				if (ModelIsValid)
-					return RedirectToAction<AccountController>(o => o.RegisterSuccessfull(model.Email));
+					return RedirectToAction<AccountController>(o => o.RegisterSuccessfull(model.ExternalEmail));
 			}
 
 			return View(model);

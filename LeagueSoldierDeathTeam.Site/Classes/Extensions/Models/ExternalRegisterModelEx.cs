@@ -10,14 +10,14 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			if (model == null)
 				return new UserData(); ;
 
-			if (string.IsNullOrWhiteSpace(model.RegisterPassword))
-				model.RegisterPassword = StringGeneration.Generate(8);
+			if (string.IsNullOrWhiteSpace(model.ExternalPassword))
+				model.ExternalPassword = StringGeneration.Generate(8);
 
 			return new UserData
 			{
-				UserName = model.UserName,
-				Password = model.RegisterPassword,
-				Email = model.Email,
+				UserName = model.ExternalUserName,
+				Password = model.ExternalPassword,
+				Email = model.ExternalEmail,
 				UserExternalInfo = new UserExternalInfoData
 				{
 					ProviderName = model.ProviderName,
