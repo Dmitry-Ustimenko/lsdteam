@@ -1,4 +1,5 @@
 ﻿using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 {
@@ -21,5 +22,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 		RoleData GetRole(int id);
 
 		string GetResetPasswordToken(string email);
+
+		bool VerifyPasswordResetToken(string resetToken);
+
+		void PasswordReset(PasswordResetParams resetContext);
 	}
 }

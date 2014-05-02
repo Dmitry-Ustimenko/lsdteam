@@ -5,17 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ca7a0fcd105c450b8d175048a461f4aa" Name="Diagram1">
-        <EntityTypeShape EntityType="LSDDataModel.Role" Width="1.5" PointX="5.125" PointY="6.125" />
-        <EntityTypeShape EntityType="LSDDataModel.Sex" Width="1.5" PointX="0.625" PointY="6.25" />
-        <EntityTypeShape EntityType="LSDDataModel.User" Width="1.5" PointX="3" PointY="2.375" />
-        <EntityTypeShape EntityType="LSDDataModel.UserExternalInfo" Width="1.5" PointX="0.75" PointY="2.5" />
-        <EntityTypeShape EntityType="LSDDataModel.UserInfo" Width="1.5" PointX="3" PointY="6.125" />
-        <EntityTypeShape EntityType="LSDDataModel.UserRole" Width="1.5" PointX="5.25" PointY="2.375" />
+        <EntityTypeShape EntityType="LSDDataModel.Role" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="LSDDataModel.Sex" Width="1.5" PointX="0.625" PointY="6.75" />
+        <EntityTypeShape EntityType="LSDDataModel.User" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="LSDDataModel.UserExternalInfo" Width="1.5" PointX="0.625" PointY="4.125" />
+        <EntityTypeShape EntityType="LSDDataModel.UserInfo" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="LSDDataModel.UserRole" Width="1.5" PointX="5.25" PointY="1.5" />
         <AssociationConnector Association="LSDDataModel.FK_UserRole_Role" />
         <AssociationConnector Association="LSDDataModel.FK_UserInfo_Sex" />
         <AssociationConnector Association="LSDDataModel.FK_User_UserExternalInfo" />
         <AssociationConnector Association="LSDDataModel.FK_UserInfo_User" />
         <AssociationConnector Association="LSDDataModel.FK_UserRole_User" />
+        <EntityTypeShape EntityType="LSDDataModel.UserPasswordResetToken" Width="1.5" PointX="0.625" PointY="1.5" />
+        <AssociationConnector Association="LSDDataModel.FK_dboUserPasswordResetToken_dboUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

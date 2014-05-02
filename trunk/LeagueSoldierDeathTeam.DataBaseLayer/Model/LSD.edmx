@@ -53,6 +53,15 @@
           <Property Name="SexId" Type="int" />
           <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserPasswordResetToken">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="token" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserRole">
           <Key>
             <PropertyRef Name="Id" />
@@ -61,6 +70,20 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_dboUserPasswordResetToken_dboUser">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserPasswordResetToken" Type="Self.UserPasswordResetToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPasswordResetToken">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_UserExternalInfo">
           <End Role="UserExternalInfo" Type="Self.UserExternalInfo" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -133,7 +156,12 @@
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserExternalInfo" EntityType="Self.UserExternalInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPasswordResetToken" EntityType="Self.UserPasswordResetToken" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dboUserPasswordResetToken_dboUser" Association="Self.FK_dboUserPasswordResetToken_dboUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserPasswordResetToken" EntitySet="UserPasswordResetToken" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_UserExternalInfo" Association="Self.FK_User_UserExternalInfo">
             <End Role="UserExternalInfo" EntitySet="UserExternalInfo" />
             <End Role="User" EntitySet="User" />
@@ -186,6 +214,11 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
+          <EntitySet Name="UserPasswordResetTokens" EntityType="LSDDataModel.UserPasswordResetToken" />
+          <AssociationSet Name="FK_dboUserPasswordResetToken_dboUser" Association="LSDDataModel.FK_dboUserPasswordResetToken_dboUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserPasswordResetToken" EntitySet="UserPasswordResetTokens" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Role">
           <Key>
@@ -218,6 +251,7 @@
           <NavigationProperty Name="UserExternalInfo" Relationship="LSDDataModel.FK_User_UserExternalInfo" FromRole="User" ToRole="UserExternalInfo" />
           <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
           <NavigationProperty Name="UserRoles" Relationship="LSDDataModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="UserPasswordResetTokens" Relationship="LSDDataModel.FK_dboUserPasswordResetToken_dboUser" FromRole="User" ToRole="UserPasswordResetToken" />
         </EntityType>
         <EntityType Name="UserExternalInfo">
           <Key>
@@ -319,6 +353,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserPasswordResetToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="LSDDataModel.FK_dboUserPasswordResetToken_dboUser" FromRole="UserPasswordResetToken" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_dboUserPasswordResetToken_dboUser">
+          <End Type="LSDDataModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.UserPasswordResetToken" Role="UserPasswordResetToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPasswordResetToken">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -384,6 +442,16 @@
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPasswordResetTokens">
+            <EntityTypeMapping TypeName="LSDDataModel.UserPasswordResetToken">
+              <MappingFragment StoreEntitySet="UserPasswordResetToken">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Token" ColumnName="token" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

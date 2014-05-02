@@ -5,9 +5,11 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Repositories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Config;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Security;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
 using LeagueSoldierDeathTeam.DataBaseLayer.Model;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Services
@@ -22,6 +24,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		private readonly IRepository<UserExternalInfo> _userExternalInfoRepository;
 
+		private readonly IRepository<UserPasswordResetToken> _userPasswordResetTokenRepository;
+
 		public AccountService(IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
 		{
 			if (unitOfWork == null)
@@ -34,6 +38,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			_userRepository = repositoryFactory.CreateUserRepository();
 			_roleRepository = repositoryFactory.CreateRoleRepository();
 			_userExternalInfoRepository = repositoryFactory.CreateUserExternalInfoRepository();
+			_userPasswordResetTokenRepository = repositoryFactory.CreateUserPasswordResetTokenRepository();
 		}
 
 		#region IAccountService Members
@@ -60,12 +65,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			if (users.Any())
 				throw new ArgumentException("Пользователь с такой электронной почтой существует.");
 
-			var hashing = new Hashing(data.Password);
 			var user = new User
 			{
 				UserName = data.UserName,
 				Email = data.Email,
-				Password = string.Concat(hashing.Salt, hashing.Hash),
+				Password = GetHashingPassword(data.Password),
 				CreateDate = data.CreateDate,
 				IsActive = data.IsActive,
 				LastActivity = data.LastActivity,
@@ -144,18 +148,47 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				throw new ArgumentException("E-mail не заполнен.");
 
 			var user = _userRepository.Query(o => o.Email == email).SingleOrDefault();
-			//if (user != null)
-			//{
-			//	var token = CryptingHelper.GenerateEncodedUniqueToken();
-			//	var resetToken = _passwordResetTokenRepository.Query(o => o.User.Id == user.Id).SingleOrDefault();
-			//	if (resetToken == null)
-			//		_passwordResetTokenRepository.Add(new PasswordResetToken { CreateDate = DateTime.Now, Token = token, User = user });
-			//	else
-			//		resetToken.Token = token;
-			//	_unitOfWork.Commit();
-			//	return token;
-			//}
-			return string.Empty;
+			if (user == null) return string.Empty;
+
+			var token = CryptingHelper.GenerateEncodedUniqueToken();
+			var resetToken = _userPasswordResetTokenRepository.Query(o => o.UserId == user.Id).SingleOrDefault();
+
+			if (resetToken == null)
+				_userPasswordResetTokenRepository.Add(new UserPasswordResetToken { CreateDate = DateTime.Now, Token = token, User = user });
+			else
+				resetToken.Token = token;
+
+			_unitOfWork.Commit();
+
+			return token;
+		}
+
+		bool IAccountService.VerifyPasswordResetToken(string resetToken)
+		{
+			if (string.IsNullOrWhiteSpace(resetToken))
+				throw new ArgumentNullException("resetToken");
+
+			var resetPasswordToken = _userPasswordResetTokenRepository.Query(o => o.Token == resetToken).SingleOrDefault();
+			return resetPasswordToken != null && ValidatePasswordResetToken(resetPasswordToken);
+		}
+
+		void IAccountService.PasswordReset(PasswordResetParams parameters)
+		{
+			if (parameters == null)
+				return;
+
+			var token = _userPasswordResetTokenRepository.Query(o => o.Token == parameters.PasswordResetToken).SingleOrDefault();
+			if (token == null || !ValidatePasswordResetToken(token))
+				return;
+
+			var user = _userRepository.Query(o => o.Id == token.UserId).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("user"));
+
+			user.Password = GetHashingPassword(parameters.NewPassword);
+			_unitOfWork.Commit();
+
+			DeletePasswordResetToken(token);
 		}
 
 		#endregion
@@ -168,6 +201,27 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				return false;
 			var hashing = new Hashing(userPassword.Substring(0, 8), userPassword.Substring(8));
 			return hashing.Verify(password);
+		}
+
+		private bool ValidatePasswordResetToken(UserPasswordResetToken resetToken)
+		{
+			if (resetToken == null)
+				throw new ArgumentNullException("resetToken");
+
+			if (resetToken.CreateDate.Add(AppConfig.PasswordResetLinkLifetime) < DateTime.Now)
+			{
+				DeletePasswordResetToken(resetToken);
+				return false;
+			}
+			return true;
+		}
+
+		private void DeletePasswordResetToken(UserPasswordResetToken resetToken)
+		{
+			if (resetToken == null) return;
+
+			_userPasswordResetTokenRepository.Delete(resetToken);
+			_unitOfWork.Commit();
 		}
 
 		private UserData GetUser(Expression<Func<User, bool>> filter)
@@ -183,6 +237,12 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				LastActivity = o.LastActivity,
 				UserExternalInfoId = o.UserExternalInfoId
 			}, filter).SingleOrDefault();
+		}
+
+		private static string GetHashingPassword(string password)
+		{
+			var hashing = new Hashing(password);
+			return string.Concat(hashing.Salt, hashing.Hash);
 		}
 
 		#endregion
