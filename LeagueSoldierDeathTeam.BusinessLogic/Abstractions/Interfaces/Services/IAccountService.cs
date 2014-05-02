@@ -1,5 +1,4 @@
-﻿using System;
-using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+﻿using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 {
@@ -20,5 +19,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 		UserExternalInfoData GetExternalUser(string providerName, string providerKey);
 
 		RoleData GetRole(int id);
+
+		string GetResetPasswordToken(string email);
 	}
 }

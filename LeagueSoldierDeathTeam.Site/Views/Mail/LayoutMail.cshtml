@@ -1,0 +1,19 @@
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+<title>TACC: @ViewBag.Subject</title>
+<style>
+	a {
+		color: #107c10;
+		font-weight: bold;
+	}
+</style>
+<table style="width: 90%; border: 0; font-family: Arial, Sans-Serif; font-size: 12px;">
+	<tr><th style="text-align: left; padding: 20px 20px 20px 20px; color: #107c10; border-bottom: 1px solid #CCC; font-size: 1.2em;"><span style="color: #FF0000; font-size: 1.4em; margin-right: 10px;">TACC</span> @ViewBag.Subject</th></tr>
+	<tr>
+		<td style="padding: 20px 20px 20px 20px;height: 250px;vertical-align: top;">
+			@RenderBody()
+			<div style="margin-top: 20px;">Thanks, your TACC.</div>
+			<div style="font-size: 11px;"><a href="@AppConfig.HostName">@AppConfig.HostName</a></div>
+		</td>
+	</tr>
+</table>
+

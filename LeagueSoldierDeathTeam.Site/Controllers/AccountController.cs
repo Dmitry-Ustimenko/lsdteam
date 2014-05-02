@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
 using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Classes.Parsers.Xml;
 using LeagueSoldierDeathTeam.Site.Models.Account;
+using LeagueSoldierDeathTeam.Site.Models.Mail;
 using LeagueSoldierDeathTeam.Site.Models.Xml;
 using Microsoft.Ajax.Utilities;
 using Microsoft.Owin.Security;
@@ -24,11 +26,17 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private readonly IAuthenticationService _authenticationService;
 
+		private readonly IMailer _mailer;
+
 		private IAuthenticationManager AuthenticationManager { get { return HttpContextBase.GetOwinContext().Authentication; } }
 
-		public AccountController(ServiceFactoryBase serviceFactory, IAuthenticationService authenticationService)
+		public AccountController(ServiceFactoryBase serviceFactory, IAuthenticationService authenticationService, IMailer mailer)
 			: base(serviceFactory)
 		{
+			if (mailer == null)
+				throw new ArgumentNullException("mailer");
+			_mailer = mailer;
+
 			if (authenticationService == null)
 				throw new ArgumentNullException("authenticationService");
 			_authenticationService = authenticationService;
@@ -152,6 +160,67 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			}
 
 			return View(model);
+		}
+
+		#endregion
+
+		#region Password Recovery
+
+		[HttpGet]
+		[AllowAnonymous]
+		[Route("password-recovery")]
+		public ActionResult ForgotPassword()
+		{
+			return View(new PasswordRecoveryModel());
+		}
+
+		[HttpPost]
+		[AllowAnonymous]
+		[Route("password-recovery")]
+		public ActionResult ForgotPassword(PasswordRecoveryModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var resetModel = new ResetPasswordModel
+				{
+					Token = Execute(() => _accountService.GetResetPasswordToken(model.Email)),
+					Email = model.Email,
+				};
+				if (!string.IsNullOrEmpty(resetModel.Token))
+					_mailer.SendMessageAsync("ResetPassword", resetModel, model.Email);
+				return View(new PasswordRecoveryModel { EmailWasSend = true });
+			}
+			return View(new PasswordRecoveryModel());
+		}
+
+		#endregion
+
+		#region Reset Password
+
+		[HttpGet]
+		[AllowAnonymous]
+		[Route("reset-password/{token?}")]
+		public ActionResult ResetPassword(string token)
+		{
+			//if (!Execute(() => AppContext.ServiceFactory.UserService.VerifyResetPasswordToken(token)))
+			//	return RedirectToAction<AccountController>(o => o.ForgotPassword());
+			//return View(new ResetPasswordModel { Token = token });
+			return View();
+		}
+
+		[HttpPost]
+		[AllowAnonymous]
+		[Route("reset-password/{token?}")]
+		public ActionResult ResetPassword(ResetPasswordModel model)
+		{
+			//if (!Execute(() => AppContext.ServiceFactory.UserService.VerifyResetPasswordToken(model.Token)))
+			//	return RedirectToAction<AccountController>(o => o.ForgotPassword());
+
+			//var resetContext = new PasswordResetSecurityContext(model.Token, model.NewPassword, Session.SessionID, Request.UserHostAddress, Request.UserHostName);
+			//if (Execute(() => AppContext.ServiceFactory.UserService.ResetPassword(resetContext)))
+			//	return View(new ResetPasswordModel { PasswordWasChanged = true });
+			//return View(model);
+			return View();
 		}
 
 		#endregion
