@@ -60,7 +60,7 @@
     <Compile Include="Abstractions\Interfaces\Services\IAccountService.cs" />
     <Compile Include="Classes\Enums\RoleEnum.cs" />
     <Compile Include="Classes\Enums\SexEnum.cs" />
-    <Compile Include="DataAccess\Repositories\RepositoryFactory.cs" />
+    <Compile Include="Factories\RepositoryFactory.cs" />
     <Compile Include="DataAccess\UnitOfWork.cs" />
     <Compile Include="Dto\RoleData.cs" />
     <Compile Include="Dto\UserData.cs" />
