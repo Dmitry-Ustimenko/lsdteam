@@ -2,9 +2,10 @@
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Repositories;
+using LeagueSoldierDeathTeam.BusinessLogic.DataAccess.Repositories;
 using LeagueSoldierDeathTeam.DataBaseLayer.Model;
 
-namespace LeagueSoldierDeathTeam.BusinessLogic.DataAccess.Repositories
+namespace LeagueSoldierDeathTeam.BusinessLogic.Factories
 {
 	public class RepositoryFactory : RepositoryFactoryBase
 	{
