@@ -3,38 +3,45 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using Mvc.Mailer;
 
 namespace LeagueSoldierDeathTeam.Site.Classes
 {
-	public class Mailer : MailerBase
+	public class Mailer : MailerBase, IMailer
 	{
 		public string SystemEmailAddress = AppConfig.SystemEmailAddress;
 		public string SystemEmailName = AppConfig.SystemEmailName;
 
-		public void SendMessage(string mailTemplate, object model, string toAddress)
+		#region IMailer Members
+
+		void IMailer.SendMessage(string mailTemplate, object model, string toAddress)
 		{
 			var message = BuildMessage(mailTemplate, model, toAddress);
 			Send(message);
 		}
 
-		public void SendMessageAsync(string mailTemplate, object model, string toAddress)
+		void IMailer.SendMessageAsync(string mailTemplate, object model, string toAddress)
 		{
 			var message = BuildMessage(mailTemplate, model, toAddress);
 			SendAsync(message);
 		}
 
-		public void SendMessage(string mailTemplate, object model, IEnumerable<string> toAddresses)
+		void IMailer.SendMessage(string mailTemplate, object model, IEnumerable<string> toAddresses)
 		{
 			var message = BuildMessage(mailTemplate, model, toAddresses);
 			Send(message);
 		}
 
-		public void SendMessageAsync(string mailTemplate, object model, IEnumerable<string> toAddresses)
+		void IMailer.SendMessageAsync(string mailTemplate, object model, IEnumerable<string> toAddresses)
 		{
 			var message = BuildMessage(mailTemplate, model, toAddresses);
 			SendAsync(message);
 		}
+
+		#endregion
+
+		#region Internal Implementation
 
 		private static void Send(MvcMailMessage message)
 		{
@@ -124,5 +131,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes
 			var endIndex = body.IndexOf(end, startIndex, StringComparison.OrdinalIgnoreCase);
 			return endIndex < 0 ? null : body.Substring(startIndex, endIndex - startIndex);
 		}
+
+		#endregion
 	}
 }

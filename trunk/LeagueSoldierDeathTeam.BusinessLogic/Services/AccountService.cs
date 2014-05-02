@@ -138,6 +138,26 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			}, o => o.Id == id).SingleOrDefault();
 		}
 
+		string IAccountService.GetResetPasswordToken(string email)
+		{
+			if (string.IsNullOrWhiteSpace(email))
+				throw new ArgumentException("E-mail не заполнен.");
+
+			var user = _userRepository.Query(o => o.Email == email).SingleOrDefault();
+			//if (user != null)
+			//{
+			//	var token = CryptingHelper.GenerateEncodedUniqueToken();
+			//	var resetToken = _passwordResetTokenRepository.Query(o => o.User.Id == user.Id).SingleOrDefault();
+			//	if (resetToken == null)
+			//		_passwordResetTokenRepository.Add(new PasswordResetToken { CreateDate = DateTime.Now, Token = token, User = user });
+			//	else
+			//		resetToken.Token = token;
+			//	_unitOfWork.Commit();
+			//	return token;
+			//}
+			return string.Empty;
+		}
+
 		#endregion
 
 		#region Internal Implementation

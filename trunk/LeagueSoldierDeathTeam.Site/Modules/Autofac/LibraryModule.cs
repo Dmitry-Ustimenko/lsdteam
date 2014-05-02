@@ -6,7 +6,9 @@ using LeagueSoldierDeathTeam.BusinessLogic.DataAccess.Repositories;
 using LeagueSoldierDeathTeam.BusinessLogic.Factories;
 using LeagueSoldierDeathTeam.DataBaseLayer.Abstractions.DataAccess;
 using LeagueSoldierDeathTeam.DataBaseLayer.DataAccess;
+using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
+using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Services;
 
 namespace LeagueSoldierDeathTeam.Site.Modules.Autofac
@@ -28,6 +30,8 @@ namespace LeagueSoldierDeathTeam.Site.Modules.Autofac
 			builder.RegisterType<RepositoryFactory>().As<RepositoryFactoryBase>().SingleInstance();
 
 			builder.RegisterType<ObjectContextProvider>().As<IObjectContextProvider>().SingleInstance();
+
+			builder.RegisterType<Mailer>().As<IMailer>().SingleInstance();
 		}
 
 		#endregion

@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,7 +50,10 @@
   <ItemGroup>
     <Compile Include="Abstractions\Factories\RepositoryFactoryBase.cs" />
     <Compile Include="Abstractions\Interfaces\DataAccess\IUnitOfWork.cs" />
+    <Compile Include="Classes\Security\CryptingHelper.cs" />
     <Compile Include="Classes\Security\Hashing.cs" />
+    <Compile Include="Classes\Security\HexEncoding.cs" />
+    <Compile Include="Classes\Security\Symmetric.cs" />
     <Compile Include="DataAccess\Repositories\Repository.cs" />
     <Compile Include="Abstractions\Factories\ServiceFactoryBase.cs" />
     <Compile Include="Abstractions\Interfaces\DataAccess\Repositories\IRepository.cs" />
