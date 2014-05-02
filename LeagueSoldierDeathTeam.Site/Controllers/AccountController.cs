@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
 using LeagueSoldierDeathTeam.Site.Classes;
@@ -181,13 +182,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var resetModel = new ResetPasswordModel
+				var resetModel = new MailPasswordResetModel
 				{
 					Token = Execute(() => _accountService.GetResetPasswordToken(model.Email)),
 					Email = model.Email,
 				};
 				if (!string.IsNullOrEmpty(resetModel.Token))
-					_mailer.SendMessageAsync("ResetPassword", resetModel, model.Email);
+					_mailer.SendMessageAsync("PasswordReset", resetModel, model.Email);
+
 				return View(new PasswordRecoveryModel { EmailWasSend = true });
 			}
 			return View(new PasswordRecoveryModel());
@@ -195,32 +197,38 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#endregion
 
-		#region Reset Password
+		#region Password Reset
 
 		[HttpGet]
 		[AllowAnonymous]
-		[Route("reset-password/{token?}")]
-		public ActionResult ResetPassword(string token)
+		[Route("password-reset/{token?}")]
+		public ActionResult PasswordReset(string token)
 		{
-			//if (!Execute(() => AppContext.ServiceFactory.UserService.VerifyResetPasswordToken(token)))
-			//	return RedirectToAction<AccountController>(o => o.ForgotPassword());
-			//return View(new ResetPasswordModel { Token = token });
-			return View();
+			if (!Execute(() => _accountService.VerifyPasswordResetToken(token)))
+				return RedirectToAction<AccountController>(o => o.ForgotPassword());
+			return View(new PasswordResetModel { Token = token });
 		}
 
 		[HttpPost]
 		[AllowAnonymous]
-		[Route("reset-password/{token?}")]
-		public ActionResult ResetPassword(ResetPasswordModel model)
+		[Route("password-reset/{token?}")]
+		public ActionResult PasswordReset(PasswordResetModel model)
 		{
-			//if (!Execute(() => AppContext.ServiceFactory.UserService.VerifyResetPasswordToken(model.Token)))
-			//	return RedirectToAction<AccountController>(o => o.ForgotPassword());
+			if (!Execute(() => _accountService.VerifyPasswordResetToken(model.Token)))
+				return RedirectToAction<AccountController>(o => o.ForgotPassword());
 
-			//var resetContext = new PasswordResetSecurityContext(model.Token, model.NewPassword, Session.SessionID, Request.UserHostAddress, Request.UserHostName);
-			//if (Execute(() => AppContext.ServiceFactory.UserService.ResetPassword(resetContext)))
-			//	return View(new ResetPasswordModel { PasswordWasChanged = true });
-			//return View(model);
-			return View();
+			var resetContext = new PasswordResetParams
+			{
+				PasswordResetToken = model.Token,
+				NewPassword = model.NewPassword,
+				SessionId = Session.SessionID,
+				UserIp = Request.UserHostAddress,
+				UserHostName = Request.UserHostName
+			};
+
+			if (Execute(() => _accountService.PasswordReset(resetContext)))
+				return View(new PasswordResetModel { PasswordWasChanged = true });
+			return View(model);
 		}
 
 		#endregion

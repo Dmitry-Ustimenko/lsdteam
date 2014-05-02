@@ -38,6 +38,7 @@
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
@@ -50,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Abstractions\Factories\RepositoryFactoryBase.cs" />
     <Compile Include="Abstractions\Interfaces\DataAccess\IUnitOfWork.cs" />
+    <Compile Include="Classes\Config\AppConfig.cs" />
     <Compile Include="Classes\Security\CryptingHelper.cs" />
     <Compile Include="Classes\Security\Hashing.cs" />
     <Compile Include="Classes\Security\HexEncoding.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Factories\ServiceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\Parameters\PasswordResetParams.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LeagueSoldierDeathTeam.DataBaseLayer\LeagueSoldierDeathTeam.DataBaseLayer.csproj">
