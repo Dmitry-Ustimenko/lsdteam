@@ -55,9 +55,15 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="128" />
           <Property Name="LastName" Type="nvarchar" MaxLength="128" />
-          <Property Name="Address" Type="nvarchar" MaxLength="1024" />
           <Property Name="Activity" Type="nvarchar" MaxLength="1024" />
           <Property Name="DateBirth" Type="datetime" />
+          <Property Name="Country" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Town" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Street" Type="nvarchar" MaxLength="1024" />
+          <Property Name="HomeNumber" Type="nvarchar" MaxLength="1024" />
+          <Property Name="SiteLink" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ICQ" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="1024" />
           <Property Name="SexId" Type="int" />
           <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
@@ -313,13 +319,19 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="Activity" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="DateBirth" Type="DateTime" Precision="3" />
           <Property Name="SexId" Type="Int32" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Sex" Relationship="LSDDataModel.FK_UserInfo_Sex" FromRole="UserInfo" ToRole="Sex" />
           <NavigationProperty Name="User" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="UserInfo" ToRole="User" />
+          <Property Name="Country" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Town" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="HomeNumber" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="SiteLink" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ICQ" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Skype" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserResetToken">
           <Key>
@@ -494,11 +506,17 @@
           <EntitySetMapping Name="UserInfoes">
             <EntityTypeMapping TypeName="LSDDataModel.UserInfo">
               <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="ICQ" ColumnName="ICQ" />
+                <ScalarProperty Name="SiteLink" ColumnName="SiteLink" />
+                <ScalarProperty Name="HomeNumber" ColumnName="HomeNumber" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="SexId" ColumnName="SexId" />
                 <ScalarProperty Name="DateBirth" ColumnName="DateBirth" />
                 <ScalarProperty Name="Activity" ColumnName="Activity" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

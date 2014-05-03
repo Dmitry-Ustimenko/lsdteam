@@ -17,11 +17,17 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Address { get; set; }
         public string Activity { get; set; }
         public Nullable<System.DateTime> DateBirth { get; set; }
         public Nullable<int> SexId { get; set; }
         public int UserId { get; set; }
+        public string Country { get; set; }
+        public string Town { get; set; }
+        public string Street { get; set; }
+        public string HomeNumber { get; set; }
+        public string SiteLink { get; set; }
+        public string ICQ { get; set; }
+        public string Skype { get; set; }
     
         public virtual Sex Sex { get; set; }
         public virtual User User { get; set; }
