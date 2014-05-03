@@ -14,15 +14,11 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
     
     public partial class UserExternalInfo
     {
-        public UserExternalInfo()
-        {
-            this.Users = new HashSet<User>();
-        }
-    
         public int Id { get; set; }
         public string ProviderName { get; set; }
         public string ProviderKey { get; set; }
+        public int UserId { get; set; }
     
-        public virtual ICollection<User> Users { get; set; }
+        public virtual User User { get; set; }
     }
 }
