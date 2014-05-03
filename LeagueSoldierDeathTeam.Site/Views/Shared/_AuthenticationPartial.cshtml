@@ -8,7 +8,9 @@
 @if (Request.IsAuthenticated)
 {
 	<div class="log-off">
-		<span>@AppContext.Current.CurrentUser.UserName&nbsp;</span>
+		<span>
+			Добро пожаловать,&nbsp;<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.Index()))">@AppContext.Current.CurrentUser.UserName</a>&nbsp;
+		</span>
 		<a href="@(WebBuilder.BuildActionUrl<AccountController>(o => o.LogOff()))">Выйти</a>
 	</div>
 }

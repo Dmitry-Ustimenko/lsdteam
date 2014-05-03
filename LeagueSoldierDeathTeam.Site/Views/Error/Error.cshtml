@@ -1,7 +1,7 @@
 ﻿@model HandleErrorInfo
 @{
 	Layout = "~/Views/Shared/_LayoutError.cshtml";
-	ViewBag.Title = "Error";
+	ViewBag.Title = "Глобальная ошибка";
 	var exceptionId = (string)TempData["ExceptionId"] ?? Model.Exception.Message;
 }
 <div class="error-page-body section-shadow">

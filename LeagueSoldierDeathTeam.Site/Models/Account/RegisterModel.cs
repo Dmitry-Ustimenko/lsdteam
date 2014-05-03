@@ -6,6 +6,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.Account
 	public class RegisterModel : BaseModel
 	{
 		[Required(ErrorMessage = "Поле 'Имя' не заполнено.")]
+		[StringLength(15, MinimumLength = 3, ErrorMessage = "Длина имени от 3 до 15 символов.")]
 		[DisplayName("Имя")]
 		public string RegisterUserName { get; set; }
 

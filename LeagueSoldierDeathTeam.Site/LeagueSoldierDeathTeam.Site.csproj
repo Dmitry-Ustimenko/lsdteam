@@ -213,6 +213,7 @@
     <Compile Include="Classes\SessionManager.cs" />
     <Compile Include="Classes\WebBuilder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountProfileController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -332,6 +333,7 @@
     <Content Include="Views\Mail\ActivateAccount.cshtml" />
     <Content Include="Views\Account\ActivateAccount.cshtml" />
     <Content Include="Views\Account\ExternalLoginError.cshtml" />
+    <Content Include="Views\AccountProfile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
