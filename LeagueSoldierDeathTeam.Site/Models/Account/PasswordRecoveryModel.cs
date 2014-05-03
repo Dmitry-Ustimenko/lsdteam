@@ -8,7 +8,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.Account
 		[Required(ErrorMessage = "Поле 'Email' не заполнено.")]
 		[EmailAddress(ErrorMessage = "Email введен не верно.")]
 		[DisplayName("Электронная почта")]
-		public string Email { get; set; }
+		public string RecoveryEmail { get; set; }
 
 		public bool EmailWasSend { get; set; }
 	}

@@ -82,10 +82,10 @@
     <Compile Include="Model\UserInfo.cs">
       <DependentUpon>LSD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\UserPasswordResetToken.cs">
+    <Compile Include="Model\UserRole.cs">
       <DependentUpon>LSD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\UserRole.cs">
+    <Compile Include="Model\UserToken.cs">
       <DependentUpon>LSD.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

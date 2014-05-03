@@ -1,4 +1,6 @@
-﻿@model LeagueSoldierDeathTeam.Site.Models.Account.LoginModel
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.Site.Models.Account.LoginModel
 
 @{
 	Layout = null;
@@ -22,6 +24,9 @@
 	<p class="clearfix">
 		<input type="button" value="Войти">
 	</p>
+	<div class="login-link">
+		<a href="@(WebBuilder.BuildActionUrl<AccountController>(o => o.PasswordRecovery()))">Восстановить пароль?</a>
+	</div>
 }
 <div class="down-arrow"></div>
 <div class="social-list">

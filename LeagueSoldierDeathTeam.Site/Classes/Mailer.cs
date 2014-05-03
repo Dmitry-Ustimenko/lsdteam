@@ -8,10 +8,15 @@ using Mvc.Mailer;
 
 namespace LeagueSoldierDeathTeam.Site.Classes
 {
-	public class Mailer : MailerBase, IMailer
+	public sealed class Mailer : MailerBase, IMailer
 	{
 		public string SystemEmailAddress = AppConfig.SystemEmailAddress;
 		public string SystemEmailName = AppConfig.SystemEmailName;
+
+		public Mailer()
+		{
+			CurrentHttpContext = WebBuilder.GetHttpContextWrapper();
+		}
 
 		#region IMailer Members
 

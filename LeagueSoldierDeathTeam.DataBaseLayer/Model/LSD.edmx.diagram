@@ -16,8 +16,8 @@
         <AssociationConnector Association="LSDDataModel.FK_User_UserExternalInfo" />
         <AssociationConnector Association="LSDDataModel.FK_UserInfo_User" />
         <AssociationConnector Association="LSDDataModel.FK_UserRole_User" />
-        <EntityTypeShape EntityType="LSDDataModel.UserPasswordResetToken" Width="1.5" PointX="0.625" PointY="1.5" />
-        <AssociationConnector Association="LSDDataModel.FK_dboUserPasswordResetToken_dboUser" />
+        <EntityTypeShape EntityType="LSDDataModel.UserToken" Width="1.5" PointX="0.625" PointY="1.5" />
+        <AssociationConnector Association="LSDDataModel.FK_dboUserToken_dboUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

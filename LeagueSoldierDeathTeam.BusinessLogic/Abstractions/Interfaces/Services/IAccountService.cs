@@ -21,9 +21,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 
 		RoleData GetRole(int id);
 
-		string GetResetPasswordToken(string email);
+		string GetUserToken(string email);
 
-		bool VerifyPasswordResetToken(string resetToken);
+		bool VerifyUserToken(string token);
 
 		void PasswordReset(PasswordResetParams resetContext);
 	}

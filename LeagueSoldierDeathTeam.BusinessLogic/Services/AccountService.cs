@@ -24,7 +24,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		private readonly IRepository<UserExternalInfo> _userExternalInfoRepository;
 
-		private readonly IRepository<UserPasswordResetToken> _userPasswordResetTokenRepository;
+		private readonly IRepository<UserToken> _UserTokenRepository;
 
 		public AccountService(IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
 		{
@@ -38,7 +38,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			_userRepository = repositoryFactory.CreateUserRepository();
 			_roleRepository = repositoryFactory.CreateRoleRepository();
 			_userExternalInfoRepository = repositoryFactory.CreateUserExternalInfoRepository();
-			_userPasswordResetTokenRepository = repositoryFactory.CreateUserPasswordResetTokenRepository();
+			_UserTokenRepository = repositoryFactory.CreateUserTokenRepository();
 		}
 
 		#region IAccountService Members
@@ -142,7 +142,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			}, o => o.Id == id).SingleOrDefault();
 		}
 
-		string IAccountService.GetResetPasswordToken(string email)
+		string IAccountService.GetUserToken(string email)
 		{
 			if (string.IsNullOrWhiteSpace(email))
 				throw new ArgumentException("E-mail не заполнен.");
@@ -151,10 +151,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			if (user == null) return string.Empty;
 
 			var token = CryptingHelper.GenerateEncodedUniqueToken();
-			var resetToken = _userPasswordResetTokenRepository.Query(o => o.UserId == user.Id).SingleOrDefault();
+			var resetToken = _UserTokenRepository.Query(o => o.UserId == user.Id).SingleOrDefault();
 
 			if (resetToken == null)
-				_userPasswordResetTokenRepository.Add(new UserPasswordResetToken { CreateDate = DateTime.Now, Token = token, User = user });
+				_UserTokenRepository.Add(new UserToken { CreateDate = DateTime.Now, Token = token, User = user });
 			else
 				resetToken.Token = token;
 
@@ -163,12 +163,12 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return token;
 		}
 
-		bool IAccountService.VerifyPasswordResetToken(string resetToken)
+		bool IAccountService.VerifyUserToken(string token)
 		{
-			if (string.IsNullOrWhiteSpace(resetToken))
-				throw new ArgumentNullException("resetToken");
+			if (string.IsNullOrWhiteSpace(token))
+				throw new ArgumentNullException("token");
 
-			var resetPasswordToken = _userPasswordResetTokenRepository.Query(o => o.Token == resetToken).SingleOrDefault();
+			var resetPasswordToken = _UserTokenRepository.Query(o => o.Token == token).SingleOrDefault();
 			return resetPasswordToken != null && ValidatePasswordResetToken(resetPasswordToken);
 		}
 
@@ -177,7 +177,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			if (parameters == null)
 				return;
 
-			var token = _userPasswordResetTokenRepository.Query(o => o.Token == parameters.PasswordResetToken).SingleOrDefault();
+			var token = _UserTokenRepository.Query(o => o.Token == parameters.PasswordResetToken).SingleOrDefault();
 			if (token == null || !ValidatePasswordResetToken(token))
 				return;
 
@@ -203,7 +203,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return hashing.Verify(password);
 		}
 
-		private bool ValidatePasswordResetToken(UserPasswordResetToken resetToken)
+		private bool ValidatePasswordResetToken(UserToken resetToken)
 		{
 			if (resetToken == null)
 				throw new ArgumentNullException("resetToken");
@@ -216,11 +216,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return true;
 		}
 
-		private void DeletePasswordResetToken(UserPasswordResetToken resetToken)
+		private void DeletePasswordResetToken(UserToken resetToken)
 		{
 			if (resetToken == null) return;
 
-			_userPasswordResetTokenRepository.Delete(resetToken);
+			_UserTokenRepository.Delete(resetToken);
 			_unitOfWork.Commit();
 		}
 

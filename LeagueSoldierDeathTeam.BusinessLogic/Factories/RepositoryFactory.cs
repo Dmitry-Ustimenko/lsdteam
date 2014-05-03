@@ -33,9 +33,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Factories
 			return new Repository<UserExternalInfo>(_unitOfWork);
 		}
 
-		public override IRepository<UserPasswordResetToken> CreateUserPasswordResetTokenRepository()
+		public override IRepository<UserToken> CreateUserTokenRepository()
 		{
-			return new Repository<UserPasswordResetToken>(_unitOfWork);
+			return new Repository<UserToken>(_unitOfWork);
 		}
 	}
 }

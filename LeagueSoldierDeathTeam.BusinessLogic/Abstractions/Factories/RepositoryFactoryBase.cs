@@ -11,6 +11,6 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories
 
 		public abstract IRepository<UserExternalInfo> CreateUserExternalInfoRepository();
 
-		public abstract IRepository<UserPasswordResetToken> CreateUserPasswordResetTokenRepository();
+		public abstract IRepository<UserToken> CreateUserTokenRepository();
 	}
 }
