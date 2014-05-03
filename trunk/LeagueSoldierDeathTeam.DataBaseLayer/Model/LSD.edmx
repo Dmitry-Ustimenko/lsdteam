@@ -30,7 +30,6 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastActivity" Type="datetime" Nullable="false" />
-          <Property Name="UserExternalInfoId" Type="int" />
         </EntityType>
         <EntityType Name="UserActivateToken">
           <Key>
@@ -47,6 +46,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProviderName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProviderKey" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -106,15 +106,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_UserExternalInfo">
-          <End Role="UserExternalInfo" Type="Self.UserExternalInfo" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+        <Association Name="FK_UserExternalInfo_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserExternalInfo" Type="Self.UserExternalInfo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserExternalInfo">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="UserExternalInfoId" />
+            <Dependent Role="UserExternalInfo">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -189,9 +191,9 @@
             <End Role="User" EntitySet="User" />
             <End Role="UserResetToken" EntitySet="UserResetToken" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_UserExternalInfo" Association="Self.FK_User_UserExternalInfo">
-            <End Role="UserExternalInfo" EntitySet="UserExternalInfo" />
+          <AssociationSet Name="FK_UserExternalInfo_User" Association="Self.FK_UserExternalInfo_User">
             <End Role="User" EntitySet="User" />
+            <End Role="UserExternalInfo" EntitySet="UserExternalInfo" />
           </AssociationSet>
           <AssociationSet Name="FK_UserInfo_Sex" Association="Self.FK_UserInfo_Sex">
             <End Role="Sex" EntitySet="Sex" />
@@ -218,8 +220,10 @@
           <EntitySet Name="Roles" EntityType="LSDDataModel.Role" />
           <EntitySet Name="Sexes" EntityType="LSDDataModel.Sex" />
           <EntitySet Name="Users" EntityType="LSDDataModel.User" />
+          <EntitySet Name="UserActivateTokens" EntityType="LSDDataModel.UserActivateToken" />
           <EntitySet Name="UserExternalInfoes" EntityType="LSDDataModel.UserExternalInfo" />
           <EntitySet Name="UserInfoes" EntityType="LSDDataModel.UserInfo" />
+          <EntitySet Name="UserResetTokens" EntityType="LSDDataModel.UserResetToken" />
           <EntitySet Name="UserRoles" EntityType="LSDDataModel.UserRole" />
           <AssociationSet Name="FK_UserRole_Role" Association="LSDDataModel.FK_UserRole_Role">
             <End Role="Role" EntitySet="Roles" />
@@ -229,9 +233,17 @@
             <End Role="Sex" EntitySet="Sexes" />
             <End Role="UserInfo" EntitySet="UserInfoes" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_UserExternalInfo" Association="LSDDataModel.FK_User_UserExternalInfo">
-            <End Role="UserExternalInfo" EntitySet="UserExternalInfoes" />
+          <AssociationSet Name="FK_dboUserActivateToken_dboUser" Association="LSDDataModel.FK_dboUserActivateToken_dboUser">
             <End Role="User" EntitySet="Users" />
+            <End Role="UserActivateToken" EntitySet="UserActivateTokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dboUserResetToken_dboUser" Association="LSDDataModel.FK_dboUserResetToken_dboUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserResetToken" EntitySet="UserResetTokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserExternalInfo_User" Association="LSDDataModel.FK_UserExternalInfo_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserExternalInfo" EntitySet="UserExternalInfoes" />
           </AssociationSet>
           <AssociationSet Name="FK_UserInfo_User" Association="LSDDataModel.FK_UserInfo_User">
             <End Role="User" EntitySet="Users" />
@@ -240,16 +252,6 @@
           <AssociationSet Name="FK_UserRole_User" Association="LSDDataModel.FK_UserRole_User">
             <End Role="User" EntitySet="Users" />
             <End Role="UserRole" EntitySet="UserRoles" />
-          </AssociationSet>
-          <EntitySet Name="UserActivateTokens" EntityType="LSDDataModel.UserActivateToken" />
-          <EntitySet Name="UserResetTokens" EntityType="LSDDataModel.UserResetToken" />
-          <AssociationSet Name="FK_dboUserActivateToken_dboUser" Association="LSDDataModel.FK_dboUserActivateToken_dboUser">
-            <End Role="User" EntitySet="Users" />
-            <End Role="UserActivateToken" EntitySet="UserActivateTokens" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dboUserResetToken_dboUser" Association="LSDDataModel.FK_dboUserResetToken_dboUser">
-            <End Role="User" EntitySet="Users" />
-            <End Role="UserResetToken" EntitySet="UserResetTokens" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Role">
@@ -279,12 +281,20 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastActivity" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UserExternalInfoId" Type="Int32" />
-          <NavigationProperty Name="UserExternalInfo" Relationship="LSDDataModel.FK_User_UserExternalInfo" FromRole="User" ToRole="UserExternalInfo" />
-          <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
-          <NavigationProperty Name="UserRoles" Relationship="LSDDataModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
           <NavigationProperty Name="UserActivateTokens" Relationship="LSDDataModel.FK_dboUserActivateToken_dboUser" FromRole="User" ToRole="UserActivateToken" />
           <NavigationProperty Name="UserResetTokens" Relationship="LSDDataModel.FK_dboUserResetToken_dboUser" FromRole="User" ToRole="UserResetToken" />
+          <NavigationProperty Name="UserExternalInfoes" Relationship="LSDDataModel.FK_UserExternalInfo_User" FromRole="User" ToRole="UserExternalInfo" />
+          <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
+          <NavigationProperty Name="UserRoles" Relationship="LSDDataModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="UserActivateToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="LSDDataModel.FK_dboUserActivateToken_dboUser" FromRole="UserActivateToken" ToRole="User" />
         </EntityType>
         <EntityType Name="UserExternalInfo">
           <Key>
@@ -293,7 +303,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProviderName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="LSDDataModel.FK_User_UserExternalInfo" FromRole="UserExternalInfo" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="LSDDataModel.FK_UserExternalInfo_User" FromRole="UserExternalInfo" ToRole="User" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -309,6 +320,16 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Sex" Relationship="LSDDataModel.FK_UserInfo_Sex" FromRole="UserInfo" ToRole="Sex" />
           <NavigationProperty Name="User" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="UserInfo" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserResetToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="LSDDataModel.FK_dboUserResetToken_dboUser" FromRole="UserResetToken" ToRole="User" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -346,15 +367,45 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_UserExternalInfo">
-          <End Type="LSDDataModel.UserExternalInfo" Role="UserExternalInfo" Multiplicity="0..1" />
-          <End Type="LSDDataModel.User" Role="User" Multiplicity="*" />
+        <Association Name="FK_dboUserActivateToken_dboUser">
+          <End Type="LSDDataModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.UserActivateToken" Role="UserActivateToken" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserExternalInfo">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="UserExternalInfoId" />
+            <Dependent Role="UserActivateToken">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dboUserResetToken_dboUser">
+          <End Type="LSDDataModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.UserResetToken" Role="UserResetToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserResetToken">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserExternalInfo_User">
+          <End Type="LSDDataModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.UserExternalInfo" Role="UserExternalInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserExternalInfo">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -386,53 +437,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="UserActivateToken">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Token" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="LSDDataModel.FK_dboUserActivateToken_dboUser" FromRole="UserActivateToken" ToRole="User" />
-        </EntityType>
-        <EntityType Name="UserResetToken">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Token" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="LSDDataModel.FK_dboUserResetToken_dboUser" FromRole="UserResetToken" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_dboUserActivateToken_dboUser">
-          <End Type="LSDDataModel.User" Role="User" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="LSDDataModel.UserActivateToken" Role="UserActivateToken" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserActivateToken">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dboUserResetToken_dboUser">
-          <End Type="LSDDataModel.User" Role="User" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="LSDDataModel.UserResetToken" Role="UserResetToken" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserResetToken">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -458,7 +462,6 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="LSDDataModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="UserExternalInfoId" ColumnName="UserExternalInfoId" />
                 <ScalarProperty Name="LastActivity" ColumnName="LastActivity" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -469,9 +472,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserActivateTokens">
+            <EntityTypeMapping TypeName="LSDDataModel.UserActivateToken">
+              <MappingFragment StoreEntitySet="UserActivateToken">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserExternalInfoes">
             <EntityTypeMapping TypeName="LSDDataModel.UserExternalInfo">
               <MappingFragment StoreEntitySet="UserExternalInfo">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -492,30 +505,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserRoles">
-            <EntityTypeMapping TypeName="LSDDataModel.UserRole">
-              <MappingFragment StoreEntitySet="UserRole">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserActivateTokens">
-            <EntityTypeMapping TypeName="LSDDataModel.UserActivateToken">
-              <MappingFragment StoreEntitySet="UserActivateToken">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Token" ColumnName="Token" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserResetTokens">
             <EntityTypeMapping TypeName="LSDDataModel.UserResetToken">
               <MappingFragment StoreEntitySet="UserResetToken">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Token" ColumnName="Token" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="LSDDataModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

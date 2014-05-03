@@ -16,6 +16,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 {
 	public class AccountService : IAccountService
 	{
+		#region Private Fields
+
 		private readonly IUnitOfWork _unitOfWork;
 
 		private readonly IRepository<User> _userRepository;
@@ -27,6 +29,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 		private readonly IRepository<UserResetToken> _userResetTokenRepository;
 
 		private readonly IRepository<UserActivateToken> _userActivateTokenRepository;
+
+		#endregion
+
+		#region Constructors
 
 		public AccountService(IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
 		{
@@ -43,6 +49,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			_userResetTokenRepository = repositoryFactory.CreateUserResetTokenRepository();
 			_userActivateTokenRepository = repositoryFactory.CreateUserActivateTokenRepository();
 		}
+
+		#endregion
 
 		#region IAccountService Members
 
@@ -86,11 +94,14 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				if (data.UserExternalInfo == null)
 					throw new ArgumentException("Данные о провайдере и внешнем ключе отсутсвуют.");
 
-				user.UserExternalInfo = new UserExternalInfo
+				var userExternalInfo = new UserExternalInfo
 				{
 					ProviderKey = data.UserExternalInfo.ProviderKey,
-					ProviderName = data.UserExternalInfo.ProviderName
+					ProviderName = data.UserExternalInfo.ProviderName,
+					User = user
 				};
+
+				_userExternalInfoRepository.Add(userExternalInfo);
 			}
 
 			var role = _roleRepository.Query(o => o.Id == (int)RoleEnum.User).SingleOrDefault();
@@ -124,9 +135,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return GetUser(o => o.Email == email);
 		}
 
-		UserData IAccountService.GetUser(int userExternalInfoId)
+		UserData IAccountService.GetUser(int id)
 		{
-			return GetUser(o => o.UserExternalInfoId == userExternalInfoId);
+			return GetUser(o => o.Id == id);
 		}
 
 		public UserExternalInfoData GetExternalUser(string providerName, string providerKey)
@@ -136,6 +147,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				Id = o.Id,
 				ProviderKey = o.ProviderKey,
 				ProviderName = o.ProviderName,
+				UserId = o.UserId
 			}, o => o.ProviderName == providerName && o.ProviderKey == providerKey).SingleOrDefault();
 		}
 
@@ -289,8 +301,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				IsActive = o.IsActive,
 				Password = o.Password,
 				CreateDate = o.CreateDate,
-				LastActivity = o.LastActivity,
-				UserExternalInfoId = o.UserExternalInfoId
+				LastActivity = o.LastActivity
 			}, filter).SingleOrDefault();
 		}
 

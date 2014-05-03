@@ -23,6 +23,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 	[AllowAnonymous]
 	public class AccountController : BaseController
 	{
+		#region Private Fields
+
 		private readonly IAccountService _accountService;
 
 		private readonly IAuthenticationService _authenticationService;
@@ -30,6 +32,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		private readonly IMailer _mailer;
 
 		private IAuthenticationManager AuthenticationManager { get { return HttpContextBase.GetOwinContext().Authentication; } }
+
+		#endregion
+
+		#region Constructors
 
 		public AccountController(ServiceFactoryBase serviceFactory, IAuthenticationService authenticationService, IMailer mailer)
 			: base(serviceFactory)
@@ -45,6 +51,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			_accountService = ServiceFactory.CreateAccountService();
 		}
+
+		#endregion
 
 		#region Actions
 
@@ -140,7 +148,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			var externalUser = Execute(() => _accountService.GetExternalUser(loginInfo.Login.LoginProvider, loginInfo.Login.ProviderKey));
 			if (externalUser != null)
 			{
-				var user = Execute(() => _accountService.GetUser(externalUser.Id));
+				var user = Execute(() => _accountService.GetUser(externalUser.UserId));
 				if (user != null)
 				{
 					AppContext.CurrentUser = user;
