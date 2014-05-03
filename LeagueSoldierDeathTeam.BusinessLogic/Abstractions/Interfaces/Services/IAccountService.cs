@@ -21,10 +21,14 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 
 		RoleData GetRole(int id);
 
-		string GetUserToken(string email);
+		string GetUserResetToken(string email);
 
-		bool VerifyUserToken(string token);
+		string GetUserActivateToken(string email);
+
+		bool VerifyUserResetToken(string token);
 
 		void PasswordReset(PasswordResetParams resetContext);
+
+		bool ActivateAccount(string token);
 	}
 }

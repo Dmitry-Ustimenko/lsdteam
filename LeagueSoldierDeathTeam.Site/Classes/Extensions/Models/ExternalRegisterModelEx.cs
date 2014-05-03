@@ -8,15 +8,16 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 		public static UserData CopyTo(this ExternalRegisterModel model)
 		{
 			if (model == null)
-				return new UserData(); ;
+				return new UserData();
 
+			var password = model.ExternalPassword;
 			if (string.IsNullOrWhiteSpace(model.ExternalPassword))
-				model.ExternalPassword = StringGeneration.Generate(8);
+				password = StringGeneration.Generate(8);
 
 			return new UserData
 			{
 				UserName = model.ExternalUserName,
-				Password = model.ExternalPassword,
+				Password = password,
 				Email = model.ExternalEmail,
 				UserExternalInfo = new UserExternalInfoData
 				{

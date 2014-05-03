@@ -1,0 +1,32 @@
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@using LeagueSoldierDeathTeam.Site.Models.Mail
+
+@{
+	Layout = "~/Views/Mail/LayoutMail.cshtml";
+	var viewModel = (MailActivateModel)ViewBag.Model;
+	ViewBag.Subject = "Активация аккаунта";
+	var link = WebBuilder.GetFullUrl<AccountController>(o => o.ActivateAccount(viewModel.Token));
+}
+
+<div>
+	Вы были зарегистрированы на сайте <a href="@AppConfig.HostName">@AppConfig.HostName</a>
+</div>
+<br />
+<div>
+	Ваши входные данные:
+	<ul>
+		<li>Логин: @viewModel.Email</li>
+		<li>Пароль: @viewModel.Password</li>
+	</ul>
+</div>
+<br />
+@if (!string.IsNullOrWhiteSpace(viewModel.ProviderName))
+{
+	<div>
+		При регистрации через @viewModel.ProviderName вами не был указан пароль, поэтому система сгенерировала его.<br />
+		В дальнейшем с его помощью вы сможете авторизироваться на сайте с помощью формы аутентификации.
+	</div>
+}
+<br />
+<div>Пожалуйста, используйте <a href="@link">данную ссылку</a> для активации вашего аккаунта.</div>

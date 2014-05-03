@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
   <Operation Name="Rename Refactor" Key="ecb5910b-0439-48c1-bae9-52013c1d09b4" ChangeDateTime="05/02/2014 19:41:52">
-    <Property Name="ElementName" Value="[dbo].[UserPasswordResetToken].[id]" />
+    <Property Name="ElementName" Value="[dbo].[UserResetToken].[id]" />
     <Property Name="ElementType" Value="SqlSimpleColumn" />
-    <Property Name="ParentElementName" Value="[dbo].[UserPasswordResetToken]" />
+    <Property Name="ParentElementName" Value="[dbo].[UserResetToken]" />
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Id" />
   </Operation>
   <Operation Name="Rename Refactor" Key="042905fa-6939-4464-903e-8047987ccca9" ChangeDateTime="05/02/2014 19:41:57">
-    <Property Name="ElementName" Value="[dbo].[UserPasswordResetToken].[create_date]" />
+    <Property Name="ElementName" Value="[dbo].[UserResetToken].[create_date]" />
     <Property Name="ElementType" Value="SqlSimpleColumn" />
-    <Property Name="ParentElementName" Value="[dbo].[UserPasswordResetToken]" />
+    <Property Name="ParentElementName" Value="[dbo].[UserResetToken]" />
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="CreateDate" />
   </Operation>
   <Operation Name="Rename Refactor" Key="7eecb156-0019-405a-acf6-b0cf2bfcefdb" ChangeDateTime="05/02/2014 19:42:00">
-    <Property Name="ElementName" Value="[dbo].[UserPasswordResetToken].[token]" />
+    <Property Name="ElementName" Value="[dbo].[UserResetToken].[token]" />
     <Property Name="ElementType" Value="SqlSimpleColumn" />
-    <Property Name="ParentElementName" Value="[dbo].[UserPasswordResetToken]" />
+    <Property Name="ParentElementName" Value="[dbo].[UserResetToken]" />
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Token" />
   </Operation>
   <Operation Name="Rename Refactor" Key="1b311eca-2a5a-47bd-969b-9957f630cfec" ChangeDateTime="05/02/2014 19:42:06">
-    <Property Name="ElementName" Value="[dbo].[UserPasswordResetToken].[user_id]" />
+    <Property Name="ElementName" Value="[dbo].[UserResetToken].[user_id]" />
     <Property Name="ElementType" Value="SqlSimpleColumn" />
-    <Property Name="ParentElementName" Value="[dbo].[UserPasswordResetToken]" />
+    <Property Name="ParentElementName" Value="[dbo].[UserResetToken]" />
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="UserId" />
   </Operation>

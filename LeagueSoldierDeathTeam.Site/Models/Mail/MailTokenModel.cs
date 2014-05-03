@@ -1,8 +1,7 @@
 ﻿namespace LeagueSoldierDeathTeam.Site.Models.Mail
 {
-	public class MailPasswordResetModel
+	public class MailTokenModel
 	{
 		public string Token { get; set; }
-		public string Email { get; set; }
 	}
 }
