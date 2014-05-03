@@ -170,7 +170,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("password-recovery")]
-		public ActionResult ForgotPassword()
+		public ActionResult PasswordRecovery()
 		{
 			return View(new PasswordRecoveryModel());
 		}
@@ -178,17 +178,17 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[HttpPost]
 		[AllowAnonymous]
 		[Route("password-recovery")]
-		public ActionResult ForgotPassword(PasswordRecoveryModel model)
+		public ActionResult PasswordRecovery(PasswordRecoveryModel model)
 		{
-			if (ModelState.IsValid)
+			if (ModelIsValid)
 			{
 				var resetModel = new MailPasswordResetModel
 				{
-					Token = Execute(() => _accountService.GetResetPasswordToken(model.Email)),
-					Email = model.Email,
+					Token = Execute(() => _accountService.GetUserToken(model.RecoveryEmail)),
+					Email = model.RecoveryEmail,
 				};
 				if (!string.IsNullOrEmpty(resetModel.Token))
-					_mailer.SendMessageAsync("PasswordReset", resetModel, model.Email);
+					_mailer.SendMessageAsync("PasswordReset", resetModel, model.RecoveryEmail);
 
 				return View(new PasswordRecoveryModel { EmailWasSend = true });
 			}
@@ -204,8 +204,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("password-reset/{token?}")]
 		public ActionResult PasswordReset(string token)
 		{
-			if (!Execute(() => _accountService.VerifyPasswordResetToken(token)))
-				return RedirectToAction<AccountController>(o => o.ForgotPassword());
+			if (!Execute(() => _accountService.VerifyUserToken(token)))
+				return RedirectToAction<AccountController>(o => o.PasswordRecovery());
 			return View(new PasswordResetModel { Token = token });
 		}
 
@@ -214,20 +214,23 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("password-reset/{token?}")]
 		public ActionResult PasswordReset(PasswordResetModel model)
 		{
-			if (!Execute(() => _accountService.VerifyPasswordResetToken(model.Token)))
-				return RedirectToAction<AccountController>(o => o.ForgotPassword());
-
-			var resetContext = new PasswordResetParams
+			if (ModelIsValid)
 			{
-				PasswordResetToken = model.Token,
-				NewPassword = model.NewPassword,
-				SessionId = Session.SessionID,
-				UserIp = Request.UserHostAddress,
-				UserHostName = Request.UserHostName
-			};
+				if (!Execute(() => _accountService.VerifyUserToken(model.Token)))
+					return RedirectToAction<AccountController>(o => o.PasswordRecovery());
 
-			if (Execute(() => _accountService.PasswordReset(resetContext)))
-				return View(new PasswordResetModel { PasswordWasChanged = true });
+				var parameters = new PasswordResetParams
+				{
+					PasswordResetToken = model.Token,
+					NewPassword = model.NewPassword,
+					SessionId = Session.SessionID,
+					UserIp = Request.UserHostAddress,
+					UserHostName = Request.UserHostName
+				};
+
+				if (Execute(() => _accountService.PasswordReset(parameters)))
+					return View(new PasswordResetModel { PasswordWasChanged = true });
+			}
 			return View(model);
 		}
 

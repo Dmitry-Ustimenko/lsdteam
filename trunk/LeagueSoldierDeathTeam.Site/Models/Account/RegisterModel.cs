@@ -24,6 +24,6 @@ namespace LeagueSoldierDeathTeam.Site.Models.Account
 		[DisplayName("Повторите пароль")]
 		[DataType(DataType.Password)]
 		[Compare("RegisterPassword", ErrorMessage = "Пароли не совпадают.")]
-		public string ConfirmPassword { get; set; }
+		public string RegisterConfirmPassword { get; set; }
 	}
 }

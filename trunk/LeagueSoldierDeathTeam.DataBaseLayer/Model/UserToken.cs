@@ -12,7 +12,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class UserPasswordResetToken
+    public partial class UserToken
     {
         public int Id { get; set; }
         public System.DateTime CreateDate { get; set; }
