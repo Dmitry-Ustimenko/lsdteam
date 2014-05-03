@@ -220,6 +220,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\ActivateAccountModel.cs" />
+    <Compile Include="Models\Account\ExternalLoginErrorModel.cs" />
     <Compile Include="Models\Account\ExternalRegisterModel.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Models\Account\PasswordRecoveryModel.cs" />
@@ -330,6 +331,7 @@
     <Content Include="Views\Account\PasswordReset.cshtml" />
     <Content Include="Views\Mail\ActivateAccount.cshtml" />
     <Content Include="Views\Account\ActivateAccount.cshtml" />
+    <Content Include="Views\Account\ExternalLoginError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

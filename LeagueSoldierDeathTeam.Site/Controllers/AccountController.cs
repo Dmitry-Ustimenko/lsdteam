@@ -136,14 +136,19 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[HttpPost]
 		public ActionResult ExternalLogin(string provider, string returnUrl)
 		{
-			return new ChallengeResult(provider, WebBuilder.BuildActionUrl<AccountController>(o => o.ExternalLoginCallback(returnUrl)));
+			return new ChallengeResult(provider, WebBuilder.BuildActionUrl<AccountController>(o => o.ExternalLoginCallback(returnUrl, provider)));
 		}
 
-		public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
+		public async Task<ActionResult> ExternalLoginCallback(string returnUrl, string provider)
 		{
 			var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
 			if (loginInfo == null)
-				return RedirectToAction<HomeController>(o => o.Index());
+				return View("ExternalLoginError", new ExternalLoginErrorModel
+				{
+					ProviderName = provider,
+					Message = "Не удалось получить данные с сервиса. Попробуйте авторизироваться немного позднее."
+				});
+
 
 			var externalUser = Execute(() => _accountService.GetExternalUser(loginInfo.Login.LoginProvider, loginInfo.Login.ProviderKey));
 			if (externalUser != null)
@@ -151,6 +156,13 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				var user = Execute(() => _accountService.GetUser(externalUser.UserId));
 				if (user != null)
 				{
+					if (!user.IsActive)
+						return View("ExternalLoginError", new ExternalLoginErrorModel
+						{
+							ProviderName = provider,
+							Message = "Данный аккаунт не был активирован. Пожалуйста активируйте его по ссылке, которая была выслана на указанный при регистрации e-mail."
+						});
+
 					AppContext.CurrentUser = user;
 					_authenticationService.SignIn(user.Email, true);
 					return RedirectToAction<HomeController>(o => o.Index());
