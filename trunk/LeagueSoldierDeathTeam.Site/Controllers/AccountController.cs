@@ -66,6 +66,17 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return View("_LoginPartial", model);
 		}
 
+		public ActionResult LogOff()
+		{
+			_authenticationService.SignOut();
+			AppContext.CurrentUser = null;
+			return RedirectToAction<HomeController>(o => o.Index());
+		}
+
+		#endregion
+
+		#region Register
+
 		[HttpPost]
 		public ActionResult Register(RegisterModel model)
 		{
@@ -76,6 +87,16 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 				if (ModelIsValid)
 				{
+					var activateModel = new MailActivateModel
+					{
+						Token = Execute(() => _accountService.GetUserActivateToken(data.Email)),
+						Email = data.Email,
+						Password = data.Password
+					};
+
+					if (!string.IsNullOrEmpty(activateModel.Token))
+						_mailer.SendMessageAsync("ActivateAccount", activateModel, model.RegisterEmail);
+
 					model.ReturnUrl = WebBuilder.BuildActionUrl<AccountController>(o => o.RegisterSuccessfull(model.RegisterEmail));
 					return Json(model, JsonRequestBehavior.AllowGet);
 				}
@@ -98,13 +119,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			var mailHostings = XmlParser<MailHosting>.Parse(Constants.XmlMailHostingPath, Constants.XmlMailHostingSearchName)
 				.DistinctBy(o => o.HostAttribute).ToDictionary(o => o.HostAttribute, o => o.SiteAttribute);
 			return View(new RegisterSuccessfullModel { MailHosting = mailHostings.ContainsKey(emailHost) ? mailHostings[emailHost] : string.Empty });
-		}
-
-		public ActionResult LogOff()
-		{
-			_authenticationService.SignOut();
-			AppContext.CurrentUser = null;
-			return RedirectToAction<HomeController>(o => o.Index());
 		}
 
 		#endregion
@@ -157,7 +171,22 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				Execute(() => _accountService.Create(data, true));
 
 				if (ModelIsValid)
+				{
+					var activateModel = new MailActivateModel
+					{
+						Token = Execute(() => _accountService.GetUserActivateToken(data.Email)),
+						Email = data.Email,
+						Password = data.Password
+					};
+
+					if (string.IsNullOrWhiteSpace(model.ExternalPassword))
+						activateModel.ProviderName = model.ProviderName;
+
+					if (!string.IsNullOrEmpty(activateModel.Token))
+						_mailer.SendMessageAsync("ActivateAccount", activateModel, model.ExternalEmail);
+
 					return RedirectToAction<AccountController>(o => o.RegisterSuccessfull(model.ExternalEmail));
+				}
 			}
 
 			return View(model);
@@ -168,7 +197,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region Password Recovery
 
 		[HttpGet]
-		[AllowAnonymous]
 		[Route("password-recovery")]
 		public ActionResult PasswordRecovery()
 		{
@@ -176,17 +204,12 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
-		[AllowAnonymous]
 		[Route("password-recovery")]
 		public ActionResult PasswordRecovery(PasswordRecoveryModel model)
 		{
 			if (ModelIsValid)
 			{
-				var resetModel = new MailPasswordResetModel
-				{
-					Token = Execute(() => _accountService.GetUserToken(model.RecoveryEmail)),
-					Email = model.RecoveryEmail,
-				};
+				var resetModel = new MailTokenModel { Token = Execute(() => _accountService.GetUserResetToken(model.RecoveryEmail)) };
 				if (!string.IsNullOrEmpty(resetModel.Token))
 					_mailer.SendMessageAsync("PasswordReset", resetModel, model.RecoveryEmail);
 
@@ -200,23 +223,21 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region Password Reset
 
 		[HttpGet]
-		[AllowAnonymous]
 		[Route("password-reset/{token?}")]
 		public ActionResult PasswordReset(string token)
 		{
-			if (!Execute(() => _accountService.VerifyUserToken(token)))
+			if (!Execute(() => _accountService.VerifyUserResetToken(token)))
 				return RedirectToAction<AccountController>(o => o.PasswordRecovery());
 			return View(new PasswordResetModel { Token = token });
 		}
 
 		[HttpPost]
-		[AllowAnonymous]
 		[Route("password-reset/{token?}")]
 		public ActionResult PasswordReset(PasswordResetModel model)
 		{
 			if (ModelIsValid)
 			{
-				if (!Execute(() => _accountService.VerifyUserToken(model.Token)))
+				if (!Execute(() => _accountService.VerifyUserResetToken(model.Token)))
 					return RedirectToAction<AccountController>(o => o.PasswordRecovery());
 
 				var parameters = new PasswordResetParams
@@ -232,6 +253,19 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 					return View(new PasswordResetModel { PasswordWasChanged = true });
 			}
 			return View(model);
+		}
+
+		#endregion
+
+		#region Activate Account
+
+		[HttpGet]
+		[Route("activate-account/{token?}")]
+		public ActionResult ActivateAccount(string token)
+		{
+			if (Execute(() => _accountService.ActivateAccount(token)))
+				return View(new ActivateAccountModel { AccountWasActivated = true });
+			return View(new ActivateAccountModel());
 		}
 
 		#endregion

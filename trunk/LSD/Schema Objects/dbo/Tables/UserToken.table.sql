@@ -1,4 +1,4 @@
-﻿create table [dbo].[UserToken]
+﻿create table [dbo].[UserResetToken]
 (
 	[Id]			int				not null identity(1,1),
 	[CreateDate]	datetime		not null,
@@ -7,13 +7,13 @@
 );
 
 go
-alter table [dbo].[UserToken]
-add constraint [PK_dboUserToken]
+alter table [dbo].[UserResetToken]
+add constraint [PK_dboUserResetToken]
 primary key clustered ([Id]);
 go
 
-alter table [dbo].[UserToken]
-add constraint [FK_dboUserToken_dboUser] 
+alter table [dbo].[UserResetToken]
+add constraint [FK_dboUserResetToken_dboUser] 
 foreign key ([UserId])
 references [dbo].[User] ([id])
 on update cascade
@@ -21,8 +21,8 @@ on delete cascade;
 
 go
 
-create unique index [UQ_dboUserToken_token]
-on [dbo].[UserToken]
+create unique index [UQ_dboUserResetToken_token]
+on [dbo].[UserResetToken]
 (
 	[Token]
 )
@@ -34,8 +34,8 @@ include
 
 go
 
-create unique index [UQ_dboUserToken_user_id]
-on [dbo].[UserToken]
+create unique index [UQ_dboUserResetToken_user_id]
+on [dbo].[UserResetToken]
 (
 	[UserId]
 )

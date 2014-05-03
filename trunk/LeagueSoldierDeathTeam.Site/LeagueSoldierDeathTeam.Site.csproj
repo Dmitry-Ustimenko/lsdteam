@@ -219,6 +219,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account\ActivateAccountModel.cs" />
     <Compile Include="Models\Account\ExternalRegisterModel.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Models\Account\PasswordRecoveryModel.cs" />
@@ -226,7 +227,8 @@
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\Account\RegisterSuccessfullModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Models\Mail\MailPasswordResetModel.cs" />
+    <Compile Include="Models\Mail\MailActivateModel.cs" />
+    <Compile Include="Models\Mail\MailTokenModel.cs" />
     <Compile Include="Models\Xml\MailHosting.cs" />
     <Compile Include="Modules\Autofac\LibraryModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -326,6 +328,8 @@
     <Content Include="Views\Mail\PasswordReset.cshtml" />
     <Content Include="Views\Account\PasswordRecovery.cshtml" />
     <Content Include="Views\Account\PasswordReset.cshtml" />
+    <Content Include="Views\Mail\ActivateAccount.cshtml" />
+    <Content Include="Views\Account\ActivateAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
