@@ -30,6 +30,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		private readonly IRepository<UserActivateToken> _userActivateTokenRepository;
 
+		private readonly IRepository<UserInfo> _userInfoRepository;
+
 		#endregion
 
 		#region Constructors
@@ -48,6 +50,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			_userExternalInfoRepository = repositoryFactory.CreateUserExternalInfoRepository();
 			_userResetTokenRepository = repositoryFactory.CreateUserResetTokenRepository();
 			_userActivateTokenRepository = repositoryFactory.CreateUserActivateTokenRepository();
+			_userInfoRepository = repositoryFactory.CreateUserInfoRepository();
 		}
 
 		#endregion
@@ -248,6 +251,41 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return true;
 		}
 
+		UserInfoData IAccountService.GetUserProfile(int userId)
+		{
+			var user = GetUser(o => o.Id == userId);
+			if (user == null)
+				throw new ArgumentNullException(string.Format("user"));
+
+			var userInfo = _userInfoRepository.GetData(o => new UserInfoData
+			{
+				Id = o.Id,
+				FirstName = o.FirstName,
+				LastName = o.LastName,
+				Activity = o.Activity,
+				Country = o.Country,
+				DateBirth = o.DateBirth,
+				HomeNumber = o.HomeNumber,
+				Town = o.Town,
+				SiteLink = o.SiteLink,
+				Skype = o.Skype,
+				Street = o.Street,
+				Icq = o.ICQ,
+				BattleLog = o.BattleLog,
+				Steam = o.Steam,
+				PhotoPath  = o.PhotoPath,
+				AboutMe = o.AboutMe,
+				SexId = o.SexId,
+				SexName = o.Sex != null ? o.Sex.Name : string.Empty
+			}, o => o.UserId == userId).SingleOrDefault();
+
+			if (userInfo == null)
+				return new UserInfoData { User = user };
+
+			userInfo.User = user;
+			return userInfo;
+		}
+
 		#endregion
 
 		#region Internal Implementation
@@ -301,7 +339,12 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				IsActive = o.IsActive,
 				Password = o.Password,
 				CreateDate = o.CreateDate,
-				LastActivity = o.LastActivity
+				LastActivity = o.LastActivity,
+				Roles = o.UserRoles.Select(c => new RoleData
+				{
+					Id = c.Role.Id,
+					Name = c.Role.Name
+				})
 			}, filter).SingleOrDefault();
 		}
 

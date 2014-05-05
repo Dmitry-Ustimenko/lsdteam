@@ -202,7 +202,7 @@ a {
 
 .emblem {
 	position: absolute;
-	left: 53px;
+	left: 55px;
 }
 
 	.emblem img.full-size {
@@ -233,7 +233,7 @@ a {
 
 .team-name-emblem {
 	position: absolute;
-	left: 170px;
+	left: 200px;
 	top: 25px;
 }
 
@@ -969,30 +969,144 @@ a {
 
 /* User Profile */
 
-div.user-photo {
-	float: left;
-	margin: 17px;
-	margin-left: 30px;
-	border: 1px #e0e0e0 solid;
-	border-radius: 1px;
-	-moz-border-radius: 1px;
-	-webkit-border-radius: 1px;
-	-moz-box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
-	-webkit-box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
-	box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
+.profile-tabs {
+	height: 400px;
 }
 
-	div.user-photo img {
-		width: 300px;
-		height: 300px;
+	.profile-tabs .tabs input[type=radio] {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
 	}
 
-	div.user-buttons {
-		float: left;
-		border: 1px solid black;
-		height: 400px;
-		width: 100px;
+	.profile-tabs .tabs {
+		width: 95%;
+		float: none;
+		list-style: none;
+		position: relative;
+		padding: 0;
+		margin: 20px auto;
 	}
+
+		.profile-tabs .tabs li {
+			float: left;
+			margin-right: 2px;
+		}
+
+		.profile-tabs .tabs label {
+			display: block;
+			padding: 5px 20px;
+			top: 7px;
+			border-radius: 3px 3px 0 0;
+			color: rgb(68, 68, 68);
+			font-weight: normal;
+			font-family: 'Lily Script One', helveti;
+			background: rgba(255,255,255,0.2);
+			cursor: pointer;
+			position: relative;
+			font: 18px 'PT Sans Narrow', Arial, sans-serif;
+			border: 1px solid #D1D1D1;
+		}
+
+	.profile-tabs [id^=tab]:checked + label {
+		padding: 9px 20px;
+		color: black;
+		top: 0;
+		border: 1px solid #D1D1D1;
+		box-shadow: 0 -2px 0 rgba(0,0,0,0.1) inset;
+		background: rgb(255,255,255);
+		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+		background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));
+		background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+		background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+		background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+		background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+	}
+
+	.profile-tabs [id^=tab]:checked ~ [id^=tab-content] {
+		display: block;
+	}
+
+	.profile-tabs .tab-content {
+		z-index: 2;
+		display: none;
+		text-align: left;
+		width: 100%;
+		font-size: 20px;
+		line-height: 140%;
+		padding-top: 10px;
+		background: white;
+		padding: 15px;
+		color: white;
+		position: absolute;
+		top: 40px;
+		left: 0;
+		box-sizing: border-box;
+		border: 1px solid #D1D1D1;
+		-webkit-animation-duration: 0.5s;
+		-o-animation-duration: 0.5s;
+		-moz-animation-duration: 0.5s;
+		animation-duration: 0.5s;
+	}
+
+.profile-left-bar {
+	margin: 17px;
+	margin-left: 90px;
+	float: left;
+}
+
+	.profile-left-bar .user-photo {
+		width: 200px;
+		height: 200px;
+		border: 1px #e0e0e0 solid;
+		border-radius: 1px;
+		-moz-border-radius: 1px;
+		-webkit-border-radius: 1px;
+		-moz-box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
+		-webkit-box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
+		box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
+		position: relative;
+	}
+
+		.profile-left-bar .user-photo img {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			max-width: 200px;
+			max-height: 200px;
+		}
+
+	.profile-left-bar .user-buttons {
+		margin-top: 20px;
+		width: 200px;
+	}
+
+		.profile-left-bar .user-buttons a {
+			box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+			background: #B31919;
+			font-family: 'Ubuntu', 'Lato', sans-serif;
+			color: white;
+			font-weight: 700;
+			font-size: 15px;
+			text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+			cursor: pointer;
+			display: inline-block;
+			width: 100%;
+			text-align: center;
+			padding: 6px;
+			border: 1px solid #B31919;
+			margin-top: 3px;
+		}
+
+			.profile-left-bar .user-buttons a:active {
+				box-shadow: inset 3px 3px 3px rgba(0,0,0,0.1);
+				padding: 6px;
+			}
 
 table.profile-info {
 	width: 60%;

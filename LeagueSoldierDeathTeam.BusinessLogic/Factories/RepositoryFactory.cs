@@ -28,6 +28,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Factories
 			return new Repository<Role>(_unitOfWork);
 		}
 
+		public override IRepository<UserInfo> CreateUserInfoRepository()
+		{
+			return new Repository<UserInfo>(_unitOfWork);
+		}
+
 		public override IRepository<UserExternalInfo> CreateUserExternalInfoRepository()
 		{
 			return new Repository<UserExternalInfo>(_unitOfWork);

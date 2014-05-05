@@ -10,17 +10,17 @@
         <EntityTypeShape EntityType="LSDDataModel.User" Width="1.5" PointX="5" PointY="5.625" />
         <EntityTypeShape EntityType="LSDDataModel.UserActivateToken" Width="1.5" PointX="4" PointY="3.125" />
         <EntityTypeShape EntityType="LSDDataModel.UserExternalInfo" Width="1.5" PointX="5" PointY="9.625" />
-        <EntityTypeShape EntityType="LSDDataModel.UserInfo" Width="1.5" PointX="7.375" PointY="5.625" />
         <EntityTypeShape EntityType="LSDDataModel.UserResetToken" Width="1.5" PointX="6.125" PointY="3.125" />
         <EntityTypeShape EntityType="LSDDataModel.UserRole" Width="1.5" PointX="2.5" PointY="5.625" />
         <AssociationConnector Association="LSDDataModel.FK_UserRole_Role" />
-        <AssociationConnector Association="LSDDataModel.FK_UserInfo_Sex" />
         <AssociationConnector Association="LSDDataModel.FK_dboUserActivateToken_dboUser" />
         <AssociationConnector Association="LSDDataModel.FK_dboUserResetToken_dboUser" />
         <AssociationConnector Association="LSDDataModel.FK_UserExternalInfo_User" />
-        <AssociationConnector Association="LSDDataModel.FK_UserInfo_User" />
         <AssociationConnector Association="LSDDataModel.FK_UserRole_User" />
-      </Diagram>
+        <EntityTypeShape EntityType="LSDDataModel.UserInfo" Width="1.5" PointX="7.125" PointY="5.625" />
+        <AssociationConnector Association="LSDDataModel.FK_UserInfo_Sex" />
+        <AssociationConnector Association="LSDDataModel.FK_UserInfo_User" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -203,6 +203,7 @@
     <Compile Include="Classes\ControllerActionInfo.cs" />
     <Compile Include="Classes\Extensions\Models\ExternalRegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
+    <Compile Include="Classes\Extensions\Models\UserProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\StringGeneration.cs" />
     <Compile Include="Classes\Factories\ContextFactory.cs" />
     <Compile Include="Classes\Logger.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountProfile\UserProfileModel.cs" />
     <Compile Include="Models\Account\ActivateAccountModel.cs" />
     <Compile Include="Models\Account\ExternalLoginErrorModel.cs" />
     <Compile Include="Models\Account\ExternalRegisterModel.cs" />
@@ -247,6 +249,7 @@
     <Content Include="Images\d03.png" />
     <Content Include="Images\d06.png" />
     <Content Include="Images\d10.png" />
+    <Content Include="Images\default-avatar.jpg" />
     <Content Include="Images\dice-logo.png" />
     <Content Include="Images\ea-logo.png" />
     <Content Include="Images\emblem.png" />
@@ -333,7 +336,8 @@
     <Content Include="Views\Mail\ActivateAccount.cshtml" />
     <Content Include="Views\Account\ActivateAccount.cshtml" />
     <Content Include="Views\Account\ExternalLoginError.cshtml" />
-    <Content Include="Views\AccountProfile\Index.cshtml" />
+    <Content Include="Views\AccountProfile\ProfileInfo.cshtml" />
+    <Content Include="Views\AccountProfile\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

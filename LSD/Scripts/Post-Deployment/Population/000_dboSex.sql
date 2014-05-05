@@ -9,8 +9,8 @@ declare @t table
 --
 insert into @t([Id], [Name])
 values
-(1, N'Man'),
-(2, N'Woman')
+(1, N'Мужской'),
+(2, N'Женский')
 --
 merge into [dbo].[Sex] as [target]
 using @t as [source] on [target].[Id] = [source].[Id]

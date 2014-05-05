@@ -55,15 +55,19 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="128" />
           <Property Name="LastName" Type="nvarchar" MaxLength="128" />
+          <Property Name="PhotoPath" Type="nvarchar" MaxLength="1024" />
           <Property Name="Activity" Type="nvarchar" MaxLength="1024" />
           <Property Name="DateBirth" Type="datetime" />
-          <Property Name="Country" Type="nvarchar" MaxLength="1024" />
-          <Property Name="Town" Type="nvarchar" MaxLength="1024" />
-          <Property Name="Street" Type="nvarchar" MaxLength="1024" />
-          <Property Name="HomeNumber" Type="nvarchar" MaxLength="1024" />
-          <Property Name="SiteLink" Type="nvarchar" MaxLength="1024" />
-          <Property Name="ICQ" Type="nvarchar" MaxLength="1024" />
-          <Property Name="Skype" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Country" Type="nvarchar" MaxLength="128" />
+          <Property Name="Town" Type="nvarchar" MaxLength="128" />
+          <Property Name="Street" Type="nvarchar" MaxLength="128" />
+          <Property Name="HomeNumber" Type="nvarchar" MaxLength="5" />
+          <Property Name="SiteLink" Type="nvarchar" MaxLength="128" />
+          <Property Name="ICQ" Type="nvarchar" MaxLength="128" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="128" />
+          <Property Name="BattleLog" Type="nvarchar" MaxLength="128" />
+          <Property Name="Steam" Type="nvarchar" MaxLength="128" />
+          <Property Name="AboutMe" Type="nvarchar" MaxLength="128" />
           <Property Name="SexId" Type="int" />
           <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
@@ -139,7 +143,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserInfo_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
@@ -148,7 +152,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="UserInfo">
-              <PropertyRef Name="SexId" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -228,16 +232,11 @@
           <EntitySet Name="Users" EntityType="LSDDataModel.User" />
           <EntitySet Name="UserActivateTokens" EntityType="LSDDataModel.UserActivateToken" />
           <EntitySet Name="UserExternalInfoes" EntityType="LSDDataModel.UserExternalInfo" />
-          <EntitySet Name="UserInfoes" EntityType="LSDDataModel.UserInfo" />
           <EntitySet Name="UserResetTokens" EntityType="LSDDataModel.UserResetToken" />
           <EntitySet Name="UserRoles" EntityType="LSDDataModel.UserRole" />
           <AssociationSet Name="FK_UserRole_Role" Association="LSDDataModel.FK_UserRole_Role">
             <End Role="Role" EntitySet="Roles" />
             <End Role="UserRole" EntitySet="UserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserInfo_Sex" Association="LSDDataModel.FK_UserInfo_Sex">
-            <End Role="Sex" EntitySet="Sexes" />
-            <End Role="UserInfo" EntitySet="UserInfoes" />
           </AssociationSet>
           <AssociationSet Name="FK_dboUserActivateToken_dboUser" Association="LSDDataModel.FK_dboUserActivateToken_dboUser">
             <End Role="User" EntitySet="Users" />
@@ -251,15 +250,20 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserExternalInfo" EntitySet="UserExternalInfoes" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserInfo_User" Association="LSDDataModel.FK_UserInfo_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="UserInfo" EntitySet="UserInfoes" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserRole_User" Association="LSDDataModel.FK_UserRole_User">
             <End Role="User" EntitySet="Users" />
             <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="UserInfoes" EntityType="LSDDataModel.UserInfo" />
+          <AssociationSet Name="FK_UserInfo_Sex" Association="LSDDataModel.FK_UserInfo_Sex">
+            <End Role="Sex" EntitySet="Sexes" />
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_User" Association="LSDDataModel.FK_UserInfo_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -290,8 +294,8 @@
           <NavigationProperty Name="UserActivateTokens" Relationship="LSDDataModel.FK_dboUserActivateToken_dboUser" FromRole="User" ToRole="UserActivateToken" />
           <NavigationProperty Name="UserResetTokens" Relationship="LSDDataModel.FK_dboUserResetToken_dboUser" FromRole="User" ToRole="UserResetToken" />
           <NavigationProperty Name="UserExternalInfoes" Relationship="LSDDataModel.FK_UserExternalInfo_User" FromRole="User" ToRole="UserExternalInfo" />
-          <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
           <NavigationProperty Name="UserRoles" Relationship="LSDDataModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="UserActivateToken">
           <Key>
@@ -311,27 +315,6 @@
           <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="LSDDataModel.FK_UserExternalInfo_User" FromRole="UserExternalInfo" ToRole="User" />
-        </EntityType>
-        <EntityType Name="UserInfo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Activity" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="DateBirth" Type="DateTime" Precision="3" />
-          <Property Name="SexId" Type="Int32" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Sex" Relationship="LSDDataModel.FK_UserInfo_Sex" FromRole="UserInfo" ToRole="Sex" />
-          <NavigationProperty Name="User" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="UserInfo" ToRole="User" />
-          <Property Name="Country" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="Town" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="Street" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="HomeNumber" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="SiteLink" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="ICQ" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="Skype" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserResetToken">
           <Key>
@@ -364,18 +347,6 @@
             </Principal>
             <Dependent Role="UserRole">
               <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserInfo_Sex">
-          <End Type="LSDDataModel.Sex" Role="Sex" Multiplicity="0..1" />
-          <End Type="LSDDataModel.UserInfo" Role="UserInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sex">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserInfo">
-              <PropertyRef Name="SexId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -421,20 +392,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserInfo_User">
-          <End Type="LSDDataModel.User" Role="User" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="LSDDataModel.UserInfo" Role="UserInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserInfo">
-              <PropertyRef Name="SexId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UserRole_User">
           <End Type="LSDDataModel.User" Role="User" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -445,6 +402,57 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Activity" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="DateBirth" Type="DateTime" Precision="3" />
+          <Property Name="Country" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Town" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="HomeNumber" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="SiteLink" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ICQ" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Skype" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="BattleLog" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Steam" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SexId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sex" Relationship="LSDDataModel.FK_UserInfo_Sex" FromRole="UserInfo" ToRole="Sex" />
+          <NavigationProperty Name="User" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="UserInfo" ToRole="User" />
+          <Property Name="PhotoPath" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="AboutMe" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_UserInfo_Sex">
+          <End Type="LSDDataModel.Sex" Role="Sex" Multiplicity="0..1" />
+          <End Type="LSDDataModel.UserInfo" Role="UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="SexId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_User">
+          <End Type="LSDDataModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.UserInfo" Role="UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -503,26 +511,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserInfoes">
-            <EntityTypeMapping TypeName="LSDDataModel.UserInfo">
-              <MappingFragment StoreEntitySet="UserInfo">
-                <ScalarProperty Name="Skype" ColumnName="Skype" />
-                <ScalarProperty Name="ICQ" ColumnName="ICQ" />
-                <ScalarProperty Name="SiteLink" ColumnName="SiteLink" />
-                <ScalarProperty Name="HomeNumber" ColumnName="HomeNumber" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="Town" ColumnName="Town" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="SexId" ColumnName="SexId" />
-                <ScalarProperty Name="DateBirth" ColumnName="DateBirth" />
-                <ScalarProperty Name="Activity" ColumnName="Activity" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserResetTokens">
             <EntityTypeMapping TypeName="LSDDataModel.UserResetToken">
               <MappingFragment StoreEntitySet="UserResetToken">
@@ -538,6 +526,30 @@
               <MappingFragment StoreEntitySet="UserRole">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfoes">
+            <EntityTypeMapping TypeName="LSDDataModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SexId" ColumnName="SexId" />
+                <ScalarProperty Name="Steam" ColumnName="Steam" />
+                <ScalarProperty Name="BattleLog" ColumnName="BattleLog" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="ICQ" ColumnName="ICQ" />
+                <ScalarProperty Name="SiteLink" ColumnName="SiteLink" />
+                <ScalarProperty Name="HomeNumber" ColumnName="HomeNumber" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="DateBirth" ColumnName="DateBirth" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
