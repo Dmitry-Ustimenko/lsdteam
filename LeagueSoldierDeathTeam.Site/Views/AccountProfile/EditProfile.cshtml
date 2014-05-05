@@ -1,4 +1,7 @@
-﻿@{
+﻿@using LeagueSoldierDeathTeam.Site.Models.AccountProfile
+@model EditProfileModel
+
+@{
 	ViewBag.Title = "Редактирование профиля";
 }
 
@@ -12,30 +15,133 @@
 				<input type="radio" checked name="tabs" id="tab-main">
 				<label for="tab-main">Основная</label>
 				<div id="tab-content-main" class="tab-content">
-					
+					<div class="form">
+						@using (Html.BeginForm())
+						{
+							@Html.ValidationSummary()
+							<p class="clearfix">
+								@Html.LabelFor(model => model.UserName)
+								@Html.TextBoxFor(model => model.UserName, new { @placeholder = "Имя на сайте" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.FirstName)
+								@Html.TextBoxFor(model => model.FirstName, new { @placeholder = "Имя" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.LastName)
+								@Html.TextBoxFor(model => model.LastName, new { @placeholder = "Фамилия" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.SexId)
+								@Html.DropDownListFor(o => o.SexId, new SelectList(Model.Sexs, "Key", "Value"), "Не выбран")
+							</p>
+							<p class="clearfix">
+								<span class="btn btn-file">
+									Выбрать … <input type="file" name="PhotoUploadFile" id="PhotoUploadFile">
+								</span>
+								@Html.TextBoxFor(m => m.PhotoUploadFileName, new Dictionary<string, object> { { "readonly", "readonly" }, { "placeholder", "Выберите фото" } })
+							</p>
+							<p class="clearfix">
+								<input type="submit" value="Сохранить">
+							</p>
+							@Html.HiddenFor(m => m.UserId)
+						}
+					</div>
 				</div>
 			</li>
 			<li>
 				<input type="radio" name="tabs" id="tab-advance">
 				<label for="tab-advance">Дополнительная</label>
 				<div id="tab-content-advance" class="tab-content">
-					...
+					<div class="form">
+						@using (Html.BeginForm())
+						{
+							@Html.ValidationSummary()
+							<p class="clearfix">
+								@Html.LabelFor(model => model.Activity)
+								@Html.TextBoxFor(model => model.Activity, new { @placeholder = "Деятельность" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.AboutMe)
+								@Html.TextBoxFor(model => model.AboutMe, new { @placeholder = "Интересы" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.DateBirth)
+								@Html.TextBoxFor(model => model.DateBirth, new { @placeholder = "Дата рождения", @data_format = "date" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.Country)
+								@Html.TextBoxFor(model => model.Country, new { @placeholder = "Страна" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.Town)
+								@Html.TextBoxFor(model => model.Town, new { @placeholder = "Населенный пункт" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.Street)
+								@Html.TextBoxFor(model => model.Street, new { @placeholder = "Улица" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.HomeNum)
+								@Html.TextBoxFor(model => model.HomeNum, new { @placeholder = "Номер дома" })
+							</p>
+							<p class="clearfix">
+								<input type="submit" value="Сохранить">
+							</p>
+							@Html.HiddenFor(m => m.UserId)
+						}
+					</div>
 				</div>
 			</li>
 			<li>
 				<input type="radio" name="tabs" id="tab-bind">
 				<label for="tab-bind">Связь</label>
 				<div id="tab-content-bind" class="tab-content">
-					...
+					<div class="form">
+						@using (Html.BeginForm())
+						{
+							@Html.ValidationSummary()
+							<p class="clearfix">
+								@Html.LabelFor(model => model.SiteLink)
+								@Html.TextBoxFor(model => model.SiteLink, new { @placeholder = "Сайт" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.Icq)
+								@Html.TextBoxFor(model => model.Icq, new { @placeholder = "ICQ" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.Skype)
+								@Html.TextBoxFor(model => model.Skype, new { @placeholder = "Skype" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.BattleLog)
+								@Html.TextBoxFor(model => model.BattleLog, new { @placeholder = "BattleLog" })
+							</p>
+							<p class="clearfix">
+								@Html.LabelFor(model => model.Steam)
+								@Html.TextBoxFor(model => model.Steam, new { @placeholder = "Steam" })
+							</p>
+							<p class="clearfix">
+								<input type="submit" value="Сохранить">
+							</p>
+							@Html.HiddenFor(m => m.UserId)
+						}
+					</div>
 				</div>
 			</li>
 			<li>
 				<input type="radio" name="tabs" id="tab-change-pass">
 				<label for="tab-change-pass">Смена пароля</label>
 				<div id="tab-content-change-pass" class="tab-content">
-					...
+					@{Html.RenderPartial("_ChangePasswordPartial", new ChangePasswordModel());}
 				</div>
 			</li>
 		</ul>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		site.profile.init();
+	});
+</script>

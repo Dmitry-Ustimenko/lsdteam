@@ -201,6 +201,8 @@
     <Compile Include="Classes\ChallengeResult.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\ControllerActionInfo.cs" />
+    <Compile Include="Classes\Extensions\EnumEx.cs" />
+    <Compile Include="Classes\Extensions\Models\EditProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\ExternalRegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\UserProfileModelEx.cs" />
@@ -221,6 +223,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountProfile\ChangePasswordModel.cs" />
+    <Compile Include="Models\AccountProfile\EditProfileModel.cs" />
     <Compile Include="Models\AccountProfile\UserProfileModel.cs" />
     <Compile Include="Models\Account\ActivateAccountModel.cs" />
     <Compile Include="Models\Account\ExternalLoginErrorModel.cs" />
@@ -238,6 +242,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Plugins\datepicker.css" />
     <Content Include="Content\Plugins\galleria.classic.css" />
     <Content Include="Content\Site\Site.css" />
     <Content Include="favicon.ico" />
@@ -276,6 +281,9 @@
     <Content Include="Images\vk-register.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Plugins\bootstrap-datepicker.js" />
+    <Content Include="Scripts\Plugins\bootstrap.js" />
+    <Content Include="Scripts\Site\site.profile.js" />
     <Content Include="Xml\MailHosting.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -338,6 +346,7 @@
     <Content Include="Views\Account\ExternalLoginError.cshtml" />
     <Content Include="Views\AccountProfile\ProfileInfo.cshtml" />
     <Content Include="Views\AccountProfile\EditProfile.cshtml" />
+    <Content Include="Views\AccountProfile\_ChangePasswordPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

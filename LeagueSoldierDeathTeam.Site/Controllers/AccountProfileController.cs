@@ -19,6 +19,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Actions
 
+		#region Profile Info
+
 		[Route("user-profile-info/{userId:int}")]
 		public ActionResult ProfileInfo(int userId)
 		{
@@ -27,23 +29,49 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return View(model);
 		}
 
+		#endregion
+
+		#region Edit Profile
+
 		[Route("edit-user-profile/{userId:int}")]
 		public ActionResult EditProfile(int userId)
 		{
-			return View();
+			var model = new EditProfileModel { UserId = userId };
+			FillEditProfileModel(model);
+			return View(model);
 		}
 
-		[Route("change-password")]
-		public ActionResult ChangePassword()
+		[HttpPost]
+		[Route("edit-user-profile/{userId:int}")]
+		public ActionResult EditProfile(EditProfileModel model)
 		{
-			return View();
+			return View(model);
 		}
+
+		#endregion
+
+		#region Change Password
+
+		[HttpPost]
+		[Route("change-password")]
+		public ActionResult ChangePassword(ChangePasswordModel model)
+		{
+			return View(model);
+		}
+
+		#endregion
 
 		#endregion
 
 		#region Internal Implementation
 
 		private void FillUserProfileModel(UserProfileModel model)
+		{
+			var userProfile = Execute(() => _accountService.GetUserProfile(model.UserId));
+			model.CopyFrom(userProfile);
+		}
+
+		private void FillEditProfileModel(EditProfileModel model)
 		{
 			var userProfile = Execute(() => _accountService.GetUserProfile(model.UserId));
 			model.CopyFrom(userProfile);
