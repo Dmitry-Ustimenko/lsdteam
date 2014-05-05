@@ -18,6 +18,24 @@
 })(jQuery);
 
 (function ($) {
+	$.fn.applyDatepicker = function () {
+		var container = $(this);
+
+		container.find('input[data-format=date]').each(function () {
+			var dateInput = $(this);
+			dateInput.keydown(function (e) {
+				return ((e.keyCode > 47) && (e.keyCode < 58) && (e.keyCode < 48) && (e.keyCode > 57));
+			});
+
+			if (dateInput.val() == "")
+				dateInput.datepicker();
+			else
+				dateInput.datepicker('setValue', dateInput.val());
+		});
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.loadData = function (url, dataParam, callbackParam, callbackError) {
 		var target = this;
 		site.ajax.post(url, dataParam, function (data) {

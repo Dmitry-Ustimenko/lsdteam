@@ -26,11 +26,19 @@ footer {
 		min-height: 100px;
 	}
 
-input[type=text]:focus, input[type=password]:focus, input[type=button]:focus, input[type=submit]:focus, button[type=submit]:focus, a:focus {
+input[type=text]:focus, input[type=password]:focus, input[type=button]:focus, input[type=submit]:focus, button[type=submit]:focus, a:focus, select:focus {
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
 	outline: 0;
+}
+
+select:hover {
+	cursor: pointer;
+}
+
+select option:hover {
+	cursor: pointer;
 }
 
 input[type=text]:focus, input[type=password]:focus {
@@ -748,7 +756,7 @@ a {
 
 	.simple-page-body .form label {
 		float: left;
-		padding-top: 10px;
+		padding-top: 7px;
 		color: #B01F1F;
 		font-size: 12px;
 		text-transform: uppercase;
@@ -758,7 +766,8 @@ a {
 	}
 
 	.simple-page-body .form input[type=text],
-	.simple-page-body .form input[type=password] {
+	.simple-page-body .form input[type=password],
+	.simple-page-body .form select {
 		width: 165px;
 		float: right;
 		padding: 8px 5px;
@@ -969,11 +978,51 @@ a {
 
 /* User Profile */
 
-.profile-tabs {
-	height: 400px;
+.profile-tabs .btn-file {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	width: 100px;
 }
 
-	.profile-tabs .tabs input[type=radio] {
+	.profile-tabs .btn-file input[type=file] {
+		position: absolute;
+		top: 0;
+		right: 0;
+		filter: alpha(opacity=0);
+		opacity: 0;
+		min-height: 33px;
+		width: 100px;
+	}
+
+.profile-tabs .btn {
+	padding: 7px 5px;
+	border: 1px solid #B31919;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+	border-radius: 3px;
+	background: #B31919;
+	cursor: pointer;
+	font-family: 'Ubuntu', 'Lato', sans-serif;
+	color: white;
+	font-weight: 700;
+	font-size: 15px;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+}
+
+	.profile-tabs .btn:hover {
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+	}
+
+	.profile-tabs .btn:active {
+		background: #B31919;
+		box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
+	}
+
+.profile-tabs {
+	height: 455px;
+}
+
+	.profile-tabs .tabs > li > input[type=radio] {
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
@@ -988,32 +1037,31 @@ a {
 		margin: 20px auto;
 	}
 
-		.profile-tabs .tabs li {
+		.profile-tabs .tabs > li {
 			float: left;
 			margin-right: 2px;
 		}
 
-		.profile-tabs .tabs label {
-			display: block;
-			padding: 5px 20px;
-			top: 7px;
-			border-radius: 3px 3px 0 0;
-			color: rgb(68, 68, 68);
-			font-weight: normal;
-			font-family: 'Lily Script One', helveti;
-			background: rgba(255,255,255,0.2);
-			cursor: pointer;
-			position: relative;
-			font: 18px 'PT Sans Narrow', Arial, sans-serif;
-			border: 1px solid #D1D1D1;
-		}
+			.profile-tabs .tabs > li > label {
+				display: block;
+				padding: 5px 20px;
+				top: 7px;
+				border-radius: 3px 3px 0 0;
+				color: rgb(68, 68, 68);
+				font-weight: normal;
+				font-family: 'Lily Script One', helveti;
+				background: rgba(255,255,255,0.2);
+				cursor: pointer;
+				position: relative;
+				font: 18px 'PT Sans Narrow', Arial, sans-serif;
+				border: 1px solid #D1D1D1;
+			}
 
 	.profile-tabs [id^=tab]:checked + label {
 		padding: 9px 20px;
 		color: black;
 		top: 0;
 		border: 1px solid #D1D1D1;
-		box-shadow: 0 -2px 0 rgba(0,0,0,0.1) inset;
 		background: rgb(255,255,255);
 		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 		background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
@@ -1034,21 +1082,14 @@ a {
 		display: none;
 		text-align: left;
 		width: 100%;
-		font-size: 20px;
 		line-height: 140%;
-		padding-top: 10px;
 		background: white;
-		padding: 15px;
 		color: white;
 		position: absolute;
 		top: 40px;
 		left: 0;
 		box-sizing: border-box;
 		border: 1px solid #D1D1D1;
-		-webkit-animation-duration: 0.5s;
-		-o-animation-duration: 0.5s;
-		-moz-animation-duration: 0.5s;
-		animation-duration: 0.5s;
 	}
 
 .profile-left-bar {
@@ -1144,3 +1185,25 @@ table.profile-info {
 		table.profile-info tr td.empty {
 			padding: 1px;
 		}
+
+/* date picker */
+
+.dropdown-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	display: none;
+	float: left;
+	min-width: 160px;
+	list-style: none;
+	font-size: 14px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 0;
+	-webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+	box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+	background-clip: padding-box;
+	font-family: "Segoe UI","Segoe WP","Helvetica Neue",sans-serif;
+	margin-top: 6px;
+}
