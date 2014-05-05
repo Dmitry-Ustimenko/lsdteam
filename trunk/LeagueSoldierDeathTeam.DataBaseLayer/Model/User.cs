@@ -19,8 +19,8 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
             this.UserActivateTokens = new HashSet<UserActivateToken>();
             this.UserResetTokens = new HashSet<UserResetToken>();
             this.UserExternalInfoes = new HashSet<UserExternalInfo>();
-            this.UserInfoes = new HashSet<UserInfo>();
             this.UserRoles = new HashSet<UserRole>();
+            this.UserInfoes = new HashSet<UserInfo>();
         }
     
         public int Id { get; set; }
@@ -34,7 +34,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public virtual ICollection<UserActivateToken> UserActivateTokens { get; set; }
         public virtual ICollection<UserResetToken> UserResetTokens { get; set; }
         public virtual ICollection<UserExternalInfo> UserExternalInfoes { get; set; }
-        public virtual ICollection<UserInfo> UserInfoes { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<UserInfo> UserInfoes { get; set; }
     }
 }

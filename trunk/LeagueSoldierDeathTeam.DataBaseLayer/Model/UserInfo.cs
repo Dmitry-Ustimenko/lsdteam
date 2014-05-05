@@ -19,8 +19,6 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public string LastName { get; set; }
         public string Activity { get; set; }
         public Nullable<System.DateTime> DateBirth { get; set; }
-        public Nullable<int> SexId { get; set; }
-        public int UserId { get; set; }
         public string Country { get; set; }
         public string Town { get; set; }
         public string Street { get; set; }
@@ -28,6 +26,12 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public string SiteLink { get; set; }
         public string ICQ { get; set; }
         public string Skype { get; set; }
+        public string BattleLog { get; set; }
+        public string Steam { get; set; }
+        public Nullable<int> SexId { get; set; }
+        public int UserId { get; set; }
+        public string PhotoPath { get; set; }
+        public string AboutMe { get; set; }
     
         public virtual Sex Sex { get; set; }
         public virtual User User { get; set; }
