@@ -250,6 +250,7 @@
     <Content Include="Content\Site\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\arrow-back.png" />
     <Content Include="Images\arrow-social-down.png" />
     <Content Include="Images\arrow-social-up.png" />
     <Content Include="Images\classic-loader.gif" />

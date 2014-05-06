@@ -86,6 +86,11 @@ a {
 
 /* Classes */
 
+.color-main {
+	color: #B31919;
+	font-weight: bold;
+}
+
 .log-off {
 	position: absolute;
 	right: 10px;
@@ -680,6 +685,7 @@ a {
 .simple-page-body {
 	border: 10px solid rgba(0,0,0,0.8);
 	background: white;
+	position: relative;
 }
 
 	.simple-page-body h2 {
@@ -734,11 +740,11 @@ a {
 	.simple-page-body .form label {
 		float: left;
 		padding-top: 7px;
-		color: #B01F1F;
-		font-size: 12px;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		font-weight: 700;
+		/* color: #B01F1F; */
+		font-size: 15px;
+		/* text-transform: uppercase; */
+		letter-spacing: 0;
+		/* font-weight: 700; */
 		cursor: pointer;
 	}
 
@@ -757,7 +763,7 @@ a {
 		color: black;
 	}
 
-	.simple-page-body .form input[type=button] {
+	.simple-page-body .form input[type=button], .simple-page-body .form input[type=submit] {
 		float: right;
 		padding: 6px 5px;
 		border: 1px solid #B31919;
@@ -770,14 +776,15 @@ a {
 		font-weight: 700;
 		font-size: 15px;
 		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
-		width: 100%;
+		width: 165px;
+		float: right;
 	}
 
-		.simple-page-body .form input[type=button]:hover {
+		.simple-page-body .form input[type=button]:hover, .simple-page-body .form input[type=submit]:hover {
 			box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 		}
 
-		.simple-page-body .form input[type=button]:active {
+		.simple-page-body .form input[type=button]:active, .simple-page-body .form input[type=submit]:active {
 			background: #B31919;
 			box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
 		}
@@ -962,48 +969,78 @@ a {
 
 /* User Profile */
 
-.profile-tabs .btn-file {
-	position: relative;
-	overflow: hidden;
-	display: inline-block;
-	width: 100px;
+.profile-tabs {
+	min-height: 360px;
 }
 
-	.profile-tabs .btn-file input[type=file] {
-		position: absolute;
-		top: 0;
-		right: 0;
-		filter: alpha(opacity=0);
-		opacity: 0;
-		min-height: 33px;
+.simple-page-body .back-profile {
+	margin: 25px;
+}
+
+.simple-page-body .back-profile .button {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.back-arrow {
+	background: url(/Images/arrow-back.png) no-repeat top center;
+	width: 13px;
+	height: 13px;
+	display: inline-block;
+	margin-right: 7px;
+}
+
+	.profile-tabs .btn-file {
+		position: relative;
+		overflow: hidden;
+		display: inline-block;
 		width: 100px;
 	}
 
-.profile-tabs .btn {
-	padding: 7px 5px;
-	border: 1px solid #B31919;
-	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
-	border-radius: 3px;
-	background: #B31919;
-	cursor: pointer;
-	font-family: 'Ubuntu', 'Lato', sans-serif;
-	color: white;
-	font-weight: 700;
-	font-size: 15px;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
-}
+		.profile-tabs .btn-file input[type=file] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			filter: alpha(opacity=0);
+			opacity: 0;
+			min-height: 33px;
+			width: 100px;
+		}
 
-	.profile-tabs .btn:hover {
-		box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-	}
-
-	.profile-tabs .btn:active {
+	.profile-tabs .btn {
+		padding: 7px 5px;
+		border: 1px solid #B31919;
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+		border-radius: 3px;
 		background: #B31919;
-		box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
+		cursor: pointer;
+		font-family: 'Ubuntu', 'Lato', sans-serif;
+		color: white;
+		font-weight: 700;
+		font-size: 15px;
+		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
 	}
 
-.profile-tabs {
-}
+		.profile-tabs .btn:hover {
+			box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+		}
+
+		.profile-tabs .btn:active {
+			background: #B31919;
+			box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
+		}
+
+	.profile-tabs label[for=tab-advance] {
+		left: 152px;
+	}
+
+	.profile-tabs label[for=tab-bind] {
+		left: 338px;
+	}
+
+	.profile-tabs label[for=tab-change-pass] {
+		left: 433px;
+	}
 
 	.profile-tabs .tabs > li > input[type=radio] {
 		position: absolute;
@@ -1015,9 +1052,9 @@ a {
 		width: 95%;
 		float: none;
 		list-style: none;
-		position: relative;
 		padding: 0;
 		margin: 20px auto;
+		margin-top: 60px;
 	}
 
 		.profile-tabs .tabs > li {
@@ -1027,7 +1064,7 @@ a {
 			.profile-tabs .tabs > li > label {
 				display: block;
 				padding: 5px 20px;
-				top: 7px;
+				top: 110px;
 				border-radius: 3px 3px 0 0;
 				color: rgb(68, 68, 68);
 				font-weight: normal;
@@ -1042,7 +1079,7 @@ a {
 	.profile-tabs [id^=tab]:checked + label {
 		padding: 9px 20px;
 		color: black;
-		top: 0;
+		top: 102px;
 		border: 1px solid #D1D1D1;
 		background: rgb(255,255,255);
 		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -1066,9 +1103,6 @@ a {
 		width: 100%;
 		line-height: 140%;
 		background: white;
-		color: white;
-		top: 40px;
-		left: 0;
 		box-sizing: border-box;
 		border: 1px solid #D1D1D1;
 	}

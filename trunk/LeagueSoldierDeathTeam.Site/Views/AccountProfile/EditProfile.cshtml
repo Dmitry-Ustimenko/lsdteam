@@ -11,12 +11,17 @@
 	<div class="section-module-header">
 		<div class="module-title">Редактирование профиля</div>
 	</div>
+	<div class="back-profile">
+		<a class="button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(Model.UserId)))"><span class="back-arrow"></span>Вернуться назад</a>
+	</div>
 	<div class="profile-tabs">
 		<ul class="tabs">
 			<li>
 				<input type="radio" checked name="tabs" id="tab-main">
 				<label for="tab-main">Основная</label>
 				<div id="tab-content-main" class="tab-content">
+					<h2>Редактирование основных данных вашего профиля</h2>
+					<hr />
 					<div class="form">
 						@using (Html.BeginForm())
 						{
@@ -55,6 +60,8 @@
 				<input type="radio" name="tabs" id="tab-advance">
 				<label for="tab-advance">Дополнительная</label>
 				<div id="tab-content-advance" class="tab-content">
+					<h2>Редактирование дополнительных данных вашего профиля</h2>
+					<hr />
 					<div class="form">
 						@using (Html.BeginForm())
 						{
@@ -99,6 +106,8 @@
 				<input type="radio" name="tabs" id="tab-bind">
 				<label for="tab-bind">Связь</label>
 				<div id="tab-content-bind" class="tab-content">
+					<h2>Редактирование связных данных вашего профиля</h2>
+					<hr />
 					<div class="form">
 						@using (Html.BeginForm())
 						{
