@@ -1003,7 +1003,6 @@ a {
 	}
 
 .profile-tabs {
-	min-height: 458px;
 }
 
 	.profile-tabs .tabs > li > input[type=radio] {
@@ -1022,7 +1021,6 @@ a {
 	}
 
 		.profile-tabs .tabs > li {
-			float: left;
 			margin-right: 2px;
 		}
 
@@ -1036,7 +1034,7 @@ a {
 				font-family: 'Lily Script One', helveti;
 				background: rgba(255,255,255,0.2);
 				cursor: pointer;
-				position: relative;
+				position: absolute;
 				font: 18px 'PT Sans Narrow', Arial, sans-serif;
 				border: 1px solid #D1D1D1;
 			}
@@ -1069,7 +1067,6 @@ a {
 		line-height: 140%;
 		background: white;
 		color: white;
-		position: absolute;
 		top: 40px;
 		left: 0;
 		box-sizing: border-box;
