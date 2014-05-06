@@ -56,7 +56,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("change-password")]
 		public ActionResult ChangePassword(ChangePasswordModel model)
 		{
-			return View(model);
+			if (ModelIsValid)
+				Execute(() => _accountService.ChangePassword(model.OldPassword, model.NewPassword, model.UserId));
+			return View("_ChangePasswordPartial", model);
 		}
 
 		#endregion

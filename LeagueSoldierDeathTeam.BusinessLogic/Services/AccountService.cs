@@ -273,7 +273,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				Icq = o.ICQ,
 				BattleLog = o.BattleLog,
 				Steam = o.Steam,
-				PhotoPath  = o.PhotoPath,
+				PhotoPath = o.PhotoPath,
 				AboutMe = o.AboutMe,
 				SexId = o.SexId,
 				SexName = o.Sex != null ? o.Sex.Name : string.Empty
@@ -284,6 +284,19 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 			userInfo.User = user;
 			return userInfo;
+		}
+
+		public void ChangePassword(string oldPassword, string newPassword, int userId)
+		{
+			var user = _userRepository.Query(o => o.Id == userId).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("user"));
+
+			if (!VerifyPassword(oldPassword, user.Password))
+				throw new ArgumentException("Старый пароль введен не верно.");
+
+			user.Password = GetHashingPassword(newPassword);
+			_unitOfWork.Commit();
 		}
 
 		#endregion

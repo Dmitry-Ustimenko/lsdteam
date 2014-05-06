@@ -32,5 +32,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 		bool ActivateAccount(string token);
 
 		UserInfoData GetUserProfile(int userId);
+
+		void ChangePassword(string oldPassword, string newPassword, int userId);
 	}
 }
