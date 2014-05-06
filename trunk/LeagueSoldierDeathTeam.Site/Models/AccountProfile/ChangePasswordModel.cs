@@ -24,5 +24,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 		[DataType(DataType.Password)]
 		[Compare("NewPassword", ErrorMessage = "Пароли не совпадают.")]
 		public string ConfirmNewPassword { get; set; }
+
+		public bool PasswordWasChanged { get; set; }
 	}
 }

@@ -1,4 +1,6 @@
-﻿@using LeagueSoldierDeathTeam.Site.Models.AccountProfile
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@using LeagueSoldierDeathTeam.Site.Models.AccountProfile
 @model EditProfileModel
 
 @{
@@ -42,7 +44,7 @@
 								@Html.TextBoxFor(m => m.PhotoUploadFileName, new Dictionary<string, object> { { "readonly", "readonly" }, { "placeholder", "Выберите фото" } })
 							</p>
 							<p class="clearfix">
-								<input type="submit" value="Сохранить">
+								<input type="button" value="Сохранить">
 							</p>
 							@Html.HiddenFor(m => m.UserId)
 						}
@@ -86,7 +88,7 @@
 								@Html.TextBoxFor(model => model.HomeNum, new { @placeholder = "Номер дома" })
 							</p>
 							<p class="clearfix">
-								<input type="submit" value="Сохранить">
+								<input type="button" value="Сохранить">
 							</p>
 							@Html.HiddenFor(m => m.UserId)
 						}
@@ -122,7 +124,7 @@
 								@Html.TextBoxFor(model => model.Steam, new { @placeholder = "Steam" })
 							</p>
 							<p class="clearfix">
-								<input type="submit" value="Сохранить">
+								<input type="button" value="Сохранить">
 							</p>
 							@Html.HiddenFor(m => m.UserId)
 						}
@@ -142,6 +144,10 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		site.profile.init();
+		site.profile.init({
+			urls: {
+				changePassword: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.ChangePassword(null)))',
+			}
+		});
 	});
 </script>

@@ -84,6 +84,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 				if (AppContext.CurrentUser != null)
 					SessionManager.Set(SessionKeys.User, AppContext.CurrentUser);
+
+				
 			}
 		}
 

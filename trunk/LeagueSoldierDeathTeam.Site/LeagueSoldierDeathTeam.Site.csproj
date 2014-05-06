@@ -235,6 +235,7 @@
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\Account\RegisterSuccessfullModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\BaseOverlayModel.cs" />
     <Compile Include="Models\Mail\MailActivateModel.cs" />
     <Compile Include="Models\Mail\MailTokenModel.cs" />
     <Compile Include="Models\Xml\MailHosting.cs" />
@@ -244,6 +245,8 @@
   <ItemGroup>
     <Content Include="Content\Plugins\datepicker.css" />
     <Content Include="Content\Plugins\galleria.classic.css" />
+    <Content Include="Content\Plugins\modal-responsive.css" />
+    <Content Include="Content\Plugins\modal.css" />
     <Content Include="Content\Site\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -255,6 +258,7 @@
     <Content Include="Images\d06.png" />
     <Content Include="Images\d10.png" />
     <Content Include="Images\default-avatar.jpg" />
+    <Content Include="Images\delete.png" />
     <Content Include="Images\dice-logo.png" />
     <Content Include="Images\ea-logo.png" />
     <Content Include="Images\emblem.png" />
@@ -287,6 +291,7 @@
     <Content Include="Xml\MailHosting.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Code\DeclarativeHelper\Control.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
