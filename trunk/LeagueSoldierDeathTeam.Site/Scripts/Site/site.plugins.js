@@ -99,7 +99,16 @@
 		var alert = $('#alertOverlay');
 		alert.find("[data-type=modal-title]").html(title);
 		alert.find("[data-type=modal-message]").html(message);
-		alert.modal();
+
+		alert.on('show.bs.modal', function () {
+			$(this).removeClass('fadeOutDown').addClass('animated fadeInDown');
+		});
+
+		alert.on('hide.bs.modal', function () {
+			$(this).removeClass('fadeInDown').addClass('animated fadeOutDown');
+		});
+
+		alert.modal('show');
 
 		alert.find("#btnOk").on("click", function () { alert.closeOverlay(); });
 		alert.find(".close").on("click", function () { alert.closeOverlay(); });
