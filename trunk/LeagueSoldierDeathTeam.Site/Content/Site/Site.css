@@ -3,6 +3,8 @@
 body {
 	font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
 	background: url(/Images/background_body.png);
+	padding: 0;
+	margin: 0;
 }
 
 img {
@@ -677,7 +679,7 @@ a {
 		}
 
 .input-validation-error {
-	border: 1px solid #921111 !important;
+	border: 1px solid #C00000 !important;
 }
 
 /* Simple page */
@@ -756,7 +758,7 @@ a {
 		padding: 8px 5px;
 		margin-bottom: 10px;
 		font-size: 12px;
-		border: 1px solid #000;
+		border: 1px solid #616161;
 		box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 		border-radius: 3px;
 		font-family: 'Ubuntu', 'Lato', sans-serif;
@@ -977,10 +979,10 @@ a {
 	margin: 25px;
 }
 
-.simple-page-body .back-profile .button {
-	padding-left: 10px;
-	padding-right: 10px;
-}
+	.simple-page-body .back-profile .button {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 
 .back-arrow {
 	background: url(/Images/arrow-back.png) no-repeat top center;
@@ -990,122 +992,122 @@ a {
 	margin-right: 7px;
 }
 
-	.profile-tabs .btn-file {
-		position: relative;
-		overflow: hidden;
-		display: inline-block;
+.profile-tabs .btn-file {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	width: 100px;
+}
+
+	.profile-tabs .btn-file input[type=file] {
+		position: absolute;
+		top: 0;
+		right: 0;
+		filter: alpha(opacity=0);
+		opacity: 0;
+		min-height: 33px;
 		width: 100px;
 	}
 
-		.profile-tabs .btn-file input[type=file] {
-			position: absolute;
-			top: 0;
-			right: 0;
-			filter: alpha(opacity=0);
-			opacity: 0;
-			min-height: 33px;
-			width: 100px;
-		}
+.profile-tabs .btn {
+	padding: 7px 5px;
+	border: 1px solid #B31919;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+	border-radius: 3px;
+	background: #B31919;
+	cursor: pointer;
+	font-family: 'Ubuntu', 'Lato', sans-serif;
+	color: white;
+	font-weight: 700;
+	font-size: 15px;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+}
 
-	.profile-tabs .btn {
-		padding: 7px 5px;
-		border: 1px solid #B31919;
-		box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
-		border-radius: 3px;
+	.profile-tabs .btn:hover {
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+	}
+
+	.profile-tabs .btn:active {
 		background: #B31919;
-		cursor: pointer;
-		font-family: 'Ubuntu', 'Lato', sans-serif;
-		color: white;
-		font-weight: 700;
-		font-size: 15px;
-		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+		box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
 	}
 
-		.profile-tabs .btn:hover {
-			box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+.profile-tabs label[for=tab-advance] {
+	left: 152px;
+}
+
+.profile-tabs label[for=tab-bind] {
+	left: 338px;
+}
+
+.profile-tabs label[for=tab-change-pass] {
+	left: 433px;
+}
+
+.profile-tabs .tabs > li > input[type=radio] {
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}
+
+.profile-tabs .tabs {
+	width: 95%;
+	float: none;
+	list-style: none;
+	padding: 0;
+	margin: 20px auto;
+	margin-top: 60px;
+}
+
+	.profile-tabs .tabs > li {
+		margin-right: 2px;
+	}
+
+		.profile-tabs .tabs > li > label {
+			display: block;
+			padding: 5px 20px;
+			top: 110px;
+			border-radius: 3px 3px 0 0;
+			color: rgb(68, 68, 68);
+			font-weight: normal;
+			font-family: 'Lily Script One', helveti;
+			background: rgba(255,255,255,0.2);
+			cursor: pointer;
+			position: absolute;
+			font: 18px 'PT Sans Narrow', Arial, sans-serif;
+			border: 1px solid #D1D1D1;
 		}
 
-		.profile-tabs .btn:active {
-			background: #B31919;
-			box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
-		}
+.profile-tabs [id^=tab]:checked + label {
+	padding: 9px 20px;
+	color: black;
+	top: 102px;
+	border: 1px solid #D1D1D1;
+	background: rgb(255,255,255);
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+}
 
-	.profile-tabs label[for=tab-advance] {
-		left: 152px;
-	}
+.profile-tabs [id^=tab]:checked ~ [id^=tab-content] {
+	display: block;
+}
 
-	.profile-tabs label[for=tab-bind] {
-		left: 338px;
-	}
-
-	.profile-tabs label[for=tab-change-pass] {
-		left: 433px;
-	}
-
-	.profile-tabs .tabs > li > input[type=radio] {
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-
-	.profile-tabs .tabs {
-		width: 95%;
-		float: none;
-		list-style: none;
-		padding: 0;
-		margin: 20px auto;
-		margin-top: 60px;
-	}
-
-		.profile-tabs .tabs > li {
-			margin-right: 2px;
-		}
-
-			.profile-tabs .tabs > li > label {
-				display: block;
-				padding: 5px 20px;
-				top: 110px;
-				border-radius: 3px 3px 0 0;
-				color: rgb(68, 68, 68);
-				font-weight: normal;
-				font-family: 'Lily Script One', helveti;
-				background: rgba(255,255,255,0.2);
-				cursor: pointer;
-				position: absolute;
-				font: 18px 'PT Sans Narrow', Arial, sans-serif;
-				border: 1px solid #D1D1D1;
-			}
-
-	.profile-tabs [id^=tab]:checked + label {
-		padding: 9px 20px;
-		color: black;
-		top: 102px;
-		border: 1px solid #D1D1D1;
-		background: rgb(255,255,255);
-		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-		background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));
-		background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
-		background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
-		background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
-		background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-	}
-
-	.profile-tabs [id^=tab]:checked ~ [id^=tab-content] {
-		display: block;
-	}
-
-	.profile-tabs .tab-content {
-		z-index: 2;
-		display: none;
-		text-align: left;
-		width: 100%;
-		line-height: 140%;
-		background: white;
-		box-sizing: border-box;
-		border: 1px solid #D1D1D1;
-	}
+.profile-tabs .tab-content {
+	z-index: 2;
+	display: none;
+	text-align: left;
+	width: 100%;
+	line-height: 140%;
+	background: white;
+	box-sizing: border-box;
+	border: 1px solid #D1D1D1;
+}
 
 .profile-left-bar {
 	margin: 17px;
@@ -1205,30 +1207,73 @@ table.profile-info {
 
 .dropdown-menu {
 	position: absolute;
-	top: 100%;
-	left: 0;
 	z-index: 499;
 	display: none;
-	float: left;
 	min-width: 160px;
-	list-style: none;
 	font-size: 14px;
 	background-color: #fff;
 	border: 1px solid #ccc;
 	border-radius: 0;
 	-webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
 	box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-	background-clip: padding-box;
 	font-family: "Segoe UI","Segoe WP","Helvetica Neue",sans-serif;
-	margin-top: 6px;
+	margin-top: -3px;
 }
 
-.datepicker td.active:hover, .datepicker td.active:hover:hover, .datepicker td.active:active, .datepicker td.active:hover:active, .datepicker td.active.active, .datepicker td.active:hover.active, .datepicker td.active.disabled, .datepicker td.active:hover.disabled, .datepicker td.active[disabled], .datepicker td.active:hover[disabled] {
+[class^="icon-"], [class*=" icon-"] {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	vertical-align: baseline;
+	background-image: url("/Images/glyphicons-halflings.png");
+	background-position: 14px 14px;
+	background-repeat: no-repeat;
+}
+
+.icon-arrow-right {
+	background-position: -264px -96px;
+}
+
+.icon-arrow-left {
+	background-position: -240px -96px;
+}
+
+.datepicker table tr td.active:hover, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active:active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:hover.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active:hover.disabled, .datepicker table tr td.active.disabled.disabled, .datepicker table tr td.active.disabled:hover.disabled, .datepicker table tr td.active[disabled], .datepicker table tr td.active:hover[disabled], .datepicker table tr td.active.disabled[disabled], .datepicker table tr td.active.disabled:hover[disabled],
+.datepicker table tr td span.active:hover, .datepicker table tr td span.active:hover:hover, .datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active.disabled:hover:hover, .datepicker table tr td span.active:active, .datepicker table tr td span.active:hover:active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active.active, .datepicker table tr td span.active:hover.active, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:hover.active, .datepicker table tr td span.active.disabled, .datepicker table tr td span.active:hover.disabled, .datepicker table tr td span.active.disabled.disabled, .datepicker table tr td span.active.disabled:hover.disabled, .datepicker table tr td span.active[disabled], .datepicker table tr td span.active:hover[disabled], .datepicker table tr td span.active.disabled[disabled], .datepicker table tr td span.active.disabled:hover[disabled] {
 	background-color: #B31919;
 }
 
-.datepicker td span.active:hover, .datepicker td span.active:active, .datepicker td span.active.active, .datepicker td span.active.disabled, .datepicker td span.active[disabled] {
-	background-color: #B31919;
+	.datepicker table tr td.active, .datepicker table tr td.active:hover, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled:hover,
+	.datepicker table tr td span.active, .datepicker table tr td span.active:hover, .datepicker table tr td span.active.disabled, .datepicker table tr td span.active.disabled:hover {
+		background-image: -moz-linear-gradient(top, #B31919, #B31919);
+		background-image: -ms-linear-gradient(top, #B31919, #B31919);
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#B31919), to(#B31919));
+		background-image: -webkit-linear-gradient(top, #B31919, #B31919);
+		background-image: -o-linear-gradient(top, #B31919, #B31919);
+		background-image: linear-gradient(top, #B31919, #B31919);
+		background-repeat: repeat-x;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B31919', endColorstr='#B31919', GradientType=0);
+		border-color: #B31919 #B31919 #B31919;
+		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+		color: #fff;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	}
+
+.datepicker td, .datepicker th, .datepicker table tr td span {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+	.datepicker th.switch {
+		padding-bottom: 3px;
+	}
+
+.datepicker table tr td span {
+	height: 20px;
+	line-height: 20px;
 }
 
 

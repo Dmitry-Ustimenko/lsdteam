@@ -267,6 +267,7 @@
     <Content Include="Images\facebook-register.png" />
     <Content Include="Images\facebook.png" />
     <Content Include="Images\frostbite.png" />
+    <Content Include="Images\glyphicons-halflings.png" />
     <Content Include="Images\navbuttons2.gif" />
     <Content Include="Images\page-up.png" />
     <Content Include="Images\Slider\001.jpg" />
@@ -287,6 +288,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Plugins\bootstrap-datepicker.js" />
+    <Content Include="Scripts\Plugins\bootstrap-datepicker.ru.js" />
     <Content Include="Scripts\Plugins\bootstrap.js" />
     <Content Include="Scripts\Site\site.profile.js" />
     <Content Include="Xml\MailHosting.xml">
