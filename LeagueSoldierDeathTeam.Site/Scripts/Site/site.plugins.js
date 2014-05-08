@@ -29,7 +29,8 @@
 
 			if (dateInput.val() == "")
 				dateInput.datepicker({
-					format: "dd.mm.yyyy"
+					format: "dd.mm.yyyy",
+					language: "ru"
 				});
 			else
 				dateInput.datepicker('setValue', dateInput.val());

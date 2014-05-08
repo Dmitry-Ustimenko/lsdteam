@@ -18,6 +18,7 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				"~/Scripts/Plugins/galleria-1.3.5.js",
 				"~/Scripts/Plugins/bootstrap.js",
 				"~/Scripts/Plugins/bootstrap-datepicker.js",
+				"~/Scripts/Plugins/bootstrap-datepicker.ru.js",
 
 				"~/Scripts/Site/site.js",
 				"~/Scripts/Site/site.ajax.js",
