@@ -28,6 +28,8 @@
 				var $tabContentAdvance = $(site.profile.settings.elements.tabContentAdvance);
 				$tabContentAdvance.applyDatepicker();
 
+				$.fn.alertMessage("Смена пароля", "Пароль был успешно изменен.");
+
 				site.profile.initChangePassword();
 				site.profile.initContentMain();
 				site.profile.initContentAdvance();

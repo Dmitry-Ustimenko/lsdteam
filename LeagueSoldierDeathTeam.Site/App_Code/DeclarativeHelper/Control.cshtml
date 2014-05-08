@@ -1,11 +1,11 @@
 ﻿@helper RenderOverlay(string id)
 {
-	<div id="@id" class="modal hide animated fadeInDown"></div>
+	<div id="@id" class="modal hide"></div>
 }
 
 @helper RenderAlert()
 {
-	<div id="alertOverlay" class="modal hide animated fadeInDown">
+	<div style="display: block" id="alertOverlay" class="modal hide">
 		<div class="modal-header">
 			<a class="close icon-remove" data-dismiss="modal"></a>
 			<h3 data-type="modal-title"></h3>
