@@ -45,12 +45,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			if (repositoryFactory == null)
 				throw new ArgumentNullException("repositoryFactory");
 
-			_userRepository = repositoryFactory.CreateUserRepository();
-			_roleRepository = repositoryFactory.CreateRoleRepository();
-			_userExternalInfoRepository = repositoryFactory.CreateUserExternalInfoRepository();
-			_userResetTokenRepository = repositoryFactory.CreateUserResetTokenRepository();
-			_userActivateTokenRepository = repositoryFactory.CreateUserActivateTokenRepository();
-			_userInfoRepository = repositoryFactory.CreateUserInfoRepository();
+			_userRepository = repositoryFactory.CreateRepository<User>();
+			_roleRepository = repositoryFactory.CreateRepository<Role>();
+			_userExternalInfoRepository = repositoryFactory.CreateRepository<UserExternalInfo>();
+			_userActivateTokenRepository = repositoryFactory.CreateRepository<UserActivateToken>();
+			_userInfoRepository = repositoryFactory.CreateRepository<UserInfo>();
 		}
 
 		#endregion
