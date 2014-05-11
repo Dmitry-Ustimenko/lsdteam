@@ -1,0 +1,46 @@
+﻿@model LeagueSoldierDeathTeam.Site.Models.AccountProfile.EditAdvanceInfoModel
+
+@{
+	Layout = null;
+}
+
+<h2>Редактирование дополнительных данных вашего профиля</h2>
+<hr />
+<div class="form">
+	@using (Html.BeginForm())
+	{
+		@Html.ValidationSummary()
+		<p class="clearfix">
+			@Html.LabelFor(model => model.Activity)
+			@Html.TextBoxFor(model => model.Activity, new { @placeholder = "Деятельность" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.AboutMe)
+			@Html.TextBoxFor(model => model.AboutMe, new { @placeholder = "Интересы" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.DateBirth)
+			@Html.TextBoxFor(model => model.DateBirth, new { @placeholder = "Дата рождения", @data_format = "date" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.Country)
+			@Html.TextBoxFor(model => model.Country, new { @placeholder = "Страна" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.Town)
+			@Html.TextBoxFor(model => model.Town, new { @placeholder = "Населенный пункт" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.Street)
+			@Html.TextBoxFor(model => model.Street, new { @placeholder = "Улица" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.HomeNum)
+			@Html.TextBoxFor(model => model.HomeNum, new { @placeholder = "Номер дома" })
+		</p>
+		<p class="clearfix">
+			<input type="button" value="Сохранить">
+		</p>
+		@Html.HiddenFor(m => m.UserId)
+	}
+</div>

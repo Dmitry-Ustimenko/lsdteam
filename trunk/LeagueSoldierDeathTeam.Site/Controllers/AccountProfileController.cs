@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Models.AccountProfile;
 
@@ -42,10 +43,36 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
-		[Route("edit-user-profile/{userId:int}")]
-		public ActionResult EditProfile(EditProfileModel model)
+		public ActionResult EditMainInfo(EditMainInfoModel model)
 		{
-			return View(model);
+			if (ModelIsValid)
+			{
+				var data = new UserInfoData
+				{
+					UserId = model.UserId,
+					UserName = model.UpdateUserName,
+					UserEmail = model.UpdateUserEmail,
+					FirstName = model.FirstName,
+					LastName = model.LastName,
+					SexId = model.SexId
+				};
+
+				Execute(() => _accountService.UpdateMainInfo(data));
+			}
+
+			return View("_EditMainInfoPartial", model);
+		}
+
+		[HttpPost]
+		public ActionResult EditAdvanceInfo(EditAdvanceInfoModel model)
+		{
+			return View("_EditAdvanceInfoPartial", model);
+		}
+
+		[HttpPost]
+		public ActionResult EditBindInfo(EditBindInfoModel model)
+		{
+			return View("_EditBindInfoPartial", model);
 		}
 
 		#endregion

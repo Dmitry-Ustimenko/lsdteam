@@ -4,7 +4,8 @@
 			settings: {
 				urls: {
 					mainContent: '',
-					changePassword: ''
+					changePassword: '',
+					editMainInfo: ''
 				},
 				vars: {
 				},
@@ -50,6 +51,21 @@
 
 				$tabContentMain.find(site.profile.settings.elements.photoUploadFile).on('change', function () {
 					$tabContentMain.find(site.profile.settings.elements.photoUploadFileName).val($(this).val().replace(/\\/g, '/').replace(/.*\//, ''));
+				});
+
+				$tabContentMain.find("input[type=button]").on("click", function () {
+					var form = $tabContentMain.find("form");
+					if (form.valid()) {
+						$tabContentMain.loadData(site.profile.settings.urls.editMainInfo, $.fn.serializeParams(form),
+							function () {
+								site.profile.initContentMain();
+								$.fn.alertMessage("Обновление профиля", "Данные успешно обновлены.");
+							},
+							function () {
+								$.fn.initValidationSummary($tabContentMain);
+								site.profile.initContentMain();
+							});
+					}
 				});
 			},
 

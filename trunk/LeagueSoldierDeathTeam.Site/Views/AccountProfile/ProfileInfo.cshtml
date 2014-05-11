@@ -36,6 +36,13 @@
 					<td>Имя на сайте:</td>
 					<td>@Model.UserName</td>
 				</tr>
+				@if (Model.UserId == currentUser.Id || currentUser.IsAdmin)
+				{
+					<tr>
+						<td>Email:</td>
+						<td>@Model.UserEmail</td>
+					</tr>
+				}
 				<tr>
 					<td>Группа пользователя:</td>
 					<td>@Model.UserRoles</td>

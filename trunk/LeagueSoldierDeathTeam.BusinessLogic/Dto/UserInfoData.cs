@@ -22,6 +22,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public string AboutMe { get; set; }
 		public int? SexId { get; set; }
 		public string SexName { get; set; }
+		public int UserId { get; set; }
+		public string UserName { get; set; }
+		public string UserEmail { get; set; }
 
 		public UserData User { get; set; }
 	}
