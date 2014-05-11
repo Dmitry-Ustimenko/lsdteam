@@ -14,11 +14,9 @@ using LeagueSoldierDeathTeam.DataBaseLayer.Model;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 {
-	public class AccountService : IAccountService
+	public class AccountService : ServiceBase, IAccountService
 	{
 		#region Private Fields
-
-		private readonly IUnitOfWork _unitOfWork;
 
 		private readonly IRepository<User> _userRepository;
 
@@ -32,16 +30,15 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		private readonly IRepository<UserInfo> _userInfoRepository;
 
+		private readonly IRepository<Sex> _sexRepository;
+
 		#endregion
 
 		#region Constructors
 
 		public AccountService(IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
+			: base(unitOfWork)
 		{
-			if (unitOfWork == null)
-				throw new ArgumentNullException("unitOfWork");
-			_unitOfWork = unitOfWork;
-
 			if (repositoryFactory == null)
 				throw new ArgumentNullException("repositoryFactory");
 
@@ -50,6 +47,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			_userExternalInfoRepository = repositoryFactory.CreateRepository<UserExternalInfo>();
 			_userActivateTokenRepository = repositoryFactory.CreateRepository<UserActivateToken>();
 			_userInfoRepository = repositoryFactory.CreateRepository<UserInfo>();
+			_userResetTokenRepository = repositoryFactory.CreateRepository<UserResetToken>();
+			_sexRepository = repositoryFactory.CreateRepository<Sex>();
 		}
 
 		#endregion
@@ -113,10 +112,47 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			user.UserRoles.Add(new UserRole { Role = role, User = user });
 
 			_userRepository.Add(user);
-			_unitOfWork.Commit();
+			UnitOfWork.Commit();
 		}
 
-		void IAccountService.Update(UserData data)
+		void IAccountService.UpdateMainInfo(UserInfoData data)
+		{
+			var users = _userRepository.Query(o => o.UserName == data.UserName && o.Id != data.UserId);
+			if (users.Any())
+				throw new ArgumentException("Пользователь с таким именем существует.");
+
+			users = _userRepository.Query(o => o.Email == data.UserEmail && o.Id != data.UserId);
+			if (users.Any())
+				throw new ArgumentException("Пользователь с такой электронной почтой существует.");
+
+			var user = _userRepository.Query(o => o.Id == data.UserId).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("user"));
+
+			user.UserName = data.UserName;
+			user.Email = data.UserEmail;
+
+			var entityUserInfo = _userInfoRepository.Query(o => o.UserId == data.UserId).SingleOrDefault();
+
+			var userInfo = entityUserInfo ?? new UserInfo { User = user };
+			userInfo.FirstName = data.FirstName;
+			userInfo.LastName = data.LastName;
+
+			var sex = _sexRepository.Query(o => o.Id == data.SexId.Value).SingleOrDefault();
+			userInfo.SexId = sex != null ? sex.Id : (int?)null;
+
+			if (entityUserInfo == null)
+				_userInfoRepository.Add(userInfo);
+
+			UnitOfWork.Commit();
+		}
+
+		void IAccountService.UpdateAdvanceInfo(UserInfoData data)
+		{
+			throw new NotImplementedException();
+		}
+
+		void IAccountService.UpdateBindInfo(UserInfoData data)
 		{
 			throw new NotImplementedException();
 		}
@@ -129,7 +165,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 			user.LastActivity = DateTime.Now;
 
-			_unitOfWork.Commit();
+			UnitOfWork.Commit();
 		}
 
 		UserData IAccountService.GetUser(string email)
@@ -140,6 +176,41 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 		UserData IAccountService.GetUser(int id)
 		{
 			return GetUser(o => o.Id == id);
+		}
+
+		UserInfoData IAccountService.GetUserProfile(int userId)
+		{
+			var user = GetUser(o => o.Id == userId);
+			if (user == null)
+				throw new ArgumentNullException(string.Format("user"));
+
+			var userInfo = _userInfoRepository.GetData(o => new UserInfoData
+			{
+				Id = o.Id,
+				FirstName = o.FirstName,
+				LastName = o.LastName,
+				Activity = o.Activity,
+				Country = o.Country,
+				DateBirth = o.DateBirth,
+				HomeNumber = o.HomeNumber,
+				Town = o.Town,
+				SiteLink = o.SiteLink,
+				Skype = o.Skype,
+				Street = o.Street,
+				Icq = o.ICQ,
+				BattleLog = o.BattleLog,
+				Steam = o.Steam,
+				PhotoPath = o.PhotoPath,
+				AboutMe = o.AboutMe,
+				SexId = o.SexId,
+				SexName = o.Sex != null ? o.Sex.Name : string.Empty
+			}, o => o.UserId == userId).SingleOrDefault();
+
+			if (userInfo == null)
+				return new UserInfoData { User = user };
+
+			userInfo.User = user;
+			return userInfo;
 		}
 
 		public UserExternalInfoData GetExternalUser(string providerName, string providerKey)
@@ -178,7 +249,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			else
 				resetToken.Token = token;
 
-			_unitOfWork.Commit();
+			UnitOfWork.Commit();
 
 			return token;
 		}
@@ -199,7 +270,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			else
 				activateToken.Token = token;
 
-			_unitOfWork.Commit();
+			UnitOfWork.Commit();
 
 			return token;
 		}
@@ -211,6 +282,24 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 			var resetPasswordToken = _userResetTokenRepository.Query(o => o.Token == token).SingleOrDefault();
 			return resetPasswordToken != null && ValidatePasswordResetToken(resetPasswordToken);
+		}
+
+		bool IAccountService.ActivateAccount(string token)
+		{
+			var userActivateToken = _userActivateTokenRepository.Query(o => o.Token == token).SingleOrDefault();
+			if (userActivateToken == null)
+				return false;
+
+			var user = _userRepository.Query(o => o.Id == userActivateToken.UserId).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("user"));
+
+			user.IsActive = true;
+			UnitOfWork.Commit();
+
+			DeleteUserActivateToken(userActivateToken);
+
+			return true;
 		}
 
 		void IAccountService.PasswordReset(PasswordResetParams parameters)
@@ -227,65 +316,12 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				throw new ArgumentNullException(string.Format("user"));
 
 			user.Password = GetHashingPassword(parameters.NewPassword);
-			_unitOfWork.Commit();
+			UnitOfWork.Commit();
 
 			DeleteUserResetToken(userResetToken);
 		}
 
-		bool IAccountService.ActivateAccount(string token)
-		{
-			var userActivateToken = _userActivateTokenRepository.Query(o => o.Token == token).SingleOrDefault();
-			if (userActivateToken == null)
-				return false;
-
-			var user = _userRepository.Query(o => o.Id == userActivateToken.UserId).SingleOrDefault();
-			if (user == null)
-				throw new ArgumentNullException(string.Format("user"));
-
-			user.IsActive = true;
-			_unitOfWork.Commit();
-
-			DeleteUserActivateToken(userActivateToken);
-
-			return true;
-		}
-
-		UserInfoData IAccountService.GetUserProfile(int userId)
-		{
-			var user = GetUser(o => o.Id == userId);
-			if (user == null)
-				throw new ArgumentNullException(string.Format("user"));
-
-			var userInfo = _userInfoRepository.GetData(o => new UserInfoData
-			{
-				Id = o.Id,
-				FirstName = o.FirstName,
-				LastName = o.LastName,
-				Activity = o.Activity,
-				Country = o.Country,
-				DateBirth = o.DateBirth,
-				HomeNumber = o.HomeNumber,
-				Town = o.Town,
-				SiteLink = o.SiteLink,
-				Skype = o.Skype,
-				Street = o.Street,
-				Icq = o.ICQ,
-				BattleLog = o.BattleLog,
-				Steam = o.Steam,
-				PhotoPath = o.PhotoPath,
-				AboutMe = o.AboutMe,
-				SexId = o.SexId,
-				SexName = o.Sex != null ? o.Sex.Name : string.Empty
-			}, o => o.UserId == userId).SingleOrDefault();
-
-			if (userInfo == null)
-				return new UserInfoData { User = user };
-
-			userInfo.User = user;
-			return userInfo;
-		}
-
-		public void ChangePassword(string oldPassword, string newPassword, int userId)
+		void IAccountService.ChangePassword(string oldPassword, string newPassword, int userId)
 		{
 			var user = _userRepository.Query(o => o.Id == userId).SingleOrDefault();
 			if (user == null)
@@ -295,7 +331,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				throw new ArgumentException("Старый пароль введен не верно.");
 
 			user.Password = GetHashingPassword(newPassword);
-			_unitOfWork.Commit();
+			UnitOfWork.Commit();
 		}
 
 		#endregion
@@ -329,7 +365,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				return;
 
 			_userResetTokenRepository.Delete(userResetToken);
-			_unitOfWork.Commit();
+			UnitOfWork.Commit();
 		}
 
 		private void DeleteUserActivateToken(UserActivateToken userActivateToken)
@@ -338,7 +374,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				return;
 
 			_userActivateTokenRepository.Delete(userActivateToken);
-			_unitOfWork.Commit();
+			UnitOfWork.Commit();
 		}
 
 		private UserData GetUser(Expression<Func<User, bool>> filter)

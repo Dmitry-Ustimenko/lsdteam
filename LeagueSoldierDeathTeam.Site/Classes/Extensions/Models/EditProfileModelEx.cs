@@ -10,25 +10,35 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			if (data == null)
 				return;
 
-			model.UserId = data.User.Id;
-			model.UserName = data.User.UserName;
-			model.LastName = data.LastName;
-			model.FirstName = data.FirstName;
-			model.SexId = data.SexId;
+			model.EditMainInfoModel = new EditMainInfoModel
+			{
+				UserId = data.User.Id,
+				UpdateUserName = data.User.UserName,
+				UpdateUserEmail = data.User.Email,
+				LastName = data.LastName,
+				FirstName = data.FirstName,
+				SexId = data.SexId
+			};
 
-			model.Activity = data.Activity;
-			model.AboutMe = data.AboutMe;
-			model.DateBirth = data.DateBirth;
-			model.Country = data.Country;
-			model.Town = data.Town;
-			model.Street = data.Street;
-			model.HomeNum = data.HomeNumber;
+			model.EditAdvanceInfoModel = new EditAdvanceInfoModel
+			{
+				Activity = data.Activity,
+				AboutMe = data.AboutMe,
+				DateBirth = data.DateBirth,
+				Country = data.Country,
+				Town = data.Town,
+				Street = data.Street,
+				HomeNum = data.HomeNumber
+			};
 
-			model.SiteLink = data.SiteLink;
-			model.Icq = data.Icq;
-			model.Skype = data.Skype;
-			model.BattleLog = data.BattleLog;
-			model.Steam = data.Steam;
+			model.EditBindInfoModel = new EditBindInfoModel
+			{
+				SiteLink = data.SiteLink,
+				Icq = data.Icq,
+				Skype = data.Skype,
+				BattleLog = data.BattleLog,
+				Steam = data.Steam
+			};
 		}
 	}
 }

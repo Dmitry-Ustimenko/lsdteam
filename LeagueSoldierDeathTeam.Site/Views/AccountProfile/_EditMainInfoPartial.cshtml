@@ -1,0 +1,44 @@
+﻿@model LeagueSoldierDeathTeam.Site.Models.AccountProfile.EditMainInfoModel
+
+@{
+	Layout = null;
+}
+
+<h2>Редактирование основных данных вашего профиля</h2>
+<hr />
+<div class="form">
+	@using (Html.BeginForm())
+	{
+		@Html.ValidationSummary()
+		<p class="clearfix">
+			@Html.LabelFor(model => model.UpdateUserName)
+			@Html.TextBoxFor(model => model.UpdateUserName, new { @placeholder = "Имя на сайте" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.UpdateUserEmail)
+			@Html.TextBoxFor(model => model.UpdateUserEmail, new { @placeholder = "Электронная почта" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.FirstName)
+			@Html.TextBoxFor(model => model.FirstName, new { @placeholder = "Имя" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.LastName)
+			@Html.TextBoxFor(model => model.LastName, new { @placeholder = "Фамилия" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.SexId)
+			@Html.DropDownListFor(o => o.SexId, new SelectList(Model.Sexs, "Key", "Value"), "Не выбран")
+		</p>
+		<p class="clearfix">
+			<span class="btn btn-file">
+				Выбрать … <input type="file" name="PhotoUploadFile" id="PhotoUploadFile">
+			</span>
+			@Html.TextBoxFor(m => m.PhotoUploadFileName, new Dictionary<string, object> { { "readonly", "readonly" }, { "placeholder", "Выберите фото" } })
+		</p>
+		<p class="clearfix">
+			<input type="button" value="Сохранить">
+		</p>
+		@Html.HiddenFor(m => m.UserId)
+	}
+</div>

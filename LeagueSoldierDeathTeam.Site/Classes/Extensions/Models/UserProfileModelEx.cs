@@ -16,6 +16,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 
 			model.UserId = data.User.Id;
 			model.UserName = data.User.UserName;
+			model.UserEmail = data.User.Email;
 			model.UserRoles = string.Join(",", data.User.Roles.Select(o => o.Name));
 			model.LastName = data.LastName;
 			model.FirstName = data.FirstName;

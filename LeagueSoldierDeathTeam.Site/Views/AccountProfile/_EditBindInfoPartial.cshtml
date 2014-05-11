@@ -1,0 +1,38 @@
+﻿@model LeagueSoldierDeathTeam.Site.Models.AccountProfile.EditBindInfoModel
+
+@{
+	Layout = null;
+}
+
+<h2>Редактирование связных данных вашего профиля</h2>
+<hr />
+<div class="form">
+	@using (Html.BeginForm())
+	{
+		@Html.ValidationSummary()
+		<p class="clearfix">
+			@Html.LabelFor(model => model.SiteLink)
+			@Html.TextBoxFor(model => model.SiteLink, new { @placeholder = "Сайт" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.Icq)
+			@Html.TextBoxFor(model => model.Icq, new { @placeholder = "ICQ" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.Skype)
+			@Html.TextBoxFor(model => model.Skype, new { @placeholder = "Skype" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.BattleLog)
+			@Html.TextBoxFor(model => model.BattleLog, new { @placeholder = "BattleLog" })
+		</p>
+		<p class="clearfix">
+			@Html.LabelFor(model => model.Steam)
+			@Html.TextBoxFor(model => model.Steam, new { @placeholder = "Steam" })
+		</p>
+		<p class="clearfix">
+			<input type="button" value="Сохранить">
+		</p>
+		@Html.HiddenFor(m => m.UserId)
+	}
+</div>

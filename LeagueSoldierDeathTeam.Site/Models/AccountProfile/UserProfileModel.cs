@@ -18,6 +18,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 		public string BattleLog { get; set; }
 		public string Steam { get; set; }
 		public string UserName { get; set; }
+		public string UserEmail { get; set; }
 		public DateTime CreateDate { get; set; }
 		public DateTime LastActivity { get; set; }
 		public string UserRoles { get; set; }

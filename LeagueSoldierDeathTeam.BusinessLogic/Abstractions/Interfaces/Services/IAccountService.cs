@@ -9,7 +9,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 
 		void Create(UserData data, bool isExternal = false);
 
-		void Update(UserData data);
+		void UpdateMainInfo(UserInfoData data);
+
+		void UpdateAdvanceInfo(UserInfoData data);
+
+		void UpdateBindInfo(UserInfoData data);
 
 		void UpdateLastActivity(int userId);
 
