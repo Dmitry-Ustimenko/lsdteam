@@ -21,12 +21,27 @@
 			var $loginForm = $(site.layout.settings.elements.login);
 			var $registerForm = $(site.layout.settings.elements.register);
 
+			site.layout.backgroundSlider();
 			site.layout.clearSocialHash();
 			site.layout.topPage();
 			site.layout.fixedMenu();
 			site.layout.initTabs($loginForm, $registerForm);
 			site.layout.initLoginForm($loginForm);
 			site.layout.initRegisterForm($registerForm);
+		},
+
+		backgroundSlider: function () {
+			$.vegas('slideshow', {
+				delay: 10000,
+				backgrounds: [
+					{ src: '/Images/Background/bf1.jpg', fade: 2000 },
+					{ src: '/Images/Background/bf2.jpg', fade: 5000 },
+					{ src: '/Images/Background/bf3.jpg', fade: 5000 },
+					{ src: '/Images/Background/bf4.jpg', fade: 5000 }
+				]
+			})('overlay', {
+				src: '/Images/13.png'
+			});
 		},
 
 		clearSocialHash: function () {

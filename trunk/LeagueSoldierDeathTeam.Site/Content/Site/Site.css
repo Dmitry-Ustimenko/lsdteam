@@ -252,6 +252,7 @@ a {
 .section-body {
 	background: transparent;
 	margin-top: 45px;
+	z-index: 498;
 }
 
 .section-body-item-60 {
@@ -684,8 +685,12 @@ a {
 
 /* Simple page */
 
+.transparent-border {
+	background-color: transparent;
+	border: 15px solid rgba(0,0,0,0.45);
+}
+
 .simple-page-body {
-	border: 10px solid rgba(0,0,0,0.8);
 	background: white;
 	position: relative;
 }
@@ -1055,8 +1060,9 @@ a {
 	float: none;
 	list-style: none;
 	padding: 0;
-	margin: 20px auto;
+	margin: 0 auto;
 	margin-top: 60px;
+	padding-bottom: 20px;
 }
 
 	.profile-tabs .tabs > li {
@@ -1111,7 +1117,7 @@ a {
 
 .profile-left-bar {
 	margin: 17px;
-	margin-left: 90px;
+	margin-left: 96px;
 	float: left;
 }
 
@@ -1166,9 +1172,14 @@ a {
 				padding: 6px;
 			}
 
-table.profile-info {
+.profile-right-bar {
 	width: 60%;
-	margin: 10px 20px 10px auto;
+	margin: 10px 10px 0 auto;
+	padding-bottom: 10px;
+}
+
+table.profile-info {
+	width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0;
 }

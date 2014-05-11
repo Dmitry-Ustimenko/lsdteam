@@ -6,116 +6,119 @@
 	ViewBag.Title = "Профиль пользователя";
 	var currentUser = AppContext.Current.CurrentUser;
 }
-
-<div class="simple-page-body section-shadow">
-	<div class="section-module-header">
-		<div class="module-title">Профиль пользователя</div>
-	</div>
-	<div class="profile-left-bar">
-		<div class="user-photo">
-			<img src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.PhotoPath) ? Model.PhotoPath : Constants.DefaultPhotoPath)">
+<div class="transparent-border">
+	<div class="simple-page-body section-shadow">
+		<div class="section-module-header">
+			<div class="module-title">Профиль пользователя</div>
 		</div>
-		<div class="user-buttons">
-			<a href="javascript:void(0);">Личные сообщения</a>
-			<a href="javascript:void(0);">Мои закладки</a>
-			@if (Model.UserId == currentUser.Id || currentUser.IsAdmin)
-			{
-				<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(Model.UserId)))">Редактировать профиль</a>
-			}
+		<div class="profile-left-bar">
+			<div class="user-photo">
+				<img src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.PhotoPath) ? Model.PhotoPath : Constants.DefaultPhotoPath)">
+			</div>
+			<div class="user-buttons">
+				<a href="javascript:void(0);">Личные сообщения</a>
+				<a href="javascript:void(0);">Мои закладки</a>
+				@if (Model.UserId == currentUser.Id || currentUser.IsAdmin)
+				{
+					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(Model.UserId)))">Редактировать профиль</a>
+				}
+			</div>
+		</div>
+		<div class="profile-right-bar">
+			<table class="profile-info">
+				<tr>
+					<td class="title" colspan="2">Основная информация</td>
+				</tr>
+				<tr>
+					<td class="empty" colspan="2"></td>
+				</tr>
+				<tr>
+					<td>Имя на сайте:</td>
+					<td>@Model.UserName</td>
+				</tr>
+				<tr>
+					<td>Группа пользователя:</td>
+					<td>@Model.UserRoles</td>
+				</tr>
+				<tr>
+					<td>Фамилия:</td>
+					<td>@Model.LastName</td>
+				</tr>
+				<tr>
+					<td>Имя:</td>
+					<td>@Model.FirstName</td>
+				</tr>
+				<tr>
+					<td>Возраст:</td>
+					<td>@Model.Age</td>
+				</tr>
+				<tr>
+					<td>Пол:</td>
+					<td>@Model.SexName</td>
+				</tr>
+				<tr>
+					<td class="empty" colspan="2"></td>
+				</tr>
+				<tr>
+					<td class="title" colspan="2">Дополнительная информация</td>
+				</tr>
+				<tr>
+					<td class="empty" colspan="2"></td>
+				</tr>
+				<tr>
+					<td>Деятельность:</td>
+					<td>@Model.Activity</td>
+				</tr>
+				<tr>
+					<td>Интересы:</td>
+					<td>@Model.AboutMe</td>
+				</tr>
+				<tr>
+					<td>Дата рождения:</td>
+					<td>@(Model.DateBirth.HasValue ? Model.DateBirth.Value.ToString("dd MMMM yyyy") : string.Empty)</td>
+				</tr>
+				<tr>
+					<td>Адрес:</td>
+					<td>@Model.Address</td>
+				</tr>
+				<tr>
+					<td>Зарегистрирован:</td>
+					<td>@Model.CreateDate.ToShortDateString()</td>
+				</tr>
+				<tr>
+					<td>Последняя активность:</td>
+					<td>@Model.LastActivity</td>
+				</tr>
+				<tr>
+					<td class="empty" colspan="2"></td>
+				</tr>
+				<tr>
+					<td class="title" colspan="2">Связь</td>
+				</tr>
+				<tr>
+					<td class="empty" colspan="2"></td>
+				</tr>
+				<tr>
+					<td>Сайт:</td>
+					<td>@Model.SiteLink</td>
+				</tr>
+				<tr>
+					<td>ICQ:</td>
+					<td>@Model.Icq</td>
+				</tr>
+				<tr>
+					<td>Skype:</td>
+					<td>@Model.Skype</td>
+				</tr>
+				<tr>
+					<td>BattleLog:</td>
+					<td>@Model.BattleLog</td>
+				</tr>
+				<tr>
+					<td>Steam:</td>
+					<td>@Model.Steam</td>
+				</tr>
+			</table>
 		</div>
 	</div>
-	<table class="profile-info">
-		<tr>
-			<td class="title" colspan="2">Основная информация</td>
-		</tr>
-		<tr>
-			<td class="empty" colspan="2"></td>
-		</tr>
-		<tr>
-			<td>Имя на сайте:</td>
-			<td>@Model.UserName</td>
-		</tr>
-		<tr>
-			<td>Группа пользователя:</td>
-			<td>@Model.UserRoles</td>
-		</tr>
-		<tr>
-			<td>Фамилия:</td>
-			<td>@Model.LastName</td>
-		</tr>
-		<tr>
-			<td>Имя:</td>
-			<td>@Model.FirstName</td>
-		</tr>
-		<tr>
-			<td>Возраст:</td>
-			<td>@Model.Age</td>
-		</tr>
-		<tr>
-			<td>Пол:</td>
-			<td>@Model.SexName</td>
-		</tr>
-		<tr>
-			<td class="empty" colspan="2"></td>
-		</tr>
-		<tr>
-			<td class="title" colspan="2">Дополнительная информация</td>
-		</tr>
-		<tr>
-			<td class="empty" colspan="2"></td>
-		</tr>
-		<tr>
-			<td>Деятельность:</td>
-			<td>@Model.Activity</td>
-		</tr>
-		<tr>
-			<td>Интересы:</td>
-			<td>@Model.AboutMe</td>
-		</tr>
-		<tr>
-			<td>Дата рождения:</td>
-			<td>@(Model.DateBirth.HasValue ? Model.DateBirth.Value.ToString("dd MMMM yyyy") : string.Empty)</td>
-		</tr>
-		<tr>
-			<td>Адрес:</td>
-			<td>@Model.Address</td>
-		</tr>
-		<tr>
-			<td>Зарегистрирован:</td>
-			<td>@Model.CreateDate.ToShortDateString()</td>
-		</tr>
-		<tr>
-			<td>Последняя активность:</td>
-			<td>@Model.LastActivity</td>
-		</tr>
-		<tr>
-			<td class="empty" colspan="2"></td>
-		</tr>
-		<tr>
-			<td class="title" colspan="2">Связь</td>
-		</tr>
-		<tr>
-			<td class="empty" colspan="2"></td>
-		</tr>
-		<tr>
-			<td>Сайт:</td>
-			<td>@Model.SiteLink</td>
-		</tr>
-		<tr>
-			<td>ICQ:</td>
-			<td>@Model.Icq</td>
-		</tr>
-		<tr>
-			<td>Skype:</td>
-			<td>@Model.Skype</td>
-		</tr>
-		<tr>
-			<td>BattleLog:</td>
-			<td>@Model.BattleLog</td>
-		</tr>
-		<tr>
-			<td>Steam:</td>
-			<td>@Model.Steam</td>
-		</tr>
-	</table>
 </div>

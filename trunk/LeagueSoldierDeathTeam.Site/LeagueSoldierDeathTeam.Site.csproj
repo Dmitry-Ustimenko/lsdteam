@@ -246,14 +246,22 @@
     <Content Include="Content\Plugins\animate.css" />
     <Content Include="Content\Plugins\datepicker.css" />
     <Content Include="Content\Plugins\galleria.classic.css" />
+    <Content Include="Content\Plugins\jquery.vegas.css" />
     <Content Include="Content\Plugins\modal-responsive.css" />
     <Content Include="Content\Plugins\modal.css" />
     <Content Include="Content\Site\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\11.png" />
+    <Content Include="Images\13.png" />
+    <Content Include="Images\14.png" />
     <Content Include="Images\arrow-back.png" />
     <Content Include="Images\arrow-social-down.png" />
     <Content Include="Images\arrow-social-up.png" />
+    <Content Include="Images\Background\bf1.jpg" />
+    <Content Include="Images\Background\bf2.jpg" />
+    <Content Include="Images\Background\bf3.jpg" />
+    <Content Include="Images\Background\bf4.jpg" />
     <Content Include="Images\classic-loader.gif" />
     <Content Include="Images\classic-map.png" />
     <Content Include="Images\d03.png" />
@@ -289,6 +297,7 @@
     <Content Include="Scripts\Plugins\bootstrap-datepicker.js" />
     <Content Include="Scripts\Plugins\bootstrap-datepicker.ru.js" />
     <Content Include="Scripts\Plugins\bootstrap.js" />
+    <Content Include="Scripts\Plugins\jquery.vegas.js" />
     <Content Include="Scripts\Site\site.profile.js" />
     <Content Include="Xml\MailHosting.xml">
       <SubType>Designer</SubType>
