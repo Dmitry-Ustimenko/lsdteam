@@ -21,15 +21,6 @@
 			init: function (settings) {
 				$.extend(true, site.profile.settings, settings);
 
-				$(site.profile.settings.elements.photoUploadFile).on('change', function () {
-					$(site.profile.settings.elements.photoUploadFileName).val($(this).val().replace(/\\/g, '/').replace(/.*\//, ''));
-				});
-
-				var $tabContentAdvance = $(site.profile.settings.elements.tabContentAdvance);
-				$tabContentAdvance.applyDatepicker();
-
-				$.fn.alertMessage("Смена пароля", "Пароль был успешно изменен.");
-
 				site.profile.initChangePassword();
 				site.profile.initContentMain();
 				site.profile.initContentAdvance();
@@ -56,10 +47,15 @@
 
 			initContentMain: function () {
 				var $tabContentMain = $(site.profile.settings.elements.tabContentMain);
+
+				$tabContentMain.find(site.profile.settings.elements.photoUploadFile).on('change', function () {
+					$tabContentMain.find(site.profile.settings.elements.photoUploadFileName).val($(this).val().replace(/\\/g, '/').replace(/.*\//, ''));
+				});
 			},
 
 			initContentAdvance: function () {
 				var $tabContentAdvance = $(site.profile.settings.elements.tabContentAdvance);
+				$tabContentAdvance.applyDatepicker();
 			},
 
 			initContentBind: function () {

@@ -243,6 +243,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Plugins\animate.css" />
     <Content Include="Content\Plugins\datepicker.css" />
     <Content Include="Content\Plugins\galleria.classic.css" />
     <Content Include="Content\Plugins\modal-responsive.css" />
@@ -285,8 +286,6 @@
     <Content Include="Images\vk-icon-active.png" />
     <Content Include="Images\vk-icon.png" />
     <Content Include="Images\vk-register.png" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Plugins\bootstrap-datepicker.js" />
     <Content Include="Scripts\Plugins\bootstrap-datepicker.ru.js" />
     <Content Include="Scripts\Plugins\bootstrap.js" />
