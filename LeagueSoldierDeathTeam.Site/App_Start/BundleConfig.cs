@@ -33,6 +33,7 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				"~/Content/Plugins/datepicker.css",
 				"~/Content/Plugins/modal.css",
 				"~/Content/Plugins/modal-responsive.css",
+				"~/Content/Plugins/animate.css",
 
 				"~/Content/Site/Site.css"
 				));

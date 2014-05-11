@@ -100,18 +100,40 @@
 		alert.find("[data-type=modal-title]").html(title);
 		alert.find("[data-type=modal-message]").html(message);
 
-		alert.on('show.bs.modal', function () {
-			$(this).removeClass('fadeOutDown').addClass('animated fadeInDown');
+		alert.showOverlay();
+
+		alert.find("#btnOk").on("click", function () {
+			alert.closeOverlay();
+			$(this).unbind('click');
 		});
-
-		alert.on('hide.bs.modal', function () {
-			$(this).removeClass('fadeInDown').addClass('animated fadeOutDown');
+		alert.find(".close").on("click", function () {
+			alert.closeOverlay();
+			$(this).unbind('click');
 		});
+	};
+})(jQuery);
 
-		alert.modal('show');
+(function ($) {
+	$.fn.showOverlay = function () {
+		var overlay = $(this);
+		overlayEvents(overlay);
+		overlay.modal().show();
+		overlay.unbind('show.bs.modal');
+	};
 
-		alert.find("#btnOk").on("click", function () { alert.closeOverlay(); });
-		alert.find(".close").on("click", function () { alert.closeOverlay(); });
+	$.fn.closeOverlay = function () {
+		$(this).modal('hide');
+	};
+
+	function overlayEvents(overlay) {
+		overlay.on('show.bs.modal', function () {
+			overlay.removeClass('fadeOutDown').addClass('fadeInDown');
+		}).on('hide.bs.modal', function (e) {
+			e.preventDefault();
+			overlay.removeClass('fadeInDown').addClass('fadeOutDown');
+			setTimeout("$('#" + overlay.prop('id') + "').modal('hide')", 480);
+			overlay.unbind('hide.bs.modal');
+		});
 	};
 })(jQuery);
 
@@ -119,7 +141,7 @@
 	$.fn.loadOverlay = function (openDialogUrl, openDialogParams, saveFormUrl, callBack, onLoadCallBack, onCloseOverlayCallBack) {
 		var sender = this;
 		$(sender).loadData(openDialogUrl, openDialogParams, function () {
-			$(sender).modal().show();
+			$(sender).showOverlay();
 			initDialog(sender, saveFormUrl, callBack, onLoadCallBack, onCloseOverlayCallBack);
 		});
 
@@ -156,10 +178,6 @@
 			$dialog.find(".close").on("click", function () { $overlay.closeOverlay(); });
 		}
 	};
-})(jQuery);
-
-(function ($) {
-	$.fn.closeOverlay = function () { $(this).modal('hide').html(""); };
 })(jQuery);
 
 (function ($) {

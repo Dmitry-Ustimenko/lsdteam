@@ -79,12 +79,7 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 			}, 'html');
 
 			function alertMessage(title, message) {
-				var alertOverlay = $("#alertOverlay");
-				$(alertOverlay).alertMessage(window.alertUrl, title, message, function () {
-					$(sender).alert();
-					$(sender).toggle();
-					setTimeout(function () { $(sender).toggle(); }, 5000);
-				});
+				$.fn.alertMessage(title, message);
 			}
 		}
 	};
