@@ -9,5 +9,7 @@
 		public const string DefaultPhotoPath = "/Images/default-avatar.jpg";
 
 		public const string BackgroundDirectoryPath = "\\Images\\Background";
+
+		public const string DateFormat = "dd.MM.yyyy";
 	}
 }

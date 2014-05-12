@@ -5,7 +5,9 @@
 				urls: {
 					mainContent: '',
 					changePassword: '',
-					editMainInfo: ''
+					editMainInfo: '',
+					editAdvanceInfo: '',
+					editBindInfo: ''
 				},
 				vars: {
 				},
@@ -59,7 +61,7 @@
 						$tabContentMain.loadData(site.profile.settings.urls.editMainInfo, $.fn.serializeParams(form),
 							function () {
 								site.profile.initContentMain();
-								$.fn.alertMessage("Обновление профиля", "Данные успешно обновлены.");
+								$.fn.alertMessage("Обновление профиля", "Основные данные были успешно обновлены.");
 							},
 							function () {
 								$.fn.initValidationSummary($tabContentMain);
@@ -72,10 +74,61 @@
 			initContentAdvance: function () {
 				var $tabContentAdvance = $(site.profile.settings.elements.tabContentAdvance);
 				$tabContentAdvance.applyDatepicker();
+
+				$tabContentAdvance.find("input[data-type]").each(function () {
+					var $this = $(this);
+					var bindElem = $tabContentAdvance.find("input[data-type=" + $this.data("bind") + "]");
+
+					if ($this.val() == "")
+						$this.closest(".clearfix").hide();
+					else
+						$this.closest(".clearfix").show();
+				});
+
+				$tabContentAdvance.find("input[data-type]").on("change", function () {
+					var $this = $(this);
+					var bindElem = $tabContentAdvance.find("input[data-type=" + $this.data("bind") + "]");
+
+					if ($this.val() == "") {
+						bindElem.closest(".clearfix").fadeOut("fast");
+						bindElem.val("");
+					} else {
+						bindElem.closest(".clearfix").fadeIn("");
+					}
+				});
+
+				$tabContentAdvance.find("input[type=button]").on("click", function () {
+					var form = $tabContentAdvance.find("form");
+					if (form.valid()) {
+						$tabContentAdvance.loadData(site.profile.settings.urls.editAdvanceInfo, $.fn.serializeParams(form),
+							function () {
+								site.profile.initContentAdvance();
+								$.fn.alertMessage("Обновление профиля", "Дополнительные данные были успешно обновлены.");
+							},
+							function () {
+								$.fn.initValidationSummary($tabContentAdvance);
+								site.profile.initContentAdvance();
+							});
+					}
+				});
 			},
 
 			initContentBind: function () {
 				var $tabContentBind = $(site.profile.settings.elements.tabContentBind);
+				$tabContentBind.find("input[type=button]").on("click", function () {
+					var form = $tabContentBind.find("form");
+					if (form.valid()) {
+						$tabContentBind.loadData(site.profile.settings.urls.editBindInfo, $.fn.serializeParams(form),
+							function () {
+								site.profile.initContentBind();
+								$.fn.alertMessage("Обновление профиля", "Связные данные были успешно обновлены.");
+							},
+							function () {
+								$.fn.initValidationSummary($tabContentBind);
+								site.profile.initContentBind();
+							});
+					}
+				});
 			}
 		};
 })();

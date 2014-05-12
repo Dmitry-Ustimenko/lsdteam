@@ -149,12 +149,40 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		void IAccountService.UpdateAdvanceInfo(UserInfoData data)
 		{
-			throw new NotImplementedException();
+			var user = _userRepository.Query(o => o.Id == data.UserId).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("user"));
+
+			var entityUserInfo = _userInfoRepository.Query(o => o.UserId == data.UserId).SingleOrDefault();
+			var userInfo = entityUserInfo ?? new UserInfo { User = user };
+
+			userInfo.AboutMe = data.AboutMe;
+			userInfo.Activity = data.Activity;
+			userInfo.DateBirth = data.DateBirth;
+			userInfo.Country = data.Country;
+			userInfo.Town = data.Town;
+			userInfo.Street = data.Street;
+			userInfo.HomeNumber = data.HomeNumber;
+
+			UnitOfWork.Commit();
 		}
 
 		void IAccountService.UpdateBindInfo(UserInfoData data)
 		{
-			throw new NotImplementedException();
+			var user = _userRepository.Query(o => o.Id == data.UserId).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("user"));
+
+			var entityUserInfo = _userInfoRepository.Query(o => o.UserId == data.UserId).SingleOrDefault();
+			var userInfo = entityUserInfo ?? new UserInfo { User = user };
+
+			userInfo.SiteLink = data.SiteLink;
+			userInfo.ICQ = data.Icq;
+			userInfo.Skype = data.Skype;
+			userInfo.BattleLog = data.BattleLog;
+			userInfo.Steam = data.Steam;
+
+			UnitOfWork.Commit();
 		}
 
 		void IAccountService.UpdateLastActivity(int userId)
