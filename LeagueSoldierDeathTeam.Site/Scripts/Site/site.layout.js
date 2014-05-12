@@ -34,7 +34,7 @@
 			$.vegas('slideshow', {
 				delay: 10000,
 				backgrounds: [
-					{ src: '/Images/Background/bf1.jpg', fade: 2000 },
+					{ src: '/Images/Background/bf1.jpg', fade: 500 },
 					{ src: '/Images/Background/bf2.jpg', fade: 5000 },
 					{ src: '/Images/Background/bf3.jpg', fade: 5000 },
 					{ src: '/Images/Background/bf4.jpg', fade: 5000 }
