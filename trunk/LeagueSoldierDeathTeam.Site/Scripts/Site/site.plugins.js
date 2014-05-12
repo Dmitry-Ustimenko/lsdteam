@@ -102,14 +102,8 @@
 
 		alert.showOverlay();
 
-		alert.find("#btnOk").on("click", function () {
-			alert.closeOverlay();
-			$(this).unbind('click');
-		});
-		alert.find(".close").on("click", function () {
-			alert.closeOverlay();
-			$(this).unbind('click');
-		});
+		alert.find("#btnOk").off("click").on("click", function () { alert.closeOverlay(); });
+		alert.find(".close").off("click").on("click", function () { alert.closeOverlay(); });
 	};
 })(jQuery);
 
@@ -118,7 +112,6 @@
 		var overlay = $(this);
 		overlayEvents(overlay);
 		overlay.modal().show();
-		overlay.unbind('show.bs.modal');
 	};
 
 	$.fn.closeOverlay = function () {
@@ -126,7 +119,7 @@
 	};
 
 	function overlayEvents(overlay) {
-		overlay.on('show.bs.modal', function () {
+		overlay.off('show.bs.modal').on('show.bs.modal', function () {
 			overlay.removeClass('fadeOutDown').addClass('fadeInDown');
 		}).on('hide.bs.modal', function (e) {
 			e.preventDefault();
