@@ -7,5 +7,7 @@
 		public const string XmlMailHostingSearchName = "MailHosting";
 
 		public const string DefaultPhotoPath = "/Images/default-avatar.jpg";
+
+		public const string BackgroundDirectoryPath = "\\Images\\Background";
 	}
 }

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -12,6 +14,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Factories;
+using LeagueSoldierDeathTeam.Site.Models;
 using Microsoft.Web.Mvc;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -41,6 +44,23 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			ServiceFactory = serviceFactory;
 
 			_accountService = serviceFactory.CreateAccountService();
+		}
+
+		public JsonResult GetBackgroundFiles()
+		{
+			var backgrounds = new List<BackgroundModel>();
+			var path = string.Concat(AppDomain.CurrentDomain.BaseDirectory, Constants.BackgroundDirectoryPath);
+
+			if (Directory.Exists(path))
+			{
+				var images = Directory.GetFiles(path, "*.jpg");
+				backgrounds.AddRange(images.Select(image => new BackgroundModel
+				{
+					Src = string.Concat(Constants.BackgroundDirectoryPath, image.Substring(image.LastIndexOf('\\')))
+				}));
+			}
+
+			return Json(backgrounds, JsonRequestBehavior.AllowGet);
 		}
 
 		protected override void Dispose(bool disposing)
@@ -84,8 +104,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 				if (AppContext.CurrentUser != null)
 					SessionManager.Set(SessionKeys.User, AppContext.CurrentUser);
-
-				
 			}
 		}
 

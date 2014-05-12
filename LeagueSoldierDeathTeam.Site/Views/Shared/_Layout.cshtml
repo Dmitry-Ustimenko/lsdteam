@@ -51,6 +51,7 @@
 				urls: {
 					login: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Login(null)))',
 					register: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Register(null)))',
+					backgroundImages: '@(WebBuilder.BuildActionUrl<BaseController>(m => m.GetBackgroundFiles()))'
 				}
 			});
 		});
