@@ -31,17 +31,27 @@
 		},
 
 		backgroundSlider: function () {
+			$('body').bind('vegaswalk', function (e, bg, step) {
+				if (step == 4)
+					setTimeout("$.vegas('jump', 1)", 9000);
+			});
+
 			$.vegas('slideshow', {
 				delay: 10000,
 				backgrounds: [
 					{ src: '/Images/Background/bf1.jpg', fade: 500 },
 					{ src: '/Images/Background/bf2.jpg', fade: 5000 },
 					{ src: '/Images/Background/bf3.jpg', fade: 5000 },
-					{ src: '/Images/Background/bf4.jpg', fade: 5000 }
+					{ src: '/Images/Background/bf4.jpg', fade: 5000 },
+					{ src: '/Images/Background/bf1.jpg', fade: 5000 }
 				]
 			})('overlay', {
 				src: '/Images/13.png'
 			});
+
+			function getRandom() {
+				return Math.floor((Math.random() * 4) + 1);
+			}
 		},
 
 		clearSocialHash: function () {
