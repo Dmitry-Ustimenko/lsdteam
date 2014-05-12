@@ -4,9 +4,11 @@
 		settings: {
 			urls: {
 				login: '',
-				register: ''
+				register: '',
+				backgroundImages: ''
 			},
 			vars: {
+				backgrounds: null
 			},
 			elements: {
 				login: '#login',
@@ -31,26 +33,50 @@
 		},
 
 		backgroundSlider: function () {
-			$('body').bind('vegaswalk', function (e, bg, step) {
-				if (step == 4)
-					setTimeout("$.vegas('jump', 1)", 9000);
-			});
+			$(document).ajaxStart($.unblockUI);
+			site.ajax.post(site.layout.settings.urls.backgroundImages, null, function (data) {
+				var backgrounds = [];
+				var json = shuffle($.parseJSON(data));
 
-			$.vegas('slideshow', {
-				delay: 10000,
-				backgrounds: [
-					{ src: '/Images/Background/bf1.jpg', fade: 500 },
-					{ src: '/Images/Background/bf2.jpg', fade: 5000 },
-					{ src: '/Images/Background/bf3.jpg', fade: 5000 },
-					{ src: '/Images/Background/bf4.jpg', fade: 5000 },
-					{ src: '/Images/Background/bf1.jpg', fade: 5000 }
-				]
-			})('overlay', {
-				src: '/Images/13.png'
-			});
+				for (var i = 0; i < json.length; i++) {
+					if (i == 0)
+						backgrounds.push({ src: json[i]["Src"], fade: 500 });
+					else
+						backgrounds.push({ src: json[i]["Src"], fade: 5000 });
+				}
+				if (json.length)
+					backgrounds.push({ src: json[0]["Src"], fade: 5000 });
 
-			function getRandom() {
-				return Math.floor((Math.random() * 4) + 1);
+				var isStart = true;
+				$('body').bind('vegaswalk', function (e, bg, step) {
+					if (step == 0 && !isStart)
+						$.vegas("next");
+					isStart = false;
+				});
+
+				$.vegas('slideshow', {
+					delay: 10000,
+					backgrounds: backgrounds
+				})('overlay', {
+					src: '/Images/13.png'
+				});
+			});
+			$(document).ajaxStart($.blockUI);
+
+			function shuffle(array) {
+				var temp, index;
+				var counter = array.length;
+
+				while (counter > 0) {
+					index = Math.floor(Math.random() * counter);
+					counter--;
+
+					temp = array[counter];
+					array[counter] = array[index];
+					array[index] = temp;
+				}
+
+				return array;
 			}
 		},
 

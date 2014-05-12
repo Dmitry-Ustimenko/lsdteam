@@ -237,6 +237,7 @@
     <Compile Include="Models\Account\PasswordResetModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\Account\RegisterSuccessfullModel.cs" />
+    <Compile Include="Models\BackgroundModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\BaseOverlayModel.cs" />
     <Compile Include="Models\Mail\MailActivateModel.cs" />
