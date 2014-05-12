@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Globalization;
+using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
@@ -66,12 +68,57 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[HttpPost]
 		public ActionResult EditAdvanceInfo(EditAdvanceInfoModel model)
 		{
+			if (ModelIsValid)
+			{
+				var dateBirth = default(DateTime?);
+				if (!string.IsNullOrWhiteSpace(model.DateBirth))
+				{
+					DateTime date;
+					if (DateTime.TryParse(model.DateBirth, out date))
+						dateBirth = date;
+					else
+						ModelState.AddModelError(string.Empty, "Неверный формат даты.");
+				}
+
+				if (ModelIsValid)
+				{
+					var data = new UserInfoData
+					{
+						UserId = model.UserId,
+						AboutMe = model.AboutMe,
+						Activity = model.Activity,
+						DateBirth = dateBirth,
+						Country = model.Country,
+						Town = model.Town,
+						Street = model.Street,
+						HomeNumber = model.HomeNum
+					};
+
+					Execute(() => _accountService.UpdateAdvanceInfo(data));
+				}
+			}
+
 			return View("_EditAdvanceInfoPartial", model);
 		}
 
 		[HttpPost]
 		public ActionResult EditBindInfo(EditBindInfoModel model)
 		{
+			if (ModelIsValid)
+			{
+				var data = new UserInfoData
+				{
+					UserId = model.UserId,
+					SiteLink = model.SiteLink,
+					Icq = model.Icq,
+					Skype = model.Skype,
+					BattleLog = model.BattleLog,
+					Steam = model.Steam
+				};
+
+				Execute(() => _accountService.UpdateBindInfo(data));
+			}
+
 			return View("_EditBindInfoPartial", model);
 		}
 

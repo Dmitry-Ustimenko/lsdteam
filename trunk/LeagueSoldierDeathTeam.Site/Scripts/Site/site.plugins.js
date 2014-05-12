@@ -25,15 +25,11 @@
 			var dateInput = $(this);
 			dateInput.keydown(function (e) {
 				return ((e.keyCode > 47) && (e.keyCode < 58) && (e.keyCode < 48) && (e.keyCode > 57));
+			}).datepicker({
+				format: "dd.mm.yyyy",
+				language: "ru",
+				autoclose: true
 			});
-
-			if (dateInput.val() == "")
-				dateInput.datepicker({
-					format: "dd.mm.yyyy",
-					language: "ru"
-				});
-			else
-				dateInput.datepicker('setValue', dateInput.val());
 		});
 	};
 })(jQuery);

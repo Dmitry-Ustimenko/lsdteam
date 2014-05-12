@@ -24,19 +24,19 @@
 		</p>
 		<p class="clearfix">
 			@Html.LabelFor(model => model.Country)
-			@Html.TextBoxFor(model => model.Country, new { @placeholder = "Страна" })
+			@Html.TextBoxFor(model => model.Country, new { @placeholder = "Страна", @data_type = "country", @data_bind = "town" })
 		</p>
 		<p class="clearfix">
 			@Html.LabelFor(model => model.Town)
-			@Html.TextBoxFor(model => model.Town, new { @placeholder = "Населенный пункт" })
+			@Html.TextBoxFor(model => model.Town, new { @placeholder = "Населенный пункт", @data_type = "town", @data_bind = "street" })
 		</p>
 		<p class="clearfix">
 			@Html.LabelFor(model => model.Street)
-			@Html.TextBoxFor(model => model.Street, new { @placeholder = "Улица" })
+			@Html.TextBoxFor(model => model.Street, new { @placeholder = "Улица", @data_type = "street", @data_bind = "homenum" })
 		</p>
 		<p class="clearfix">
 			@Html.LabelFor(model => model.HomeNum)
-			@Html.TextBoxFor(model => model.HomeNum, new { @placeholder = "Номер дома" })
+			@Html.TextBoxFor(model => model.HomeNum, new { @placeholder = "Номер дома", @data_type = "homenum" })
 		</p>
 		<p class="clearfix">
 			<input type="button" value="Сохранить">

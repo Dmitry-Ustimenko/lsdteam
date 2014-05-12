@@ -16,7 +16,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 		public string Activity { get; set; }
 
 		[DisplayName("Дата рождения")]
-		public DateTime? DateBirth { get; set; }
+		public string DateBirth { get; set; }
 
 		[DisplayName("Страна")]
 		public string Country { get; set; }

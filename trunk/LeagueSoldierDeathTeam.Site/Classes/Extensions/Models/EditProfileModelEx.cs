@@ -24,7 +24,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			{
 				Activity = data.Activity,
 				AboutMe = data.AboutMe,
-				DateBirth = data.DateBirth,
+				DateBirth = data.DateBirth.HasValue ? data.DateBirth.Value.ToString(Constants.DateFormat) : string.Empty,
 				Country = data.Country,
 				Town = data.Town,
 				Street = data.Street,
