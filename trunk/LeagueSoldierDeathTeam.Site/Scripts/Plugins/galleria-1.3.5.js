@@ -1309,7 +1309,7 @@ Galleria = function() {
             carousel.width = self.$( 'thumbnails-list' ).width();
             carousel.setClasses();
 
-            self.$( 'thumbnails-container' ).toggleClass( 'galleria-carousel', w > carousel.width );
+            self.$( 'thumbnails-container' ).toggleClass( 'galleria-carousel', true );
 
             // one extra calculation
             carousel.width = self.$( 'thumbnails-list' ).width();

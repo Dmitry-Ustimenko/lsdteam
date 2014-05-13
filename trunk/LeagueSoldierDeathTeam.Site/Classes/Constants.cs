@@ -10,6 +10,8 @@
 
 		public const string BackgroundDirectoryPath = "\\Images\\Background";
 
+		public const string SliderDirectoryPath = "\\Images\\Slider";
+
 		public const string DateFormat = "dd.MM.yyyy";
 	}
 }

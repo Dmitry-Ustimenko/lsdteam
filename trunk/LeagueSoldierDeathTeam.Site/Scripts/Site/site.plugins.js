@@ -56,7 +56,7 @@
 		Galleria.run(sliderId, {
 			autoplay: 2500,
 			transition: 'fade',
-			transitionSpeed: 1000,
+			transitionSpeed: 750,
 			imageCrop: true,
 			thumbCrop: 'height',
 			idleMode: false,
@@ -76,6 +76,8 @@
 				color: 'red'
 			}
 		});
+
+
 	};
 })(jQuery);
 

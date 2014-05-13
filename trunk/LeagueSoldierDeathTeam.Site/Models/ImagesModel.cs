@@ -1,6 +1,6 @@
 ﻿namespace LeagueSoldierDeathTeam.Site.Models
 {
-	public class BackgroundModel
+	public class ImageModel
 	{
 		public string Src { get; set; }
 	}

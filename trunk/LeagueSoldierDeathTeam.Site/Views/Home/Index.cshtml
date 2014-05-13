@@ -1,8 +1,11 @@
-﻿@{
+﻿@model LeagueSoldierDeathTeam.Site.Models.Home.IndexModel
+
+@{
 	ViewBag.Title = "Главная страница";
 }
 
-@{Html.RenderPartial("_SliderPartial");}
+@{ Html.RenderPartial("_SliderPartial", Model.SliderImages); }
+
 <div class="section-body-item-60 section-shadow">
 	<div class="section-module-header">
 		<div class="module-title">Новости</div>
@@ -37,3 +40,9 @@
 </div>
 <div class="section section-slider-items section-radius section-shadow">
 </div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function () {
+		site.home.init();
+	});
+</script>

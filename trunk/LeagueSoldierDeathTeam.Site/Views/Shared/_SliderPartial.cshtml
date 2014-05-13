@@ -1,34 +1,15 @@
-﻿<div class="section-slider section-radius section-shadow">
+﻿@model IEnumerable<LeagueSoldierDeathTeam.Site.Models.ImageModel>
+
+<div class="section-slider section-radius section-shadow">
 	<div id="galleria">
-		<a href="http://www.youtube.com/watch?v=yJwKk70RaRI">
-			<img src="http://img.youtube.com/vi/yJwKk70RaRI/maxresdefault.jpg">
-		</a>
-		<a href="/Images/Slider/002.jpg">
-			<img src="/Images/Slider/002.jpg">
-		</a>
-		<a href="/Images/Slider/003.jpg">
-			<img src="/Images/Slider/003.jpg">
-		</a>
-		<a href="/Images/Slider/004.jpg">
-			<img src="/Images/Slider/004.jpg">
-		</a>
-		<a href="/Images/Slider/001.jpg">
-			<img src="/Images/Slider/001.jpg">
-		</a>
-		<a href="/Images/Slider/002.jpg">
-			<img src="/Images/Slider/002.jpg">
-		</a>
-		<a href="/Images/Slider/003.jpg">
-			<img src="/Images/Slider/003.jpg">
-		</a>
-		<a href="/Images/Slider/004.jpg">
-			<img src="/Images/Slider/004.jpg">
-		</a>
+		@if (Model.Any())
+		{
+			foreach (var item in Model)
+			{
+				<a href="@item.Src">
+					<img src="@item.Src">
+				</a>
+			}
+		}
 	</div>
 </div>
-
-<script type="text/javascript">
-	jQuery(document).ready(function () {
-		site.home.init();
-	});
-</script>
