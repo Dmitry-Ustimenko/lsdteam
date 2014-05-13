@@ -23,7 +23,9 @@
 
 			initProfileInfo: {
 				init: function () {
-
+					$(site.profile.settings.elements.photoUploadFile).on('change', function () {
+						$(site.profile.settings.elements.photoUploadFileName).val($(this).val().replace(/\\/g, '/').replace(/.*\//, ''));
+					});
 				}
 			},
 
@@ -59,11 +61,6 @@
 
 				initContentMain: function () {
 					var $tabContentMain = $(site.profile.settings.elements.tabContentMain);
-
-					$tabContentMain.find(site.profile.settings.elements.photoUploadFile).on('change', function () {
-						$tabContentMain.find(site.profile.settings.elements.photoUploadFileName).val($(this).val().replace(/\\/g, '/').replace(/.*\//, ''));
-					});
-
 					$tabContentMain.find("input[type=button]").on("click", function () {
 						var form = $tabContentMain.find("form");
 						if (form.valid()) {
