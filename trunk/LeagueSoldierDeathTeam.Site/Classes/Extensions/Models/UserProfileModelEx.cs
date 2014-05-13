@@ -33,7 +33,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 				if (dateNow.Month < dateBirthDay.Month || dateNow.Month == dateBirthDay.Month && dateNow.Day < dateBirthDay.Day)
 					years--;
 
-				model.Age = years == default(int) ? string.Empty : years.ToString(CultureInfo.InvariantCulture);
+				model.Age = RussianAgeEx.GetRussianAge(years);
 			}
 
 			model.Activity = data.Activity;

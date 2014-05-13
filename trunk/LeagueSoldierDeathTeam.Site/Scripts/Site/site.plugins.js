@@ -62,6 +62,7 @@
 			idleMode: false,
 			showInfo: false,
 			showCounter: false,
+			showThumbNav: true,
 			pauseOnInteraction: false,
 			imagePan: true,
 			extend: function () {
