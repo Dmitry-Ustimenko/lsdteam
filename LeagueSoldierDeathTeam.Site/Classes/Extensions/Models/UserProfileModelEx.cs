@@ -51,9 +51,12 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 				address.Append(string.Format("{0}, ", data.Street));
 
 			if (!string.IsNullOrWhiteSpace(data.HomeNumber))
-				address.Append(string.Format("д. {0}", data.HomeNumber));
+				address.Append(string.Format("д. {0},", data.HomeNumber));
 
-			model.Address = address.ToString();
+			var str = address.ToString().Trim();
+			var index = str.LastIndexOf(',');
+			if (index >= 0)
+				model.Address = str.Substring(0, index);
 
 			model.CreateDate = data.User.CreateDate;
 			model.LastActivity = data.User.LastActivity;
