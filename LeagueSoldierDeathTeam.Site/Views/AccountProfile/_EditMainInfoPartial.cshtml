@@ -38,12 +38,12 @@
 			@Html.LabelFor(model => model.SexId)
 			@Html.DropDownListFor(o => o.SexId, new SelectList(Model.Sexs, "Key", "Value"), "Не выбран")
 		</p>
-		<p class="clearfix">
+		@*<p class="clearfix">
 			<span class="btn btn-file">
-				Выбрать … <input type="file" name="PhotoUploadFile" id="PhotoUploadFile">
+				Выбрать … <input type="file" name="@Html.NameFor(m => m.PhotoUploadFile)" id="@Html.IdFor(m => m.PhotoUploadFile)">
 			</span>
 			@Html.TextBoxFor(m => m.PhotoUploadFileName, new Dictionary<string, object> { { "readonly", "readonly" }, { "placeholder", "Выберите фото" } })
-		</p>
+		</p>*@
 		<p class="clearfix">
 			<input type="button" value="Сохранить">
 		</p>

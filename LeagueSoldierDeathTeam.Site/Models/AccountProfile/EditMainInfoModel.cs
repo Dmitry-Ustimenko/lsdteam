@@ -35,10 +35,6 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 
 		public IDictionary<int, string> Sexs { get; set; }
 
-		public HttpPostedFileBase PhotoUploadFile { get; set; }
-
-		public HttpPostedFileBase PhotoUploadFileName { get; set; }
-
 		public EditMainInfoModel()
 		{
 			Sexs = SexEnum.Man.GetItems();
