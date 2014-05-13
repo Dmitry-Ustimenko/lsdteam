@@ -79,27 +79,32 @@
 				var $tabContentAdvance = $(site.profile.settings.elements.tabContentAdvance);
 				$tabContentAdvance.applyDatepicker();
 
-				//$tabContentAdvance.find("input[data-type]").each(function () {
-				//	var $this = $(this);
-				//	var bindElem = $tabContentAdvance.find("input[data-type=" + $this.data("bind") + "]");
+				$tabContentAdvance.find("input[data-type]").each(function () {
+					var $this = $(this);
+					var child = $tabContentAdvance.find("p[data-parent=" + $this.data("type") + "]");
+					var removeChilds = $tabContentAdvance.find("p[data-remove*=" + $this.data("type") + "]");
 
-				//	if ($this.val() == "")
-				//		$this.closest(".clearfix").hide();
-				//	else
-				//		$this.closest(".clearfix").show();
-				//});
+					if ($this.val() == "")
+						removeChilds.hide();
+					else
+						child.show();
+				});
 
-				//$tabContentAdvance.find("input[data-type]").on("change", function () {
-				//	var $this = $(this);
-				//	var bindElem = $tabContentAdvance.find("input[data-type=" + $this.data("bind") + "]");
+				$tabContentAdvance.find("input[data-type]").keyup(function () {
+					var $this = $(this);
+					var child = $tabContentAdvance.find("p[data-parent=" + $this.data("type") + "]");
+					var removeChilds = $tabContentAdvance.find("p[data-remove*=" + $this.data("type") + "]");
 
-				//	if ($this.val() == "") {
-				//		bindElem.closest(".clearfix").fadeOut("fast");
-				//		bindElem.val("");
-				//	} else {
-				//		bindElem.closest(".clearfix").fadeIn("");
-				//	}
-				//});
+					if ($this.val() == "") {
+						removeChilds.each(function () {
+							$(this).fadeOut("fast");
+							$(this).find("input[type=text]").val("");
+						});
+
+					} else {
+						child.fadeIn();
+					}
+				});
 
 				$tabContentAdvance.find("input[type=button]").on("click", function () {
 					var form = $tabContentAdvance.find("form");

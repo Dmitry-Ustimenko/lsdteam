@@ -24,19 +24,19 @@
 		</p>
 		<p class="clearfix">
 			@Html.LabelFor(model => model.Country)
-			@Html.TextBoxFor(model => model.Country, new { @placeholder = "Страна", @data_type = "country", @data_bind = "town" })
+			@Html.TextBoxFor(model => model.Country, new { @placeholder = "Страна", @data_type = "country" })
 		</p>
-		<p class="clearfix">
+		<p class="clearfix" data-remove="country" data-parent="country">
 			@Html.LabelFor(model => model.Town)
-			@Html.TextBoxFor(model => model.Town, new { @placeholder = "Населенный пункт", @data_type = "town", @data_bind = "street" })
+			@Html.TextBoxFor(model => model.Town, new { @placeholder = "Населенный пункт", @data_type = "town" })
 		</p>
-		<p class="clearfix">
+		<p class="clearfix" data-remove="country_town" data-parent="town">
 			@Html.LabelFor(model => model.Street)
-			@Html.TextBoxFor(model => model.Street, new { @placeholder = "Улица", @data_type = "street", @data_bind = "homenum" })
+			@Html.TextBoxFor(model => model.Street, new { @placeholder = "Улица", @data_type = "street" })
 		</p>
-		<p class="clearfix">
+		<p class="clearfix" data-remove="country_town_street" data-parent="street">
 			@Html.LabelFor(model => model.HomeNum)
-			@Html.TextBoxFor(model => model.HomeNum, new { @placeholder = "Номер дома", @data_type = "homenum" })
+			@Html.TextBoxFor(model => model.HomeNum, new { @placeholder = "Номер дома" })
 		</p>
 		<p class="clearfix">
 			<input type="button" value="Сохранить">
