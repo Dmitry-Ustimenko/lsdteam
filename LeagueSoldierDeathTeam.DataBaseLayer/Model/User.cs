@@ -30,6 +30,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public bool IsActive { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastActivity { get; set; }
+        public bool ShowEmail { get; set; }
     
         public virtual ICollection<UserActivateToken> UserActivateTokens { get; set; }
         public virtual ICollection<UserResetToken> UserResetTokens { get; set; }

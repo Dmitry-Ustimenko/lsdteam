@@ -211,9 +211,11 @@
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Mailer.cs" />
     <Compile Include="Classes\Parsers\Xml\XmlParser.cs" />
+    <Compile Include="Classes\Serialization\ObjectSerializer.cs" />
     <Compile Include="Classes\Services\AuthenticationService.cs" />
     <Compile Include="Classes\SessionKeys.cs" />
     <Compile Include="Classes\SessionManager.cs" />
+    <Compile Include="Classes\StaticResourse.cs" />
     <Compile Include="Classes\WebBuilder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountProfileController.cs" />
@@ -293,6 +295,7 @@
     <Content Include="Images\background_menu.png" />
     <Content Include="Images\dividing-line.png" />
     <Content Include="Images\icon_search.png" />
+    <Content Include="Images\sprite.png" />
     <Content Include="Images\team-name.png" />
     <Content Include="Images\test-image.png" />
     <Content Include="Images\vk-icon-active.png" />

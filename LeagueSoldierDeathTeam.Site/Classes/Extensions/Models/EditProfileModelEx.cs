@@ -17,7 +17,8 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 				UpdateUserEmail = data.User.Email,
 				LastName = data.LastName,
 				FirstName = data.FirstName,
-				SexId = data.SexId
+				SexId = data.SexId,
+				ShowEmail = data.User.ShowEmail
 			};
 
 			model.EditAdvanceInfoModel = new EditAdvanceInfoModel

@@ -21,6 +21,9 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 		[DisplayName("Email")]
 		public string UpdateUserEmail { get; set; }
 
+		[DisplayName("Показывать Email")]
+		public bool ShowEmail { get; set; }
+
 		[DisplayName("Имя")]
 		public string FirstName { get; set; }
 

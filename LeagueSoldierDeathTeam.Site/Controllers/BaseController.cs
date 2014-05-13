@@ -46,23 +46,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			_accountService = serviceFactory.CreateAccountService();
 		}
 
-		public JsonResult GetBackgroundFiles()
-		{
-			var backgrounds = new List<BackgroundModel>();
-			var path = string.Concat(AppDomain.CurrentDomain.BaseDirectory, Constants.BackgroundDirectoryPath);
-
-			if (Directory.Exists(path))
-			{
-				var images = Directory.GetFiles(path, "*.jpg");
-				backgrounds.AddRange(images.Select(image => new BackgroundModel
-				{
-					Src = string.Concat(Constants.BackgroundDirectoryPath, image.Substring(image.LastIndexOf('\\')))
-				}));
-			}
-
-			return Json(backgrounds, JsonRequestBehavior.AllowGet);
-		}
-
 		protected override void Dispose(bool disposing)
 		{
 			base.Dispose(disposing);

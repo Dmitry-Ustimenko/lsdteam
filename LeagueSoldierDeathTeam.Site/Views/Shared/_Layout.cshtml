@@ -46,12 +46,16 @@
 	</div>
 	@DeclarativeHelper.Control.RenderAlert()
 	<script type="text/javascript">
+		var array = @Html.Raw(StaticResourse.GetBackgroundImages())
+
 		$(document).ready(function () {
 			site.layout.init({
 				urls: {
 					login: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Login(null)))',
-					register: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Register(null)))',
-					backgroundImages: '@(WebBuilder.BuildActionUrl<BaseController>(m => m.GetBackgroundFiles()))'
+					register: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Register(null)))'
+				},
+				vars: {
+					backgrounds: array
 				}
 			});
 		});

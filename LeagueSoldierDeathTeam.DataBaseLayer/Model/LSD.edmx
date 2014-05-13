@@ -30,6 +30,7 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastActivity" Type="datetime" Nullable="false" />
+          <Property Name="ShowEmail" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="UserActivateToken">
           <Key>
@@ -296,6 +297,7 @@
           <NavigationProperty Name="UserExternalInfoes" Relationship="LSDDataModel.FK_UserExternalInfo_User" FromRole="User" ToRole="UserExternalInfo" />
           <NavigationProperty Name="UserRoles" Relationship="LSDDataModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
           <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
+          <Property Name="ShowEmail" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="UserActivateToken">
           <Key>
@@ -482,6 +484,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="LSDDataModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ShowEmail" ColumnName="ShowEmail" />
                 <ScalarProperty Name="LastActivity" ColumnName="LastActivity" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />

@@ -23,6 +23,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public UserExternalInfoData UserExternalInfo { get; set; }
 		public IEnumerable<RoleData> Roles { get; set; }
 
+		public bool ShowEmail { get; set; }
+
 		public UserData()
 		{
 			CreateDate = DateTime.Today;
