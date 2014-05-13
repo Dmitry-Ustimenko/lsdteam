@@ -14,6 +14,18 @@
 		<div class="profile-left-bar">
 			<div class="user-photo">
 				<img src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.PhotoPath) ? Model.PhotoPath : Constants.DefaultPhotoPath)">
+				<span class="edit-icon"></span>
+			</div>
+			<div class="user-upload-photo">
+				<div class="file-container">
+					<span class="btn-file">
+						<input type="file" name="photoUploadFile" id="PhotoUploadFile">
+					</span>
+					<input class="file-input" id="PhotoUploadFileName" type="text" readonly="readonly" placeholder="Выберите фото" />
+				</div>
+				<div class="file-submit">
+					<input type="submit" class="button" value="Upload" />
+				</div>
 			</div>
 			<div class="user-buttons">
 				<a href="javascript:void(0);">Личные сообщения</a>
@@ -136,3 +148,9 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		site.profile.initProfileInfo.init();
+	});
+</script>

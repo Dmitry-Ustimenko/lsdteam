@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
@@ -29,6 +30,12 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			var model = new UserProfileModel { UserId = userId };
 			FillUserProfileModel(model);
 			return View(model);
+		}
+
+		[HttpPost]
+		public ActionResult EditPhoto(int userId, HttpPostedFileBase photoUploadFile)
+		{
+			return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(userId));
 		}
 
 		#endregion

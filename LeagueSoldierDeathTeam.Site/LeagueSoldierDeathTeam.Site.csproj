@@ -270,6 +270,7 @@
     <Content Include="Images\Background\bf2.jpg" />
     <Content Include="Images\Background\bf3.jpg" />
     <Content Include="Images\Background\bf4.jpg" />
+    <Content Include="Images\browse.png" />
     <Content Include="Images\classic-loader.gif" />
     <Content Include="Images\classic-map.png" />
     <Content Include="Images\d03.png" />
@@ -303,6 +304,7 @@
     <Content Include="Images\vk-icon-active.png" />
     <Content Include="Images\vk-icon.png" />
     <Content Include="Images\vk-register.png" />
+    <Content Include="Images\writing_file.png" />
     <Content Include="Scripts\Plugins\bootstrap-datepicker.js" />
     <Content Include="Scripts\Plugins\bootstrap-datepicker.ru.js" />
     <Content Include="Scripts\Plugins\bootstrap.js" />
