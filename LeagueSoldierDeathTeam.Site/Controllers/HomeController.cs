@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
+using LeagueSoldierDeathTeam.Site.Classes;
+using LeagueSoldierDeathTeam.Site.Models.Home;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
@@ -9,9 +11,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			: base(serviceFactory)
 		{ }
 
+		#region Actions
+
 		public ActionResult Index()
 		{
-			return View();
+			return View(new IndexModel());
 		}
 
 		[Route("forum")]
@@ -19,5 +23,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			return View();
 		}
+
+		#endregion
+
+		#region Internal Implementation
+
+		#endregion
 	}
 }
