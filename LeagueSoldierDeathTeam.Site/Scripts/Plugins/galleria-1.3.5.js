@@ -1309,7 +1309,7 @@ Galleria = function() {
             carousel.width = self.$( 'thumbnails-list' ).width();
             carousel.setClasses();
 
-            self.$( 'thumbnails-container' ).toggleClass( 'galleria-carousel', true );
+            self.$('thumbnails-container').toggleClass('galleria-carousel', self._options.showThumbNav ? true : w > carousel.width);
 
             // one extra calculation
             carousel.width = self.$( 'thumbnails-list' ).width();
@@ -2600,6 +2600,7 @@ Galleria.prototype = {
             showInfo: true,
             showCounter: true,
             showImagenav: true,
+        	showThumbNav: false,
             swipe: 'auto', // 1.2.4 -> revised in 1.3 -> changed type in 1.3.5
             thumbCrop: true,
             thumbEventType: 'click:fast',
