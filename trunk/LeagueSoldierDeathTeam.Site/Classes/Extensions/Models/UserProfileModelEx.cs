@@ -22,6 +22,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			model.FirstName = data.FirstName;
 			model.PhotoPath = data.PhotoPath;
 			model.SexName = data.SexName;
+			model.ShowEmail = data.User.ShowEmail;
 
 			if (data.DateBirth.HasValue)
 			{

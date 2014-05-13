@@ -131,6 +131,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 			user.UserName = data.UserName;
 			user.Email = data.UserEmail;
+			user.ShowEmail = data.ShowUserEmail;
 
 			var entityUserInfo = _userInfoRepository.Query(o => o.UserId == data.UserId).SingleOrDefault();
 
@@ -412,6 +413,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				Id = o.Id,
 				UserName = o.UserName,
 				Email = o.Email,
+				ShowEmail = o.ShowEmail,
 				IsActive = o.IsActive,
 				Password = o.Password,
 				CreateDate = o.CreateDate,

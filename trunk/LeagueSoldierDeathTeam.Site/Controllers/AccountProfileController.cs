@@ -56,7 +56,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 					UserEmail = model.UpdateUserEmail,
 					FirstName = model.FirstName,
 					LastName = model.LastName,
-					SexId = model.SexId
+					SexId = model.SexId,
+					ShowUserEmail = model.ShowEmail
 				};
 
 				Execute(() => _accountService.UpdateMainInfo(data));

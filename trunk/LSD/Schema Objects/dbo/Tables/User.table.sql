@@ -7,7 +7,8 @@
 	[IsActive]		bit				not null,
 	[CreateDate] DATETIME NOT NULL, 
     [LastActivity] DATETIME NOT NULL
-    constraint [PK_dboUser] primary key clustered ([Id])
+    constraint [PK_dboUser] primary key clustered ([Id]), 
+    [ShowEmail] BIT NOT NULL default 0
 );
 
 go

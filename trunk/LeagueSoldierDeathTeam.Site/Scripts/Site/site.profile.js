@@ -38,11 +38,13 @@
 						$tabContentChangePassword.loadData(site.profile.settings.urls.changePassword, $.fn.serializeParams(form),
 							function () {
 								site.profile.initChangePassword();
+								$.fn.initCheckbox();
 								$.fn.alertMessage("Смена пароля", "Пароль был успешно изменен.");
 							},
 							function () {
 								$.fn.initValidationSummary($tabContentChangePassword);
 								site.profile.initChangePassword();
+								$.fn.initCheckbox();
 							});
 					}
 				});
@@ -61,11 +63,13 @@
 						$tabContentMain.loadData(site.profile.settings.urls.editMainInfo, $.fn.serializeParams(form),
 							function () {
 								site.profile.initContentMain();
+								$.fn.initCheckbox();
 								$.fn.alertMessage("Обновление профиля", "Основные данные были успешно обновлены.");
 							},
 							function () {
 								$.fn.initValidationSummary($tabContentMain);
 								site.profile.initContentMain();
+								$.fn.initCheckbox();
 							});
 					}
 				});
@@ -75,27 +79,27 @@
 				var $tabContentAdvance = $(site.profile.settings.elements.tabContentAdvance);
 				$tabContentAdvance.applyDatepicker();
 
-				$tabContentAdvance.find("input[data-type]").each(function () {
-					var $this = $(this);
-					var bindElem = $tabContentAdvance.find("input[data-type=" + $this.data("bind") + "]");
+				//$tabContentAdvance.find("input[data-type]").each(function () {
+				//	var $this = $(this);
+				//	var bindElem = $tabContentAdvance.find("input[data-type=" + $this.data("bind") + "]");
 
-					if ($this.val() == "")
-						$this.closest(".clearfix").hide();
-					else
-						$this.closest(".clearfix").show();
-				});
+				//	if ($this.val() == "")
+				//		$this.closest(".clearfix").hide();
+				//	else
+				//		$this.closest(".clearfix").show();
+				//});
 
-				$tabContentAdvance.find("input[data-type]").on("change", function () {
-					var $this = $(this);
-					var bindElem = $tabContentAdvance.find("input[data-type=" + $this.data("bind") + "]");
+				//$tabContentAdvance.find("input[data-type]").on("change", function () {
+				//	var $this = $(this);
+				//	var bindElem = $tabContentAdvance.find("input[data-type=" + $this.data("bind") + "]");
 
-					if ($this.val() == "") {
-						bindElem.closest(".clearfix").fadeOut("fast");
-						bindElem.val("");
-					} else {
-						bindElem.closest(".clearfix").fadeIn("");
-					}
-				});
+				//	if ($this.val() == "") {
+				//		bindElem.closest(".clearfix").fadeOut("fast");
+				//		bindElem.val("");
+				//	} else {
+				//		bindElem.closest(".clearfix").fadeIn("");
+				//	}
+				//});
 
 				$tabContentAdvance.find("input[type=button]").on("click", function () {
 					var form = $tabContentAdvance.find("form");
@@ -104,10 +108,12 @@
 							function () {
 								site.profile.initContentAdvance();
 								$.fn.alertMessage("Обновление профиля", "Дополнительные данные были успешно обновлены.");
+								$.fn.initCheckbox();
 							},
 							function () {
 								$.fn.initValidationSummary($tabContentAdvance);
 								site.profile.initContentAdvance();
+								$.fn.initCheckbox();
 							});
 					}
 				});
@@ -122,10 +128,12 @@
 							function () {
 								site.profile.initContentBind();
 								$.fn.alertMessage("Обновление профиля", "Связные данные были успешно обновлены.");
+								$.fn.initCheckbox();
 							},
 							function () {
 								$.fn.initValidationSummary($tabContentBind);
 								site.profile.initContentBind();
+								$.fn.initCheckbox();
 							});
 					}
 				});

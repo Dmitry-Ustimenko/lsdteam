@@ -4,8 +4,7 @@
 		settings: {
 			urls: {
 				login: '',
-				register: '',
-				backgroundImages: ''
+				register: ''
 			},
 			vars: {
 				backgrounds: null
@@ -14,7 +13,8 @@
 				login: '#login',
 				register: '#register',
 				loginTab: '#login-tab',
-				registerTab: '#register-tab'
+				registerTab: '#register-tab',
+				checkbox: 'input[type=checkbox]',
 			}
 		},
 
@@ -23,6 +23,7 @@
 			var $loginForm = $(site.layout.settings.elements.login);
 			var $registerForm = $(site.layout.settings.elements.register);
 
+			$.fn.initCheckbox();
 			site.layout.backgroundSlider();
 			site.layout.clearSocialHash();
 			site.layout.topPage();
@@ -33,35 +34,29 @@
 		},
 
 		backgroundSlider: function () {
-			$(document).ajaxStart($.unblockUI);
-			site.ajax.post(site.layout.settings.urls.backgroundImages, null, function (data) {
-				var backgrounds = [];
-				var json = shuffle($.parseJSON(data));
+			var backgrounds = [];
+			var json = shuffle(site.layout.settings.vars.backgrounds);
 
-				for (var i = 0; i < json.length; i++) {
-					if (i == 0)
-						backgrounds.push({ src: json[i]["Src"], fade: 500 });
-					else
-						backgrounds.push({ src: json[i]["Src"], fade: 5000 });
-				}
-				if (json.length)
-					backgrounds.push({ src: json[0]["Src"], fade: 5000 });
+			for (var i = 0; i < json.length; i++) {
+				if (i == 0)
+					backgrounds.push({ src: json[i]["Src"], fade: 500 });
+				else
+					backgrounds.push({ src: json[i]["Src"], fade: 5000 });
+			}
 
-				var isStart = true;
-				$('body').bind('vegaswalk', function (e, bg, step) {
-					if (step == 0 && !isStart)
-						$.vegas("next");
-					isStart = false;
-				});
-
-				$.vegas('slideshow', {
-					delay: 10000,
-					backgrounds: backgrounds
-				})('overlay', {
-					src: '/Images/13.png'
-				});
+			var isStart = true;
+			$('body').bind('vegaswalk', function (e, bg, step) {
+				if (step == 0 && !isStart)
+					$.vegas("next");
+				isStart = false;
 			});
-			$(document).ajaxStart($.blockUI);
+
+			$.vegas('slideshow', {
+				delay: 10000,
+				backgrounds: backgrounds
+			})('overlay', {
+				src: '/Images/13.png'
+			});
 
 			function shuffle(array) {
 				var temp, index;

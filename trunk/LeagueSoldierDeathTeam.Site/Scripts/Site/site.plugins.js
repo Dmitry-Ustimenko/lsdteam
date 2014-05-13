@@ -18,6 +18,22 @@
 })(jQuery);
 
 (function ($) {
+	$.fn.initCheckbox = function () {
+		$(site.layout.settings.elements.checkbox).each(function () {
+			var $this = $(this);
+			if ($this.is(":checked"))
+				$this.parent().addClass('checked');
+			$this.off("click").on("click", function () {
+				if ($(this).is(":checked"))
+					$(this).parent().addClass('checked');
+				else
+					$(this).parent().removeClass('checked');
+			});
+		});
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.applyDatepicker = function () {
 		var container = $(this);
 

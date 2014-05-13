@@ -24,5 +24,6 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 		public string UserRoles { get; set; }
 		public string SexName { get; set; }
 		public string AboutMe { get; set; }
+		public bool ShowEmail { get; set; }
 	}
 }

@@ -14,8 +14,16 @@
 			@Html.LabelFor(model => model.UpdateUserName)
 			@Html.TextBoxFor(model => model.UpdateUserName, new { @placeholder = "Имя на сайте" })
 		</p>
-		<p class="clearfix">
+		<p class="clearfix checkbox-container">
 			@Html.LabelFor(model => model.UpdateUserEmail)
+			<span class="checkbox">
+				<span class="checker">
+					<span>
+						@Html.CheckBoxFor(m => m.ShowEmail)
+					</span>
+				</span>
+				<span>Показывать Email</span>
+			</span>
 			@Html.TextBoxFor(model => model.UpdateUserEmail, new { @placeholder = "Электронная почта" })
 		</p>
 		<p class="clearfix">
