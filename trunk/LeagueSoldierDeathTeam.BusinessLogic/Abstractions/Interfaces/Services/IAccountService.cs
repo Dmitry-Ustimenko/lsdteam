@@ -17,6 +17,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 
 		void UpdateLastActivity(int userId);
 
+		void UpdateUserPhoto(int userId, string photoPath);
+
+		void DeleteUserPhoto(int userId);
+
 		UserData GetUser(string email);
 
 		UserData GetUser(int userExternalInfoId);

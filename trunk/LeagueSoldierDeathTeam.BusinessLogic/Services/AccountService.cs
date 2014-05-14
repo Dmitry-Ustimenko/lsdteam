@@ -165,6 +165,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			userInfo.Street = data.Street;
 			userInfo.HomeNumber = data.HomeNumber;
 
+			if (entityUserInfo == null)
+				_userInfoRepository.Add(userInfo);
+
 			UnitOfWork.Commit();
 		}
 
@@ -183,6 +186,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			userInfo.BattleLog = data.BattleLog;
 			userInfo.Steam = data.Steam;
 
+			if (entityUserInfo == null)
+				_userInfoRepository.Add(userInfo);
+
 			UnitOfWork.Commit();
 		}
 
@@ -193,6 +199,34 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				throw new ArgumentNullException(string.Format("Данного пользователя не существует."));
 
 			user.LastActivity = DateTime.Now;
+
+			UnitOfWork.Commit();
+		}
+
+		void IAccountService.UpdateUserPhoto(int userId, string photoPath)
+		{
+			var user = _userRepository.Query(o => o.Id == userId).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("Данного пользователя не существует."));
+
+			var entityUserInfo = _userInfoRepository.Query(o => o.UserId == userId).SingleOrDefault();
+			var userInfo = entityUserInfo ?? new UserInfo { User = user };
+
+			userInfo.PhotoPath = photoPath;
+
+			if (entityUserInfo == null)
+				_userInfoRepository.Add(userInfo);
+
+			UnitOfWork.Commit();
+		}
+
+		void IAccountService.DeleteUserPhoto(int userId)
+		{
+			var userInfo = _userInfoRepository.Query(o => o.UserId == userId).SingleOrDefault();
+			if (userInfo == null)
+				throw new ArgumentNullException(string.Format("Данные о пользователе отсутсвуют."));
+
+			userInfo.PhotoPath = string.Empty;
 
 			UnitOfWork.Commit();
 		}
