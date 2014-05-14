@@ -39,6 +39,14 @@
 						else
 							$userUploadPhoto.fadeOut();
 					});
+
+					$(".delete-icon").on("click", function () {
+						var answer = confirm("Вы действительно хотите удалить фото?");
+						if (answer) {
+							var form = $(this).closest("form");
+							form.submit();
+						}
+					});
 				}
 			},
 
