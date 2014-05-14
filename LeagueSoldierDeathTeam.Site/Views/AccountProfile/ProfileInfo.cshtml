@@ -5,34 +5,58 @@
 @{
 	ViewBag.Title = "Профиль пользователя";
 	var currentUser = AppContext.Current.CurrentUser;
+	var isAdminOrIsMe = Model.UserId == currentUser.Id || currentUser.IsAdmin;
 }
 <div class="transparent-border">
 	<div class="simple-page-body section-shadow">
 		<div class="section-module-header">
-			<div class="module-title">Профиль пользователя - @Model.UserName</div>
+			<div class="module-title">Профиль пользователя - <span class="header-name">@Model.UserName</span></div>
 		</div>
 		<div class="profile-left-bar">
 			<div class="user-photo">
-				<img src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.PhotoPath) ? Model.PhotoPath : Constants.DefaultPhotoPath)">
-				<span class="edit-icon"></span>
-			</div>
-			<div class="user-upload-photo">
-				<div class="file-container">
-					<span class="btn-file">
-						<input type="file" name="photoUploadFile" id="PhotoUploadFile">
-					</span>
-					<input class="file-input" id="PhotoUploadFileName" type="text" readonly="readonly" placeholder="Выберите фото" />
-				</div>
-				<div class="file-submit">
-					<input type="submit" class="button" value="Upload" />
-				</div>
-			</div>
-			<div class="user-buttons">
-				<a href="javascript:void(0);">Личные сообщения</a>
-				<a href="javascript:void(0);">Мои закладки</a>
-				@if (Model.UserId == currentUser.Id || currentUser.IsAdmin)
+				<img src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.PhotoPath) ? Model.PhotoPath : Constants.DefaultPhotoPath)" alt="Фото">
+				@if (isAdminOrIsMe)
 				{
+					if (!string.IsNullOrWhiteSpace(Model.PhotoPath))
+					{
+						using (Html.BeginForm("DeletePhoto", "AccountProfile", FormMethod.Post))
+						{
+							<span class="delete-icon"></span>
+							@Html.HiddenFor(m => m.UserId)
+						}
+					}
+					<span class="edit-icon"></span>
+				}
+			</div>
+			@if (isAdminOrIsMe)
+			{
+				<div class="user-upload-photo hide">
+					@using (Html.BeginForm("EditPhoto", "AccountProfile", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+					{
+						@Html.ValidationSummary()
+						<div class="file-container">
+							<span class="btn-file">
+								<input type="file" name="photoUploadFile" id="PhotoUploadFile" data-val-required="Файл не выбран" data-val="true" accept="image/x-png, image/gif, image/jpeg">
+							</span>
+							<input class="file-input" id="PhotoUploadFileName" type="text" readonly="readonly" placeholder="Выберите фото" />
+						</div>
+						<div class="file-submit">
+							<input type="submit" class="button" value="Upload" />
+						</div>
+						@Html.HiddenFor(m => m.UserId)
+					}
+				</div>
+			}
+			<div class="user-buttons">
+				@if (isAdminOrIsMe)
+				{
+					<a href="javascript:void(0);">Личные сообщения</a>
+					<a href="javascript:void(0);">Мои закладки</a>
 					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(Model.UserId)))">Редактировать профиль</a>
+				}
+				else
+				{
+					<a href="javascript:void(0);">Отправить ЛС</a>
 				}
 			</div>
 		</div>
@@ -51,7 +75,7 @@
 				<tr>
 					<td>Email:</td>
 					<td>
-						@if (Model.UserId == currentUser.Id || currentUser.IsAdmin || Model.ShowEmail)
+						@if (isAdminOrIsMe || Model.ShowEmail)
 						{
 							<a href="@Html.Raw(string.Concat("mailto:", Model.UserEmail))">@Model.UserEmail</a>
 						}

@@ -182,6 +182,10 @@ a {
 	position: absolute;
 }
 
+.header-name {
+	text-transform: none;
+}
+
 .wrapper {
 	width: 1020px;
 	margin: 0 auto;
@@ -1042,23 +1046,32 @@ a {
 	margin-right: 7px;
 }
 
-.edit-icon {
-	width: 16px;
-	height: 19px;
-	background: url(/Images/writing_file.png) no-repeat top center;
+.edit-icon, .delete-icon {
 	position: absolute;
 	bottom: 2px;
-	right: 2px;
 	display: inline-block;
 	opacity: 0.9;
+	height: 19px;
 }
 
-	.edit-icon:hover {
+.edit-icon {
+	width: 16px;
+	background: url(/Images/writing_file.png) no-repeat top center;
+	right: 2px;
+}
+
+.delete-icon {
+	width: 19px;
+	background: url(/Images/delete-icon.png) no-repeat top center;
+	left: 2px;
+}
+
+	.edit-icon:hover, .delete-icon:hover {
 		cursor: pointer;
 		opacity: 1;
 	}
 
-	.edit-icon:active {
+	.edit-icon:active, .delete-icon:active {
 		box-shadow: inset 2px 2px 2px rgba(0,0,0,0.1);
 	}
 
@@ -1099,8 +1112,8 @@ a {
 	.file-submit input[type=submit] {
 		border-radius: 4px 4px 4px 4px !important;
 		width: 50%;
-		background: #3E8FD5;
-		border: 1px solid #3E8FD5;
+		background: #B31919;
+		border: 1px solid #B31919;
 	}
 
 .profile-tabs .btn {
@@ -1221,6 +1234,8 @@ a {
 		-webkit-box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
 		box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
 		position: relative;
+		z-index: 9;
+		background-color: white;
 	}
 
 		.profile-left-bar .user-photo img {
@@ -1239,7 +1254,28 @@ a {
 		width: 214px;
 		border: 1px solid #CCC;
 		margin-left: -7px;
+		z-index: 10;
+		border-radius: 1px;
+		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+		background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));
+		background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+		background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+		background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+		background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+		-moz-box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
+		-webkit-box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
+		box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
+		margin-top: 1px;
 	}
+
+		.profile-left-bar .user-upload-photo .validation-summary-errors {
+			margin: 0 7px 10px 7px;
+			color: #B31919;
+			text-align: center;
+			background-color: rgba(100, 17, 17, 0.2);
+		}
 
 	.profile-left-bar .user-buttons {
 		margin-top: 20px;

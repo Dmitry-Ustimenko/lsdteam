@@ -26,6 +26,19 @@
 					$(site.profile.settings.elements.photoUploadFile).on('change', function () {
 						$(site.profile.settings.elements.photoUploadFileName).val($(this).val().replace(/\\/g, '/').replace(/.*\//, ''));
 					});
+
+					site.profile.initProfileInfo.initUploadContainer();
+				},
+
+				initUploadContainer: function () {
+					$(".edit-icon").on("click", function () {
+						var $userUploadPhoto = $(".user-upload-photo");
+
+						if ($userUploadPhoto.is(":hidden"))
+							$userUploadPhoto.fadeIn();
+						else
+							$userUploadPhoto.fadeOut();
+					});
 				}
 			},
 

@@ -12,6 +12,10 @@
 
 		public const string SliderDirectoryPath = "\\Images\\Slider";
 
+		public const string PhotoDirectoryPath = "/Images/Photos/";
+
 		public const string DateFormat = "dd.MM.yyyy";
+
+		public static readonly string[] AcceptImage = { "image/png", "image/jpeg", "image/jpg", "image/gif" };
 	}
 }

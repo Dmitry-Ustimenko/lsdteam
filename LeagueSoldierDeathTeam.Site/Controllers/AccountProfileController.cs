@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.Site.Classes;
+using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Models.AccountProfile;
 
@@ -35,6 +40,64 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[HttpPost]
 		public ActionResult EditPhoto(int userId, HttpPostedFileBase photoUploadFile)
 		{
+			if (photoUploadFile != null && photoUploadFile.FileName != null)
+			{
+				try
+				{
+					if (photoUploadFile.ContentLength > 100000)
+						ModelState.AddModelError(string.Empty, "Размер файла не выше 100кб");
+
+					if (!Constants.AcceptImage.Contains(photoUploadFile.ContentType))
+						ModelState.AddModelError(string.Empty, "Форматы фото '*.jpg', '*.jpeg', '*.png', '*.gif'");
+
+					var image = Image.FromStream(photoUploadFile.InputStream);
+					if (image.Width > 200 || image.Height > 200)
+						ModelState.AddModelError(string.Empty, "Разрешение фото не должно превышать 200х200");
+
+					if (ModelIsValid)
+					{
+						var userInfo = Execute(() => _accountService.GetUserProfile(userId));
+						var oldPath = string.Concat(AppDomain.CurrentDomain.BaseDirectory, userInfo.PhotoPath);
+
+						var fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(photoUploadFile.FileName)).ToLower();
+						var path = Path.Combine(Server.MapPath(Constants.PhotoDirectoryPath), Path.GetFileName(fileName));
+						while (System.IO.File.Exists(path))
+							fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(photoUploadFile.FileName)).ToLower();
+
+						photoUploadFile.SaveAs(path);
+
+						Execute(() => _accountService.UpdateUserPhoto(userId, string.Concat(Constants.PhotoDirectoryPath, fileName)));
+
+						if (ModelIsValid)
+						{
+							if (System.IO.File.Exists(oldPath))
+								System.IO.File.Delete(oldPath);
+
+							return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(userId));
+						}
+					}
+				}
+				catch (Exception)
+				{
+					ModelState.AddModelError(string.Empty, "Ошибка при сохранении файла");
+				}
+			}
+			else
+				ModelState.AddModelError(string.Empty, "Файл не выбран");
+
+			return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(userId));
+		}
+
+		[HttpPost]
+		public ActionResult DeletePhoto(int userId)
+		{
+			var userInfo = Execute(() => _accountService.GetUserProfile(userId));
+			var path = string.Concat(AppDomain.CurrentDomain.BaseDirectory, userInfo.PhotoPath);
+
+			Execute(() => _accountService.DeleteUserPhoto(userId));
+
+			if (ModelIsValid && System.IO.File.Exists(path))
+				System.IO.File.Delete(path);
 			return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(userId));
 		}
 
