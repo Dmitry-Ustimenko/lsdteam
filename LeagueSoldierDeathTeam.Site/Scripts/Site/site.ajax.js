@@ -81,8 +81,14 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 					} else
 						alertMessage("Error", "Unauthorized");
 				},
-				error: function (jqxhr, textStatus, errorThrown) {
-					var error = "dsda";
+				error: function (jqxhr) {
+					window.status = "Done";
+					document.body.style.cursor = "default";
+
+					if (jqxhr.status == 404)
+						alertMessage("Ошибка", "Страница не найдена.");
+					else
+						alertMessage("Ошибка", "При обработке запроса произошла ошибка.");
 				}
 			});
 

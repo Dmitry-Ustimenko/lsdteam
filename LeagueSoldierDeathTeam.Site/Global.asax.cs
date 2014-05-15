@@ -50,8 +50,14 @@ namespace LeagueSoldierDeathTeam.Site
 
 			var httpError = exception as HttpException;
 			if (httpError != null && httpError.GetHttpCode() == 404)
+			{
 				exceptionId = "PageNotFound";
+				Response.StatusCode = httpError.GetHttpCode();
+			}
+			else
+				Response.StatusCode = 500;
 
+			Response.Status = "error";
 			Response.Redirect(WebBuilder.BuildActionUrl<ErrorController>(o => o.Error(exceptionId)), false);
 		}
 	}
