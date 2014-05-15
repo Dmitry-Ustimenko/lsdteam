@@ -23,14 +23,25 @@
 
 			initProfileInfo: {
 				init: function () {
-					$(site.profile.settings.elements.photoUploadFile).on('change', function () {
-						$(site.profile.settings.elements.photoUploadFileName).val($(this).val().replace(/\\/g, '/').replace(/.*\//, ''));
-					});
-
 					site.profile.initProfileInfo.initUploadContainer();
 				},
 
 				initUploadContainer: function () {
+					var $clearInput = $(".clear-input");
+					var $photoUploadFile = $(site.profile.settings.elements.photoUploadFile);
+					var $photoUploadFileName = $(site.profile.settings.elements.photoUploadFileName);
+
+					$clearInput.off("click").on("click", function () {
+						$photoUploadFileName.val("");
+						$photoUploadFile.val("");
+						$clearInput.hide();
+					});
+
+					$photoUploadFile.on('change', function () {
+						$photoUploadFileName.val($(this).val().replace(/\\/g, '/').replace(/.*\//, ''));
+						$clearInput.show();
+					});
+
 					var $userUploadPhoto = $(".user-upload-photo");
 					if ($userUploadPhoto.find(".validation-summary-errors").length)
 						$userUploadPhoto.fadeIn();
