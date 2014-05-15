@@ -234,12 +234,14 @@
 			}
 			catch (e) {
 				$(target).html(data);
+
 				var form = target.find("form");
 				if (form != undefined) {
 					$(form).removeData("validator");
 					$(form).removeData("unobtrusiveValidation");
 					$.validator.unobtrusive.parse($(form));
 				}
+
 				if ($(data).find("div.validation-summary-errors").length > 0) {
 					if (typeof (callbackError) == 'function')
 						callbackError();
