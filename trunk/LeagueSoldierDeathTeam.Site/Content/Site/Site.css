@@ -534,12 +534,6 @@ a {
 			border-color: rgba(0,0,0,0.9);
 		}
 
-
-	.login-form input[type=checkbox] {
-		margin-left: 10px;
-		vertical-align: middle;
-	}
-
 	.login-form label[for=RememberMe] {
 		width: auto;
 		float: none;
@@ -748,7 +742,8 @@ a {
 
 	.simple-page-body .form {
 		position: relative;
-		margin: 30px auto;
+		margin: 30px auto 0 auto;
+		padding-bottom: 30px;
 		width: 400px;
 	}
 
@@ -838,7 +833,7 @@ a {
 	.simple-page-body .form .checkbox {
 		float: right;
 		width: 200px;
-		padding: 7px 5px;
+		padding: 7px 0;
 	}
 
 	.simple-page-body .form .checkbox-container {
@@ -1048,7 +1043,7 @@ a {
 
 .edit-icon, .delete-icon {
 	position: absolute;
-	bottom: 2px;
+	bottom: 3px;
 	display: inline-block;
 	opacity: 0.9;
 	height: 19px;
@@ -1057,13 +1052,13 @@ a {
 .edit-icon {
 	width: 16px;
 	background: url(/Images/writing_file.png) no-repeat top center;
-	right: 2px;
+	right: 3px;
 }
 
 .delete-icon {
 	width: 19px;
 	background: url(/Images/delete-icon.png) no-repeat top center;
-	left: 2px;
+	left: 3px;
 }
 
 	.edit-icon:hover, .delete-icon:hover {
@@ -1226,7 +1221,6 @@ a {
 	.profile-left-bar .user-photo {
 		width: 200px;
 		height: 200px;
-		border: 1px #e0e0e0 solid;
 		border-radius: 1px;
 		-moz-border-radius: 1px;
 		-webkit-border-radius: 1px;
@@ -1522,75 +1516,76 @@ input[type=checkbox] {
 }
 
 .checker {
-	width: 19px;
-	height: 19px;
+	width: 15px;
+	height: 15px;
 }
 
 	.checker input {
-		width: 19px;
-		height: 19px;
+		width: 15px;
+		height: 15px;
 	}
 
 	.checker span {
-		background-position: 0px -260px;
-		height: 19px;
-		width: 19px;
+		background-position: -2px -262px;
+		height: 15px;
+		width: 15px;
 	}
 
 	.checker:active span,
 	.checker.active span {
-		background-position: -19px -260px;
+		background-position: -21px -262px;
 	}
 
 	.checker.focus span,
 	.checker:hover span {
-		background-position: -38px -260px;
+		background-position: -40px -262px;
 	}
 
 	.checker.focus:active span,
 	.checker:active:hover span,
 	.checker.active:hover span,
 	.checker.focus.active span {
-		background-position: -57px -260px;
+		background-position: -59px -262px;
 	}
 
 	.checker span.checked {
-		background-position: -76px -260px;
+		background-position: -78px -262px;
 	}
 
 	.checker:active span.checked,
 	.checker.active span.checked {
-		background-position: -95px -260px;
+		background-position: -97px -262px;
 	}
 
 	.checker.focus span.checked,
 	.checker:hover span.checked {
-		background-position: -114px -260px;
+		background-position: -116px -262px;
 	}
 
 	.checker.focus:active span.checked,
 	.checker:hover:active span.checked,
 	.checker.active:hover span.checked,
 	.checker.active.focus span.checked {
-		background-position: -133px -260px;
+		background-position: -135px -262px;
 	}
 
 	.checker.disabled span,
 	.checker.disabled:active span,
 	.checker.disabled.active span {
-		background-position: -152px -260px;
+		background-position: -154px -262px;
 	}
 
 		.checker.disabled span.checked,
 		.checker.disabled:active span.checked,
 		.checker.disabled.active span.checked {
-			background-position: -171px -260px;
+			background-position: -173px -262px;
 		}
 
 .checker {
-	margin-right: 5px;
+	margin-right: 3px;
 	margin-top: -3px;
 	margin-bottom: 0 !important;
+	margin-left: 10px;
 }
 
 	.checker:focus, .checker span:focus, .checker span input[type=checkbox]:focus {

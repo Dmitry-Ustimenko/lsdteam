@@ -18,8 +18,12 @@
 		@Html.PasswordFor(m => m.Password, new { @placeholder = "Введите пароль" })
 	</p>
 	<p class="clearfix">
-		@Html.CheckBoxFor(m => m.RememberMe)
-		@Html.LabelFor(m => m.RememberMe)
+		<span class="checker">
+			<span>
+				@Html.CheckBoxFor(m => m.RememberMe)
+			</span>
+		</span>
+		<span>@Html.LabelFor(m => m.RememberMe)</span>
 	</p>
 	<p class="clearfix">
 		<input type="button" value="Войти">

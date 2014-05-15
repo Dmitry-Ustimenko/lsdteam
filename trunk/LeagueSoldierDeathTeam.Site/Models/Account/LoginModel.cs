@@ -6,7 +6,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.Account
 	public class LoginModel
 	{
 		[Required(ErrorMessage = "Поле 'Логин' не заполнено.")]
-		[DisplayName("Логин")]
+		[DisplayName("Email")]
 		public string Email { get; set; }
 
 		[Required(ErrorMessage = "Поле 'Пароль' не заполнено.")]
