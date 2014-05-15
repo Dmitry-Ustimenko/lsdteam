@@ -11,7 +11,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions
 			var random = new Random();
 
 			for (var i = 0; i < length; i++)
-				builder.Append(Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65))));
+				builder.Append(Constants.Chars[random.Next(0, Constants.Chars.Length - 1)]);
 			return builder.ToString();
 		}
 	}

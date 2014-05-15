@@ -1,15 +1,15 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
 	public class ErrorController : Controller
 	{
-		[Route("error/{id}")]
-		public ActionResult Error(string id)
+		[Route("error/{httpCode:int}/{message?}")]
+		public ActionResult Error(int httpCode, string message)
 		{
-			var model = new HandleErrorInfo(new Exception(id), "Error", "Error");
-			return View(model);
+			ViewBag.Message = httpCode == 404 ? "Страница не найдена" : message;
+			ViewBag.HttpCode = httpCode;
+			return View();
 		}
 	}
 }

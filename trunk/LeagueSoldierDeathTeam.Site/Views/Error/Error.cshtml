@@ -1,16 +1,11 @@
-﻿@model HandleErrorInfo
-@{
+﻿@{
 	Layout = "~/Views/Shared/_LayoutError.cshtml";
 	ViewBag.Title = "Глобальная ошибка";
-	var exceptionId = (string)TempData["ExceptionId"] ?? Model.Exception.Message;
 }
 <div class="transparent-border">
 	<div class="error-page-body section-shadow">
 		<h2>К сожалению, произошла ошибка при обработке запроса.</h2>
-		@if (exceptionId != null)
-		{
-			<h2>Ошибка @ViewBag.HttpCode: @exceptionId</h2>
-		}
+		<h2>Ошибка (@ViewBag.HttpCode): @ViewBag.Message</h2>
 	</div>
 </div>
 

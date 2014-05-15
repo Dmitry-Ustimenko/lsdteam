@@ -83,5 +83,10 @@ namespace LeagueSoldierDeathTeam.Site.Classes
 		{
 			return new HttpContextWrapper(GetHttpContext());
 		}
+
+		public static HttpRequestWrapper GetHttpRequestWrapper(HttpRequest httpRequest)
+		{
+			return httpRequest != null ? new HttpRequestWrapper(httpRequest) : null;
+		}
 	}
 }
