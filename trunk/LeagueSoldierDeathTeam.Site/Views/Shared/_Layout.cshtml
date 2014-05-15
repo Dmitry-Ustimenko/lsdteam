@@ -11,6 +11,9 @@
 <body>
 	<div class="wrapper">
 		<div class="section section-header section-shadow">
+			<div class="team-name-emblem">
+				<img class="full-size" src="/Images/team-name.png" alt="League Soldier of Death Team" />
+			</div>
 			<div class="emblem">
 				<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))"><img src="/Images/emblem.png" alt="Главная страница"/></a>
 			</div>
@@ -29,9 +32,6 @@
 				<a href="http://www.dice.se/frostbite" title="Frostbite 3" target="_blank">
 					<img class="full-size" src="/Images/frostbite.png" alt="Frostbite 3">
 				</a>
-			</div>
-			<div class="team-name-emblem">
-				<img class="full-size" src="/Images/team-name.png" alt="League Soldier of Death Team" />
 			</div>
 		</div>
 		@{Html.RenderPartial("_MenuPartial");}
