@@ -9,21 +9,19 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 (function () {
 	site.ajax =
 	{
-		post: function (url, params, callback, sender) {
-			site.ajax.send("POST", url, params, callback, sender);
+		post: function (url, params, callback) {
+			site.ajax.send("POST", url, params, callback);
 		},
 
-		get: function (url, params, callback, sender) {
-			site.ajax.send("GET", url, params, callback, sender);
+		get: function (url, params, callback) {
+			site.ajax.send("GET", url, params, callback);
 		},
 
-		send: function (type, url, dataParams, callbackFunc, sender) {
+		send: function (type, url, dataParams, callback) {
 			window.status = "Please wait...";
 			document.body.style.cursor = "wait";
 
 			var params = typeof (dataParams) == 'object' ? dataParams : {};
-			var dataType = typeof (callbackFunc) == 'string' ? callbackFunc : 'html';
-			var callback = typeof (callbackFunc) == 'function' ? callbackFunc : null;
 
 			$.ajax({
 				type: type,
@@ -38,57 +36,18 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 						return;
 					}
 
-					if (data != 'Unauthorized') {
-						var status = "";
-						if (dataType == 'json')
-							data = jQuery.parseJSON(data);
-
-						var message = "";
-						var title = "Error";
-						try {
-							if (data.indexOf('{"Status') == 0) {
-								var res = jQuery.parseJSON(data);
-								if (res.Status != "undefined")
-									status = res.Status;
-								if (res.Message != "undefined")
-									message = res.Message;
-								if (res.Title != "undefined")
-									title = res.Title;
-							}
-						} catch (e) { }
-
-						if (status == "Failed") {
-							if (sender) {
-								var vs = $(sender).find("div[class*=validation-summary]");
-								if (vs.length > 0) {
-									vs.addClass("validation-summary-errors");
-									vs.removeClass("validation-summary-valid");
-									var ul = vs.find("ul");
-									if (ul.length > 0) {
-										ul.html("");
-										ul.append("<li>" + message + "</li>");
-									} else {
-										vs.html("");
-										vs.append("<ul></ul>");
-										ul.append("<li>" + message + "</li>");
-									}
-								} else
-									alertMessage(title, message);
-							} else
-								alertMessage(title, message);
-						} else if (callback != null)
-							callback(data, textStatus, jqxhr);
-					} else
-						alertMessage("Error", "Unauthorized");
+					if (typeof (callback) == 'function') {
+						callback(data, textStatus, jqxhr);
+					}
 				},
 				error: function (jqxhr) {
 					window.status = "Done";
 					document.body.style.cursor = "default";
 
 					if (jqxhr.status == 404)
-						alertMessage("Ошибка", "Страница не найдена.");
+						alertMessage("Ошибка (404)", "Страница не найдена.");
 					else
-						alertMessage("Ошибка", "При обработке запроса произошла ошибка.");
+						alertMessage("Ошибка (" + jqxhr.status + ")", "При обработке запроса произошла ошибка.");
 				}
 			});
 
