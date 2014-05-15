@@ -12,7 +12,7 @@
 	<div class="wrapper">
 		<div class="section section-header section-shadow">
 			<div class="emblem">
-				<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))"><img src="/Images/emblem.png" /></a>
+				<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))"><img src="/Images/emblem.png" alt="Главная страница"/></a>
 			</div>
 			@{Html.RenderPartial("_AuthenticationPartial");}
 			<div class="ea-emblem">
@@ -45,6 +45,7 @@
 		<div class="arrow-page-up"></div>
 	</div>
 	@DeclarativeHelper.Control.RenderAlert()
+	@DeclarativeHelper.Control.RenderConfirm()
 	<script type="text/javascript">
 		var array = @Html.Raw(StaticResourse.GetBackgroundImages())
 
