@@ -6,39 +6,41 @@
 	ViewBag.Title = "Активация аккаунта";
 }
 
-<div class="simple-page-body section-shadow">
-	<div class="section-module-header">
-		<div class="module-title">Завершение активации аккаунта</div>
+<div class="transparent-border">
+	<div class="simple-page-body section-shadow">
+		<div class="section-module-header">
+			<div class="module-title">Завершение активации аккаунта</div>
+		</div>
+		@if (Model.AccountWasActivated)
+		{
+			<div class="message-body">
+				<h2>
+					Ваш аккаунт был успешно активирован!
+				</h2>
+				<span class="message">
+					Добро пожаловать на <span class="color-main">LSD Team</span>! По существующим вопросам пожалуйста обращайтесь к администратору.
+				</span>
+				<span class="message">
+					<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))">Главная страница</a>
+				</span>
+			</div>
+		}
+		else
+		{
+			<div class="message-body">
+				<h2>
+					При активации аккаунта возникли проблемы!
+				</h2>
+				<span class="message">
+					Пожалуйста проверьте правильность ссылки либо убедитесь, что данный аккаунт уже не был активирован.
+				</span>
+				<span class="message">
+					В противном случае обратитесь к администратору!
+				</span>
+				<span class="message">
+					<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))">Главная страница</a>
+				</span>
+			</div>
+		}
 	</div>
-	@if (Model.AccountWasActivated)
-	{
-		<div class="message-body">
-			<h2>
-				Ваш аккаунт был успешно активирован!
-			</h2>
-			<span class="message">
-				Добро пожаловать на <span class="color-main">LSD Team</span>! По существующим вопросам пожалуйста обращайтесь к администратору.
-			</span>
-			<span class="message">
-				<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))">Главная страница</a>
-			</span>
-		</div>
-	}
-	else
-	{
-		<div class="message-body">
-			<h2>
-				При активации аккаунта возникли проблемы!
-			</h2>
-			<span class="message">
-				Пожалуйста проверьте правильность ссылки либо убедитесь, что данный аккаунт уже не был активирован.
-			</span>
-			<span class="message">
-				В противном случае обратитесь к администратору!
-			</span>
-			<span class="message">
-				<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))">Главная страница</a>
-			</span>
-		</div>
-	}
 </div>

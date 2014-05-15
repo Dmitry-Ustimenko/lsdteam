@@ -4,50 +4,52 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="simple-page-body section-shadow">
-	<div class="section-module-header">
-		<div class="module-title">Регистрация на основе данных - @Model.ProviderName</div>
-	</div>
-	<h2>Пожалуйста, подтвердите данные, предоставленные сервисом, либо укажите желаемые/недостающие</h2>
-	<hr />
-	<div class="form">
-		<a href="http://www.facebook.com/" title="Facebook" target="_blank">
-			<img class="facebook" src="/Images/facebook-register.png" alt="Facebook">
-		</a>
-		<a href="http://vk.com/" title="VKontakte" target="_blank">
-			<img class="vkontakte" src="/Images/vk-register.png" alt="VKontakte">
-		</a>
-		@using (Html.BeginForm("ExternalRegisterConfirmation", "Account", FormMethod.Post))
-		{
-			@Html.ValidationSummary()
-			<p class="clearfix">
-				@Html.LabelFor(m => m.ExternalUserName)
-				@Html.TextBoxFor(m => m.ExternalUserName, new { @placeholder = "Введите имя" })
-			</p>
-			<p class="clearfix">
-				@Html.LabelFor(m => m.ExternalEmail)
-				@Html.TextBoxFor(m => m.ExternalEmail, new { @placeholder = "Введите Email" })
-			</p>
-			<p class="clearfix">
-				@Html.LabelFor(m => m.ExternalPassword)
-				@Html.PasswordFor(m => m.ExternalPassword, new { @placeholder = "Введите пароль" })
-			</p>
-			<p class="clearfix">
-				@Html.LabelFor(m => m.ExternalConfirmPassword)
-				@Html.PasswordFor(m => m.ExternalConfirmPassword, new { @placeholder = "Повторите пароль" })
-			</p>
-			<p class="clearfix">
-				<input type="submit" value="Зарегистрироваться">
-			</p>
-			@Html.HiddenFor(m => m.ProviderName)
-			@Html.HiddenFor(m => m.ProviderKey)
-		}
-	</div>
-	<div class="form-info">
+<div class="transparent-border">
+	<div class="simple-page-body section-shadow">
+		<div class="section-module-header">
+			<div class="module-title">Регистрация на основе данных - @Model.ProviderName</div>
+		</div>
+		<h2>Пожалуйста, подтвердите данные, предоставленные сервисом, либо укажите желаемые/недостающие</h2>
 		<hr />
-		<h3>
-			* - укажите желаемый пароль. В противном случае система сама сгенерирует пароль, который будет выслан на указанный вами e-mail.
-			Данный пароль будет использоваться для входа на сайт традиционным способом (через форму аутентификации).
-		</h3>
+		<div class="form">
+			<a href="http://www.facebook.com/" title="Facebook" target="_blank">
+				<img class="facebook" src="/Images/facebook-register.png" alt="Facebook">
+			</a>
+			<a href="http://vk.com/" title="VKontakte" target="_blank">
+				<img class="vkontakte" src="/Images/vk-register.png" alt="VKontakte">
+			</a>
+			@using (Html.BeginForm("ExternalRegisterConfirmation", "Account", FormMethod.Post))
+			{
+				@Html.ValidationSummary()
+				<p class="clearfix">
+					@Html.LabelFor(m => m.ExternalUserName)
+					@Html.TextBoxFor(m => m.ExternalUserName, new { @placeholder = "Введите имя" })
+				</p>
+				<p class="clearfix">
+					@Html.LabelFor(m => m.ExternalEmail)
+					@Html.TextBoxFor(m => m.ExternalEmail, new { @placeholder = "Введите Email" })
+				</p>
+				<p class="clearfix">
+					@Html.LabelFor(m => m.ExternalPassword)
+					@Html.PasswordFor(m => m.ExternalPassword, new { @placeholder = "Введите пароль" })
+				</p>
+				<p class="clearfix">
+					@Html.LabelFor(m => m.ExternalConfirmPassword)
+					@Html.PasswordFor(m => m.ExternalConfirmPassword, new { @placeholder = "Повторите пароль" })
+				</p>
+				<p class="clearfix">
+					<input type="submit" value="Зарегистрироваться">
+				</p>
+				@Html.HiddenFor(m => m.ProviderName)
+				@Html.HiddenFor(m => m.ProviderKey)
+			}
+		</div>
+		<div class="form-info">
+			<hr />
+			<h3>
+				* - укажите желаемый пароль. В противном случае система сама сгенерирует пароль, который будет выслан на указанный вами e-mail.
+				Данный пароль будет использоваться для входа на сайт традиционным способом (через форму аутентификации).
+			</h3>
+		</div>
 	</div>
 </div>

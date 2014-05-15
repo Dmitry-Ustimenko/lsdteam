@@ -6,22 +6,24 @@
 	ViewBag.Title = "Ошибка при авторизации";
 }
 
-<div class="simple-page-body section-shadow">
-	<div class="section-module-header">
-		<div class="module-title">Ошибка при авторизации через @Model.ProviderName</div>
-	</div>
-	<div class="message-body">
-		<h2>
-			При авторизации произошла ошибка!
-		</h2>
-		<span class="message">
-			@Model.Message
-		</span>
-		<span class="message">
-			При возникновении проблем обратитесь к администратору!
-		</span>
-		<span class="message">
-			<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))">Главная страница</a>
-		</span>
+<div class="transparent-border">
+	<div class="simple-page-body section-shadow">
+		<div class="section-module-header">
+			<div class="module-title">Ошибка при авторизации через @Model.ProviderName</div>
+		</div>
+		<div class="message-body">
+			<h2>
+				При авторизации произошла ошибка!
+			</h2>
+			<span class="message">
+				@Model.Message
+			</span>
+			<span class="message">
+				При возникновении проблем обратитесь к администратору!
+			</span>
+			<span class="message">
+				<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))">Главная страница</a>
+			</span>
+		</div>
 	</div>
 </div>
