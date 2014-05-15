@@ -33,6 +33,12 @@
 			site.layout.initRegisterForm($registerForm);
 		},
 
+		initErrorPage: function (settings) {
+			$.extend(true, site.layout.settings, settings);
+			
+			site.layout.backgroundSlider();
+		},
+
 		backgroundSlider: function () {
 			var backgrounds = [];
 			var json = shuffle(site.layout.settings.vars.backgrounds);

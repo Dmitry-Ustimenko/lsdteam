@@ -46,6 +46,18 @@
 		</footer>
 		<div class="arrow-page-up"></div>
 	</div>
+
+	<script type="text/javascript">
+		var array = @Html.Raw(StaticResourse.GetBackgroundImages())
+
+		$(document).ready(function () {
+			site.layout.initErrorPage({
+				vars: {
+					backgrounds: array
+				}
+			});
+		});
+	</script>
 </body>
 </html>
 
