@@ -869,7 +869,7 @@ a {
 
 .error-page-body {
 	height: 400px;
-	border: 10px solid rgba(0,0,0,0.8);
+	border: 1px solid rgba(0,0,0,0.1);
 	background: white;
 }
 
@@ -882,7 +882,7 @@ a {
 
 .success-body {
 	height: 400px;
-	border: 10px solid rgba(0,0,0,0.8);
+	border: 1px solid rgba(0,0,0,0.1);
 	background: white;
 }
 
