@@ -191,7 +191,7 @@
 				} else {
 					$.fn.initValidationSummary($dialog);
 					if (form.valid())
-						tacc.ajax.post(saveUrl, form.serializeArray(), function (data) {
+						site.ajax.post(saveUrl, form.serializeArray(), function (data) {
 							if (typeof (onCloseOverlayCallBackEvent) == 'function')
 								onCloseOverlayCallBackEvent();
 							$overlay.closeOverlay();
@@ -208,9 +208,9 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.loadData = function (url, dataParam, callbackParam, callbackError) {
+	$.fn.loadData = function (url, params, callback, callbackError) {
 		var target = this;
-		site.ajax.post(url, dataParam, function (data) {
+		site.ajax.post(url, params, function (data) {
 			try {
 				var json = $.parseJSON(data);
 				if (json != undefined) {
@@ -246,8 +246,8 @@
 					return;
 				}
 
-				if (typeof (callbackParam) == 'function')
-					callbackParam(data);
+				if (typeof (callback) == 'function')
+					callback(data);
 			}
 		});
 	};

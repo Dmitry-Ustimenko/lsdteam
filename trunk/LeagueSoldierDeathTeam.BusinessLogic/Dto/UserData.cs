@@ -29,7 +29,6 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		{
 			CreateDate = DateTime.Today;
 			LastActivity = DateTime.Today;
-			Password = "secret";
 		}
 	}
 }

@@ -88,6 +88,10 @@ a {
 
 /* Classes */
 
+.modal-header .close {
+	margin-top: 7px;
+}
+
 .button {
 	padding: 6px 5px;
 	border: 1px solid #B31919;

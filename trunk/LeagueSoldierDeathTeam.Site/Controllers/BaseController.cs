@@ -84,9 +84,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 					var userIdentity = authorizationContext.HttpContext.User.Identity;
 					Execute(() => AppContext.CurrentUser = _accountService.GetUser(userIdentity.Name));
 				}
-
-				if (AppContext.CurrentUser != null)
-					SessionManager.Set(SessionKeys.User, AppContext.CurrentUser);
 			}
 		}
 

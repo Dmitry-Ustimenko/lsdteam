@@ -9,74 +9,82 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 (function () {
 	site.ajax =
 	{
-		post: function (url, dataParam, callbackParam, sender) {
-			site.ajax.send(url, dataParam, callbackParam, sender);
+		post: function (url, params, callback, sender) {
+			site.ajax.send("POST", url, params, callback, sender);
 		},
 
-		get: function (url, dataParam, callbackParam, sender) {
-			site.ajax.send(url, dataParam, callbackParam, sender);
+		get: function (url, params, callback, sender) {
+			site.ajax.send("GET", url, params, callback, sender);
 		},
 
-		send: function (url, dataParam, callbackParam, sender) {
-			var defaultDataType = 'html';
-			var defaultMethod = jQuery.post;
-			var paramObj = typeof (dataParam) == 'object' ? dataParam : {};
-			var callBackFunc = typeof (callbackParam) == 'function' ? callbackParam : (typeof (dataParam) == 'function' ? dataParam : null);
-			var dataType = typeof (callbackParam) == 'string' ? callbackParam : defaultDataType;
+		send: function (type, url, dataParams, callbackFunc, sender) {
 			window.status = "Please wait...";
 			document.body.style.cursor = "wait";
-			defaultMethod(url, paramObj, function (data, textStatus, jqxhr) {
-				if (jqxhr.status == 204) {
-					window.location.reload();
-					return;
-				}
 
-				window.status = "Done";
-				document.body.style.cursor = "default";
-				if (data != 'Unauthorized') {
-					var status = "";
-					if (dataType == 'json')
-						data = jQuery.parseJSON(data);
+			var params = typeof (dataParams) == 'object' ? dataParams : {};
+			var dataType = typeof (callbackFunc) == 'string' ? callbackFunc : 'html';
+			var callback = typeof (callbackFunc) == 'function' ? callbackFunc : null;
 
-					var message = "";
-					var title = "Error";
-					try {
-						if (data.indexOf('{"Status') == 0) {
-							var res = jQuery.parseJSON(data);
-							if (res.Status != "undefined")
-								status = res.Status;
-							if (res.Message != "undefined")
-								message = res.Message;
-							if (res.Title != "undefined")
-								title = res.Title;
-						}
-					} catch (e) {
+			$.ajax({
+				type: type,
+				url: url,
+				data: params,
+				success: function (data, textStatus, jqxhr) {
+					window.status = "Done";
+					document.body.style.cursor = "default";
+
+					if (jqxhr.status == 204) {
+						window.location.reload();
+						return;
 					}
 
-					if (status == "Failed") {
-						if (sender) {
-							var vs = $(sender).find("div[class*=validation-summary]");
-							if (vs.length > 0) {
-								vs.addClass("validation-summary-errors");
-								vs.removeClass("validation-summary-valid");
-								var ul = vs.find("ul");
-								if (ul.length > 0) {
-									ul.html("");
-									ul.append("<li>" + message + "</li>");
-								} else {
-									vs.html("");
-									vs.append("<ul></ul>");
-									ul.append("<li>" + message + "</li>");
-								}
+					if (data != 'Unauthorized') {
+						var status = "";
+						if (dataType == 'json')
+							data = jQuery.parseJSON(data);
+
+						var message = "";
+						var title = "Error";
+						try {
+							if (data.indexOf('{"Status') == 0) {
+								var res = jQuery.parseJSON(data);
+								if (res.Status != "undefined")
+									status = res.Status;
+								if (res.Message != "undefined")
+									message = res.Message;
+								if (res.Title != "undefined")
+									title = res.Title;
+							}
+						} catch (e) { }
+
+						if (status == "Failed") {
+							if (sender) {
+								var vs = $(sender).find("div[class*=validation-summary]");
+								if (vs.length > 0) {
+									vs.addClass("validation-summary-errors");
+									vs.removeClass("validation-summary-valid");
+									var ul = vs.find("ul");
+									if (ul.length > 0) {
+										ul.html("");
+										ul.append("<li>" + message + "</li>");
+									} else {
+										vs.html("");
+										vs.append("<ul></ul>");
+										ul.append("<li>" + message + "</li>");
+									}
+								} else
+									alertMessage(title, message);
 							} else
 								alertMessage(title, message);
-						} else
-							alertMessage(title, message);
-					} else if (callBackFunc != null)
-						callBackFunc(data, textStatus, jqxhr);
-				} else
-					alertMessage("Error", "Unauthorized");
-			}, 'html');
+						} else if (callback != null)
+							callback(data, textStatus, jqxhr);
+					} else
+						alertMessage("Error", "Unauthorized");
+				},
+				error: function (jqxhr, textStatus, errorThrown) {
+					var error = "dsda";
+				}
+			});
 
 			function alertMessage(title, message) {
 				$.fn.alertOverlay(title, message);

@@ -141,8 +141,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				};
 
 				Execute(() => _accountService.UpdateMainInfo(data));
-			}
+				Execute(() => AppContext.CurrentUser = _accountService.GetUser(model.UserId));
 
+				throw new Exception();
+			}
 			return View("_EditMainInfoPartial", model);
 		}
 
