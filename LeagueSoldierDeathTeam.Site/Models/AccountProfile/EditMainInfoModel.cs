@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Web;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 
