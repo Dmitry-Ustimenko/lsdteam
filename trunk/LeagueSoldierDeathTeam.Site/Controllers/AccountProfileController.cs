@@ -48,11 +48,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 						ModelState.AddModelError(string.Empty, "Размер файла не выше 100кб");
 
 					if (!Constants.AcceptImage.Contains(photoUploadFile.ContentType))
-						ModelState.AddModelError(string.Empty, "Форматы фото '*.jpg', '*.jpeg', '*.png', '*.gif'");
+						ModelState.AddModelError(string.Empty, "Требуемые форматы: *.jpg, *.jpeg, *.png, *.gif");
 
-					var image = Image.FromStream(photoUploadFile.InputStream);
-					if (image.Width > 200 || image.Height > 200)
-						ModelState.AddModelError(string.Empty, "Разрешение фото не должно превышать 200х200");
+					if (ModelIsValid)
+					{
+						var image = Image.FromStream(photoUploadFile.InputStream);
+						if (image.Width > 200 || image.Height > 200)
+							ModelState.AddModelError(string.Empty, "Разрешение фото не должно превышать 200х200");
+					}
 
 					if (ModelIsValid)
 					{
@@ -85,7 +88,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			else
 				ModelState.AddModelError(string.Empty, "Файл не выбран");
 
-			return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(userId));
+			var model = new UserProfileModel { UserId = userId };
+			FillUserProfileModel(model);
+			return View("ProfileInfo", model);
 		}
 
 		[HttpPost]
@@ -97,8 +102,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			Execute(() => _accountService.DeleteUserPhoto(userId));
 
 			if (ModelIsValid && System.IO.File.Exists(path))
+			{
 				System.IO.File.Delete(path);
-			return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(userId));
+				return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(userId));
+			}
+
+			var model = new UserProfileModel { UserId = userId };
+			FillUserProfileModel(model);
+			return View("ProfileInfo", model);
 		}
 
 		#endregion
