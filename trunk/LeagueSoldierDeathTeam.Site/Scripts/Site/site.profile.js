@@ -41,11 +41,11 @@
 					});
 
 					$(".delete-icon").on("click", function () {
-						var answer = confirm("Вы действительно хотите удалить фото?");
-						if (answer) {
-							var form = $(this).closest("form");
+						var $this = $(this);
+						$.fn.confirmOverlay("Удаление фото", "Вы действительно хотите удалить фото?", function () {
+							var form = $this.closest("form");
 							form.submit();
-						}
+						});
 					});
 				}
 			},
@@ -69,7 +69,7 @@
 								function () {
 									site.profile.initEditInfo.initChangePassword();
 									$.fn.initCheckbox();
-									$.fn.alertMessage("Смена пароля", "Пароль был успешно изменен.");
+									$.fn.alertOverlay("Смена пароля", "Пароль был успешно изменен.");
 								},
 								function () {
 									$.fn.initValidationSummary($tabContentChangePassword);
@@ -89,7 +89,7 @@
 								function () {
 									site.profile.initEditInfo.initContentMain();
 									$.fn.initCheckbox();
-									$.fn.alertMessage("Обновление профиля", "Основные данные были успешно обновлены.");
+									$.fn.alertOverlay("Обновление профиля", "Основные данные были успешно обновлены.");
 								},
 								function () {
 									$.fn.initValidationSummary($tabContentMain);
@@ -137,7 +137,7 @@
 							$tabContentAdvance.loadData(site.profile.settings.urls.editAdvanceInfo, $.fn.serializeParams(form),
 								function () {
 									site.profile.initEditInfo.initContentAdvance();
-									$.fn.alertMessage("Обновление профиля", "Дополнительные данные были успешно обновлены.");
+									$.fn.alertOverlay("Обновление профиля", "Дополнительные данные были успешно обновлены.");
 									$.fn.initCheckbox();
 								},
 								function () {
@@ -157,7 +157,7 @@
 							$tabContentBind.loadData(site.profile.settings.urls.editBindInfo, $.fn.serializeParams(form),
 								function () {
 									site.profile.initEditInfo.initContentBind();
-									$.fn.alertMessage("Обновление профиля", "Связные данные были успешно обновлены.");
+									$.fn.alertOverlay("Обновление профиля", "Связные данные были успешно обновлены.");
 									$.fn.initCheckbox();
 								},
 								function () {

@@ -79,7 +79,7 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 			}, 'html');
 
 			function alertMessage(title, message) {
-				$.fn.alertMessage(title, message);
+				$.fn.alertOverlay(title, message);
 			}
 		}
 	};

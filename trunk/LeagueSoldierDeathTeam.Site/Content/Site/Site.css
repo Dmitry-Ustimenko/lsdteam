@@ -271,7 +271,7 @@ a {
 }
 
 .section-slider {
-	background: white;
+	background: black;
 	height: 400px;
 	clear: both;
 	margin-bottom: 115px;
@@ -1493,8 +1493,13 @@ button.close {
 		margin-top: 5px;
 	}
 
-#btnOk {
+#btnOk, #btnCancel {
 	width: 100px;
+}
+
+#btnCancel {
+	background-color: #303030;
+	border: 1px solid #303030;
 }
 
 /* Checkbox */

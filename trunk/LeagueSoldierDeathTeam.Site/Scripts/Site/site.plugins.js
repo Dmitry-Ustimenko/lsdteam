@@ -110,7 +110,7 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.alertMessage = function (title, message) {
+	$.fn.alertOverlay = function (title, message) {
 		var alert = $('#alertOverlay');
 		alert.find("[data-type=modal-title]").html(title);
 		alert.find("[data-type=modal-message]").html(message);
@@ -119,6 +119,25 @@
 
 		alert.find("#btnOk").off("click").on("click", function () { alert.closeOverlay(); });
 		alert.find(".close").off("click").on("click", function () { alert.closeOverlay(); });
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.confirmOverlay = function (title, message, callback) {
+		var confirm = $('#confirmOverlay');
+		confirm.find("[data-type=modal-title]").html(title);
+		confirm.find("[data-type=modal-message]").html(message);
+
+		confirm.showOverlay();
+
+		confirm.find("#btnOk").off("click").on("click", function () {
+			if (typeof (callback) == 'function')
+				callback();
+			confirm.closeOverlay();
+		});
+
+		confirm.find("#btnCancel").off("click").on("click", function () { confirm.closeOverlay(); });
+		confirm.find(".close").off("click").on("click", function () { confirm.closeOverlay(); });
 	};
 })(jQuery);
 
