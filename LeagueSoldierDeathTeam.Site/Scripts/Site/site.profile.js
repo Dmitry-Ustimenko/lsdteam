@@ -102,6 +102,7 @@
 								function () {
 									site.profile.initEditInfo.initContentMain();
 									$.fn.initCheckbox();
+									$(".log-off a[data-type=auth-name]").html($tabContentMain.find("[data-type=user-name]").val());
 									$.fn.alertOverlay("Обновление профиля", "Основные данные были успешно обновлены.");
 								},
 								function () {

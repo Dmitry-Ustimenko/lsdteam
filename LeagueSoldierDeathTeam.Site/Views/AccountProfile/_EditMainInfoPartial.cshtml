@@ -12,7 +12,7 @@
 		@Html.ValidationSummary()
 		<p class="clearfix">
 			@Html.LabelFor(model => model.UpdateUserName)
-			@Html.TextBoxFor(model => model.UpdateUserName, new { @placeholder = "Имя на сайте" })
+			@Html.TextBoxFor(model => model.UpdateUserName, new { @placeholder = "Имя на сайте", @data_type = "user-name" })
 		</p>
 		<p class="clearfix checkbox-container">
 			@Html.LabelFor(model => model.UpdateUserEmail)
