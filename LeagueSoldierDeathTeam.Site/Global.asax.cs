@@ -42,23 +42,21 @@ namespace LeagueSoldierDeathTeam.Site
 			if (exception == null)
 				return;
 
-			Server.ClearError();
-			Response.Clear();
-
 			var exceptionId = Guid.NewGuid().ToString().Replace("-", "");
 			Logger.WriteEmergency(exception, "Error: " + exceptionId);
 
 			var httpError = exception as HttpException;
-			if (httpError != null && httpError.GetHttpCode() == 404)
-			{
-				exceptionId = "PageNotFound";
-				Response.StatusCode = httpError.GetHttpCode();
-			}
-			else
-				Response.StatusCode = 500;
+			var httpCode = httpError != null ? httpError.GetHttpCode() : 500;
 
-			Response.Status = "error";
-			Response.Redirect(WebBuilder.BuildActionUrl<ErrorController>(o => o.Error(exceptionId)), false);
+			var httpRequestWrapper = WebBuilder.GetHttpRequestWrapper(Request);
+			if (httpRequestWrapper.IsAjaxRequest())
+				Response.StatusCode = httpCode;
+			else
+			{
+				Server.ClearError();
+				Response.Clear();
+				Response.Redirect(WebBuilder.BuildActionUrl<ErrorController>(o => o.Error(httpCode, exceptionId)), false);
+			}
 		}
 	}
 }

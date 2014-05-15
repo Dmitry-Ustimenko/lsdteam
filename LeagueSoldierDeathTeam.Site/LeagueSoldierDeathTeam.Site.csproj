@@ -274,6 +274,7 @@
     <Content Include="Images\browse.png" />
     <Content Include="Images\classic-loader.gif" />
     <Content Include="Images\classic-map.png" />
+    <Content Include="Images\clear-input-active.png" />
     <Content Include="Images\clear-input.png" />
     <Content Include="Images\d03.png" />
     <Content Include="Images\d06.png" />

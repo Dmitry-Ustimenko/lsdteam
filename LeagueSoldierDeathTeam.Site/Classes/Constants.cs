@@ -16,6 +16,8 @@
 
 		public const string DateFormat = "dd.MM.yyyy";
 
+		public const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
 		public static readonly string[] AcceptImage = { "image/png", "image/jpeg", "image/jpg", "image/gif" };
 	}
 }

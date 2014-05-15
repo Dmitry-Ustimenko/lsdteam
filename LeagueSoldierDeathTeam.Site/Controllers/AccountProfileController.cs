@@ -62,10 +62,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 						var userInfo = Execute(() => _accountService.GetUserProfile(userId));
 						var oldPath = string.Concat(AppDomain.CurrentDomain.BaseDirectory, userInfo.PhotoPath);
 
-						var fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(photoUploadFile.FileName)).ToLower();
+						var fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(photoUploadFile.FileName));
 						var path = Path.Combine(Server.MapPath(Constants.PhotoDirectoryPath), Path.GetFileName(fileName));
 						while (System.IO.File.Exists(path))
-							fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(photoUploadFile.FileName)).ToLower();
+							fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(photoUploadFile.FileName));
 
 						photoUploadFile.SaveAs(path);
 
@@ -142,8 +142,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 				Execute(() => _accountService.UpdateMainInfo(data));
 				Execute(() => AppContext.CurrentUser = _accountService.GetUser(model.UserId));
-
-				throw new Exception();
 			}
 			return View("_EditMainInfoPartial", model);
 		}
