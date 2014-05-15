@@ -31,9 +31,11 @@
 				},
 
 				initUploadContainer: function () {
-					$(".edit-icon").on("click", function () {
-						var $userUploadPhoto = $(".user-upload-photo");
+					var $userUploadPhoto = $(".user-upload-photo");
+					if ($userUploadPhoto.find(".validation-summary-errors").length)
+						$userUploadPhoto.fadeIn();
 
+					$(".edit-icon").on("click", function () {
 						if ($userUploadPhoto.is(":hidden"))
 							$userUploadPhoto.fadeIn();
 						else
