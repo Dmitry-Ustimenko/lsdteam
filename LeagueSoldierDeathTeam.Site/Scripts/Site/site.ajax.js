@@ -37,7 +37,7 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 					}
 
 					if (typeof (callback) == 'function') {
-						callback(data, textStatus, jqxhr);
+						callback(data);
 					}
 				},
 				error: function (jqxhr) {
