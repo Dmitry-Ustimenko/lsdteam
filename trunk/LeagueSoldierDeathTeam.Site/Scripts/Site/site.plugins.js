@@ -211,28 +211,17 @@
 	$.fn.loadData = function (url, params, callback, callbackError) {
 		var target = this;
 		site.ajax.post(url, params, function (data) {
-			try {
-				var json = $.parseJSON(data);
-				if (json != undefined) {
-					for (var key in json) {
-						if (key == "ReturnUrl") {
-							if (json[key] != null) {
-								window.location.href = json[key];
-								return;
-							}
-						}
-					}
-
+			if (typeof (data) == 'object' && data != null) {
+				if (data.ReturnUrl != undefined)
+					window.location.href = data.ReturnUrl;
+				else {
 					var returnUrl = $.fn.GetQueryParamValue("ReturnUrl");
 					if (returnUrl != undefined)
 						window.location.href = returnUrl.split("%2F").join("/");
 					else
 						window.location.href = "/";
 				}
-				else
-					window.location.href = "/";
-			}
-			catch (e) {
+			} else {
 				$(target).html(data);
 
 				var form = target.find("form");
@@ -242,9 +231,10 @@
 					$.validator.unobtrusive.parse($(form));
 				}
 
-				if ($(data).find("div.validation-summary-errors").length > 0) {
+				if ($(data).find("div.validation-summary-errors").length) {
 					if (typeof (callbackError) == 'function')
 						callbackError();
+					$.fn.initValidationSummary(target);
 					return;
 				}
 

@@ -85,7 +85,6 @@
 									$.fn.alertOverlay("Смена пароля", "Пароль был успешно изменен.");
 								},
 								function () {
-									$.fn.initValidationSummary($tabContentChangePassword);
 									site.profile.initEditInfo.initChangePassword();
 									$.fn.initCheckbox();
 								});
@@ -106,7 +105,6 @@
 									$.fn.alertOverlay("Обновление профиля", "Основные данные были успешно обновлены.");
 								},
 								function () {
-									$.fn.initValidationSummary($tabContentMain);
 									site.profile.initEditInfo.initContentMain();
 									$.fn.initCheckbox();
 								});
@@ -155,7 +153,6 @@
 									$.fn.initCheckbox();
 								},
 								function () {
-									$.fn.initValidationSummary($tabContentAdvance);
 									site.profile.initEditInfo.initContentAdvance();
 									$.fn.initCheckbox();
 								});
@@ -175,7 +172,6 @@
 									$.fn.initCheckbox();
 								},
 								function () {
-									$.fn.initValidationSummary($tabContentBind);
 									site.profile.initEditInfo.initContentBind();
 									$.fn.initCheckbox();
 								});

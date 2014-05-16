@@ -28,14 +28,15 @@
 			site.layout.clearSocialHash();
 			site.layout.topPage();
 			site.layout.fixedMenu();
-			site.layout.initTabs($loginForm, $registerForm);
+			site.layout.initLoginTab($loginForm);
+			site.layout.initRegisterTab($registerForm);
 			site.layout.initLoginForm($loginForm);
 			site.layout.initRegisterForm($registerForm);
 		},
 
 		initErrorPage: function (settings) {
 			$.extend(true, site.layout.settings, settings);
-			
+
 			site.layout.backgroundSlider();
 		},
 
@@ -129,7 +130,7 @@
 			});
 		},
 
-		initTabs: function (loginForm, registerForm) {
+		initLoginTab: function (loginForm) {
 			var socialArrow = loginForm.find("div.down-arrow");
 			var socialList = loginForm.find("div.social-list");
 
@@ -143,11 +144,7 @@
 				$(this).toggleClass("up-arrow");
 			});
 
-			var $loginTab = $(site.layout.settings.elements.loginTab);
-			var $registerTab = $(site.layout.settings.elements.registerTab);
-			var btnLogin = $loginTab.find("#btn-login");
-			var btnRegister = $registerTab.find("#btn-register");
-
+			var btnLogin = $(site.layout.settings.elements.loginTab).find("#btn-login");
 			$(document).click(function (event) {
 				var $eventTarget = $(event.target);
 
@@ -159,6 +156,15 @@
 					loginForm.fadeOut("fast");
 					btnLogin.removeClass("active-tab");
 				}
+
+				event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = true);
+			});
+		},
+
+		initRegisterTab: function (registerForm) {
+			var btnRegister = $(site.layout.settings.elements.registerTab).find("#btn-register");
+			$(document).click(function (event) {
+				var $eventTarget = $(event.target);
 
 				if ($eventTarget.closest(site.layout.settings.elements.registerTab).length) {
 					registerForm.fadeIn("fast");
@@ -179,8 +185,8 @@
 				if (form.valid()) {
 					loginForm.loadData(site.layout.settings.urls.login, $.fn.serializeParams(form), null,
 						function () {
-							$.fn.initValidationSummary(loginForm);
 							site.layout.initLoginForm(loginForm);
+							site.layout.initLoginTab(loginForm);
 						});
 				}
 			});
@@ -192,8 +198,8 @@
 				if (form.valid()) {
 					registerForm.loadData(site.layout.settings.urls.register, $.fn.serializeParams(form), null,
 						function () {
-							$.fn.initValidationSummary(registerForm);
 							site.layout.initRegisterForm(registerForm);
+							site.layout.initRegisterTab(registerForm);
 						});
 				}
 			});
