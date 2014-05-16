@@ -1087,15 +1087,15 @@ a {
 		box-shadow: inset 2px 2px 2px rgba(0,0,0,0.1);
 	}
 
-	.clear-input:hover {
-		cursor: pointer;
-		background: url(/Images/clear-input-active.png) no-repeat top center;
-		background-color: white;
-	}
+.clear-input:hover {
+	cursor: pointer;
+	background: url(/Images/clear-input-active.png) no-repeat top center;
+	background-color: white;
+}
 
-	.clear-input:active {
-		box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
-	}
+.clear-input:active {
+	box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+}
 
 .file-input {
 	width: 165px;
@@ -1105,7 +1105,7 @@ a {
 
 .file-container {
 	position: relative;
-	margin: 0 7px 10px 7px;
+	margin: 0 12px 10px 12px;
 }
 
 	.file-container .btn-file {
@@ -1241,8 +1241,8 @@ a {
 }
 
 .profile-left-bar {
-	margin: 17px;
-	margin-left: 96px;
+	margin: 14px;
+	margin-left: 95px;
 	float: left;
 }
 
@@ -1252,9 +1252,9 @@ a {
 		border-radius: 1px;
 		-moz-border-radius: 1px;
 		-webkit-border-radius: 1px;
-		-moz-box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
-		-webkit-box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
-		box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
+		-moz-box-shadow: 0 0 0 3px #f6f6f6, 0 0 0 4px #cccccc;
+		-webkit-box-shadow: 0 0 0 3px #f6f6f6, 0 0 0 4px #cccccc;
+		box-shadow: 0 0 0 3px #f6f6f6, 0 0 0 4px #cccccc;
 		position: relative;
 		z-index: 9;
 		background-color: white;
@@ -1273,11 +1273,11 @@ a {
 
 	.profile-left-bar .user-upload-photo {
 		padding-top: 20px;
-		width: 214px;
+		width: 224px;
 		border: 1px solid #CCC;
-		margin-left: -7px;
+		margin-left: -12px;
 		z-index: 10;
-		border-radius: 1px;
+		border-radius: 10px;
 		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 		background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));
@@ -1286,45 +1286,42 @@ a {
 		background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
 		background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-		-moz-box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
-		-webkit-box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
-		box-shadow: 0 0 0 6px #f6f6f6, 0 0 0 7px #cccccc;
 		margin-top: 1px;
 	}
 
-		.profile-left-bar .user-upload-photo .validation-summary-errors {
-			margin: 0 7px 10px 7px;
-			color: #B31919;
-			text-align: center;
-			background-color: rgba(100, 17, 17, 0.2);
-		}
+.profile-left-bar .user-upload-photo .validation-summary-errors {
+	margin: 0 12px 10px 12px;
+	color: #B31919;
+	text-align: center;
+	background-color: rgba(100, 17, 17, 0.2);
+}
 
-	.profile-left-bar .user-buttons {
-		margin-top: 20px;
-		width: 200px;
+.profile-left-bar .user-buttons {
+	margin-top: 20px;
+	width: 200px;
+}
+
+	.profile-left-bar .user-buttons a {
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+		background: #B31919;
+		font-family: 'Ubuntu', 'Lato', sans-serif;
+		color: white;
+		font-weight: 700;
+		font-size: 15px;
+		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+		cursor: pointer;
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+		padding: 6px;
+		border: 1px solid #B31919;
+		margin-top: 3px;
 	}
 
-		.profile-left-bar .user-buttons a {
-			box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
-			background: #B31919;
-			font-family: 'Ubuntu', 'Lato', sans-serif;
-			color: white;
-			font-weight: 700;
-			font-size: 15px;
-			text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
-			cursor: pointer;
-			display: inline-block;
-			width: 100%;
-			text-align: center;
+		.profile-left-bar .user-buttons a:active {
+			box-shadow: inset 3px 3px 3px rgba(0,0,0,0.1);
 			padding: 6px;
-			border: 1px solid #B31919;
-			margin-top: 3px;
 		}
-
-			.profile-left-bar .user-buttons a:active {
-				box-shadow: inset 3px 3px 3px rgba(0,0,0,0.1);
-				padding: 6px;
-			}
 
 .profile-right-bar {
 	width: 60%;
