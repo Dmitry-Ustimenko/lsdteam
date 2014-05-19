@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
-using LeagueSoldierDeathTeam.Site.Classes;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Models.Home;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -19,6 +20,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[Route("forum")]
+		[UserAuthorize(UserRoles = Role.Administrator | Role.Moderator)]
 		public ActionResult Forum()
 		{
 			return View();

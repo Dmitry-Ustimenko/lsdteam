@@ -198,6 +198,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Classes\AppConfig.cs" />
     <Compile Include="Classes\AppContext.cs" />
+    <Compile Include="Classes\Attributes\UserAuthorize.cs" />
     <Compile Include="Classes\ChallengeResult.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\ControllerActionInfo.cs" />
