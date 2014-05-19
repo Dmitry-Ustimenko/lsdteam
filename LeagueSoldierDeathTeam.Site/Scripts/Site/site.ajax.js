@@ -41,7 +41,7 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 					}
 				},
 				error: function (jqxhr) {
-					window.status = "Done";
+					window.status = "Done with error";
 					document.body.style.cursor = "default";
 
 					if (jqxhr.status == 404)
