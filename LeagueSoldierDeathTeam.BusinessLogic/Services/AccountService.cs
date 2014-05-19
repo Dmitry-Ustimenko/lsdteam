@@ -11,6 +11,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Classes.Security;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
 using LeagueSoldierDeathTeam.DataBaseLayer.Model;
+using Role = LeagueSoldierDeathTeam.DataBaseLayer.Model.Role;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 {
