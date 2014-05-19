@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -14,7 +12,6 @@ using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Factories;
-using LeagueSoldierDeathTeam.Site.Models;
 using Microsoft.Web.Mvc;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
