@@ -1664,6 +1664,42 @@ span.checker-span {
 
 /* profile-info-mini */
 
+.logoff-icon {
+	background: url(/Images/logoff.png) no-repeat center top;
+	width: 17px;
+	height: 20px;
+	display: inline-block;
+}
+
+.settings-icon {
+	background: url(/Images/settings.png) no-repeat center top;
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+}
+
+.bookmark-icon {
+	background: url(/Images/bookmark.png) no-repeat center top;
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+}
+
+.private-message-icon {
+	background: url(/Images/private-message.png) no-repeat center top;
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+}
+
+.profile-info-mini {
+	position: absolute;
+	background-color: transparent;
+	z-index: 1000;
+	top: 50px;
+	right: -203px;
+}
+
 .profile-info-mini {
 	position: absolute;
 	background-color: transparent;
@@ -1715,13 +1751,90 @@ span.checker-span {
 		}
 
 			.profile-info-mini .transparent-border .profile-links .section-module-header {
-				height: 30px;
-				text-align: center;
+				height: 31px;
+				text-align: left;
 				box-shadow: 0 0 2px rgba(0,0,0,0.3) inset;
 			}
 
+				.profile-info-mini .transparent-border .profile-links .section-module-header hr {
+					margin: 5px;
+				}
+
+				.profile-info-mini .transparent-border .section-module-header .module-title,
 				.profile-info-mini .transparent-border .profile-links .section-module-header .module-title {
-					padding: 5px;
+					padding: 6px;
+					padding-left: 7px;
 					font-size: 17px;
 					text-transform: none;
+					position: relative;
+					width: 100%;
+				}
+
+				.profile-info-mini .transparent-border .profile-links .section-module-header .module-body {
+					margin: 5px;
+				}
+
+					.profile-info-mini .transparent-border .profile-links .section-module-header .module-body a {
+						display: block;
+						margin-top: 5px;
+						margin-bottom: 5px;
+						border: 1px solid rgb(153, 153, 153);
+						padding: 3px;
+						padding-left: 5px;
+						position: relative;
+						background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+						background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+						background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));
+						background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+						background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+						background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+						background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+						filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+					}
+
+						.profile-info-mini .transparent-border .profile-links .section-module-header .module-body a:active {
+							box-shadow: inset 2px 2px 1px rgba(0,0,0,0.1);
+						}
+
+						.profile-info-mini .transparent-border .profile-links .section-module-header .module-body a .settings-icon,
+						.profile-info-mini .transparent-border .profile-links .section-module-header .module-body a .bookmark-icon,
+						.profile-info-mini .transparent-border .profile-links .section-module-header .module-body a .private-message-icon {
+							position: absolute;
+							right: 5px;
+							top: 2px;
+						}
+
+				.profile-info-mini .transparent-border .profile-links .section-module-header .module-title .logoff-wrapper {
+					position: absolute;
+					right: 0;
+					top: 0;
+					display: inline-block;
+					width: 35px;
+					height: 30px;
+					border-left: 1px solid rgb(160, 160, 160);
+					z-index: 1;
+				}
+
+					.profile-info-mini .transparent-border .profile-links .section-module-header .module-title .logoff-wrapper:hover {
+						cursor: pointer;
+					}
+
+						.profile-info-mini .transparent-border .profile-links .section-module-header .module-title .logoff-wrapper:hover .logoff-icon {
+							background: url(/Images/logoff-active.png);
+							width: 20px;
+							right: 6px;
+						}
+
+					.profile-info-mini .transparent-border .profile-links .section-module-header .module-title .logoff-wrapper:active {
+						box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+					}
+
+				.profile-info-mini .transparent-border .profile-links .section-module-header .module-title .logoff-icon {
+					position: absolute;
+					right: 9px;
+					top: 5px;
+				}
+
+				.profile-info-mini .transparent-border .profile-links .section-module-header .module-body a:hover {
+					text-shadow: 0 0 0 transparent, 0 0 1px rgba(255, 102, 102, 0.5);
 				}

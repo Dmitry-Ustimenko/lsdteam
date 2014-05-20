@@ -272,6 +272,7 @@
     <Content Include="Images\Background\bf2.jpg" />
     <Content Include="Images\Background\bf3.jpg" />
     <Content Include="Images\Background\bf4.jpg" />
+    <Content Include="Images\bookmark.png" />
     <Content Include="Images\browse.png" />
     <Content Include="Images\classic-loader.gif" />
     <Content Include="Images\classic-map.png" />
@@ -291,8 +292,12 @@
     <Content Include="Images\facebook.png" />
     <Content Include="Images\frostbite.png" />
     <Content Include="Images\glyphicons-halflings.png" />
+    <Content Include="Images\logoff-active.png" />
+    <Content Include="Images\logoff.png" />
     <Content Include="Images\navbuttons2.gif" />
     <Content Include="Images\page-up.png" />
+    <Content Include="Images\private-message.png" />
+    <Content Include="Images\settings.png" />
     <Content Include="Images\Slider\001.jpg" />
     <Content Include="Images\Slider\002.jpg" />
     <Content Include="Images\Slider\003.jpg" />
