@@ -11,7 +11,7 @@ insert into @t([Id], [Name])
 values
 (1, N'Администратор'),
 (2, N'Модератор'),
-(3, N'Пользователь')
+(4, N'Пользователь')
 --
 merge into [dbo].[Role] as [target]
 using @t as [source] on [target].[Id] = [source].[Id]

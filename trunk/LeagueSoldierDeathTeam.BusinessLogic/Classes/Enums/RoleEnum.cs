@@ -11,6 +11,6 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
 		Moderator = 2,
 
 		[Description("Пользователь")]
-		User = 3
+		User = 4
 	}
 }

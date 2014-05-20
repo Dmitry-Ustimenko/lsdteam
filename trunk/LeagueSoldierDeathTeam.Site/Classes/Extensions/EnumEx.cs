@@ -10,36 +10,18 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions
 	{
 		public static string GetDisplayName(this Enum value)
 		{
-			return GetDisplayName(value, false);
+			return GetName(value, false);
 		}
 
-		public static string GetDisplayName(Enum value, bool showEmpty)
+		public static string GetDescriptionName(this Enum value)
 		{
-			if (value == null)
-				return string.Empty;
-
-			var data = value.ToString();
-
-			var fi = value.GetType().GetField(data);
-			var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
-
-			if (attributes.Any())
-				return attributes[0].Description;
-			return showEmpty ? string.Empty : data;
+			return GetName(value, true);
 		}
 
-		public static IDictionary<int, string> GetItems(this System.Enum source)
-		{
-			return GetItems(source, false);
-		}
-
-		public static IDictionary<int, string> GetItems(this System.Enum source, bool showEmpty)
+		public static IDictionary<int, string> GetItems(this Enum source, bool showDescriptionName = true)
 		{
 			var e = source.GetType();
-			var results = System.Enum.GetValues(e)
-				.Cast<int>()
-				.ToDictionary(o => o,
-					o => GetDisplayName((System.Enum)System.Enum.Parse(e, o.ToString(CultureInfo.InvariantCulture)), showEmpty));
+			var results = Enum.GetValues(e).Cast<int>().ToDictionary(o => o, o => GetName((Enum)Enum.Parse(e, o.ToString(CultureInfo.InvariantCulture)), showDescriptionName));
 			return results.Where(o => !string.IsNullOrEmpty(o.Value)).ToDictionary(o => o.Key, o => o.Value);
 		}
 
@@ -48,7 +30,24 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions
 			return Enum.GetValues(typeof(TEnum)).Cast<int>().Where(o => IsItemSet(value, o)).Cast<TEnum>().ToList();
 		}
 
-		public static bool IsItemSet(int value, int item)
+		private static string GetName(Enum value, bool showDescriptionName)
+		{
+			if (value == null)
+				return string.Empty;
+
+			var data = value.ToString();
+			var fi = value.GetType().GetField(data);
+
+			if (showDescriptionName)
+			{
+				var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+				if (attributes.Any())
+					return attributes[0].Description;
+			}
+			return data;
+		}
+
+		private static bool IsItemSet(int value, int item)
 		{
 			return (value & item) == item;
 		}
