@@ -14,7 +14,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="profile-links section-shadow">
+		<div class="profile section-shadow">
 			<div class="section-module-header">
 				<div data-type="auth-name" class="module-title">
 					@currentUser.UserName
@@ -22,12 +22,30 @@
 						<span class="logoff-icon"></span>
 					</a>
 				</div>
-				<div class="module-body">
-					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(currentUser.Id)))"><span class="settings-icon"></span>Настройки</a>
-					<a href="javascript:void(0);"><span class="bookmark-icon"></span>Мои закладки</a>
-					<a href="javascript:void(0);"><span class="private-message-icon"></span>Личные сообщения</a>
+			</div>
+			<div class="info-body">
+				<div class="info">
+					<span class="banner">
+						@if (currentUser.IsAdmin)
+						{
+							<img src="/Images/admin-banner.png" alt="Баннер" />
+
+						}
+						else if (currentUser.IsModerator)
+						{
+							<img src="/Images/moderator-banner.png" alt="Баннер" />
+						}
+						else
+						{
+							<img src="/Images/user-banner.png" alt="Баннер" />
+						}
+					</span>
 				</div>
 				<hr />
+				<a href="javascript:void(0);"><span class="private-message-icon"></span>Мои сообщения</a>
+				<a href="javascript:void(0);"><span class="bookmark-icon"></span>Мои закладки</a>
+				<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(currentUser.Id)))"><span class="profile-icon"></span>Мой профиль</a>
+				<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(currentUser.Id)))"><span class="settings-icon"></span>Настройки</a>
 			</div>
 		</div>
 	</div>
