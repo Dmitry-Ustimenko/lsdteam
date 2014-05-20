@@ -28,6 +28,7 @@
 			site.layout.clearSocialHash();
 			site.layout.topPage();
 			site.layout.fixedMenu();
+			site.layout.fixedProfile();
 			site.layout.initLoginTab($loginForm);
 			site.layout.initRegisterTab($registerForm);
 			site.layout.initLoginForm($loginForm);
@@ -127,6 +128,18 @@
 					$sectionMenu.css('top', (sectionHeaderHeight - top));
 				else
 					$sectionMenu.css('top', fixedHeight);
+			});
+		},
+
+		fixedProfile: function () {
+			var defaultTop = 50;
+
+			var $profileMini = $(".profile-info-mini");
+			$profileMini.css('top', defaultTop);
+
+			$(window).scroll(function () {
+				var scrollTop = $(this).scrollTop();
+				$profileMini.css('top', scrollTop + defaultTop);
 			});
 		},
 

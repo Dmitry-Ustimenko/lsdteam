@@ -206,6 +206,32 @@ a {
 	z-index: 500;
 }
 
+	.section-menu .profile-mini {
+		width: 25px;
+	}
+
+		.section-menu .profile-mini:hover {
+			cursor: pointer;
+		}
+
+		.section-menu .profile-mini .hide-profile-mini {
+			width: 25px;
+			height: 25px;
+			display: inline-block;
+			background: url(/Images/left.png);
+			border-left: 1px solid #969696;
+			margin-top: 2px;
+		}
+
+		.section-menu .profile-mini .open-profile-mini {
+			width: 25px;
+			height: 25px;
+			display: inline-block;
+			background: url(/Images/right.png);
+			border-left: 1px solid #969696;
+			margin-top: 2px;
+		}
+
 	.section-menu .menu-holder {
 		width: 960px;
 		margin: 0 auto;
@@ -593,7 +619,7 @@ a {
 }
 
 .menu {
-	margin: 0 10px;
+	margin: 0 0 0 10px;
 }
 
 	.menu .dividing-line {
@@ -631,6 +657,7 @@ a {
 	.menu .search-cell {
 		width: auto;
 		text-align: right;
+		padding-right: 5px;
 	}
 
 		.menu .search-cell .input-group {
@@ -1711,7 +1738,6 @@ span.checker-span {
 	position: absolute;
 	background-color: transparent;
 	z-index: 1000;
-	top: 50px;
 	right: -203px;
 }
 
@@ -1849,7 +1875,7 @@ span.checker-span {
 					margin-top: 5px;
 				}
 
-				.profile-info-mini .transparent-border .profile .info-body .info span.banner {
-					width: 175px;
-					height: 25px;
-				}
+					.profile-info-mini .transparent-border .profile .info-body .info span.banner {
+						width: 175px;
+						height: 25px;
+					}
