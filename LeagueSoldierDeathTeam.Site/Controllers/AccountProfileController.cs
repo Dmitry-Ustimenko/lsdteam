@@ -59,8 +59,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 					if (ModelIsValid)
 					{
-						var userInfo = Execute(() => _accountService.GetUserProfile(userId));
-						var oldPath = string.Concat(AppDomain.CurrentDomain.BaseDirectory, userInfo.PhotoPath);
+						var user = Execute(() => _accountService.GetUser(userId));
+						var oldPath = string.Concat(AppDomain.CurrentDomain.BaseDirectory, user.PhotoPath);
 
 						var fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(photoUploadFile.FileName));
 						var path = Path.Combine(Server.MapPath(Constants.PhotoDirectoryPath), Path.GetFileName(fileName));
@@ -70,6 +70,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 						photoUploadFile.SaveAs(path);
 
 						Execute(() => _accountService.UpdateUserPhoto(userId, string.Concat(Constants.PhotoDirectoryPath, fileName)));
+						Execute(() => AppContext.CurrentUser = _accountService.GetUser(userId));
 
 						if (ModelIsValid)
 						{
@@ -96,10 +97,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[HttpPost]
 		public ActionResult DeletePhoto(int userId)
 		{
-			var userInfo = Execute(() => _accountService.GetUserProfile(userId));
-			var path = string.Concat(AppDomain.CurrentDomain.BaseDirectory, userInfo.PhotoPath);
+			var user = Execute(() => _accountService.GetUser(userId));
+			var path = string.Concat(AppDomain.CurrentDomain.BaseDirectory, user.PhotoPath);
 
 			Execute(() => _accountService.DeleteUserPhoto(userId));
+			Execute(() => AppContext.CurrentUser = _accountService.GetUser(userId));
 
 			if (ModelIsValid && System.IO.File.Exists(path))
 			{

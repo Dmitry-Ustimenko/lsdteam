@@ -210,25 +210,17 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			if (user == null)
 				throw new ArgumentNullException(string.Format("Данного пользователя не существует."));
 
-			var entityUserInfo = _userInfoRepository.Query(o => o.UserId == userId).SingleOrDefault();
-			var userInfo = entityUserInfo ?? new UserInfo { User = user };
-
-			userInfo.PhotoPath = photoPath;
-
-			if (entityUserInfo == null)
-				_userInfoRepository.Add(userInfo);
-
+			user.PhotoPath = photoPath;
 			UnitOfWork.Commit();
 		}
 
 		void IAccountService.DeleteUserPhoto(int userId)
 		{
-			var userInfo = _userInfoRepository.Query(o => o.UserId == userId).SingleOrDefault();
-			if (userInfo == null)
-				throw new ArgumentNullException(string.Format("Данные о пользователе отсутсвуют."));
+			var user = _userRepository.Query(o => o.Id == userId).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("Данного пользователя не существует."));
 
-			userInfo.PhotoPath = string.Empty;
-
+			user.PhotoPath = string.Empty;
 			UnitOfWork.Commit();
 		}
 
@@ -264,7 +256,6 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				Icq = o.ICQ,
 				BattleLog = o.BattleLog,
 				Steam = o.Steam,
-				PhotoPath = o.PhotoPath,
 				AboutMe = o.AboutMe,
 				SexId = o.SexId,
 				SexName = o.Sex != null ? o.Sex.Name : string.Empty
@@ -453,6 +444,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				Password = o.Password,
 				CreateDate = o.CreateDate,
 				LastActivity = o.LastActivity,
+				PhotoPath = o.PhotoPath,
 				Roles = o.UserRoles.Select(c => new RoleData
 				{
 					Id = c.Role.Id,

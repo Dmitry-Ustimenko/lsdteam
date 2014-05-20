@@ -19,7 +19,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			model.UserRoles = string.Join(",", data.User.Roles.Select(o => o.Name));
 			model.LastName = data.LastName;
 			model.FirstName = data.FirstName;
-			model.PhotoPath = data.PhotoPath;
+			model.PhotoPath = data.User.PhotoPath;
 			model.SexName = data.SexName;
 			model.ShowEmail = data.User.ShowEmail;
 

@@ -8,7 +8,8 @@
 	[CreateDate] DATETIME NOT NULL, 
     [LastActivity] DATETIME NOT NULL
     constraint [PK_dboUser] primary key clustered ([Id]), 
-    [ShowEmail] BIT NOT NULL default 0
+    [ShowEmail] BIT NOT NULL default 0, 
+    [PhotoPath] NVARCHAR(1024) NULL
 );
 
 go

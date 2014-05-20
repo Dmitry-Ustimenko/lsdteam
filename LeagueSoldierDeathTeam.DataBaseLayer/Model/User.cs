@@ -31,6 +31,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastActivity { get; set; }
         public bool ShowEmail { get; set; }
+        public string PhotoPath { get; set; }
     
         public virtual ICollection<UserActivateToken> UserActivateTokens { get; set; }
         public virtual ICollection<UserResetToken> UserResetTokens { get; set; }
