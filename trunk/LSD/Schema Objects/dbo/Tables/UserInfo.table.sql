@@ -3,7 +3,6 @@
 	[Id]			int				not null identity (1, 1),
 	[FirstName]		nvarchar(128)	null,
 	[LastName]		nvarchar(128)	null,
-	[PhotoPath] nvarchar(1024)	null,
 	[Activity]		nvarchar(1024)	null,
 	[DateBirth]	datetime		null,
 	[Country] nvarchar(128)	null,

@@ -191,6 +191,7 @@ a {
 }
 
 .wrapper {
+	position: relative;
 	width: 1020px;
 	margin: 0 auto;
 }
@@ -1289,39 +1290,39 @@ a {
 		margin-top: 1px;
 	}
 
-.profile-left-bar .user-upload-photo .validation-summary-errors {
-	margin: 0 12px 10px 12px;
-	color: #B31919;
-	text-align: center;
-	background-color: rgba(100, 17, 17, 0.2);
-}
+		.profile-left-bar .user-upload-photo .validation-summary-errors {
+			margin: 0 12px 10px 12px;
+			color: #B31919;
+			text-align: center;
+			background-color: rgba(100, 17, 17, 0.2);
+		}
 
-.profile-left-bar .user-buttons {
-	margin-top: 20px;
-	width: 200px;
-}
-
-	.profile-left-bar .user-buttons a {
-		box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
-		background: #B31919;
-		font-family: 'Ubuntu', 'Lato', sans-serif;
-		color: white;
-		font-weight: 700;
-		font-size: 15px;
-		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
-		cursor: pointer;
-		display: inline-block;
-		width: 100%;
-		text-align: center;
-		padding: 6px;
-		border: 1px solid #B31919;
-		margin-top: 3px;
+	.profile-left-bar .user-buttons {
+		margin-top: 20px;
+		width: 200px;
 	}
 
-		.profile-left-bar .user-buttons a:active {
-			box-shadow: inset 3px 3px 3px rgba(0,0,0,0.1);
+		.profile-left-bar .user-buttons a {
+			box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+			background: #B31919;
+			font-family: 'Ubuntu', 'Lato', sans-serif;
+			color: white;
+			font-weight: 700;
+			font-size: 15px;
+			text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+			cursor: pointer;
+			display: inline-block;
+			width: 100%;
+			text-align: center;
 			padding: 6px;
+			border: 1px solid #B31919;
+			margin-top: 3px;
 		}
+
+			.profile-left-bar .user-buttons a:active {
+				box-shadow: inset 3px 3px 3px rgba(0,0,0,0.1);
+				padding: 6px;
+			}
 
 .profile-right-bar {
 	width: 60%;
@@ -1660,3 +1661,67 @@ span.checker-span {
 		margin: 0;
 		display: block;
 	}
+
+/* profile-info-mini */
+
+.profile-info-mini {
+	position: absolute;
+	background-color: transparent;
+	z-index: 1000;
+	top: 50px;
+	right: -203px;
+}
+
+	.profile-info-mini .transparent-border {
+		background-color: transparent;
+		border: 5px solid rgba(0,0,0,0.45);
+		width: 195px;
+	}
+
+		.profile-info-mini .transparent-border .photo-background {
+			background-color: rgba(0, 0, 0, 0.40);
+		}
+
+			.profile-info-mini .transparent-border .photo-background .photo-container {
+				background-color: white;
+				background: url(http://localhost:14631/Images/14.png);
+				padding-top: 15px;
+				padding-bottom: 15px;
+			}
+
+				.profile-info-mini .transparent-border .photo-background .photo-container .profile-photo {
+					width: 150px;
+					height: 150px;
+					margin: auto;
+					position: relative;
+					-moz-box-shadow: 0 0 0 3px #f6f6f6, 0 0 0 5px #363636;
+					-webkit-box-shadow: 0 0 0 3px #f6f6f6, 0 0 0 5px #363636;
+					box-shadow: 0 0 0 3px #f6f6f6, 0 0 0 5px #363636;
+				}
+
+					.profile-info-mini .transparent-border .photo-background .photo-container .profile-photo img {
+						max-width: 150px;
+						max-height: 150px;
+						position: absolute;
+						top: 0;
+						bottom: 0;
+						left: 0;
+						right: 0;
+					}
+
+		.profile-info-mini .transparent-border .profile-links {
+			background-color: white;
+			height: 200px;
+		}
+
+			.profile-info-mini .transparent-border .profile-links .section-module-header {
+				height: 30px;
+				text-align: center;
+				box-shadow: 0 0 2px rgba(0,0,0,0.3) inset;
+			}
+
+				.profile-info-mini .transparent-border .profile-links .section-module-header .module-title {
+					padding: 5px;
+					font-size: 17px;
+					text-transform: none;
+				}

@@ -31,6 +31,7 @@
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastActivity" Type="datetime" Nullable="false" />
           <Property Name="ShowEmail" Type="bit" Nullable="false" />
+          <Property Name="PhotoPath" Type="nvarchar" MaxLength="1024" />
         </EntityType>
         <EntityType Name="UserActivateToken">
           <Key>
@@ -56,7 +57,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="128" />
           <Property Name="LastName" Type="nvarchar" MaxLength="128" />
-          <Property Name="PhotoPath" Type="nvarchar" MaxLength="1024" />
           <Property Name="Activity" Type="nvarchar" MaxLength="1024" />
           <Property Name="DateBirth" Type="datetime" />
           <Property Name="Country" Type="nvarchar" MaxLength="128" />
@@ -298,6 +298,7 @@
           <NavigationProperty Name="UserRoles" Relationship="LSDDataModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
           <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
           <Property Name="ShowEmail" Type="Boolean" Nullable="false" />
+          <Property Name="PhotoPath" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserActivateToken">
           <Key>
@@ -430,7 +431,6 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Sex" Relationship="LSDDataModel.FK_UserInfo_Sex" FromRole="UserInfo" ToRole="Sex" />
           <NavigationProperty Name="User" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="UserInfo" ToRole="User" />
-          <Property Name="PhotoPath" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="AboutMe" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_UserInfo_Sex">
@@ -484,6 +484,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="LSDDataModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
                 <ScalarProperty Name="ShowEmail" ColumnName="ShowEmail" />
                 <ScalarProperty Name="LastActivity" ColumnName="LastActivity" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
@@ -537,7 +538,6 @@
             <EntityTypeMapping TypeName="LSDDataModel.UserInfo">
               <MappingFragment StoreEntitySet="UserInfo">
                 <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
-                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="SexId" ColumnName="SexId" />
                 <ScalarProperty Name="Steam" ColumnName="Steam" />

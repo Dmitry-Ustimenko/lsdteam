@@ -1,4 +1,22 @@
-﻿
+﻿@using LeagueSoldierDeathTeam.Site.Classes
 @{
 	Layout = null;
+	var currentUser = AppContext.Current.CurrentUser;
 }
+
+<div class="profile-info-mini">
+	<div class="transparent-border">
+		<div class="photo-background section-shadow">
+			<div class="photo-container">
+				<div class="profile-photo">
+					<img src="@Html.Raw(!string.IsNullOrWhiteSpace(currentUser.PhotoPath) ? currentUser.PhotoPath : Constants.DefaultPhotoPath)" alt="Фото">
+				</div>
+			</div>
+		</div>
+		<div class="profile-links section-shadow">
+			<div class="section-module-header">
+				<div class="module-title">@currentUser.UserName</div>
+			</div>
+		</div>
+	</div>
+</div>

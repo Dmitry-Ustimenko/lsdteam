@@ -7,7 +7,6 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public int Id { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
-		public string PhotoPath { get; set; }
 		public string Activity { get; set; }
 		public DateTime? DateBirth { get; set; }
 		public string Country { get; set; }

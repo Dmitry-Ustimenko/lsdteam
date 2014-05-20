@@ -25,6 +25,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 
 		public bool ShowEmail { get; set; }
 
+		public string PhotoPath { get; set; }
+
 		public UserData()
 		{
 			CreateDate = DateTime.Today;

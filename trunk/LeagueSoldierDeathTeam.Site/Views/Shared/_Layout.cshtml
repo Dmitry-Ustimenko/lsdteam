@@ -15,7 +15,7 @@
 				<img class="full-size" src="/Images/team-name.png" alt="League Soldier of Death Team" />
 			</div>
 			<div class="emblem">
-				<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))"><img src="/Images/emblem.png" alt="Главная страница"/></a>
+				<a href="@(WebBuilder.BuildActionUrl<HomeController>(m => m.Index()))"><img src="/Images/emblem.png" alt="Главная страница" /></a>
 			</div>
 			@{Html.RenderPartial("_AuthenticationPartial");}
 			<div class="ea-emblem">
@@ -35,6 +35,10 @@
 			</div>
 		</div>
 		@{Html.RenderPartial("_MenuPartial");}
+		@if (Request.IsAuthenticated && AppContext.Current.CurrentUser != null)
+		{
+			Html.RenderPartial("_ProfileInfoPartial");
+		}
 		<div class="section-body">
 			@RenderBody()
 		</div>

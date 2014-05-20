@@ -30,7 +30,6 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public string Steam { get; set; }
         public Nullable<int> SexId { get; set; }
         public int UserId { get; set; }
-        public string PhotoPath { get; set; }
         public string AboutMe { get; set; }
     
         public virtual Sex Sex { get; set; }
