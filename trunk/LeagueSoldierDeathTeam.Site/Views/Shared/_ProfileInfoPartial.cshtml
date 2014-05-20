@@ -1,4 +1,5 @@
 ﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
 @{
 	Layout = null;
 	var currentUser = AppContext.Current.CurrentUser;
@@ -15,7 +16,18 @@
 		</div>
 		<div class="profile-links section-shadow">
 			<div class="section-module-header">
-				<div class="module-title">@currentUser.UserName</div>
+				<div data-type="auth-name" class="module-title">
+					@currentUser.UserName
+					<a class="logoff-wrapper" href="@(WebBuilder.BuildActionUrl<AccountController>(o => o.LogOff()))" title="Выйти">
+						<span class="logoff-icon"></span>
+					</a>
+				</div>
+				<div class="module-body">
+					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(currentUser.Id)))"><span class="settings-icon"></span>Настройки</a>
+					<a href="javascript:void(0);"><span class="bookmark-icon"></span>Мои закладки</a>
+					<a href="javascript:void(0);"><span class="private-message-icon"></span>Личные сообщения</a>
+				</div>
+				<hr />
 			</div>
 		</div>
 	</div>

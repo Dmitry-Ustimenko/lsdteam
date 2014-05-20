@@ -2,7 +2,7 @@
 {
 	public static class RussianAgeEx
 	{
-		public static string GetRussianAge(int age)
+		public static string GetRussianAge(this int age)
 		{
 			if (age == default(int))
 				return string.Empty;
@@ -16,6 +16,19 @@
 			return t1 >= 2 && t1 <= 4 && (t2 < 10 || t2 >= 20)
 				? string.Format("{0} года", age)
 				: string.Format("{0} лет", age);
+		}
+
+		public static string GetRussianMonth(this int month)
+		{
+			if (month == default(int))
+				return string.Empty;
+
+			if (month == 1)
+				return string.Format("{0} месяц", month);
+
+			return month > 1 && month < 5
+				? string.Format("{0} месяца", month)
+				: string.Format("{0} месяцев", month);
 		}
 	}
 }

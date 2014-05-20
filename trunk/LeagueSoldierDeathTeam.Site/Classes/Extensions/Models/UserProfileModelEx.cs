@@ -23,16 +23,18 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			model.SexName = data.SexName;
 			model.ShowEmail = data.User.ShowEmail;
 
+			var dateNow = DateTime.Now;
 			if (data.DateBirth.HasValue)
 			{
-				var dateNow = DateTime.Now;
 				var dateBirthDay = data.DateBirth.Value;
+				if (dateNow.Date > dateBirthDay.Date)
+				{
+					var years = dateNow.Year - dateBirthDay.Year;
+					if (dateNow.Month < dateBirthDay.Month || dateNow.Month == dateBirthDay.Month && dateNow.Day < dateBirthDay.Day)
+						years--;
 
-				var years = dateNow.Year - dateBirthDay.Year;
-				if (dateNow.Month < dateBirthDay.Month || dateNow.Month == dateBirthDay.Month && dateNow.Day < dateBirthDay.Day)
-					years--;
-
-				model.Age = RussianAgeEx.GetRussianAge(years);
+					model.Age = years.GetRussianAge();
+				}
 			}
 
 			model.Activity = data.Activity;
@@ -56,6 +58,21 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			var index = str.LastIndexOf(',');
 			if (index >= 0)
 				model.Address = str.Substring(0, index);
+
+			var dateCreate = data.User.CreateDate;
+			if (dateNow.Date > dateCreate.Date)
+			{
+				var years = dateNow.Year - dateCreate.Year;
+				var months = dateNow.Month - dateCreate.Month;
+
+				if (dateNow.Month < dateCreate.Month || dateNow.Month == dateCreate.Month && dateNow.Day < dateCreate.Day)
+					years--;
+
+				if (dateNow.Month < dateCreate.Month)
+					months = 12 - (dateCreate.Month - dateNow.Month);
+
+				model.Experience = string.Format("{0} {1}", years.GetRussianAge(), months.GetRussianMonth()).Trim();
+			}
 
 			model.CreateDate = data.User.CreateDate;
 			model.LastActivity = data.User.LastActivity;
