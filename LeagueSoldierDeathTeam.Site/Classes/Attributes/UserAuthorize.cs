@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
-using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Controllers;
 
 namespace LeagueSoldierDeathTeam.Site.Classes.Attributes
@@ -26,15 +24,8 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Attributes
 			if (UserRoles == 0)
 				return true;
 
-			var userRoles = new List<string>();
-			foreach (Enum userRole in Enum.GetValues(UserRoles.GetType()))
-			{
-				if (UserRoles.HasFlag(userRole))
-					userRoles.Add(userRole.GetDisplayName());
-			}
-
-			var roles = currentUser.Roles.Select(o => o.Name).ToArray();
-			return userRoles.Any(roles.Contains);
+			var roles = currentUser.Roles.Select(o => (Role)o.Id);
+			return roles.Any(role => UserRoles.HasFlag(role));
 		}
 
 		protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
