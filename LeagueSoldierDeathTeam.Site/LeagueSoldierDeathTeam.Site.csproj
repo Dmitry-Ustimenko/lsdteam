@@ -293,12 +293,14 @@
     <Content Include="Images\facebook.png" />
     <Content Include="Images\frostbite.png" />
     <Content Include="Images\glyphicons-halflings.png" />
+    <Content Include="Images\left.png" />
     <Content Include="Images\logoff-active.png" />
     <Content Include="Images\logoff.png" />
     <Content Include="Images\moderator-banner.png" />
     <Content Include="Images\navbuttons2.gif" />
     <Content Include="Images\page-up.png" />
     <Content Include="Images\private-message.png" />
+    <Content Include="Images\right.png" />
     <Content Include="Images\settings.png" />
     <Content Include="Images\Slider\001.jpg" />
     <Content Include="Images\Slider\002.jpg" />
