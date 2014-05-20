@@ -265,6 +265,7 @@
     <Content Include="Images\11.png" />
     <Content Include="Images\13.png" />
     <Content Include="Images\14.png" />
+    <Content Include="Images\admin-banner.png" />
     <Content Include="Images\arrow-back.png" />
     <Content Include="Images\arrow-social-down.png" />
     <Content Include="Images\arrow-social-up.png" />
@@ -294,6 +295,7 @@
     <Content Include="Images\glyphicons-halflings.png" />
     <Content Include="Images\logoff-active.png" />
     <Content Include="Images\logoff.png" />
+    <Content Include="Images\moderator-banner.png" />
     <Content Include="Images\navbuttons2.gif" />
     <Content Include="Images\page-up.png" />
     <Content Include="Images\private-message.png" />
@@ -311,6 +313,8 @@
     <Content Include="Images\sprite.png" />
     <Content Include="Images\team-name.png" />
     <Content Include="Images\test-image.png" />
+    <Content Include="Images\user-banner.png" />
+    <Content Include="Images\user.png" />
     <Content Include="Images\vk-icon-active.png" />
     <Content Include="Images\vk-icon.png" />
     <Content Include="Images\vk-register.png" />
