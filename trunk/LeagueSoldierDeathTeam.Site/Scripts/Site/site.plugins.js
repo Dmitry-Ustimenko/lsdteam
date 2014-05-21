@@ -244,3 +244,61 @@
 		});
 	};
 })(jQuery);
+
+(function ($) {
+	$.fn.progressBar = function (uploadBtn, url) {
+		$(uploadBtn).click(function () {
+			var $progressbar = $(site.profile.settings.elements.progressbar);
+			var $validationSummary = $(".validation-summary-errors");
+
+			var files = $(site.profile.settings.elements.photoUploadFile).get(0).files;
+			if (files.length) {
+				var $progresslabel = $(site.profile.settings.elements.progresslabel);
+				$validationSummary.hide();
+
+				$progressbar.fadeIn("fast");
+				$progressbar.progressbar({
+					max: 100,
+					change: function () {
+						$progresslabel.text($progressbar.progressbar("value") + "%");
+					},
+					complete: function () {
+						$progressbar.find(".ui-progressbar-value").width(196);
+						$progresslabel.text("Файл загружен");
+					},
+				});
+
+				var data = new FormData();
+				data.append("UploadFile", files[0]);
+
+				var xhr = new XMLHttpRequest();
+				xhr.upload.addEventListener("progress", function (e) {
+					if (e.lengthComputable) {
+						var progress = Math.round(e.loaded * 100 / e.total);
+						$progressbar.progressbar("value", progress);
+					}
+				}, false);
+
+				xhr.open("POST", url, true);
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState == 4) {
+						if (xhr.status == 200) {
+							// success
+						}
+					}
+				};
+				xhr.send(data);
+
+				return false;
+			} else {
+				$progressbar.hide();
+				$validationSummary.show();
+			}
+		});
+	};
+})(jQuery);
+
+
+//initProgressBar: function () {
+//	
+//	});

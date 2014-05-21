@@ -26,48 +26,6 @@
 			initProfileInfo: {
 				init: function () {
 					site.profile.initProfileInfo.initUploadContainer();
-
-					$(".file-submit input").click(function (ev) {
-						var $progressbar = $(site.profile.settings.elements.progressbar);
-						var $validationSummary = $(".validation-summary-errors");
-
-						var files = $("#PhotoUploadFile").get(0).files;
-						if (files.length) {
-							var $progresslabel = $(site.profile.settings.elements.progresslabel);
-							$validationSummary.hide();
-
-							$progressbar.fadeIn("fast");
-							$progressbar.progressbar({
-								max: 100,
-								change: function () {
-									$progresslabel.text($progressbar.progressbar("value") + "%");
-								},
-								complete: function () {
-									$progressbar.find(".ui-progressbar-value").width(196);
-									$progresslabel.text("Файл загружен");
-								},
-							});
-
-							var data = new FormData();
-							data.append(files[0].name, files[0]);
-
-							var xhr = new XMLHttpRequest();
-							xhr.upload.addEventListener("progress", function (e) {
-								if (e.lengthComputable) {
-									var progress = Math.round(e.loaded * 100 / e.total);
-									$progressbar.progressbar("value", progress);
-								}
-							}, false);
-
-							xhr.open("POST", "/accountprofile/editphoto");
-							xhr.send(data);
-
-							ev.preventDefault();
-						} else {
-							$progressbar.hide();
-							$validationSummary.show();
-						}
-					});
 				},
 
 				initUploadContainer: function () {
