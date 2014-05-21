@@ -214,22 +214,21 @@ a {
 			cursor: pointer;
 		}
 
-		.section-menu .profile-mini .hide-profile-mini {
-			width: 25px;
-			height: 25px;
-			display: inline-block;
-			background: url(/Images/left.png);
-			border-left: 1px solid #969696;
-			margin-top: 2px;
-		}
-
+		.section-menu .profile-mini .hide-profile-mini,
 		.section-menu .profile-mini .open-profile-mini {
 			width: 25px;
 			height: 25px;
 			display: inline-block;
-			background: url(/Images/right.png);
 			border-left: 1px solid #969696;
 			margin-top: 2px;
+		}
+
+		.section-menu .profile-mini .hide-profile-mini {
+			background: url(/Images/left.png);
+		}
+
+		.section-menu .profile-mini .open-profile-mini {
+			background: url(/Images/right.png);
 		}
 
 	.section-menu .menu-holder {
@@ -1730,16 +1729,41 @@ span.checker-span {
 	position: absolute;
 	background-color: transparent;
 	z-index: 1000;
-	top: 50px;
 	right: -203px;
 }
 
-.profile-info-mini {
-	position: absolute;
-	background-color: transparent;
-	z-index: 1000;
-	right: -203px;
-}
+	.profile-info-mini .transparent-border .hide-profile {
+		position: absolute;
+		width: 75%;
+		padding: 2px;
+		margin: 0 auto;
+		text-align: center;
+		background-color: rgba(40, 40, 40, 0.8);
+		border: 1px solid rgba(255, 255, 255, 0.8);
+		border-top: none;
+		border-radius: 0 0 4px 4px;
+		-moz-border-radius: 0 0 4px 4px;
+		-webkit-border-radius: 0 0 4px 4px;
+		font-weight: bold;
+		color: white;
+		text-shadow: 1px 1px 1px black;
+		-webkit-transition-duration: 0.3s;
+		-moz-transition-duration: 0.3s;
+		-o-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		bottom: 5px;
+		left: 0;
+		right: 0;
+		z-index: -1;
+	}
+
+	.profile-info-mini:hover .transparent-border .hide-profile {
+		bottom: -18px;
+	}
+
+	.profile-info-mini .transparent-border .hide-profile:hover {
+		cursor: pointer;
+	}
 
 	.profile-info-mini .transparent-border {
 		background-color: transparent;
@@ -1779,6 +1803,7 @@ span.checker-span {
 					}
 
 		.profile-info-mini .transparent-border .profile {
+			z-index: 3;
 			background-color: white;
 		}
 
