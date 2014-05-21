@@ -18,6 +18,49 @@
 })(jQuery);
 
 (function ($) {
+	$.fn.cookieSet = function (name, value, options) {
+		options = options || {};
+		var exp = options.expires;
+
+		if (typeof exp == "number" && exp) {
+			var date = new Date();
+			date.setTime(date.getTime() + exp * 1000);
+			exp = options.expires = date;
+		}
+
+		if (exp && exp.toUTCString)
+			options.expires = exp.toUTCString();
+
+		value = encodeURIComponent(value);
+
+		var updatedCookie = name + "=" + value;
+		for (var propName in options) {
+			updatedCookie += "; " + propName;
+			var propValue = options[propName];
+			if (propValue !== true)
+				updatedCookie += "=" + propValue;
+		}
+
+		document.cookie = updatedCookie;
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.cookieGet = function (name) {
+		var matches = document.cookie.match(new RegExp(
+			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+		));
+		return matches ? decodeURIComponent(matches[1]) : undefined;
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.cookieDelete = function (name) {
+		$.fn.cookieSet(name, "", { expires: -1 });
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.initCheckbox = function () {
 		$(site.layout.settings.elements.checkbox).each(function () {
 			var $this = $(this);
