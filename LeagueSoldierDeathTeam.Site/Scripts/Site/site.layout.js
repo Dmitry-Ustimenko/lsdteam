@@ -29,6 +29,7 @@
 			site.layout.topPage();
 			site.layout.fixedMenu();
 			site.layout.fixedProfile();
+			site.layout.initProfile();
 			site.layout.initLoginTab($loginForm);
 			site.layout.initRegisterTab($registerForm);
 			site.layout.initLoginForm($loginForm);
@@ -132,7 +133,7 @@
 		},
 
 		fixedProfile: function () {
-			var defaultTop = 50;
+			var defaultTop = 35;
 
 			var $profileMini = $(".profile-info-mini");
 			$profileMini.css('top', defaultTop);
@@ -140,6 +141,25 @@
 			$(window).scroll(function () {
 				var scrollTop = $(this).scrollTop();
 				$profileMini.css('top', scrollTop + defaultTop);
+			});
+		},
+
+		initProfile: function () {
+			var $profileMini = $(".profile-mini");
+			var $profileInfoMini = $(".profile-info-mini");
+			$profileMini.off("click").on("click", function () {
+				if ($profileInfoMini.is(":hidden")) {
+					$(this).find("span").removeClass("open-profile-mini");
+					$profileInfoMini.fadeIn("normal");
+				} else {
+					$(this).find("span").addClass("open-profile-mini");
+					$profileInfoMini.fadeOut("normal");
+				}
+			});
+
+			$profileInfoMini.find(".hide-profile").off("click").on("click", function () {
+				$profileMini.find("span").addClass("open-profile-mini");
+				$profileInfoMini.fadeOut("normal");
 			});
 		},
 
