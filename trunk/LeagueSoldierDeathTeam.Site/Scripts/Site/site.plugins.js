@@ -24,7 +24,7 @@
 
 		if (typeof exp == "number" && exp) {
 			var date = new Date();
-			date.setTime(date.getTime() + exp * 1000);
+			date.setDate(date.getDate() + exp);
 			exp = options.expires = date;
 		}
 
