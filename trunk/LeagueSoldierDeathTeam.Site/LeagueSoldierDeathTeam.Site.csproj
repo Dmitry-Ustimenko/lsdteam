@@ -256,6 +256,7 @@
     <Content Include="Content\Plugins\animate.css" />
     <Content Include="Content\Plugins\datepicker.css" />
     <Content Include="Content\Plugins\galleria.classic.css" />
+    <Content Include="Content\Plugins\jquery-ui-1.10.4.css" />
     <Content Include="Content\Plugins\jquery.vegas.css" />
     <Content Include="Content\Plugins\modal-responsive.css" />
     <Content Include="Content\Plugins\modal.css" />
@@ -315,6 +316,8 @@
     <Content Include="Images\sprite.png" />
     <Content Include="Images\team-name.png" />
     <Content Include="Images\test-image.png" />
+    <Content Include="Images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
     <Content Include="Images\user-banner.png" />
     <Content Include="Images\user.png" />
     <Content Include="Images\vk-icon-active.png" />

@@ -30,6 +30,7 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
+				"~/Content/Plugins/jquery-ui-{version}.css",
 				"~/Content/Plugins/galleria.classic.css",
 				"~/Content/Plugins/datepicker.css",
 				"~/Content/Plugins/modal.css",
