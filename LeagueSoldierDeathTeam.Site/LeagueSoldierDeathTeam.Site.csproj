@@ -319,6 +319,8 @@
     <Content Include="Images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
     <Content Include="Images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
     <Content Include="Images\user-banner.png" />
+    <Content Include="Images\user-hide.png" />
+    <Content Include="Images\user-open.png" />
     <Content Include="Images\user.png" />
     <Content Include="Images\vk-icon-active.png" />
     <Content Include="Images\vk-icon.png" />

@@ -20,7 +20,7 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 			{
 				AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
 				CookieName = AppConfig.CookieName,
-				ExpireTimeSpan = new TimeSpan(3, 0, 0, 0),
+				ExpireTimeSpan = new TimeSpan(7, 0, 0, 0),
 				LoginPath = new PathString(WebBuilder.BuildActionUrl<HomeController>(o => o.Index()))
 			});
 

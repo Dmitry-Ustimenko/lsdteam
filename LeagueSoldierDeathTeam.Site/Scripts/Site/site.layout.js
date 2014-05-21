@@ -148,10 +148,13 @@
 			var $profileMini = $(".profile-mini");
 			var $profileInfoMini = $(".profile-info-mini");
 
-			if ($.fn.cookieGet("ProfileStatus") == undefined)
-				$.fn.cookieSet("ProfileStatus", true, { expires: 9999 });
+			var cookieName = "ProfileStatus";
+			var cookieOptions = { expires: 365, path: "/" };
 
-			if ($.fn.cookieGet("ProfileStatus") == "true") {
+			if ($.fn.cookieGet(cookieName) == undefined)
+				$.fn.cookieSet(cookieName, true, cookieOptions);
+
+			if ($.fn.cookieGet(cookieName) == "true") {
 				$profileMini.find("span").addClass("hide-profile-mini");
 				$profileInfoMini.show();
 			} else {
@@ -163,18 +166,18 @@
 				if ($profileInfoMini.is(":hidden")) {
 					$(this).find("span").removeClass("open-profile-mini").addClass("hide-profile-mini");
 					$profileInfoMini.fadeIn("normal");
-					$.fn.cookieSet("ProfileStatus", true, { expires: 9999 });
+					$.fn.cookieSet(cookieName, true, cookieOptions);
 				} else {
 					$(this).find("span").removeClass("hide-profile-mini").addClass("open-profile-mini");
 					$profileInfoMini.fadeOut("normal");
-					$.fn.cookieSet("ProfileStatus", false, { expires: 9999 });
+					$.fn.cookieSet(cookieName, false, cookieOptions);
 				}
 			});
 
 			$profileInfoMini.find(".hide-profile").off("click").on("click", function () {
-				$profileMini.find("span").addClass("open-profile-mini");
+				$profileMini.find("span").removeClass("hide-profile-mini").addClass("open-profile-mini");
 				$profileInfoMini.fadeOut("normal");
-				$.fn.cookieSet("ProfileStatus", false, { expires: 9999 });
+				$.fn.cookieSet(cookieName, false, cookieOptions);
 			});
 		},
 

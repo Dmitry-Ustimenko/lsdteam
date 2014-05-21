@@ -207,7 +207,7 @@ a {
 }
 
 	.section-menu .profile-mini {
-		width: 25px;
+		width: 24px;
 	}
 
 		.section-menu .profile-mini:hover {
@@ -216,23 +216,21 @@ a {
 
 		.section-menu .profile-mini .hide-profile-mini,
 		.section-menu .profile-mini .open-profile-mini {
-			width: 25px;
-			height: 25px;
+			width: 24px;
+			height: 24px;
 			display: inline-block;
-			border-left: 1px solid #969696;
-			margin-top: 2px;
-			-webkit-transition: all 0.5s linear;
-			-moz-transition: all 0.5s linear;
-			-o-transition: all 0.5s linear;
-			transition: all 0.5s linear;
+			-webkit-transition: all 0.4s linear;
+			-moz-transition: all 0.4s linear;
+			-o-transition: all 0.4s linear;
+			transition: all 0.4s linear;
 		}
 
 		.section-menu .profile-mini .hide-profile-mini {
-			background: url(/Images/left.png);
+			background: url(/Images/user-open.png) no-repeat center top;
 		}
 
 		.section-menu .profile-mini .open-profile-mini {
-			background: url(/Images/right.png);
+			background: url(/Images/user-hide.png) no-repeat center top;
 		}
 
 	.section-menu .menu-holder {
@@ -622,7 +620,7 @@ a {
 }
 
 .menu {
-	margin: 0 0 0 10px;
+	margin: 0 5px 0 10px;
 }
 
 	.menu .dividing-line {
@@ -676,10 +674,11 @@ a {
 			width: 180px;
 			height: 24px;
 			font-size: 12px;
-			background: url(/Images/icon_search.png) no-repeat right 2px #FFF;
+			background: url(/Images/icon_search.png) no-repeat right 1px #FFF;
 			border: 1px solid #a8acad;
 			padding: 0 5px;
 			font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
+			margin-bottom: 3px;
 		}
 
 			.menu .search-cell .search-field:focus {
