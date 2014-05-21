@@ -1912,3 +1912,23 @@ span.checker-span {
 						width: 175px;
 						height: 25px;
 					}
+
+.progressbar {
+	width: 200px;
+	height: 22px;
+	margin: 0 12px 7px 12px;
+	margin-bottom: 7px;
+	display: none;
+}
+
+.progressbarlabel {
+	width: 200px;
+	height: 22px;
+	position: absolute;
+	text-align: center;
+	font-size: small;
+}
+
+.ui-progressbar .ui-progressbar-value {
+	margin: 0;
+}
