@@ -221,6 +221,10 @@ a {
 			display: inline-block;
 			border-left: 1px solid #969696;
 			margin-top: 2px;
+			-webkit-transition: all 0.5s linear;
+			-moz-transition: all 0.5s linear;
+			-o-transition: all 0.5s linear;
+			transition: all 0.5s linear;
 		}
 
 		.section-menu .profile-mini .hide-profile-mini {
@@ -1695,6 +1699,10 @@ span.checker-span {
 	width: 17px;
 	height: 20px;
 	display: inline-block;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	-o-transition: all 0.1s linear;
+	transition: all 0.1s linear;
 }
 
 .settings-icon {
