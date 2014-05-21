@@ -300,9 +300,12 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			var resetToken = _userResetTokenRepository.Query(o => o.UserId == user.Id).SingleOrDefault();
 
 			if (resetToken == null)
-				_userResetTokenRepository.Add(new UserResetToken { CreateDate = DateTime.Now, Token = token, User = user });
+				_userResetTokenRepository.Add(new UserResetToken {CreateDate = DateTime.Now, Token = token, User = user});
 			else
+			{
+				resetToken.CreateDate = DateTime.Now;
 				resetToken.Token = token;
+			}
 
 			UnitOfWork.Commit();
 
