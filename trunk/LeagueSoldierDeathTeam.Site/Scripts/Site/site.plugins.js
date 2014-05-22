@@ -340,8 +340,3 @@
 		});
 	};
 })(jQuery);
-
-
-//initProgressBar: function () {
-//	
-//	});
