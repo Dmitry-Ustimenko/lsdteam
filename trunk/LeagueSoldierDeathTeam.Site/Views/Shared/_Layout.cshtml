@@ -48,8 +48,8 @@
 		</footer>
 		<div class="arrow-page-up"></div>
 	</div>
-	@DeclarativeHelper.Control.RenderAlert()
-	@DeclarativeHelper.Control.RenderConfirm()
+	@DeclarativeHelper.Control.RenderAlert("alertOverlay")
+	@DeclarativeHelper.Control.RenderAlert("confirmOverlay", true)
 	<script type="text/javascript">
 		var array = @Html.Raw(StaticResourse.GetBackgroundImages())
 
