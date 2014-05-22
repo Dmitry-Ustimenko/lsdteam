@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -21,11 +20,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Attributes
 			if (!httpContext.Request.IsAuthenticated || currentUser == null)
 				return false;
 
-			if (UserRoles == 0)
-				return true;
-
-			var roles = currentUser.Roles.Select(o => (Role)o.Id);
-			return roles.Any(role => UserRoles.HasFlag(role));
+			return UserRoles == 0 || UserRoles.HasFlag((Role)currentUser.RoleId);
 		}
 
 		protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)

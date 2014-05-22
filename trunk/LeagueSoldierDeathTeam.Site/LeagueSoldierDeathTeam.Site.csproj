@@ -202,7 +202,6 @@
     <Compile Include="Classes\ChallengeResult.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\ControllerActionInfo.cs" />
-    <Compile Include="Classes\Extensions\EnumEx.cs" />
     <Compile Include="Classes\Extensions\Models\EditProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\ExternalRegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />

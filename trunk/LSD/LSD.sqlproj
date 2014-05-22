@@ -108,7 +108,6 @@
   <ItemGroup>
     <Build Include="Schema Objects\dbo\Tables\User.table.sql" />
     <Build Include="Schema Objects\dbo\Tables\Role.table.sql" />
-    <Build Include="Schema Objects\dbo\Tables\UserRole.table.sql" />
     <Build Include="Schema Objects\dbo\Tables\Sex.table.sql" />
     <Build Include="Schema Objects\dbo\Tables\UserInfo.table.sql" />
     <Build Include="Schema Objects\dbo\Tables\UserExternalInfo.table.sql" />

@@ -5,8 +5,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
 	[Flags]
 	public enum Role
 	{
-		Administrator = 1,
-		Moderator = 2,
-		User = 4
+		SuperAdministrator = 1,
+		Administrator = 2,
+		Moderator = 4,
+		User = 8
 	}
 }

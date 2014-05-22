@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
-using LeagueSoldierDeathTeam.Site.Classes.Extensions;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions;
 
 namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 {
