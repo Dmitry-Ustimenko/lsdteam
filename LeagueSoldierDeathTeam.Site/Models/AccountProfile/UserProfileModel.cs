@@ -22,7 +22,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 		public string Experience { get; set; }
 		public DateTime CreateDate { get; set; }
 		public DateTime LastActivity { get; set; }
-		public string UserRoles { get; set; }
+		public string UserRole { get; set; }
 		public string SexName { get; set; }
 		public string AboutMe { get; set; }
 		public bool ShowEmail { get; set; }

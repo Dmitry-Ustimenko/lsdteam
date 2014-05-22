@@ -28,9 +28,9 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public string Skype { get; set; }
         public string BattleLog { get; set; }
         public string Steam { get; set; }
+        public string AboutMe { get; set; }
         public Nullable<int> SexId { get; set; }
         public int UserId { get; set; }
-        public string AboutMe { get; set; }
     
         public virtual Sex Sex { get; set; }
         public virtual User User { get; set; }

@@ -7,6 +7,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Re
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Config;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Security;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
@@ -110,7 +111,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			if (role == null)
 				throw new ArgumentNullException(string.Format("role"));
 
-			user.UserRoles.Add(new UserRole { Role = role, User = user });
+			user.Role = role;
 
 			_userRepository.Add(user);
 			UnitOfWork.Commit();
@@ -300,7 +301,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			var resetToken = _userResetTokenRepository.Query(o => o.UserId == user.Id).SingleOrDefault();
 
 			if (resetToken == null)
-				_userResetTokenRepository.Add(new UserResetToken {CreateDate = DateTime.Now, Token = token, User = user});
+				_userResetTokenRepository.Add(new UserResetToken { CreateDate = DateTime.Now, Token = token, User = user });
 			else
 			{
 				resetToken.CreateDate = DateTime.Now;
@@ -448,11 +449,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				CreateDate = o.CreateDate,
 				LastActivity = o.LastActivity,
 				PhotoPath = o.PhotoPath,
-				Roles = o.UserRoles.Select(c => new RoleData
-				{
-					Id = c.Role.Id,
-					Name = c.Role.Name
-				})
+				RoleId = o.Role != null ? o.Role.Id : (int)RoleEnum.User,
+				RoleName = o.Role != null ? o.Role.Name : "Пользователь"
 			}, filter).SingleOrDefault();
 		}
 

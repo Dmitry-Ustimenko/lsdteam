@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 
-namespace LeagueSoldierDeathTeam.Site.Classes.Extensions
+namespace LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions
 {
 	public static class EnumEx
 	{

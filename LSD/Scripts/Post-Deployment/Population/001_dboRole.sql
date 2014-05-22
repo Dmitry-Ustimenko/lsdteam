@@ -9,9 +9,10 @@ declare @t table
 --
 insert into @t([Id], [Name])
 values
-(1, N'Администратор'),
-(2, N'Модератор'),
-(4, N'Пользователь')
+(1, N'СуперАдминистратор'),
+(2, N'Администратор'),
+(4, N'Модератор'),
+(8, N'Пользователь')
 --
 merge into [dbo].[Role] as [target]
 using @t as [source] on [target].[Id] = [source].[Id]

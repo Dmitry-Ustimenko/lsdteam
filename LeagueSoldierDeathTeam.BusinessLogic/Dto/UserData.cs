@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
@@ -15,17 +13,17 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public DateTime CreateDate { get; set; }
 		public DateTime LastActivity { get; set; }
 		public int? UserExternalInfoId { get; set; }
+		public bool ShowEmail { get; set; }
+		public string PhotoPath { get; set; }
+		public int RoleId { get; set; }
+		public string RoleName { get; set; }
 
-		public bool IsAdmin { get { return Roles.Select(o => o.Id).Contains((int)RoleEnum.Administrator); } }
-		public bool IsModerator { get { return Roles.Select(o => o.Id).Contains((int)RoleEnum.Moderator); } }
-		public bool IsUser { get { return Roles.Select(o => o.Id).Contains((int)RoleEnum.User); } }
+		public bool IsSuperAdmin { get { return RoleId == (int)RoleEnum.SuperAdministrator; } }
+		public bool IsAdmin { get { return RoleId == (int)RoleEnum.Administrator; } }
+		public bool IsModerator { get { return RoleId == (int)RoleEnum.Moderator; } }
+		public bool IsUser { get { return RoleId == (int)RoleEnum.User; } }
 
 		public UserExternalInfoData UserExternalInfo { get; set; }
-		public IEnumerable<RoleData> Roles { get; set; }
-
-		public bool ShowEmail { get; set; }
-
-		public string PhotoPath { get; set; }
 
 		public UserData()
 		{
