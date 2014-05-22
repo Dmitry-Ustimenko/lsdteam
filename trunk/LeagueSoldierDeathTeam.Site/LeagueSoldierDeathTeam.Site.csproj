@@ -207,7 +207,7 @@
     <Compile Include="Classes\Extensions\Models\ExternalRegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\UserProfileModelEx.cs" />
-    <Compile Include="Classes\Extensions\RussianAgeEx.cs" />
+    <Compile Include="Classes\Extensions\RussianTimeEx.cs" />
     <Compile Include="Classes\Extensions\StringGeneration.cs" />
     <Compile Include="Classes\Factories\ContextFactory.cs" />
     <Compile Include="Classes\Logger.cs" />

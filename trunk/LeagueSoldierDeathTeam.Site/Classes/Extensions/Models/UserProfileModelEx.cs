@@ -33,7 +33,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 					if (dateNow.Month < dateBirthDay.Month || dateNow.Month == dateBirthDay.Month && dateNow.Day < dateBirthDay.Day)
 						years--;
 
-					model.Age = years.GetRussianAge();
+					model.Age = years.GetRussianYears();
 				}
 			}
 
@@ -62,16 +62,22 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			var dateCreate = data.User.CreateDate;
 			if (dateNow.Date > dateCreate.Date)
 			{
-				var years = dateNow.Year - dateCreate.Year;
-				var months = dateNow.Month - dateCreate.Month;
+				var days = (int)(dateNow - dateCreate).TotalDays;
+				if (days < 32)
+					model.Experience = string.Format("{0}", days.GetRussianDays()).Trim();
+				else
+				{
+					var years = dateNow.Year - dateCreate.Year;
+					var months = dateNow.Month - dateCreate.Month;
 
-				if (dateNow.Month < dateCreate.Month || dateNow.Month == dateCreate.Month && dateNow.Day < dateCreate.Day)
-					years--;
+					if (dateNow.Month < dateCreate.Month || dateNow.Month == dateCreate.Month && dateNow.Day < dateCreate.Day)
+						years--;
 
-				if (dateNow.Month < dateCreate.Month)
-					months = 12 - (dateCreate.Month - dateNow.Month);
+					if (dateNow.Month < dateCreate.Month)
+						months = 12 - (dateCreate.Month - dateNow.Month);
 
-				model.Experience = string.Format("{0} {1}", years.GetRussianAge(), months.GetRussianMonth()).Trim();
+					model.Experience = string.Format("{0} {1}", years.GetRussianYears(), months.GetRussianMonths()).Trim();
+				}
 			}
 
 			model.CreateDate = data.User.CreateDate;
