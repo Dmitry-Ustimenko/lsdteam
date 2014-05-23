@@ -12,9 +12,15 @@
 
 		public ChangePasswordModel ChangePasswordModel { get; set; }
 
+		public RoleManagementModel RoleManagementModel { get; set; }
+
 		public EditProfileModel()
 		{
 			ChangePasswordModel = new ChangePasswordModel();
+			RoleManagementModel = new RoleManagementModel();
+			EditMainInfoModel = new EditMainInfoModel();
+			EditAdvanceInfoModel = new EditAdvanceInfoModel();
+			EditBindInfoModel = new EditBindInfoModel();
 		}
 	}
 }

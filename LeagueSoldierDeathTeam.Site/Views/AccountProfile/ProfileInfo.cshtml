@@ -5,7 +5,7 @@
 @{
 	ViewBag.Title = "Профиль пользователя";
 	var currentUser = AppContext.Current.CurrentUser;
-	var isAdminOrIsMe = Model.UserId == currentUser.Id || currentUser.IsAdmin;
+	var isAdminOrIsMe = Model.UserId == currentUser.Id || currentUser.IsAdmin || currentUser.IsMainAdmin;
 }
 <div class="transparent-border">
 	<div class="simple-page-body section-shadow">
@@ -57,6 +57,10 @@
 					<a href="javascript:void(0);">Личные сообщения</a>
 					<a href="javascript:void(0);">Мои закладки</a>
 					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(Model.UserId)))">Редактировать профиль</a>
+					if (currentUser.IsMainAdmin || currentUser.IsAdmin)
+					{
+						<a href="@(WebBuilder.BuildActionUrl<AdministrationController>(o => o.Index()))">Администрирование</a>
+					}
 				}
 				else
 				{
