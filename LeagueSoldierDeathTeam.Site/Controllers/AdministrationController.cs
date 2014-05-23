@@ -17,6 +17,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Index
 
+		[Route("administration")]
 		public ActionResult Index()
 		{
 			return View();
