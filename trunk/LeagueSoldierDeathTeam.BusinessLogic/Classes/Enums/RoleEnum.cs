@@ -4,8 +4,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
 {
 	public enum RoleEnum
 	{
-		[Description("Super Admin")]
-		SuperAdministrator = 1,
+		[Description("Главный aдминистратор")]
+		MainAdministrator = 1,
 
 		[Description("Администратор")]
 		Administrator = 2,

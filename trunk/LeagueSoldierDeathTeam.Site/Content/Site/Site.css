@@ -1204,6 +1204,10 @@ a {
 	left: 433px;
 }
 
+.profile-tabs label[for=tab-role-manager] {
+	left: 598px;
+}
+
 .profile-tabs .tabs > li > input[type=radio] {
 	position: absolute;
 	top: -9999px;
@@ -1704,6 +1708,13 @@ span.checker-span {
 	transition: all 0.1s linear;
 }
 
+.administration-icon {
+	background: url(/Images/tools.png) no-repeat center top;
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+}
+
 .settings-icon {
 	background: url(/Images/settings.png) no-repeat center top;
 	width: 18px;
@@ -1762,10 +1773,12 @@ span.checker-span {
 		left: 0;
 		right: 0;
 		z-index: -1;
+		opacity: 0;
 	}
 
 	.profile-info-mini:hover .transparent-border .hide-profile {
 		bottom: -18px;
+		opacity: 1;
 	}
 
 	.profile-info-mini .transparent-border .hide-profile:hover {
@@ -1858,6 +1871,7 @@ span.checker-span {
 						box-shadow: inset 2px 2px 1px rgba(0,0,0,0.1);
 					}
 
+					.profile-info-mini .transparent-border .profile .info-body a .administration-icon,
 					.profile-info-mini .transparent-border .profile .info-body a .settings-icon,
 					.profile-info-mini .transparent-border .profile .info-body a .profile-icon,
 					.profile-info-mini .transparent-border .profile .info-body a .bookmark-icon,

@@ -1,0 +1,26 @@
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+
+@{
+	Layout = null;
+	var currentUser = AppContext.Current.CurrentUser;
+}
+
+<span class="banner">
+	@if (currentUser.IsMainAdmin)
+	{
+		<img src="/Images/main-admin-banner.png" alt="Баннер" />
+	}
+	else if (currentUser.IsAdmin)
+	{
+		<img src="/Images/admin-banner.png" alt="Баннер" />
+	}
+	else if (currentUser.IsModerator)
+	{
+		<img src="/Images/moderator-banner.png" alt="Баннер" />
+	}
+	else
+	{
+		<img src="/Images/user-banner.png" alt="Баннер" />
+	}
+</span>
+
