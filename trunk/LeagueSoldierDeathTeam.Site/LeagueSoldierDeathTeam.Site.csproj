@@ -405,6 +405,7 @@
     <Content Include="Views\AccountProfile\_RoleManagementPartial.cshtml" />
     <Content Include="Views\Shared\_BannerPartial.cshtml" />
     <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Scripts\Site\site.administration.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

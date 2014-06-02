@@ -26,7 +26,8 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				"~/Scripts/Site/site.plugins.js",
 				"~/Scripts/Site/site.layout.js",
 				"~/Scripts/Site/site.home.js",
-				"~/Scripts/Site/site.profile.js"
+				"~/Scripts/Site/site.profile.js",
+				"~/Scripts/Site/site.administration.js"
 				));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
