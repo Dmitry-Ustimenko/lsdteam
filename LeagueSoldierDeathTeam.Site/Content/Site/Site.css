@@ -1953,6 +1953,93 @@ span.checker-span {
 	margin: 0;
 }
 
-/* nav */
+/* tabs */
 
+.ui-tabs {
+	padding: 0;
+}
 
+.ui-tabs-vertical {
+	width: 100%;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+}
+
+.ui-widget-header {
+	background: white;
+	border: none;
+}
+
+.ui-widget-content {
+	border: none;
+	background: white;
+}
+
+.ui-tabs-vertical .ui-tabs-nav {
+	padding: 0;
+	float: left;
+	width: 180px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+	color: rgb(68, 68, 68);
+	font-weight: normal;
+	font-family: 'Lily Script One', helveti;
+	font: 18px 'PT Sans Narrow', Arial, sans-serif;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background: white;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+	background: #f6f6f6 url("/images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
+}
+
+.ui-tabs-vertical .ui-tabs-nav li {
+	clear: left;
+	width: 95%;
+	float: right;
+	border: 1px solid #D1D1D1;
+	border-right: 0;
+	border-radius: 3px 0 0 3px;
+	-moz-border-radius: 3px 0 0 3px;
+	-webkit-border-radius: 3px 0 0 3px;
+}
+
+	.ui-tabs-vertical .ui-tabs-nav li a {
+		display: block;
+		width: 100%;
+	}
+
+		.ui-tabs-vertical .ui-tabs-nav li a:hover {
+			text-shadow: none;
+		}
+
+.ui-tabs-vertical .ui-tabs-panel {
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	float: left;
+	width: 790px;
+	border: 1px solid #D1D1D1;
+}
+
+.ui-tabs .ui-tabs-nav li {
+	margin: 0;
+	margin-bottom: 2px;
+}
+
+	.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+		margin: 0;
+		margin-bottom: 2px;
+		padding: 0;
+		width: 100%;
+	}
