@@ -322,9 +322,9 @@ a {
 	z-index: 498;
 }
 
-	.section-body a:hover {
-		text-shadow: 0 0 0 transparent, 0 0 1px rgba(255, 102, 102, 0.5);
-	}
+.profile-info a:hover {
+	text-shadow: 0 0 0 transparent, 0 0 1px rgba(255, 102, 102, 0.5);
+}
 
 .section-body-item-60 {
 	width: 710px;
@@ -1982,7 +1982,7 @@ span.checker-span {
 .ui-tabs-vertical .ui-tabs-nav {
 	padding: 0;
 	float: left;
-	width: 180px;
+	width: 170px;
 	margin-top: 10px;
 	margin-left: 10px;
 }
@@ -2004,23 +2004,24 @@ span.checker-span {
 
 .ui-tabs-vertical .ui-tabs-nav li {
 	clear: left;
-	width: 95%;
+	width: 90%;
 	float: right;
 	border: 1px solid #D1D1D1;
 	border-right: 0;
 	border-radius: 3px 0 0 3px;
 	-moz-border-radius: 3px 0 0 3px;
 	-webkit-border-radius: 3px 0 0 3px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	-o-transition: all 0.1s linear;
+	transition: all 0.1s linear;
 }
 
 	.ui-tabs-vertical .ui-tabs-nav li a {
 		display: block;
 		width: 100%;
+		text-align: center;
 	}
-
-		.ui-tabs-vertical .ui-tabs-nav li a:hover {
-			text-shadow: none;
-		}
 
 .ui-tabs-vertical .ui-tabs-panel {
 	padding: 10px;
@@ -2028,9 +2029,17 @@ span.checker-span {
 	margin-bottom: 10px;
 	margin-right: 10px;
 	float: left;
-	width: 790px;
+	width: 800px;
 	border: 1px solid #D1D1D1;
 }
+
+	.ui-tabs-vertical .ui-tabs-panel h2 {
+		font-weight: normal;
+		font-family: 'Lily Script One', helveti;
+		font: 18px 'PT Sans Narrow', Arial, sans-serif;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
 
 .ui-tabs .ui-tabs-nav li {
 	margin: 0;
@@ -2043,3 +2052,11 @@ span.checker-span {
 		padding: 0;
 		width: 100%;
 	}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+	background-color: rgba(136, 136, 136, 0.1);
+}
+
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+	padding: 10px 5px 10px 5px;
+}
