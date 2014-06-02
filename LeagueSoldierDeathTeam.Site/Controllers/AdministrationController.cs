@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
@@ -18,6 +20,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region Index
 
 		[Route("administration")]
+		[UserAuthorize(UserRoles = Role.Administrator)]
 		public ActionResult Index()
 		{
 			return View();
