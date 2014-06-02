@@ -20,7 +20,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[Route("forum")]
-		[UserAuthorize(UserRoles = Role.Administrator | Role.Moderator)]
+		[UserAuthorize(UserRoles = Role.Moderator)]
 		public ActionResult Forum()
 		{
 			return View();
