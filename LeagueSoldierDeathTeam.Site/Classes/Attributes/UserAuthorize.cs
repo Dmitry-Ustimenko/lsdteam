@@ -20,6 +20,9 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Attributes
 			if (!httpContext.Request.IsAuthenticated || currentUser == null)
 				return false;
 
+			if (currentUser.IsMainAdmin || currentUser.IsAdmin)
+				return true;
+
 			return UserRoles == 0 || UserRoles.HasFlag((Role)currentUser.RoleId);
 		}
 
