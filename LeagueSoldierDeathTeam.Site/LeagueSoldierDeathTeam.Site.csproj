@@ -205,6 +205,7 @@
     <Compile Include="Classes\Extensions\Models\EditProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\ExternalRegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
+    <Compile Include="Classes\Extensions\Models\UserEditModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\UserProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\RussianTimeEx.cs" />
     <Compile Include="Classes\Extensions\StringGeneration.cs" />
@@ -242,6 +243,9 @@
     <Compile Include="Models\Account\PasswordResetModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\Account\RegisterSuccessfullModel.cs" />
+    <Compile Include="Models\Administration\AdministrationModel.cs" />
+    <Compile Include="Models\Administration\UserEditItemModel.cs" />
+    <Compile Include="Models\Administration\UserEditModel.cs" />
     <Compile Include="Models\ImagesModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\BaseOverlayModel.cs" />
@@ -406,6 +410,8 @@
     <Content Include="Views\Shared\_BannerPartial.cshtml" />
     <Content Include="Views\Administration\Index.cshtml" />
     <Content Include="Scripts\Site\site.administration.js" />
+    <Content Include="Views\Administration\_UserEditPartial.cshtml" />
+    <Content Include="Views\Administration\_RoleManagementPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

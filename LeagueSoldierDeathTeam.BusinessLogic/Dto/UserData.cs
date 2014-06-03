@@ -17,6 +17,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public string PhotoPath { get; set; }
 		public int RoleId { get; set; }
 		public string RoleName { get; set; }
+		public bool IsBanned { get; set; }
 
 		public bool IsMainAdmin { get { return RoleId == (int)RoleEnum.MainAdministrator; } }
 		public bool IsAdmin { get { return RoleId == (int)RoleEnum.Administrator; } }

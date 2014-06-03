@@ -32,6 +32,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public bool ShowEmail { get; set; }
         public string PhotoPath { get; set; }
         public int RoleId { get; set; }
+        public bool IsBanned { get; set; }
     
         public virtual Role Role { get; set; }
         public virtual ICollection<UserActivateToken> UserActivateTokens { get; set; }

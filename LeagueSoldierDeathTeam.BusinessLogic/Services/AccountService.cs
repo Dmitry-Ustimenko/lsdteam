@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
@@ -235,6 +236,19 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return GetUser(o => o.Id == id);
 		}
 
+		IEnumerable<UserData> IAccountService.GetUsers()
+		{
+			return _userRepository.GetData(o => new UserData
+			{
+				Id = o.Id,
+				UserName = o.UserName,
+				Email = o.Email,
+				IsActive = o.IsActive,
+				PhotoPath = o.PhotoPath,
+				IsBanned = o.IsBanned
+			}).OrderBy(o => o.UserName);
+		}
+
 		UserInfoData IAccountService.GetUserProfile(int userId)
 		{
 			var user = GetUser(o => o.Id == userId);
@@ -450,7 +464,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				LastActivity = o.LastActivity,
 				PhotoPath = o.PhotoPath,
 				RoleId = o.Role != null ? o.Role.Id : (int)RoleEnum.User,
-				RoleName = o.Role != null ? o.Role.Name : "Пользователь"
+				RoleName = o.Role != null ? o.Role.Name : "Пользователь",
+				IsBanned = o.IsBanned
 			}, filter).SingleOrDefault();
 		}
 
