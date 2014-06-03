@@ -44,7 +44,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			{
 				try
 				{
-					if (photoUploadFile.ContentLength > 100000)
+					if (photoUploadFile.ContentLength > 102400)
 						ModelState.AddModelError(string.Empty, "Размер файла не выше 100кб");
 
 					if (!Constants.AcceptImage.Contains(photoUploadFile.ContentType))

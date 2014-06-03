@@ -33,6 +33,7 @@
           <Property Name="ShowEmail" Type="bit" Nullable="false" />
           <Property Name="PhotoPath" Type="nvarchar" MaxLength="1024" />
           <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="IsBanned" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="UserActivateToken">
           <Key>
@@ -267,6 +268,7 @@
           <NavigationProperty Name="UserResetTokens" Relationship="LSDDataModel.FK_dboUserResetToken_dboUser" FromRole="User" ToRole="UserResetToken" />
           <NavigationProperty Name="UserExternalInfoes" Relationship="LSDDataModel.FK_UserExternalInfo_User" FromRole="User" ToRole="UserExternalInfo" />
           <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
+          <Property Name="IsBanned" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="UserActivateToken">
           <Key>
@@ -426,6 +428,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="LSDDataModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsBanned" ColumnName="IsBanned" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
                 <ScalarProperty Name="ShowEmail" ColumnName="ShowEmail" />

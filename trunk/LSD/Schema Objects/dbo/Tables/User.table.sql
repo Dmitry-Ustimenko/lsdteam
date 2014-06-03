@@ -10,7 +10,8 @@
     constraint [PK_dboUser] primary key clustered ([Id]), 
     [ShowEmail] BIT NOT NULL default 0, 
     [PhotoPath] NVARCHAR(1024) NULL, 
-    [RoleId] int NOT NULL DEFAULT 8
+    [RoleId] int NOT NULL DEFAULT 8, 
+    [IsBanned] BIT NOT NULL DEFAULT 0
 );
 
 go

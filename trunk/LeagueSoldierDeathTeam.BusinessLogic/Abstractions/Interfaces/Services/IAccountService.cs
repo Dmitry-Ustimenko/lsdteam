@@ -1,4 +1,5 @@
-﻿using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+﻿using System.Collections.Generic;
+using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
@@ -24,6 +25,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 		UserData GetUser(string email);
 
 		UserData GetUser(int userExternalInfoId);
+
+		IEnumerable<UserData> GetUsers();
 
 		UserExternalInfoData GetExternalUser(string providerName, string providerKey);
 

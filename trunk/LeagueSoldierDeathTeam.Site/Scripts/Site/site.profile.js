@@ -19,7 +19,8 @@
 					tabContentBind: '#tab-content-bind',
 					tabContentChangePassword: '#tab-content-change-pass',
 					progressbar: '#progressbar',
-					progresslabel: '#progresslabel'
+					progresslabel: '#progresslabel',
+					uploadBtn: '#UploadBtn'
 				}
 			},
 
@@ -62,6 +63,29 @@
 							var form = $this.closest("form");
 							form.submit();
 						});
+					});
+
+					$(site.profile.settings.elements.uploadBtn).on("click", function () {
+						var $this = $(this);
+						var form = $this.closest("form");
+						var validationSummary = form.find("[class^=validation-summary-]");
+						validationSummary.removeClass("validation-summary-errors").addClass("validation-summary-valid");
+						validationSummary.find("ul").html("");
+						if (form.valid()) {
+							var files = $photoUploadFile.get(0).files;
+							if (!files.length)
+								return false;
+
+							var message = $.fn.validateUploadFile(files[0], { size: 102400 });
+							if (message != undefined) {
+								validationSummary.removeClass("validation-summary-valid").addClass("validation-summary-errors");
+								validationSummary.find("ul").append("<li>" + message + "</li>");
+								return false;
+							}
+
+							return true;
+						}
+						return false;
 					});
 				}
 			},

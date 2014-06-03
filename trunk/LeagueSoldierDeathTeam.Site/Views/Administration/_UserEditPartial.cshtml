@@ -1,0 +1,48 @@
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.Site.Models.Administration.UserEditModel
+
+@{
+	Layout = null;
+}
+
+@if (Model.Items.Any())
+{
+	<div class="users">
+		<table>
+			<thead>
+				<tr>
+					<th>Пользователь</th>
+					<th>Email</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.Items)
+				{
+					<tr>
+						<td class="left user-name">
+							<a class="@Html.Raw(item.IsActive ? "green" : "darkred")" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.UserId)))" target="_blank">
+								@item.UserName
+							</a>
+						</td>
+						<td class="left email">
+							<a href="@Html.Raw(string.Concat("mailto:", item.UserEmail))">@item.UserEmail</a>
+						</td>
+						<td class="buttons">
+							<a class="settings" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(item.UserId)))" target="_blank">Настройки</a>
+							<a class="activation" href="javascript:void(0);">Активировать</a>
+							<a class="banned" href="javascript:void(0);">Забанить</a>
+							<a class="delete" href="javascript:void(0);">Удалить</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+}
+else
+{
+	<div>Пользователей не найдено.</div>
+}
+

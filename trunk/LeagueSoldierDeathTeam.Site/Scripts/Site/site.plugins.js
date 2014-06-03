@@ -289,6 +289,18 @@
 })(jQuery);
 
 (function ($) {
+	$.fn.validateUploadFile = function (file, options) {
+		if (options == undefined)
+			return undefined;
+
+		if (options.size != undefined && file.size > options.size)
+			return "Размер файла не выше " + options.size / 1024 + "кб";
+
+		return undefined;
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.progressBar = function (uploadBtn, url) {
 		$(uploadBtn).click(function () {
 			var $progressbar = $(site.profile.settings.elements.progressbar);
