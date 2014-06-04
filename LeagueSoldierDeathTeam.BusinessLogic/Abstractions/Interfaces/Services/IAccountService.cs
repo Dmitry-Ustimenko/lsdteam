@@ -45,5 +45,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 		UserInfoData GetUserProfile(int userId);
 
 		void ChangePassword(string oldPassword, string newPassword, int userId);
+
+		void DeleteUser(int userId);
+
+		void BanUser(int userId, bool isBanned);
+
+		void ActivateUser(int userId, bool isActivated);
 	}
 }

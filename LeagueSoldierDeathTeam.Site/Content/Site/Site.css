@@ -2101,6 +2101,10 @@ span.checker-span {
 				text-shadow: 0 0 0 transparent, 0 0 2px rgba(117, 255, 98, 0.5);
 			}
 
+			.ui-widget-content .users table tbody td.user-name a.orange:hover {
+				text-shadow: 0 0 0 transparent, 0 0 2px rgba(255, 192, 98, 0.5);
+			}
+
 			.ui-widget-content .users table tbody td.buttons {
 				text-align: left;
 			}
@@ -2136,11 +2140,17 @@ span.checker-span {
 					}
 
 					.ui-widget-content .users table tbody td.buttons a:active {
+						-moz-box-shadow: inset 2px 2px 2px rgba(0,0,0,0.1);
+						-webkit-box-shadow: inset 2px 2px 2px rgba(0,0,0,0.1);
 						box-shadow: inset 2px 2px 2px rgba(0,0,0,0.1);
 					}
 
 .green {
 	color: green !important;
+}
+
+.orange {
+	color: rgb(213, 111, 0) !important;
 }
 
 .darkred {
