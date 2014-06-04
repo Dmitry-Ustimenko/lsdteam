@@ -22,7 +22,7 @@
 				{
 					<tr>
 						<td class="left user-name">
-							<a class="@Html.Raw(item.IsActive ? "green" : "darkred")" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.UserId)))" target="_blank">
+							<a class="@Html.Raw(!item.IsActive ? "darkred" : item.IsBanned ? "orange" : "green")" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.UserId)))" target="_blank">
 								@item.UserName
 							</a>
 						</td>

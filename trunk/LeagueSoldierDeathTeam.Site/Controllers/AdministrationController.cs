@@ -31,6 +31,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Index
 
+		#region Administration
+
 		[Route("administration")]
 		[UserAuthorize(UserRoles = Role.Administrator)]
 		public ActionResult Index()
@@ -46,12 +48,39 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#endregion
 
+		#region Users
+
+		public ActionResult DeleteUser(int userId)
+		{
+			var model = new UserEditModel();
+
+			return PartialView("_UserEditPartial", model);
+		}
+
+		public ActionResult BanUser(int userId)
+		{
+			var model = new UserEditModel();
+
+			return PartialView("_UserEditPartial", model);
+		}
+
+		public ActionResult ActivateUser(int userId)
+		{
+			var model = new UserEditModel();
+
+			return PartialView("_UserEditPartial", model);
+		}
+
+		#endregion
+
 		#region Role Management
 
 		public ActionResult RoleManagement()
 		{
 			return View();
 		}
+
+		#endregion
 
 		#endregion
 

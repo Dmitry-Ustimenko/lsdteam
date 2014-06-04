@@ -8,7 +8,6 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Re
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Config;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Security;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
@@ -407,6 +406,30 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			UnitOfWork.Commit();
 		}
 
+		void IAccountService.DeleteUser(int userId)
+		{
+			var user = GetUser(userId);
+
+			_userRepository.Delete(user);
+			UnitOfWork.Commit();
+		}
+
+		void IAccountService.BanUser(int userId, bool isBanned)
+		{
+			var user = GetUser(userId);
+
+			user.IsBanned = isBanned;
+			UnitOfWork.Commit();
+		}
+
+		void IAccountService.ActivateUser(int userId, bool isActivated)
+		{
+			var user = GetUser(userId);
+
+			user.IsActive = isActivated;
+			UnitOfWork.Commit();
+		}
+
 		#endregion
 
 		#region Internal Implementation
@@ -467,6 +490,15 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				RoleName = o.Role != null ? o.Role.Name : "Пользователь",
 				IsBanned = o.IsBanned
 			}, filter).SingleOrDefault();
+		}
+
+		private User GetUser(int id)
+		{
+			var user = _userRepository.Query(o => o.Id == id).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("user"));
+
+			return user;
 		}
 
 		private static string GetHashingPassword(string password)
