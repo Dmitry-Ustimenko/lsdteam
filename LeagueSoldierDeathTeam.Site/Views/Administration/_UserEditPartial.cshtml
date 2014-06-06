@@ -31,9 +31,25 @@
 						</td>
 						<td class="buttons">
 							<a class="settings" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(item.UserId)))" target="_blank">Настройки</a>
-							<a class="activation" href="javascript:void(0);">Активировать</a>
-							<a class="banned" href="javascript:void(0);">Забанить</a>
-							<a class="delete" href="javascript:void(0);">Удалить</a>
+							@if (!item.IsActive)
+							{
+								<a class="activation" data-action="activation" data-id="@item.UserId" href="javascript:void(0);">Активировать</a>
+								<a class="activation" data-action="message" data-id="@item.UserId" href="javascript:void(0);">Письмо активации</a>
+							}
+							@if (item.IsActive)
+							{
+								<a class="banned" data-id="@item.UserId" data-banned="@item.IsBanned" href="javascript:void(0);">
+									@if (item.IsBanned)
+									{
+										@:Разбанить
+									}
+									else
+									{
+										@:Забанить
+									}
+								</a>
+							}
+							<a class="delete" data-id="@item.UserId" href="javascript:void(0);">Удалить</a>
 						</td>
 					</tr>
 				}

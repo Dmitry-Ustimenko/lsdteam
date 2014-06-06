@@ -31,5 +31,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 			CreateDate = DateTime.Today;
 			LastActivity = DateTime.Today;
 		}
+
+		public bool IsMe(int userId)
+		{
+			return userId == Id;
+		}
 	}
 }
