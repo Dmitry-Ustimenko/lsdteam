@@ -45,7 +45,7 @@
 								<div id="progresslabel" class="progressbarlabel"></div>
 							</div>*@
 						<div class="file-submit">
-							<input id="UploadBtn"  type="submit" class="button" value="Upload" />
+							<input id="UploadBtn" type="submit" class="button" value="Upload" />
 						</div>
 						@Html.HiddenFor(m => m.UserId)
 					}
@@ -57,7 +57,7 @@
 					<a href="javascript:void(0);">Личные сообщения</a>
 					<a href="javascript:void(0);">Мои закладки</a>
 					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(Model.UserId)))">Редактировать профиль</a>
-					if (currentUser.IsMainAdmin || currentUser.IsAdmin)
+					if ((currentUser.IsMainAdmin || currentUser.IsAdmin) && currentUser.IsMe(Model.UserId))
 					{
 						<a href="@(WebBuilder.BuildActionUrl<AdministrationController>(o => o.Index()))">Администрирование</a>
 					}

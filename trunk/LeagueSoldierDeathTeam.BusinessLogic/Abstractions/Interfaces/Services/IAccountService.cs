@@ -40,6 +40,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 
 		void PasswordReset(PasswordResetParams resetContext);
 
+		void SetPassword(int userId, string password);
+
 		bool ActivateAccount(string token);
 
 		UserInfoData GetUserProfile(int userId);
@@ -50,6 +52,6 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 
 		void BanUser(int userId, bool isBanned);
 
-		void ActivateUser(int userId, bool isActivated);
+		void ActivateUser(int userId);
 	}
 }

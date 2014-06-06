@@ -85,6 +85,23 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Register
 
+		[HttpGet]
+		[Route("register-successfully")]
+		public ActionResult RegisterSuccessfull(string registerEmail)
+		{
+			if (string.IsNullOrWhiteSpace(registerEmail))
+				return View();
+
+			var index = registerEmail.IndexOf("@", StringComparison.Ordinal);
+			if (index < 0)
+				return View();
+
+			var emailHost = registerEmail.Substring(index);
+			var mailHostings = XmlParser<MailHosting>.Parse(Constants.XmlMailHostingPath, Constants.XmlMailHostingSearchName)
+				.DistinctBy(o => o.HostAttribute).ToDictionary(o => o.HostAttribute, o => o.SiteAttribute);
+			return View(new RegisterSuccessfullModel { MailHosting = mailHostings.ContainsKey(emailHost) ? mailHostings[emailHost] : string.Empty });
+		}
+
 		[HttpPost]
 		public ActionResult Register(RegisterModel model)
 		{
@@ -110,23 +127,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				}
 			}
 			return View("_RegisterPartial", model);
-		}
-
-		[HttpGet]
-		[Route("register-successfully")]
-		public ActionResult RegisterSuccessfull(string registerEmail)
-		{
-			if (string.IsNullOrWhiteSpace(registerEmail))
-				return View();
-
-			var index = registerEmail.IndexOf("@", StringComparison.Ordinal);
-			if (index < 0)
-				return View();
-
-			var emailHost = registerEmail.Substring(index);
-			var mailHostings = XmlParser<MailHosting>.Parse(Constants.XmlMailHostingPath, Constants.XmlMailHostingSearchName)
-				.DistinctBy(o => o.HostAttribute).ToDictionary(o => o.HostAttribute, o => o.SiteAttribute);
-			return View(new RegisterSuccessfullModel { MailHosting = mailHostings.ContainsKey(emailHost) ? mailHostings[emailHost] : string.Empty });
 		}
 
 		#endregion

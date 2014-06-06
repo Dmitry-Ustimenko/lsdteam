@@ -232,7 +232,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		UserData IAccountService.GetUser(int id)
 		{
-			return GetUser(o => o.Id == id);
+			var user = GetUser(o => o.Id == id);
+			if (user == null)
+				throw new ArgumentException("Такого пользователя не существует.");
+
+			return user;
 		}
 
 		IEnumerable<UserData> IAccountService.GetUsers()
@@ -245,7 +249,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				IsActive = o.IsActive,
 				PhotoPath = o.PhotoPath,
 				IsBanned = o.IsBanned
-			}).OrderBy(o => o.UserName);
+			}).OrderBy(o => !o.IsActive).ThenBy(o => o.UserName);
 		}
 
 		UserInfoData IAccountService.GetUserProfile(int userId)
@@ -356,6 +360,16 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return resetPasswordToken != null && ValidatePasswordResetToken(resetPasswordToken);
 		}
 
+		public void SetPassword(int userId, string password)
+		{
+			var user = _userRepository.Query(o => o.Id == userId).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("user"));
+
+			user.Password = GetHashingPassword(password);
+			UnitOfWork.Commit();
+		}
+
 		bool IAccountService.ActivateAccount(string token)
 		{
 			var userActivateToken = _userActivateTokenRepository.Query(o => o.Token == token).SingleOrDefault();
@@ -422,11 +436,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			UnitOfWork.Commit();
 		}
 
-		void IAccountService.ActivateUser(int userId, bool isActivated)
+		void IAccountService.ActivateUser(int userId)
 		{
 			var user = GetUser(userId);
 
-			user.IsActive = isActivated;
+			user.IsActive = true;
 			UnitOfWork.Commit();
 		}
 

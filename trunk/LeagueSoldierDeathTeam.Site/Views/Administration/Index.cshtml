@@ -1,4 +1,6 @@
-﻿@model LeagueSoldierDeathTeam.Site.Models.Administration.AdministrationModel
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.Site.Models.Administration.AdministrationModel
 
 @{
 	ViewBag.Title = "Администрирование сайта";
@@ -30,6 +32,13 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		site.administation.roleManagement.init();
+		site.administation.init({
+			urls: {
+				deleteUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.DeleteUser(null)))',
+				activateUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ActivateUser(null)))',
+				banUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.BanUser(null, null)))',
+				sendMessageForActivate: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.SendMessageForActivate(null)))'
+			}
+		});
 	});
 </script>

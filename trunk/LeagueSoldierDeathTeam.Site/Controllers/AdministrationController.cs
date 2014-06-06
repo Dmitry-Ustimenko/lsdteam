@@ -1,28 +1,38 @@
-﻿using System.Linq;
+﻿using System;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
+using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Models.Administration;
+using LeagueSoldierDeathTeam.Site.Models.Mail;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
+	[UserAuthorize(UserRoles = Role.Administrator)]
 	public class AdministrationController : BaseController
 	{
 		#region Private Fields
 
 		private readonly IAccountService _accountService;
 
+		private readonly IMailer _mailer;
+
 		#endregion
 
 		#region Constructors
 
-		public AdministrationController(ServiceFactoryBase serviceFactory)
+		public AdministrationController(ServiceFactoryBase serviceFactory, IMailer mailer)
 			: base(serviceFactory)
 		{
 			_accountService = serviceFactory.CreateAccountService();
+
+			if (mailer == null)
+				throw new ArgumentNullException("mailer");
+			_mailer = mailer;
 		}
 
 		#endregion
@@ -34,7 +44,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region Administration
 
 		[Route("administration")]
-		[UserAuthorize(UserRoles = Role.Administrator)]
 		public ActionResult Index()
 		{
 			var users = Execute(() => _accountService.GetUsers());
@@ -50,25 +59,60 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Users
 
-		public ActionResult DeleteUser(int userId)
+		[HttpPost]
+		public ActionResult DeleteUser(int? userId)
 		{
-			var model = new UserEditModel();
+			if (userId.HasValue)
+				Execute(() => _accountService.DeleteUser(userId.GetValueOrDefault()));
 
-			return PartialView("_UserEditPartial", model);
+			var users = Execute(() => _accountService.GetUsers());
+			return ModelIsValid ? View("_UserEditPartial", users.CopyTo()) : View(new UserEditModel());
 		}
 
-		public ActionResult BanUser(int userId)
+		[HttpPost]
+		public ActionResult BanUser(int? userId, bool? isBanned)
 		{
-			var model = new UserEditModel();
+			if (userId.HasValue)
+				Execute(() => _accountService.BanUser(userId.GetValueOrDefault(), isBanned.GetValueOrDefault()));
 
-			return PartialView("_UserEditPartial", model);
+			var users = Execute(() => _accountService.GetUsers());
+			return ModelIsValid ? View("_UserEditPartial", users.CopyTo()) : View(new UserEditModel());
 		}
 
-		public ActionResult ActivateUser(int userId)
+		[HttpPost]
+		public ActionResult SendMessageForActivate(int? userId)
 		{
-			var model = new UserEditModel();
+			if (userId.HasValue)
+			{
+				var user = Execute(() => _accountService.GetUser(userId.GetValueOrDefault()));
 
-			return PartialView("_UserEditPartial", model);
+				if (ModelIsValid)
+				{
+					var activateModel = new MailActivateModel
+					{
+						Token = Execute(() => _accountService.GetUserActivateToken(user.Email)),
+						Email = user.Email,
+						Password = StringGeneration.Generate(8)
+					};
+					Execute(() => _accountService.SetPassword(user.Id, activateModel.Password));
+
+					if (ModelIsValid && !string.IsNullOrEmpty(activateModel.Token))
+						_mailer.SendMessageAsync("ActivateAccount", activateModel, user.Email);
+				}
+			}
+
+			var users = Execute(() => _accountService.GetUsers());
+			return users != null ? View("_UserEditPartial", users.CopyTo()) : View(new UserEditModel());
+		}
+
+		[HttpPost]
+		public ActionResult ActivateUser(int? userId)
+		{
+			if (userId.HasValue)
+				Execute(() => _accountService.ActivateUser(userId.GetValueOrDefault()));
+
+			var users = Execute(() => _accountService.GetUsers());
+			return users != null ? View("_UserEditPartial", users.CopyTo()) : View(new UserEditModel());
 		}
 
 		#endregion
