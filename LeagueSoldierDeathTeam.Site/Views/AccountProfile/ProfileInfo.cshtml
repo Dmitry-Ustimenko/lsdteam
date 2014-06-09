@@ -5,7 +5,8 @@
 @{
 	ViewBag.Title = "Профиль пользователя";
 	var currentUser = AppContext.Current.CurrentUser;
-	var isAdminOrIsMe = Model.UserId == currentUser.Id || currentUser.IsAdmin || currentUser.IsMainAdmin;
+	var isMainAdminOrAdmin = currentUser.IsMainAdmin || currentUser.IsAdmin;
+	var isAdminOrMe = isMainAdminOrAdmin || currentUser.IsMe(Model.UserId);
 }
 <div class="transparent-border">
 	<div class="simple-page-body section-shadow">
@@ -15,7 +16,7 @@
 		<div class="profile-left-bar">
 			<div class="user-photo">
 				<img src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.PhotoPath) ? Model.PhotoPath : Constants.DefaultPhotoPath)" alt="Фото">
-				@if (isAdminOrIsMe)
+				@if (isAdminOrMe)
 				{
 					if (!string.IsNullOrWhiteSpace(Model.PhotoPath))
 					{
@@ -28,7 +29,7 @@
 					<span class="edit-icon"></span>
 				}
 			</div>
-			@if (isAdminOrIsMe)
+			@if (isAdminOrMe)
 			{
 				<div class="user-upload-photo hide">
 					@using (Html.BeginForm("EditPhoto", "AccountProfile", FormMethod.Post, new { @enctype = "multipart/form-data" }))
@@ -52,19 +53,22 @@
 				</div>
 			}
 			<div class="user-buttons">
-				@if (isAdminOrIsMe)
+				@if (currentUser.IsMe(Model.UserId))
 				{
 					<a href="javascript:void(0);">Личные сообщения</a>
 					<a href="javascript:void(0);">Мои закладки</a>
-					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(Model.UserId)))">Редактировать профиль</a>
-					if ((currentUser.IsMainAdmin || currentUser.IsAdmin) && currentUser.IsMe(Model.UserId))
-					{
-						<a href="@(WebBuilder.BuildActionUrl<AdministrationController>(o => o.Index()))">Администрирование</a>
-					}
 				}
 				else
 				{
 					<a href="javascript:void(0);">Отправить ЛС</a>
+				}
+				@if (isAdminOrMe)
+				{
+					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(Model.UserId)))">Редактировать профиль</a>
+				}
+				@if (isMainAdminOrAdmin && currentUser.IsMe(Model.UserId))
+				{
+					<a href="@(WebBuilder.BuildActionUrl<AdministrationController>(o => o.Index()))">Администрирование</a>
 				}
 			</div>
 		</div>
@@ -83,7 +87,7 @@
 				<tr>
 					<td>Email:</td>
 					<td>
-						@if (isAdminOrIsMe || Model.ShowEmail)
+						@if (isAdminOrMe || Model.ShowEmail)
 						{
 							<a href="@Html.Raw(string.Concat("mailto:", Model.UserEmail))">@Model.UserEmail</a>
 						}

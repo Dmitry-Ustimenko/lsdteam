@@ -128,7 +128,10 @@
 								function () {
 									site.profile.initEditInfo.initContentMain();
 									$.fn.initCheckbox();
-									$("[data-type=auth-name]").html($tabContentMain.find("[data-type=user-name]").val());
+
+									if ($("[data-type=isme]").val() == "True")
+										$("[data-type=auth-name]").html($tabContentMain.find("[data-type=user-name]").val());
+
 									$.fn.alertOverlay("Обновление профиля", "Основные данные были успешно обновлены.");
 								},
 								function () {
