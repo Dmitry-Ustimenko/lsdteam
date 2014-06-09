@@ -42,14 +42,12 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Actions
 
-		#region Index
-
 		#region Administration
 
 		[Route("administration")]
 		public ActionResult Index()
 		{
-			var users = GetUsers().CopyTo();
+			var users = GetUsers(SortEnum.Default, null).CopyTo();
 			if (ModelIsValid)
 			{
 				var model = new AdministrationModel { UserEditModel = users };
@@ -63,25 +61,28 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region Users
 
 		[HttpPost]
-		public ActionResult DeleteUser(int? userId)
+		[AjaxOrChildActionOnly]
+		public ActionResult DeleteUser(int? userId, SortEnum sortFilter, string term)
 		{
 			if (userId.HasValue)
 				Execute(() => _accountService.DeleteUser(userId.GetValueOrDefault()));
 
-			return View("_UserEditPartial", GetUsers().CopyTo());
+			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
 		}
 
 		[HttpPost]
-		public ActionResult BanUser(int? userId, bool? isBanned)
+		[AjaxOrChildActionOnly]
+		public ActionResult BanUser(int? userId, bool? isBanned, SortEnum sortFilter, string term)
 		{
 			if (userId.HasValue && isBanned.HasValue)
 				Execute(() => _accountService.BanUser(userId.GetValueOrDefault(), isBanned.Value));
 
-			return View("_UserEditPartial", GetUsers().CopyTo());
+			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
 		}
 
 		[HttpPost]
-		public ActionResult SendMessageForActivate(int? userId)
+		[AjaxOrChildActionOnly]
+		public ActionResult SendMessageForActivate(int? userId, SortEnum sortFilter, string term)
 		{
 			if (userId.HasValue)
 			{
@@ -102,16 +103,24 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				}
 			}
 
-			return View("_UserEditPartial", GetUsers().CopyTo());
+			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
 		}
 
 		[HttpPost]
-		public ActionResult ActivateUser(int? userId)
+		[AjaxOrChildActionOnly]
+		public ActionResult ActivateUser(int? userId, SortEnum sortFilter, string term)
 		{
 			if (userId.HasValue)
 				Execute(() => _accountService.ActivateUser(userId.GetValueOrDefault()));
 
-			return View("_UserEditPartial", GetUsers().CopyTo());
+			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
+		}
+
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		public ActionResult FilterUsers(SortEnum sortFilter, string term)
+		{
+			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
 		}
 
 		#endregion
@@ -127,13 +136,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#endregion
 
-		#endregion
-
 		#region Internal Implementation
 
-		private IEnumerable<UserData> GetUsers()
+		private IEnumerable<UserData> GetUsers(SortEnum sortFilter, string term)
 		{
-			var users = Execute(() => _accountService.GetUsers());
+			var users = Execute(() => _accountService.GetUsers(sortFilter, term));
 
 			return AppContext.CurrentUser.IsMainAdmin
 				? users.Where(o => o.RoleId != (int)Role.MainAdministrator)

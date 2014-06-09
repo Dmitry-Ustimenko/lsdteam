@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
 
@@ -27,6 +28,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 		UserData GetUser(int userExternalInfoId);
 
 		IEnumerable<UserData> GetUsers();
+
+		IEnumerable<UserData> GetUsers(SortEnum sortFilter, string term);
 
 		UserExternalInfoData GetExternalUser(string providerName, string providerKey);
 

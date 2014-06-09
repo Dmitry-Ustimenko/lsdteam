@@ -1,4 +1,5 @@
-﻿@using LeagueSoldierDeathTeam.Site.Classes
+﻿@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
+@using LeagueSoldierDeathTeam.Site.Classes
 @using LeagueSoldierDeathTeam.Site.Controllers
 @model LeagueSoldierDeathTeam.Site.Models.Administration.AdministrationModel
 
@@ -18,6 +19,25 @@
 					<li><a href="#role-management">Менеджер ролей</a></li>
 				</ul>
 				<div id="users">
+					<h2>Пользователи</h2>
+					<div class="filter">
+						<div class="sort">
+							Сортировка:
+							<div class="sort-changeable">
+								<span data-val="@SortEnum.Default" class="sort-name">по умолчанию</span>
+								<ul class="sort-dropdown">
+									<li data-val="@SortEnum.Default" data-type="name">по умолчанию</li>
+									<li data-val="@SortEnum.Name" data-type="name">по имени</li>
+									<li data-val="@SortEnum.Email" data-type="email">по email</li>
+									<li data-val="@SortEnum.Actived" data-type="active">по активным</li>
+									<li data-val="@SortEnum.Banned" data-type="banned">по забаненным</li>
+								</ul>
+							</div>
+						</div>
+						<span class="search">
+							<input type="text" placeholder="Найти пользователя">
+						</span>
+					</div>
 					@{Html.RenderPartial("_UserEditPartial", Model.UserEditModel);}
 				</div>
 				<div id="role-management">
@@ -33,10 +53,11 @@
 	$(document).ready(function () {
 		site.administation.init({
 			urls: {
-				deleteUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.DeleteUser(null)))',
-				activateUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ActivateUser(null)))',
-				banUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.BanUser(null, null)))',
-				sendMessageForActivate: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.SendMessageForActivate(null)))'
+				deleteUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.DeleteUser(null, SortEnum.Default, null)))',
+				activateUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ActivateUser(null, SortEnum.Default, null)))',
+				banUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.BanUser(null, null, SortEnum.Default, null)))',
+				sendMessageForActivate: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.SendMessageForActivate(null, SortEnum.Default, null)))',
+				filterUsers: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterUsers(SortEnum.Default, null)))'
 			}
 		});
 	});

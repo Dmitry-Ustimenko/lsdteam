@@ -250,7 +250,30 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				PhotoPath = o.PhotoPath,
 				IsBanned = o.IsBanned,
 				RoleId = o.RoleId
-			}).OrderBy(o => !o.IsActive).ThenBy(o => o.IsBanned).ThenBy(o => o.UserName);
+			});
+		}
+
+		IEnumerable<UserData> IAccountService.GetUsers(SortEnum sortFilter, string term)
+		{
+			var users = (this as IAccountService).GetUsers();
+			if (!string.IsNullOrWhiteSpace(term))
+				users = users.Where(o => o.UserName.Contains(term));
+
+			switch (sortFilter)
+			{
+				case SortEnum.Default:
+					return users.OrderBy(o => !o.IsActive).ThenBy(o => o.IsBanned).ThenBy(o => o.UserName);
+				case SortEnum.Name:
+					return users.OrderBy(o => o.UserName);
+				case SortEnum.Email:
+					return users.OrderBy(o => o.Email);
+				case SortEnum.Actived:
+					return users.OrderBy(o => !o.IsActive).ThenBy(o => o.IsBanned).ThenBy(o => o.UserName);
+				case SortEnum.Banned:
+					return users.OrderBy(o => !o.IsBanned).ThenBy(o => !o.IsActive).ThenBy(o => o.UserName);
+			}
+
+			return users;
 		}
 
 		UserInfoData IAccountService.GetUserProfile(int userId)
