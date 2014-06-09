@@ -279,6 +279,7 @@
     <Content Include="Images\Background\bf2.jpg" />
     <Content Include="Images\Background\bf3.jpg" />
     <Content Include="Images\Background\bf4.jpg" />
+    <Content Include="Images\blocked_card.png" />
     <Content Include="Images\bookmark.png" />
     <Content Include="Images\browse.png" />
     <Content Include="Images\classic-loader.gif" />

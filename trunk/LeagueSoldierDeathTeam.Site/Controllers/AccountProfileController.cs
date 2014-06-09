@@ -70,7 +70,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 						photoUploadFile.SaveAs(path);
 
 						Execute(() => _accountService.UpdateUserPhoto(userId, string.Concat(Constants.PhotoDirectoryPath, fileName)));
-						Execute(() => AppContext.CurrentUser = _accountService.GetUser(userId));
+
+						if (AppContext.CurrentUser.IsMe(userId))
+							Execute(() => AppContext.CurrentUser = _accountService.GetUser(userId));
 
 						if (ModelIsValid)
 						{
@@ -101,7 +103,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			var path = string.Concat(AppDomain.CurrentDomain.BaseDirectory, user.PhotoPath);
 
 			Execute(() => _accountService.DeleteUserPhoto(userId));
-			Execute(() => AppContext.CurrentUser = _accountService.GetUser(userId));
+
+			if (AppContext.CurrentUser.IsMe(userId))
+				Execute(() => AppContext.CurrentUser = _accountService.GetUser(userId));
 
 			if (ModelIsValid && System.IO.File.Exists(path))
 			{
@@ -143,7 +147,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				};
 
 				Execute(() => _accountService.UpdateMainInfo(data));
-				Execute(() => AppContext.CurrentUser = _accountService.GetUser(model.UserId));
+
+				if (AppContext.CurrentUser.IsMe(model.UserId))
+					Execute(() => AppContext.CurrentUser = _accountService.GetUser(model.UserId));
 			}
 			return View("_EditMainInfoPartial", model);
 		}

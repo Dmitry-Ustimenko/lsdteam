@@ -39,9 +39,6 @@
 							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.activateUser, { userId: userId },
 								function () {
 									site.administation.users.init();
-									$.fn.alertOverlay("Успешная активация", "Аккаунт успешно активирован.");
-								}, function () {
-									$.fn.alertOverlay("Ошибка активации", "При активации аккаунта возникли проблемы.");
 								});
 						});
 					});
@@ -55,20 +52,45 @@
 							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.sendMessageForActivate, { userId: userId },
 								function () {
 									site.administation.users.init();
-									$.fn.alertOverlay("Успешная активация", "Письмо для активации успешно отправлено.");
-								}, function () {
-									$.fn.alertOverlay("Ошибка активации", "При активации аккаунта возникли проблемы.");
 								});
 						});
 					});
 				},
 
 				banUser: function () {
+					$('[data-action=ban]').off("click").on('click', function () {
+						var $this = $(this);
+						var isBanned = $this.data("banned");
+						var userId = $this.data("id");
 
+						var title = "Блокировка аккаунта";
+						var message = "Вы действительно хотите забанить аккаунт?";
+
+						if (isBanned == "True") {
+							title = "Разблокировка аккаунта";
+							message = "Подтвердите разблокировку аккаунта";
+						}
+
+						$.fn.confirmOverlay(title, message, function () {
+							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.banUser, { userId: userId, isBanned: isBanned },
+								function () {
+									site.administation.users.init();
+								});
+						});
+					});
 				},
 
 				deleteUser: function () {
-
+					$('[data-action=delete]').off("click").on('click', function () {
+						var $this = $(this);
+						$.fn.confirmOverlay("Удаление аккаунта", "Вы действительно хотите удалить аккаунт?", function () {
+							var userId = $this.data("id");
+							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.deleteUser, { userId: userId },
+								function () {
+									site.administation.users.init();
+								});
+						});
+					});
 				},
 
 				refresh: function (content, url, params, callback, callbackError) {

@@ -248,8 +248,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				Email = o.Email,
 				IsActive = o.IsActive,
 				PhotoPath = o.PhotoPath,
-				IsBanned = o.IsBanned
-			}).OrderBy(o => !o.IsActive).ThenBy(o => o.UserName);
+				IsBanned = o.IsBanned,
+				RoleId = o.RoleId
+			}).OrderBy(o => !o.IsActive).ThenBy(o => o.IsBanned).ThenBy(o => o.UserName);
 		}
 
 		UserInfoData IAccountService.GetUserProfile(int userId)
@@ -432,7 +433,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 		{
 			var user = GetUser(userId);
 
-			user.IsBanned = isBanned;
+			user.IsBanned = !isBanned;
 			UnitOfWork.Commit();
 		}
 

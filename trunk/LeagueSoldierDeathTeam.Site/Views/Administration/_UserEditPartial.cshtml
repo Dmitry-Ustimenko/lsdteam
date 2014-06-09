@@ -8,6 +8,7 @@
 
 @if (Model.Items.Any())
 {
+	<h2>Пользователи</h2>
 	<div class="users">
 		<table>
 			<thead>
@@ -38,7 +39,7 @@
 							}
 							@if (item.IsActive)
 							{
-								<a class="banned" data-id="@item.UserId" data-banned="@item.IsBanned" href="javascript:void(0);">
+								<a class="@Html.Raw(@item.IsBanned ? "unbanned" : "banned")" data-id="@item.UserId" data-action="ban" data-banned="@item.IsBanned" href="javascript:void(0);">
 									@if (item.IsBanned)
 									{
 										@:Разбанить
@@ -49,7 +50,7 @@
 									}
 								</a>
 							}
-							<a class="delete" data-id="@item.UserId" href="javascript:void(0);">Удалить</a>
+							<a class="delete" data-action="delete" data-id="@item.UserId" href="javascript:void(0);">Удалить</a>
 						</td>
 					</tr>
 				}

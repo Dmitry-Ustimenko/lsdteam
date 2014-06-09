@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
@@ -46,10 +49,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("administration")]
 		public ActionResult Index()
 		{
-			var users = Execute(() => _accountService.GetUsers());
+			var users = GetUsers().CopyTo();
 			if (ModelIsValid)
 			{
-				var model = new AdministrationModel { UserEditModel = users.CopyTo() };
+				var model = new AdministrationModel { UserEditModel = users };
 				return View(model);
 			}
 			return View(new AdministrationModel());
@@ -65,18 +68,16 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (userId.HasValue)
 				Execute(() => _accountService.DeleteUser(userId.GetValueOrDefault()));
 
-			var users = Execute(() => _accountService.GetUsers());
-			return ModelIsValid ? View("_UserEditPartial", users.CopyTo()) : View(new UserEditModel());
+			return View("_UserEditPartial", GetUsers().CopyTo());
 		}
 
 		[HttpPost]
 		public ActionResult BanUser(int? userId, bool? isBanned)
 		{
-			if (userId.HasValue)
-				Execute(() => _accountService.BanUser(userId.GetValueOrDefault(), isBanned.GetValueOrDefault()));
+			if (userId.HasValue && isBanned.HasValue)
+				Execute(() => _accountService.BanUser(userId.GetValueOrDefault(), isBanned.Value));
 
-			var users = Execute(() => _accountService.GetUsers());
-			return ModelIsValid ? View("_UserEditPartial", users.CopyTo()) : View(new UserEditModel());
+			return View("_UserEditPartial", GetUsers().CopyTo());
 		}
 
 		[HttpPost]
@@ -101,8 +102,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				}
 			}
 
-			var users = Execute(() => _accountService.GetUsers());
-			return users != null ? View("_UserEditPartial", users.CopyTo()) : View(new UserEditModel());
+			return View("_UserEditPartial", GetUsers().CopyTo());
 		}
 
 		[HttpPost]
@@ -111,8 +111,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (userId.HasValue)
 				Execute(() => _accountService.ActivateUser(userId.GetValueOrDefault()));
 
-			var users = Execute(() => _accountService.GetUsers());
-			return users != null ? View("_UserEditPartial", users.CopyTo()) : View(new UserEditModel());
+			return View("_UserEditPartial", GetUsers().CopyTo());
 		}
 
 		#endregion
@@ -127,6 +126,19 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#endregion
 
 		#endregion
+
+		#endregion
+
+		#region Internal Implementation
+
+		private IEnumerable<UserData> GetUsers()
+		{
+			var users = Execute(() => _accountService.GetUsers());
+
+			return AppContext.CurrentUser.IsMainAdmin
+				? users.Where(o => o.RoleId != (int)Role.MainAdministrator)
+				: users.Where(o => o.RoleId != (int)Role.MainAdministrator && o.RoleId != (int)Role.Administrator);
+		}
 
 		#endregion
 	}
