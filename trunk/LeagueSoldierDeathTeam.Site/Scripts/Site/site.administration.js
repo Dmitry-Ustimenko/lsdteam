@@ -25,10 +25,43 @@
 
 			users: {
 				init: function () {
+					site.administation.users.initSort();
+
 					site.administation.users.activateUser();
 					site.administation.users.sendMessageForActivate();
 					site.administation.users.banUser();
 					site.administation.users.deleteUser();
+				},
+
+				initSort: function () {
+					var sortName = $(".sort-name");
+					var sortChangeable = $(".sort-changeable");
+					var sortDropdown = $(".sort-dropdown");
+
+					sortChangeable.width(sortName.width());
+
+					sortName.off("click").on("click", function () {
+						if (sortDropdown.is(":hidden"))
+							sortDropdown.fadeIn("fast");
+						else
+							sortDropdown.fadeOut("fast");
+					});
+
+					$(document).click(function (event) {
+						var $eventTarget = $(event.target);
+						if (!$eventTarget.closest(".sort-changeable").length)
+							sortDropdown.fadeOut("fast");
+						event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = true);
+					});
+
+					sortDropdown.find("li").each(function () {
+						var $this = $(this);
+						$this.off("click").on("click", function () {
+							sortName.text($this.text());
+							sortChangeable.width($this.width());
+							sortDropdown.fadeOut("fast");
+						});
+					});
 				},
 
 				activateUser: function () {

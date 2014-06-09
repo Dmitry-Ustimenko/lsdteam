@@ -9,6 +9,23 @@
 @if (Model.Items.Any())
 {
 	<h2>Пользователи</h2>
+	<div class="filter">
+		<div class="sort">
+			Сортировка:
+			<div class="sort-changeable">
+				<span class="sort-name">по имени</span>
+				<ul class="sort-dropdown">
+					<li data-type="name">по имени</li>
+					<li data-type="email">по email</li>
+					<li data-type="active">по активным</li>
+					<li data-type="banned">по забаненным</li>
+				</ul>
+			</div>
+		</div>
+		<span class="search">
+			<input type="text" placeholder="Найти пользователя">
+		</span>
+	</div>
 	<div class="users">
 		<table>
 			<thead>
@@ -21,38 +38,38 @@
 			<tbody>
 				@foreach (var item in Model.Items)
 				{
-					<tr>
-						<td class="left user-name">
-							<a class="@Html.Raw(!item.IsActive ? "darkred" : item.IsBanned ? "orange" : "green")" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.UserId)))" target="_blank">
-								@item.UserName
-							</a>
-						</td>
-						<td class="left email">
-							<a href="@Html.Raw(string.Concat("mailto:", item.UserEmail))">@item.UserEmail</a>
-						</td>
-						<td class="buttons">
-							<a class="settings" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(item.UserId)))" target="_blank">Настройки</a>
-							@if (!item.IsActive)
+				<tr>
+					<td class="left user-name">
+						<a class="@Html.Raw(!item.IsActive ? "darkred" : item.IsBanned ? "orange" : "green")" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.UserId)))" target="_blank">
+							@item.UserName
+						</a>
+					</td>
+					<td class="left email">
+						<a href="@Html.Raw(string.Concat("mailto:", item.UserEmail))">@item.UserEmail</a>
+					</td>
+					<td class="buttons">
+						<a class="settings" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(item.UserId)))" target="_blank">Настройки</a>
+						@if (!item.IsActive)
 							{
-								<a class="activation" data-action="activation" data-id="@item.UserId" href="javascript:void(0);">Активировать</a>
-								<a class="activation" data-action="message" data-id="@item.UserId" href="javascript:void(0);">Письмо активации</a>
+						<a class="activation" data-action="activation" data-id="@item.UserId" href="javascript:void(0);">Активировать</a>
+						<a class="activation" data-action="message" data-id="@item.UserId" href="javascript:void(0);">Письмо активации</a>
 							}
-							@if (item.IsActive)
+						@if (item.IsActive)
 							{
-								<a class="@Html.Raw(@item.IsBanned ? "unbanned" : "banned")" data-id="@item.UserId" data-action="ban" data-banned="@item.IsBanned" href="javascript:void(0);">
-									@if (item.IsBanned)
+						<a class="@Html.Raw(@item.IsBanned ? "unbanned" : "banned")" data-id="@item.UserId" data-action="ban" data-banned="@item.IsBanned" href="javascript:void(0);">
+							@if (item.IsBanned)
 									{
-										@:Разбанить
+							@:Разбанить
 									}
 									else
 									{
-										@:Забанить
+							@:Забанить
 									}
-								</a>
+						</a>
 							}
-							<a class="delete" data-action="delete" data-id="@item.UserId" href="javascript:void(0);">Удалить</a>
-						</td>
-					</tr>
+						<a class="delete" data-action="delete" data-id="@item.UserId" href="javascript:void(0);">Удалить</a>
+					</td>
+				</tr>
 				}
 			</tbody>
 		</table>
