@@ -6,11 +6,12 @@
 					deleteUser: '',
 					activateUser: '',
 					banUser: '',
-					sendMessageForActivate: ''
+					sendMessageForActivate: '',
+					filterUsers: ''
 				},
 				elements: {
 					tabs: '#tabs',
-					users: '#users'
+					users: '#users-content'
 				}
 			},
 
@@ -25,16 +26,18 @@
 
 			users: {
 				init: function () {
-					site.administation.users.initSort();
+					var sortName = $(".sort-name");
+					var searchInput = $(".search input");
 
-					site.administation.users.activateUser();
-					site.administation.users.sendMessageForActivate();
-					site.administation.users.banUser();
-					site.administation.users.deleteUser();
+					site.administation.users.initFilter(sortName, searchInput);
+
+					site.administation.users.activateUser(sortName, searchInput);
+					site.administation.users.sendMessageForActivate(sortName, searchInput);
+					site.administation.users.banUser(sortName, searchInput);
+					site.administation.users.deleteUser(sortName, searchInput);
 				},
 
-				initSort: function () {
-					var sortName = $(".sort-name");
+				initFilter: function (sortName, searchInput) {
 					var sortChangeable = $(".sort-changeable");
 					var sortDropdown = $(".sort-dropdown");
 
@@ -58,18 +61,42 @@
 						var $this = $(this);
 						$this.off("click").on("click", function () {
 							sortName.text($this.text());
+							sortName.data("val", $this.data("val"));
 							sortChangeable.width($this.width());
 							sortDropdown.fadeOut("fast");
+
+							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.filterUsers,
+								{ sortFilter: $this.data("val"), term: searchInput.val() },
+								function () {
+									site.administation.users.init();
+								});
 						});
+					});
+
+					searchInput.on("change", function () {
+						var $this = $(this);
+						site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.filterUsers,
+								{ sortFilter: sortName.data("val"), term: $this.val() },
+								function () {
+									site.administation.users.init();
+								});
+					});
+
+					searchInput.keyup(function () {
+						var $this = $(this);
+						if ($this.val() != "") {
+
+						}
 					});
 				},
 
-				activateUser: function () {
+				activateUser: function (sortName, searchInput) {
 					$('[data-action=activation]').off("click").on('click', function () {
 						var $this = $(this);
 						$.fn.confirmOverlay("Активация аккаунта", "Подтвердите активацию этого аккаунта", function () {
 							var userId = $this.data("id");
-							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.activateUser, { userId: userId },
+							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.activateUser,
+								{ userId: userId, sortFilter: sortName.data("val"), term: searchInput.val() },
 								function () {
 									site.administation.users.init();
 								});
@@ -77,12 +104,13 @@
 					});
 				},
 
-				sendMessageForActivate: function () {
+				sendMessageForActivate: function (sortName, searchInput) {
 					$('[data-action=message]').off("click").on('click', function () {
 						var $this = $(this);
 						$.fn.confirmOverlay("Письмо активации", "Подтвердите активацию этого аккаунта", function () {
 							var userId = $this.data("id");
-							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.sendMessageForActivate, { userId: userId },
+							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.sendMessageForActivate,
+								{ userId: userId, sortFilter: sortName.data("val"), term: searchInput.val() },
 								function () {
 									site.administation.users.init();
 								});
@@ -90,7 +118,7 @@
 					});
 				},
 
-				banUser: function () {
+				banUser: function (sortName, searchInput) {
 					$('[data-action=ban]').off("click").on('click', function () {
 						var $this = $(this);
 						var isBanned = $this.data("banned");
@@ -105,7 +133,8 @@
 						}
 
 						$.fn.confirmOverlay(title, message, function () {
-							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.banUser, { userId: userId, isBanned: isBanned },
+							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.banUser,
+								{ userId: userId, isBanned: isBanned, sortFilter: sortName.data("val"), term: searchInput.val() },
 								function () {
 									site.administation.users.init();
 								});
@@ -113,12 +142,13 @@
 					});
 				},
 
-				deleteUser: function () {
+				deleteUser: function (sortName, searchInput) {
 					$('[data-action=delete]').off("click").on('click', function () {
 						var $this = $(this);
 						$.fn.confirmOverlay("Удаление аккаунта", "Вы действительно хотите удалить аккаунт?", function () {
 							var userId = $this.data("id");
-							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.deleteUser, { userId: userId },
+							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.deleteUser,
+								{ userId: userId, sortFilter: sortName.data("val"), term: searchInput.val() },
 								function () {
 									site.administation.users.init();
 								});

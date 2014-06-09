@@ -2129,7 +2129,7 @@ span.checker-span {
 		width: 170px;
 		background: url(/Images/icon_search.png) no-repeat right 1px #FFF;
 		border: 1px solid #a8acad;
-		margin-top: 5px;
+		margin-top: 0;
 		margin-bottom: 5px;
 	}
 
