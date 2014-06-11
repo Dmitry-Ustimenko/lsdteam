@@ -1931,6 +1931,12 @@ span.checker-span {
 						height: 25px;
 					}
 
+.no-result {
+	border: 1px solid #D1D1D1;
+	width: 100%;
+	padding: 10px;
+}
+
 /*progressbar*/
 
 .progressbar {
@@ -2084,10 +2090,10 @@ span.checker-span {
 			padding-left: 5px;
 		}
 
-		.ui-widget-content .filter .sort .sort-changeable .sort-name {
-			text-decoration: underline;
-			font-style: italic;
-		}
+			.ui-widget-content .filter .sort .sort-changeable .sort-name {
+				text-decoration: underline;
+				font-style: italic;
+			}
 
 		.ui-widget-content .filter .sort .sort-dropdown {
 			position: absolute;
@@ -2120,25 +2126,50 @@ span.checker-span {
 				cursor: pointer;
 			}
 
-			.ui-widget-content .filter .sort .sort-dropdown li:hover {
-				background-color: #ECECEC;
-			}
+				.ui-widget-content .filter .sort .sort-dropdown li:hover {
+					background-color: #ECECEC;
+				}
 
 	.ui-widget-content .filter .search {
 		float: right;
 		width: 170px;
-		background: url(/Images/icon_search.png) no-repeat right 1px #FFF;
 		border: 1px solid #a8acad;
 		margin-top: 0;
 		margin-bottom: 5px;
 	}
 
-		.ui-widget-content .filter .search input {
-			border: 0;
-			width: 150px;
-			padding: 2px;
-			padding-left: 5px;
+	.ui-widget-content .filter .search-btn {
+		background: url(/Images/icon_search.png) no-repeat 2px 1px #FFF;
+		border-left: 1px solid #a8acad;
+		display: inline-block;
+		float: right;
+		width: 22px;
+		height: 22px;
+		cursor: pointer;
+	}
+
+	.ui-widget-content .filter .clear-btn {
+		background: url(/Images/clear-input.png) no-repeat 0 -1px #FFF;
+		border: 1px solid #a8acad;
+		border-right: none;
+		display: none;
+		float: right;
+		width: 22px;
+		height: 24px;
+		cursor: pointer;
+	}
+
+		.ui-widget-content .filter .search-btn:active, .ui-widget-content .filter .clear-btn:active {
+			box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
 		}
+
+	.ui-widget-content .filter .search input {
+		border: 0;
+		width: 142px;
+		padding: 2px;
+		padding-left: 5px;
+		padding-right: 0;
+	}
 
 .ui-widget-content .users table {
 	width: 100%;

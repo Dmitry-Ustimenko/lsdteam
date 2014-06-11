@@ -73,10 +73,17 @@
 						});
 					});
 
-					searchInput.on("change", function () {
-						var $this = $(this);
+					var clearBtn = $(".clear-btn");
+					clearBtn.off("click").on("click", function () {
+						searchInput.val("");
+						clearBtn.hide();
+						searchBtn.click();
+					});
+
+					var searchBtn = $(".search-btn");
+					searchBtn.off("click").on("click", function () {
 						site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.filterUsers,
-								{ sortFilter: sortName.data("val"), term: $this.val() },
+								{ sortFilter: sortName.data("val"), term: searchInput.val() },
 								function () {
 									site.administation.users.init();
 								});
@@ -84,9 +91,10 @@
 
 					searchInput.keyup(function () {
 						var $this = $(this);
-						if ($this.val() != "") {
-
-						}
+						if ($this.val() != "")
+							clearBtn.show();
+						else
+							clearBtn.hide();
 					});
 				},
 
