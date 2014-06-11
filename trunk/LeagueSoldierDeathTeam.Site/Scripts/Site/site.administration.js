@@ -89,8 +89,13 @@
 								});
 					});
 
-					searchInput.keyup(function () {
+					searchInput.keyup(function (e) {
 						var $this = $(this);
+						if (e.which == 13) {
+							searchBtn.click();
+							e.preventDefault();
+						}
+
 						if ($this.val() != "")
 							clearBtn.show();
 						else
