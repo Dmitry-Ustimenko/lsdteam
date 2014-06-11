@@ -257,7 +257,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 		{
 			var users = (this as IAccountService).GetUsers();
 			if (!string.IsNullOrWhiteSpace(term))
-				users = users.Where(o => o.UserName.Contains(term));
+				users = users.Where(o => o.UserName.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0);
 
 			switch (sortFilter)
 			{
