@@ -1,4 +1,6 @@
-﻿namespace LeagueSoldierDeathTeam.Site.Models.Administration
+﻿using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+
+namespace LeagueSoldierDeathTeam.Site.Models.Administration
 {
 	public class UserEditItemModel
 	{
@@ -13,5 +15,12 @@
 		public bool IsBanned { get; set; }
 
 		public bool IsActive { get; set; }
+
+		public int RoleId { get; set; }
+
+		public RoleEnum Role
+		{
+			get { return (RoleEnum)RoleId; }
+		}
 	}
 }

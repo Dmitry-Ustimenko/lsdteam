@@ -206,6 +206,7 @@
     <Compile Include="Classes\Extensions\Models\EditProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\ExternalRegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
+    <Compile Include="Classes\Extensions\Models\RoleManagementEx.cs" />
     <Compile Include="Classes\Extensions\Models\UserEditModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\UserProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\RussianTimeEx.cs" />
@@ -234,7 +235,7 @@
     <Compile Include="Models\AccountProfile\EditBindInfoModel.cs" />
     <Compile Include="Models\AccountProfile\EditMainInfoModel.cs" />
     <Compile Include="Models\AccountProfile\EditProfileModel.cs" />
-    <Compile Include="Models\AccountProfile\RoleManagementModel.cs" />
+    <Compile Include="Models\Administration\RoleManagementModel.cs" />
     <Compile Include="Models\AccountProfile\UserProfileModel.cs" />
     <Compile Include="Models\Account\ActivateAccountModel.cs" />
     <Compile Include="Models\Account\ExternalLoginErrorModel.cs" />
@@ -408,7 +409,6 @@
     <Content Include="Views\AccountProfile\_EditAdvanceInfoPartial.cshtml" />
     <Content Include="Views\AccountProfile\_EditBindInfoPartial.cshtml" />
     <Content Include="Views\Shared\_ProfileInfoPartial.cshtml" />
-    <Content Include="Views\AccountProfile\_RoleManagementPartial.cshtml" />
     <Content Include="Views\Shared\_BannerPartial.cshtml" />
     <Content Include="Views\Administration\Index.cshtml" />
     <Content Include="Scripts\Site\site.administration.js" />

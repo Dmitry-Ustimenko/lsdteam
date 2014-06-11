@@ -2280,3 +2280,25 @@ span.checker-span {
 .right {
 	text-align: right;
 }
+
+.role-container {
+	border: 1px solid #D1D1D1;
+	width: 80%;
+	height: 200px;
+	padding: 10px;
+	float: right;
+	margin-bottom: 10px;
+	overflow-y: auto;
+}
+
+	.role-container span {
+		display: inline-block;
+		width: auto;
+		text-align: center;
+	}
+
+	.role-container span img{
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+	}

@@ -4,9 +4,12 @@
 	{
 		public UserEditModel UserEditModel { get; set; }
 
+		public RoleManagementModel RoleManagementModel { get; set; }
+
 		public AdministrationModel()
 		{
 			UserEditModel = new UserEditModel();
+			RoleManagementModel = new RoleManagementModel();
 		}
 	}
 }
