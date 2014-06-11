@@ -47,10 +47,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("administration")]
 		public ActionResult Index()
 		{
-			var users = GetUsers(SortEnum.Default, null).CopyTo();
+			var users = GetUsers(SortEnum.Default, null);
 			if (ModelIsValid)
 			{
-				var model = new AdministrationModel { UserEditModel = users };
+				var model = new AdministrationModel
+				{
+					UserEditModel = users.CopyTo(),
+					RoleManagementModel = users.Map()
+				};
 				return View(model);
 			}
 			return View(new AdministrationModel());

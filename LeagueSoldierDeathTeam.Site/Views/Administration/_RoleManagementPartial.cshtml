@@ -1,3 +1,47 @@
-﻿@{
+﻿@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
+@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Models.Administration
+@model RoleManagementModel
+
+@{
 	Layout = null;
 }
+
+@foreach (var group in Model.Items)
+{
+	@RenderRoleContainer(group.Key, group.Value)
+}
+
+@helper RenderRoleContainer(RoleEnum role, IEnumerable<UserEditItemModel> users)
+{
+	var containerType = string.Empty;
+	var containerName = string.Empty;
+	switch (role)
+	{
+		case RoleEnum.Administrator:
+			containerType = "admins";
+			containerName = "Администраторы";
+			break;
+		case RoleEnum.Moderator:
+			containerType = "moderators";
+			containerName = "Модераторы";
+			break;
+		case RoleEnum.User:
+			containerType = "users";
+			containerName = "Пользователи";
+			break;
+	}
+
+	@containerName
+	<div data-type="@containerType" class="role-container">
+		@foreach (var user in users)
+		{
+			<span>
+				<img width="50" height="50" src="@Html.Raw(string.IsNullOrWhiteSpace(user.UserPhoto) ? Constants.DefaultPhotoPath : user.UserPhoto)" alt="@user.UserName" />
+				@user.UserName
+			</span>
+		}
+	</div>
+}
+
+
