@@ -2292,16 +2292,19 @@ span.checker-span {
 
 	#role-management .container .role-container {
 		border: 1px solid #D1D1D1;
-		width: 83%;
+		width: 80%;
 		height: 200px;
 		padding: 10px;
-		overflow-y: auto;
 		display: inline-block;
 		position: absolute;
 		top: 0;
 		right: 0;
 		background-color: white;
 	}
+
+		#role-management .container .role-container.drop {
+			 box-shadow: 0 0 5px rgba(0,0,0,0.4);
+		}
 
 	#role-management .container .container-name {
 		position: absolute;
@@ -2312,7 +2315,7 @@ span.checker-span {
 		display: inline-block;
 		font-weight: bold;
 		font-family: 'Lily Script One', helveti;
-		font: 15px 'PT Sans Narrow', Arial, sans-serif;
+		font: 17px 'PT Sans Narrow', Arial, sans-serif;
 		height: 200px;
 		border: 1px solid black;
 		border-right: none;
@@ -2322,17 +2325,26 @@ span.checker-span {
 		color: white;
 	}
 
-	#role-management .container .role-container span {
+	#role-management .container .role-container .draggable {
 		display: inline-block;
 		width: auto;
 		text-align: center;
+		margin-right: 10px;
 	}
 
-		#role-management .container .role-container span img {
-			display: block;
-			margin-right: auto;
-			margin-left: auto;
-			border-radius: 3px;
-			-moz-border-radius: 3px;
-			-webkit-border-radius: 3px;
+		#role-management .container .role-container .draggable:hover {
+			display: inline-block;
+			width: auto;
+			text-align: center;
+			margin-right: 10px;
+			cursor: move;
 		}
+
+	#role-management .container .role-container span img {
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+	}

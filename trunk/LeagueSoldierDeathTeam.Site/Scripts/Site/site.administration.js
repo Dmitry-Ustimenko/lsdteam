@@ -176,7 +176,18 @@
 
 			roleManagement: {
 				init: function () {
+					$('.role-container').each(function () {
+						$(this).sortable({
+							connectWith: ".role-container",
+							opacity: 0.9,
+							revert: 400,
+							placeholder: 'placeholder',
+						}).disableSelection();
 
+						$(this).droppable({
+							hoverClass: "drop",
+						});
+					});
 				},
 			}
 		};

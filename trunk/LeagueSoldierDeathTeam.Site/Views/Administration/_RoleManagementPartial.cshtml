@@ -37,7 +37,7 @@
 		<div data-type="@containerType" class="role-container">
 			@foreach (var user in users)
 			{
-				<span>
+				<span class="draggable" data-id="@user.UserId">
 					<img width="50" height="50" src="@Html.Raw(string.IsNullOrWhiteSpace(user.UserPhoto) ? Constants.DefaultPhotoPath : user.UserPhoto)" alt="@user.UserName" />
 					@user.UserName
 				</span>
