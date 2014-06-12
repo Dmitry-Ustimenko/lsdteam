@@ -7,7 +7,7 @@
 	Layout = null;
 }
 
-@foreach (var group in Model.Items)
+@foreach (var group in Model.Items.OrderBy(o => o.Key))
 {
 	@RenderRoleContainer(group.Key, group.Value)
 }
@@ -32,15 +32,17 @@
 			break;
 	}
 
-	@containerName
-	<div data-type="@containerType" class="role-container">
-		@foreach (var user in users)
-		{
-			<span>
-				<img width="50" height="50" src="@Html.Raw(string.IsNullOrWhiteSpace(user.UserPhoto) ? Constants.DefaultPhotoPath : user.UserPhoto)" alt="@user.UserName" />
-				@user.UserName
-			</span>
-		}
+	<div class="container">
+		<div class="container-name">@containerName</div>
+		<div data-type="@containerType" class="role-container">
+			@foreach (var user in users)
+			{
+				<span>
+					<img width="50" height="50" src="@Html.Raw(string.IsNullOrWhiteSpace(user.UserPhoto) ? Constants.DefaultPhotoPath : user.UserPhoto)" alt="@user.UserName" />
+					@user.UserName
+				</span>
+			}
+		</div>
 	</div>
 }
 
