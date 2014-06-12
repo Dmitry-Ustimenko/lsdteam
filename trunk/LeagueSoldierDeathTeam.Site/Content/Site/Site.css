@@ -2031,6 +2031,7 @@ span.checker-span {
 
 .ui-tabs-vertical .ui-tabs-panel {
 	padding: 10px;
+	padding-bottom: 0;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	margin-right: 10px;
@@ -2174,6 +2175,7 @@ span.checker-span {
 .ui-widget-content .users table {
 	width: 100%;
 	border-spacing: 0;
+	margin-bottom: 10px;
 }
 
 	.ui-widget-content .users table thead th {
@@ -2281,24 +2283,56 @@ span.checker-span {
 	text-align: right;
 }
 
-.role-container {
-	border: 1px solid #D1D1D1;
-	width: 80%;
-	height: 200px;
-	padding: 10px;
-	float: right;
+#role-management .container {
 	margin-bottom: 10px;
-	overflow-y: auto;
+	vertical-align: middle;
+	position: relative;
+	height: 200px;
 }
 
-	.role-container span {
+	#role-management .container .role-container {
+		border: 1px solid #D1D1D1;
+		width: 83%;
+		height: 200px;
+		padding: 10px;
+		overflow-y: auto;
+		display: inline-block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		background-color: white;
+	}
+
+	#role-management .container .container-name {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		vertical-align: middle;
+		display: inline-block;
+		font-weight: bold;
+		font-family: 'Lily Script One', helveti;
+		font: 15px 'PT Sans Narrow', Arial, sans-serif;
+		height: 200px;
+		border: 1px solid black;
+		border-right: none;
+		background-color: black;
+		padding: 7px;
+		padding-top: 88px;
+		color: white;
+	}
+
+	#role-management .container .role-container span {
 		display: inline-block;
 		width: auto;
 		text-align: center;
 	}
 
-	.role-container span img{
-		display: block;
-		margin-right: auto;
-		margin-left: auto;
-	}
+		#role-management .container .role-container span img {
+			display: block;
+			margin-right: auto;
+			margin-left: auto;
+			border-radius: 3px;
+			-moz-border-radius: 3px;
+			-webkit-border-radius: 3px;
+		}
