@@ -6,11 +6,12 @@
 @{
 	Layout = null;
 }
-
-@foreach (var group in Model.Items.OrderBy(o => o.Key))
-{
-	@RenderRoleContainer(group.Key, group.Value)
-}
+<div id="containment">
+	@foreach (var group in Model.Items.OrderBy(o => o.Key))
+	{
+		@RenderRoleContainer(group.Key, group.Value)
+	}
+</div>
 
 @helper RenderRoleContainer(RoleEnum role, IEnumerable<UserEditItemModel> users)
 {
