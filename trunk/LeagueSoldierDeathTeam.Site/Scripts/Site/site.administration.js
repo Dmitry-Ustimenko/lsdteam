@@ -182,10 +182,14 @@
 							opacity: 0.9,
 							revert: 400,
 							placeholder: 'placeholder',
+							receive: function (event, ui) {
+								var s = "dsa";
+							},
+							containment: "#containment"
 						}).disableSelection();
 
 						$(this).droppable({
-							hoverClass: "drop",
+							hoverClass: "drop"
 						});
 					});
 				},

@@ -2283,22 +2283,24 @@ span.checker-span {
 	text-align: right;
 }
 
+#role-management hr {
+	margin: 0;
+	margin-bottom: 5px;
+}
+
 #role-management .container {
 	margin-bottom: 10px;
 	vertical-align: middle;
 	position: relative;
-	height: 200px;
+	height: 232px;
 }
 
 	#role-management .container .role-container {
 		border: 1px solid #D1D1D1;
-		width: 80%;
+		width: 100%;
 		height: 200px;
 		padding: 10px;
 		display: inline-block;
-		position: absolute;
-		top: 0;
-		right: 0;
 		background-color: white;
 	}
 
@@ -2307,22 +2309,17 @@ span.checker-span {
 		}
 
 	#role-management .container .container-name {
-		position: absolute;
-		top: 0;
-		left: 0;
 		width: 100%;
-		vertical-align: middle;
 		display: inline-block;
 		font-weight: bold;
 		font-family: 'Lily Script One', helveti;
 		font: 17px 'PT Sans Narrow', Arial, sans-serif;
-		height: 200px;
 		border: 1px solid black;
 		border-right: none;
 		background-color: black;
-		padding: 7px;
-		padding-top: 88px;
+		padding: 5px;
 		color: white;
+		text-align: center;
 	}
 
 	#role-management .container .role-container .draggable {
