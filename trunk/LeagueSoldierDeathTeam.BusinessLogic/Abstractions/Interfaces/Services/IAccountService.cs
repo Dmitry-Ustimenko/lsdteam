@@ -35,6 +35,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 
 		RoleData GetRole(int id);
 
+		void UpdateRole(int id, int userId);
+
 		string GetUserResetToken(string email);
 
 		string GetUserActivateToken(string email);

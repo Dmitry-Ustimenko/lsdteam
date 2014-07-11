@@ -330,6 +330,21 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			}, o => o.Id == id).SingleOrDefault();
 		}
 
+		void IAccountService.UpdateRole(int id, int userId)
+		{
+			var user = _userRepository.Query(o => o.Id == userId).SingleOrDefault();
+			if (user == null)
+				throw new ArgumentNullException(string.Format("user"));
+
+			var role = _roleRepository.Query(o => o.Id == id).SingleOrDefault();
+			if (role == null)
+				throw new ArgumentNullException(string.Format("role"));
+
+			user.Role = role;
+
+			UnitOfWork.Commit();
+		}
+
 		string IAccountService.GetUserResetToken(string email)
 		{
 			if (string.IsNullOrWhiteSpace(email))

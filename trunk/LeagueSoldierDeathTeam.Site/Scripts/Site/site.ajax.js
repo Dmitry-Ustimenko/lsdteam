@@ -9,15 +9,15 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 (function () {
 	site.ajax =
 	{
-		post: function (url, params, callback) {
-			site.ajax.send("POST", url, params, callback);
+		post: function (url, params, callback, callbackError) {
+			site.ajax.send("POST", url, params, callback, callbackError);
 		},
 
-		get: function (url, params, callback) {
-			site.ajax.send("GET", url, params, callback);
+		get: function (url, params, callback, callbackError) {
+			site.ajax.send("GET", url, params, callback, callbackError);
 		},
 
-		send: function (type, url, dataParams, callback) {
+		send: function (type, url, dataParams, callback, callbackError) {
 			window.status = "Please wait...";
 			document.body.style.cursor = "wait";
 
@@ -48,6 +48,10 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 						alertMessage("Ошибка (404)", "Страница не найдена.");
 					else
 						alertMessage("Ошибка (" + jqxhr.status + ")", "При обработке запроса произошла ошибка.");
+					
+					if (typeof (callbackError) == 'function') {
+						callbackError();
+					}
 				}
 			});
 

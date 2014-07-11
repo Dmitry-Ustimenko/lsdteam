@@ -3,6 +3,7 @@
 		{
 			settings: {
 				urls: {
+					changeRole: '',
 					deleteUser: '',
 					activateUser: '',
 					banUser: '',
@@ -177,18 +178,32 @@
 			roleManagement: {
 				init: function () {
 					$('.role-container').each(function () {
-						$(this).sortable({
+						var $this = $(this);
+
+						$this.sortable({
 							connectWith: ".role-container",
 							opacity: 0.9,
 							revert: 400,
 							placeholder: 'placeholder',
 							receive: function (event, ui) {
-								var s = "dsa";
+								var $sender = $(ui.sender);
+								var changedRole = $(event.target).data("name");
+								var currentRole = $sender.data("name");
+
+								$.fn.confirmOverlay("Смена прав доступа", "Подтвердите смену категории прав доступа c '" + currentRole + "' на '" + changedRole + "'", function () {
+									var userId = $(ui.item).data("id");
+									var roleId = $(event.target).data("id");
+									site.ajax.post(site.administation.settings.urls.changeRole, { roleId: roleId, userId: userId }, null, function () {
+										$sender.sortable("cancel");
+									});
+								}, function () {
+									$sender.sortable("cancel");
+								});
 							},
 							containment: "#containment"
 						}).disableSelection();
 
-						$(this).droppable({
+						$this.droppable({
 							hoverClass: "drop"
 						});
 					});
