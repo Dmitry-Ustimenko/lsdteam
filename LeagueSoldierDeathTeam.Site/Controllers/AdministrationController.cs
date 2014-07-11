@@ -131,9 +131,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Role Management
 
-		public ActionResult RoleManagement()
+		[HttpPost]
+		public ActionResult ChangeRole(int? roleId, int? userId)
 		{
-			return View();
+			Execute(() => _accountService.UpdateRole(roleId.GetValueOrDefault(), userId.GetValueOrDefault()));
+			return Json(new { Id = userId }, JsonRequestBehavior.AllowGet);
 		}
 
 		#endregion

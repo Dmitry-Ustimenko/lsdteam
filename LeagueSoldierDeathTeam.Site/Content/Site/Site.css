@@ -1536,7 +1536,7 @@ button.close {
 .modal {
 	width: 500px;
 	margin: -250px 0 0 -250px;
-	top: 53%;
+	top: 60%;
 }
 
 .modal-body {

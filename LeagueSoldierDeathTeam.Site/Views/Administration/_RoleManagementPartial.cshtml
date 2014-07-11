@@ -35,7 +35,7 @@
 
 	<div class="container">
 		<div class="container-name">@containerName</div>
-		<div data-type="@containerType" class="role-container">
+		<div data-type="@containerType" data-name="@containerName" data-id="@((int)role)" class="role-container">
 			@foreach (var user in users)
 			{
 				<span class="draggable" data-id="@user.UserId">
