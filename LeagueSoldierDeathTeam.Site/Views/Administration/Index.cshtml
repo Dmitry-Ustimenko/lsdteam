@@ -44,7 +44,14 @@
 				</div>
 				<div id="role-management">
 					<h2>Менеджер ролей</h2>
-					<hr/>
+					<div class="filter">
+						<span class="role-search">
+							<input type="text" placeholder="Найти пользователя">
+							<span class="role-search-btn"></span>
+						</span>
+						<span class="role-clear-btn"></span>
+					</div>
+					<hr />
 					@{Html.RenderPartial("_RoleManagementPartial", Model.RoleManagementModel);}
 				</div>
 			</div>
@@ -61,7 +68,8 @@
 				activateUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ActivateUser(null, SortEnum.Default, null)))',
 				banUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.BanUser(null, null, SortEnum.Default, null)))',
 				sendMessageForActivate: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.SendMessageForActivate(null, SortEnum.Default, null)))',
-				filterUsers: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterUsers(SortEnum.Default, null)))'
+				filterUsers: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterUsers(SortEnum.Default, null)))',
+				filterRoles: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterRoles(null)))'
 			}
 		});
 	});

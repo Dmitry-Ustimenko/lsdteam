@@ -9,7 +9,12 @@ namespace LeagueSoldierDeathTeam.Site.Models.Administration
 
 		public RoleManagementModel()
 		{
-			Items = new Dictionary<RoleEnum, IEnumerable<UserEditItemModel>>();
+			Items = new Dictionary<RoleEnum, IEnumerable<UserEditItemModel>>
+			{
+				{RoleEnum.Administrator,new List<UserEditItemModel>()},
+				{RoleEnum.Moderator,new List<UserEditItemModel>()},
+				{RoleEnum.User,new List<UserEditItemModel>()} 
+			};
 		}
 	}
 }

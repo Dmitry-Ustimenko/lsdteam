@@ -17,7 +17,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 
 			foreach (var group in data.OrderBy(o => o.UserName).ToLookup(o => o.RoleId))
 			{
-				model.Items.Add((RoleEnum)group.Key, group.Select(o => new UserEditItemModel
+				var items = group.Select(o => new UserEditItemModel
 				{
 					UserId = o.Id,
 					UserName = o.UserName,
@@ -26,7 +26,10 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 					IsActive = o.IsActive,
 					IsBanned = o.IsBanned,
 					RoleId = o.RoleId
-				}));
+				});
+
+				if (model.Items.ContainsKey((RoleEnum)group.Key))
+					model.Items[(RoleEnum)group.Key] = items;
 			}
 
 			return model;

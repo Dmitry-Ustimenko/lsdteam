@@ -138,6 +138,13 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return Json(new { Id = userId }, JsonRequestBehavior.AllowGet);
 		}
 
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		public ActionResult FilterRoles(string term)
+		{
+			return View("_RoleManagementPartial", GetUsers(SortEnum.Default, term).Map());
+		}
+
 		#endregion
 
 		#endregion
