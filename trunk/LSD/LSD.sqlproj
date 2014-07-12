@@ -92,6 +92,7 @@
     <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />
     <None Include="Scripts\Post-Deployment\Population\000_dboSex.sql" />
     <None Include="Scripts\Post-Deployment\Population\001_dboRole.sql" />
+    <None Include="Scripts\Post-Deployment\Population\002_dboUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
