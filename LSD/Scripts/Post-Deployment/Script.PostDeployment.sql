@@ -17,3 +17,4 @@ go
 -- Populate tables.
 :r .\Population\000_dboSex.sql
 :r .\Population\001_dboRole.sql
+:r .\Population\002_dboUser.sql
