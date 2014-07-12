@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -163,7 +164,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				if (!string.IsNullOrWhiteSpace(model.DateBirth))
 				{
 					DateTime date;
-					if (DateTime.TryParse(model.DateBirth, out date))
+					if (DateTime.TryParse(model.DateBirth, CultureInfo.CurrentCulture, DateTimeStyles.None, out date))
 						dateBirth = date;
 					else
 						ModelState.AddModelError(string.Empty, "Неверный формат даты.");

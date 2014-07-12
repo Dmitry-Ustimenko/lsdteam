@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Reflection;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -15,6 +17,13 @@ namespace LeagueSoldierDeathTeam.Site
 {
 	public class MvcApplication : HttpApplication
 	{
+		protected void Application_BeginRequest(Object sender, EventArgs e)
+		{
+			var cInfo = new CultureInfo("ru-RU");
+			Thread.CurrentThread.CurrentCulture = cInfo;
+			Thread.CurrentThread.CurrentUICulture = cInfo;
+		}
+
 		protected void Application_Start()
 		{
 			Logger.InitLogger();
