@@ -8,11 +8,13 @@
 					activateUser: '',
 					banUser: '',
 					sendMessageForActivate: '',
-					filterUsers: ''
+					filterUsers: '',
+					filterRoles: ''
 				},
 				elements: {
 					tabs: '#tabs',
-					users: '#users-content'
+					users: '#users-content',
+					containment: '#containment'
 				}
 			},
 
@@ -177,6 +179,13 @@
 
 			roleManagement: {
 				init: function () {
+					var searchInput = $(".role-search input");
+
+					site.administation.roleManagement.initFilter(searchInput);
+					site.administation.roleManagement.initSortable();
+				},
+				
+				initSortable: function() {
 					$('.role-container').each(function () {
 						var $this = $(this);
 
@@ -208,6 +217,41 @@
 						});
 					});
 				},
+				
+				initFilter: function (searchInput) {
+					var clearBtn = $(".role-clear-btn");
+					var searchBtn = $(".role-search-btn");
+					clearBtn.off("click").on("click", function () {
+						searchInput.val("");
+						clearBtn.hide();
+						searchBtn.click();
+					});
+
+					searchBtn.off("click").on("click", function () {
+						site.administation.roleManagement.refresh(site.administation.settings.elements.containment, site.administation.settings.urls.filterRoles,
+								{ term: searchInput.val() },
+								function () {
+									site.administation.roleManagement.init();
+								});
+					});
+
+					searchInput.keyup(function (e) {
+						var $this = $(this);
+						if (e.which == 13) {
+							searchBtn.click();
+							e.preventDefault();
+						}
+
+						if ($this.val() != "")
+							clearBtn.show();
+						else
+							clearBtn.hide();
+					});
+				},
+				
+				refresh: function (content, url, params, callback, callbackError) {
+					$(content).loadData(url, params, callback, callbackError);
+				}
 			}
 		};
 })();
