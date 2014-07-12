@@ -345,6 +345,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Code\DeclarativeHelper\Control.cshtml" />
+    <None Include="Properties\PublishProfiles\LSDTeam.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
