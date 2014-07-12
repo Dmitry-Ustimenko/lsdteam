@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Text;
 using System.Web;
 using log4net;
@@ -45,9 +44,6 @@ namespace LeagueSoldierDeathTeam.Site.Classes
 			if (httpContext == null)
 				return "No HttpContext";
 
-			//var appContext = AppContext.Current;
-			//var loggedUserId = (appContext != null && appContext.CurrentUser != null) ? appContext.CurrentUser.Id.ToString(CultureInfo.InvariantCulture) : string.Empty;
-
 			var request = httpContext.Request;
 			var userHostAddress = request.UserHostAddress;
 			var rawUrl = request.RawUrl;
@@ -56,7 +52,6 @@ namespace LeagueSoldierDeathTeam.Site.Classes
 			var userAgent = request.UserAgent;
 
 			var sb = new StringBuilder();
-			//sb.Append(loggedUserId);
 			sb.Append('\t');
 			if (!string.IsNullOrWhiteSpace(userHostAddress))
 			{

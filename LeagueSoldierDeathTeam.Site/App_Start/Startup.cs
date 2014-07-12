@@ -60,8 +60,8 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 		{
 			return new VkAuthenticationOptions
 			{
-				AppId = "4325286",
-				AppSecret = "nplOLs4MEAQ8ElhCyHAO"
+				AppId = "4457818",
+				AppSecret = "8RyajJw0UzLMRvviSJwH"
 				//Provider = new VkAuthenticationProvider
 				//{
 				//	OnAuthenticated = async context =>
