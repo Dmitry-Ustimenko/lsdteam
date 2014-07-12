@@ -180,12 +180,13 @@
 			roleManagement: {
 				init: function () {
 					var searchInput = $(".role-search input");
+					var searchBtn = $(".role-search-btn");
 
-					site.administation.roleManagement.initFilter(searchInput);
-					site.administation.roleManagement.initSortable();
+					site.administation.roleManagement.initFilter(searchInput, searchBtn);
+					site.administation.roleManagement.initSortable(searchBtn);
 				},
 				
-				initSortable: function() {
+				initSortable: function (searchBtn) {
 					$('.role-container').each(function () {
 						var $this = $(this);
 
@@ -195,14 +196,19 @@
 							revert: 400,
 							placeholder: 'placeholder',
 							receive: function (event, ui) {
-								var $sender = $(ui.sender);
-								var changedRole = $(event.target).data("name");
-								var currentRole = $sender.data("name");
+								var $sender = $(ui.sender),
+									$item = (ui.item),
+									$changedSender = $(event.target);
+								
+								var changedRole = $changedSender.data("name"),
+									currentRole = $sender.data("name");
 
 								$.fn.confirmOverlay("Смена прав доступа", "Подтвердите смену категории прав доступа c '" + currentRole + "' на '" + changedRole + "'", function () {
-									var userId = $(ui.item).data("id");
-									var roleId = $(event.target).data("id");
-									site.ajax.post(site.administation.settings.urls.changeRole, { roleId: roleId, userId: userId }, null, function () {
+									var userId = $item.data("id");
+									var roleId = $changedSender.data("id");
+									site.ajax.post(site.administation.settings.urls.changeRole, { roleId: roleId, userId: userId }, function() {
+										searchBtn.click();
+									}, function () {
 										$sender.sortable("cancel");
 									});
 								}, function () {
@@ -218,9 +224,9 @@
 					});
 				},
 				
-				initFilter: function (searchInput) {
+				initFilter: function (searchInput, searchBtn) {
 					var clearBtn = $(".role-clear-btn");
-					var searchBtn = $(".role-search-btn");
+					
 					clearBtn.off("click").on("click", function () {
 						searchInput.val("");
 						clearBtn.hide();
