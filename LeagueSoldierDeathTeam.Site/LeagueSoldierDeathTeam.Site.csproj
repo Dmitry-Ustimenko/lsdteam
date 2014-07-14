@@ -291,7 +291,7 @@
     <Content Include="Images\d03.png" />
     <Content Include="Images\d06.png" />
     <Content Include="Images\d10.png" />
-    <Content Include="Images\default-avatar.jpg" />
+    <Content Include="Images\Photos\default-avatar.jpg" />
     <Content Include="Images\delete-icon.png" />
     <Content Include="Images\delete.png" />
     <Content Include="Images\dice-logo.png" />
@@ -418,7 +418,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\Photos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
