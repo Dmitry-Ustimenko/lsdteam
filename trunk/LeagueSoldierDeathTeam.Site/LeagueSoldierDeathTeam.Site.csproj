@@ -263,6 +263,7 @@
     <Content Include="Content\Plugins\animate.css" />
     <Content Include="Content\Plugins\datepicker.css" />
     <Content Include="Content\Plugins\galleria.classic.css" />
+    <Content Include="Scripts\Plugins\galleria.classic.css" />
     <Content Include="Content\Plugins\jquery-ui-1.10.4.css" />
     <Content Include="Content\Plugins\jquery.vegas.css" />
     <Content Include="Content\Plugins\modal-responsive.css" />
@@ -338,7 +339,6 @@
     <Content Include="Scripts\Plugins\bootstrap-datepicker.js" />
     <Content Include="Scripts\Plugins\bootstrap-datepicker.ru.js" />
     <Content Include="Scripts\Plugins\bootstrap.js" />
-    <Content Include="Scripts\Plugins\galleria.classic.css" />
     <Content Include="Scripts\Plugins\jquery.vegas.js" />
     <Content Include="Scripts\Site\site.profile.js" />
     <Content Include="Xml\MailHosting.xml">
