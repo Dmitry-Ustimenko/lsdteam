@@ -19,5 +19,7 @@
 		public const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 		public static readonly string[] AcceptImage = { "image/png", "image/jpeg", "image/jpg", "image/gif" };
+
+		public const string BelarusTimeZone = "GTB Standard Time";
 	}
 }

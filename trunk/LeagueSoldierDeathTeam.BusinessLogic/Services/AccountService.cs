@@ -200,7 +200,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			if (user == null)
 				throw new ArgumentNullException(string.Format("Данного пользователя не существует."));
 
-			user.LastActivity = DateTime.Now;
+			user.LastActivity = DateTime.UtcNow;
 
 			UnitOfWork.Commit();
 		}
@@ -357,10 +357,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			var resetToken = _userResetTokenRepository.Query(o => o.UserId == user.Id).SingleOrDefault();
 
 			if (resetToken == null)
-				_userResetTokenRepository.Add(new UserResetToken { CreateDate = DateTime.Now, Token = token, User = user });
+				_userResetTokenRepository.Add(new UserResetToken { CreateDate = DateTime.UtcNow, Token = token, User = user });
 			else
 			{
-				resetToken.CreateDate = DateTime.Now;
+				resetToken.CreateDate = DateTime.UtcNow;
 				resetToken.Token = token;
 			}
 
@@ -500,7 +500,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			if (userResetToken == null)
 				throw new ArgumentNullException("userResetToken");
 
-			if (userResetToken.CreateDate.Add(AppConfig.PasswordResetLinkLifetime) < DateTime.Now)
+			if (userResetToken.CreateDate.Add(AppConfig.PasswordResetLinkLifetime) < DateTime.UtcNow)
 			{
 				DeleteUserResetToken(userResetToken);
 				return false;
