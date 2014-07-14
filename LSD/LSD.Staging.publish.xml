@@ -4,7 +4,7 @@
 		<IncludeCompositeObjects>True</IncludeCompositeObjects>
 		<TargetDatabaseName>DB_9B1EFF_LsdTeam</TargetDatabaseName>
 		<DeployScriptFileName>DB_9B1EFF_LsdTeam.sql</DeployScriptFileName>
-		<TargetConnectionString>Data Source=SQL5011.Smarterasp.net;Initial Catalog=DB_9B1EFF_LsdTeam;User Id=DB_9B1EFF_LsdTeam_admin;Password=2230293udv;</TargetConnectionString>
+		<TargetConnectionString>Data Source=SQL5012.Smarterasp.net,1433;Initial Catalog=DB_9B1EFF_LsdTeam;User Id=DB_9B1EFF_LsdTeam_admin;Password=2230293udv;Integrated Security=False;Pooling=False</TargetConnectionString>
 		<ProfileVersionNumber>1</ProfileVersionNumber>
 	</PropertyGroup>
 </Project>
