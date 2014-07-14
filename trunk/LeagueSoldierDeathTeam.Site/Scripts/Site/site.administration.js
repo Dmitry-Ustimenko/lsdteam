@@ -167,6 +167,7 @@
 								{ userId: userId, sortFilter: sortName.data("val"), term: searchInput.val() },
 								function () {
 									site.administation.users.init();
+									$(site.administation.settings.elements.containment).find('.draggable[data-id=' + userId + ']').remove();
 								});
 						});
 					});
@@ -185,7 +186,7 @@
 					site.administation.roleManagement.initFilter(searchInput, searchBtn);
 					site.administation.roleManagement.initSortable(searchBtn);
 				},
-				
+
 				initSortable: function (searchBtn) {
 					$('.role-container').each(function () {
 						var $this = $(this);
@@ -199,14 +200,14 @@
 								var $sender = $(ui.sender),
 									$item = (ui.item),
 									$changedSender = $(event.target);
-								
+
 								var changedRole = $changedSender.data("name"),
 									currentRole = $sender.data("name");
 
 								$.fn.confirmOverlay("Смена прав доступа", "Подтвердите смену категории прав доступа c '" + currentRole + "' на '" + changedRole + "'", function () {
 									var userId = $item.data("id");
 									var roleId = $changedSender.data("id");
-									site.ajax.post(site.administation.settings.urls.changeRole, { roleId: roleId, userId: userId }, function() {
+									site.ajax.post(site.administation.settings.urls.changeRole, { roleId: roleId, userId: userId }, function () {
 										searchBtn.click();
 									}, function () {
 										$sender.sortable("cancel");
@@ -223,10 +224,10 @@
 						});
 					});
 				},
-				
+
 				initFilter: function (searchInput, searchBtn) {
 					var clearBtn = $(".role-clear-btn");
-					
+
 					clearBtn.off("click").on("click", function () {
 						searchInput.val("");
 						clearBtn.hide();
@@ -254,7 +255,7 @@
 							clearBtn.hide();
 					});
 				},
-				
+
 				refresh: function (content, url, params, callback, callbackError) {
 					$(content).loadData(url, params, callback, callbackError);
 				}
