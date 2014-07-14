@@ -20,9 +20,9 @@
 		<li>Пароль: @viewModel.Password</li>
 	</ul>
 </div>
-<br />
 @if (!string.IsNullOrWhiteSpace(viewModel.ProviderName))
 {
+	<br />
 	<div>
 		При регистрации через @viewModel.ProviderName вами не был указан пароль, поэтому система сгенерировала его.<br />
 		В дальнейшем с его помощью вы сможете авторизироваться на сайте с помощью формы аутентификации.
