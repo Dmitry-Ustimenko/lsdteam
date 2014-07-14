@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Models.AccountProfile;
 
@@ -23,7 +23,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			model.SexName = data.SexName;
 			model.ShowEmail = data.User.ShowEmail;
 
-			var dateNow = DateTime.Now;
+			var dateNow = DateTime.UtcNow.UtcToTimeZone(Constants.BelarusTimeZone);
 			if (data.DateBirth.HasValue)
 			{
 				var dateBirthDay = data.DateBirth.Value;
@@ -80,8 +80,8 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 				}
 			}
 
-			model.CreateDate = data.User.CreateDate;
-			model.LastActivity = data.User.LastActivity;
+			model.CreateDate = data.User.CreateDate.UtcToTimeZone(Constants.BelarusTimeZone);
+			model.LastActivity = data.User.LastActivity.UtcToTimeZone(Constants.BelarusTimeZone);
 
 			model.SiteLink = data.SiteLink;
 			model.Icq = data.Icq;

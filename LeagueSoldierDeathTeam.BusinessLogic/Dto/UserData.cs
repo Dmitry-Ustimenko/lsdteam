@@ -28,8 +28,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 
 		public UserData()
 		{
-			CreateDate = DateTime.Today;
-			LastActivity = DateTime.Today;
+			CreateDate = DateTime.UtcNow;
+			LastActivity = DateTime.UtcNow;
 		}
 
 		public bool IsMe(int userId)

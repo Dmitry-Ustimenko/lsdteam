@@ -54,6 +54,7 @@
     <Compile Include="Classes\Config\AppConfig.cs" />
     <Compile Include="Classes\Enums\Role.cs" />
     <Compile Include="Classes\Enums\SortEnum.cs" />
+    <Compile Include="Classes\Extensions\DateTimeEx.cs" />
     <Compile Include="Classes\Extensions\EnumEx.cs" />
     <Compile Include="Classes\Security\CryptingHelper.cs" />
     <Compile Include="Classes\Security\Hashing.cs" />
