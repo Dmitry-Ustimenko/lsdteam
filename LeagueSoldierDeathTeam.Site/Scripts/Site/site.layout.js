@@ -198,6 +198,7 @@
 			var btnLogin = $(site.layout.settings.elements.loginTab).find("#btn-login");
 			$(document).click(function (event) {
 				var $eventTarget = $(event.target);
+				site.layout.enterPressFormEvent(loginForm.find("form"));
 
 				if ($eventTarget.closest(site.layout.settings.elements.loginTab).length) {
 					loginForm.fadeIn("fast");
@@ -216,6 +217,7 @@
 			var btnRegister = $(site.layout.settings.elements.registerTab).find("#btn-register");
 			$(document).click(function (event) {
 				var $eventTarget = $(event.target);
+				site.layout.enterPressFormEvent(registerForm.find("form"));
 
 				if ($eventTarget.closest(site.layout.settings.elements.registerTab).length) {
 					registerForm.fadeIn("fast");
@@ -227,6 +229,17 @@
 				}
 
 				event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = true);
+			});
+		},
+		
+		enterPressFormEvent: function(form) {
+			var btn = form.find("input[type=button]");
+			form.off("keypress").keypress(function (e) {
+				var code = e.keyCode || e.which;
+				if (code === 13) {
+					e.preventDefault();
+					btn.click();
+				}
 			});
 		},
 
