@@ -18,13 +18,21 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 	[Authorize]
 	public class AccountProfileController : BaseController
 	{
+		#region Private Fields
+
 		private readonly IAccountService _accountService;
+
+		#endregion
+
+		#region Constructors
 
 		public AccountProfileController(ServiceFactoryBase serviceFactory)
 			: base(serviceFactory)
 		{
 			_accountService = serviceFactory.CreateAccountService();
 		}
+
+		#endregion
 
 		#region Actions
 
@@ -35,83 +43,108 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			var model = new UserProfileModel { UserId = userId };
 			FillUserProfileModel(model);
-			return View(model);
+
+			if (ModelIsValid)
+				return View(model);
+			return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(CurrentUser.Id));
+		}
+
+		[HttpGet]
+		public ActionResult EditPhoto()
+		{
+			return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(CurrentUser.Id));
 		}
 
 		[HttpPost]
 		public ActionResult EditPhoto(int userId, HttpPostedFileBase photoUploadFile)
 		{
-			if (photoUploadFile != null && photoUploadFile.FileName != null)
+			Private(userId, true);
+
+			if (ModelIsValid)
 			{
-				try
+				if (photoUploadFile != null && photoUploadFile.FileName != null)
 				{
-					if (photoUploadFile.ContentLength > 102400)
-						ModelState.AddModelError(string.Empty, "Размер файла не выше 100кб");
-
-					if (!Constants.AcceptImage.Contains(photoUploadFile.ContentType))
-						ModelState.AddModelError(string.Empty, "Требуемые форматы: *.jpg, *.jpeg, *.png, *.gif");
-
-					if (ModelIsValid)
+					try
 					{
-						var image = Image.FromStream(photoUploadFile.InputStream);
-						if (image.Width > 200 || image.Height > 200)
-							ModelState.AddModelError(string.Empty, "Разрешение фото не должно превышать 200х200");
-					}
+						if (photoUploadFile.ContentLength > 102400)
+							ModelState.AddModelError(string.Empty, "Размер файла не выше 100кб");
 
-					if (ModelIsValid)
-					{
-						var user = Execute(() => _accountService.GetUser(userId));
-						var oldPath = string.Concat(AppDomain.CurrentDomain.BaseDirectory, user.PhotoPath);
-
-						var fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(photoUploadFile.FileName));
-						var path = Path.Combine(Server.MapPath(Constants.PhotoDirectoryPath), Path.GetFileName(fileName));
-						while (System.IO.File.Exists(path))
-							fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(photoUploadFile.FileName));
-
-						photoUploadFile.SaveAs(path);
-
-						Execute(() => _accountService.UpdateUserPhoto(userId, string.Concat(Constants.PhotoDirectoryPath, fileName)));
-
-						if (AppContext.CurrentUser.IsMe(userId))
-							Execute(() => AppContext.CurrentUser = _accountService.GetUser(userId));
+						if (!Constants.AcceptImage.Contains(photoUploadFile.ContentType))
+							ModelState.AddModelError(string.Empty, "Требуемые форматы: *.jpg, *.jpeg, *.png, *.gif");
 
 						if (ModelIsValid)
 						{
-							if (System.IO.File.Exists(oldPath))
-								System.IO.File.Delete(oldPath);
+							var image = Image.FromStream(photoUploadFile.InputStream);
+							if (image.Width > 200 || image.Height > 200)
+								ModelState.AddModelError(string.Empty, "Разрешение фото не должно превышать 200х200");
+						}
 
-							return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(userId));
+						if (ModelIsValid)
+						{
+							var user = Execute(() => _accountService.GetUser(userId));
+							var oldPath = string.Concat(AppDomain.CurrentDomain.BaseDirectory, user.PhotoPath);
+
+							var fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(photoUploadFile.FileName));
+							var path = Path.Combine(Server.MapPath(Constants.PhotoDirectoryPath), Path.GetFileName(fileName));
+							while (System.IO.File.Exists(path))
+								fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(photoUploadFile.FileName));
+
+							photoUploadFile.SaveAs(path);
+
+							Execute(() => _accountService.UpdateUserPhoto(userId, string.Concat(Constants.PhotoDirectoryPath, fileName)));
+
+							if (CurrentUser.IsMe(userId))
+								Execute(() => CurrentUser = _accountService.GetUser(userId));
+
+							if (ModelIsValid)
+							{
+								if (System.IO.File.Exists(oldPath))
+									System.IO.File.Delete(oldPath);
+
+								return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(userId));
+							}
 						}
 					}
+					catch (Exception)
+					{
+						ModelState.AddModelError(string.Empty, "Ошибка при сохранении файла");
+					}
 				}
-				catch (Exception)
-				{
-					ModelState.AddModelError(string.Empty, "Ошибка при сохранении файла");
-				}
+				else
+					ModelState.AddModelError(string.Empty, "Файл не выбран");
 			}
-			else
-				ModelState.AddModelError(string.Empty, "Файл не выбран");
 
 			var model = new UserProfileModel { UserId = userId };
 			FillUserProfileModel(model);
 			return View("ProfileInfo", model);
 		}
 
+		[HttpGet]
+		public ActionResult DeletePhoto()
+		{
+			return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(CurrentUser.Id));
+		}
+
 		[HttpPost]
 		public ActionResult DeletePhoto(int userId)
 		{
-			var user = Execute(() => _accountService.GetUser(userId));
-			var path = string.Concat(AppDomain.CurrentDomain.BaseDirectory, user.PhotoPath);
+			Private(userId, true);
 
-			Execute(() => _accountService.DeleteUserPhoto(userId));
-
-			if (AppContext.CurrentUser.IsMe(userId))
-				Execute(() => AppContext.CurrentUser = _accountService.GetUser(userId));
-
-			if (ModelIsValid && System.IO.File.Exists(path))
+			if (ModelIsValid)
 			{
-				System.IO.File.Delete(path);
-				return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(userId));
+				var user = Execute(() => _accountService.GetUser(userId));
+				var path = string.Concat(AppDomain.CurrentDomain.BaseDirectory, user.PhotoPath);
+
+				Execute(() => _accountService.DeleteUserPhoto(userId));
+
+				if (CurrentUser.IsMe(userId))
+					Execute(() => CurrentUser = _accountService.GetUser(userId));
+
+				if (ModelIsValid && System.IO.File.Exists(path))
+				{
+					System.IO.File.Delete(path);
+					return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(userId));
+				}
 			}
 
 			var model = new UserProfileModel { UserId = userId };
@@ -128,7 +161,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			var model = new EditProfileModel { UserId = userId };
 			FillEditProfileModel(model);
-			return View(model);
+
+			if (ModelIsValid)
+				return View(model);
+			return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(CurrentUser.Id));
 		}
 
 		[HttpPost]
@@ -149,8 +185,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 				Execute(() => _accountService.UpdateMainInfo(data));
 
-				if (AppContext.CurrentUser.IsMe(model.UserId))
-					Execute(() => AppContext.CurrentUser = _accountService.GetUser(model.UserId));
+				if (CurrentUser.IsMe(model.UserId))
+					Execute(() => CurrentUser = _accountService.GetUser(model.UserId));
 			}
 			return View("_EditMainInfoPartial", model);
 		}
@@ -223,6 +259,15 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (ModelIsValid)
 				Execute(() => _accountService.ChangePassword(model.OldPassword, model.NewPassword, model.UserId));
 			return View("_ChangePasswordPartial", model);
+		}
+
+		#endregion
+
+		#region Message
+
+		public ActionResult MessageList(int userId)
+		{
+			return View();
 		}
 
 		#endregion

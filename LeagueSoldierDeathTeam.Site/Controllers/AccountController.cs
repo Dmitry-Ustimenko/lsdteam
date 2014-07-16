@@ -66,7 +66,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				var user = Execute(() => _accountService.LogOn(model.Email, model.Password));
 				if (ModelIsValid)
 				{
-					AppContext.CurrentUser = user;
+					CurrentUser = user;
 					_authenticationService.SignIn(user.Email, model.RememberMe);
 					return Json(model, JsonRequestBehavior.AllowGet);
 				}
@@ -77,7 +77,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		public ActionResult LogOff()
 		{
 			_authenticationService.SignOut();
-			AppContext.CurrentUser = null;
+			CurrentUser = null;
 			return RedirectToAction<HomeController>(o => o.Index());
 		}
 
@@ -163,7 +163,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 							Message = "Данный аккаунт не был активирован. Пожалуйста активируйте его по ссылке, которая была выслана на указанный при регистрации e-mail."
 						});
 
-					AppContext.CurrentUser = user;
+					CurrentUser = user;
 					_authenticationService.SignIn(user.Email, true);
 					return RedirectToAction<HomeController>(o => o.Index());
 				}
