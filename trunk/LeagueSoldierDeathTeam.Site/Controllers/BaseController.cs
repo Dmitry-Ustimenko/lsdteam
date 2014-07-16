@@ -34,6 +34,12 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private bool _disposeAppContext;
 
+		protected UserData CurrentUser
+		{
+			get { return AppContext.CurrentUser; }
+			set { AppContext.CurrentUser = value; }
+		}
+
 		public BaseController(ServiceFactoryBase serviceFactory)
 		{
 			if (serviceFactory == null)
@@ -69,17 +75,17 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			AppContext = new AppContext();
 			Classes.AppContext.Current = AppContext;
 
-			if (AppContext.CurrentUser != null)
-				Execute(() => _accountService.UpdateLastActivity(AppContext.CurrentUser.Id));
+			if (CurrentUser != null)
+				Execute(() => _accountService.UpdateLastActivity(CurrentUser.Id));
 
-			if (AppContext.CurrentUser == null && authorizationContext.HttpContext.User != null && authorizationContext.HttpContext.Request.IsAuthenticated)
+			if (CurrentUser == null && authorizationContext.HttpContext.User != null && authorizationContext.HttpContext.Request.IsAuthenticated)
 			{
 				if (SessionManager.Get<UserData>(SessionKeys.User) != null)
-					AppContext.CurrentUser = SessionManager.Get<UserData>(SessionKeys.User);
+					CurrentUser = SessionManager.Get<UserData>(SessionKeys.User);
 				else
 				{
 					var userIdentity = authorizationContext.HttpContext.User.Identity;
-					Execute(() => AppContext.CurrentUser = _accountService.GetUser(userIdentity.Name));
+					Execute(() => CurrentUser = _accountService.GetUser(userIdentity.Name));
 				}
 			}
 		}
@@ -184,6 +190,15 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				values.Add(pair.Key, pair.Value);
 
 			return new RedirectToRouteResult(values);
+		}
+
+		protected void Private(int userId, bool adminAccess = false)
+		{
+			if (adminAccess && (CurrentUser.IsMainAdmin || CurrentUser.IsAdmin))
+				return;
+
+			if (!CurrentUser.IsMe(userId))
+				ModelState.AddModelError(string.Empty, "Недостаточно прав");
 		}
 
 		private void AnalyzeSqlException(Exception exception)

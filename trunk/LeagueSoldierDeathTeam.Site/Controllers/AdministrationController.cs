@@ -155,7 +155,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			var users = Execute(() => _accountService.GetUsers(sortFilter, term));
 
-			return AppContext.CurrentUser.IsMainAdmin
+			return CurrentUser.IsMainAdmin
 				? users.Where(o => o.RoleId != (int)Role.MainAdministrator)
 				: users.Where(o => o.RoleId != (int)Role.MainAdministrator && o.RoleId != (int)Role.Administrator);
 		}
