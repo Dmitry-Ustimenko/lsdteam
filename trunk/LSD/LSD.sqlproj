@@ -96,6 +96,7 @@
     <None Include="Scripts\Post-Deployment\Population\002_dboUser.sql" />
     <None Include="LSD.Staging.publish.xml" />
     <None Include="Scripts\Post-Deployment\Population\003_dboUserExternalInfo.sql" />
+    <None Include="Scripts\Post-Deployment\Population\004_dboUserMessageType.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
@@ -117,6 +118,8 @@
     <Build Include="Schema Objects\dbo\Tables\UserExternalInfo.table.sql" />
     <Build Include="Schema Objects\dbo\Tables\UserToken.table.sql" />
     <Build Include="Schema Objects\dbo\Tables\UserActivateToken.sql" />
+    <Build Include="Schema Objects\dbo\Tables\UserMessage.sql" />
+    <Build Include="Schema Objects\dbo\Tables\UserMessageType.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="LSD.refactorlog" />

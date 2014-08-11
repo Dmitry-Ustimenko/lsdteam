@@ -1,55 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
 using System.Linq;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions
 {
 	public static class EnumEx
 	{
-		public static string GetDisplayName(this Enum value)
-		{
-			return GetName(value, false);
-		}
-
-		public static string GetDescriptionName(this Enum value)
-		{
-			return GetName(value, true);
-		}
-
-		public static IDictionary<int, string> GetItems(this Enum source, bool showDescriptionName = true)
-		{
-			var e = source.GetType();
-			var results = Enum.GetValues(e).Cast<int>().ToDictionary(o => o, o => GetName((Enum)Enum.Parse(e, o.ToString(CultureInfo.InvariantCulture)), showDescriptionName));
-			return results.Where(o => !string.IsNullOrEmpty(o.Value)).ToDictionary(o => o.Key, o => o.Value);
-		}
-
-		public static ICollection<TEnum> GetItems<TEnum>(int value)
-		{
-			return Enum.GetValues(typeof(TEnum)).Cast<int>().Where(o => IsItemSet(value, o)).Cast<TEnum>().ToList();
-		}
-
-		private static string GetName(Enum value, bool showDescriptionName)
+		public static string GetDescription(Enum value, bool showEmpty = true)
 		{
 			if (value == null)
 				return string.Empty;
 
 			var data = value.ToString();
-			var fi = value.GetType().GetField(data);
 
-			if (showDescriptionName)
-			{
-				var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
-				if (attributes.Any())
-					return attributes[0].Description;
-			}
-			return data;
+			var fi = value.GetType().GetField(data);
+			var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+			if (attributes.Length > 0)
+				return attributes[0].Description;
+			return !showEmpty ? string.Empty : data;
 		}
 
-		private static bool IsItemSet(int value, int item)
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
+		public static Dictionary<int, string> ToDictionary<TEnum>(bool showEmpty = false) where TEnum : struct
 		{
-			return (value & item) == item;
+			var results = (from TEnum e in Enum.GetValues(typeof(TEnum))
+						   select new KeyValuePair<int, string>
+						   (
+							   (int)Enum.Parse(typeof(TEnum), e.ToString()),
+								   GetDescription((Enum)Enum.Parse(typeof(TEnum), e.ToString()), showEmpty)
+						   )).ToDictionary(o => o.Key, o => o.Value);
+			return results.Where(o => !string.IsNullOrEmpty(o.Value)).ToDictionary(o => o.Key, o => o.Value);
+		}
+
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
+		public static Dictionary<string, string> ToStringDictionary<TEnum>(bool showEmpty = false) where TEnum : struct
+		{
+			var results = (from TEnum e in Enum.GetValues(typeof(TEnum))
+						   select new KeyValuePair<string, string>
+						   (
+							   e.ToString(),
+							   GetDescription((Enum)Enum.Parse(typeof(TEnum), e.ToString()), showEmpty)
+						   )).ToDictionary(o => o.Key, o => o.Value);
+			return results.Where(o => !string.IsNullOrEmpty(o.Value)).ToDictionary(o => o.Key, o => o.Value);
 		}
 	}
 }

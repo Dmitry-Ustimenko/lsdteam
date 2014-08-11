@@ -52,6 +52,7 @@
     <Compile Include="Abstractions\Factories\RepositoryFactoryBase.cs" />
     <Compile Include="Abstractions\Interfaces\DataAccess\IUnitOfWork.cs" />
     <Compile Include="Classes\Config\AppConfig.cs" />
+    <Compile Include="Classes\Enums\MessageTypeEnum.cs" />
     <Compile Include="Classes\Enums\Role.cs" />
     <Compile Include="Classes\Enums\SortEnum.cs" />
     <Compile Include="Classes\Extensions\DateTimeEx.cs" />

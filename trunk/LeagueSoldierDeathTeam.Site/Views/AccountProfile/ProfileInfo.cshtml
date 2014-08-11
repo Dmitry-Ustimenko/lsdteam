@@ -56,7 +56,7 @@
 			<div class="user-buttons">
 				@if (currentUser.IsMe(Model.UserId))
 				{
-					<a href="javascript:void(0);">Личные сообщения</a>
+					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.MessageList(Model.UserId)))">Личные сообщения</a>
 					<a href="javascript:void(0);">Мои закладки</a>
 				}
 				else
