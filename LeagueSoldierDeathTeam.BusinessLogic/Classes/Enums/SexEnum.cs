@@ -4,6 +4,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
 {
 	public enum SexEnum
 	{
+		None = 0,
+
 		[Description("Мужской")]
 		Man = 1,
 

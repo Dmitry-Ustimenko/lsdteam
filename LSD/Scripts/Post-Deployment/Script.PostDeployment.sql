@@ -19,3 +19,4 @@ go
 :r .\Population\001_dboRole.sql
 :r .\Population\002_dboUser.sql
 :r .\Population\003_dboUserExternalInfo.sql
+:r .\Population\004_dboUserMessageType.sql

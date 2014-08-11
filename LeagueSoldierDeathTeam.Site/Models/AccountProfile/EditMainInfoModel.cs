@@ -36,7 +36,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 
 		public EditMainInfoModel()
 		{
-			Sexs = SexEnum.Man.GetItems();
+			Sexs = EnumEx.ToDictionary<SexEnum>();
 		}
 	}
 }
