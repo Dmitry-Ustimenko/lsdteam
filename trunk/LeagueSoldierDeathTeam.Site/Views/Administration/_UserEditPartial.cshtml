@@ -33,12 +33,12 @@
 							<a class="settings" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(item.UserId)))" target="_blank">Настройки</a>
 							@if (!item.IsActive)
 							{
-								<a class="activation" data-action="activation" data-id="@item.UserId" href="javascript:void(0);">Активировать</a>
-								<a class="activation" data-action="message" data-id="@item.UserId" href="javascript:void(0);">Письмо активации</a>
+								<a class="activation" data-action="activation" data-id="@item.UserId" href="@Constants.JavaScriptVoid">Активировать</a>
+								<a class="activation" data-action="message" data-id="@item.UserId" href="@Constants.JavaScriptVoid">Письмо активации</a>
 							}
 							@if (item.IsActive)
 							{
-								<a class="@Html.Raw(@item.IsBanned ? "unbanned" : "banned")" data-id="@item.UserId" data-action="ban" data-banned="@item.IsBanned" href="javascript:void(0);">
+								<a class="@Html.Raw(@item.IsBanned ? "unbanned" : "banned")" data-id="@item.UserId" data-action="ban" data-banned="@item.IsBanned" href="@Constants.JavaScriptVoid">
 									@if (item.IsBanned)
 									{
 										@:Разбанить
@@ -49,7 +49,7 @@
 									}
 								</a>
 							}
-							<a class="delete" data-action="delete" data-id="@item.UserId" href="javascript:void(0);">Удалить</a>
+							<a class="delete" data-action="delete" data-id="@item.UserId" href="@Constants.JavaScriptVoid">Удалить</a>
 						</td>
 					</tr>
 				}

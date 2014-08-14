@@ -74,6 +74,25 @@
           <Property Name="SexId" Type="int" />
           <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="SenderId" Type="int" Nullable="false" />
+          <Property Name="RecipientId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserMessageType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserResetToken">
           <Key>
             <PropertyRef Name="Id" />
@@ -163,6 +182,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserMessage_UserMessageType">
+          <End Role="UserMessageType" Type="Self.UserMessageType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserMessage" Type="Self.UserMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMessageType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMessage">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMessage_UserRecipient">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserMessage" Type="Self.UserMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMessage">
+              <PropertyRef Name="RecipientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMessage_UserSender">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserMessage" Type="Self.UserMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMessage">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="LSDDataModelStoreContainer">
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sex" EntityType="Self.Sex" Schema="dbo" store:Type="Tables" />
@@ -170,6 +229,8 @@
           <EntitySet Name="UserActivateToken" EntityType="Self.UserActivateToken" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserExternalInfo" EntityType="Self.UserExternalInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMessage" EntityType="Self.UserMessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMessageType" EntityType="Self.UserMessageType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserResetToken" EntityType="Self.UserResetToken" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dboUserActivateToken_dboUser" Association="Self.FK_dboUserActivateToken_dboUser">
             <End Role="User" EntitySet="User" />
@@ -194,6 +255,18 @@
           <AssociationSet Name="FK_UserInfo_User" Association="Self.FK_UserInfo_User">
             <End Role="User" EntitySet="User" />
             <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMessage_UserMessageType" Association="Self.FK_UserMessage_UserMessageType">
+            <End Role="UserMessageType" EntitySet="UserMessageType" />
+            <End Role="UserMessage" EntitySet="UserMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMessage_UserRecipient" Association="Self.FK_UserMessage_UserRecipient">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserMessage" EntitySet="UserMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMessage_UserSender" Association="Self.FK_UserMessage_UserSender">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserMessage" EntitySet="UserMessage" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -232,7 +305,21 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserInfo" EntitySet="UserInfoes" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="UserMessageTypes" EntityType="LSDDataModel.UserMessageType" />
+          <EntitySet Name="UserMessages" EntityType="LSDDataModel.UserMessage" />
+          <AssociationSet Name="FK_UserMessage_UserRecipient" Association="LSDDataModel.FK_UserMessage_UserRecipient">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserMessage" EntitySet="UserMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMessage_UserSender" Association="LSDDataModel.FK_UserMessage_UserSender">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserMessage" EntitySet="UserMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMessage_UserMessageType" Association="LSDDataModel.FK_UserMessage_UserMessageType">
+            <End Role="UserMessageType" EntitySet="UserMessageTypes" />
+            <End Role="UserMessage" EntitySet="UserMessages" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -269,6 +356,8 @@
           <NavigationProperty Name="UserExternalInfoes" Relationship="LSDDataModel.FK_UserExternalInfo_User" FromRole="User" ToRole="UserExternalInfo" />
           <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
           <Property Name="IsBanned" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RecipientMessages" Relationship="LSDDataModel.FK_UserMessage_UserRecipient" FromRole="User" ToRole="UserMessage" />
+          <NavigationProperty Name="SenderMessages" Relationship="LSDDataModel.FK_UserMessage_UserSender" FromRole="User" ToRole="UserMessage" />
         </EntityType>
         <EntityType Name="UserActivateToken">
           <Key>
@@ -403,6 +492,69 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserMessageType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserMessages" Relationship="LSDDataModel.FK_UserMessage_UserMessageType" FromRole="UserMessageType" ToRole="UserMessage" />
+        </EntityType>
+        <EntityType Name="UserMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="SenderId" Type="Int32" Nullable="false" />
+          <Property Name="RecipientId" Type="Int32" />
+          <NavigationProperty Name="Recipient" Relationship="LSDDataModel.FK_UserMessage_UserRecipient" FromRole="UserMessage" ToRole="User" />
+          <NavigationProperty Name="Sender" Relationship="LSDDataModel.FK_UserMessage_UserSender" FromRole="UserMessage" ToRole="User" />
+          <NavigationProperty Name="UserMessageType" Relationship="LSDDataModel.FK_UserMessage_UserMessageType" FromRole="UserMessage" ToRole="UserMessageType" />
+        </EntityType>
+        <Association Name="FK_UserMessage_UserRecipient">
+          <End Type="LSDDataModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="LSDDataModel.UserMessage" Role="UserMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMessage">
+              <PropertyRef Name="RecipientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMessage_UserSender">
+          <End Type="LSDDataModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.UserMessage" Role="UserMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMessage">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMessage_UserMessageType">
+          <End Type="LSDDataModel.UserMessageType" Role="UserMessageType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.UserMessage" Role="UserMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMessageType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMessage">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -490,6 +642,27 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Token" ColumnName="Token" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMessageTypes">
+            <EntityTypeMapping TypeName="LSDDataModel.UserMessageType">
+              <MappingFragment StoreEntitySet="UserMessageType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMessages">
+            <EntityTypeMapping TypeName="LSDDataModel.UserMessage">
+              <MappingFragment StoreEntitySet="UserMessage">
+                <ScalarProperty Name="RecipientId" ColumnName="RecipientId" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

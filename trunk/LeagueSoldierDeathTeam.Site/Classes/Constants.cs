@@ -21,5 +21,7 @@
 		public static readonly string[] AcceptImage = { "image/png", "image/jpeg", "image/jpg", "image/gif" };
 
 		public const string BelarusTimeZone = "GTB Standard Time";
+
+		public const string JavaScriptVoid = "javascript:void(0);";
 	}
 }

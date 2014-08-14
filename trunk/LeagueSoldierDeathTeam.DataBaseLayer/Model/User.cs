@@ -20,6 +20,8 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
             this.UserResetTokens = new HashSet<UserResetToken>();
             this.UserExternalInfoes = new HashSet<UserExternalInfo>();
             this.UserInfoes = new HashSet<UserInfo>();
+            this.RecipientMessages = new HashSet<UserMessage>();
+            this.SenderMessages = new HashSet<UserMessage>();
         }
     
         public int Id { get; set; }
@@ -39,5 +41,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public virtual ICollection<UserResetToken> UserResetTokens { get; set; }
         public virtual ICollection<UserExternalInfo> UserExternalInfoes { get; set; }
         public virtual ICollection<UserInfo> UserInfoes { get; set; }
+        public virtual ICollection<UserMessage> RecipientMessages { get; set; }
+        public virtual ICollection<UserMessage> SenderMessages { get; set; }
     }
 }

@@ -1,0 +1,17 @@
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@{
+	ViewBag.Title = "Личные сообщения";
+	var currentUser = AppContext.Current.CurrentUser;
+}
+
+<div class="transparent-border">
+	<div class="simple-page-body section-shadow">
+		<div class="section-module-header">
+			<div class="module-title">Личные сообщения</div>
+		</div>
+		<div class="section-module-body">
+			@*<a class="button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.CreateMessage(currentUser.Id)))">Написать</a>*@
+		</div>
+	</div>
+</div>

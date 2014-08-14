@@ -415,7 +415,7 @@
     <Content Include="Scripts\Site\site.administration.js" />
     <Content Include="Views\Administration\_UserEditPartial.cshtml" />
     <Content Include="Views\Administration\_RoleManagementPartial.cshtml" />
-    <Content Include="Views\AccountProfile\MessageList.cshtml" />
+    <Content Include="Views\AccountProfile\Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
