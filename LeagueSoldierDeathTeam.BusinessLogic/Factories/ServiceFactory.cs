@@ -27,5 +27,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Factories
 		{
 			return new AccountService(_unitOfWork, _repositoryFactory);
 		}
+
+		public override IAccountProfileService CreateAccountProfileService()
+		{
+			return new AccountProfileService(_unitOfWork, _repositoryFactory);
+		}
 	}
 }

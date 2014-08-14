@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Abstractions\Factories\RepositoryFactoryBase.cs" />
     <Compile Include="Abstractions\Interfaces\DataAccess\IUnitOfWork.cs" />
+    <Compile Include="Abstractions\Interfaces\Services\IAccountProfileService.cs" />
     <Compile Include="Classes\Config\AppConfig.cs" />
     <Compile Include="Classes\Enums\MessageTypeEnum.cs" />
     <Compile Include="Classes\Enums\Role.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Classes\Enums\SexEnum.cs" />
     <Compile Include="Dto\SexData.cs" />
     <Compile Include="Dto\UserInfoData.cs" />
+    <Compile Include="Dto\UserMessageData.cs" />
     <Compile Include="Factories\RepositoryFactory.cs" />
     <Compile Include="DataAccess\UnitOfWork.cs" />
     <Compile Include="Dto\RoleData.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Dto\UserExternalInfoData.cs" />
     <Compile Include="Factories\ServiceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AccountProfileService.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\Parameters\PasswordResetParams.cs" />
     <Compile Include="Services\ServiceBase.cs" />

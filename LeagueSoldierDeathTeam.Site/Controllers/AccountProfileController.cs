@@ -265,8 +265,23 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Message
 
-		[Route("messages")]
-		public ActionResult MessageList(int userId)
+		[Route("messages/{userId:int}")]
+		public ActionResult Messages(int userId)
+		{
+
+
+			return View();
+		}
+
+		[Route("create-message/{userId:int}")]
+		public ActionResult CreateMessage(int userId)
+		{
+
+
+			return View();
+		}
+
+		public ActionResult MessagesData(int userId)
 		{
 			return View();
 		}
