@@ -1,4 +1,6 @@
-﻿namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
+﻿using System;
+
+namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 {
 	public class UserMessageData
 	{
@@ -11,5 +13,6 @@
 		public string SenderName { get; set; }
 		public int? RecipientId { get; set; }
 		public string RecipientName { get; set; }
+		public DateTime CreateDate { get; set; }
 	}
 }

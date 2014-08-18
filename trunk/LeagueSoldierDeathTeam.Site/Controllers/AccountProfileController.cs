@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -7,8 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Classes;
+using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Models.AccountProfile;
@@ -22,6 +25,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private readonly IAccountService _accountService;
 
+		private readonly IAccountProfileService _accountProfileService;
+
 		#endregion
 
 		#region Constructors
@@ -30,6 +35,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			: base(serviceFactory)
 		{
 			_accountService = serviceFactory.CreateAccountService();
+			_accountProfileService = serviceFactory.CreateAccountProfileService();
 		}
 
 		#endregion
@@ -168,6 +174,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
+		[AjaxOrChildActionOnly]
 		public ActionResult EditMainInfo(EditMainInfoModel model)
 		{
 			if (ModelIsValid)
@@ -192,6 +199,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
+		[AjaxOrChildActionOnly]
 		public ActionResult EditAdvanceInfo(EditAdvanceInfoModel model)
 		{
 			if (ModelIsValid)
@@ -228,6 +236,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
+		[AjaxOrChildActionOnly]
 		public ActionResult EditBindInfo(EditBindInfoModel model)
 		{
 			if (ModelIsValid)
@@ -253,7 +262,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region Change Password
 
 		[HttpPost]
-		[Route("change-password")]
+		[AjaxOrChildActionOnly]
 		public ActionResult ChangePassword(ChangePasswordModel model)
 		{
 			if (ModelIsValid)
@@ -265,14 +274,21 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Message
 
-		[Route("messages/{userId:int}")]
-		public ActionResult Messages(int userId)
+		[HttpGet]
+		[Route("messages")]
+		public ActionResult Messages()
 		{
-
-
-			return View();
+			return View(new UserMessagesModel());
 		}
 
+		[AjaxOrChildActionOnly]
+		public ActionResult MessagesData(UserMessagesModel model)
+		{
+			FillUserMessagesModel(model);
+			return View(model);
+		}
+
+		[HttpGet]
 		[Route("create-message/{userId:int}")]
 		public ActionResult CreateMessage(int userId)
 		{
@@ -281,8 +297,30 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return View();
 		}
 
-		public ActionResult MessagesData(int userId)
+		[AjaxOrChildActionOnly]
+		[HttpPost]
+		public ActionResult SaveMessageAsDraft(int userId, IEnumerable<int> messageIds)
 		{
+
+
+			return View();
+		}
+
+		[AjaxOrChildActionOnly]
+		[HttpPost]
+		public ActionResult SaveMessageAsRead(int userId, IEnumerable<int> messageIds)
+		{
+
+
+			return View();
+		}
+
+		[AjaxOrChildActionOnly]
+		[HttpPost]
+		public ActionResult DeleteMessage(int userId, IEnumerable<int> messageIds)
+		{
+
+
 			return View();
 		}
 
@@ -302,6 +340,12 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			var userProfile = Execute(() => _accountService.GetUserProfile(model.UserId));
 			model.CopyFrom(userProfile);
+		}
+
+		private void FillUserMessagesModel(UserMessagesModel model)
+		{
+			model.Data = Execute(() => _accountProfileService.GetUserMessages(CurrentUser.Id, model.MessageType))
+				?? new List<UserMessageData>();
 		}
 
 		#endregion

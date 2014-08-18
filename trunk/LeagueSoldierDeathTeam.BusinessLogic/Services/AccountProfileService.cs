@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Repositories;
@@ -35,18 +36,32 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		IEnumerable<UserMessageData> IAccountProfileService.GetUserMessages(int userId, MessageTypeEnum type)
 		{
-			return _userMessageRepository.GetData(o => new UserMessageData
+			Expression<Func<UserMessage, bool>> filter = null;
+			switch (type)
 			{
-				Id = o.Id,
-				Title = o.Title,
-				Description = o.Description,
-				IsRead = o.IsRead,
-				RecipientId = o.RecipientId,
-				RecipientName = o.Recipient != null ? o.Recipient.UserName : string.Empty,
-				SenderId = o.SenderId,
-				SenderName = o.Sender != null ? o.Sender.UserName : string.Empty,
-				TypeId = o.TypeId
-			});
+				case MessageTypeEnum.Inbox:
+					filter = o => o.Recipient != null && o.Recipient.Id == userId;
+					break;
+				case MessageTypeEnum.Draft:
+				case MessageTypeEnum.Sent:
+					filter = o => o.SenderId == userId;
+					break;
+			}
+
+			return filter != null ? _userMessageRepository.GetData(o => new UserMessageData
+				{
+					Id = o.Id,
+					Title = o.Title,
+					Description = o.Description,
+					IsRead = o.IsRead,
+					CreateDate = o.CreateDate,
+					RecipientId = o.Recipient != null ? o.Recipient.Id : default(int?),
+					RecipientName = o.Recipient != null ? o.Recipient.UserName : string.Empty,
+					SenderId = o.SenderId,
+					SenderName = o.Sender != null ? o.Sender.UserName : string.Empty,
+					TypeId = o.TypeId
+				}, filter)
+				: new List<UserMessageData>();
 		}
 
 		#endregion

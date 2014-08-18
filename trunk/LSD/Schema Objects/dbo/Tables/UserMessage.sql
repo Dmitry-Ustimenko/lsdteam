@@ -4,6 +4,7 @@
 	[Title]		nvarchar(128)	not null,
 	[Description]		nvarchar(MAX)	null,
 	[IsRead] bit not null,
+	[CreateDate] datetime not null,
 	[TypeId]	int		not	null,
     [SenderId] INT NOT NULL,
 	[RecipientId] INT null,
