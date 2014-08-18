@@ -1,0 +1,100 @@
+﻿@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
+@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions
+@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.Site.Models.AccountProfile.UserMessagesModel
+@{
+	Layout = null;
+	var emptyMessages = string.Format("{0} сообщения не найдены.", EnumEx.GetDescription(Model.MessageType));
+}
+
+@if (Model.Data.Any())
+{
+	<hr />
+	<div class="messages-commands">
+		<span>Всего сообщений (<span class="darkred">@Model.Data.Count()</span>)</span>
+		<span class="commands">
+			@if (Model.MessageType == MessageTypeEnum.Sent)
+			{
+				@:Отмеченное
+			}
+			else
+			{
+				@:Отметить выбранное
+				<span class="orange command" data-action="readMessages">как прочитанное</span>@:,
+			}
+			<span class="green command" data-action="saveMessages">сохранить</span> или
+			<span class="darkred command" data-action="deleteMessages">удалить</span>
+		</span>
+	</div>
+	<table class="table">
+		<tr>
+			<th></th>
+			<th>
+				<span class="checkbox">
+					<span class="checker">
+						<span>
+							<input type="checkbox" data-action="allSelect" />
+						</span>
+					</span>
+				</span>
+			</th>
+			<th>
+				@switch (Model.MessageType)
+				{
+					case MessageTypeEnum.Inbox:
+					case MessageTypeEnum.Draft:
+						@:Отправитель
+						break;
+					case MessageTypeEnum.Sent:
+					@:Получатель
+						break;
+				}
+			</th>
+			<th>Тема сообщения</th>
+			<th>Дата</th>
+		</tr>
+		@foreach (var item in Model.Data)
+		{
+			<tr>
+				<td class="span1 center">
+					<span class="icons message-icon @(Html.Raw(item.IsRead ? "read-message" : "unread-message"))"></span>
+				</td>
+				<td class="span2 center">
+					<span class="checkbox">
+						<span class="checker">
+							<span>
+								<input type="checkbox" data-id="@item.Id" />
+							</span>
+						</span>
+					</span>
+				</td>
+				<td class="span3">
+					@switch (Model.MessageType)
+					{
+						case MessageTypeEnum.Inbox:
+						case MessageTypeEnum.Draft:
+							<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.SenderId)))">@item.SenderName</a>
+							break;
+						case MessageTypeEnum.Sent:
+							if (item.RecipientId.HasValue)
+							{
+								<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.RecipientId.Value)))">@item.RecipientName</a>
+							}
+							else
+							{
+								@:Пользователь удален
+							}
+							break;
+					}
+				</td>
+				<td class="span4">@item.Title</td>
+				<td class="span3 center message-date">@item.CreateDate.ToString("dd MMMM yyyy hh:mm")</td>
+			</tr>
+		}
+	</table>
+}
+else
+{
+	<div class="no-result">@emptyMessages</div>
+}

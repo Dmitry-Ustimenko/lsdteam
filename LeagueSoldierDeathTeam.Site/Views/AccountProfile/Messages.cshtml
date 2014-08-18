@@ -1,5 +1,5 @@
 ﻿@using LeagueSoldierDeathTeam.Site.Classes
-@using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.Site.Models.AccountProfile.UserMessagesModel
 @{
 	ViewBag.Title = "Личные сообщения";
 	var currentUser = AppContext.Current.CurrentUser;
@@ -11,7 +11,19 @@
 			<div class="module-title">Личные сообщения</div>
 		</div>
 		<div class="section-module-body">
-			@*<a class="button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.CreateMessage(currentUser.Id)))">Написать</a>*@
+			<div class="messages">
+				<div class="messages-header">
+					<span class="message-types">
+						@Html.DropDownListFor(m => m.MessageTypeId, new SelectList(Model.MessageTypes, "Key", "Value"))
+					</span>
+					<span class="message-write-link">
+						<a class="button" href="@Constants.JavaScriptVoid" @*href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.CreateMessage(currentUser.Id)))"*@>Новое сообщение</a>
+					</span>
+				</div>
+				<div class="messages-body">
+					@{ Html.RenderAction("MessagesData", Model); }
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

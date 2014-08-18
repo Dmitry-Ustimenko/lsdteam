@@ -21,6 +21,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public int TypeId { get; set; }
         public int SenderId { get; set; }
         public Nullable<int> RecipientId { get; set; }
+        public System.DateTime CreateDate { get; set; }
     
         public virtual User Recipient { get; set; }
         public virtual User Sender { get; set; }

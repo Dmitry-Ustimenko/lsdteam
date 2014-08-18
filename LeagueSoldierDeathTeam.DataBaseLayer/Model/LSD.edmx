@@ -82,6 +82,7 @@
           <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="TypeId" Type="int" Nullable="false" />
           <Property Name="SenderId" Type="int" Nullable="false" />
           <Property Name="RecipientId" Type="int" />
@@ -514,6 +515,7 @@
           <NavigationProperty Name="Recipient" Relationship="LSDDataModel.FK_UserMessage_UserRecipient" FromRole="UserMessage" ToRole="User" />
           <NavigationProperty Name="Sender" Relationship="LSDDataModel.FK_UserMessage_UserSender" FromRole="UserMessage" ToRole="User" />
           <NavigationProperty Name="UserMessageType" Relationship="LSDDataModel.FK_UserMessage_UserMessageType" FromRole="UserMessage" ToRole="UserMessageType" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_UserMessage_UserRecipient">
           <End Type="LSDDataModel.User" Role="User" Multiplicity="0..1" />
@@ -657,6 +659,7 @@
           <EntitySetMapping Name="UserMessages">
             <EntityTypeMapping TypeName="LSDDataModel.UserMessage">
               <MappingFragment StoreEntitySet="UserMessage">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="RecipientId" ColumnName="RecipientId" />
                 <ScalarProperty Name="SenderId" ColumnName="SenderId" />
                 <ScalarProperty Name="TypeId" ColumnName="TypeId" />

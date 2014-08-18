@@ -235,6 +235,7 @@
     <Compile Include="Models\AccountProfile\EditBindInfoModel.cs" />
     <Compile Include="Models\AccountProfile\EditMainInfoModel.cs" />
     <Compile Include="Models\AccountProfile\EditProfileModel.cs" />
+    <Compile Include="Models\AccountProfile\UserMessagesModel.cs" />
     <Compile Include="Models\Administration\RoleManagementModel.cs" />
     <Compile Include="Models\AccountProfile\UserProfileModel.cs" />
     <Compile Include="Models\Account\ActivateAccountModel.cs" />
@@ -263,6 +264,7 @@
     <Content Include="Content\Plugins\animate.css" />
     <Content Include="Content\Plugins\datepicker.css" />
     <Content Include="Content\Plugins\galleria.classic.css" />
+    <Content Include="Images\icons.png" />
     <Content Include="Scripts\Plugins\galleria.classic.css" />
     <Content Include="Content\Plugins\jquery-ui-1.10.4.css" />
     <Content Include="Content\Plugins\jquery.vegas.css" />
@@ -416,6 +418,7 @@
     <Content Include="Views\Administration\_UserEditPartial.cshtml" />
     <Content Include="Views\Administration\_RoleManagementPartial.cshtml" />
     <Content Include="Views\AccountProfile\Messages.cshtml" />
+    <Content Include="Views\AccountProfile\MessagesData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
