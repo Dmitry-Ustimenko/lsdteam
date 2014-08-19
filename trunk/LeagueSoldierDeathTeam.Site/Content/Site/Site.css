@@ -2098,8 +2098,8 @@ span.checker-span {
 		}
 
 			.ui-widget-content .filter .sort .sort-changeable .sort-name {
-				text-decoration: underline;
 				font-style: italic;
+				border-bottom: 1px dotted;
 			}
 
 		.ui-widget-content .filter .sort .sort-dropdown {
@@ -2280,6 +2280,10 @@ span.checker-span {
 	color: #B31919 !important;
 }
 
+.gray {
+	color: gray !important;
+}
+
 .center {
 	text-align: center;
 }
@@ -2409,7 +2413,7 @@ span.checker-span {
 		}
 
 	.messages .message-date {
-		color: #808080;
+		color: #4B4B4B;
 		font-size: 12px;
 	}
 
@@ -2417,6 +2421,7 @@ span.checker-span {
 		display: inline-block;
 		width: 16px;
 		height: 15px;
+		vertical-align: middle;
 	}
 
 	.messages .read-message {
@@ -2424,11 +2429,45 @@ span.checker-span {
 	}
 
 	.messages .unread-message {
-		background-position: -79px -62px;
+		background-position: -79px -63px;
 	}
+
+.message-select {
+	background: url(/Images/message-select.png);
+	display: inline-block;
+	width: 16px;
+	height: 15px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.message-select-read {
+	background-position: -16px 0;
+}
+
+.message-select-unread {
+	background-position: 0 0;
+}
+
+.message-select-slash {
+	background-position: 10px 0;
+	width: 10px;
+}
 
 .icons {
 	background: url(/Images/icons.png);
+}
+
+.font11 {
+	font-size: 11px;
+}
+
+.font12 {
+	font-size: 12px;
+}
+
+.font13 {
+	font-size: 13px;
 }
 
 .table {
@@ -2448,7 +2487,8 @@ span.checker-span {
 	}
 
 	.table tr td {
-		padding: 4px;
+		padding: 5px;
+		padding-top: 4px;
 		border-bottom: 1px solid #D1D1D1;
 	}
 
@@ -2456,14 +2496,18 @@ span.checker-span {
 	width: 1%;
 }
 
-.span2 {
+.span3 {
 	width: 3%;
 }
 
-.span3 {
+.span5 {
+	width: 5%;
+}
+
+.span15 {
 	width: 15%;
 }
 
-.span4 {
+.span35 {
 	width: 35%;
 }

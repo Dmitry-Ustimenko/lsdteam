@@ -32,6 +32,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private readonly IAccountService _accountService;
 
+		private readonly IAccountProfileService _accountProfileService;
+
 		private bool _disposeAppContext;
 
 		protected UserData CurrentUser
@@ -47,6 +49,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			ServiceFactory = serviceFactory;
 
 			_accountService = serviceFactory.CreateAccountService();
+			_accountProfileService = serviceFactory.CreateAccountProfileService();
 		}
 
 		protected override void Dispose(bool disposing)
@@ -76,7 +79,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			Classes.AppContext.Current = AppContext;
 
 			if (CurrentUser != null)
+			{
 				Execute(() => _accountService.UpdateLastActivity(CurrentUser.Id));
+				Execute(() => CurrentUser.InboxMessageCount = _accountProfileService.GetUserMessageCount(CurrentUser.Id));
+			}
 
 			if (CurrentUser == null && authorizationContext.HttpContext.User != null && authorizationContext.HttpContext.Request.IsAuthenticated)
 			{

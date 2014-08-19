@@ -34,17 +34,22 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		#region IAccountService Members
 
+		void IAccountProfileService.SaveAsRead(int userId, IEnumerable<int> messagesIds)
+		{
+
+		}
+
 		IEnumerable<UserMessageData> IAccountProfileService.GetUserMessages(int userId, MessageTypeEnum type)
 		{
 			Expression<Func<UserMessage, bool>> filter = null;
 			switch (type)
 			{
 				case MessageTypeEnum.Inbox:
-					filter = o => o.Recipient != null && o.Recipient.Id == userId;
+					filter = o => o.TypeId == (int)type && o.Recipient != null && o.Recipient.Id == userId;
 					break;
 				case MessageTypeEnum.Draft:
 				case MessageTypeEnum.Sent:
-					filter = o => o.SenderId == userId;
+					filter = o => o.TypeId == (int)type && o.SenderId == userId;
 					break;
 			}
 
@@ -64,10 +69,14 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				: new List<UserMessageData>();
 		}
 
+		int IAccountProfileService.GetUserMessageCount(int userId)
+		{
+			return _userMessageRepository.GetDataCount(o => o.TypeId == (int)MessageTypeEnum.Inbox && o.Recipient != null && o.Recipient.Id == userId);
+		}
+
 		#endregion
 
 		#region Internal Implementation
-
 
 
 		#endregion

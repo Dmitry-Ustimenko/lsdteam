@@ -28,7 +28,13 @@
 					@{Html.RenderPartial("_BannerPartial");}
 				</div>
 				<hr />
-				<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.Messages()))"><span class="private-message-icon"></span>Мои сообщения</a>
+				<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.Messages()))">
+					<span class="private-message-icon"></span>
+					Мои сообщения
+					<span class="font11">
+						<sup class="@Html.Raw(currentUser.InboxMessageCount == 0 ? "gray" : string.Empty)">(@currentUser.InboxMessageCount)</sup>
+					</span>
+				</a>
 				<a href="@Constants.JavaScriptVoid"><span class="bookmark-icon"></span>Мои закладки</a>
 				<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(currentUser.Id)))"><span class="profile-icon"></span>Мой профиль</a>
 				<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(currentUser.Id)))"><span class="settings-icon"></span>Настройки</a>
