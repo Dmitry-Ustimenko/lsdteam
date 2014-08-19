@@ -289,8 +289,17 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpGet]
-		[Route("create-message/{userId:int}")]
+		[Route("create-message")]
 		public ActionResult CreateMessage()
+		{
+
+
+			return View();
+		}
+
+		[HttpGet]
+		[Route("edit-message/{id:int}")]
+		public ActionResult EditMessage(int id)
 		{
 
 
