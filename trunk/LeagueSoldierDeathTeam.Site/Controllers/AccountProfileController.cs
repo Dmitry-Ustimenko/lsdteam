@@ -299,7 +299,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[AjaxOrChildActionOnly]
 		[HttpPost]
-		public ActionResult SaveMessageAsRead(MessageTypeEnum type, string messageIds)
+		public ActionResult SaveMessageAsRead(int typeId, string messageIds)
 		{
 			var selectedMessages = new List<int>();
 			foreach (var item in messageIds.Split(','))
@@ -311,14 +311,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			Execute(() => _accountProfileService.SaveAsRead(CurrentUser.Id, selectedMessages));
 
-			var model = new UserMessagesModel { MessageType = type };
+			var model = new UserMessagesModel { MessageTypeId = typeId };
 			FillUserMessagesModel(model);
 			return View("MessagesData", model);
 		}
 
 		[AjaxOrChildActionOnly]
 		[HttpPost]
-		public ActionResult SaveMessageAsDraft(MessageTypeEnum type, IEnumerable<int> messageIds)
+		public ActionResult SaveMessageAsDraft(int typeId, string messageIds)
 		{
 
 
@@ -327,7 +327,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[AjaxOrChildActionOnly]
 		[HttpPost]
-		public ActionResult DeleteMessage(MessageTypeEnum type, IEnumerable<int> messageIds)
+		public ActionResult DeleteMessage(int typeId, string messageIds)
 		{
 
 
@@ -354,7 +354,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private void FillUserMessagesModel(UserMessagesModel model)
 		{
-			model.Data = Execute(() => _accountProfileService.GetUserMessages(CurrentUser.Id, model.MessageType))
+			model.Data = Execute(() => _accountProfileService.GetUserMessages(CurrentUser.Id, model.MessageTypeId))
 				?? new List<UserMessageData>();
 		}
 

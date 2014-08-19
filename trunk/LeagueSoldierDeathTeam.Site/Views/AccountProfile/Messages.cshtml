@@ -14,13 +14,18 @@
 		</div>
 		<div class="section-module-body">
 			<div class="messages">
-				<div class="messages-header">
-					<span class="message-types">
-						@Html.DropDownListFor(m => m.MessageTypeId, new SelectList(Model.MessageTypes, "Key", "Value"))
-					</span>
-					<span class="message-write-link">
-						<a class="button" href="@Constants.JavaScriptVoid" @*href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.CreateMessage(currentUser.Id)))"*@>Новое сообщение</a>
-					</span>
+				<div id="form">
+					@using (Html.BeginForm())
+					{
+						<div class="messages-header">
+							<span class="message-types">
+								@Html.DropDownListFor(m => m.MessageTypeId, new SelectList(Model.MessageTypes, "Key", "Value"))
+							</span>
+							<span class="message-write-link">
+								<a class="button" href="@Constants.JavaScriptVoid" @*href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.CreateMessage(currentUser.Id)))"*@>Новое сообщение</a>
+							</span>
+						</div>
+					}
 				</div>
 				<div id="content" class="messages-body">
 					@{ Html.RenderAction("MessagesData", Model); }
@@ -34,9 +39,10 @@
 	$(document).ready(function () {
 		site.messages.init({
 			urls: {
-				saveAsRead: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsRead(MessageTypeEnum.Inbox, null)))',
-				saveAsDraft: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsDraft(MessageTypeEnum.Inbox, null)))',
-				deleteMessages: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsRead(MessageTypeEnum.Inbox, null)))',
+				saveAsRead: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsRead((int)MessageTypeEnum.Inbox, null)))',
+				saveAsDraft: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsDraft((int)MessageTypeEnum.Inbox, null)))',
+				deleteMessages: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsRead((int)MessageTypeEnum.Inbox, null)))',
+				refreshGrid: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.MessagesData(null)))'
 			}
 		});
 	});

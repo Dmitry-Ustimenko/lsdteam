@@ -7,9 +7,12 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 {
 	public class UserMessagesModel
 	{
-		public MessageTypeEnum MessageType { get; set; }
-
 		public int MessageTypeId { get; set; }
+
+		public MessageTypeEnum MessageType
+		{
+			get { return (MessageTypeEnum)MessageTypeId; }
+		}
 
 		public IDictionary<int, string> MessageTypes { get; set; }
 
@@ -17,7 +20,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 
 		public UserMessagesModel()
 		{
-			MessageType = MessageTypeEnum.Inbox;
+			MessageTypeId = (int)MessageTypeEnum.Inbox;
 			Data = new List<UserMessageData>();
 			MessageTypes = EnumEx.ToDictionary<MessageTypeEnum>();
 		}
