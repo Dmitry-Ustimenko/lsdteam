@@ -9,13 +9,13 @@
 					refreshGrid: ''
 				},
 				vars: {
+					form: null
 				},
 				elements: {
 					content: "#content",
 					messageTypeId: "#MessageTypeId",
+					messageType: "#MessageType",
 					form: "#form"
-				},
-				attributes: {
 				}
 			},
 
@@ -26,7 +26,10 @@
 			},
 
 			changeType: function () {
-				$(site.messages.settings.elements.form).on("change", function () {
+				var $form = $(site.messages.settings.elements.form);
+				site.messages.settings.vars.form = $form.find("form");
+
+				$form.on("change", function () {
 					site.messages.refresh(site.messages.settings.elements.content, site.messages.settings.urls.refreshGrid,
 							$.fn.serializeParams(site.messages.settings.vars.form),
 							function () {
@@ -41,9 +44,9 @@
 
 				$.fn.initCheckbox();
 				site.messages.initCheckboxes(messages);
-				site.messages.saveAsDraft();
+				site.messages.saveAsDraft(type, messages);
 				site.messages.saveAsRead(type, messages);
-				site.messages.deleteMessages();
+				site.messages.deleteMessages(type, messages);
 			},
 
 			initCheckboxes: function (messages) {
@@ -104,10 +107,10 @@
 				});
 			},
 
-			//initMessageCount: function (type) {
-			//	if (type.val() == "Inbox")
-			//		$("[data-type=global-message-count]").text($("[data-type=message-count]").text());
-			//},
+			initGlobalMessageCount: function () {
+				if ($(site.messages.settings.elements.messageType).val() == "Inbox")
+					$("[data-type=global-message-count]").text($("[data-type=message-count]").text());
+			},
 
 			saveAsRead: function (type, messages) {
 				$('[data-action=readMessages]').off("click").on('click', function () {
@@ -121,7 +124,7 @@
 					if (array.length != 0) {
 						$.fn.confirmOverlay("Подтверждение", "Подтвердите действие", function () {
 							site.messages.refresh(site.messages.settings.elements.content, site.messages.settings.urls.saveAsRead,
-							{ type: type.val(), messageIds: array.join(",") },
+							{ typeId: type.val(), messageIds: array.join(",") },
 							function () {
 								site.messages.refreshGrid();
 							});
@@ -130,12 +133,48 @@
 				});
 			},
 
-			saveAsDraft: function () {
+			saveAsDraft: function (type, messages) {
+				$('[data-action=saveMessages]').off("click").on('click', function () {
+					var array = [];
+					messages.each(function () {
+						var $this = $(this);
+						if ($this.is(":checked"))
+							array.push($this.data("id"));
+					});
 
+					if (array.length != 0) {
+						$.fn.confirmOverlay("Сохранение сообщений", "Подтвердите сохранение отмеченных сообщений", function () {
+							site.messages.refresh(site.messages.settings.elements.content, site.messages.settings.urls.saveAsDraft,
+							{ typeId: type.val(), messageIds: array.join(",") },
+							function () {
+								site.messages.refreshGrid();
+								site.messages.initGlobalMessageCount();
+							});
+						});
+					}
+				});
 			},
 
-			deleteMessages: function () {
+			deleteMessages: function (type, messages) {
+				$('[data-action=deleteMessages]').off("click").on('click', function () {
+					var array = [];
+					messages.each(function () {
+						var $this = $(this);
+						if ($this.is(":checked"))
+							array.push($this.data("id"));
+					});
 
+					if (array.length != 0) {
+						$.fn.confirmOverlay("Удаление сообщений", "Подтвердите удаление отмеченных сообщений", function () {
+							site.messages.refresh(site.messages.settings.elements.content, site.messages.settings.urls.deleteMessages,
+							{ typeId: type.val(), messageIds: array.join(",") },
+							function () {
+								site.messages.refreshGrid();
+								site.messages.initGlobalMessageCount();
+							});
+						});
+					}
+				});
 			},
 
 			refresh: function (content, url, params, callback, callbackError) {

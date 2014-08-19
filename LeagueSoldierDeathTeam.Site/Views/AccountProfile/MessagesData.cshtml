@@ -11,20 +11,29 @@
 @if (Model.Data.Any())
 {
 	@Html.HiddenFor(m => m.MessageTypeId)
+	@Html.HiddenFor(m => m.MessageType)
 	<hr />
 	<div class="messages-commands">
 		<span>Всего сообщений (<span data-type="message-count" class="darkred">@Model.Data.Count()</span>)</span>
 		<span class="commands">
-			@if (Model.MessageType == MessageTypeEnum.Sent)
+			@if (Model.MessageType == MessageTypeEnum.Inbox)
+			{
+				@:Отметить выбранное
+				<span class="orange command" data-action="readMessages">как прочитанное</span>
+				@:,
+				<span class="green command" data-action="saveMessages">сохранить</span>
+				@:или
+			}
+			else if (Model.MessageType == MessageTypeEnum.Sent)
+			{
+				@:Отмеченное
+				<span class="green command" data-action="saveMessages">сохранить</span>
+				@:или
+			}
+			else if (Model.MessageType == MessageTypeEnum.Draft)
 			{
 				@:Отмеченное
 			}
-			else
-			{
-				@:Отметить выбранное
-				<span class="orange command" data-action="readMessages">как прочитанное</span>@:,
-			}
-			<span class="green command" data-action="saveMessages">сохранить</span> или
 			<span class="darkred command" data-action="deleteMessages">удалить</span>
 		</span>
 	</div>
@@ -90,7 +99,7 @@
 					}
 				</td>
 				<td>@item.Title</td>
-				<td class="center message-date">@item.CreateDate.ToString("dd MMMM yyyy hh:mm")</td>
+				<td class="center message-date">@item.CreateDate.ToString("dd MMMM yyyy HH:mm")</td>
 			</tr>
 		}
 	</table>
