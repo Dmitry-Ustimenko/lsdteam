@@ -78,12 +78,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			AppContext = new AppContext();
 			Classes.AppContext.Current = AppContext;
 
-			if (CurrentUser != null)
-			{
-				Execute(() => _accountService.UpdateLastActivity(CurrentUser.Id));
-				Execute(() => CurrentUser.InboxMessageCount = _accountProfileService.GetUserMessageCount(CurrentUser.Id));
-			}
-
 			if (CurrentUser == null && authorizationContext.HttpContext.User != null && authorizationContext.HttpContext.Request.IsAuthenticated)
 			{
 				if (SessionManager.Get<UserData>(SessionKeys.User) != null)
@@ -93,6 +87,12 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 					var userIdentity = authorizationContext.HttpContext.User.Identity;
 					Execute(() => CurrentUser = _accountService.GetUser(userIdentity.Name));
 				}
+			}
+
+			if (CurrentUser != null)
+			{
+				Execute(() => _accountService.UpdateLastActivity(CurrentUser.Id));
+				Execute(() => CurrentUser.InboxMessageCount = _accountProfileService.GetUserMessageCount(CurrentUser.Id));
 			}
 		}
 

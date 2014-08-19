@@ -37,11 +37,45 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		void IAccountProfileService.SaveAsRead(int userId, IEnumerable<int> messagesIds)
 		{
-			var messages = _userMessageRepository.Query(o => messagesIds.Contains(o.Id) && !o.IsRead).ToList();
+			var messages = _userMessageRepository.Query(o => messagesIds.Contains(o.Id)
+				&& !o.IsRead
+				&& o.TypeId == (int)MessageTypeEnum.Inbox
+				&& o.Recipient != null && o.Recipient.Id == userId).ToList();
+
 			if (!messages.Any()) return;
 
 			foreach (var message in messages)
 				message.IsRead = true;
+
+			UnitOfWork.Commit();
+		}
+
+		void IAccountProfileService.SaveAsDraft(int userId, IEnumerable<int> messagesIds)
+		{
+			var messages = _userMessageRepository.Query(o => messagesIds.Contains(o.Id)
+				&& o.TypeId != (int)MessageTypeEnum.Draft
+				&& (o.SenderId == userId || o.Recipient != null && o.Recipient.Id == userId)).ToList();
+
+			if (!messages.Any()) return;
+
+			foreach (var message in messages)
+			{
+				message.TypeId = (int)MessageTypeEnum.Draft;
+				message.IsRead = true;
+			}
+
+			UnitOfWork.Commit();
+		}
+
+		void IAccountProfileService.DeleteMessages(int userId, IEnumerable<int> messagesIds)
+		{
+			var messages = _userMessageRepository.Query(o => messagesIds.Contains(o.Id)
+				&& (o.SenderId == userId || o.Recipient != null && o.Recipient.Id == userId)).ToList();
+
+			if (!messages.Any()) return;
+
+			foreach (var message in messages)
+				_userMessageRepository.Delete(message);
 
 			UnitOfWork.Commit();
 		}
@@ -54,9 +88,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				case MessageTypeEnum.Inbox:
 					filter = o => o.TypeId == typeId && o.Recipient != null && o.Recipient.Id == userId;
 					break;
-				case MessageTypeEnum.Draft:
 				case MessageTypeEnum.Sent:
 					filter = o => o.TypeId == typeId && o.SenderId == userId;
+					break;
+				case MessageTypeEnum.Draft:
+					filter = o => o.TypeId == typeId && (o.SenderId == userId || o.Recipient != null && o.Recipient.Id == userId);
 					break;
 			}
 
@@ -72,7 +108,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				SenderId = o.SenderId,
 				SenderName = o.Sender != null ? o.Sender.UserName : string.Empty,
 				TypeId = o.TypeId
-			}, filter) : new List<UserMessageData>();
+			}, filter).OrderByDescending(o => o.CreateDate).ToList() : new List<UserMessageData>();
 		}
 
 		int IAccountProfileService.GetUserMessageCount(int userId)

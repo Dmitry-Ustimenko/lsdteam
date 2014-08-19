@@ -301,15 +301,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[HttpPost]
 		public ActionResult SaveMessageAsRead(int typeId, string messageIds)
 		{
-			var selectedMessages = new List<int>();
-			foreach (var item in messageIds.Split(','))
-			{
-				int messageId;
-				if (int.TryParse(item, out messageId))
-					selectedMessages.Add(messageId);
-			}
-
-			Execute(() => _accountProfileService.SaveAsRead(CurrentUser.Id, selectedMessages));
+			Execute(() => _accountProfileService.SaveAsRead(CurrentUser.Id, ParseMessageIds(messageIds)));
 
 			var model = new UserMessagesModel { MessageTypeId = typeId };
 			FillUserMessagesModel(model);
@@ -320,18 +312,22 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[HttpPost]
 		public ActionResult SaveMessageAsDraft(int typeId, string messageIds)
 		{
+			Execute(() => _accountProfileService.SaveAsDraft(CurrentUser.Id, ParseMessageIds(messageIds)));
 
-
-			return View();
+			var model = new UserMessagesModel { MessageTypeId = typeId };
+			FillUserMessagesModel(model);
+			return View("MessagesData", model);
 		}
 
 		[AjaxOrChildActionOnly]
 		[HttpPost]
 		public ActionResult DeleteMessage(int typeId, string messageIds)
 		{
+			Execute(() => _accountProfileService.DeleteMessages(CurrentUser.Id, ParseMessageIds(messageIds)));
 
-
-			return View();
+			var model = new UserMessagesModel { MessageTypeId = typeId };
+			FillUserMessagesModel(model);
+			return View("MessagesData", model);
 		}
 
 		#endregion
@@ -339,6 +335,18 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#endregion
 
 		#region Internal Implementation
+
+		private IEnumerable<int> ParseMessageIds(string messageIds)
+		{
+			var selectedMessages = new List<int>();
+			foreach (var item in messageIds.Split(','))
+			{
+				int messageId;
+				if (int.TryParse(item, out messageId))
+					selectedMessages.Add(messageId);
+			}
+			return selectedMessages;
+		}
 
 		private void FillUserProfileModel(UserProfileModel model)
 		{

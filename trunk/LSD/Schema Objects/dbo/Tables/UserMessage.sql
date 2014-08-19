@@ -2,12 +2,12 @@
 (
 	[Id]			int				not null identity (1, 1),
 	[Title]		nvarchar(128)	not null,
-	[Description]		nvarchar(MAX)	null,
+	[Description]		nvarchar(MAX)	not null,
 	[IsRead] bit not null,
 	[CreateDate] datetime not null,
 	[TypeId]	int		not	null,
     [SenderId] INT NOT NULL,
-	[RecipientId] INT null,
+	[RecipientId] INT NOT null,
     constraint [PK_dboUserMessage] primary key clustered ([Id])
 );
 
