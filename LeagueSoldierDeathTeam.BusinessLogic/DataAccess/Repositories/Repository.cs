@@ -22,29 +22,34 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.DataAccess.Repositories
 			_objectContext = unitOfWork.ObjectContext;
 		}
 
-		public void Add(TEntity entity)
+		void IRepository<TEntity>.Add(TEntity entity)
 		{
 			GetObjectSet<TEntity>().AddObject(entity);
 		}
 
-		public void Delete(TEntity entity)
+		void IRepository<TEntity>.Delete(TEntity entity)
 		{
 			GetObjectSet<TEntity>().DeleteObject(entity);
 		}
 
-		public IEnumerable<TEntity> Query(Expression<Func<TEntity, bool>> filter)
+		IEnumerable<TEntity> IRepository<TEntity>.Query(Expression<Func<TEntity, bool>> filter)
 		{
 			return GetObjectSet<TEntity>().Where(filter);
 		}
 
-		public IEnumerable<TD> GetData<TD>(Expression<Func<TEntity, TD>> func)
+		IEnumerable<TD> IRepository<TEntity>.GetData<TD>(Expression<Func<TEntity, TD>> func)
 		{
 			return GetObjectSet<TEntity>().Select(func);
 		}
 
-		public IEnumerable<TD> GetData<TD>(Expression<Func<TEntity, TD>> func, Expression<Func<TEntity, bool>> filter)
+		IEnumerable<TD> IRepository<TEntity>.GetData<TD>(Expression<Func<TEntity, TD>> func, Expression<Func<TEntity, bool>> filter)
 		{
 			return GetObjectSet<TEntity>().Where(filter).Select(func);
+		}
+
+		int IRepository<TEntity>.GetDataCount(Expression<Func<TEntity, bool>> filter)
+		{
+			return GetObjectSet<TEntity>().Where(filter).Count();
 		}
 
 		protected virtual IObjectSet<TEntity> GetObjectSet<TEntity>()

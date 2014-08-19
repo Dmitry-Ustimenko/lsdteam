@@ -16,5 +16,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAcces
 		IEnumerable<TD> GetData<TD>(Expression<Func<TEntity, TD>> func);
 
 		IEnumerable<TD> GetData<TD>(Expression<Func<TEntity, TD>> func, Expression<Func<TEntity, bool>> filter);
+
+		int GetDataCount(Expression<Func<TEntity, bool>> filter);
 	}
 }

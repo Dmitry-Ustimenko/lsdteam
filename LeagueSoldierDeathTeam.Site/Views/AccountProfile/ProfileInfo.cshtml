@@ -56,7 +56,10 @@
 			<div class="user-buttons">
 				@if (currentUser.IsMe(Model.UserId))
 				{
-					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.Messages()))">Личные сообщения</a>
+					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.Messages()))">
+						Личные сообщения
+						<span class="font13">(@currentUser.InboxMessageCount)</span>
+					</a>
 					<a href="@Constants.JavaScriptVoid">Мои закладки</a>
 				}
 				else

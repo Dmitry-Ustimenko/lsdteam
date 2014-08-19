@@ -1,4 +1,6 @@
-﻿@using LeagueSoldierDeathTeam.Site.Classes
+﻿@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
+@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
 @model LeagueSoldierDeathTeam.Site.Models.AccountProfile.UserMessagesModel
 @{
 	ViewBag.Title = "Личные сообщения";
@@ -20,10 +22,22 @@
 						<a class="button" href="@Constants.JavaScriptVoid" @*href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.CreateMessage(currentUser.Id)))"*@>Новое сообщение</a>
 					</span>
 				</div>
-				<div class="messages-body">
+				<div id="content" class="messages-body">
 					@{ Html.RenderAction("MessagesData", Model); }
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		site.messages.init({
+			urls: {
+				saveAsRead: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsRead(MessageTypeEnum.Inbox, null)))',
+				saveAsDraft: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsDraft(MessageTypeEnum.Inbox, null)))',
+				deleteMessages: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsRead(MessageTypeEnum.Inbox, null)))',
+			}
+		});
+	});
+</script>

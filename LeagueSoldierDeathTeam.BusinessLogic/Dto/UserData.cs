@@ -18,6 +18,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public int RoleId { get; set; }
 		public string RoleName { get; set; }
 		public bool IsBanned { get; set; }
+		public int InboxMessageCount { get; set; }
 
 		public bool IsMainAdmin { get { return RoleId == (int)RoleEnum.MainAdministrator; } }
 		public bool IsAdmin { get { return RoleId == (int)RoleEnum.Administrator; } }

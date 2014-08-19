@@ -10,6 +10,7 @@
 
 @if (Model.Data.Any())
 {
+	@Html.HiddenFor(m => m.MessageType)
 	<hr />
 	<div class="messages-commands">
 		<span>Всего сообщений (<span class="darkred">@Model.Data.Count()</span>)</span>
@@ -29,17 +30,19 @@
 	</div>
 	<table class="table">
 		<tr>
-			<th></th>
-			<th>
-				<span class="checkbox">
-					<span class="checker">
-						<span>
-							<input type="checkbox" data-action="allSelect" />
-						</span>
+			<th class="span5">
+				<span data-action="select-unread" class="message-select message-select-unread"></span>
+				<span class="message-select message-select-slash"></span>
+				<span data-action="select-read" class="message-select message-select-read"></span>
+			</th>
+			<th class="span3">
+				<span class="checker" data-action="allSelect">
+					<span>
+						<input type="checkbox" />
 					</span>
 				</span>
 			</th>
-			<th>
+			<th class="span15">
 				@switch (Model.MessageType)
 				{
 					case MessageTypeEnum.Inbox:
@@ -51,25 +54,23 @@
 						break;
 				}
 			</th>
-			<th>Тема сообщения</th>
-			<th>Дата</th>
+			<th class="span35">Сообщение</th>
+			<th class="span15">Дата</th>
 		</tr>
 		@foreach (var item in Model.Data)
 		{
 			<tr>
-				<td class="span1 center">
+				<td class="center">
 					<span class="icons message-icon @(Html.Raw(item.IsRead ? "read-message" : "unread-message"))"></span>
 				</td>
-				<td class="span2 center">
-					<span class="checkbox">
-						<span class="checker">
-							<span>
-								<input type="checkbox" data-id="@item.Id" />
-							</span>
+				<td class="center">
+					<span class="checker">
+						<span>
+							<input type="checkbox" data-id="@item.Id" data-type="message" data-read="@item.IsRead" />
 						</span>
 					</span>
 				</td>
-				<td class="span3">
+				<td>
 					@switch (Model.MessageType)
 					{
 						case MessageTypeEnum.Inbox:
@@ -88,8 +89,8 @@
 							break;
 					}
 				</td>
-				<td class="span4">@item.Title</td>
-				<td class="span3 center message-date">@item.CreateDate.ToString("dd MMMM yyyy hh:mm")</td>
+				<td>@item.Title</td>
+				<td class="center message-date">@item.CreateDate.ToString("dd MMMM yyyy hh:mm")</td>
 			</tr>
 		}
 	</table>
