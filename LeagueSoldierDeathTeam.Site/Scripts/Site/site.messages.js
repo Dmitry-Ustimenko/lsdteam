@@ -6,12 +6,14 @@
 					saveAsRead: '',
 					saveAsDraft: '',
 					deleteMessages: '',
+					refreshGrid: ''
 				},
 				vars: {
 				},
 				elements: {
 					content: "#content",
-					messageType: "#MessageType"
+					messageTypeId: "#MessageTypeId",
+					form: "#form"
 				},
 				attributes: {
 				}
@@ -19,12 +21,26 @@
 
 			init: function (settings) {
 				$.extend(true, site.messages.settings, settings);
+				site.messages.changeType();
+				site.messages.refreshGrid();
+			},
 
-				var type = $(site.messages.settings.elements.messageType);
+			changeType: function () {
+				$(site.messages.settings.elements.form).on("change", function () {
+					site.messages.refresh(site.messages.settings.elements.content, site.messages.settings.urls.refreshGrid,
+							$.fn.serializeParams(site.messages.settings.vars.form),
+							function () {
+								site.messages.refreshGrid();
+							});
+				});
+			},
+
+			refreshGrid: function () {
+				var type = $(site.messages.settings.elements.messageTypeId);
 				var messages = $("[data-type=message]");
 
+				$.fn.initCheckbox();
 				site.messages.initCheckboxes(messages);
-				site.messages.changeType();
 				site.messages.saveAsDraft();
 				site.messages.saveAsRead(type, messages);
 				site.messages.deleteMessages();
@@ -88,28 +104,29 @@
 				});
 			},
 
-			changeType: function () {
-
-			},
+			//initMessageCount: function (type) {
+			//	if (type.val() == "Inbox")
+			//		$("[data-type=global-message-count]").text($("[data-type=message-count]").text());
+			//},
 
 			saveAsRead: function (type, messages) {
 				$('[data-action=readMessages]').off("click").on('click', function () {
-					$.fn.confirmOverlay("Подтверждение", "Подтвердите действие", function () {
-						var array = [];
-						messages.each(function () {
-							var $this = $(this);
-							if ($this.is(":checked"))
-								array.push($this.data("id"));
-						});
+					var array = [];
+					messages.each(function () {
+						var $this = $(this);
+						if ($this.is(":checked") && $this.data("read") == "False")
+							array.push($this.data("id"));
+					});
 
-						if (array.length != 0) {
+					if (array.length != 0) {
+						$.fn.confirmOverlay("Подтверждение", "Подтвердите действие", function () {
 							site.messages.refresh(site.messages.settings.elements.content, site.messages.settings.urls.saveAsRead,
 							{ type: type.val(), messageIds: array.join(",") },
 							function () {
-								site.messages.init();
+								site.messages.refreshGrid();
 							});
-						}
-					});
+						});
+					}
 				});
 			},
 

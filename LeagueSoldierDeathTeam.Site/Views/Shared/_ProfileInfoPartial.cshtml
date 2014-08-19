@@ -32,7 +32,9 @@
 					<span class="private-message-icon"></span>
 					Мои сообщения
 					<span class="font11">
-						<sup class="@Html.Raw(currentUser.InboxMessageCount == 0 ? "gray" : string.Empty)">(@currentUser.InboxMessageCount)</sup>
+						<sup class="@Html.Raw(currentUser.InboxMessageCount == 0 ? "gray" : string.Empty)">
+							(<span data-type="global-message-count">@currentUser.InboxMessageCount</span>)
+						</sup>
 					</span>
 				</a>
 				<a href="@Constants.JavaScriptVoid"><span class="bookmark-icon"></span>Мои закладки</a>
