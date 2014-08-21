@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
@@ -292,18 +291,24 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("create-message")]
 		public ActionResult CreateMessage()
 		{
-
-
-			return View();
+			return View("EditMessage", new UserMessageModel());
 		}
 
 		[HttpGet]
 		[Route("edit-message/{id:int}")]
 		public ActionResult EditMessage(int id)
 		{
+			var model = new UserMessageModel { Id = id };
 
+			return View(model);
+		}
 
-			return View();
+		[HttpPost]
+		[Route("edit-message/{id:int}")]
+		public ActionResult EditMessage(UserMessageModel model)
+		{
+
+			return View(model);
 		}
 
 		[AjaxOrChildActionOnly]

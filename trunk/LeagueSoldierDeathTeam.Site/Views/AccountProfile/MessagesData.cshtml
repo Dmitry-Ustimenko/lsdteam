@@ -97,7 +97,9 @@
 							break;
 					}
 				</td>
-				<td>@item.Title</td>
+				<td>
+					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditMessage(item.Id)))">@item.Title</a>
+				</td>
 				<td class="center message-date">@item.CreateDate.ToString("dd MMMM yyyy HH:mm")</td>
 			</tr>
 		}

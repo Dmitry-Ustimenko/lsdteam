@@ -1,0 +1,41 @@
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.Site.Models.AccountProfile.UserMessageModel
+@{
+	ViewBag.Title = Model.Id.HasValue ? "Редактирование сообщения" : "Новое сообщение";
+}
+
+<div class="transparent-border">
+	<div class="simple-page-body section-shadow">
+		<div class="section-module-header">
+			<div class="module-title">@ViewBag.Title</div>
+		</div>
+		<div class="section-module-body">
+			<div class="back">
+				<a class="button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.Messages()))">
+					<span class="back-arrow"></span>Вернуться на профиль
+				</a>
+				<input type="button" value="Отправить">
+			</div>
+			<div class="form-container">
+				<div class="form-border">
+					@using (Html.BeginForm("EditMessage", "AccountProfileController", FormMethod.Post))
+					{
+						<div class="container-item">
+							@Html.LabelFor(o => o.RecipientName)
+							@Html.TextBoxFor(o => o.RecipientName)
+						</div>
+						<div class="container-item">
+							@Html.LabelFor(o => o.Title)
+							@Html.TextBoxFor(o => o.Title)
+						</div>
+						<div class="container-item">
+							@Html.LabelFor(o => o.Description)
+							@Html.TextAreaFor(o => o.Description, new { @rows = "10" })
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
