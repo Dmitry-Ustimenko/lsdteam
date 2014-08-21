@@ -10,7 +10,7 @@
 <div class="transparent-border">
 	<div class="simple-page-body section-shadow">
 		<div class="section-module-header">
-			<div class="module-title">Личные сообщения</div>
+			<div class="module-title">@ViewBag.Title</div>
 		</div>
 		<div class="section-module-body">
 			<div class="messages">
@@ -22,7 +22,7 @@
 								@Html.DropDownListFor(m => m.MessageTypeId, new SelectList(Model.MessageTypes, "Key", "Value"))
 							</span>
 							<span class="message-write-link">
-								<a class="button" href="@Constants.JavaScriptVoid" @*href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.CreateMessage(currentUser.Id)))"*@>Новое сообщение</a>
+								<a class="button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.CreateMessage()))">Новое сообщение</a>
 							</span>
 						</div>
 					}

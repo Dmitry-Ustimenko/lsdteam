@@ -35,6 +35,10 @@ input[type=text]:focus, input[type=password]:focus, input[type=button]:focus, in
 	outline: 0;
 }
 
+textarea {
+	resize: vertical;
+}
+
 select {
 	font-size: 14px;
 	padding: 6px;
@@ -2511,3 +2515,50 @@ span.checker-span {
 .span35 {
 	width: 35%;
 }
+
+.back {
+	margin: 10px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+
+.simple-page-body .form-container {
+	margin: 10px;
+	margin-bottom: 0;
+	padding-bottom: 10px;
+}
+
+	.simple-page-body .form-container .form-border {
+		border: 1px solid #D1D1D1;
+		padding: 10px;
+		padding-bottom: 0;
+	}
+
+	.simple-page-body .form-container .container-item {
+		margin-top: 10px;
+	}
+
+	.simple-page-body .form-container input[type=text],
+	.simple-page-body .form-container input[type=password],
+	.simple-page-body .form-container select,
+	.simple-page-body .form-container textarea {
+		width: 84%;
+		padding: 8px 5px;
+		margin-bottom: 10px;
+		font-size: 12px;
+		border: 1px solid #616161;
+		box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+		border-radius: 3px;
+		font-family: 'Ubuntu', 'Lato', sans-serif;
+		color: black;
+	}
+
+	.simple-page-body .form-container label {
+		display: inline-block;
+		width: 15%;
+		vertical-align: top;
+		padding-top: 5px;
+		font-size: 15px;
+		letter-spacing: 0;
+		cursor: pointer;
+	}
