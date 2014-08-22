@@ -28,7 +28,14 @@ footer {
 		min-height: 100px;
 	}
 
-input[type=text]:focus, input[type=password]:focus, input[type=button]:focus, input[type=submit]:focus, button[type=submit]:focus, a:focus, select:focus {
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=button]:focus,
+input[type=submit]:focus,
+button[type=submit]:focus,
+a:focus,
+select:focus,
+textarea:focus {
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
@@ -761,6 +768,12 @@ a {
 
 .input-validation-error {
 	border: 1px solid #C00000 !important;
+}
+
+.field-validation-error {
+	color: #921111;
+	display: inline-block;
+	margin-top: 3px;
 }
 
 /* Simple page */
@@ -2522,6 +2535,17 @@ span.checker-span {
 	margin-bottom: 16px;
 }
 
+.preview-link {
+	display: inline-block;
+	color: green;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+	.preview-link:hover {
+		border-bottom: 1px dotted;
+	}
+
 .simple-page-body .form-container {
 	margin: 10px;
 	margin-bottom: 0;
@@ -2530,21 +2554,30 @@ span.checker-span {
 
 	.simple-page-body .form-container .form-border {
 		border: 1px solid #D1D1D1;
-		padding: 10px;
+		padding: 15px;
 		padding-bottom: 0;
 	}
 
-	.simple-page-body .form-container .container-item {
-		margin-top: 10px;
+	.simple-page-body .form-container .form-buttons {
+		padding: 10px 0 0 0;
+		text-align: right;
 	}
+
+	.simple-page-body .form-container .container-item {
+		margin-bottom: 15px;
+	}
+
+		.simple-page-body .form-container .container-item .field-container {
+			width: 84%;
+			display: inline-block;
+		}
 
 	.simple-page-body .form-container input[type=text],
 	.simple-page-body .form-container input[type=password],
 	.simple-page-body .form-container select,
 	.simple-page-body .form-container textarea {
-		width: 84%;
+		width: 100%;
 		padding: 8px 5px;
-		margin-bottom: 10px;
 		font-size: 12px;
 		border: 1px solid #616161;
 		box-shadow: 0 1px 0 rgba(255,255,255,0.1);
@@ -2553,11 +2586,39 @@ span.checker-span {
 		color: black;
 	}
 
+	.simple-page-body .form-container input[type=button],
+	.simple-page-body .form-container input[type=submit] {
+		padding: 6px 5px;
+		border: 1px solid #B31919;
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+		border-radius: 3px;
+		background: #B31919;
+		cursor: pointer;
+		font-family: 'Ubuntu', 'Lato', sans-serif;
+		color: white;
+		font-weight: 700;
+		font-size: 15px;
+		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+		width: 165px;
+	}
+
+		.simple-page-body .form-container input[type=button]:hover,
+		.simple-page-body .form-container input[type=submit]:hover {
+			box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+		}
+
+		.simple-page-body .form-container input[type=button]:active,
+		.simple-page-body .form-container input[type=submit]:active {
+			background: #B31919;
+			box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
+		}
+
 	.simple-page-body .form-container label {
 		display: inline-block;
 		width: 15%;
 		vertical-align: top;
 		padding-top: 5px;
+		padding-left: 3px;
 		font-size: 15px;
 		letter-spacing: 0;
 		cursor: pointer;
