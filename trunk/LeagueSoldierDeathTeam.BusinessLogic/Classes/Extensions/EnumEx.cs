@@ -7,6 +7,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions
 {
 	public static class EnumEx
 	{
+		public static string GetName(Enum value)
+		{
+			return value == null ? string.Empty : value.ToString();
+		}
+
 		public static string GetDescription(Enum value, bool showEmpty = true)
 		{
 			if (value == null)

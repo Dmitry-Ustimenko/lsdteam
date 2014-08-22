@@ -6,8 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
@@ -277,7 +280,13 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("messages")]
 		public ActionResult Messages()
 		{
-			return View(new UserMessagesModel());
+			if (!Request.QueryString.AllKeys.Contains("type"))
+				return View(new UserMessagesModel());
+
+			MessageTypeEnum messageType;
+			return View(Enum.TryParse(Request.QueryString["type"], out messageType)
+				? new UserMessagesModel { MessageTypeId = (int)messageType }
+				: new UserMessagesModel());
 		}
 
 		[AjaxOrChildActionOnly]
@@ -295,7 +304,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpGet]
-		[Route("edit-message/{id:int}")]
+		[Route("edit-message/{id:int?}")]
 		public ActionResult EditMessage(int id)
 		{
 			var model = new UserMessageModel { Id = id };
@@ -304,9 +313,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
-		[Route("edit-message/{id:int}")]
+		[Route("edit-message/{id:int?}")]
 		public ActionResult EditMessage(UserMessageModel model)
 		{
+			if (ModelIsValid)
+			{
+				return RedirectToAction<AccountProfileController>(o => o.Messages(),
+					new RouteValueDictionary(new Dictionary<string, object> { { "type", EnumEx.GetName(MessageTypeEnum.Sent) } }));
+			}
 
 			return View(model);
 		}
