@@ -23,5 +23,9 @@
 		public const string BelarusTimeZone = "GTB Standard Time";
 
 		public const string JavaScriptVoid = "javascript:void(0);";
+
+		public const string ErrorStatus = "Error";
+
+		public const string ErrorMessage = "Произошла внутренняя ошибка.";
 	}
 }

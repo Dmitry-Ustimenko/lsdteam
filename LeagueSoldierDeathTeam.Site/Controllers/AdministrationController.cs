@@ -7,6 +7,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
+using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
@@ -71,7 +72,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (userId.HasValue)
 				Execute(() => _accountService.DeleteUser(userId.GetValueOrDefault()));
 
-			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
+			return ModelIsValid
+				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
+				: JsonResult();
 		}
 
 		[HttpPost]
@@ -81,7 +84,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (userId.HasValue && isBanned.HasValue)
 				Execute(() => _accountService.BanUser(userId.GetValueOrDefault(), isBanned.Value));
 
-			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
+			return ModelIsValid
+				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
+				: JsonResult();
 		}
 
 		[HttpPost]
@@ -107,7 +112,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				}
 			}
 
-			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
+			return ModelIsValid
+				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
+				: JsonResult();
 		}
 
 		[HttpPost]
@@ -117,14 +124,18 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (userId.HasValue)
 				Execute(() => _accountService.ActivateUser(userId.GetValueOrDefault()));
 
-			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
+			return ModelIsValid
+				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
+				: JsonResult();
 		}
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
 		public ActionResult FilterUsers(SortEnum sortFilter, string term)
 		{
-			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
+			return ModelIsValid
+				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
+				: JsonResult();
 		}
 
 		#endregion

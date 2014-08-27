@@ -36,7 +36,14 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 						return;
 					}
 
-					if (typeof (callback) == 'function') {
+					if (typeof (data) == 'object' && data != null) {
+						if (data.Status == "Error") {
+							if (typeof (callbackError) == 'function') {
+								callbackError(data.Message != undefined ? data.Message : "При обработке запроса произошла ошибка.");
+							}
+						}
+					}
+					else if (typeof (callback) == 'function') {
 						callback(data);
 					}
 				},
@@ -48,7 +55,7 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 						alertMessage("Ошибка (404)", "Страница не найдена.");
 					else
 						alertMessage("Ошибка (" + jqxhr.status + ")", "При обработке запроса произошла ошибка.");
-					
+
 					if (typeof (callbackError) == 'function') {
 						callbackError();
 					}

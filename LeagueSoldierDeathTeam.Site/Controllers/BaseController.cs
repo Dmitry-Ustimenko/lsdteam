@@ -102,6 +102,13 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			base.OnException(filterContext);
 		}
 
+		protected JsonResult JsonResult(string message = null)
+		{
+			return string.IsNullOrWhiteSpace(message)
+				? Json(new { Status = Constants.ErrorStatus }, JsonRequestBehavior.AllowGet)
+				: Json(new { Status = Constants.ErrorStatus, Message = message }, JsonRequestBehavior.AllowGet);
+		}
+
 		protected bool Execute(Action action)
 		{
 			try
@@ -128,7 +135,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			catch (Exception exception)
 			{
 				Logger.WriteEmergency(exception);
-				ModelState.AddModelError("Error", "Произошла внутренняя ошибка.");
+				ModelState.AddModelError("Error", Constants.ErrorMessage);
 			}
 			return false;
 		}
@@ -158,7 +165,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			catch (Exception exception)
 			{
 				Logger.WriteEmergency(exception);
-				ModelState.AddModelError("Error", "Произошла внутренняя ошибка.");
+				ModelState.AddModelError("Error", Constants.ErrorMessage);
 			}
 			return default(T);
 		}
@@ -215,7 +222,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			else
 			{
 				Logger.WriteEmergency(innerException);
-				ModelState.AddModelError("Error", "Произошла внутренняя ошибка.");
+				ModelState.AddModelError("Error", Constants.ErrorMessage);
 			}
 		}
 	}
