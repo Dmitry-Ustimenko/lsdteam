@@ -6,7 +6,7 @@ using LeagueSoldierDeathTeam.DataBaseLayer.Abstractions.DataAccess;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.DataAccess
 {
-	public class UnitOfWork : IUnitOfWork, IDisposable
+	public class UnitOfWork : IUnitOfWork
 	{
 		private readonly IObjectContextProvider _objectContextProvider;
 		private bool _disposed;

@@ -31,8 +31,8 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public virtual DbSet<UserActivateToken> UserActivateTokens { get; set; }
         public virtual DbSet<UserExternalInfo> UserExternalInfoes { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
-        public virtual DbSet<UserResetToken> UserResetTokens { get; set; }
-        public virtual DbSet<UserMessageType> UserMessageTypes { get; set; }
         public virtual DbSet<UserMessage> UserMessages { get; set; }
+        public virtual DbSet<UserMessageType> UserMessageTypes { get; set; }
+        public virtual DbSet<UserResetToken> UserResetTokens { get; set; }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System.Data.Entity.Core.Objects;
+﻿using System;
+using System.Data.Entity.Core.Objects;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess
 {
-	public interface IUnitOfWork
+	public interface IUnitOfWork: IDisposable
 	{
 		void Commit();
 

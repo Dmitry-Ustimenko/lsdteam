@@ -5,26 +5,21 @@
 	[Description]		nvarchar(MAX)	not null,
 	[IsRead] bit not null,
 	[CreateDate] datetime not null,
-	[TypeId]	int		not	null,
     [SenderId] INT NOT NULL,
 	[RecipientId] INT NOT null,
+    [IsSenderDeleted] BIT NOT NULL, 
+    [IsRecipientDeleted] BIT NOT NULL, 
+    [IsSenderSaved] BIT NOT NULL, 
+    [IsRecipientSaved] BIT NOT NULL, 
     constraint [PK_dboUserMessage] primary key clustered ([Id])
 );
 
 go
-ALTER TABLE [dbo].[UserMessage]  WITH CHECK ADD  CONSTRAINT [FK_UserMessage_UserMessageType] FOREIGN KEY([TypeId])
-REFERENCES [dbo].[UserMessageType] ([Id])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[UserMessage] CHECK CONSTRAINT [FK_UserMessage_UserMessageType]
-GO
 
 ALTER TABLE [dbo].[UserMessage]  WITH CHECK ADD CONSTRAINT [FK_UserMessage_UserSender] FOREIGN KEY([SenderId])
 REFERENCES [dbo].[User] ([Id])
-ON UPDATE CASCADE
-ON DELETE CASCADE
+ON UPDATE NO ACTION
+ON DELETE NO ACTION
 GO
 ALTER TABLE [dbo].[UserMessage] CHECK CONSTRAINT [FK_UserMessage_UserSender]
 GO

@@ -20,17 +20,19 @@ namespace LeagueSoldierDeathTeam.Site.Modules.Autofac
 		{
 			base.Load(builder);
 
-			builder.RegisterType<ServiceFactory>().As<ServiceFactoryBase>().SingleInstance();
-
+			// Single tone
 			builder.RegisterType<AuthenticationService>().As<IAuthenticationService>().SingleInstance();
 
-			builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().SingleInstance();
-
-			builder.RegisterType<RepositoryFactory>().As<RepositoryFactoryBase>().SingleInstance();
-
-			builder.RegisterType<ObjectContextProvider>().As<IObjectContextProvider>().SingleInstance();
-
 			builder.RegisterType<Mailer>().As<IMailer>().SingleInstance();
+
+			// Instance per dependency
+			builder.RegisterType<ObjectContextProvider>().As<IObjectContextProvider>().InstancePerLifetimeScope();
+
+			builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+
+			builder.RegisterType<RepositoryFactory>().As<RepositoryFactoryBase>().InstancePerLifetimeScope();
+
+			builder.RegisterType<ServiceFactory>().As<ServiceFactoryBase>().InstancePerLifetimeScope();
 		}
 
 		#endregion
