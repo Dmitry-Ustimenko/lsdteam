@@ -37,11 +37,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		void IAccountProfileService.SaveAsRead(int userId, IEnumerable<int> messagesIds)
 		{
-			var messages = _userMessageRepository.Query(o => messagesIds.Contains(o.Id)
-				&& !o.IsRead
-				&& o.TypeId == (int)MessageTypeEnum.Inbox
-				&& o.Recipient != null && o.Recipient.Id == userId).ToList();
-
+			var messages = _userMessageRepository.Query(o => messagesIds.Contains(o.Id) && !o.IsRead && o.RecipientId == userId).ToList();
 			if (!messages.Any()) return;
 
 			foreach (var message in messages)
@@ -52,16 +48,20 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		void IAccountProfileService.SaveAsDraft(int userId, IEnumerable<int> messagesIds)
 		{
-			var messages = _userMessageRepository.Query(o => messagesIds.Contains(o.Id)
-				&& o.TypeId != (int)MessageTypeEnum.Draft
-				&& (o.SenderId == userId || o.Recipient != null && o.Recipient.Id == userId)).ToList();
-
+			var messages = _userMessageRepository.Query(o => messagesIds.Contains(o.Id)).ToList();
 			if (!messages.Any()) return;
 
 			foreach (var message in messages)
 			{
-				message.TypeId = (int)MessageTypeEnum.Draft;
-				message.IsRead = true;
+				if (message.SenderId == userId && !message.IsSenderDeleted)
+				{
+					message.IsSenderSaved = true;
+				}
+				else if (message.RecipientId == userId && !message.IsRecipientDeleted)
+				{
+					message.IsRecipientSaved = true;
+					message.IsRead = true;
+				}
 			}
 
 			UnitOfWork.Commit();
@@ -75,7 +75,16 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			if (!messages.Any()) return;
 
 			foreach (var message in messages)
-				_userMessageRepository.Delete(message);
+			{
+				if (message.SenderId == userId)
+				{
+					message.IsSenderDeleted = true;
+				}
+				else if (message.RecipientId == userId)
+				{
+					message.IsRecipientDeleted = true;
+				}
+			}
 
 			UnitOfWork.Commit();
 		}
@@ -86,13 +95,14 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			switch ((MessageTypeEnum)typeId)
 			{
 				case MessageTypeEnum.Inbox:
-					filter = o => o.TypeId == typeId && o.Recipient != null && o.Recipient.Id == userId;
+					filter = o => o.RecipientId == userId && !o.IsRecipientDeleted && !o.IsRecipientSaved;
 					break;
 				case MessageTypeEnum.Sent:
-					filter = o => o.TypeId == typeId && o.SenderId == userId;
+					filter = o => o.SenderId == userId && !o.IsSenderDeleted && !o.IsSenderSaved;
 					break;
 				case MessageTypeEnum.Draft:
-					filter = o => o.TypeId == typeId && (o.SenderId == userId || o.Recipient != null && o.Recipient.Id == userId);
+					filter = o => o.SenderId == userId && o.IsSenderSaved && !o.IsSenderDeleted
+						|| o.RecipientId == userId && o.IsRecipientSaved && !o.IsRecipientDeleted;
 					break;
 			}
 
@@ -105,15 +115,14 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				CreateDate = o.CreateDate,
 				RecipientId = o.Recipient != null ? o.Recipient.Id : default(int?),
 				RecipientName = o.Recipient != null ? o.Recipient.UserName : string.Empty,
-				SenderId = o.SenderId,
-				SenderName = o.Sender != null ? o.Sender.UserName : string.Empty,
-				TypeId = o.TypeId
+				SenderId = o.Sender != null ? o.Sender.Id : default(int?),
+				SenderName = o.Sender != null ? o.Sender.UserName : string.Empty
 			}, filter).OrderByDescending(o => o.CreateDate).ToList() : new List<UserMessageData>();
 		}
 
 		int IAccountProfileService.GetUserMessageCount(int userId)
 		{
-			return _userMessageRepository.GetDataCount(o => o.TypeId == (int)MessageTypeEnum.Inbox && o.Recipient != null && o.Recipient.Id == userId);
+			return _userMessageRepository.GetDataCount(o => o.RecipientId == userId && !o.IsRecipientDeleted && !o.IsRecipientSaved);
 		}
 
 		#endregion

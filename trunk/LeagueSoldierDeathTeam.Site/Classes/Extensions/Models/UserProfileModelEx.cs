@@ -52,7 +52,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 				address.Append(string.Format("{0}, ", data.Street));
 
 			if (!string.IsNullOrWhiteSpace(data.HomeNumber))
-				address.Append(string.Format("д. {0},", data.HomeNumber));
+				address.Append(string.Format("{0},", data.HomeNumber));
 
 			var str = address.ToString().Trim();
 			var index = str.LastIndexOf(',');

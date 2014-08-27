@@ -18,13 +18,15 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsRead { get; set; }
-        public int TypeId { get; set; }
-        public int SenderId { get; set; }
-        public Nullable<int> RecipientId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int SenderId { get; set; }
+        public int RecipientId { get; set; }
+        public bool IsSenderDeleted { get; set; }
+        public bool IsRecipientDeleted { get; set; }
+        public bool IsSenderSaved { get; set; }
+        public bool IsRecipientSaved { get; set; }
     
         public virtual User Recipient { get; set; }
         public virtual User Sender { get; set; }
-        public virtual UserMessageType UserMessageType { get; set; }
     }
 }

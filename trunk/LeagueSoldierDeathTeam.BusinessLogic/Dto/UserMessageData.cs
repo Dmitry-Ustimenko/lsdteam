@@ -9,7 +9,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public string Description { get; set; }
 		public bool IsRead { get; set; }
 		public int TypeId { get; set; }
-		public int SenderId { get; set; }
+		public int? SenderId { get; set; }
 		public string SenderName { get; set; }
 		public int? RecipientId { get; set; }
 		public string RecipientName { get; set; }

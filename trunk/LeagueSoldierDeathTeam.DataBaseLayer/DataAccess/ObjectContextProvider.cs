@@ -1,10 +1,9 @@
-﻿using System;
-using System.Data.Entity.Core.Objects;
+﻿using System.Data.Entity.Core.Objects;
 using LeagueSoldierDeathTeam.DataBaseLayer.Abstractions.DataAccess;
 
 namespace LeagueSoldierDeathTeam.DataBaseLayer.DataAccess
 {
-	public class ObjectContextProvider : IObjectContextProvider, IDisposable
+	public class ObjectContextProvider : IObjectContextProvider
 	{
 		public ObjectContext ObjectContext { get; set; }
 
@@ -18,11 +17,6 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.DataAccess
 		public void SaveChanges()
 		{
 			ObjectContext.SaveChanges();
-		}
-
-		public void Dispose()
-		{
-			ObjectContext.Dispose();
 		}
 	}
 }

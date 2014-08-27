@@ -83,7 +83,14 @@
 					{
 						case MessageTypeEnum.Inbox:
 						case MessageTypeEnum.Draft:
-							<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.SenderId)))">@item.SenderName</a>
+							if (item.SenderId.HasValue)
+							{
+								<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.SenderId.Value)))">@item.SenderName</a>
+							}
+							else
+							{
+								@:Пользователь удален
+							}
 							break;
 						case MessageTypeEnum.Sent:
 							if (item.RecipientId.HasValue)

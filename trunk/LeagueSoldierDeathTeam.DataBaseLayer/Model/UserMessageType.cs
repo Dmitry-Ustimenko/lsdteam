@@ -14,14 +14,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
     
     public partial class UserMessageType
     {
-        public UserMessageType()
-        {
-            this.UserMessages = new HashSet<UserMessage>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
-    
-        public virtual ICollection<UserMessage> UserMessages { get; set; }
     }
 }

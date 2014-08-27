@@ -54,7 +54,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			if (ModelIsValid)
 				return View(model);
-			return RedirectToAction<AccountProfileController>(o => o.ProfileInfo(CurrentUser.Id));
+			return RedirectToAction<HomeController>(o => o.Index());
 		}
 
 		[HttpGet]
@@ -364,7 +364,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Internal Implementation
 
-		private IEnumerable<int> ParseMessageIds(string messageIds)
+		private static IEnumerable<int> ParseMessageIds(string messageIds)
 		{
 			var selectedMessages = new List<int>();
 			foreach (var item in messageIds.Split(','))
