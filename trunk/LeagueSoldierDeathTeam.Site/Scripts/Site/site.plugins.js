@@ -291,6 +291,11 @@
 				if (typeof (callback) == 'function')
 					callback(data);
 			}
+		}, function (message) {
+			$.fn.alertOverlay("Ошибка", message);
+			
+			if (typeof (callbackError) == 'function')
+				callbackError(data);
 		});
 	};
 })(jQuery);

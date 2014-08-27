@@ -17,6 +17,8 @@ namespace LeagueSoldierDeathTeam.Site
 {
 	public class MvcApplication : HttpApplication
 	{
+		private IContainer _diContainer;
+
 		protected void Application_BeginRequest(Object sender, EventArgs e)
 		{
 			var cInfo = new CultureInfo("ru-RU");
@@ -38,11 +40,17 @@ namespace LeagueSoldierDeathTeam.Site
 			builder.RegisterControllers(Assembly.GetExecutingAssembly()).PropertiesAutowired();
 			builder.RegisterModule<LibraryModule>();
 
-			var diContainer = builder.Build();
-			if (diContainer == null)
+			_diContainer = builder.Build();
+			if (_diContainer == null)
 				throw new ArgumentNullException(string.Format("diContainer"));
 
-			DependencyResolver.SetResolver(new AutofacDependencyResolver(diContainer));
+			DependencyResolver.SetResolver(new AutofacDependencyResolver(_diContainer));
+		}
+
+		protected void Application_Disposed()
+		{
+			if (_diContainer != null)
+				_diContainer.Dispose();
 		}
 
 		protected void Application_Error()
