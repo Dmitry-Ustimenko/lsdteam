@@ -9,6 +9,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
 using LeagueSoldierDeathTeam.Site.Classes;
+using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Classes.Parsers.Xml;
 using LeagueSoldierDeathTeam.Site.Models.Account;
@@ -59,6 +60,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region Login
 
 		[HttpPost]
+		[AjaxOrChildActionOnly]
 		public ActionResult Login(LoginModel model)
 		{
 			if (ModelIsValid)
@@ -103,6 +105,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
+		[AjaxOrChildActionOnly]
 		public ActionResult Register(RegisterModel model)
 		{
 			if (ModelIsValid)
@@ -134,6 +137,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region External Login
 
 		[HttpPost]
+		[AjaxOrChildActionOnly]
 		public ActionResult ExternalLogin(string provider, string returnUrl)
 		{
 			return new ChallengeResult(provider, WebBuilder.BuildActionUrl<AccountController>(o => o.ExternalLoginCallback(returnUrl, provider)));

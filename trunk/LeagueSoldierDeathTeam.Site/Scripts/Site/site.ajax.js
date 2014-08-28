@@ -36,11 +36,9 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 						return;
 					}
 
-					if (typeof (data) == 'object' && data != null) {
-						if (data.Status == "Error") {
-							if (typeof (callbackError) == 'function') {
-								callbackError(data.Message != undefined ? data.Message : "При обработке запроса произошла ошибка.");
-							}
+					if (data.Status != undefined && data.Status == "Error") {
+						if (typeof (callbackError) == 'function') {
+							callbackError(data.Message != undefined ? data.Message : "При обработке запроса произошла ошибка.");
 						}
 					}
 					else if (typeof (callback) == 'function') {

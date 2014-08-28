@@ -7,7 +7,6 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
-using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
@@ -74,7 +73,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			return ModelIsValid
 				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
-				: JsonResult();
+				: JsonErrorResult();
 		}
 
 		[HttpPost]
@@ -86,7 +85,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			return ModelIsValid
 				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
-				: JsonResult();
+				: JsonErrorResult();
 		}
 
 		[HttpPost]
@@ -114,7 +113,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			return ModelIsValid
 				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
-				: JsonResult();
+				: JsonErrorResult();
 		}
 
 		[HttpPost]
@@ -126,16 +125,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			return ModelIsValid
 				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
-				: JsonResult();
+				: JsonErrorResult();
 		}
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
 		public ActionResult FilterUsers(SortEnum sortFilter, string term)
 		{
-			return ModelIsValid
-				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
-				: JsonResult();
+			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
 		}
 
 		#endregion
@@ -143,10 +140,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region Role Management
 
 		[HttpPost]
+		[AjaxOrChildActionOnly]
 		public ActionResult ChangeRole(int? roleId, int? userId)
 		{
 			Execute(() => _accountService.UpdateRole(roleId.GetValueOrDefault(), userId.GetValueOrDefault()));
-			return Json(new { Id = userId }, JsonRequestBehavior.AllowGet);
+
+			return ModelIsValid
+				? Json(new { Id = userId }, JsonRequestBehavior.AllowGet)
+				: JsonErrorResult();
 		}
 
 		[HttpPost]
