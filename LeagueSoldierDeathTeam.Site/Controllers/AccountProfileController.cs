@@ -46,6 +46,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Profile Info
 
+		[HttpGet]
 		[Route("user-profile-info/{userId:int}")]
 		public ActionResult ProfileInfo(int userId)
 		{
@@ -164,6 +165,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Edit Profile
 
+		[HttpGet]
 		[Route("edit-user-profile/{userId:int}")]
 		public ActionResult EditProfile(int userId)
 		{
@@ -333,7 +335,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			var model = new UserMessagesModel { MessageTypeId = typeId };
 			FillUserMessagesModel(model);
-			return View("MessagesData", model);
+
+			return ModelIsValid
+				? (ActionResult)View("MessagesData", model)
+				: JsonErrorResult();
 		}
 
 		[AjaxOrChildActionOnly]
@@ -344,7 +349,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			var model = new UserMessagesModel { MessageTypeId = typeId };
 			FillUserMessagesModel(model);
-			return View("MessagesData", model);
+
+			return ModelIsValid
+				? (ActionResult)View("MessagesData", model)
+				: JsonErrorResult();
 		}
 
 		[AjaxOrChildActionOnly]
@@ -355,7 +363,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			var model = new UserMessagesModel { MessageTypeId = typeId };
 			FillUserMessagesModel(model);
-			return View("MessagesData", model);
+
+			return ModelIsValid
+				? (ActionResult)View("MessagesData", model)
+				: JsonErrorResult();
 		}
 
 		#endregion

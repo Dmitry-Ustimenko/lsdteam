@@ -102,7 +102,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			base.OnException(filterContext);
 		}
 
-		protected JsonResult JsonResult(string message = null)
+		protected JsonResult JsonErrorResult(string message = null)
 		{
 			return string.IsNullOrWhiteSpace(message)
 				? Json(new { Status = Constants.ErrorStatus }, JsonRequestBehavior.AllowGet)
