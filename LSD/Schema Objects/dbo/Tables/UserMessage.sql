@@ -10,7 +10,7 @@
     [IsSenderDeleted] BIT NOT NULL, 
     [IsRecipientDeleted] BIT NOT NULL, 
     [IsSenderSaved] BIT NOT NULL, 
-    [IRecipientSaved] BIT NOT NULL, 
+    [IsRecipientSaved] BIT NOT NULL, 
     constraint [PK_dboUserMessage] primary key clustered ([Id])
 );
 
