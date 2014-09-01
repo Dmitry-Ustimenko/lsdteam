@@ -83,8 +83,8 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsRead" Type="bit" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
-          <Property Name="SenderId" Type="int" Nullable="false" />
-          <Property Name="RecipientId" Type="int" Nullable="false" />
+          <Property Name="SenderId" Type="int" />
+          <Property Name="RecipientId" Type="int" />
           <Property Name="IsSenderDeleted" Type="bit" Nullable="false" />
           <Property Name="IsRecipientDeleted" Type="bit" Nullable="false" />
           <Property Name="IsSenderSaved" Type="bit" Nullable="false" />
@@ -187,7 +187,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserMessage_UserRecipient">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="UserMessage" Type="Self.UserMessage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -199,7 +199,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserMessage_UserSender">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="UserMessage" Type="Self.UserMessage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -391,14 +391,14 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsRead" Type="Boolean" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="SenderId" Type="Int32" Nullable="false" />
-          <Property Name="RecipientId" Type="Int32" Nullable="false" />
+          <Property Name="SenderId" Type="Int32" />
+          <Property Name="RecipientId" Type="Int32" />
           <Property Name="IsSenderDeleted" Type="Boolean" Nullable="false" />
           <Property Name="IsRecipientDeleted" Type="Boolean" Nullable="false" />
           <Property Name="IsSenderSaved" Type="Boolean" Nullable="false" />
+          <Property Name="IsRecipientSaved" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Recipient" Relationship="LSDDataModel.FK_UserMessage_UserRecipient" FromRole="UserMessage" ToRole="User" />
           <NavigationProperty Name="Sender" Relationship="LSDDataModel.FK_UserMessage_UserSender" FromRole="UserMessage" ToRole="User" />
-          <Property Name="IsRecipientSaved" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="UserMessageType">
           <Key>
@@ -498,7 +498,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserMessage_UserRecipient">
-          <End Type="LSDDataModel.User" Role="User" Multiplicity="1" />
+          <End Type="LSDDataModel.User" Role="User" Multiplicity="0..1" />
           <End Type="LSDDataModel.UserMessage" Role="UserMessage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -510,7 +510,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserMessage_UserSender">
-          <End Type="LSDDataModel.User" Role="User" Multiplicity="1" />
+          <End Type="LSDDataModel.User" Role="User" Multiplicity="0..1" />
           <End Type="LSDDataModel.UserMessage" Role="UserMessage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">

@@ -70,7 +70,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 		void IAccountProfileService.DeleteMessages(int userId, IEnumerable<int> messagesIds)
 		{
 			var messages = _userMessageRepository.Query(o => messagesIds.Contains(o.Id)
-				&& (o.SenderId == userId || o.Recipient != null && o.Recipient.Id == userId)).ToList();
+				&& (o.SenderId == userId || o.RecipientId == userId)).ToList();
 
 			if (!messages.Any()) return;
 

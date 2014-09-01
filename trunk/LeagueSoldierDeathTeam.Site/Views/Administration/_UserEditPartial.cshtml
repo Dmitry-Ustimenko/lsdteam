@@ -49,7 +49,10 @@
 									}
 								</a>
 							}
-							<a class="delete" data-action="delete" data-id="@item.UserId" href="@Constants.JavaScriptVoid">Удалить</a>
+							@if (AppContext.Current.CurrentUser.IsMainAdmin)
+							{
+								<a class="delete" data-action="delete" data-id="@item.UserId" href="@Constants.JavaScriptVoid">Удалить</a>
+							}
 						</td>
 					</tr>
 				}

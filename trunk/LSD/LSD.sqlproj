@@ -120,6 +120,7 @@
     <Build Include="Schema Objects\dbo\Tables\UserActivateToken.sql" />
     <Build Include="Schema Objects\dbo\Tables\UserMessage.sql" />
     <Build Include="Schema Objects\dbo\Tables\UserMessageType.sql" />
+    <Build Include="Schema Objects\dbo\Tables\Triggers\User.trigger.delete.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="LSD.refactorlog" />
