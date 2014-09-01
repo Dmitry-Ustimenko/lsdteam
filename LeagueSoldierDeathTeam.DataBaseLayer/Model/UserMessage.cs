@@ -19,8 +19,8 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public string Description { get; set; }
         public bool IsRead { get; set; }
         public System.DateTime CreateDate { get; set; }
-        public int SenderId { get; set; }
-        public int RecipientId { get; set; }
+        public Nullable<int> SenderId { get; set; }
+        public Nullable<int> RecipientId { get; set; }
         public bool IsSenderDeleted { get; set; }
         public bool IsRecipientDeleted { get; set; }
         public bool IsSenderSaved { get; set; }
