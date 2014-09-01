@@ -1,0 +1,23 @@
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@{
+	ViewBag.Title = "Просмотр сообщения";
+}
+
+<div class="transparent-border">
+	<div class="simple-page-body section-shadow">
+		<div class="section-module-header">
+			<div class="module-title">@ViewBag.Title</div>
+		</div>
+		<div class="section-module-body">
+			<div class="back">
+				<a class="button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.Messages()))">
+					<span class="back-arrow"></span>Вернуться к сообщениям
+				</a>
+			</div>
+			<div class="form-container">
+
+			</div>
+		</div>
+	</div>
+</div>

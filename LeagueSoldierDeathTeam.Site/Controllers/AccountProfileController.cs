@@ -299,6 +299,13 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpGet]
+		[Route("view-message/{id:int}")]
+		public ActionResult ViewMessage(int id)
+		{
+			return View();
+		}
+
+		[HttpGet]
 		[Route("create-message")]
 		public ActionResult CreateMessage()
 		{
