@@ -16,5 +16,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 		void DeleteMessages(int userId, IEnumerable<int> messagesIds);
 
 		UserMessageData GetUserMessage(int userId, int id);
+
+		void SaveMessage(UserMessageData data);
 	}
 }

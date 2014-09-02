@@ -42,7 +42,7 @@
 							<div class="view-message-description">
 								<div class="message-title">@Model.Title</div>
 								<div class="message-date">@Model.CreateDate.ToString("dd MMMM yyyy HH:mm")</div>
-								<div class="form-border">@Model.Description</div>
+								<div class="form-border message-description">@MvcHtmlString.Create(Model.Description)</div>
 							</div>
 						</div>
 					</div>
@@ -50,7 +50,7 @@
 						@if (Model.Type == MessageTypeEnum.Inbox && Model.SenderId.HasValue)
 						{
 							<span class="preview-link">Ответить с цитатой</span>
-							<a class="button big-button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.EditMessage(Model.Id)))">
+							<a class="button big-button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.ReplyMessage(Model.Id)))">
 								Ответить
 							</a>
 						}

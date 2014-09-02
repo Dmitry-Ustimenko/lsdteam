@@ -208,6 +208,7 @@
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RoleManagementEx.cs" />
     <Compile Include="Classes\Extensions\Models\UserEditModelEx.cs" />
+    <Compile Include="Classes\Extensions\Models\UserMessageModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\UserProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\RussianTimeEx.cs" />
     <Compile Include="Classes\Extensions\StringGeneration.cs" />
@@ -423,7 +424,7 @@
     <Content Include="Views\Administration\_RoleManagementPartial.cshtml" />
     <Content Include="Views\AccountProfile\Messages.cshtml" />
     <Content Include="Views\AccountProfile\MessagesData.cshtml" />
-    <Content Include="Views\AccountProfile\EditMessage.cshtml" />
+    <Content Include="Views\AccountProfile\ReplyMessage.cshtml" />
     <Content Include="Views\AccountProfile\ViewMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>

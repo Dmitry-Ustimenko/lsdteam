@@ -320,12 +320,12 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("create-message")]
 		public ActionResult CreateMessage()
 		{
-			return View("EditMessage", new UserMessageModel());
+			return View("ReplyMessage", new UserMessageModel());
 		}
 
 		[HttpGet]
-		[Route("edit-message/{id:int?}")]
-		public ActionResult EditMessage(int id)
+		[Route("reply-message/{id:int?}")]
+		public ActionResult ReplyMessage(int id)
 		{
 			var model = new UserMessageModel { Id = id };
 			FillUserMessageModel(model);
@@ -334,13 +334,21 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
-		[Route("edit-message/{id:int?}")]
-		public ActionResult EditMessage(UserMessageModel model)
+		[Route("reply-message/{id:int?}")]
+		public ActionResult ReplyMessage(UserMessageModel model)
 		{
 			if (ModelIsValid)
 			{
-				return RedirectToAction<AccountProfileController>(o => o.Messages(),
-					new RouteValueDictionary(new Dictionary<string, object> { { "type", EnumEx.GetName(MessageTypeEnum.Sent) } }));
+				var data = model.CopyTo();
+				data.SenderId = CurrentUser.Id;
+
+				Execute(() => _accountProfileService.SaveMessage(data));
+
+				if (ModelIsValid)
+				{
+					return RedirectToAction<AccountProfileController>(o => o.Messages(),
+						new RouteValueDictionary(new Dictionary<string, object> { { "type", EnumEx.GetName(MessageTypeEnum.Sent) } }));
+				}
 			}
 
 			return View(model);

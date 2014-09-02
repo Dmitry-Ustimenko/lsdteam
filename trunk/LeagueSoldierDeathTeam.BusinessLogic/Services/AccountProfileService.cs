@@ -17,6 +17,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 		#region Private Fields
 
 		private readonly IRepository<UserMessage> _userMessageRepository;
+		private readonly IRepository<User> _userRepository;
 
 		#endregion
 
@@ -29,6 +30,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				throw new ArgumentNullException("repositoryFactory");
 
 			_userMessageRepository = repositoryFactory.CreateRepository<UserMessage>();
+			_userRepository = repositoryFactory.CreateRepository<User>();
 		}
 
 		#endregion
@@ -120,6 +122,25 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			}
 
 			return message;
+		}
+
+		public void SaveMessage(UserMessageData data)
+		{
+			var recipient = _userRepository.Query(o => o.UserName == data.RecipientName).SingleOrDefault();
+			if (recipient == null)
+				throw new ArgumentException("Пользователь с таким именем не найден", string.Format("RecipientName"));
+
+			var entity = new UserMessage
+			{
+				Title = data.Title,
+				Description = data.Description,
+				CreateDate = DateTime.UtcNow,
+				RecipientId = recipient.Id,
+				SenderId = data.SenderId
+			};
+
+			_userMessageRepository.Add(entity);
+			UnitOfWork.Commit();
 		}
 
 		IEnumerable<UserMessageData> IAccountProfileService.GetUserMessages(int userId, int typeId)
