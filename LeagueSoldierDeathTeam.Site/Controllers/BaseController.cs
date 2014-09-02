@@ -118,11 +118,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			}
 			catch (ArgumentNullException exception)
 			{
-				ModelState.AddModelError("Error", exception.Message);
+				ModelState.AddModelError(GetParamName(exception.ParamName), GetErrorMessage(exception.Message));
 			}
 			catch (ArgumentException exception)
 			{
-				ModelState.AddModelError("Error", exception.Message);
+				ModelState.AddModelError(GetParamName(exception.ParamName), GetErrorMessage(exception.Message));
 			}
 			catch (EntityCommandExecutionException exception)
 			{
@@ -148,11 +148,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			}
 			catch (ArgumentNullException exception)
 			{
-				ModelState.AddModelError("Error", exception.Message);
+				ModelState.AddModelError(GetParamName(exception.ParamName), GetErrorMessage(exception.Message));
 			}
 			catch (ArgumentException exception)
 			{
-				ModelState.AddModelError("Error", exception.Message);
+				ModelState.AddModelError(GetParamName(exception.ParamName), GetErrorMessage(exception.Message));
 			}
 			catch (EntityCommandExecutionException exception)
 			{
@@ -171,6 +171,17 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		protected bool ModelIsValid { get { return ModelState.IsValid; } }
+
+		private static string GetParamName(string paramName)
+		{
+			return !string.IsNullOrWhiteSpace(paramName) ? paramName : "Error";
+		}
+
+		private static string GetErrorMessage(string message)
+		{
+			var paramNameIndex = message.IndexOf("Parameter name:", StringComparison.Ordinal);
+			return paramNameIndex > 0 ? message.Substring(0, paramNameIndex) : message;
+		}
 
 		public static RedirectToRouteResult RedirectToAction<T>(Expression<Action<T>> action, RouteValueDictionary values = null)
 			where T : Controller

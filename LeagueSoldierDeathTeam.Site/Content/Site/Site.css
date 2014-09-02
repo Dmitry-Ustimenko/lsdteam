@@ -828,7 +828,7 @@ a {
 			font-style: italic;
 		}
 
-	.simple-page-body .form .validation-summary-errors {
+	.section-body form .validation-summary-errors {
 		color: #B31919;
 		background-color: rgba(100, 17, 17, 0.2);
 		margin-bottom: 10px;
@@ -2684,4 +2684,8 @@ span.checker-span {
 	.view-message-description .message-date {
 		color: #4B4B4B;
 		padding-bottom: 8px;
+	}
+
+	.view-message-description .message-description {
+		text-align:start;
 	}
