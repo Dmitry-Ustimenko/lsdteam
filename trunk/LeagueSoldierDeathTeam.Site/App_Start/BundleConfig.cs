@@ -20,6 +20,8 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				"~/Scripts/Plugins/bootstrap-datepicker.js",
 				"~/Scripts/Plugins/bootstrap-datepicker.ru.js",
 				"~/Scripts/Plugins/jquery.vegas.js",
+				"~/Scripts/Plugins/jquery.markitup.js",
+				"~/Scripts/Plugins/set.js",
 
 				"~/Scripts/Site/site.js",
 				"~/Scripts/Site/site.ajax.js",
@@ -40,6 +42,9 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				"~/Content/Plugins/modal-responsive.css",
 				"~/Content/Plugins/animate.css",
 				"~/Content/Plugins/jquery.vegas.css",
+
+				"~/Content/Plugins/HtmlEditor/sets/style.css",
+				"~/Content/Plugins/HtmlEditor/skins/style.css",
 
 				"~/Content/Site/Site.css"
 				));

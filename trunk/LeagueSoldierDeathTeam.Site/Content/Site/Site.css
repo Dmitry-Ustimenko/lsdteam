@@ -828,91 +828,91 @@ a {
 			font-style: italic;
 		}
 
-	.section-body form .validation-summary-errors {
-		color: #B31919;
-		background-color: rgba(100, 17, 17, 0.2);
-		margin-bottom: 10px;
+.section-body form .validation-summary-errors {
+	color: #B31919;
+	background-color: rgba(100, 17, 17, 0.2);
+	margin-bottom: 10px;
+}
+
+.simple-page-body .form label {
+	float: left;
+	padding-top: 7px;
+	/* color: #B01F1F; */
+	font-size: 15px;
+	/* text-transform: uppercase; */
+	letter-spacing: 0;
+	/* font-weight: 700; */
+	cursor: pointer;
+}
+
+.simple-page-body .form input[type=text],
+.simple-page-body .form input[type=password],
+.simple-page-body .form select {
+	width: 165px;
+	float: right;
+	padding: 8px 5px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	border: 1px solid #616161;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+	border-radius: 3px;
+	font-family: 'Ubuntu', 'Lato', sans-serif;
+	color: black;
+}
+
+.simple-page-body .form input[type=button], .simple-page-body .form input[type=submit] {
+	float: right;
+	padding: 6px 5px;
+	border: 1px solid #B31919;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+	border-radius: 3px;
+	background: #B31919;
+	cursor: pointer;
+	font-family: 'Ubuntu', 'Lato', sans-serif;
+	color: white;
+	font-weight: 700;
+	font-size: 15px;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+	width: 165px;
+	float: right;
+}
+
+	.simple-page-body .form input[type=button]:hover, .simple-page-body .form input[type=submit]:hover {
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 	}
 
-	.simple-page-body .form label {
-		float: left;
-		padding-top: 7px;
-		/* color: #B01F1F; */
-		font-size: 15px;
-		/* text-transform: uppercase; */
-		letter-spacing: 0;
-		/* font-weight: 700; */
-		cursor: pointer;
-	}
-
-	.simple-page-body .form input[type=text],
-	.simple-page-body .form input[type=password],
-	.simple-page-body .form select {
-		width: 165px;
-		float: right;
-		padding: 8px 5px;
-		margin-bottom: 10px;
-		font-size: 12px;
-		border: 1px solid #616161;
-		box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-		border-radius: 3px;
-		font-family: 'Ubuntu', 'Lato', sans-serif;
-		color: black;
-	}
-
-	.simple-page-body .form input[type=button], .simple-page-body .form input[type=submit] {
-		float: right;
-		padding: 6px 5px;
-		border: 1px solid #B31919;
-		box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
-		border-radius: 3px;
+	.simple-page-body .form input[type=button]:active, .simple-page-body .form input[type=submit]:active {
 		background: #B31919;
-		cursor: pointer;
-		font-family: 'Ubuntu', 'Lato', sans-serif;
-		color: white;
-		font-weight: 700;
-		font-size: 15px;
-		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
-		width: 165px;
-		float: right;
+		box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
 	}
 
-		.simple-page-body .form input[type=button]:hover, .simple-page-body .form input[type=submit]:hover {
-			box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-		}
+.simple-page-body .form .checkbox {
+	float: right;
+	width: 200px;
+	padding: 7px 0;
+}
 
-		.simple-page-body .form input[type=button]:active, .simple-page-body .form input[type=submit]:active {
-			background: #B31919;
-			box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
-		}
+.simple-page-body .form .checkbox-container {
+	width: 600px;
+}
 
-	.simple-page-body .form .checkbox {
-		float: right;
-		width: 200px;
-		padding: 7px 0;
+.simple-page-body .message-body {
+	height: 275px;
+	text-align: center;
+	margin-top: 135px;
+}
+
+	.simple-page-body .message-body h2 {
+		font-weight: normal;
+		font-size: 1.5em;
 	}
 
-	.simple-page-body .form .checkbox-container {
-		width: 600px;
-	}
-
-	.simple-page-body .message-body {
-		height: 275px;
-		text-align: center;
-		margin-top: 135px;
-	}
-
-		.simple-page-body .message-body h2 {
-			font-weight: normal;
-			font-size: 1.5em;
-		}
-
-	.simple-page-body .message {
-		display: block;
-		text-align: center;
-		margin: 20px;
-		font-size: 14px;
-	}
+.simple-page-body .message {
+	display: block;
+	text-align: center;
+	margin: 20px;
+	font-size: 14px;
+}
 
 .success-message {
 	border: 1px solid green;
@@ -2651,12 +2651,17 @@ span.checker-span {
 
 .view-message-commands {
 	position: absolute;
-	right: 20px;
+	right: -1px;
+	top: -1px;
+	border: 1px solid #D1D1D1;
+	padding: 10px;
+	padding-top: 6px;
 }
 
 .view-message-profile {
 	display: inline-block;
-	width: 15%;
+	width: 14%;
+	margin-right: 13px;
 }
 
 	.view-message-profile .user-name {
@@ -2687,5 +2692,5 @@ span.checker-span {
 	}
 
 	.view-message-description .message-description {
-		text-align:start;
+		text-align: left;
 	}
