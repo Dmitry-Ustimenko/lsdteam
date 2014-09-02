@@ -63,7 +63,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		site.message.init({
+		site.message.initView.init({
 			urls: {
 				saveAsDraft: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsDraft(default(int))))',
 				deleteMessage: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.DeleteMessage(default(int))))',

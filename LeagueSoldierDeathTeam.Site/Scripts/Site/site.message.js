@@ -15,29 +15,38 @@
 			}
 		},
 
-		init: function (settings) {
-			$.extend(true, site.message.settings, settings);
-			site.message.saveAsDraft();
-			site.message.deleteMessage();
+		initEdit: {
+			init: function (settings) {
+				$.extend(true, site.message.settings, settings);
 
+				$("#Description").markItUp(markItUpSettings);
+			},
 		},
 
-		saveAsDraft: function () {
-			$('[data-action=saveMessage]').off("click").on('click', function () {
-				var id = $(this).data("id");
-				$.fn.confirmOverlay("Сохранение сообщения", "Подтвердите сохранение сообщения", function () {
-					site.ajax.post(site.message.settings.urls.saveAsDraft, { id: id });
-				});
-			});
-		},
+		initView: {
+			init: function (settings) {
+				$.extend(true, site.message.settings, settings);
+				site.message.initView.saveAsDraft();
+				site.message.initView.deleteMessage();
+			},
 
-		deleteMessage: function () {
-			$('[data-action=deleteMessage]').off("click").on('click', function () {
-				var id = $(this).data("id");
-				$.fn.confirmOverlay("Удаление сообщения", "Подтвердите удаление сообщения", function () {
-					site.ajax.post(site.message.settings.urls.deleteMessage, { id: id });
+			saveAsDraft: function () {
+				$('[data-action=saveMessage]').off("click").on('click', function () {
+					var id = $(this).data("id");
+					$.fn.confirmOverlay("Сохранение сообщения", "Подтвердите сохранение сообщения", function () {
+						site.ajax.post(site.message.settings.urls.saveAsDraft, { id: id });
+					});
 				});
-			});
+			},
+
+			deleteMessage: function () {
+				$('[data-action=deleteMessage]').off("click").on('click', function () {
+					var id = $(this).data("id");
+					$.fn.confirmOverlay("Удаление сообщения", "Подтвердите удаление сообщения", function () {
+						site.ajax.post(site.message.settings.urls.deleteMessage, { id: id });
+					});
+				});
+			}
 		}
 	};
 })();
