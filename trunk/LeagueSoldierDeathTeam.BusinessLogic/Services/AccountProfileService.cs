@@ -89,6 +89,39 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			UnitOfWork.Commit();
 		}
 
+		public UserMessageData GetUserMessage(int userId, int id)
+		{
+			var message = _userMessageRepository.GetData(o => new UserMessageData
+			{
+				Id = o.Id,
+				CreateDate = o.CreateDate,
+				Description = o.Description,
+				Title = o.Title,
+				IsRead = o.IsRead,
+				SenderId = o.Sender != null ? o.Sender.Id : default(int?),
+				SenderName = o.Sender != null ? o.Sender.UserName : string.Empty,
+				SenderPhoto = o.Sender != null ? o.Sender.PhotoPath : string.Empty,
+				RecipientId = o.Recipient != null ? o.Recipient.Id : default(int?),
+				RecipientName = o.Recipient != null ? o.Recipient.UserName : string.Empty,
+				IsSenderSaved = o.IsSenderSaved,
+				IsRecipientSaved = o.IsRecipientSaved
+			}, o => o.Id == id && (o.RecipientId == userId && !o.IsRecipientDeleted || o.SenderId == userId && !o.IsSenderDeleted)).SingleOrDefault();
+
+			if (message != null)
+			{
+				if (message.RecipientId.GetValueOrDefault() == userId)
+				{
+					message.TypeId = message.IsRecipientSaved ? (int)MessageTypeEnum.Draft : (int)MessageTypeEnum.Inbox;
+				}
+				else if (message.SenderId.GetValueOrDefault() == userId)
+				{
+					message.TypeId = message.IsSenderSaved ? (int)MessageTypeEnum.Draft : (int)MessageTypeEnum.Sent;
+				}
+			}
+
+			return message;
+		}
+
 		IEnumerable<UserMessageData> IAccountProfileService.GetUserMessages(int userId, int typeId)
 		{
 			Expression<Func<UserMessage, bool>> filter = null;
