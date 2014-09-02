@@ -2373,6 +2373,21 @@ span.checker-span {
 		-webkit-border-radius: 3px;
 	}
 
+.messages-commands {
+	margin-top: 5px;
+	margin-bottom: 7px;
+	font-size: 11px;
+}
+
+.commands {
+	float: right;
+}
+
+.command {
+	border-bottom: 1px dotted;
+	cursor: pointer;
+}
+
 .messages {
 	margin: 10px;
 	margin-bottom: 0;
@@ -2382,21 +2397,6 @@ span.checker-span {
 	.messages .checker {
 		margin: 0;
 	}
-
-	.messages .messages-commands {
-		margin-top: 5px;
-		margin-bottom: 7px;
-		font-size: 11px;
-	}
-
-		.messages .messages-commands .commands {
-			float: right;
-		}
-
-			.messages .messages-commands .commands .command {
-				border-bottom: 1px dotted;
-				cursor: pointer;
-			}
 
 	.messages hr {
 		margin: 0;
@@ -2554,7 +2554,7 @@ span.checker-span {
 	.simple-page-body .form-container .form-border {
 		border: 1px solid #D1D1D1;
 		padding: 15px;
-		padding-bottom: 0;
+		position: relative;
 	}
 
 	.simple-page-body .form-container .form-buttons {
@@ -2565,6 +2565,10 @@ span.checker-span {
 	.simple-page-body .form-container .container-item {
 		margin-bottom: 15px;
 	}
+
+		.simple-page-body .form-container .container-item:last-child {
+			margin-bottom: 0;
+		}
 
 		.simple-page-body .form-container .container-item .field-container {
 			width: 84%;

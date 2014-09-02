@@ -1,5 +1,7 @@
-﻿@using LeagueSoldierDeathTeam.Site.Classes
+﻿@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
+@using LeagueSoldierDeathTeam.Site.Classes
 @using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.BusinessLogic.Dto.UserMessageData
 @{
 	ViewBag.Title = "Просмотр сообщения";
 }
@@ -16,7 +18,38 @@
 				</a>
 			</div>
 			<div class="form-container">
-
+				<div class="form-border">
+					<div style="position: absolute;right: 20px;">
+						<span class="messages-commands">
+							@if (Model.Type == MessageTypeEnum.Inbox || Model.Type == MessageTypeEnum.Sent)
+							{
+								<span class="green command" data-action="saveMessages">сохранить</span>
+								@:или
+							}
+							<span class="darkred command" data-action="deleteMessages">удалить</span>
+						</span>
+					</div>
+					<div>
+						<div style="display: inline-block; width: 15%">
+							<div style="text-align: center;font-size: 14px;padding-bottom: 5px;">@Model.SenderName</div>
+							<div style="text-align: center;">
+								<img style="width: 80px;height: 80px;" src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.SenderPhoto) ? Model.SenderPhoto : Constants.DefaultPhotoPath)" alt="Фото">
+							</div>
+						</div>
+						<div style="display: inline-block;vertical-align: top;text-align: center;width: 84%">
+							<div style="font-size: 20px; padding-bottom: 6px;">@Model.Title</div>
+							<div style="color: #4B4B4B; padding-bottom: 8px; ">@Model.CreateDate.ToString("dd MMMM yyyy HH:mm")</div>
+							<div class="form-border">@Model.Description</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-buttons">
+					@if (Model.Type == MessageTypeEnum.Inbox)
+					{
+						<span class="preview-link">Ответить с цитатой</span>
+						<input type="submit" value="Ответить" />
+					}
+				</div>
 			</div>
 		</div>
 	</div>

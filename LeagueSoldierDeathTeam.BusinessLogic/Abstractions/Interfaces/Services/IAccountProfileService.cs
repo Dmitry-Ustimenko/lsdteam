@@ -14,5 +14,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 		void SaveAsDraft(int userId, IEnumerable<int> messagesIds);
 
 		void DeleteMessages(int userId, IEnumerable<int> messagesIds);
+
+		UserMessageData GetUserMessage(int userId, int id);
 	}
 }

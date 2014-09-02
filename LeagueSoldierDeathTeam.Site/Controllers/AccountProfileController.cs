@@ -302,7 +302,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("view-message/{id:int}")]
 		public ActionResult ViewMessage(int id)
 		{
-			return View();
+			var model = Execute(() => _accountProfileService.GetUserMessage(CurrentUser.Id, id));
+			return model != null
+				? (ActionResult)View(model)
+				: RedirectToAction<AccountProfileController>(o => o.Messages());
 		}
 
 		[HttpGet]
