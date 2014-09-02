@@ -22,10 +22,19 @@ namespace LeagueSoldierDeathTeam.Site.Classes
 			var data = BuildUrl(actionInfo.ActionName, actionInfo.ControllerName, actionInfo.RouteValues);
 			return string.Concat(AppConfig.HostName, data);
 		}
-		public static string BuildActionUrl<TController>(Expression<Action<TController>> action, bool? secure = null) where TController : Controller
+
+		public static string BuildActionUrl<TController>(Expression<Action<TController>> action, bool? secure = null)
+			where TController : Controller
 		{
 			var actionInfo = ControllerActionInfo.Create(action);
 			return BuildUrl(actionInfo.ActionName, actionInfo.ControllerName, actionInfo.RouteValues, secure);
+		}
+
+		public static string BuildActionUrl<TController>(Expression<Action<TController>> action, IDictionary<string, object> routeValues, bool? secure = null)
+			where TController : Controller
+		{
+			var actionInfo = ControllerActionInfo.Create(action);
+			return BuildUrl(actionInfo.ActionName, actionInfo.ControllerName, new RouteValueDictionary(routeValues ?? new Dictionary<string, object>()), secure);
 		}
 
 		public static string BuildUrl(string actionName, string controllerName, IDictionary<string, object> routeValues, bool? secure = false, IDictionary<string, string> queryParameters = null)

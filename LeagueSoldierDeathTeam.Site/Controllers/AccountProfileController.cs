@@ -303,9 +303,17 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		public ActionResult ViewMessage(int id)
 		{
 			var model = Execute(() => _accountProfileService.GetUserMessage(CurrentUser.Id, id));
-			return model != null
-				? (ActionResult)View(model)
-				: RedirectToAction<AccountProfileController>(o => o.Messages());
+
+			if (model == null)
+				return RedirectToAction<AccountProfileController>(o => o.Messages());
+
+			if (model.Type == MessageTypeEnum.Inbox && !model.IsRead)
+			{
+				Execute(() => _accountProfileService.SaveAsRead(CurrentUser.Id, new[] { id }));
+				Execute(() => CurrentUser.InboxMessageCount = _accountProfileService.GetUserMessageCount(CurrentUser.Id));
+			}
+
+			return View(model);
 		}
 
 		[HttpGet]
@@ -320,6 +328,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		public ActionResult EditMessage(int id)
 		{
 			var model = new UserMessageModel { Id = id };
+			FillUserMessageModel(model);
 
 			return View(model);
 		}
@@ -339,7 +348,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[AjaxOrChildActionOnly]
 		[HttpPost]
-		public ActionResult SaveMessageAsRead(int typeId, string messageIds)
+		public ActionResult SaveMessagesAsRead(int typeId, string messageIds)
 		{
 			Execute(() => _accountProfileService.SaveAsRead(CurrentUser.Id, ParseMessageIds(messageIds)));
 
@@ -353,7 +362,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[AjaxOrChildActionOnly]
 		[HttpPost]
-		public ActionResult SaveMessageAsDraft(int typeId, string messageIds)
+		public ActionResult SaveMessagesAsDraft(int typeId, string messageIds)
 		{
 			Execute(() => _accountProfileService.SaveAsDraft(CurrentUser.Id, ParseMessageIds(messageIds)));
 
@@ -367,7 +376,21 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[AjaxOrChildActionOnly]
 		[HttpPost]
-		public ActionResult DeleteMessage(int typeId, string messageIds)
+		public ActionResult SaveMessageAsDraft(int id)
+		{
+			Execute(() => _accountProfileService.SaveAsDraft(CurrentUser.Id, new[] { id }));
+
+			return ModelIsValid
+			? Json(new
+			{
+				ReturnUrl = WebBuilder.BuildActionUrl<AccountProfileController>(o => o.Messages(),
+					new RouteValueDictionary(new Dictionary<string, object> { { "type", EnumEx.GetName(MessageTypeEnum.Draft) } }))
+			}) : JsonErrorResult();
+		}
+
+		[AjaxOrChildActionOnly]
+		[HttpPost]
+		public ActionResult DeleteMessages(int typeId, string messageIds)
 		{
 			Execute(() => _accountProfileService.DeleteMessages(CurrentUser.Id, ParseMessageIds(messageIds)));
 
@@ -377,6 +400,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return ModelIsValid
 				? (ActionResult)View("MessagesData", model)
 				: JsonErrorResult();
+		}
+
+		[AjaxOrChildActionOnly]
+		[HttpPost]
+		public ActionResult DeleteMessage(int id)
+		{
+			Execute(() => _accountProfileService.DeleteMessages(CurrentUser.Id, new[] { id }));
+			return ModelIsValid ? Json(new { ReturnUrl = WebBuilder.BuildActionUrl<AccountProfileController>(o => o.Messages()) }) : JsonErrorResult();
 		}
 
 		#endregion
@@ -413,6 +444,22 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			model.Data = Execute(() => _accountProfileService.GetUserMessages(CurrentUser.Id, model.MessageTypeId))
 				?? new List<UserMessageData>();
+		}
+
+		private void FillUserMessageModel(UserMessageModel model)
+		{
+			var message = Execute(() => _accountProfileService.GetUserMessage(CurrentUser.Id, model.Id.GetValueOrDefault()));
+
+			if (message != null && message.Type == MessageTypeEnum.Inbox)
+			{
+				model.Title = message.Title;
+				model.Description = message.Description;
+				model.RecipientName = message.SenderName;
+			}
+			else
+			{
+				model = new UserMessageModel();
+			}
 		}
 
 		#endregion

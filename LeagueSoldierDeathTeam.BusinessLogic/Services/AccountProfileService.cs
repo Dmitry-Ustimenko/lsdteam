@@ -155,7 +155,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		int IAccountProfileService.GetUserMessageCount(int userId)
 		{
-			return _userMessageRepository.GetDataCount(o => o.RecipientId == userId && !o.IsRecipientDeleted && !o.IsRecipientSaved);
+			return _userMessageRepository.GetDataCount(o => o.RecipientId == userId && !o.IsRecipientDeleted && !o.IsRecipientSaved && !o.IsRead);
 		}
 
 		#endregion

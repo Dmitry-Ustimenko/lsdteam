@@ -13,44 +13,63 @@
 		</div>
 		<div class="section-module-body">
 			<div class="back">
-				<a class="button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.Messages()))">
+				<a class="button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.Messages(),
+						new RouteValueDictionary(new Dictionary<string, object> { { "type", Model.Type } })))">
 					<span class="back-arrow"></span>Вернуться к сообщениям
 				</a>
 			</div>
 			<div class="form-container">
-				<div class="form-border">
-					<div style="position: absolute;right: 20px;">
-						<span class="messages-commands">
-							@if (Model.Type == MessageTypeEnum.Inbox || Model.Type == MessageTypeEnum.Sent)
-							{
-								<span class="green command" data-action="saveMessages">сохранить</span>
-								@:или
-							}
-							<span class="darkred command" data-action="deleteMessages">удалить</span>
-						</span>
-					</div>
-					<div>
-						<div style="display: inline-block; width: 15%">
-							<div style="text-align: center;font-size: 14px;padding-bottom: 5px;">@Model.SenderName</div>
-							<div style="text-align: center;">
-								<img style="width: 80px;height: 80px;" src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.SenderPhoto) ? Model.SenderPhoto : Constants.DefaultPhotoPath)" alt="Фото">
+				@using (Html.BeginForm("EditMessage", "AccountProfile", FormMethod.Post))
+				{
+					<div class="form-border">
+						<div class="view-message-commands">
+							<span class="messages-commands">
+								@if (Model.Type == MessageTypeEnum.Inbox || Model.Type == MessageTypeEnum.Sent)
+								{
+									<span class="green command" data-id="@Model.Id" data-action="saveMessage">сохранить</span>
+									@:или
+								}
+								<span class="darkred command" data-id="@Model.Id" data-action="deleteMessage">удалить</span>
+							</span>
+						</div>
+						<div>
+							<div class="view-message-profile">
+								<div class="center user-name">@Model.SenderName</div>
+								<div class="center">
+									<img class="photo" src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.SenderPhoto) ? Model.SenderPhoto : Constants.DefaultPhotoPath)" alt="Фото">
+								</div>
+							</div>
+							<div class="view-message-description">
+								<div class="message-title">@Model.Title</div>
+								<div class="message-date">@Model.CreateDate.ToString("dd MMMM yyyy HH:mm")</div>
+								<div class="form-border">@Model.Description</div>
 							</div>
 						</div>
-						<div style="display: inline-block;vertical-align: top;text-align: center;width: 84%">
-							<div style="font-size: 20px; padding-bottom: 6px;">@Model.Title</div>
-							<div style="color: #4B4B4B; padding-bottom: 8px; ">@Model.CreateDate.ToString("dd MMMM yyyy HH:mm")</div>
-							<div class="form-border">@Model.Description</div>
-						</div>
 					</div>
-				</div>
-				<div class="form-buttons">
-					@if (Model.Type == MessageTypeEnum.Inbox)
-					{
-						<span class="preview-link">Ответить с цитатой</span>
-						<input type="submit" value="Ответить" />
-					}
-				</div>
+					<div class="form-buttons">
+						@if (Model.Type == MessageTypeEnum.Inbox && Model.SenderId.HasValue)
+						{
+							<span class="preview-link">Ответить с цитатой</span>
+							<a class="button big-button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.EditMessage(Model.Id)))">
+								Ответить
+							</a>
+						}
+					</div>
+				}
 			</div>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		site.message.init({
+			urls: {
+				saveAsDraft: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsDraft(default(int))))',
+				deleteMessage: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.DeleteMessage(default(int))))',
+				redirectAction: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.Messages()))'
+			}
+		});
+	});
+</script>
+
