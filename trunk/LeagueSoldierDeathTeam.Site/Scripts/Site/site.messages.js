@@ -108,8 +108,14 @@
 			},
 
 			initGlobalMessageCount: function () {
-				if ($(site.messages.settings.elements.messageType).val() == "Inbox")
-					$("[data-type=global-message-count]").text($("[data-type=message-count]").text());
+				if ($(site.messages.settings.elements.messageType).val() == "Inbox") {
+					var globalMessageCount = $("[data-type=global-message-count]");
+					var ureadCount = $("#ureadMessages").val();
+
+					globalMessageCount.text(ureadCount);
+					if (ureadCount == '0')
+						globalMessageCount.closest("sup").addClass('gray');
+				}
 			},
 
 			saveAsRead: function (type, messages) {
@@ -127,6 +133,7 @@
 							{ typeId: type.val(), messageIds: array.join(",") },
 							function () {
 								site.messages.refreshGrid();
+								site.messages.initGlobalMessageCount();
 							});
 						});
 					}

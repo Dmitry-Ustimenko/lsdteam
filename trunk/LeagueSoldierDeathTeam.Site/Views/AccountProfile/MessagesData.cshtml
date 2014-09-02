@@ -14,6 +14,7 @@
 	@Html.HiddenFor(m => m.MessageType)
 	<hr />
 	<div class="messages-commands">
+		<input type="hidden" id="ureadMessages" value="@Model.Data.Count(o => !o.IsRead)" />
 		<span>Всего сообщений (<span data-type="message-count" class="darkred">@Model.Data.Count()</span>)</span>
 		<span class="commands">
 			@if (Model.MessageType == MessageTypeEnum.Inbox)

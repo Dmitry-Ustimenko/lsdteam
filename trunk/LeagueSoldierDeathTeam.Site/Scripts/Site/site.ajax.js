@@ -36,13 +36,26 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 						return;
 					}
 
-					if (data.Status != undefined && data.Status == "Error") {
-						if (typeof (callbackError) == 'function') {
-							callbackError(data.Message != undefined ? data.Message : "При обработке запроса произошла ошибка.");
-						}
+					if (data.ReturnUrl != undefined) {
+						window.location.href = data.ReturnUrl;
 					}
-					else if (typeof (callback) == 'function') {
-						callback(data);
+					else {
+						var returnUrl = $.fn.GetQueryParamValue("ReturnUrl");
+						if (returnUrl != undefined) {
+							window.location.href = returnUrl.split("%2F").join("/");
+						}
+						else {
+							if (data.Status != undefined && data.Status == "Error") {
+								if (typeof (callbackError) == 'function') {
+									callbackError(data.Message != undefined ? data.Message : "При обработке запроса произошла ошибка.");
+								}
+							}
+							else if (typeof (callback) == 'function') {
+								callback(data);
+							} else {
+								window.location.href = "/";
+							}
+						}
 					}
 				},
 				error: function (jqxhr) {

@@ -177,13 +177,13 @@
 			confirm.closeOverlay();
 		});
 
-		confirm.find("#btnCancel").off("click").on("click", function() {
+		confirm.find("#btnCancel").off("click").on("click", function () {
 			if (typeof (callbackClose) == 'function')
 				callbackClose();
 			confirm.closeOverlay();
 		});
-		
-		confirm.find(".close").off("click").on("click", function() {
+
+		confirm.find(".close").off("click").on("click", function () {
 			if (typeof (callbackClose) == 'function')
 				callbackClose();
 			confirm.closeOverlay();
@@ -261,39 +261,27 @@
 	$.fn.loadData = function (url, params, callback, callbackError) {
 		var target = this;
 		site.ajax.post(url, params, function (data) {
-			if (typeof (data) == 'object' && data != null) {
-				if (data.ReturnUrl != undefined)
-					window.location.href = data.ReturnUrl;
-				else {
-					var returnUrl = $.fn.GetQueryParamValue("ReturnUrl");
-					if (returnUrl != undefined)
-						window.location.href = returnUrl.split("%2F").join("/");
-					else
-						window.location.href = "/";
-				}
-			} else {
-				$(target).html(data);
+			$(target).html(data);
 
-				var form = target.find("form");
-				if (form != undefined) {
-					$(form).removeData("validator");
-					$(form).removeData("unobtrusiveValidation");
-					$.validator.unobtrusive.parse($(form));
-				}
-
-				if ($(data).find("div.validation-summary-errors").length) {
-					if (typeof (callbackError) == 'function')
-						callbackError();
-					$.fn.initValidationSummary(target);
-					return;
-				}
-
-				if (typeof (callback) == 'function')
-					callback(data);
+			var form = target.find("form");
+			if (form != undefined) {
+				$(form).removeData("validator");
+				$(form).removeData("unobtrusiveValidation");
+				$.validator.unobtrusive.parse($(form));
 			}
+
+			if ($(data).find("div.validation-summary-errors").length) {
+				if (typeof (callbackError) == 'function')
+					callbackError();
+				$.fn.initValidationSummary(target);
+				return;
+			}
+
+			if (typeof (callback) == 'function')
+				callback(data);
 		}, function (message) {
 			$.fn.alertOverlay("Ошибка", message);
-			
+
 			if (typeof (callbackError) == 'function')
 				callbackError(data);
 		});

@@ -2528,6 +2528,12 @@ span.checker-span {
 	width: 35%;
 }
 
+.big-button {
+	width: 165px;
+	display: inline-block;
+	text-align: center;
+}
+
 .back {
 	margin: 10px;
 	margin-top: 16px;
@@ -2642,3 +2648,40 @@ span.checker-span {
 .simple-page-body a.orange:hover {
 	text-shadow: 0 0 0 transparent, 0 0 2px rgba(255, 165, 0, 0.49);
 }
+
+.view-message-commands {
+	position: absolute;
+	right: 20px;
+}
+
+.view-message-profile {
+	display: inline-block;
+	width: 15%;
+}
+
+	.view-message-profile .user-name {
+		font-size: 14px;
+		padding-bottom: 5px;
+	}
+
+	.view-message-profile .photo {
+		width: 80px;
+		height: 80px;
+	}
+
+.view-message-description {
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	width: 84%;
+}
+
+	.view-message-description .message-title {
+		font-size: 20px;
+		padding-bottom: 6px;
+	}
+
+	.view-message-description .message-date {
+		color: #4B4B4B;
+		padding-bottom: 8px;
+	}

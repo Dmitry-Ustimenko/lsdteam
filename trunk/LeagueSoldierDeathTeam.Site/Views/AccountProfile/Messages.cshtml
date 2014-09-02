@@ -39,9 +39,9 @@
 	$(document).ready(function () {
 		site.messages.init({
 			urls: {
-				saveAsRead: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsRead((int)MessageTypeEnum.Inbox, null)))',
-				saveAsDraft: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessageAsDraft((int)MessageTypeEnum.Inbox, null)))',
-				deleteMessages: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.DeleteMessage((int)MessageTypeEnum.Inbox, null)))',
+				saveAsRead: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessagesAsRead((int)MessageTypeEnum.Inbox, null)))',
+				saveAsDraft: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.SaveMessagesAsDraft((int)MessageTypeEnum.Inbox, null)))',
+				deleteMessages: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.DeleteMessages((int)MessageTypeEnum.Inbox, null)))',
 				refreshGrid: '@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.MessagesData(null)))'
 			}
 		});

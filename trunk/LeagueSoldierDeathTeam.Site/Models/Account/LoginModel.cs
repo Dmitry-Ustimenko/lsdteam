@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LeagueSoldierDeathTeam.Site.Models.Account
 {
-	public class LoginModel
+	public class LoginModel : BaseModel
 	{
 		[Required(ErrorMessage = "Поле 'Логин' не заполнено.")]
 		[DisplayName("Email")]

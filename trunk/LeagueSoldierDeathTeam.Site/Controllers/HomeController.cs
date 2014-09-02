@@ -1,11 +1,10 @@
 ﻿using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
-using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Models.Home;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
+	[AllowAnonymous]
 	public class HomeController : BaseController
 	{
 		public HomeController(ServiceFactoryBase serviceFactory)
@@ -20,7 +19,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[Route("forum")]
-		[UserAuthorize(UserRoles = Role.Moderator)]
 		public ActionResult Forum()
 		{
 			return View();
