@@ -19,7 +19,7 @@
 			init: function (settings) {
 				$.extend(true, site.message.settings, settings);
 
-				$("#Description").markItUp(markItUpSettings);
+				$("#Description").markItUp(mySettings);
 			},
 		},
 
