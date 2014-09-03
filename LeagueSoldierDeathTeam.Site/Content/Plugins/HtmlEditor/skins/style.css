@@ -110,6 +110,10 @@
 			margin-right: 0px;
 		}
 
+		.markItUpHeader ul .markItUpDropMenu li:hover {
+			background: white;
+		}
+
 	.markItUpHeader ul .markItUpSeparator {
 		margin: 3px 5px;
 		width: 1px;
