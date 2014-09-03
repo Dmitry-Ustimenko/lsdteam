@@ -152,26 +152,26 @@
 				$(dropMenus(options.markupSet)).appendTo(header);
 
 				// add the footer after the textarea
-				footer = $('<div class="markItUpFooter"></div>').insertAfter($$);
+				//footer = $('<div class="markItUpFooter"></div>').insertAfter($$);
 
 				// add the resize handle after textarea
-				if (options.resizeHandle === true && browser.safari !== true) {
-					resizeHandle = $('<div class="markItUpResizeHandle"></div>')
-						.insertAfter($$)
-						.bind("mousedown.markItUp", function(e) {
-							var h = $$.height(), y = e.clientY, mouseMove, mouseUp;
-							mouseMove = function(e) {
-								$$.css("height", Math.max(20, e.clientY+h-y)+"px");
-								return false;
-							};
-							mouseUp = function(e) {
-								$("html").unbind("mousemove.markItUp", mouseMove).unbind("mouseup.markItUp", mouseUp);
-								return false;
-							};
-							$("html").bind("mousemove.markItUp", mouseMove).bind("mouseup.markItUp", mouseUp);
-					});
-					footer.append(resizeHandle);
-				}
+				//if (options.resizeHandle === true && browser.safari !== true) {
+				//	resizeHandle = $('<div class="markItUpResizeHandle"></div>')
+				//		.insertAfter($$)
+				//		.bind("mousedown.markItUp", function(e) {
+				//			var h = $$.height(), y = e.clientY, mouseMove, mouseUp;
+				//			mouseMove = function(e) {
+				//				$$.css("height", Math.max(20, e.clientY+h-y)+"px");
+				//				return false;
+				//			};
+				//			mouseUp = function(e) {
+				//				$("html").unbind("mousemove.markItUp", mouseMove).unbind("mouseup.markItUp", mouseUp);
+				//				return false;
+				//			};
+				//			$("html").bind("mousemove.markItUp", mouseMove).bind("mouseup.markItUp", mouseUp);
+				//	});
+				//	//footer.append(resizeHandle);
+				//}
 
 				// listen key events
 				$$.bind('keydown.markItUp', keyPressed).bind('keyup', keyPressed);

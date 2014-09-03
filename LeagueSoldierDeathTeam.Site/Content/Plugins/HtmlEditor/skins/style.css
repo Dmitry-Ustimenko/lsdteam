@@ -3,145 +3,201 @@
 // By Jay Salvat - http://markitup.jaysalvat.com/
 // ------------------------------------------------------------------*/
 .markItUp * {
-	margin:0px; padding:0px;
-	outline:none;
+	margin: 0px;
+	padding: 0px;
+	outline: none;
 }
+
 .markItUp a:link,
 .markItUp a:visited {
-	color:#000;
-	text-decoration:none;
+	color: #000;
+	text-decoration: none;
 }
-.markItUp  {
-	width:700px;
-	margin:5px 0 5px 0;
-	border:5px solid #F5F5F5;	
+
+.markItUpContainer {
+	border: none;
+	font: 11px Verdana, Arial, Helvetica, sans-serif;
+	border-radius: 3px;
 }
-.markItUpContainer  {
-	border:1px solid #3C769D;	
-	background:#FFF url(images/bg-container.png) repeat-x top left;
-	padding:5px 5px 2px 5px;
-	font:11px Verdana, Arial, Helvetica, sans-serif;
-}
+
 .markItUpEditor {
-	font:12px 'Courier New', Courier, monospace;
-	padding:5px 5px 5px 35px;
-	border:3px solid #3C769D;
-	width:643px;
-	height:320px;
-	background:#FFF url(images/bg-editor.png) no-repeat;
-	clear:both;
-	line-height:18px;
-	overflow:auto;
+	font: 12px 'Courier New', Courier, monospace;
+	padding: 5px 5px 5px 35px;
+	border: 3px solid #616161;
+	width: 643px;
+	height: 320px;
+	clear: both;
+	line-height: 18px;
+	overflow: auto;
 }
-.markItUpPreviewFrame	{
-	overflow:auto;
-	background-color:#FFFFFF;
-	border:1px solid #3C769D;
-	width:99.9%;
-	height:300px;
-	margin:5px 0;
+
+.markItUpContainer .markItUpEditor {
+	border-top: none !important;
+	border-radius: 0 0 3px 3px !important;
 }
+
+.markItUpPreviewFrame {
+	overflow: auto;
+	background-color: #FFFFFF;
+	border: 1px solid #616161;
+	width: 99.9%;
+	height: 300px;
+	margin: 5px 0;
+}
+
 .markItUpFooter {
-	width:100%;
-	cursor:n-resize;
+	width: 100%;
+	cursor: n-resize;
 }
+
 .markItUpResizeHandle {
-	overflow:hidden;
-	width:22px; height:5px;
-	margin-left:auto;
-	margin-right:auto;
-	background-image:url(images/handle.png);
-	cursor:n-resize;
+	overflow: hidden;
+	width: 22px;
+	height: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url(images/handle.png);
+	cursor: n-resize;
 }
 /***************************************************************************************/
 /* first row of buttons */
-.markItUpHeader ul li	{
-	list-style:none;
-	float:left;
-	position:relative;
+.markItUpHeader {
+	height: 28px;
+	border-radius: 3px 3px 0 0;
+	border: 1px solid #616161;
+	border-bottom: 1px solid #919191;
+	background: rgb(255,255,255);
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
 }
-.markItUpHeader ul li ul{
-	display:none;
-}
-.markItUpHeader ul li:hover > ul{
-	display:block;
-}
-.markItUpHeader ul .markItUpDropMenu {
-	background:transparent url(images/menu.png) no-repeat 115% 50%;
-	margin-right:5px;
-}
-.markItUpHeader ul .markItUpDropMenu li {
-	margin-right:0px;
-}
-.markItUpHeader ul .markItUpSeparator {
-	margin:0 10px;
-	width:1px;
-	height:16px;
-	overflow:hidden;
-	background-color:#CCC;
-}
-.markItUpHeader ul ul .markItUpSeparator {
-	width:auto; height:1px;
-	margin:0px;
-}
-/* next rows of buttons */
-.markItUpHeader ul ul {
-	display:none;
-	position:absolute;
-	top:18px; left:0px;	
-	background:#F5F5F5;
-	border:1px solid #3C769D;
-	height:inherit;
-}
-.markItUpHeader ul ul li {
-	float:none;
-	border-bottom:1px solid #3C769D;
-}
-.markItUpHeader ul ul .markItUpDropMenu {
-	background:#F5F5F5 url(images/submenu.png) no-repeat 100% 50%;
-}
-/* next rows of buttons */
-.markItUpHeader ul ul ul {
-	position:absolute;
-	top:-1px; left:150px;
-}
-.markItUpHeader ul ul ul li {
-	float:none;
-}
-.markItUpHeader ul a {
-	display:block;
-	width:16px; height:16px;
-	text-indent:-10000px;
-	background-repeat:no-repeat;
-	padding:3px;
-	margin:0px;
-}
-.markItUpHeader ul ul a {
-	display:block;
-	padding-left:0px;
-	text-indent:0;
-	width:120px; 
-	padding:5px 5px 5px 25px;
-	background-position:2px 50%;
-}
-.markItUpHeader ul ul a:hover  {
-	color:#FFF;
-	background-color:#3C769D;
-}
+
+	.markItUpHeader ul li {
+		list-style: none;
+		float: left;
+		position: relative;
+		padding: 5px;
+	}
+
+	.markItUpHeader ul li.markItUpButton:hover {
+		background: #eae8e8;
+		cursor: pointer;
+	}
+
+		.markItUpHeader ul li ul {
+			display: none;
+		}
+
+		.markItUpHeader ul li:hover > ul {
+			display: block;
+		}
+
+	.markItUpHeader ul .markItUpDropMenu {
+		background: transparent url(images/menu.png) no-repeat 100% 50%;
+		padding-right: 10px;
+	}
+
+	.markItUpHeader ul li.markItUpButton.markItUpDropMenu:hover {
+		background: #eae8e8 url(images/menu.png) no-repeat 100% 50%;
+	}
+
+		.markItUpHeader ul .markItUpDropMenu li {
+			margin-right: 0px;
+		}
+
+	.markItUpHeader ul .markItUpSeparator {
+		margin: 3px 5px;
+		width: 1px;
+		height: 20px;
+		overflow: hidden;
+		background-color: #CCC;
+		padding: 0;
+	}
+
+	.markItUpHeader ul ul .markItUpSeparator {
+		width: auto;
+		height: 1px;
+		margin: 0;
+	}
+	/* next rows of buttons */
+	.markItUpHeader ul ul {
+		display: none;
+		position: absolute;
+		top: 26px;
+		left: 0;
+		border: 1px solid #919191;
+		border-bottom: none;
+		height: inherit;
+	}
+
+	.markItUpHeader ul .palette ul {
+		border: 1px solid #919191;
+	}
+
+		.markItUpHeader ul ul li {
+			float: none;
+			border-bottom: 1px solid #919191;
+		}
+
+		.markItUpHeader ul ul .markItUpDropMenu {
+			background: #F5F5F5 url(images/submenu.png) no-repeat 100% 50%;
+		}
+		/* next rows of buttons */
+		.markItUpHeader ul ul ul {
+			position: absolute;
+			top: -1px;
+			left: 150px;
+		}
+
+			.markItUpHeader ul ul ul li {
+				float: none;
+			}
+
+	.markItUpHeader ul a {
+		display: block;
+		width: 16px;
+		height: 16px;
+		text-indent: -10000px;
+		background-repeat: no-repeat;
+		padding: 3px;
+		margin: 0px;
+	}
+
+	.markItUpHeader ul ul a {
+		display: block;
+		padding-left: 0px;
+		text-indent: 0;
+		width: 120px;
+		padding: 1px 5px 5px 25px;
+		background-position: 2px 50%;
+	}
+
+		.markItUpHeader ul ul a:hover {
+			background-color: #E2E2E2;
+		}
 /***************************************************************************************/
 .html .markItUpEditor {
-	background-image:url(images/bg-editor-html.png);
+	background-image: url(images/bg-editor-html.png);
 }
+
 .markdown .markItUpEditor {
-	background-image:url(images/bg-editor-markdown.png);
+	background-image: url(images/bg-editor-markdown.png);
 }
+
 .textile .markItUpEditor {
-	background-image:url(images/bg-editor-textile.png);
+	background-image: url(images/bg-editor-textile.png);
 }
+
 .bbcode .markItUpEditor {
-	background-image:url(images/bg-editor-bbcode.png);
+	background-image: url(images/bg-editor-bbcode.png);
 }
+
 .wiki .markItUpEditor,
 .dotclear .markItUpEditor {
-	background-image:url(images/bg-editor-wiki.png);
+	background-image: url(images/bg-editor-wiki.png);
 }
