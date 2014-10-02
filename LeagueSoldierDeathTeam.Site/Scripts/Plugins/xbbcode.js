@@ -100,6 +100,14 @@ var XBBCODE = (function() {
                 return '</span>';
             }
         },
+        "sup": {
+        	openTag: function(params,content) {
+        		return '<sup>';
+        	},
+        	closeTag: function(params,content) {
+        		return '</sup>';
+        	}
+        },
         /*
             This tag does nothing and is here mostly to be used as a classification for
             the bbcode input when evaluating parent-child tag relationships
