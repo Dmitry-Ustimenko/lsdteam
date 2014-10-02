@@ -3,7 +3,7 @@
 	<div id="@id" class="modal hide"></div>
 }
 
-@helper RenderAlert(string id, bool isConfirm = false)
+@helper RenderAlert(string id, bool isConfirm = false, bool isPrompt = false)
 {
 	<div id="@id" class="modal hide animated" aria-hidden="true">
 		<div class="modal-header">
@@ -11,7 +11,15 @@
 			<h3 data-type="modal-title"></h3>
 		</div>
 		<div class="modal-body">
-			<p data-type="modal-message"></p>
+			@if (isPrompt)
+			{
+				<p class="left" data-type="modal-message"></p>
+				<input id="txtValue" class="text-input" type="text" value="" />
+			}
+			else
+			{
+				<p data-type="modal-message"></p>
+			}
 		</div>
 		<div class="modal-footer">
 			@if (isConfirm)

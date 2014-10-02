@@ -192,6 +192,34 @@
 })(jQuery);
 
 (function ($) {
+	$.fn.promptOverlay = function (title, message, callback, callbackClose) {
+		var confirm = $('#promptOverlay');
+		confirm.find("[data-type=modal-title]").html(title);
+		confirm.find("[data-type=modal-message]").html(message);
+
+		confirm.showOverlay();
+
+		confirm.find("#btnOk").off("click").on("click", function () {
+			if (typeof (callback) == 'function')
+				callback(confirm.find("#txtValue").val());
+			confirm.closeOverlay();
+		});
+
+		confirm.find("#btnCancel").off("click").on("click", function () {
+			if (typeof (callbackClose) == 'function')
+				callbackClose();
+			confirm.closeOverlay();
+		});
+
+		confirm.find(".close").off("click").on("click", function () {
+			if (typeof (callbackClose) == 'function')
+				callbackClose();
+			confirm.closeOverlay();
+		});
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.showOverlay = function () {
 		var overlay = $(this);
 		overlayEvents(overlay);

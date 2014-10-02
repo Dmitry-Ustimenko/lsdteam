@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -299,43 +300,54 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpGet]
-		[Route("view-message/{id:int}")]
-		public ActionResult ViewMessage(int id)
+		[Route("view-message/{id:int?}")]
+		public ActionResult ViewMessage(int? id)
 		{
-			var model = Execute(() => _accountProfileService.GetUserMessage(CurrentUser.Id, id));
-
-			if (model == null)
-				return RedirectToAction<AccountProfileController>(o => o.Messages());
-
-			if (model.Type == MessageTypeEnum.Inbox && !model.IsRead)
+			if (id.HasValue)
 			{
-				Execute(() => _accountProfileService.SaveAsRead(CurrentUser.Id, new[] { id }));
-				Execute(() => CurrentUser.InboxMessageCount = _accountProfileService.GetUserMessageCount(CurrentUser.Id));
+				var model = Execute(() => _accountProfileService.GetUserMessage(CurrentUser.Id, id.GetValueOrDefault()));
+
+				if (model == null)
+					return RedirectToAction<AccountProfileController>(o => o.Messages());
+
+				if (model.Type == MessageTypeEnum.Inbox && !model.IsRead)
+				{
+					Execute(() => _accountProfileService.SaveAsRead(CurrentUser.Id, new[] { id.GetValueOrDefault() }));
+					Execute(() => CurrentUser.InboxMessageCount = _accountProfileService.GetUserMessageCount(CurrentUser.Id));
+				}
+
+				return View(model);
 			}
 
-			return View(model);
+			return RedirectToAction<AccountProfileController>(o => o.Messages());
 		}
 
 		[HttpGet]
 		[Route("create-message")]
 		public ActionResult CreateMessage()
 		{
-			return View("ReplyMessage", new UserMessageModel());
+			return View("EditMessage", new UserMessageModel());
 		}
 
 		[HttpGet]
-		[Route("reply-message/{id:int?}")]
-		public ActionResult ReplyMessage(int id)
+		[Route("edit-message/{id:int?}")]
+		public ActionResult EditMessage(int? id)
 		{
-			var model = new UserMessageModel { Id = id };
-			FillUserMessageModel(model);
+			if (id.HasValue)
+			{
+				var model = new UserMessageModel { Id = id.Value };
 
-			return View(model);
+				if (FillUserMessageModel(model))
+					return View(model);
+				return RedirectToAction<AccountProfileController>(o => o.CreateMessage());
+			}
+
+			return RedirectToAction<AccountProfileController>(o => o.CreateMessage());
 		}
 
 		[HttpPost]
-		[Route("reply-message/{id:int?}")]
-		public ActionResult ReplyMessage(UserMessageModel model)
+		[Route("edit-message/{id:int?}")]
+		public ActionResult EditMessage(UserMessageModel model)
 		{
 			if (ModelIsValid)
 			{
@@ -454,7 +466,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				?? new List<UserMessageData>();
 		}
 
-		private void FillUserMessageModel(UserMessageModel model)
+		private bool FillUserMessageModel(UserMessageModel model)
 		{
 			var message = Execute(() => _accountProfileService.GetUserMessage(CurrentUser.Id, model.Id.GetValueOrDefault()));
 
@@ -463,11 +475,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				model.Title = message.Title;
 				model.Description = message.Description;
 				model.RecipientName = message.SenderName;
+				return true;
 			}
-			else
-			{
-				model = new UserMessageModel();
-			}
+
+			return false;
 		}
 
 		#endregion
