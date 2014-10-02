@@ -25,7 +25,7 @@ footer {
 	footer p {
 		text-align: center;
 		color: white;
-		min-height: 100px;
+		min-height: 30px;
 	}
 
 input[type=text]:focus,
@@ -2584,7 +2584,8 @@ span.checker-span {
 	.simple-page-body .form-container input[type=text],
 	.simple-page-body .form-container input[type=password],
 	.simple-page-body .form-container select,
-	.simple-page-body .form-container textarea {
+	.simple-page-body .form-container textarea,
+	.text-input {
 		width: 100%;
 		padding: 8px 5px;
 		font-size: 12px;

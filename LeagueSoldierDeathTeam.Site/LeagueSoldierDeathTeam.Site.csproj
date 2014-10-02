@@ -463,7 +463,7 @@
     <Content Include="Views\Administration\_RoleManagementPartial.cshtml" />
     <Content Include="Views\AccountProfile\Messages.cshtml" />
     <Content Include="Views\AccountProfile\MessagesData.cshtml" />
-    <Content Include="Views\AccountProfile\ReplyMessage.cshtml" />
+    <Content Include="Views\AccountProfile\EditMessage.cshtml" />
     <Content Include="Views\AccountProfile\ViewMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
