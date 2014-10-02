@@ -19,8 +19,9 @@ mySettings = {
 		{ name: 'Center', openWith: '[align=center]', closeWith: '[/align]' },
 		{ name: 'Left', openWith: '[align=left]', closeWith: '[/align]' },
 		{ separator: '---------------' },
-		{ name: 'Picture', key: 'P', replaceWith: '[img][![Image Url]!][/img]' },
-		{ name: 'Link', key: 'L', openWith: '[url=[![Site Url]!]]', closeWith: '[/url]', placeHolder: '' },
+		{ name: 'Picture', key: 'P', replaceWith: '[img][![Image Url:!:http://]!][/img]' },
+		{ name: 'Link', key: 'L', openWith: '[url=[![Site Url:!:http://]!]]', closeWith: '[/url]' },
+		{ name: 'Youtube', key: 'Y', replaceWith: '[youtube][![Youtube Url:!:http://]!][/youtube]' },
 		{ separator: '---------------' },
 		{
 			name: 'Size', openWith: '[size=[![Text size]!]]', closeWith: '[/size]',
@@ -69,6 +70,7 @@ mySettings = {
 				{ name: 'Gray', openWith: '[col=#000000]', closeWith: '[/col]', className: "col9-3" }
 			]
 		},
+		{ name: 'Emoticon' },
 		{ separator: '---------------' },
 		{ name: 'Bulleted list', openWith: '[list]\n', closeWith: '\n[/list]' },
 		{ name: 'Numeric list', openWith: '[list=[![Starting number]!]]\n', closeWith: '\n[/list]' },
@@ -76,6 +78,9 @@ mySettings = {
 		{ separator: '---------------' },
 		{ name: 'Quotes', openWith: '[quote]', closeWith: '[/quote]' },
 		{ name: 'Code', openWith: '[code]', closeWith: '[/code]' },
-		{ name: 'Preview', className: 'preview', call: 'preview' },
+		{ name: 'Off top', openWith: '[off]', closeWith: '[/off]' },
+		{ name: 'HR', openWith: '[hr]', closeWith: '[/hr]' },
+		{ separator: '---------------' },
+		{ name: 'Preview', className: 'preview', call: 'preview' }
 	]
 }

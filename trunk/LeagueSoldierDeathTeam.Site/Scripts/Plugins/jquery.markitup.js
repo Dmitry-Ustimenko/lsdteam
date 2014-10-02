@@ -506,7 +506,8 @@
 							previewWindow.close();
 						});
 					} else {
-						iFrame = $('<iframe class="markItUpPreviewFrame"></iframe>');
+						iFrame = $('<iframe class="markItUpPreviewFrame" id=previewFrame" name="previewFrame"></iframe>');
+
 						if (options.previewPosition == 'after') {
 							iFrame.insertAfter(footer);
 						} else {
@@ -576,9 +577,14 @@
 						sp = previewWindow.document.documentElement.scrollTop
 					} catch(e) {
 						sp = 0;
-					}	
+					}
+					
 					previewWindow.document.open();
 					previewWindow.document.write(data);
+					
+					var cssLink = $("<link/>", { rel: "stylesheet", href: "../Content/Plugins/HtmlEditor/xbbcode.css", type: "text/css" });
+					$(previewWindow.document.head).append(cssLink);
+					
 					previewWindow.document.close();
 					previewWindow.document.documentElement.scrollTop = sp;
 				}
