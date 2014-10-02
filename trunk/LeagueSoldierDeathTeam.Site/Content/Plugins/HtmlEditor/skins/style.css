@@ -91,6 +91,7 @@
 
 		.markItUpHeader ul li ul {
 			display: none;
+			background: white;
 		}
 
 		.markItUpHeader ul li:hover > ul {

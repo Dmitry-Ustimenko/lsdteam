@@ -22,6 +22,7 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				"~/Scripts/Plugins/jquery.vegas.js",
 				"~/Scripts/Plugins/jquery.markitup.js",
 				"~/Scripts/Plugins/set.js",
+				"~/Scripts/Plugins/xbbcode.js",
 
 				"~/Scripts/Site/site.js",
 				"~/Scripts/Site/site.ajax.js",
@@ -45,6 +46,7 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 
 				"~/Content/Plugins/HtmlEditor/sets/style.css",
 				"~/Content/Plugins/HtmlEditor/skins/style.css",
+				"~/Content/Plugins/HtmlEditor/xbbcode.css",
 
 				"~/Content/Site/Site.css"
 				));

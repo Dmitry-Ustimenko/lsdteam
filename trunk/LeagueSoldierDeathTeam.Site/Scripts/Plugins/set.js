@@ -1,19 +1,33 @@
 mySettings = {
-	previewParserPath: '', // path to your BBCode parser
+	previewParser: function (content) {
+		return XBBCODE.process({
+			text: content,
+			addInLineBreaks: true
+		}).html;
+	},
+	previewParserPath: "templates/preview.html",
 	markupSet: [
 		{ name: 'Bold', key: 'B', openWith: '[b]', closeWith: '[/b]' },
 		{ name: 'Italic', key: 'I', openWith: '[i]', closeWith: '[/i]' },
 		{ name: 'Underline', key: 'U', openWith: '[u]', closeWith: '[/u]' },
+		{ name: 'Strike', key: 'S', openWith: '[s]', closeWith: '[/s]' },
+		{ name: 'Sup', key: '.', openWith: '[sup]', closeWith: '[/sup]' },
+		{ name: 'Sub', key: ',', openWith: '[sub]', closeWith: '[/sub]' },
+		{ separator: '---------------' },
+		{ name: 'Justify', openWith: '[align=justify]', closeWith: '[/align]' },
+		{ name: 'Right', openWith: '[align=right]', closeWith: '[/align]' },
+		{ name: 'Center', openWith: '[align=center]', closeWith: '[/align]' },
+		{ name: 'Left', openWith: '[align=left]', closeWith: '[/align]' },
 		{ separator: '---------------' },
 		{ name: 'Picture', key: 'P', replaceWith: '[img][![Image Url]!][/img]' },
 		{ name: 'Link', key: 'L', openWith: '[url=[![Site Url]!]]', closeWith: '[/url]', placeHolder: '' },
 		{ separator: '---------------' },
 		{
-			name: 'Size', key: 'S', openWith: '[size=[![Text size]!]]', closeWith: '[/size]',
+			name: 'Size', openWith: '[size=[![Text size]!]]', closeWith: '[/size]',
 			dropMenu: [
-				{ name: 'Big', openWith: '[size=200]', closeWith: '[/size]' },
-				{ name: 'Normal', openWith: '[size=100]', closeWith: '[/size]' },
-				{ name: 'Small', openWith: '[size=50]', closeWith: '[/size]' }
+				{ name: 'Big', openWith: '[size=9]', closeWith: '[/size]' },
+				{ name: 'Normal', openWith: '[size=13]', closeWith: '[/size]' },
+				{ name: 'Small', openWith: '[size=17]', closeWith: '[/size]' }
 			]
 		},
 		{
@@ -61,6 +75,7 @@ mySettings = {
 		{ name: 'List item', openWith: '[*] ' },
 		{ separator: '---------------' },
 		{ name: 'Quotes', openWith: '[quote]', closeWith: '[/quote]' },
-		{ name: 'Code', openWith: '[code]', closeWith: '[/code]' }
+		{ name: 'Code', openWith: '[code]', closeWith: '[/code]' },
+		{ name: 'Preview', className: 'preview', call: 'preview' },
 	]
 }
