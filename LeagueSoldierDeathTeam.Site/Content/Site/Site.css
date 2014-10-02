@@ -2308,6 +2308,13 @@ span.checker-span {
 	text-align: left;
 }
 
+textarea.resize-none {
+	-moz-resize: none;
+	-ms-resize: none;
+	-o-resize: none;
+	resize: none;
+}
+
 .right {
 	text-align: right;
 }
