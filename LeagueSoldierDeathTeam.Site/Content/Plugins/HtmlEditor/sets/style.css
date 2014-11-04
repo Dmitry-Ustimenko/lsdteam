@@ -58,10 +58,6 @@
 	background-image: url(images/fonts.png);
 }
 
-.markItUp .markItUpButton16 a {
-	background-image: url(images/emoticon.png);
-}
-
 .markItUp .markItUpButton17 a {
 	background-image: url(images/list-bullet.png);
 }
@@ -102,12 +98,20 @@
 	background-image: url(images/colors.png);
 }
 
-.markItUp .palette ul {
+.markItUp .emoticon a {
+	background-image: url(images/emoticon.png);
+}
+
+.markItUp .palette ul, .markItUp .emoticon ul {
 	width: 81px;
 	padding: 2px;
 }
 
-.markItUp .palette li {
+.markItUp .emoticon ul {
+	width: 228px;
+}
+
+.markItUp .palette li, .markItUp .emoticon li {
 	border: 1px solid white;
 	width: 25px;
 	height: 25px;
@@ -117,14 +121,33 @@
 	float: left;
 }
 
+.markItUp .emoticon li {
+	width: 70px;
+	height: 70px;
+}
+
 .markItUp .palette ul a {
 	width: 25px;
 	height: 25px;
 }
 
-	.markItUp .palette ul a:hover {
-		background-color: none;
-	}
+.markItUp .emoticon ul a {
+	width: 70px;
+	height: 70px;
+}
+
+.markItUp .emoticon ul li a {
+	padding: 0;
+	background-position: 50% 50%;
+}
+
+.markItUp .emoticon ul li {
+	margin: 2px !important;
+}
+
+.markItUpHeader .emoticon ul li a:hover {
+	background-color: transparent !important;
+}
 
 .markItUp .palette .col1-1 a {
 	background: #FCE94F;
@@ -232,4 +255,28 @@
 
 .markItUp .palette .col9-3 a {
 	background: #000000;
+}
+
+.markItUp .emoticon .smile-1 a {
+	background-image: url(images/Smiles/1.gif);
+}
+
+.markItUp .emoticon .smile-2 a {
+	background-image: url(images/Smiles/2.gif);
+}
+
+.markItUp .emoticon .smile-3 a {
+	background-image: url(images/Smiles/3.gif);
+}
+
+.markItUp .emoticon .smile-4 a {
+	background-image: url(images/Smiles/4.gif);
+}
+
+.markItUp .emoticon .smile-5 a {
+	background-image: url(images/Smiles/5.gif);
+}
+
+.markItUp .emoticon .smile-6 a {
+	background-image: url(images/Smiles/6.gif);
 }

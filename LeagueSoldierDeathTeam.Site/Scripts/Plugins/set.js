@@ -70,7 +70,16 @@ mySettings = {
 				{ name: 'Gray', openWith: '[col=#000000]', closeWith: '[/col]', className: "col9-3" }
 			]
 		},
-		{ name: 'Emoticon' },
+		{
+			name: 'Emoticon', className: 'emoticon', dropMenu: [
+				{ openWith: '[smile=1]', className: "smile-1" },
+				{ openWith: '[smile=2]', className: "smile-2" },
+				{ openWith: '[smile=3]', className: "smile-3" },
+				{ openWith: '[smile=4]', className: "smile-4" },
+				{ openWith: '[smile=5]', className: "smile-5" },
+				{ openWith: '[smile=6]', className: "smile-6" }
+			]
+		},
 		{ separator: '---------------' },
 		{ name: 'Bulleted list', openWith: '[list]\n', closeWith: '\n[/list]' },
 		{ name: 'Numeric list', openWith: '[list=[![Starting number]!]]\n', closeWith: '\n[/list]' },
