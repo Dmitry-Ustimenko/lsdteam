@@ -108,6 +108,14 @@ var XBBCODE = (function() {
         		return '</sup>';
         	}
         },
+        "sub": {
+        	openTag: function(params,content) {
+        		return '<sub>';
+        	},
+        	closeTag: function(params,content) {
+        		return '</sub>';
+        	}
+        },
         /*
             This tag does nothing and is here mostly to be used as a classification for
             the bbcode input when evaluating parent-child tag relationships
