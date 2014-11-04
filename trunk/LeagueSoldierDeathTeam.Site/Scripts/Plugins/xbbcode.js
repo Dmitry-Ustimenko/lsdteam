@@ -150,14 +150,6 @@ var XBBCODE = (function () {
 				return '</span>';
 			}
 		},
-		"hr": {
-			openTag: function (params, content) {
-				return '<hr/>';
-			},
-			closeTag: function (params, content) {
-				return '';
-			}
-		},
 		"off": {
 			openTag: function (params, content) {
 				return '<div class="xbbcode-off" /><span><b>Offtop:</b></span><div>';
@@ -166,7 +158,7 @@ var XBBCODE = (function () {
 				return '</div></div>';
 			}
 		},
-		"col": {
+		"color": {
 			openTag: function (params, content) {
 
 				var colorCode = params.substr(1) || "black";
@@ -389,7 +381,7 @@ var XBBCODE = (function () {
 				}
 
 				if (youtubeUrl != undefined) {
-					return '<div><object width="640" height="385">' +
+					return '<div class="xbbcode-youtube"><object width="640" height="385">' +
 						'<param name="movie" value="' + youtubeUrl + '">' +
 						'<param name="allowFullScreen" value="true">' +
 						'<param name="allowscriptaccess" value="always">' +
@@ -406,11 +398,22 @@ var XBBCODE = (function () {
 			},
 			displayContent: false
 		},
-		/*
-            The [*] tag is special since the user does not define a closing [/*] tag when writing their bbcode.
-            Instead this module parses the code and adds the closing [/*] tag in for them. None of the tags you
-            add will act like this and this tag is an exception to the others.
-        */
+		"spoiler": {
+			openTag: function (params, content) {
+				var spoilerName = 'spoiler';
+
+				if (params != undefined) {
+					spoilerName = params.substr(1) || 'spoiler';
+				}
+
+				return '<div class="xbbcode-spoiler">' +
+					'<div class="xbbcode-spoiler-head"><span class="xbbcode-open-icon"></span>' + spoilerName + '</div>' +
+					'<div class="xbbcode-spoiler-body xbbcode-spoiler-close">';
+			},
+			closeTag: function (params, content) {
+				return '</div><div class="xbbcode-spoiler-footer xbbcode-spoiler-close"><span class="xbbcode-close-icon"></span>close</div></div>';
+			}
+		},
 		"*": {
 			openTag: function (params, content) {
 				return "<li>";

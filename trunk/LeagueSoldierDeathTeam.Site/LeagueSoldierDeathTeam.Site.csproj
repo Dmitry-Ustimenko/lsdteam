@@ -305,6 +305,8 @@
     <Content Include="Content\Plugins\HtmlEditor\sets\images\Smiles\7.gif" />
     <Content Include="Content\Plugins\HtmlEditor\sets\images\Smiles\8.gif" />
     <Content Include="Content\Plugins\HtmlEditor\sets\images\Smiles\9.gif" />
+    <Content Include="Content\Plugins\HtmlEditor\sets\images\spoiler-close.png" />
+    <Content Include="Content\Plugins\HtmlEditor\sets\images\spoiler.png" />
     <Content Include="Content\Plugins\HtmlEditor\sets\images\strike.png" />
     <Content Include="Content\Plugins\HtmlEditor\sets\images\stroke.png" />
     <Content Include="Content\Plugins\HtmlEditor\sets\images\sub.png" />
