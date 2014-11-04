@@ -19,8 +19,16 @@
 			init: function (settings) {
 				$.extend(true, site.message.settings, settings);
 
-				$("#Description").markItUp(mySettings);
+				site.message.initEdit.initEditor();
 			},
+
+			initEditor: function () {
+				var $description = $("#Description");
+
+				if ($description != undefined) {
+					$description.markItUp(mySettings);
+				}
+			}
 		},
 
 		initView: {

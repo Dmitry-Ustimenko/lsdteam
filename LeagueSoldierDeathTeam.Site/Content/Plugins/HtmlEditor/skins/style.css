@@ -44,6 +44,8 @@
 	height: 500px;
 	margin: 5px 0;
 	font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	-ms-border-radius: 3px;
+	border-radius: 3px;
 }
 
 .markItUpFooter {

@@ -1,10 +1,12 @@
 mySettings = {
 	previewAutoRefresh: false,
 	previewParser: function (content) {
-		return XBBCODE.process({
+		var htmlContent = XBBCODE.process({
 			text: content,
 			addInLineBreaks: true
 		}).html;
+
+		return htmlContent.replace("[hr]", "<hr/>");
 	},
 	previewParserPath: "templates/preview.html",
 	markupSet: [
@@ -34,41 +36,37 @@ mySettings = {
 		},
 		{
 			name: 'Colors', className: 'palette', dropMenu: [
-				{ name: 'Yellow', openWith: '[col=#FCE94F]', closeWith: '[/col]', className: "col1-1" },
-				{ name: 'Yellow', openWith: '[col=#EDD400]', closeWith: '[/col]', className: "col1-2" },
-				{ name: 'Yellow', openWith: '[col=#C4A000]', closeWith: '[/col]', className: "col1-3" },
+				{ name: 'Light Yellow', openWith: '[color=#FCE94F]', closeWith: '[/color]', className: "col1-1" },
+				{ name: 'Yellow', openWith: '[color=#EDD400]', closeWith: '[/color]', className: "col1-2" },
+				{ name: 'Dark Yellow', openWith: '[color=#C4A000]', closeWith: '[/color]', className: "col1-3" },
 
-				{ name: 'Orange', openWith: '[col=#FCAF3E]', closeWith: '[/col]', className: "col2-1" },
-				{ name: 'Orange', openWith: '[col=#F57900]', closeWith: '[/col]', className: "col2-2" },
-				{ name: 'Orange', openWith: '[col=#CE5C00]', closeWith: '[/col]', className: "col2-3" },
+				{ name: 'Light Orange', openWith: '[color=#FCAF3E]', closeWith: '[/color]', className: "col2-1" },
+				{ name: 'Orange', openWith: '[color=#F57900]', closeWith: '[/color]', className: "col2-2" },
+				{ name: 'Dark Orange', openWith: '[color=#CE5C00]', closeWith: '[/color]', className: "col2-3" },
 
-				{ name: 'Brown', openWith: '[col=#E9B96E]', closeWith: '[/col]', className: "col3-1" },
-				{ name: 'Brown', openWith: '[col=#C17D11]', closeWith: '[/col]', className: "col3-2" },
-				{ name: 'Brown', openWith: '[col=#8F5902]', closeWith: '[/col]', className: "col3-3" },
+				{ name: 'Light Brown', openWith: '[color=#E9B96E]', closeWith: '[/color]', className: "col3-1" },
+				{ name: 'Brown', openWith: '[color=#C17D11]', closeWith: '[/color]', className: "col3-2" },
+				{ name: 'Dark Brown', openWith: '[color=#8F5902]', closeWith: '[/color]', className: "col3-3" },
 
-				{ name: 'Green', openWith: '[col=#8AE234]', closeWith: '[/col]', className: "col4-1" },
-				{ name: 'Green', openWith: '[col=#73D216]', closeWith: '[/col]', className: "col4-2" },
-				{ name: 'Green', openWith: '[col=#4E9A06]', closeWith: '[/col]', className: "col4-3" },
+				{ name: 'Light Green', openWith: '[color=#8AE234]', closeWith: '[/color]', className: "col4-1" },
+				{ name: 'Green', openWith: '[color=#73D216]', closeWith: '[/color]', className: "col4-2" },
+				{ name: 'Dark Green', openWith: '[color=#4E9A06]', closeWith: '[/color]', className: "col4-3" },
 
-				{ name: 'Blue', openWith: '[col=#729FCF]', closeWith: '[/col]', className: "col5-1" },
-				{ name: 'Blue', openWith: '[col=#3465A4]', closeWith: '[/col]', className: "col5-2" },
-				{ name: 'Blue', openWith: '[col=#204A87]', closeWith: '[/col]', className: "col5-3" },
+				{ name: 'Light Blue', openWith: '[color=#729FCF]', closeWith: '[/color]', className: "col5-1" },
+				{ name: 'Blue', openWith: '[color=#3465A4]', closeWith: '[/color]', className: "col5-2" },
+				{ name: 'Dark Blue', openWith: '[color=#204A87]', closeWith: '[/color]', className: "col5-3" },
 
-				{ name: 'Purple', openWith: '[col=#AD7FA8]', closeWith: '[/col]', className: "col6-1" },
-				{ name: 'Purple', openWith: '[col=#75507B]', closeWith: '[/col]', className: "col6-2" },
-				{ name: 'Purple', openWith: '[col=#5C3566]', closeWith: '[/col]', className: "col6-3" },
+				{ name: 'Light Purple', openWith: '[color=#AD7FA8]', closeWith: '[/color]', className: "col6-1" },
+				{ name: 'Purple', openWith: '[color=#75507B]', closeWith: '[/color]', className: "col6-2" },
+				{ name: 'Dark Purple', openWith: '[color=#5C3566]', closeWith: '[/color]', className: "col6-3" },
 
-				{ name: 'Red', openWith: '[col=#EF2929]', closeWith: '[/col]', className: "col7-1" },
-				{ name: 'Red', openWith: '[col=#CC0000]', closeWith: '[/col]', className: "col7-2" },
-				{ name: 'Red', openWith: '[col=#A40000]', closeWith: '[/col]', className: "col7-3" },
+				{ name: 'Light Red', openWith: '[color=#EF2929]', closeWith: '[/color]', className: "col7-1" },
+				{ name: 'Red', openWith: '[color=#CC0000]', closeWith: '[/color]', className: "col7-2" },
+				{ name: 'Dark Red', openWith: '[color=#A40000]', closeWith: '[/color]', className: "col7-3" },
 
-				{ name: 'Gray', openWith: '[col=#FFFFFF]', closeWith: '[/col]', className: "col8-1" },
-				{ name: 'Gray', openWith: '[col=#D3D7CF]', closeWith: '[/col]', className: "col8-2" },
-				{ name: 'Gray', openWith: '[col=#BABDB6]', closeWith: '[/col]', className: "col8-3" },
-
-				{ name: 'Gray', openWith: '[col=#888A85]', closeWith: '[/col]', className: "col9-1" },
-				{ name: 'Gray', openWith: '[col=#555753]', closeWith: '[/col]', className: "col9-2" },
-				{ name: 'Gray', openWith: '[col=#000000]', closeWith: '[/col]', className: "col9-3" }
+				{ name: 'White', openWith: '[color=#FFFFFF]', closeWith: '[/color]', className: "col8-1" },
+				{ name: 'Gray', openWith: '[color=#BABDB6]', closeWith: '[/color]', className: "col8-3" },
+				{ name: 'Black', openWith: '[color=#000000]', closeWith: '[/color]', className: "col9-3" }
 			]
 		},
 		{
@@ -87,6 +85,7 @@ mySettings = {
 		{ separator: '---------------' },
 		{ name: 'Quotes', openWith: '[quote]', closeWith: '[/quote]' },
 		{ name: 'Code', openWith: '[code]', closeWith: '[/code]' },
+		{ name: 'Spoiler', openWith: '[spoiler]', closeWith: '[/spoiler]' },
 		{ name: 'Off top', openWith: '[off]', closeWith: '[/off]' },
 		{ name: 'Horizontal line', openWith: '[hr]' },
 		{ separator: '---------------' },
