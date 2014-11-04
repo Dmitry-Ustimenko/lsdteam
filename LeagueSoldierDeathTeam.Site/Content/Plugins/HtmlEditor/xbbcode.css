@@ -3,11 +3,28 @@
 }
 
 .xbbcode-blockquote {
+	margin: 5px 15px;
+}
+
+.xbbcode-blockquote-head {
+}
+
+.xbbcode-blockquote-body {
+	padding: 2px 6px;
+	background: #FFFEF9;
+	-ms-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px dotted black;
 }
 
 .xbbcode-code {
 	white-space: pre-wrap;
 	font-family: monospace;
+}
+
+.xbbcode-off {
+	font-size: 11px;
+	color: #999999;
 }
 
 .xbbcode-i {

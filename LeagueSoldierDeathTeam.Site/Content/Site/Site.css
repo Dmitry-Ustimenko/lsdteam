@@ -2595,11 +2595,11 @@ textarea.resize-none {
 	.text-input {
 		width: 100%;
 		padding: 8px 5px;
-		font-size: 12px;
+		font-size: 13px;
 		border: 1px solid #616161;
 		box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 		border-radius: 3px;
-		font-family: 'Ubuntu', 'Lato', sans-serif;
+		font-family:  Verdana, Tahoma, Arial, Helvetica, sans-serif;
 		color: black;
 	}
 

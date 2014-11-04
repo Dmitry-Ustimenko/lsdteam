@@ -582,8 +582,13 @@
 					previewWindow.document.open();
 					previewWindow.document.write(data);
 					
+					var meta = $("<meta/>", { charset: "utf-8" });
+					$(previewWindow.document.head).append(meta);
+
 					var cssLink = $("<link/>", { rel: "stylesheet", href: "../Content/Plugins/HtmlEditor/xbbcode.css", type: "text/css" });
 					$(previewWindow.document.head).append(cssLink);
+
+					$(previewWindow.document.body).css("font", "13px Verdana, Tahoma, Arial, Helvetica, sans-serif");
 					
 					previewWindow.document.close();
 					previewWindow.document.documentElement.scrollTop = sp;
