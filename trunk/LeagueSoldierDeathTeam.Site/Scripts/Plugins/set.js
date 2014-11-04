@@ -1,4 +1,5 @@
 mySettings = {
+	previewAutoRefresh: false,
 	previewParser: function (content) {
 		return XBBCODE.process({
 			text: content,
@@ -26,9 +27,9 @@ mySettings = {
 		{
 			name: 'Size', openWith: '[size=[![Text size]!]]', closeWith: '[/size]',
 			dropMenu: [
-				{ name: 'Big', openWith: '[size=9]', closeWith: '[/size]' },
+				{ name: 'Small', openWith: '[size=9]', closeWith: '[/size]' },
 				{ name: 'Normal', openWith: '[size=13]', closeWith: '[/size]' },
-				{ name: 'Small', openWith: '[size=17]', closeWith: '[/size]' }
+				{ name: 'Big', openWith: '[size=17]', closeWith: '[/size]' }
 			]
 		},
 		{
@@ -82,13 +83,12 @@ mySettings = {
 		},
 		{ separator: '---------------' },
 		{ name: 'Bulleted list', openWith: '[list]\n', closeWith: '\n[/list]' },
-		{ name: 'Numeric list', openWith: '[list=[![Starting number]!]]\n', closeWith: '\n[/list]' },
 		{ name: 'List item', openWith: '[*] ' },
 		{ separator: '---------------' },
 		{ name: 'Quotes', openWith: '[quote]', closeWith: '[/quote]' },
 		{ name: 'Code', openWith: '[code]', closeWith: '[/code]' },
 		{ name: 'Off top', openWith: '[off]', closeWith: '[/off]' },
-		{ name: 'HR', openWith: '[hr]', closeWith: '[/hr]' },
+		{ name: 'Horizontal line', openWith: '[hr]' },
 		{ separator: '---------------' },
 		{ name: 'Preview', className: 'preview', call: 'preview' }
 	]
