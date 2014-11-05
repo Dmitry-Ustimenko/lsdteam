@@ -1,12 +1,7 @@
 mySettings = {
 	previewAutoRefresh: false,
 	previewParser: function (content) {
-		var htmlContent = XBBCODE.process({
-			text: content,
-			addInLineBreaks: true
-		}).html;
-
-		return htmlContent.replace("[hr]", "<hr/>");
+		return $.fn.bbcodeParser(content);
 	},
 	previewParserPath: "templates/preview.html",
 	markupSet: [
