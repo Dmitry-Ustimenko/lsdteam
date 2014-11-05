@@ -58,6 +58,10 @@
 	background-image: url(images/fonts.png);
 }
 
+.markItUp .markItUpButton14 ul li a {
+	line-height: 13px;
+}
+
 .markItUp .markItUpButton17 a {
 	background-image: url(images/list-bullet.png);
 }

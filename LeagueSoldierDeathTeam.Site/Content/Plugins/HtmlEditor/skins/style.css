@@ -153,6 +153,10 @@
 			border-bottom: 1px solid #919191;
 		}
 
+		.markItUpHeader ul ul li:last-child {
+			border-bottom: none;
+		}
+
 		.markItUpHeader ul ul .markItUpDropMenu {
 			background: #F5F5F5 url(images/submenu.png) no-repeat 100% 50%;
 		}

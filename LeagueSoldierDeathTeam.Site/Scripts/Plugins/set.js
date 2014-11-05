@@ -29,7 +29,8 @@ mySettings = {
 			]
 		},
 		{
-			name: 'Colors', className: 'palette', dropMenu: [
+			name: 'Colors', className: 'palette', openWith: '[color=[![Color hex code:!:#]!]]', closeWith: '[/color]',
+			dropMenu: [
 				{ name: 'Light Yellow', openWith: '[color=#FCE94F]', closeWith: '[/color]', className: "col1-1" },
 				{ name: 'Yellow', openWith: '[color=#EDD400]', closeWith: '[/color]', className: "col1-2" },
 				{ name: 'Dark Yellow', openWith: '[color=#C4A000]', closeWith: '[/color]', className: "col1-3" },

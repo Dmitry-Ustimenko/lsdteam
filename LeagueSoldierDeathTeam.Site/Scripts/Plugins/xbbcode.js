@@ -152,7 +152,7 @@ var XBBCODE = (function () {
 		},
 		"off": {
 			openTag: function (params, content) {
-				return '<div class="xbbcode-off" /><span><b>Offtop:</b></span><div>';
+				return '<div class="xbbcode-off"><span><b>Offtop:</b></span><div>';
 			},
 			closeTag: function (params, content) {
 				return '</div></div>';
