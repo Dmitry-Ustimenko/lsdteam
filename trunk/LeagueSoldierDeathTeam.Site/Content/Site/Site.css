@@ -2654,6 +2654,10 @@ textarea.resize-none {
 	overflow: auto; 
 }
 
+.small-text {
+	font-size: 11px;
+}
+
 .simple-page-body table a:hover {
 	text-shadow: 0 0 0 transparent, 0 0 1px rgba(255, 102, 102, 0.5);
 }

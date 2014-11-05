@@ -23,7 +23,6 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				"~/Scripts/Plugins/jquery.markitup.js",
 				"~/Scripts/Plugins/set.js",
 				"~/Scripts/Plugins/xbbcode.js",
-
 				"~/Scripts/Site/site.js",
 				"~/Scripts/Site/site.ajax.js",
 				"~/Scripts/Site/site.plugins.js",

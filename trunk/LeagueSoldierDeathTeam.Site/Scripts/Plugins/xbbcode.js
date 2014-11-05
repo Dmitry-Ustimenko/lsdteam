@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 2011 Patrick Gillespie, http://patorjk.com/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -152,7 +152,7 @@ var XBBCODE = (function () {
 		},
 		"off": {
 			openTag: function (params, content) {
-				return '<div class="xbbcode-off"><span><b>Offtop:</b></span><div>';
+				return '<div class="xbbcode-off"><span><b>Оффтоп:</b></span><div>';
 			},
 			closeTag: function (params, content) {
 				return '</div></div>';
@@ -240,7 +240,7 @@ var XBBCODE = (function () {
 					var userName = params.substr(2, params.length - 3) || undefined;
 
 					if (userName != undefined) {
-						userNameSpan = '<span class="xbbcode-blockquote-head"><b>' + userName + '</b> :</span>';
+						userNameSpan = '<span class="xbbcode-blockquote-head"><b>' + userName + '</b><span class="small-text"> писал(а):</span></span>';
 					}
 				}
 
@@ -387,7 +387,7 @@ var XBBCODE = (function () {
 						'<param name="allowscriptaccess" value="always">' +
 						'<embed src="' + youtubeUrl + '" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385" wmode="transparent"></object>' +
 						'<div></div>' +
-						'<a target="_blank" href="' + content + '">Youtube</a></div>';
+						'<a target="_blank" href="' + content + '">Ссылка</a></div>';
 				} else {
 					return '<div>';
 				}
@@ -400,7 +400,7 @@ var XBBCODE = (function () {
 		},
 		"spoiler": {
 			openTag: function (params, content) {
-				var spoilerName = 'spoiler';
+				var spoilerName = 'Скрытый текст';
 
 				if (params != undefined) {
 					spoilerName = params.substr(2, params.length - 3) || 'spoiler';
@@ -411,12 +411,12 @@ var XBBCODE = (function () {
 					'<div class="xbbcode-spoiler-slide xbbcode-spoiler-close"><div class="xbbcode-spoiler-body">';
 			},
 			closeTag: function (params, content) {
-				return '</div><div class="xbbcode-spoiler-footer"><span class="xbbcode-close-icon"></span>close</div></div></div>';
+				return '</div><div class="xbbcode-spoiler-footer"><span class="xbbcode-close-icon"></span>Закрыть</div></div></div>';
 			}
 		},
 		"*": {
 			openTag: function (params, content) {
-				return "<li>";
+				return '<li style="margin-left: 16px;">';
 			},
 			closeTag: function (params, content) {
 				return "</li>";
