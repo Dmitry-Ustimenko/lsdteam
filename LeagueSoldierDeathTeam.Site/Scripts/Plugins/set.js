@@ -74,10 +74,9 @@ mySettings = {
 		{ separator: '---------------' },
 		{ name: 'Quotes', openWith: '[quote]', closeWith: '[/quote]' },
 		{ name: 'Code', openWith: '[code]', closeWith: '[/code]' },
+		{ name: 'No parse', openWith: '[noparse]', closeWith: '[/noparse]' },
 		{ name: 'Spoiler', openWith: '[spoiler]', closeWith: '[/spoiler]' },
 		{ name: 'Off top', openWith: '[off]', closeWith: '[/off]' },
-		{ name: 'Horizontal line', openWith: '[hr]' },
-		{ separator: '---------------' },
-		{ name: 'Preview', className: 'preview', call: 'preview' }
+		{ name: 'Horizontal line', openWith: '[hr]' }
 	]
 }
