@@ -48,14 +48,14 @@
 				var headerIcon = header.find("[data-id=header-icon]");
 
 				header.off("click").on("click", function () {
-					slideSpoiler();
+					slideFun();
 				});
 
 				footer.off("click").on("click", function () {
-					slideSpoiler();
+					slideFun();
 				});
 
-				function slideSpoiler() {
+				function slideFun() {
 					if (slide.is(":visible")) {
 						slide.slideUp();
 					} else {
