@@ -18,6 +18,7 @@
 .markItUpContainer {
 	border: none;
 	font: 11px Verdana, Arial, Helvetica, sans-serif;
+	-ms-border-radius: 3px;
 	border-radius: 3px;
 }
 
@@ -33,6 +34,7 @@
 
 .markItUpContainer .markItUpEditor {
 	border-top: none !important;
+	-ms-border-radius: 0 0 3px 3px !important;
 	border-radius: 0 0 3px 3px !important;
 }
 

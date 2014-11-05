@@ -2599,7 +2599,7 @@ textarea.resize-none {
 		border: 1px solid #616161;
 		box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 		border-radius: 3px;
-		font-family:  Verdana, Tahoma, Arial, Helvetica, sans-serif;
+		font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
 		color: black;
 	}
 
@@ -2640,6 +2640,19 @@ textarea.resize-none {
 		letter-spacing: 0;
 		cursor: pointer;
 	}
+
+.simple-page-body .description-preview {
+	-ms-border-radius: 3px;
+	border-radius: 3px;
+	margin-top: 3px;
+	border: 1px solid #616161;
+	font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	max-height: 600px;
+	display: none;
+	padding: 8px 5px;
+	min-height: 150px;
+	overflow: auto; 
+}
 
 .simple-page-body table a:hover {
 	text-shadow: 0 0 0 transparent, 0 0 1px rgba(255, 102, 102, 0.5);

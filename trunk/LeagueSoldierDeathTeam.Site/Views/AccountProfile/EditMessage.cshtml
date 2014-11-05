@@ -40,6 +40,7 @@
 							<div class="field-container">
 								@Html.TextAreaFor(m => m.Description, new { @rows = "10", @class = "resize-none" })
 								@Html.ValidationMessageFor(m => m.Description)
+								<div class="description-preview"></div>
 							</div>
 						</div>
 					</div>

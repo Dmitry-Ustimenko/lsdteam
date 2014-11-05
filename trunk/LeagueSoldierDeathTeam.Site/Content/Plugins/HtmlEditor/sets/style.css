@@ -74,21 +74,25 @@
 	background-image: url(images/code.png);
 }
 
-.markItUp .markItUpButton21 {
+.markItUp .markItUpButton21 a {
+	background-image: url(images/clean.png);
+}
+
+.markItUp .markItUpButton22 {
 	padding: 6px 6px 5px 6px;
 }
 
-.markItUp .markItUpButton21 a {
+.markItUp .markItUpButton22 a {
 	background-image: url(images/spoiler.png);
 	width: 15px;
 	height: 15px;
 }
 
-.markItUp .markItUpButton22 a {
+.markItUp .markItUpButton23 a {
 	background-image: url(images/offtop.png);
 }
 
-.markItUp .markItUpButton23 a {
+.markItUp .markItUpButton24 a {
 	background-image: url(images/hr.png);
 }
 

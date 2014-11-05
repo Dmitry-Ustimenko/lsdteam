@@ -27,7 +27,25 @@
 
 				if ($description != undefined) {
 					$description.markItUp(mySettings);
+					site.message.initEdit.parseBBCode($description);
 				}
+			},
+			
+			parseBBCode: function (description) {
+				var $descriptionPreview = $(".description-preview");
+				var $previewLink = $(".preview-link");
+
+				$previewLink.off("click").on("click", function() {
+					if ($descriptionPreview != undefined) {
+						var htmlContent = $.fn.bbcodeParser(description.val());
+						if (htmlContent != undefined && htmlContent.trim() != '') {
+							$descriptionPreview.html(htmlContent);
+							$descriptionPreview.fadeIn("fast");
+							
+							$.fn.slideSpoiler($descriptionPreview);
+						}
+					}
+				});
 			}
 		},
 
@@ -45,9 +63,9 @@
 				if ($messageDescription != undefined) {
 					var htmlContent = $.fn.bbcodeParser($messageDescription.html());
 					$messageDescription.html(htmlContent);
+					
+					$.fn.slideSpoiler();
 				}
-
-				$.fn.slideSpoiler();
 			},
 
 			saveAsDraft: function () {
