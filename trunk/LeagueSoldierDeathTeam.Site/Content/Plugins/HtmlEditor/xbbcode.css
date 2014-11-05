@@ -50,9 +50,9 @@ body {
 	cursor: pointer;
 }
 
-	.xbbcode-spoiler-head:hover, .xbbcode-spoiler-footer:hover {
-		text-decoration: underline;
-	}
+.xbbcode-spoiler-head:hover, .xbbcode-spoiler-footer:hover {
+	text-decoration: underline;
+}
 
 .xbbcode-spoiler-body {
 	padding: 5px;

@@ -104,7 +104,7 @@
 	background-image: url(images/colors.png);
 }
 
-.markItUp .emoticon a {
+.markItUp .emoticon > a {
 	background-image: url(images/emoticon.png);
 }
 
@@ -114,13 +114,13 @@
 }
 
 .markItUp .emoticon ul {
-	width: 228px;
+	width: 97px;
 }
 
 .markItUp .palette li, .markItUp .emoticon li {
 	border: 1px solid white;
 	width: 25px;
-	height: 25px;
+	/*height: 25px;*/
 	overflow: hidden;
 	padding: 0px;
 	margin: 0px;
@@ -128,8 +128,8 @@
 }
 
 .markItUp .emoticon li {
-	width: 70px;
-	height: 70px;
+	width: 87px; /*width: 70px;*/
+	/*height: 70px;*/
 }
 
 .markItUp .palette ul a {
@@ -138,8 +138,8 @@
 }
 
 .markItUp .emoticon ul a {
-	width: 70px;
-	height: 70px;
+	width: 87px; /*width: 70px;*/
+	/*height: 70px;*/
 }
 
 .markItUp .emoticon ul li a {

@@ -3,7 +3,6 @@ mySettings = {
 	previewParser: function (content) {
 		return $.fn.bbcodeParser(content);
 	},
-	previewParserPath: "templates/preview.html",
 	markupSet: [
 		{ name: 'Bold', key: 'B', openWith: '[b]', closeWith: '[/b]' },
 		{ name: 'Italic', key: 'I', openWith: '[i]', closeWith: '[/i]' },
@@ -66,12 +65,7 @@ mySettings = {
 		},
 		{
 			name: 'Emoticon', className: 'emoticon', dropMenu: [
-				{ openWith: '[smile=1]', className: "smile-1" },
-				{ openWith: '[smile=2]', className: "smile-2" },
-				{ openWith: '[smile=3]', className: "smile-3" },
-				{ openWith: '[smile=4]', className: "smile-4" },
-				{ openWith: '[smile=5]', className: "smile-5" },
-				{ openWith: '[smile=6]', className: "smile-6" }
+				{ name: 'Coming soon', openWith: '', className: '' }
 			]
 		},
 		{ separator: '---------------' },
