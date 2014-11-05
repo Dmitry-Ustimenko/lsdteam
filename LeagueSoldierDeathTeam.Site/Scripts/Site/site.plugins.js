@@ -18,6 +18,17 @@
 })(jQuery);
 
 (function ($) {
+	$.fn.bbcodeParser = function (content) {
+		var htmlContent = XBBCODE.process({
+			text: content,
+			addInLineBreaks: true
+		}).html;
+
+		return htmlContent.replace(/&#91;hr&#93;/g, "<hr/>").replace(/\[hr\]/g, "<hr/>");
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.slideSpoiler = function (content) {
 		var $spoilers;
 		if (content != undefined) {

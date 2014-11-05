@@ -43,11 +43,7 @@
 				var $messageDescription = $('.message-description');
 
 				if ($messageDescription != undefined) {
-					var htmlContent = XBBCODE.process({
-						text: $messageDescription.html(),
-						addInLineBreaks: true
-					}).html;
-
+					var htmlContent = $.fn.bbcodeParser($messageDescription.html());
 					$messageDescription.html(htmlContent);
 				}
 
