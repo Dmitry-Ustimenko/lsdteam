@@ -64,7 +64,7 @@
 					var htmlContent = $.fn.bbcodeParser($messageDescription.html());
 					$messageDescription.html(htmlContent);
 					
-					$.fn.slideSpoiler();
+					$.fn.slideSpoiler($messageDescription);
 				}
 			},
 

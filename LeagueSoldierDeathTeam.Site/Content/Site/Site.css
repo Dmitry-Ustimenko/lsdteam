@@ -2709,6 +2709,7 @@ textarea.resize-none {
 	.view-message-description .message-title {
 		font-size: 20px;
 		padding-bottom: 6px;
+		padding: 0 170px 6px 170px;
 	}
 
 	.view-message-description .message-date {
