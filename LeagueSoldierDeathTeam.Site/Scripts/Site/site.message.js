@@ -36,6 +36,22 @@
 				$.extend(true, site.message.settings, settings);
 				site.message.initView.saveAsDraft();
 				site.message.initView.deleteMessage();
+				site.message.initView.parseBBCode();
+			},
+			
+			parseBBCode: function () {
+				var $messageDescription = $('.message-description');
+
+				if ($messageDescription != undefined) {
+					var htmlContent = XBBCODE.process({
+						text: $messageDescription.html(),
+						addInLineBreaks: true
+					}).html;
+
+					$messageDescription.html(htmlContent);
+				}
+
+				$.fn.slideSpoiler();
 			},
 
 			saveAsDraft: function () {

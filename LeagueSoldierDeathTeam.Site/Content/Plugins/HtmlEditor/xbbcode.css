@@ -1,9 +1,14 @@
+body {
+	font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
+}
+
 .xbbcode-b {
 	font-weight: bold;
 }
 
 .xbbcode-blockquote {
 	margin: 5px 15px;
+	margin-left: 25px;
 }
 
 .xbbcode-blockquote-head {
@@ -13,7 +18,7 @@
 .xbbcode-blockquote-body {
 	padding: 4px 6px;
 	margin-top: 2px;
-	background: #FFFEF9;
+	background: #FFFEEC;
 	-ms-border-radius: 3px;
 	border-radius: 3px;
 	border: 1px dotted black;
@@ -31,19 +36,23 @@
 	border-radius: 3px;
 }
 
+.xbbcode-spoiler-slide {
+	
+}
+
 .xbbcode-spoiler-head, .xbbcode-spoiler-footer {
 	padding: 4px;
 	padding-bottom: 5px;
-	background: #FFFEF9;
+	background: #FFFEEC;
 	-ms-border-radius: 3px;
 	border-radius: 3px;
 	line-height: 14px;
 	cursor: pointer;
 }
 
-.xbbcode-spoiler-head:hover, .xbbcode-spoiler-footer:hover {
-	text-decoration: underline;
-}
+	.xbbcode-spoiler-head:hover, .xbbcode-spoiler-footer:hover {
+		text-decoration: underline;
+	}
 
 .xbbcode-spoiler-body {
 	padding: 5px;
@@ -72,7 +81,7 @@
 }
 
 .xbbcode-spoiler-close {
-	display: block;
+	display: none;
 }
 
 .xbbcode-code {

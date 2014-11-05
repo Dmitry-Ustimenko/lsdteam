@@ -18,6 +18,46 @@
 })(jQuery);
 
 (function ($) {
+	$.fn.slideSpoiler = function (content) {
+		var $spoilers;
+		if (content != undefined) {
+			$spoilers = content.find(".xbbcode-spoiler");
+		} else {
+			$spoilers = $(".xbbcode-spoiler");
+		}
+
+		$spoilers.each(function () {
+			var spoiler = $(this);
+
+			if (spoiler != undefined) {
+				var header = spoiler.find("> .xbbcode-spoiler-head");
+				var slide = spoiler.find("> .xbbcode-spoiler-slide");
+				var footer = slide.find("> .xbbcode-spoiler-footer");
+				
+				var headerIcon = header.find("[data-id=header-icon]");
+
+				header.off("click").on("click", function () {
+					slideSpoiler();
+				});
+
+				footer.off("click").on("click", function () {
+					slideSpoiler();
+				});
+
+				function slideSpoiler() {
+					if (slide.is(":visible")) {
+						slide.slideUp();
+					} else {
+						slide.slideDown();
+					}
+					headerIcon.toggleClass("xbbcode-open-icon xbbcode-close-icon");
+				}
+			}
+		});
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.cookieSet = function (name, value, options) {
 		options = options || {};
 		var exp = options.expires;

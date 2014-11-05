@@ -237,7 +237,7 @@ var XBBCODE = (function () {
 				var userNameSpan = '';
 
 				if (params != undefined) {
-					var userName = params.substr(1) || undefined;
+					var userName = params.substr(2, params.length - 3) || undefined;
 
 					if (userName != undefined) {
 						userNameSpan = '<span class="xbbcode-blockquote-head"><b>' + userName + '</b> :</span>';
@@ -403,15 +403,15 @@ var XBBCODE = (function () {
 				var spoilerName = 'spoiler';
 
 				if (params != undefined) {
-					spoilerName = params.substr(1) || 'spoiler';
+					spoilerName = params.substr(2, params.length - 3) || 'spoiler';
 				}
 
 				return '<div class="xbbcode-spoiler">' +
-					'<div class="xbbcode-spoiler-head"><span class="xbbcode-open-icon"></span>' + spoilerName + '</div>' +
-					'<div class="xbbcode-spoiler-body xbbcode-spoiler-close">';
+					'<div class="xbbcode-spoiler-head"><span data-id="header-icon" class="xbbcode-open-icon"></span>' + spoilerName + '</div>' +
+					'<div class="xbbcode-spoiler-slide xbbcode-spoiler-close"><div class="xbbcode-spoiler-body">';
 			},
 			closeTag: function (params, content) {
-				return '</div><div class="xbbcode-spoiler-footer xbbcode-spoiler-close"><span class="xbbcode-close-icon"></span>close</div></div>';
+				return '</div><div class="xbbcode-spoiler-footer"><span class="xbbcode-close-icon"></span>close</div></div></div>';
 			}
 		},
 		"*": {
