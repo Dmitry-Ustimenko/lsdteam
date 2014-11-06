@@ -43,6 +43,7 @@ var XBBCODE = (function () {
 		youtubeIdPattern = /(?:https?)\:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})/,
         colorNamePattern = /^(?:red|green|blue|orange|yellow|black|white|brown|gray|silver|purple|maroon|fushsia|lime|olive|navy|teal|aqua)$/,
         colorCodePattern = /^#?[a-fA-F0-9]{6}$/,
+		colorAlignPattern = /^(?:bottom|left|middle|right|top)$/,
 		alignCodePattern = /^(?:justify|right|left|center)$/,
         tags,
         tagList,
@@ -192,13 +193,22 @@ var XBBCODE = (function () {
 			openTag: function (params, content) {
 
 				var myUrl = content;
+				var align = '';
 
 				urlPattern.lastIndex = 0;
 				if (!urlPattern.test(myUrl)) {
 					myUrl = "";
 				}
 
-				return '<img src="' + myUrl + '" />';
+				if (params != undefined) {
+					var alignImg = params.substr(1);
+					colorAlignPattern.lastIndex = 0;
+					if (colorAlignPattern.test(alignImg)) {
+						align = 'align="' + alignImg + '"';
+					}
+				}
+
+				return '<img src="' + myUrl + '" ' + align + '/>';
 			},
 			closeTag: function (params, content) {
 				return '';
