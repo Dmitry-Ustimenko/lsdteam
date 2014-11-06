@@ -95,11 +95,11 @@
 	padding: 6px 6px 5px 6px;
 }
 
-.markItUp .markItUpButton23 a {
-	background-image: url(images/spoiler.png);
-	width: 15px;
-	height: 15px;
-}
+	.markItUp .markItUpButton23 a {
+		background-image: url(images/spoiler.png);
+		width: 15px;
+		height: 15px;
+	}
 
 .markItUp .markItUpButton24 a {
 	background-image: url(images/offtop.png);
@@ -131,7 +131,7 @@
 }
 
 .markItUp .emoticon ul {
-	width: 97px;
+	width: 103px;
 }
 
 .markItUp .palette li, .markItUp .emoticon li {
@@ -145,7 +145,7 @@
 }
 
 .markItUp .emoticon li {
-	width: 87px; /*width: 70px;*/
+	width: 93px; /*width: 70px;*/
 	/*height: 70px;*/
 }
 
@@ -155,7 +155,7 @@
 }
 
 .markItUp .emoticon ul a {
-	width: 87px; /*width: 70px;*/
+	width: 93px; /*width: 70px;*/
 	/*height: 70px;*/
 }
 
@@ -302,4 +302,48 @@
 
 .markItUp .emoticon .smile-6 a {
 	background-image: url(images/Smiles/6.gif);
+}
+
+.markItUp .font-small > a {
+	font-size: 9px !important;
+}
+
+.markItUp .font-normal > a {
+	font-size: 13px !important;
+}
+
+.markItUp .font-big > a {
+	font-size: 17px !important;
+}
+
+.markItUp .font-family-1 > a {
+	font-family: Courier;
+}
+
+.markItUp .font-family-2 > a {
+	font-family: Courier New;
+}
+
+.markItUp .font-family-3 > a {
+	font-family: Arial;
+}
+
+.markItUp .font-family-4 > a {
+	font-family: Fixedsys;
+}
+
+.markItUp .font-family-5 > a {
+	font-family: Comic Sans MS;
+}
+
+.markItUp .font-family-6 > a {
+	font-family: Georgia;
+}
+
+.markItUp .font-family-7 > a {
+	font-family: Tahoma;
+}
+
+.markItUp .font-family-8 > a {
+	font-family: Times New Roman;
 }

@@ -1,48 +1,48 @@
-mySettings = {
+﻿mySettings = {
 	previewAutoRefresh: false,
 	previewParser: function (content) {
 		return $.fn.bbcodeParser(content);
 	},
 	markupSet: [
-		{ name: 'Bold', key: 'B', openWith: '[b]', closeWith: '[/b]' },
-		{ name: 'Italic', key: 'I', openWith: '[i]', closeWith: '[/i]' },
-		{ name: 'Underline', key: 'U', openWith: '[u]', closeWith: '[/u]' },
-		{ name: 'Strike', key: 'S', openWith: '[s]', closeWith: '[/s]' },
-		{ name: 'Sup', key: '.', openWith: '[sup]', closeWith: '[/sup]' },
-		{ name: 'Sub', key: ',', openWith: '[sub]', closeWith: '[/sub]' },
+		{ name: 'Жирный', key: 'B', openWith: '[b]', closeWith: '[/b]' },
+		{ name: 'Наклонный', key: 'I', openWith: '[i]', closeWith: '[/i]' },
+		{ name: 'Подчеркнутый', key: 'U', openWith: '[u]', closeWith: '[/u]' },
+		{ name: 'Зачеркнутый', key: 'S', openWith: '[s]', closeWith: '[/s]' },
+		{ name: 'Верхний индекс', key: '.', openWith: '[sup]', closeWith: '[/sup]' },
+		{ name: 'Нижний индекс', key: ',', openWith: '[sub]', closeWith: '[/sub]' },
 		{ separator: '---------------' },
-		{ name: 'Justify', openWith: '[align=justify]', closeWith: '[/align]' },
-		{ name: 'Right', openWith: '[align=right]', closeWith: '[/align]' },
-		{ name: 'Center', openWith: '[align=center]', closeWith: '[/align]' },
-		{ name: 'Left', openWith: '[align=left]', closeWith: '[/align]' },
+		{ name: 'Выровнять по ширине', openWith: '[align=justify]', closeWith: '[/align]' },
+		{ name: 'Выровнять вправо', openWith: '[align=right]', closeWith: '[/align]' },
+		{ name: 'Выровнять по центру', openWith: '[align=center]', closeWith: '[/align]' },
+		{ name: 'Выровнять влево', openWith: '[align=left]', closeWith: '[/align]' },
 		{ separator: '---------------' },
-		{ name: 'Picture', key: 'P', replaceWith: '[img][![Image Url:!:http://]!][/img]' },
-		{ name: 'Link', key: 'L', openWith: '[url=[![Site Url:!:http://]!]]', closeWith: '[/url]' },
-		{ name: 'Youtube', key: 'Y', replaceWith: '[youtube][![Youtube Url:!:http://]!][/youtube]' },
+		{ name: 'Картинка', key: 'P', replaceWith: '[img][![Адрес картинки::!:http://]!][/img]' },
+		{ name: 'Ссылка', key: 'L', openWith: '[url=[![Адрес сайта::!:http://]!]]', closeWith: '[/url]' },
+		{ name: 'Youtube', key: 'Y', replaceWith: '[youtube][![Youtube адрес::!:http://]!][/youtube]' },
 		{ separator: '---------------' },
 		{
-			name: 'Font',
+			name: 'Шрифт',
 			dropMenu: [
-				{ name: 'Courier', openWith: '[font="Courier"]', closeWith: '[/font]' },
-				{ name: 'Courier New', openWith: '[font="Courier New"]', closeWith: '[/font]' },
-				{ name: 'Arial', openWith: '[font="Arial"]', closeWith: '[/font]' },
-				{ name: 'Fixedsys', openWith: '[font="Fixedsys"]', closeWith: '[/font]' },
-				{ name: 'Comic Sans MS', openWith: '[font="Comic Sans MS"]', closeWith: '[/font]' },
-				{ name: 'Georgia', openWith: '[font="Georgia"]', closeWith: '[/font]' },
-				{ name: 'Tahoma', openWith: '[font="Tahoma"]', closeWith: '[/font]' },
-				{ name: 'Times New Roman', openWith: '[font="Times New Roman"]', closeWith: '[/font]' },
+				{ name: 'Courier', openWith: '[font="Courier"]', closeWith: '[/font]', className: 'font-family-1' },
+				{ name: 'Courier New', openWith: '[font="Courier New"]', closeWith: '[/font]', className: 'font-family-2' },
+				{ name: 'Arial', openWith: '[font="Arial"]', closeWith: '[/font]', className: 'font-family-3' },
+				{ name: 'Fixedsys', openWith: '[font="Fixedsys"]', closeWith: '[/font]', className: 'font-family-4' },
+				{ name: 'Comic Sans MS', openWith: '[font="Comic Sans MS"]', closeWith: '[/font]', className: 'font-family-5' },
+				{ name: 'Georgia', openWith: '[font="Georgia"]', closeWith: '[/font]', className: 'font-family-6' },
+				{ name: 'Tahoma', openWith: '[font="Tahoma"]', closeWith: '[/font]', className: 'font-family-7' },
+				{ name: 'Times New Roman', openWith: '[font="Times New Roman"]', closeWith: '[/font]', className: 'font-family-8' }
 			]
 		},
 		{
-			name: 'Size', openWith: '[size=[![Text size:]!]]', closeWith: '[/size]',
+			name: 'Размер шрифта', openWith: '[size=[![Размер шрифта(px):]!]]', closeWith: '[/size]',
 			dropMenu: [
-				{ name: 'Small', openWith: '[size=9]', closeWith: '[/size]' },
-				{ name: 'Normal', openWith: '[size=13]', closeWith: '[/size]' },
-				{ name: 'Big', openWith: '[size=17]', closeWith: '[/size]' }
+				{ name: 'Маленький', openWith: '[size=9]', closeWith: '[/size]', className: 'font-small' },
+				{ name: 'Обычный', openWith: '[size=13]', closeWith: '[/size]', className: 'font-normal' },
+				{ name: 'Большой', openWith: '[size=17]', closeWith: '[/size]', className: 'font-big' }
 			]
 		},
 		{
-			name: 'Colors', className: 'palette', openWith: '[color=[![Color hex code:!:#]!]]', closeWith: '[/color]',
+			name: 'Цвет шрифта', className: 'palette', openWith: '[color=[![Код цвета(hex)::!:#]!]]', closeWith: '[/color]',
 			dropMenu: [
 				{ name: 'Light Yellow', openWith: '[color=#FCE94F]', closeWith: '[/color]', className: "col1-1" },
 				{ name: 'Yellow', openWith: '[color=#EDD400]', closeWith: '[/color]', className: "col1-2" },
@@ -78,19 +78,19 @@ mySettings = {
 			]
 		},
 		{
-			name: 'Emoticon', className: 'emoticon', dropMenu: [
-				{ name: 'Coming soon', openWith: '', className: '' }
+			name: 'Смайлики', className: 'emoticon', dropMenu: [
+				{ name: 'В разработке', openWith: '', className: '' }
 			]
 		},
 		{ separator: '---------------' },
-		{ name: 'Bulleted list', openWith: '[list]\n', closeWith: '\n[/list]' },
-		{ name: 'List item', openWith: '[*] ' },
+		{ name: 'Список', openWith: '[list]\n', closeWith: '\n[/list]' },
+		{ name: 'Элемент списка', openWith: '[*] ' },
 		{ separator: '---------------' },
-		{ name: 'Quotes', openWith: '[quote]', closeWith: '[/quote]' },
-		{ name: 'Code', openWith: '[code]', closeWith: '[/code]' },
-		{ name: 'No parse', openWith: '[noparse]', closeWith: '[/noparse]' },
-		{ name: 'Spoiler', openWith: '[spoiler]', closeWith: '[/spoiler]' },
+		{ name: 'Цитата', openWith: '[quote]', closeWith: '[/quote]' },
+		{ name: 'Код', openWith: '[code]', closeWith: '[/code]' },
+		{ name: 'Без изменений', openWith: '[noparse]', closeWith: '[/noparse]' },
+		{ name: 'Спойлер', openWith: '[spoiler]', closeWith: '[/spoiler]' },
 		{ name: 'Off top', openWith: '[off]', closeWith: '[/off]' },
-		{ name: 'Horizontal line', openWith: '[hr]' }
+		{ name: 'Горизонтальная линия', openWith: '[hr]' }
 	]
 }
