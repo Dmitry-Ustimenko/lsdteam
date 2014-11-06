@@ -273,6 +273,7 @@
     <Content Include="Content\Plugins\HtmlEditor\sets\images\colors.png" />
     <Content Include="Content\Plugins\HtmlEditor\sets\images\disconnect.png" />
     <Content Include="Content\Plugins\HtmlEditor\sets\images\emoticon.png" />
+    <Content Include="Content\Plugins\HtmlEditor\sets\images\font-family.png" />
     <Content Include="Content\Plugins\HtmlEditor\sets\images\fonts.png" />
     <Content Include="Content\Plugins\HtmlEditor\sets\images\h1.png" />
     <Content Include="Content\Plugins\HtmlEditor\sets\images\h2.png" />
