@@ -21,7 +21,20 @@ mySettings = {
 		{ name: 'Youtube', key: 'Y', replaceWith: '[youtube][![Youtube Url:!:http://]!][/youtube]' },
 		{ separator: '---------------' },
 		{
-			name: 'Size', openWith: '[size=[![Text size]!]]', closeWith: '[/size]',
+			name: 'Font',
+			dropMenu: [
+				{ name: 'Courier', openWith: '[font="Courier"]', closeWith: '[/font]' },
+				{ name: 'Courier New', openWith: '[font="Courier New"]', closeWith: '[/font]' },
+				{ name: 'Arial', openWith: '[font="Arial"]', closeWith: '[/font]' },
+				{ name: 'Fixedsys', openWith: '[font="Fixedsys"]', closeWith: '[/font]' },
+				{ name: 'Comic Sans MS', openWith: '[font="Comic Sans MS"]', closeWith: '[/font]' },
+				{ name: 'Georgia', openWith: '[font="Georgia"]', closeWith: '[/font]' },
+				{ name: 'Tahoma', openWith: '[font="Tahoma"]', closeWith: '[/font]' },
+				{ name: 'Times New Roman', openWith: '[font="Times New Roman"]', closeWith: '[/font]' },
+			]
+		},
+		{
+			name: 'Size', openWith: '[size=[![Text size:]!]]', closeWith: '[/size]',
 			dropMenu: [
 				{ name: 'Small', openWith: '[size=9]', closeWith: '[/size]' },
 				{ name: 'Normal', openWith: '[size=13]', closeWith: '[/size]' },

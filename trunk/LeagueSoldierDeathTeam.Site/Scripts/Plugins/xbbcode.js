@@ -45,6 +45,7 @@ var XBBCODE = (function () {
         colorCodePattern = /^#?[a-fA-F0-9]{6}$/,
 		colorAlignPattern = /^(?:bottom|left|middle|right|top)$/,
 		alignCodePattern = /^(?:justify|right|left|center)$/,
+		fontFamilyPattern = /^(?:Courier|Courier New|Arial|Fixedsys|Comic Sans MS|Georgia|Times New Roman|Tahoma)$/,
         tags,
         tagList,
         tagsNoParseList = [],
@@ -214,6 +215,25 @@ var XBBCODE = (function () {
 				return '';
 			},
 			displayContent: false
+		},
+		"font": {
+			openTag: function (params, content) {
+
+				var fontFamilyStyle = '';
+
+				if (params != undefined) {
+					var fontFamily = params.substr(2, params.length - 3);
+					fontFamilyPattern.lastIndex = 0;
+					if (fontFamilyPattern.test(fontFamily)) {
+						fontFamilyStyle = 'style="font-family:' + fontFamily + '"';
+					}
+				}
+
+				return '<span ' + fontFamilyStyle + '>';
+			},
+			closeTag: function (params, content) {
+				return '</span>';
+			}
 		},
 		"list": {
 			openTag: function (params, content) {
