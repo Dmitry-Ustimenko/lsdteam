@@ -337,8 +337,24 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			{
 				var model = new UserMessageModel { Id = id.Value };
 
-				if (FillUserMessageModel(model))
+				if (FillUserMessageModel(model, false))
 					return View(model);
+				return RedirectToAction<AccountProfileController>(o => o.CreateMessage());
+			}
+
+			return RedirectToAction<AccountProfileController>(o => o.CreateMessage());
+		}
+
+		[HttpGet]
+		[Route("edit-message-quote/{id:int?}")]
+		public ActionResult EditMessageWithQuote(int? id)
+		{
+			if (id.HasValue)
+			{
+				var model = new UserMessageModel { Id = id.Value };
+
+				if (FillUserMessageModel(model, true))
+					return View("EditMessage", model);
 				return RedirectToAction<AccountProfileController>(o => o.CreateMessage());
 			}
 
@@ -466,14 +482,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				?? new List<UserMessageData>();
 		}
 
-		private bool FillUserMessageModel(UserMessageModel model)
+		private bool FillUserMessageModel(UserMessageModel model, bool quote)
 		{
 			var message = Execute(() => _accountProfileService.GetUserMessage(CurrentUser.Id, model.Id.GetValueOrDefault()));
 
 			if (message != null && message.Type == MessageTypeEnum.Inbox)
 			{
-				model.Title = message.Title;
-				model.Description = message.Description;
+				model.Title = StringGeneration.QuoteTitleBuilder(message.Title);
+				model.Description = quote ? StringGeneration.QuoteDescriptionBuilder(message.Description, message.SenderName) : message.Description;
 				model.RecipientName = message.SenderName;
 				return true;
 			}
