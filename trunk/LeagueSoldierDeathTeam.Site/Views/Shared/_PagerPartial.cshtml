@@ -11,7 +11,7 @@
 	<li><span @Html.Raw(Model.PageId == 1 ? "class='currentPage'" : string.Empty) data-page="1">1</span></li>
 
 	//First ...
-	@Html.Raw(Model.PageId + Constants.CountPagesBothSideCurrPage >= Constants.MaxCountVisiblePages && Model.PageCount > Constants.MaxCountVisiblePages ? "<li>...</li>" : string.Empty)
+	@Html.Raw(Model.PageId + Constants.CountPagesBothSideCurrPage >= Constants.MaxCountVisiblePages && Model.PageCount > Constants.MaxCountVisiblePages ? "<li>&hellip;</li>" : string.Empty)
 
 		//Pages
 		if (Model.PageCount > 2)
@@ -30,7 +30,7 @@
 		}
 
 	//Last ...
-	@Html.Raw(Model.PageId + Constants.CountPagesBothSideCurrPage + 1 < Model.PageCount && Model.PageCount > Constants.MaxCountVisiblePages ? "<li>...</li>" : string.Empty)
+	@Html.Raw(Model.PageId + Constants.CountPagesBothSideCurrPage + 1 < Model.PageCount && Model.PageCount > Constants.MaxCountVisiblePages ? "<li>&hellip;</li>" : string.Empty)
 
 		//Last Page
 		if (Model.PageCount != 1)
