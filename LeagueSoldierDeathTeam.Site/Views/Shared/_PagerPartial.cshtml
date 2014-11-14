@@ -1,0 +1,45 @@
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@model LeagueSoldierDeathTeam.Site.Models.PagerModel
+@{
+	Layout = null;
+}
+<ul>
+	@{
+	//Prev Page
+	<li><span @Html.Raw(Model.PageId <= 1 ? "class='disabledPrevNext'" : string.Empty) data-page="@(Model.PageId - 1)">&laquo;</span></li>
+	//First Page
+	<li><span @Html.Raw(Model.PageId == 1 ? "class='currentPage'" : string.Empty) data-page="1">1</span></li>
+
+	//First ...
+	@Html.Raw(Model.PageId + Constants.CountPagesBothSideCurrPage >= Constants.MaxCountVisiblePages && Model.PageCount > Constants.MaxCountVisiblePages ? "<li>...</li>" : string.Empty)
+
+		//Pages
+		if (Model.PageCount > 2)
+		{
+			var pageNumber = Model.PageId - Constants.CountPagesBothSideCurrPage <= 1 || Model.PageCount <= Constants.MaxCountVisiblePages
+				? 2
+				: Model.PageCount - Constants.CountPagesBothSideCurrPage <= Model.PageId
+					? Model.PageCount - Constants.CountPagesBothSideCurrPage * 2 - 1
+					: Model.PageId - Constants.CountPagesBothSideCurrPage;
+
+			for (int i = 0; i < Constants.CountPagesBothSideCurrPage * 2 + 1 && pageNumber < Model.PageCount; i++)
+			{
+				<li><span @Html.Raw(pageNumber == Model.PageId ? "class='currentPage'" : string.Empty) data-page="@pageNumber">@pageNumber</span></li>
+				pageNumber++;
+			}
+		}
+
+	//Last ...
+	@Html.Raw(Model.PageId + Constants.CountPagesBothSideCurrPage + 1 < Model.PageCount && Model.PageCount > Constants.MaxCountVisiblePages ? "<li>...</li>" : string.Empty)
+
+		//Last Page
+		if (Model.PageCount != 1)
+		{
+			<li><span @Html.Raw(Model.PageId == Model.PageCount ? "class='currentPage'" : string.Empty) data-page="@Model.PageCount">@Model.PageCount</span></li>
+		}
+	//Next Page
+	<li><span @Html.Raw(Model.PageId >= Model.PageCount ? "class='disabledPrevNext'" : string.Empty) data-page="@(Model.PageId + 1)">&raquo;</span></li>
+	}
+</ul>
+
+

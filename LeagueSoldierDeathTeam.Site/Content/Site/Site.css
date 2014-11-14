@@ -2651,7 +2651,7 @@ textarea.resize-none {
 	display: none;
 	padding: 8px 5px;
 	min-height: 150px;
-	overflow: auto; 
+	overflow: auto;
 }
 
 .small-text {
@@ -2720,3 +2720,51 @@ textarea.resize-none {
 	.view-message-description .message-description {
 		text-align: left;
 	}
+
+/*Pager*/
+
+.pager {
+	text-align: right;
+	vertical-align: middle;
+	margin: 0;
+}
+
+	.pager span {
+		cursor: pointer;
+		color: green;
+	}
+
+		.pager span:hover {
+			color: #005580;
+		}
+
+		.pager span.disabledPrevNext {
+			cursor: default;
+			color: silver;
+		}
+
+			.pager span.disabledPrevNext:hover {
+				color: silver;
+			}
+
+		.pager span.currentPage {
+			color: #999;
+			cursor: default;
+		}
+
+	.pager ul {
+		display: inline-block;
+		margin-top: 10px;
+	}
+
+		.pager ul > li > a, .pagination ul > li > span {
+			padding: 1px 10px 4px 10px;
+			line-height: 20px;
+			text-decoration: none;
+			background-color: #fff;
+			border: 1px solid #ddd;
+		}
+
+		.pager ul > li {
+			display: inline;
+		}

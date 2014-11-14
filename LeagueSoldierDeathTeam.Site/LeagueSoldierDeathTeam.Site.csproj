@@ -213,6 +213,7 @@
     <Compile Include="Classes\Extensions\RussianTimeEx.cs" />
     <Compile Include="Classes\Extensions\StringGeneration.cs" />
     <Compile Include="Classes\Factories\ContextFactory.cs" />
+    <Compile Include="Classes\Helpers\PagerHelper.cs" />
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Mailer.cs" />
     <Compile Include="Classes\Parsers\Xml\XmlParser.cs" />
@@ -258,6 +259,7 @@
     <Compile Include="Models\LayoutProfileInfoModel.cs" />
     <Compile Include="Models\Mail\MailActivateModel.cs" />
     <Compile Include="Models\Mail\MailTokenModel.cs" />
+    <Compile Include="Models\PagerModel.cs" />
     <Compile Include="Models\Xml\MailHosting.cs" />
     <Compile Include="Modules\Autofac\LibraryModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -459,7 +461,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_AuthenticationPartial.cshtml" />
-    <Content Include="Views\Shared\_Layout.Scripts.cshtml" />
+    <Content Include="Views\Shared\_LayoutScripts.cshtml" />
     <Content Include="Views\Shared\_SliderPartial.cshtml" />
     <Content Include="Views\Account\_LoginPartial.cshtml" />
     <Content Include="Views\Account\_RegisterPartial.cshtml" />
@@ -494,6 +496,7 @@
     <Content Include="Views\AccountProfile\MessagesData.cshtml" />
     <Content Include="Views\AccountProfile\EditMessage.cshtml" />
     <Content Include="Views\AccountProfile\ViewMessage.cshtml" />
+    <Content Include="Views\Shared\_PagerPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

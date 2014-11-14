@@ -27,5 +27,11 @@
 		public const string ErrorStatus = "Error";
 
 		public const string ErrorMessage = "Произошла внутренняя ошибка.";
+
+		public const int DefaultPageSize = 2;
+
+		public const int CountPagesBothSideCurrPage = 2;
+
+		public const int MaxCountVisiblePages = 7;
 	}
 }
