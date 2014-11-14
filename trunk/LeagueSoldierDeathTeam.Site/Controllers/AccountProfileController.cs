@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -17,6 +16,8 @@ using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
+using LeagueSoldierDeathTeam.Site.Classes.Helpers;
+using LeagueSoldierDeathTeam.Site.Models;
 using LeagueSoldierDeathTeam.Site.Models.AccountProfile;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -478,8 +479,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private void FillUserMessagesModel(UserMessagesModel model)
 		{
-			model.Data = Execute(() => _accountProfileService.GetUserMessages(CurrentUser.Id, model.MessageTypeId))
-				?? new List<UserMessageData>();
+			var data = (Execute(() => _accountProfileService.GetUserMessages(CurrentUser.Id, model.MessageTypeId)) ?? new List<UserMessageData>()).ToList();
+			
+			model.Data = data.Page(model.Pager.PageId, model.Pager.PageSize);
+			model.Pager.Count = data.Count();
 		}
 
 		private bool FillUserMessageModel(UserMessageModel model, bool quote)
