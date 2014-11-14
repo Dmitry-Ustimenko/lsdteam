@@ -13,7 +13,7 @@ namespace LeagueSoldierDeathTeam.Site.Models
 		public PagerModel()
 		{
 			PageSize = Constants.DefaultPageSize;
-			PageId = 1;
+			PageId = 5;
 		}
 	}
 }
