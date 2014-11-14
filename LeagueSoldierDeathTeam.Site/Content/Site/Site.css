@@ -2732,10 +2732,17 @@ textarea.resize-none {
 	.pager span {
 		cursor: pointer;
 		color: green;
+		padding: 0 4px;
+		padding-bottom: 1px;
+		border: 1px solid rgba(0, 0, 0, 0.25);
 	}
 
 		.pager span:hover {
 			color: #005580;
+			-webkit-box-shadow: 0px 0px 1px rgba(0, 119, 0, 0.89);
+			-ms-box-shadow: 0px 0px 1px rgba(0, 119, 0, 0.89);
+			box-shadow: 0px 0px 1px rgba(0, 119, 0, 0.89);
+			border: 1px solid rgba(0, 119, 0, 0.50);
 		}
 
 		.pager span.disabledPrevNext {
@@ -2745,6 +2752,10 @@ textarea.resize-none {
 
 			.pager span.disabledPrevNext:hover {
 				color: silver;
+				-webkit-box-shadow: none;
+				-ms-box-shadow: none;
+				box-shadow: none;
+				border: 1px solid rgba(0, 0, 0, 0.25);
 			}
 
 		.pager span.currentPage {
@@ -2752,19 +2763,21 @@ textarea.resize-none {
 			cursor: default;
 		}
 
+			.pager span.currentPage:hover {
+				color: #999;
+				cursor: default;
+				-webkit-box-shadow: none;
+				-ms-box-shadow: none;
+				box-shadow: none;
+				border: 1px solid rgba(0, 0, 0, 0.25);
+			}
+
 	.pager ul {
 		display: inline-block;
 		margin-top: 10px;
 	}
 
-		.pager ul > li > a, .pagination ul > li > span {
-			padding: 1px 10px 4px 10px;
-			line-height: 20px;
-			text-decoration: none;
-			background-color: #fff;
-			border: 1px solid #ddd;
-		}
-
 		.pager ul > li {
+			margin: 0;
 			display: inline;
 		}
