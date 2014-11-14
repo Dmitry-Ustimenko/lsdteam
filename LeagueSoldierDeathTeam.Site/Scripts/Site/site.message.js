@@ -52,7 +52,10 @@
 					
 					if (e.shiftKey && (e.which == 13 || e.keyCode == 13)) {
 						$previewLink.click();
+						return false;
 					}
+
+					return true;
 				});
 			}
 		},
