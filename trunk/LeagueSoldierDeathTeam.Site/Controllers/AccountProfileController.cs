@@ -480,9 +480,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		private void FillUserMessagesModel(UserMessagesModel model)
 		{
 			var data = (Execute(() => _accountProfileService.GetUserMessages(CurrentUser.Id, model.MessageTypeId)) ?? new List<UserMessageData>()).ToList();
+			model.Pager.Count = data.Count();
 			
 			model.Data = data.Page(model.Pager.PageId, model.Pager.PageSize);
-			model.Pager.Count = data.Count();
 		}
 
 		private bool FillUserMessageModel(UserMessageModel model, bool quote)
