@@ -2759,19 +2759,20 @@ textarea.resize-none {
 			}
 
 		.pager span.currentPage {
-			color: #860000;
+			color: #6F6F6F;
 			cursor: default;
 			font-weight: bold;
 			font-size: 13px;
+			border: 1px solid rgba(0, 0, 0, 0.25);
 		}
 
 			.pager span.currentPage:hover {
-				color: #860000;
+				color: #6F6F6F;
 				cursor: default;
+				border: 1px solid rgba(0, 0, 0, 0.25);
 				-webkit-box-shadow: none;
 				-ms-box-shadow: none;
 				box-shadow: none;
-				border: 1px solid rgba(0, 0, 0, 0.25);
 			}
 
 	.pager ul {

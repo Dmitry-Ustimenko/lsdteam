@@ -15,14 +15,31 @@
 					content: "#content",
 					messageTypeId: "#MessageTypeId",
 					messageType: "#MessageType",
-					form: "#form"
+					form: "#form",
+					pager: "#pager"
 				}
 			},
 
 			init: function (settings) {
 				$.extend(true, site.messages.settings, settings);
+
+				var $form = $(site.messages.settings.elements.form);
+				site.messages.settings.vars.form = $form.find("form");
+
 				site.messages.changeType();
 				site.messages.refreshGrid();
+			},
+
+			refreshGrid: function () {
+				var type = $(site.messages.settings.elements.messageTypeId);
+				var messages = $("[data-type=message]");
+
+				$.fn.initCheckbox();
+				site.messages.initPager();
+				site.messages.initCheckboxes(messages);
+				site.messages.saveAsDraft(type, messages);
+				site.messages.saveAsRead(type, messages);
+				site.messages.deleteMessages(type, messages);
 			},
 
 			changeType: function () {
@@ -38,15 +55,14 @@
 				});
 			},
 
-			refreshGrid: function () {
-				var type = $(site.messages.settings.elements.messageTypeId);
-				var messages = $("[data-type=message]");
-
-				$.fn.initCheckbox();
-				site.messages.initCheckboxes(messages);
-				site.messages.saveAsDraft(type, messages);
-				site.messages.saveAsRead(type, messages);
-				site.messages.deleteMessages(type, messages);
+			initPager: function () {
+				$(site.messages.settings.elements.pager).pager(function (pageId) {
+					site.messages.refresh(site.messages.settings.elements.content, site.messages.settings.urls.refreshGrid,
+						$.fn.serializeParams(site.messages.settings.vars.form, [{ name: "Pager.PageId", value: pageId }]),
+						function () {
+							site.messages.refreshGrid();
+						});
+				});
 			},
 
 			initCheckboxes: function (messages) {

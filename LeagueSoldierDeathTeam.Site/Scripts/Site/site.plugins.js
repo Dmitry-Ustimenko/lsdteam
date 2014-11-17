@@ -12,8 +12,35 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.serializeParams = function (form) {
-		return $(form).serializeArray();
+	$.fn.serializeParams = function (form, additionalParams) {
+		var params = $(form).serializeArray();
+
+		if (additionalParams != undefined && typeof (additionalParams) == "object") {
+			for (var i = 0; i < additionalParams.length; i++) {
+				var param = additionalParams[i];
+				if (typeof (param == "object") && param.name != undefined && param.value != undefined) {
+					params.push({
+						name: param.name,
+						value: param.value
+					});
+				}
+			}
+		}
+
+		return params;
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.pager = function (callback) {
+		var container = $(this);
+		container.find("span[data-page]").on("click", function () {
+			var page = $(this);
+			if (page.hasClass('currentPage') || page.hasClass('disabledPrevNext'))
+				return;
+			if (typeof (callback) == 'function')
+				callback(parseInt(page.data('page')));
+		});
 	};
 })(jQuery);
 
@@ -44,7 +71,7 @@
 				var header = spoiler.find("> .xbbcode-spoiler-head");
 				var slide = spoiler.find("> .xbbcode-spoiler-slide");
 				var footer = slide.find("> .xbbcode-spoiler-footer");
-				
+
 				var headerIcon = header.find("[data-id=header-icon]");
 
 				header.off("click").on("click", function () {
