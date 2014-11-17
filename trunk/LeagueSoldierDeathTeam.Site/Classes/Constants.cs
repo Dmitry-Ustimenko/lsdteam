@@ -28,7 +28,7 @@
 
 		public const string ErrorMessage = "Произошла внутренняя ошибка.";
 
-		public const int DefaultPageSize = 2;
+		public const int DefaultPageSize = 15;
 
 		public const int CountPagesBothSideCurrPage = 2;
 
