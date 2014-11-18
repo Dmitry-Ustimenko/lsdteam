@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
+using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Models.Administration;
 using LeagueSoldierDeathTeam.Site.Models.Mail;
+using Microsoft.Owin.Security;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
@@ -24,11 +27,15 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private readonly IMailer _mailer;
 
+		private readonly IAuthenticationService _authenticationService;
+
+		private IAuthenticationManager AuthenticationManager { get { return HttpContextBase.GetOwinContext().Authentication; } }
+
 		#endregion
 
 		#region Constructors
 
-		public AdministrationController(ServiceFactoryBase serviceFactory, IMailer mailer)
+		public AdministrationController(ServiceFactoryBase serviceFactory, IAuthenticationService authenticationService, IMailer mailer)
 			: base(serviceFactory)
 		{
 			_accountService = serviceFactory.CreateAccountService();
@@ -36,6 +43,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (mailer == null)
 				throw new ArgumentNullException("mailer");
 			_mailer = mailer;
+
+			if (authenticationService == null)
+				throw new ArgumentNullException("authenticationService");
+			_authenticationService = authenticationService;
+			_authenticationService.AuthenticationManager = AuthenticationManager;
 		}
 
 		#endregion
@@ -137,9 +149,29 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
-		public ActionResult ChangePage(SortEnum sortFilter, string term, int pageId)
+		public ActionResult ChangePage(SortEnum sortFilter, string term, int? pageId)
 		{
-			return View("_UsersPartial", GetUsers(sortFilter, term).CopyTo(pageId));
+			return View("_UsersPartial", GetUsers(sortFilter, term).CopyTo(pageId.GetValueOrDefault()));
+		}
+
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		public ActionResult LoginAs(int? userId)
+		{
+			if (CurrentUser.IsMainAdmin && userId.HasValue)
+			{
+				var user = _accountService.GetUser(userId.GetValueOrDefault());
+				if (ModelIsValid && user != null && user.IsActive)
+				{
+					_authenticationService.SignOut();
+
+					CurrentUser = user;
+					_authenticationService.SignIn(user.Email, false);
+
+					return RedirectToAction<HomeController>(o => o.Index());
+				}
+			}
+			return RedirectToAction<AdministrationController>(o => o.Index());
 		}
 
 		#endregion

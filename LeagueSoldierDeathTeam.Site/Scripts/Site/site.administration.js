@@ -10,7 +10,8 @@
 					sendMessageForActivate: '',
 					filterUsers: '',
 					filterRoles: '',
-					changePage: ''
+					changePage: '',
+					loginAs: ''
 				},
 				elements: {
 					tabs: '#tabs',
@@ -36,6 +37,7 @@
 
 					site.administation.users.initFilter(sortName, searchInput);
 
+					site.administation.users.loginAs();
 					site.administation.users.initPager(sortName, searchInput);
 					site.administation.users.activateUser(sortName, searchInput);
 					site.administation.users.sendMessageForActivate(sortName, searchInput);
@@ -136,7 +138,7 @@
 				sendMessageForActivate: function (sortName, searchInput) {
 					$('[data-action=message]').off("click").on('click', function () {
 						var $this = $(this);
-						$.fn.confirmOverlay("Письмо активации", "Подтвердите активацию этого аккаунта", function () {
+						$.fn.confirmOverlay("Письмо активации", "Подтвердите отправку письма активации", function () {
 							var userId = $this.data("id");
 							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.sendMessageForActivate,
 								{ userId: userId, sortFilter: sortName.data("val"), term: searchInput.val() },
@@ -182,6 +184,16 @@
 									site.administation.users.init();
 									$(site.administation.settings.elements.containment).find('.draggable[data-id=' + userId + ']').remove();
 								});
+						});
+					});
+				},
+				
+				loginAs: function () {
+					$('[data-action=login-as]').off("click").on('click', function () {
+						var $this = $(this);
+						$.fn.confirmOverlay("Релогин", "Вы действительно хотите залогинится под этим аккаунтом?", function () {
+							var userId = $this.data("id");
+							site.ajax.post(site.administation.settings.urls.loginAs, { userId: userId });
 						});
 					});
 				},

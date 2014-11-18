@@ -14,7 +14,7 @@ namespace LeagueSoldierDeathTeam.Site.Models
 		public int PageId
 		{
 			get { return _pageId <= PageCount ? _pageId : 1; }
-			set { _pageId = value; }
+			set { _pageId = _pageId != default(int) ? value : 1; }
 		}
 
 		public PagerModel()
