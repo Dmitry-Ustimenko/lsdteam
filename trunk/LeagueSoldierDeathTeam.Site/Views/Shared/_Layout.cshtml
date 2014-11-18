@@ -63,7 +63,7 @@
 	@DeclarativeHelper.Control.RenderAlert("confirmOverlay", true)
 	@DeclarativeHelper.Control.RenderAlert("promptOverlay", true, true)
 	<script type="text/javascript">
-		var array = @Html.Raw(StaticResourse.GetBackgroundImages())
+		@*var array = @Html.Raw(StaticResourse.GetBackgroundImages())*@
 
 		$(document).ready(function () {
 			site.layout.init({
@@ -72,7 +72,7 @@
 					register: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Register(null)))'
 				},
 				vars: {
-					backgrounds: array
+					//backgrounds: array
 				}
 			});
 		});
