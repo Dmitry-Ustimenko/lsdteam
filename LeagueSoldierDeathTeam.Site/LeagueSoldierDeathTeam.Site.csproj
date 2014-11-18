@@ -332,6 +332,7 @@
     <Content Include="Content\Plugins\HtmlEditor\skins\images\submenu.png" />
     <Content Include="Content\Plugins\HtmlEditor\skins\style.css" />
     <Content Include="Content\Plugins\HtmlEditor\xbbcode.css" />
+    <Content Include="Images\bf4-background.jpg" />
     <Content Include="Images\icons.png" />
     <Content Include="Images\message-select.png" />
     <Content Include="Scripts\Plugins\galleria.classic.css" />

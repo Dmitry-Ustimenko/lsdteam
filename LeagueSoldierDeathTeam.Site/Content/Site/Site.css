@@ -2,7 +2,7 @@
 
 body {
 	font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
-	background: url(/Images/background_body.png);
+	background: url(/Images/bf4-background.jpg);
 	padding: 0;
 	margin: 0;
 }
@@ -27,6 +27,21 @@ footer {
 		color: white;
 		min-height: 30px;
 	}
+
+.body-background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	-webkit-transition: opacity 1s ease;
+	-moz-transition: opacity 1s ease;
+	transition: opacity 1s ease;
+}
+
+.body-background video {
+	outline: none;
+}
 
 input[type=text]:focus,
 input[type=password]:focus,
