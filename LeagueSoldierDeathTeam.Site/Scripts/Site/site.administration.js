@@ -9,12 +9,14 @@
 					banUser: '',
 					sendMessageForActivate: '',
 					filterUsers: '',
-					filterRoles: ''
+					filterRoles: '',
+					changePage: ''
 				},
 				elements: {
 					tabs: '#tabs',
 					users: '#users-content',
-					containment: '#containment'
+					containment: '#containment',
+					pager: '#pager'
 				}
 			},
 
@@ -34,10 +36,21 @@
 
 					site.administation.users.initFilter(sortName, searchInput);
 
+					site.administation.users.initPager(sortName, searchInput);
 					site.administation.users.activateUser(sortName, searchInput);
 					site.administation.users.sendMessageForActivate(sortName, searchInput);
 					site.administation.users.banUser(sortName, searchInput);
 					site.administation.users.deleteUser(sortName, searchInput);
+				},
+
+				initPager: function (sortName, searchInput) {
+					$(site.administation.settings.elements.pager).pager(function (pageId) {
+						site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.changePage,
+							{ sortFilter: sortName.data("val"), term: searchInput.val(), pageId: pageId },
+							function () {
+								site.administation.users.init();
+							});
+					});
 				},
 
 				initFilter: function (sortName, searchInput) {

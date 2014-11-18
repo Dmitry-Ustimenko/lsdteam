@@ -1980,6 +1980,11 @@ span.checker-span {
 
 /* tabs */
 
+.ui-widget, .ui-widget * {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
+	font-size: 13px !important;
+}
+
 .ui-tabs {
 	padding: 0;
 }
@@ -2048,12 +2053,19 @@ span.checker-span {
 		text-align: center;
 	}
 
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+	color: rgb(68, 68, 68);
+	font-weight: normal !important;
+	font-family: 'Lily Script One', helveti !important;
+	font: 18px 'PT Sans Narrow', Arial, sans-serif !important;
+}
+
 .ui-tabs-vertical .ui-tabs-panel {
 	padding: 10px;
-	padding-bottom: 0;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	margin-right: 10px;
+	padding-bottom: 0;
 	float: left;
 	width: 800px;
 	border: 1px solid #D1D1D1;
@@ -2062,7 +2074,7 @@ span.checker-span {
 	.ui-tabs-vertical .ui-tabs-panel h2 {
 		font-weight: normal;
 		font-family: 'Lily Script One', helveti;
-		font: 18px 'PT Sans Narrow', Arial, sans-serif;
+		font-size: 18px !important;
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
@@ -2104,7 +2116,7 @@ span.checker-span {
 		.ui-widget-content .filter .sort .sort-changeable {
 			position: absolute;
 			top: 0;
-			left: 80px;
+			left: 83px;
 			width: 120px;
 			display: inline-block;
 			padding-left: 5px;
@@ -2152,7 +2164,7 @@ span.checker-span {
 
 	.ui-widget-content .filter .search, .ui-widget-content .filter .role-search {
 		float: right;
-		width: 170px;
+		width: 171px;
 		border: 1px solid #a8acad;
 		margin-top: 0;
 		margin-bottom: 5px;
@@ -2188,16 +2200,19 @@ span.checker-span {
 
 	.ui-widget-content .filter .search input, .ui-widget-content .filter .role-search input {
 		border: 0;
-		width: 142px;
-		padding: 2px;
+		width: 143px;
+		padding: 3px;
 		padding-left: 5px;
 		padding-right: 0;
 	}
 
+.ui-widget-content .users .pager {
+	padding-bottom: 10px;
+}
+
 .ui-widget-content .users table {
 	width: 100%;
 	border-spacing: 0;
-	margin-bottom: 10px;
 }
 
 	.ui-widget-content .users table thead th {
@@ -2325,7 +2340,7 @@ textarea.resize-none {
 }
 
 #role-management .container {
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 	vertical-align: middle;
 	position: relative;
 	height: 232px;

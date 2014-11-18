@@ -40,7 +40,7 @@
 						</span>
 						<span class="clear-btn"></span>
 					</div>
-					@{Html.RenderPartial("_UsersPartial", Model.UserEditModel);}
+					@{Html.RenderPartial("_UsersPartial", Model.UsersModel);}
 				</div>
 				<div id="role-management">
 					<h2>Менеджер ролей</h2>
@@ -69,7 +69,8 @@
 				banUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.BanUser(null, null, SortEnum.Default, null)))',
 				sendMessageForActivate: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.SendMessageForActivate(null, SortEnum.Default, null)))',
 				filterUsers: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterUsers(SortEnum.Default, null)))',
-				filterRoles: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterRoles(null)))'
+				filterRoles: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterRoles(null)))',
+				changePage: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ChangePage(SortEnum.Default, null, default(int))))'
 			}
 		});
 	});

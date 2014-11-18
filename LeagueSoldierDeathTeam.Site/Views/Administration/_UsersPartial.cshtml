@@ -58,6 +58,10 @@
 				}
 			</tbody>
 		</table>
+
+		<div id="pager" class="pager">
+			@{ Html.RenderPartial("_PagerPartial", Model.Pager); }
+		</div>
 	</div>
 }
 else
