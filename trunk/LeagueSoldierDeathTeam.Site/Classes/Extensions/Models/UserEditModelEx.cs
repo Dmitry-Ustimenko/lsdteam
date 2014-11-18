@@ -7,9 +7,9 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 {
 	public static class UserEditModelEx
 	{
-		public static UserEditModel CopyTo(this IEnumerable<UserData> data)
+		public static UsersModel CopyTo(this IEnumerable<UserData> data)
 		{
-			var model = new UserEditModel();
+			var model = new UsersModel();
 
 			if (data == null || !data.Any())
 				return model;
