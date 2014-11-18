@@ -126,20 +126,29 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		public void SaveMessage(UserMessageData data)
 		{
+			var entity = data.Id == default(int) ? new UserMessage() : _userMessageRepository.Query(o => o.Id == data.Id).SingleOrDefault();
+			if (entity == null)
+				throw new ArgumentException("Сообщение не существует", string.Format("Message"));
+
 			var recipient = _userRepository.Query(o => o.UserName == data.RecipientName).SingleOrDefault();
 			if (recipient == null)
 				throw new ArgumentException("Пользователь с таким именем не найден", string.Format("RecipientName"));
 
-			var entity = new UserMessage
+			if (data.Id == default(int))
 			{
-				Title = data.Title,
-				Description = data.Description,
-				CreateDate = DateTime.UtcNow,
-				RecipientId = recipient.Id,
-				SenderId = data.SenderId
-			};
+				entity.Title = data.Title;
+				entity.Description = data.Description;
+				entity.CreateDate = DateTime.UtcNow;
+				entity.RecipientId = recipient.Id;
+				entity.SenderId = data.SenderId;
+				_userMessageRepository.Add(entity);
+			}
+			else if (!entity.IsRead && entity.SenderId.GetValueOrDefault() == data.SenderId && !entity.IsSenderSaved)
+			{
+				entity.Title = data.Title;
+				entity.Description = data.Description;
+			}
 
-			_userMessageRepository.Add(entity);
 			UnitOfWork.Commit();
 		}
 

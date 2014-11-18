@@ -10,6 +10,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			return model == null ? new UserMessageData()
 				: new UserMessageData
 				{
+					Id = model.MessageId.GetValueOrDefault(),
 					Title = model.Title,
 					Description = model.Description,
 					RecipientName = model.RecipientName

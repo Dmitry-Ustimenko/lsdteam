@@ -17,7 +17,6 @@ using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Classes.Helpers;
-using LeagueSoldierDeathTeam.Site.Models;
 using LeagueSoldierDeathTeam.Site.Models.AccountProfile;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -336,7 +335,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			if (id.HasValue)
 			{
-				var model = new UserMessageModel { Id = id.Value };
+				var model = new UserMessageModel { MessageId = id.Value };
 
 				if (FillUserMessageModel(model, false))
 					return View(model);
@@ -347,12 +346,28 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpGet]
-		[Route("edit-message-quote/{id:int?}")]
-		public ActionResult EditMessageWithQuote(int? id)
+		[Route("reply-message/{id:int?}")]
+		public ActionResult ReplyMessage(int? id)
 		{
 			if (id.HasValue)
 			{
-				var model = new UserMessageModel { Id = id.Value };
+				var model = new UserMessageModel { MessageId = id.Value };
+
+				if (FillUserMessageModel(model, false))
+					return View("EditMessage", model);
+				return RedirectToAction<AccountProfileController>(o => o.CreateMessage());
+			}
+
+			return RedirectToAction<AccountProfileController>(o => o.CreateMessage());
+		}
+
+		[HttpGet]
+		[Route("reply-message-quote/{id:int?}")]
+		public ActionResult ReplyMessageWithQuote(int? id)
+		{
+			if (id.HasValue)
+			{
+				var model = new UserMessageModel { MessageId = id.Value };
 
 				if (FillUserMessageModel(model, true))
 					return View("EditMessage", model);
@@ -481,18 +496,19 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			var data = (Execute(() => _accountProfileService.GetUserMessages(CurrentUser.Id, model.MessageTypeId)) ?? new List<UserMessageData>()).ToList();
 			model.Pager.Count = data.Count();
-			
+
 			model.Data = data.Page(model.Pager.PageId, model.Pager.PageSize);
 		}
 
-		private bool FillUserMessageModel(UserMessageModel model, bool quote)
+		private bool FillUserMessageModel(UserMessageModel model, bool isQuoteMessage)
 		{
-			var message = Execute(() => _accountProfileService.GetUserMessage(CurrentUser.Id, model.Id.GetValueOrDefault()));
+			var message = Execute(() => _accountProfileService.GetUserMessage(CurrentUser.Id, model.MessageId.GetValueOrDefault()));
 
-			if (message != null && message.Type == MessageTypeEnum.Inbox)
+			if (message != null && (message.Type == MessageTypeEnum.Inbox || message.Type == MessageTypeEnum.Sent))
 			{
-				model.Title = StringGeneration.QuoteTitleBuilder(message.Title);
-				model.Description = quote ? StringGeneration.QuoteDescriptionBuilder(message.Description, message.SenderName) : message.Description;
+				model.MessageId = message.Type == MessageTypeEnum.Sent ? model.MessageId : default(int);
+				model.Title = message.Type == MessageTypeEnum.Inbox ? StringGeneration.QuoteTitleBuilder(message.Title) : message.Title;
+				model.Description = isQuoteMessage ? StringGeneration.QuoteDescriptionBuilder(message.Description, message.SenderName) : message.Description;
 				model.RecipientName = message.SenderName;
 				return true;
 			}

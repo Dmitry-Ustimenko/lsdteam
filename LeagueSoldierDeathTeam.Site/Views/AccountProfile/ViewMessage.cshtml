@@ -49,8 +49,8 @@
 					<div class="form-buttons">
 						@if (Model.Type == MessageTypeEnum.Inbox && Model.SenderId.HasValue)
 						{
-							<a class="preview-link" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.EditMessageWithQuote(Model.Id)))">Ответить с цитатой</a>
-							<a class="button big-button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.EditMessage(Model.Id)))">
+							<a class="preview-link" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.ReplyMessageWithQuote(Model.Id)))">Ответить с цитатой</a>
+							<a class="button big-button" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.ReplyMessage(Model.Id)))">
 								Ответить
 							</a>
 						}
