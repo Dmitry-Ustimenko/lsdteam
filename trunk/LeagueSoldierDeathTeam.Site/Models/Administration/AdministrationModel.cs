@@ -2,13 +2,13 @@
 {
 	public class AdministrationModel
 	{
-		public UsersModel UserEditModel { get; set; }
+		public UsersModel UsersModel { get; set; }
 
 		public RoleManagementModel RoleManagementModel { get; set; }
 
 		public AdministrationModel()
 		{
-			UserEditModel = new UsersModel();
+			UsersModel = new UsersModel();
 			RoleManagementModel = new RoleManagementModel();
 		}
 	}

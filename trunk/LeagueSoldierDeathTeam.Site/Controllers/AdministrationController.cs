@@ -47,12 +47,12 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("administration")]
 		public ActionResult Index()
 		{
-			var users = GetUsers(SortEnum.Default, null);
+			var users = GetUsers(SortEnum.Default, null).ToList();
 			if (ModelIsValid)
 			{
 				var model = new AdministrationModel
 				{
-					UserEditModel = users.CopyTo(),
+					UsersModel = users.CopyTo(),
 					RoleManagementModel = users.Map()
 				};
 				return View(model);
@@ -133,6 +133,13 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		public ActionResult FilterUsers(SortEnum sortFilter, string term)
 		{
 			return View("_UsersPartial", GetUsers(sortFilter, term).CopyTo());
+		}
+
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		public ActionResult ChangePage(SortEnum sortFilter, string term, int pageId)
+		{
+			return View("_UsersPartial", GetUsers(sortFilter, term).CopyTo(pageId));
 		}
 
 		#endregion
