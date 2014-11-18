@@ -2,11 +2,11 @@
 
 namespace LeagueSoldierDeathTeam.Site.Models.Administration
 {
-	public class UserEditModel
+	public class UsersModel
 	{
 		public IEnumerable<UserEditItemModel> Items { get; set; }
 
-		public UserEditModel()
+		public UsersModel()
 		{
 			Items = new List<UserEditItemModel>();
 		}

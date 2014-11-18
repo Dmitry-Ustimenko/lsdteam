@@ -72,7 +72,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				Execute(() => _accountService.DeleteUser(userId.GetValueOrDefault()));
 
 			return ModelIsValid
-				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
+				? (ActionResult)View("_UsersPartial", GetUsers(sortFilter, term).CopyTo())
 				: JsonErrorResult();
 		}
 
@@ -84,7 +84,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				Execute(() => _accountService.BanUser(userId.GetValueOrDefault(), isBanned.Value));
 
 			return ModelIsValid
-				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
+				? (ActionResult)View("_UsersPartial", GetUsers(sortFilter, term).CopyTo())
 				: JsonErrorResult();
 		}
 
@@ -112,7 +112,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			}
 
 			return ModelIsValid
-				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
+				? (ActionResult)View("_UsersPartial", GetUsers(sortFilter, term).CopyTo())
 				: JsonErrorResult();
 		}
 
@@ -124,7 +124,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				Execute(() => _accountService.ActivateUser(userId.GetValueOrDefault()));
 
 			return ModelIsValid
-				? (ActionResult)View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo())
+				? (ActionResult)View("_UsersPartial", GetUsers(sortFilter, term).CopyTo())
 				: JsonErrorResult();
 		}
 
@@ -132,7 +132,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[AjaxOrChildActionOnly]
 		public ActionResult FilterUsers(SortEnum sortFilter, string term)
 		{
-			return View("_UserEditPartial", GetUsers(sortFilter, term).CopyTo());
+			return View("_UsersPartial", GetUsers(sortFilter, term).CopyTo());
 		}
 
 		#endregion
