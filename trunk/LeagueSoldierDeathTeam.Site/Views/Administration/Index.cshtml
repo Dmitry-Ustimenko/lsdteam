@@ -70,7 +70,8 @@
 				sendMessageForActivate: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.SendMessageForActivate(null, SortEnum.Default, null)))',
 				filterUsers: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterUsers(SortEnum.Default, null)))',
 				filterRoles: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterRoles(null)))',
-				changePage: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ChangePage(SortEnum.Default, null, default(int))))'
+				changePage: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ChangePage(SortEnum.Default, null, null)))',
+				loginAs: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.LoginAs(null)))'
 			}
 		});
 	});

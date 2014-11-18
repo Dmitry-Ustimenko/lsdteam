@@ -25,7 +25,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 
 		UserData GetUser(string email);
 
-		UserData GetUser(int userExternalInfoId);
+		UserData GetUser(int userId);
 
 		IEnumerable<UserData> GetUsers();
 

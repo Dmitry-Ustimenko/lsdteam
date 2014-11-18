@@ -52,6 +52,10 @@
 							@if (AppContext.Current.CurrentUser.IsMainAdmin)
 							{
 								<a class="delete" data-action="delete" data-id="@item.UserId" href="@Constants.JavaScriptVoid">Удалить</a>
+								if (item.IsActive)
+								{
+									<a class="login-as" data-action="login-as" data-id="@item.UserId" href="@Constants.JavaScriptVoid">Login</a>
+								}
 							}
 						</td>
 					</tr>

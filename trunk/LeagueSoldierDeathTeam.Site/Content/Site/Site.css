@@ -2290,6 +2290,16 @@ span.checker-span {
 					color: white;
 				}
 
+				.ui-widget-content .users table tbody td.buttons a.login-as {
+					background-color: white;
+					color: black;
+				}
+
+					.ui-widget-content .users table tbody td.buttons a.login-as:hover {
+						-ms-text-shadow: none;
+						text-shadow: none;
+					}
+
 				.ui-widget-content .users table tbody td.buttons a:active {
 					-moz-box-shadow: inset 2px 2px 2px rgba(0,0,0,0.1);
 					-webkit-box-shadow: inset 2px 2px 2px rgba(0,0,0,0.1);
