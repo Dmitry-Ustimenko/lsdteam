@@ -5,7 +5,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 {
 	public class UserMessageModel
 	{
-		public int? Id { get; set; }
+		public int? MessageId { get; set; }
 
 		[DisplayName("Заголовок")]
 		[Required(ErrorMessage = "'Заголовок' должен быть введен")]

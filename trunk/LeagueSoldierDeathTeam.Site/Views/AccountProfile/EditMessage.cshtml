@@ -2,7 +2,7 @@
 @using LeagueSoldierDeathTeam.Site.Controllers
 @model LeagueSoldierDeathTeam.Site.Models.AccountProfile.UserMessageModel
 @{
-	ViewBag.Title = Model.Id.HasValue ? "Редактирование сообщения" : "Новое сообщение";
+	ViewBag.Title = !Model.MessageId.HasValue ? "Новое сообщение" : Model.MessageId == default(int) ? "Ответить на сообщение" : "Редактирование сообщения";
 }
 
 <div class="transparent-border">
@@ -19,7 +19,7 @@
 			<div class="form-container">
 				@using (Html.BeginForm("EditMessage", "AccountProfile", FormMethod.Post))
 				{
-					@Html.HiddenFor(m => m.Id)
+					@Html.HiddenFor(m => m.MessageId)
 					<div class="form-border">
 						<div class="container-item">
 							@Html.LabelFor(m => m.RecipientName)
@@ -46,7 +46,7 @@
 					</div>
 					<div class="form-buttons">
 						<span class="preview-link">Предварительный просмотр</span>
-						<input type="submit" value="Отправить" />
+						<input type="submit" value="@Html.Raw(Model.MessageId.GetValueOrDefault() != default(int) ? "Редактировать" : "Отправить")" />
 					</div>
 				}
 			</div>
