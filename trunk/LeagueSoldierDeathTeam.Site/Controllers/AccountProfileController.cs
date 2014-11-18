@@ -326,7 +326,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("create-message")]
 		public ActionResult CreateMessage()
 		{
-			return View("EditMessage", new UserMessageModel());
+			return View("EditMessage", Request.QueryString.AllKeys.Contains("name")
+				? new UserMessageModel { RecipientName = Request.QueryString["name"] }
+				: new UserMessageModel());
 		}
 
 		[HttpGet]

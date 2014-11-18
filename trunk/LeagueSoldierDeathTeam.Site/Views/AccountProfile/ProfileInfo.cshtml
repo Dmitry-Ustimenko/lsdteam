@@ -64,7 +64,9 @@
 				}
 				else
 				{
-					<a href="@Constants.JavaScriptVoid">Отправить ЛС</a>
+					<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.CreateMessage(), new Dictionary<string, object> { { "name", Model.UserName } }))">
+						Отправить ЛС
+					</a>
 				}
 				@if (isAdminOrMe)
 				{
