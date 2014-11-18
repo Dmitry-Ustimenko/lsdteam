@@ -251,7 +251,7 @@
     <Compile Include="Models\Account\RegisterSuccessfullModel.cs" />
     <Compile Include="Models\Administration\AdministrationModel.cs" />
     <Compile Include="Models\Administration\UserEditItemModel.cs" />
-    <Compile Include="Models\Administration\UserEditModel.cs" />
+    <Compile Include="Models\Administration\UsersModel.cs" />
     <Compile Include="Models\ImagesModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\BaseOverlayModel.cs" />
