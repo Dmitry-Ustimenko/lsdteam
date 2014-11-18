@@ -2,9 +2,21 @@
 
 body {
 	font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
-	background: url(/Images/bf4-background.jpg);
+	background: url(/Images/background_body.png);
 	padding: 0;
 	margin: 0;
+}
+
+@media screen and (min-width: 1440px) {
+	body {
+		min-height: 1300px;
+	}
+}
+
+@media screen and (min-width: 1080px) {
+	body {
+		min-height: 950px;
+	}
 }
 
 img {
@@ -37,11 +49,14 @@ footer {
 	-webkit-transition: opacity 1s ease;
 	-moz-transition: opacity 1s ease;
 	transition: opacity 1s ease;
+	background: #230d0d url(/Images/bf4-background.jpg) 50% 0 no-repeat;
+	text-align: center;
+	z-index: -1;
 }
 
-.body-background video {
-	outline: none;
-}
+	.body-background video {
+		outline: none;
+	}
 
 input[type=text]:focus,
 input[type=password]:focus,
