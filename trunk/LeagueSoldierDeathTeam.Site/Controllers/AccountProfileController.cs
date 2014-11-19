@@ -12,6 +12,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
 using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
@@ -496,10 +497,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private void FillUserMessagesModel(UserMessagesModel model)
 		{
-			var data = (Execute(() => _accountProfileService.GetUserMessages(CurrentUser.Id, model.MessageTypeId)) ?? new List<UserMessageData>()).ToList();
-			model.Pager.Count = data.Count();
-
-			model.Data = data.Page(model.Pager.PageId, model.Pager.PageSize);
+			var pagerData = (Execute(() => _accountProfileService.GetUserMessages(CurrentUser.Id, model.MessageTypeId, model.Pager.PageId, model.Pager.PageSize))
+				?? new PageData<UserMessageData>());
+			
+			model.CopyFrom(pagerData);
 		}
 
 		private bool FillUserMessageModel(UserMessageModel model, bool isQuoteMessage)

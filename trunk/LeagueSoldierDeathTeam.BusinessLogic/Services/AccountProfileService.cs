@@ -7,7 +7,9 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Repositories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Helpers;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
 using LeagueSoldierDeathTeam.DataBaseLayer.Model;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Services
@@ -152,8 +154,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			UnitOfWork.Commit();
 		}
 
-		IEnumerable<UserMessageData> IAccountProfileService.GetUserMessages(int userId, int typeId)
+		PageData<UserMessageData> IAccountProfileService.GetUserMessages(int userId, int typeId, int pageId, int pageSize)
 		{
+			var pageData = new PageData<UserMessageData> { PageId = pageId, PageSize = pageSize };
+
 			Expression<Func<UserMessage, bool>> filter = null;
 			switch ((MessageTypeEnum)typeId)
 			{
@@ -169,18 +173,26 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 					break;
 			}
 
-			return filter != null ? _userMessageRepository.GetData(o => new UserMessageData
+			var data = filter != null ? _userMessageRepository.GetQueryableData(filter) : null;
+			if (data != null)
 			{
-				Id = o.Id,
-				Title = o.Title,
-				Description = o.Description,
-				IsRead = o.IsRead,
-				CreateDate = o.CreateDate,
-				RecipientId = o.Recipient != null ? o.Recipient.Id : default(int?),
-				RecipientName = o.Recipient != null ? o.Recipient.UserName : string.Empty,
-				SenderId = o.Sender != null ? o.Sender.Id : default(int?),
-				SenderName = o.Sender != null ? o.Sender.UserName : string.Empty
-			}, filter).OrderByDescending(o => o.CreateDate).ToList() : new List<UserMessageData>();
+				pageData.Count = data.Count();
+
+				pageData.Data = data.OrderByDescending(o => o.CreateDate).Page(pageData.PageId, pageData.PageSize).Select(o => new UserMessageData
+				{
+					Id = o.Id,
+					Title = o.Title,
+					Description = o.Description,
+					IsRead = o.IsRead,
+					CreateDate = o.CreateDate,
+					RecipientId = o.Recipient != null ? o.Recipient.Id : default(int?),
+					RecipientName = o.Recipient != null ? o.Recipient.UserName : string.Empty,
+					SenderId = o.Sender != null ? o.Sender.Id : default(int?),
+					SenderName = o.Sender != null ? o.Sender.UserName : string.Empty
+				}).ToList();
+			}
+
+			return pageData;
 		}
 
 		int IAccountProfileService.GetUserMessageCount(int userId)
