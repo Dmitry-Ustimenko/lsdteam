@@ -47,6 +47,11 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.DataAccess.Repositories
 			return GetObjectSet<TEntity>().Where(filter).Select(func);
 		}
 
+		IQueryable<TEntity> IRepository<TEntity>.GetQueryableData(Expression<Func<TEntity, bool>> filter)
+		{
+			return GetObjectSet<TEntity>().Where(filter);
+		}
+
 		int IRepository<TEntity>.GetDataCount(Expression<Func<TEntity, bool>> filter)
 		{
 			return GetObjectSet<TEntity>().Where(filter).Count();

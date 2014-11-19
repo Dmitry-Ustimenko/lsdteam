@@ -203,6 +203,7 @@
     <Compile Include="Classes\ChallengeResult.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\ControllerActionInfo.cs" />
+    <Compile Include="Classes\Extensions\Models\BasePagerModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\EditProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\ExternalRegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="Models\Administration\AdministrationModel.cs" />
     <Compile Include="Models\Administration\UserEditItemModel.cs" />
     <Compile Include="Models\Administration\UsersModel.cs" />
+    <Compile Include="Models\BasePagerModel.cs" />
     <Compile Include="Models\ImagesModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\BaseOverlayModel.cs" />

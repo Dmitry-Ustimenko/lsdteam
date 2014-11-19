@@ -5,7 +5,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 {
 	public interface IAccountProfileService
 	{
-		IEnumerable<UserMessageData> GetUserMessages(int userId, int typeId);
+		PageData<UserMessageData> GetUserMessages(int userId, int typeId, int pageId, int pageSize);
 
 		int GetUserMessageCount(int userId);
 

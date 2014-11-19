@@ -58,6 +58,7 @@
     <Compile Include="Classes\Enums\SortEnum.cs" />
     <Compile Include="Classes\Extensions\DateTimeEx.cs" />
     <Compile Include="Classes\Extensions\EnumEx.cs" />
+    <Compile Include="Classes\Helpers\PagerHelper.cs" />
     <Compile Include="Classes\Security\CryptingHelper.cs" />
     <Compile Include="Classes\Security\Hashing.cs" />
     <Compile Include="Classes\Security\HexEncoding.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Dto\SexData.cs" />
     <Compile Include="Dto\UserInfoData.cs" />
     <Compile Include="Dto\UserMessageData.cs" />
+    <Compile Include="Dto\PageData.cs" />
     <Compile Include="Factories\RepositoryFactory.cs" />
     <Compile Include="DataAccess\UnitOfWork.cs" />
     <Compile Include="Dto\RoleData.cs" />
