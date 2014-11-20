@@ -24,7 +24,7 @@
 			var $registerForm = $(site.layout.settings.elements.register);
 
 			$.fn.initCheckbox();
-			//site.layout.backgroundSlider();
+			site.layout.backgroundSlider();
 			site.layout.clearSocialHash();
 			site.layout.topPage();
 			site.layout.fixedMenu();

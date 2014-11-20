@@ -10,14 +10,13 @@
 </head>
 <body>
 
-	<div class="body-background">
+	@*<div class="body-background">
 		<video id="background-video" autoplay="" loop="" name="media" preload="auto">
 			<source media="screen" src="@(Url.Content("~/Videos/Background/last-stand.webm"))" type="video/webm">
 			<source media="screen" src="@(Url.Content("~/Videos/Background/last-stand.ogg"))" type="video/ogg">
 			<source media="screen" src="@(Url.Content("~/Videos/Background/last-stand.mp4"))" type="video/mp4">
 		</video>
-	</div>
-
+	</div>*@
 
 	<div class="wrapper">
 		<div class="section section-header section-shadow">
@@ -63,7 +62,7 @@
 	@DeclarativeHelper.Control.RenderAlert("confirmOverlay", true)
 	@DeclarativeHelper.Control.RenderAlert("promptOverlay", true, true)
 	<script type="text/javascript">
-		@*var array = @Html.Raw(StaticResourse.GetBackgroundImages())*@
+		var array = @Html.Raw(StaticResourse.GetBackgroundImages())
 
 		$(document).ready(function () {
 			site.layout.init({
@@ -72,7 +71,7 @@
 					register: '@(WebBuilder.BuildActionUrl<AccountController>(m => m.Register(null)))'
 				},
 				vars: {
-					//backgrounds: array
+					backgrounds: array
 				}
 			});
 		});
