@@ -192,7 +192,6 @@ a {
 			.log-off span a:focus {
 				color: white;
 				display: inline-block;
-				margin-right: 5px;
 			}
 
 	.log-off > a {
