@@ -16,7 +16,7 @@
 			<div id="tabs">
 				<ul>
 					<li><a href="#users">Пользователи</a></li>
-					<li><a href="#role-management">Менеджер ролей</a></li>
+					@*<li><a href="#role-management">Менеджер ролей</a></li>*@
 				</ul>
 				<div id="users">
 					<h2>Пользователи</h2>
@@ -40,20 +40,22 @@
 						</span>
 						<span class="clear-btn"></span>
 					</div>
-					@{Html.RenderPartial("_UsersPartial", Model.UsersModel);}
-				</div>
-				<div id="role-management">
-					<h2>Менеджер ролей</h2>
-					<div class="filter">
-						<span class="role-search">
-							<input type="text" placeholder="Найти пользователя">
-							<span class="role-search-btn"></span>
-						</span>
-						<span class="role-clear-btn"></span>
+					<div id="usersContent">
+						@{ Html.RenderAction("UsersData", Model.UsersModel); }
 					</div>
-					<hr />
-					@{Html.RenderPartial("_RoleManagementPartial", Model.RoleManagementModel);}
 				</div>
+				@*<div id="role-management">
+						<h2>Менеджер ролей</h2>
+						<div class="filter">
+							<span class="role-search">
+								<input type="text" placeholder="Найти пользователя">
+								<span class="role-search-btn"></span>
+							</span>
+							<span class="role-clear-btn"></span>
+						</div>
+						<hr />
+						@{Html.RenderPartial("_RoleManagementPartial", Model.RoleManagementModel);}
+					</div>*@
 			</div>
 		</div>
 	</div>
@@ -63,14 +65,14 @@
 	$(document).ready(function () {
 		site.administation.init({
 			urls: {
-				changeRole: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ChangeRole(null, null)))',
+				@*changeRole: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ChangeRole(null, null)))',*@
 				deleteUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.DeleteUser(null, SortEnum.Default, null)))',
 				activateUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ActivateUser(null, SortEnum.Default, null)))',
 				banUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.BanUser(null, null, SortEnum.Default, null)))',
 				sendMessageForActivate: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.SendMessageForActivate(null, SortEnum.Default, null)))',
-				filterUsers: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterUsers(SortEnum.Default, null)))',
+				@*filterUsers: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterUsers(SortEnum.Default, null)))',
 				filterRoles: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterRoles(null)))',
-				changePage: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ChangePage(SortEnum.Default, null, null)))',
+				changePage: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ChangePage(SortEnum.Default, null, null)))',*@
 				loginAs: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.LoginAs(null)))'
 			}
 		});

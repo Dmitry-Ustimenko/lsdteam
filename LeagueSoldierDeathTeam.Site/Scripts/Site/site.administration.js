@@ -27,7 +27,7 @@
 				$(site.administation.settings.elements.tabs).tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
 
 				site.administation.users.init();
-				site.administation.roleManagement.init();
+				//site.administation.roleManagement.init();
 			},
 
 			users: {
@@ -36,7 +36,10 @@
 					var searchInput = $(".search input");
 
 					site.administation.users.initFilter(sortName, searchInput);
-
+					site.administation.users.refreshGrid(sortName, searchInput);
+				},
+				
+				refreshGrid: function (sortName, searchInput) {
 					site.administation.users.loginAs();
 					site.administation.users.initPager(sortName, searchInput);
 					site.administation.users.activateUser(sortName, searchInput);

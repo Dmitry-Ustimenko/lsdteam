@@ -8,6 +8,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Re
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Config;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Helpers;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Security;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
@@ -253,27 +254,50 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			});
 		}
 
-		IEnumerable<UserData> IAccountService.GetUsers(SortEnum sortFilter, string term)
+		PageData<UserData> IAccountService.GetUsers(SortEnum sortType, string term, int pageId, int pageSize)
 		{
-			var users = (this as IAccountService).GetUsers();
-			if (!string.IsNullOrWhiteSpace(term))
-				users = users.Where(o => o.UserName.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0);
+			var pageData = new PageData<UserData> { PageId = pageId, PageSize = pageSize };
 
-			switch (sortFilter)
+			var data = !string.IsNullOrWhiteSpace(term)
+				? _userRepository.GetQueryableData(o => o.UserName.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
+				: _userRepository.GetQueryableData();
+
+			if (data != null)
 			{
-				case SortEnum.Default:
-					return users.OrderBy(o => !o.IsActive).ThenBy(o => o.IsBanned).ThenBy(o => o.UserName);
-				case SortEnum.Name:
-					return users.OrderBy(o => o.UserName);
-				case SortEnum.Email:
-					return users.OrderBy(o => o.Email);
-				case SortEnum.Actived:
-					return users.OrderBy(o => !o.IsActive).ThenBy(o => o.IsBanned).ThenBy(o => o.UserName);
-				case SortEnum.Banned:
-					return users.OrderBy(o => !o.IsBanned).ThenBy(o => !o.IsActive).ThenBy(o => o.UserName);
+				pageData.Count = data.Count();
+
+				switch (sortType)
+				{
+					case SortEnum.Default:
+						data = data.OrderBy(o => !o.IsActive).ThenBy(o => o.IsBanned).ThenBy(o => o.UserName);
+						break;
+					case SortEnum.Name:
+						data = data.OrderBy(o => o.UserName);
+						break;
+					case SortEnum.Email:
+						data = data.OrderBy(o => o.Email);
+						break;
+					case SortEnum.Actived:
+						data = data.OrderBy(o => !o.IsActive).ThenBy(o => o.IsBanned).ThenBy(o => o.UserName);
+						break;
+					case SortEnum.Banned:
+						data = data.OrderBy(o => !o.IsBanned).ThenBy(o => !o.IsActive).ThenBy(o => o.UserName);
+						break;
+				}
+
+				pageData.Data = data.Page(pageData.PageId, pageData.PageSize).Select(o => new UserData
+				{
+					Id = o.Id,
+					UserName = o.UserName,
+					Email = o.Email,
+					IsActive = o.IsActive,
+					PhotoPath = o.PhotoPath,
+					IsBanned = o.IsBanned,
+					RoleId = o.RoleId
+				}).ToList();
 			}
 
-			return users;
+			return pageData;
 		}
 
 		UserInfoData IAccountService.GetUserProfile(int userId)

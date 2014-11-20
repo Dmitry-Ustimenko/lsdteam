@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
-using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
@@ -59,16 +56,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("administration")]
 		public ActionResult Index()
 		{
-			var users = GetUsers(SortEnum.Default, null).ToList();
-			if (ModelIsValid)
-			{
-				var model = new AdministrationModel
-				{
-					UsersModel = users.CopyTo(),
-					RoleManagementModel = users.Map()
-				};
-				return View(model);
-			}
 			return View(new AdministrationModel());
 		}
 
@@ -76,33 +63,46 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Users
 
+		[AjaxOrChildActionOnly]
+		public ActionResult UsersData(UsersModel model)
+		{
+			FillUsersModel(model);
+			return View(model);
+		}
+
 		[HttpPost]
 		[AjaxOrChildActionOnly]
-		public ActionResult DeleteUser(int? userId, SortEnum sortFilter, string term)
+		public ActionResult DeleteUser(int? userId, SortEnum sortType, string term)
 		{
 			if (userId.HasValue)
 				Execute(() => _accountService.DeleteUser(userId.GetValueOrDefault()));
 
+			var model = new UsersModel { SortType = sortType, Term = term };
+			FillUsersModel(model);
+
 			return ModelIsValid
-				? (ActionResult)View("_UsersPartial", GetUsers(sortFilter, term).CopyTo())
+				? (ActionResult)View("UsersData", model)
 				: JsonErrorResult();
 		}
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
-		public ActionResult BanUser(int? userId, bool? isBanned, SortEnum sortFilter, string term)
+		public ActionResult BanUser(int? userId, bool? isBanned, SortEnum sortType, string term)
 		{
 			if (userId.HasValue && isBanned.HasValue)
 				Execute(() => _accountService.BanUser(userId.GetValueOrDefault(), isBanned.Value));
 
+			var model = new UsersModel { SortType = sortType, Term = term };
+			FillUsersModel(model);
+
 			return ModelIsValid
-				? (ActionResult)View("_UsersPartial", GetUsers(sortFilter, term).CopyTo())
+				? (ActionResult)View("UsersData", model)
 				: JsonErrorResult();
 		}
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
-		public ActionResult SendMessageForActivate(int? userId, SortEnum sortFilter, string term)
+		public ActionResult SendMessageForActivate(int? userId, SortEnum sortType, string term)
 		{
 			if (userId.HasValue)
 			{
@@ -123,35 +123,27 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				}
 			}
 
+			var model = new UsersModel { SortType = sortType, Term = term };
+			FillUsersModel(model);
+
 			return ModelIsValid
-				? (ActionResult)View("_UsersPartial", GetUsers(sortFilter, term).CopyTo())
+				? (ActionResult)View("UsersData", model)
 				: JsonErrorResult();
 		}
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
-		public ActionResult ActivateUser(int? userId, SortEnum sortFilter, string term)
+		public ActionResult ActivateUser(int? userId, SortEnum sortType, string term)
 		{
 			if (userId.HasValue)
 				Execute(() => _accountService.ActivateUser(userId.GetValueOrDefault()));
 
+			var model = new UsersModel { SortType = sortType, Term = term };
+			FillUsersModel(model);
+
 			return ModelIsValid
-				? (ActionResult)View("_UsersPartial", GetUsers(sortFilter, term).CopyTo())
+				? (ActionResult)View("UsersData", model)
 				: JsonErrorResult();
-		}
-
-		[HttpPost]
-		[AjaxOrChildActionOnly]
-		public ActionResult FilterUsers(SortEnum sortFilter, string term)
-		{
-			return View("_UsersPartial", GetUsers(sortFilter, term).CopyTo());
-		}
-
-		[HttpPost]
-		[AjaxOrChildActionOnly]
-		public ActionResult ChangePage(SortEnum sortFilter, string term, int? pageId)
-		{
-			return View("_UsersPartial", GetUsers(sortFilter, term).CopyTo(pageId.GetValueOrDefault()));
 		}
 
 		[HttpPost]
@@ -176,40 +168,46 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#endregion
 
-		#region Role Management
+		//#region Role Management
 
-		[HttpPost]
-		[AjaxOrChildActionOnly]
-		public ActionResult ChangeRole(int? roleId, int? userId)
-		{
-			Execute(() => _accountService.UpdateRole(roleId.GetValueOrDefault(), userId.GetValueOrDefault()));
+		//[HttpPost]
+		//[AjaxOrChildActionOnly]
+		//public ActionResult ChangeRole(int? roleId, int? userId)
+		//{
+		//	Execute(() => _accountService.UpdateRole(roleId.GetValueOrDefault(), userId.GetValueOrDefault()));
 
-			return ModelIsValid
-				? Json(new { Id = userId }, JsonRequestBehavior.AllowGet)
-				: JsonErrorResult();
-		}
+		//	return ModelIsValid
+		//		? Json(new { Id = userId }, JsonRequestBehavior.AllowGet)
+		//		: JsonErrorResult();
+		//}
 
-		[HttpPost]
-		[AjaxOrChildActionOnly]
-		public ActionResult FilterRoles(string term)
-		{
-			return View("_RoleManagementPartial", GetUsers(SortEnum.Default, term).Map());
-		}
+		//[HttpPost]
+		//[AjaxOrChildActionOnly]
+		//public ActionResult FilterRoles(string term)
+		//{
+		//	return View("_RoleManagementPartial", GetUsers(SortEnum.Default, term).Map());
+		//}
 
-		#endregion
+		//#endregion
 
 		#endregion
 
 		#region Internal Implementation
 
-		private IEnumerable<UserData> GetUsers(SortEnum sortFilter, string term)
+		private void FillUsersModel(UsersModel model)
 		{
-			var users = Execute(() => _accountService.GetUsers(sortFilter, term));
-
-			return CurrentUser.IsMainAdmin
-				? users.Where(o => o.RoleId != (int)Role.MainAdministrator)
-				: users.Where(o => o.RoleId != (int)Role.MainAdministrator && o.RoleId != (int)Role.Administrator);
+			var users = Execute(() => _accountService.GetUsers(model.SortType, model.Term, model.Pager.PageId, model.Pager.PageSize));
+			model.CopyFrom(users);
 		}
+
+		//private IEnumerable<UserData> GetUsers(SortEnum sortFilter, string term)
+		//{
+		//	var users = Execute(() => _accountService.GetUsers(sortFilter, term));
+
+		//	return CurrentUser.IsMainAdmin
+		//		? users.Where(o => o.RoleId != (int)Role.MainAdministrator)
+		//		: users.Where(o => o.RoleId != (int)Role.MainAdministrator && o.RoleId != (int)Role.Administrator);
+		//}
 
 		#endregion
 	}

@@ -1,0 +1,74 @@
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.Site.Models.Administration.UsersModel
+
+@{
+	Layout = null;
+}
+
+@if (Model.Data.Any())
+{
+	<div class="users" id="users-content">
+		<table>
+			<thead>
+				<tr>
+					<th>Пользователь</th>
+					<th>Email</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.Data)
+				{
+					<tr>
+						<td class="left user-name">
+							<a class="@Html.Raw(!item.IsActive ? "darkred" : item.IsBanned ? "orange" : "green")" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.Id)))" target="_blank">
+								@item.UserName
+							</a>
+						</td>
+						<td class="left email">
+							<a href="@Html.Raw(string.Concat("mailto:", item.Email))">@item.Email</a>
+						</td>
+						<td class="buttons">
+							<a class="settings" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.EditProfile(item.Id)))" target="_blank">Настройки</a>
+							@if (!item.IsActive)
+							{
+								<a class="activation" data-action="activation" data-id="@item.Id" href="@Constants.JavaScriptVoid">Активировать</a>
+								<a class="activation" data-action="message" data-id="@item.Id" href="@Constants.JavaScriptVoid">Письмо активации</a>
+							}
+							@if (item.IsActive)
+							{
+								<a class="@Html.Raw(@item.IsBanned ? "unbanned" : "banned")" data-id="@item.Id" data-action="ban" data-banned="@item.IsBanned" href="@Constants.JavaScriptVoid">
+									@if (item.IsBanned)
+									{
+										@:Разбанить
+									}
+									else
+									{
+										@:Забанить
+									}
+								</a>
+							}
+							@if (AppContext.Current.CurrentUser.IsMainAdmin)
+							{
+								<a class="delete" data-action="delete" data-id="@item.Id" href="@Constants.JavaScriptVoid">Удалить</a>
+								if (item.IsActive)
+								{
+									<a class="login-as" data-action="login-as" data-id="@item.Id" href="@Constants.JavaScriptVoid">Login</a>
+								}
+							}
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+		<div id="pager" class="pager">
+			@{ Html.RenderPartial("_PagerPartial", Model.Pager); }
+		</div>
+	</div>
+}
+else
+{
+	<div class="no-result">Пользователей не найдено.</div>
+}

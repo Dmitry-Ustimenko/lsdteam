@@ -29,7 +29,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 
 		IEnumerable<UserData> GetUsers();
 
-		IEnumerable<UserData> GetUsers(SortEnum sortFilter, string term);
+		PageData<UserData> GetUsers(SortEnum sortType, string term, int pageId, int pageSize);
 
 		UserExternalInfoData GetExternalUser(string providerName, string providerKey);
 

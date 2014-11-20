@@ -208,7 +208,6 @@
     <Compile Include="Classes\Extensions\Models\ExternalRegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RoleManagementEx.cs" />
-    <Compile Include="Classes\Extensions\Models\UserEditModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\UserMessageModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\UserProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\RussianTimeEx.cs" />
@@ -496,13 +495,13 @@
     <Content Include="Views\Shared\_BannerPartial.cshtml" />
     <Content Include="Views\Administration\Index.cshtml" />
     <Content Include="Scripts\Site\site.administration.js" />
-    <Content Include="Views\Administration\_UsersPartial.cshtml" />
     <Content Include="Views\Administration\_RoleManagementPartial.cshtml" />
     <Content Include="Views\AccountProfile\Messages.cshtml" />
     <Content Include="Views\AccountProfile\MessagesData.cshtml" />
     <Content Include="Views\AccountProfile\EditMessage.cshtml" />
     <Content Include="Views\AccountProfile\ViewMessage.cshtml" />
     <Content Include="Views\Shared\_PagerPartial.cshtml" />
+    <Content Include="Views\Administration\UsersData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

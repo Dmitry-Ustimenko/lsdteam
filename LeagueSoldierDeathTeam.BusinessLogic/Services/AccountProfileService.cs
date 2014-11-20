@@ -9,7 +9,6 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Helpers;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
-using LeagueSoldierDeathTeam.BusinessLogic.Services.Parameters;
 using LeagueSoldierDeathTeam.DataBaseLayer.Model;
 
 namespace LeagueSoldierDeathTeam.BusinessLogic.Services
