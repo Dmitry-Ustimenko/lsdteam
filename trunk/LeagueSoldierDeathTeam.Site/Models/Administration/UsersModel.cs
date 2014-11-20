@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 
 namespace LeagueSoldierDeathTeam.Site.Models.Administration
 {
-	public class UsersModel
+	public class UsersModel : BasePagerModel<UserData>
 	{
-		public IEnumerable<UserEditItemModel> Items { get; set; }
+		public SortEnum SortType { get; set; }
 
-		public PagerModel Pager { get; set; }
+		public string Term { get; set; }
 
 		public UsersModel()
 		{
-			Items = new List<UserEditItemModel>();
-			Pager = new PagerModel();
+			SortType = SortEnum.Default;
 		}
 	}
 }
