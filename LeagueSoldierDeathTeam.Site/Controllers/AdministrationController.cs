@@ -164,27 +164,29 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#endregion
 
-		//#region Role Management
+		#region Role Management
 
-		//[HttpPost]
-		//[AjaxOrChildActionOnly]
-		//public ActionResult ChangeRole(int? roleId, int? userId)
-		//{
-		//	Execute(() => _accountService.UpdateRole(roleId.GetValueOrDefault(), userId.GetValueOrDefault()));
+		[AjaxOrChildActionOnly]
+		public ActionResult UserRolesData(UserRolesModel model)
+		{
+			FillUserRolesModel(model);
+			return View(model);
+		}
 
-		//	return ModelIsValid
-		//		? Json(new { Id = userId }, JsonRequestBehavior.AllowGet)
-		//		: JsonErrorResult();
-		//}
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		public ActionResult ChangeRole(int? userId, int? roleId, UserRolesModel model)
+		{
+			Execute(() => _accountService.UpdateRole(roleId.GetValueOrDefault(), userId.GetValueOrDefault()));
 
-		//[HttpPost]
-		//[AjaxOrChildActionOnly]
-		//public ActionResult FilterRoles(string term)
-		//{
-		//	return View("_RoleManagementPartial", GetUsers(SortEnum.Default, term).Map());
-		//}
+			FillUserRolesModel(model);
 
-		//#endregion
+			return ModelIsValid
+				? (ActionResult)View("UserRolesData", model)
+				: JsonErrorResult();
+		}
+
+		#endregion
 
 		#endregion
 
@@ -192,18 +194,15 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private void FillUsersModel(UsersModel model)
 		{
-			var users = Execute(() => _accountService.GetUsers(model.SortType, model.Term, model.Pager.PageId, model.Pager.PageSize));
+			var users = Execute(() => _accountService.GetUsers(model.SortType, model.Term, model.Pager.PageId, model.Pager.PageSize, CurrentUser.Role));
 			model.CopyFrom(users);
 		}
 
-		//private IEnumerable<UserData> GetUsers(SortEnum sortFilter, string term)
-		//{
-		//	var users = Execute(() => _accountService.GetUsers(sortFilter, term));
-
-		//	return CurrentUser.IsMainAdmin
-		//		? users.Where(o => o.RoleId != (int)Role.MainAdministrator)
-		//		: users.Where(o => o.RoleId != (int)Role.MainAdministrator && o.RoleId != (int)Role.Administrator);
-		//}
+		private void FillUserRolesModel(UserRolesModel model)
+		{
+			var users = Execute(() => _accountService.GetUsers(model.RoleType, model.Term, model.Pager.PageId, model.Pager.PageSize, CurrentUser.Role));
+			model.CopyFrom(users);
+		}
 
 		#endregion
 	}

@@ -29,7 +29,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 
 		IEnumerable<UserData> GetUsers();
 
-		PageData<UserData> GetUsers(SortEnum sortType, string term, int pageId, int pageSize);
+		PageData<UserData> GetUsers(SortEnum sortType, string term, int pageId, int pageSize, RoleEnum currentUserRole);
+
+		PageData<UserData> GetUsers(RoleEnum roleType, string term, int pageId, int pageSize, RoleEnum currentUserRole);
 
 		UserExternalInfoData GetExternalUser(string providerName, string providerKey);
 

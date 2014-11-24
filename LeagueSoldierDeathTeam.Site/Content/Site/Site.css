@@ -2133,7 +2133,8 @@ span.checker-span {
 	margin: 20px 0 10px 0;
 }
 
-	.ui-widget-content .filter .sort {
+	.ui-widget-content .filter .sort,
+	.ui-widget-content .filter .sort-role {
 		float: left;
 		margin-top: 5px;
 		margin-bottom: 5px;
@@ -2142,7 +2143,8 @@ span.checker-span {
 		cursor: pointer;
 	}
 
-		.ui-widget-content .filter .sort .sort-changeable {
+		.ui-widget-content .filter .sort .sort-changeable,
+		.ui-widget-content .filter .sort-role .sort-role-changeable {
 			position: absolute;
 			top: 0;
 			left: 83px;
@@ -2151,29 +2153,41 @@ span.checker-span {
 			padding-left: 5px;
 		}
 
-			.ui-widget-content .filter .sort .sort-changeable .sort-name {
+		.ui-widget-content .filter .sort-role .sort-role-changeable {
+			left: 81px;
+		}
+
+			.ui-widget-content .filter .sort .sort-changeable .sort-name,
+			.ui-widget-content .filter .sort-role .sort-role-changeable .sort-role-name {
 				font-style: italic;
 				border-bottom: 1px dotted;
 			}
 
-		.ui-widget-content .filter .sort .sort-dropdown {
+		.ui-widget-content .filter .sort .sort-dropdown,
+		.ui-widget-content .filter .sort-role .sort-role-dropdown {
 			position: absolute;
 			top: 25px;
 			left: 0;
 			background: #fff;
 			list-style: none;
 			font-weight: normal;
-			width: 120px;
+			width: 115px;
 			padding: 5px 0 5px 0;
 			border: 1px solid #a8acad;
 			display: none;
 		}
 
-			.ui-widget-content .filter .sort .sort-dropdown:before {
+		.ui-widget-content .filter .sort-role .sort-role-dropdown {
+			width: 131px;
+		}
+
+			.ui-widget-content .filter .sort .sort-dropdown:before,
+			.ui-widget-content .filter .sort-role .sort-role-dropdown:before {
 				left: 10px;
 			}
 
-			.ui-widget-content .filter .sort .sort-dropdown:before {
+			.ui-widget-content .filter .sort .sort-dropdown:before,
+			.ui-widget-content .filter .sort-role .sort-role-dropdown:before {
 				content: "";
 				position: absolute;
 				border-left: 6px solid transparent;
@@ -2182,12 +2196,14 @@ span.checker-span {
 				top: -6px;
 			}
 
-			.ui-widget-content .filter .sort .sort-dropdown li {
+			.ui-widget-content .filter .sort .sort-dropdown li,
+			.ui-widget-content .filter .sort-role .sort-role-dropdown li {
 				padding-left: 5px;
 				cursor: pointer;
 			}
 
-				.ui-widget-content .filter .sort .sort-dropdown li:hover {
+				.ui-widget-content .filter .sort .sort-dropdown li:hover,
+				.ui-widget-content .filter .sort-role .sort-role-dropdown li:hover {
 					background-color: #ECECEC;
 				}
 
@@ -2245,7 +2261,7 @@ span.checker-span {
 }
 
 	.ui-widget-content .users table thead th {
-		text-align: center;
+		text-align: left;
 		font-weight: normal;
 		font-family: 'Lily Script One', helveti;
 		font: 16px 'PT Sans Narrow', Arial, sans-serif;
@@ -2334,6 +2350,10 @@ span.checker-span {
 					-webkit-box-shadow: inset 2px 2px 2px rgba(0,0,0,0.1);
 					box-shadow: inset 2px 2px 2px rgba(0,0,0,0.1);
 				}
+
+select[data-type=role] {
+	padding: 4px;
+}
 
 .green {
 	color: green !important;

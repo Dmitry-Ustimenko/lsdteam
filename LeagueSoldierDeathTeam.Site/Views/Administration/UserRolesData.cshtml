@@ -1,0 +1,59 @@
+﻿@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
+@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.Site.Models.Administration.UserRolesModel
+
+@{
+	Layout = null;
+	var currentUser = AppContext.Current.CurrentUser;
+}
+
+@if (Model.Data.Any())
+{
+	<div class="users">
+		<table>
+			<thead>
+				<tr>
+					<th>Пользователь</th>
+					<th>Роль</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.Data)
+				{
+					<tr>
+						<td class="left user-name">
+							<a class="darkred" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.Id)))" target="_blank">
+								@item.UserName
+							</a>
+						</td>
+						<td>
+							<select data-type="role" data-user-id="@item.Id" data-user-name="@item.UserName">
+								@if (currentUser.IsMainAdmin)
+								{
+									<option @Html.Raw(item.RoleId == (int)RoleEnum.Administrator ? "selected='selected'" : string.Empty) value="@((int)RoleEnum.Administrator)">
+										Администратор
+									</option>
+								}
+								<option @Html.Raw(item.RoleId == (int)RoleEnum.Moderator ? "selected='selected'" : string.Empty) value="@((int)RoleEnum.Moderator)">
+									Модератор
+								</option>
+								<option @Html.Raw(item.RoleId == (int)RoleEnum.User ? "selected='selected'" : string.Empty) value="@((int)RoleEnum.User)">
+									Пользователь
+								</option>
+							</select>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+		<div id="rolePager" class="pager">
+			@{ Html.RenderPartial("_PagerPartial", Model.Pager); }
+		</div>
+	</div>
+}
+else
+{
+	<div class="no-result">Пользователей не найдено.</div>
+}

@@ -15,6 +15,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public int? UserExternalInfoId { get; set; }
 		public bool ShowEmail { get; set; }
 		public string PhotoPath { get; set; }
+		public RoleEnum Role { get { return (RoleEnum)RoleId; } }
 		public int RoleId { get; set; }
 		public string RoleName { get; set; }
 		public bool IsBanned { get; set; }

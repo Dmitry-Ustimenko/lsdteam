@@ -254,7 +254,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			});
 		}
 
-		PageData<UserData> IAccountService.GetUsers(SortEnum sortType, string term, int pageId, int pageSize)
+		PageData<UserData> IAccountService.GetUsers(SortEnum sortType, string term, int pageId, int pageSize, RoleEnum currentUserRole)
 		{
 			var pageData = new PageData<UserData> { PageId = pageId, PageSize = pageSize };
 
@@ -262,10 +262,15 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				? _userRepository.GetQueryableData(o => o.UserName.Contains(term))
 				: _userRepository.GetQueryableData();
 
-			if (data != null)
-			{
-				pageData.Count = data.Count();
+			data = data.Where(o => o.RoleId != (int)RoleEnum.MainAdministrator);
 
+			if (currentUserRole == RoleEnum.Administrator)
+				data = data.Where(o => o.RoleId != (int)RoleEnum.Administrator);
+
+			pageData.Count = data.Count();
+
+			if (pageData.Count != 0)
+			{
 				switch (sortType)
 				{
 					case SortEnum.Default:
@@ -286,6 +291,38 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				}
 
 				pageData.Data = data.Page(pageData.PageId, pageData.PageSize).Select(o => new UserData
+				{
+					Id = o.Id,
+					UserName = o.UserName,
+					Email = o.Email,
+					IsActive = o.IsActive,
+					PhotoPath = o.PhotoPath,
+					IsBanned = o.IsBanned,
+					RoleId = o.RoleId
+				}).ToList();
+			}
+
+			return pageData;
+		}
+
+		PageData<UserData> IAccountService.GetUsers(RoleEnum roleType, string term, int pageId, int pageSize, RoleEnum currentUserRole)
+		{
+			var pageData = new PageData<UserData> { PageId = pageId, PageSize = pageSize };
+
+			var data = !string.IsNullOrWhiteSpace(term)
+				? _userRepository.GetQueryableData(o => o.UserName.Contains(term) && ((int)roleType == (int)RoleEnum.None || o.RoleId == (int)roleType))
+				: _userRepository.GetQueryableData(o => ((int)roleType == (int)RoleEnum.None || o.RoleId == (int)roleType));
+
+			data = data.Where(o => o.RoleId != (int)RoleEnum.MainAdministrator);
+
+			if (currentUserRole == RoleEnum.Administrator)
+				data = data.Where(o => o.RoleId != (int)RoleEnum.Administrator);
+
+			pageData.Count = data.Count();
+
+			if (pageData.Count != 0)
+			{
+				pageData.Data = data.OrderBy(o => o.UserName).Page(pageData.PageId, pageData.PageSize).Select(o => new UserData
 				{
 					Id = o.Id,
 					UserName = o.UserName,
