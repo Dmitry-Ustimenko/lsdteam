@@ -16,7 +16,7 @@
 			<div id="tabs">
 				<ul>
 					<li><a href="#users">Пользователи</a></li>
-					@*<li><a href="#role-management">Менеджер ролей</a></li>*@
+					<li><a href="#role-management">Менеджер ролей</a></li>
 				</ul>
 				<div id="users">
 					<h2>Пользователи</h2>
@@ -44,18 +44,34 @@
 						@{ Html.RenderAction("UsersData", Model.UsersModel); }
 					</div>
 				</div>
-				@*<div id="role-management">
-						<h2>Менеджер ролей</h2>
-						<div class="filter">
-							<span class="role-search">
-								<input type="text" placeholder="Найти пользователя">
-								<span class="role-search-btn"></span>
-							</span>
-							<span class="role-clear-btn"></span>
+				<div id="role-management">
+					<h2>Менеджер ролей</h2>
+					<div class="filter">
+						<div class="sort-role">
+							Отобразить:
+							<div class="sort-role-changeable">
+								<span data-val="@RoleEnum.None" class="sort-role-name">всех</span>
+								<ul class="sort-role-dropdown">
+									<li data-val="@RoleEnum.None" data-type="name">всех</li>
+									@if (AppContext.Current.CurrentUser.IsMainAdmin)
+									{
+										<li data-val="@RoleEnum.Administrator" data-type="name">администраторов</li>
+									}
+									<li data-val="@RoleEnum.Moderator" data-type="name">модераторов</li>
+									<li data-val="@RoleEnum.User" data-type="email">пользователей</li>
+								</ul>
+							</div>
 						</div>
-						<hr />
-						@{Html.RenderPartial("_RoleManagementPartial", Model.RoleManagementModel);}
-					</div>*@
+						<span class="role-search">
+							<input type="text" placeholder="Найти пользователя">
+							<span class="role-search-btn"></span>
+						</span>
+						<span class="role-clear-btn"></span>
+					</div>
+					<div id="roleContent">
+						@{ Html.RenderAction("UserRolesData", Model.UserRolesModel); }
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -65,12 +81,14 @@
 	$(document).ready(function () {
 		site.administation.init({
 			urls: {
+				changeRole: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ChangeRole(null, null, null)))',
 				deleteUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.DeleteUser(null, null)))',
 				activateUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ActivateUser(null, null)))',
 				banUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.BanUser(null, null, null)))',
 				sendMessageForActivate: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.SendMessageForActivate(null, null)))',
 				loginAs: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.LoginAs(null)))',
-				refreshGrid: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.UsersData(null)))'
+				refreshUsersGrid: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.UsersData(null)))',
+				refreshUserRolesGrid: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.UserRolesData(null)))'
 			}
 		});
 	});
