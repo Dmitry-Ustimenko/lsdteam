@@ -65,15 +65,12 @@
 	$(document).ready(function () {
 		site.administation.init({
 			urls: {
-				@*changeRole: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ChangeRole(null, null)))',*@
-				deleteUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.DeleteUser(null, SortEnum.Default, null)))',
-				activateUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ActivateUser(null, SortEnum.Default, null)))',
-				banUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.BanUser(null, null, SortEnum.Default, null)))',
-				sendMessageForActivate: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.SendMessageForActivate(null, SortEnum.Default, null)))',
-				@*filterUsers: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterUsers(SortEnum.Default, null)))',
-				filterRoles: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.FilterRoles(null)))',
-				changePage: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ChangePage(SortEnum.Default, null, null)))',*@
-				loginAs: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.LoginAs(null)))'
+				deleteUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.DeleteUser(null, null)))',
+				activateUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.ActivateUser(null, null)))',
+				banUser: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.BanUser(null, null, null)))',
+				sendMessageForActivate: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.SendMessageForActivate(null, null)))',
+				loginAs: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.LoginAs(null)))',
+				refreshGrid: '@(WebBuilder.BuildActionUrl<AdministrationController>(m => m.UsersData(null)))'
 			}
 		});
 	});

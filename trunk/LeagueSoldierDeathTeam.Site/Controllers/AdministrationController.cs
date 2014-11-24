@@ -72,12 +72,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
-		public ActionResult DeleteUser(int? userId, SortEnum sortType, string term)
+		public ActionResult DeleteUser(int? userId, UsersModel model)
 		{
 			if (userId.HasValue)
 				Execute(() => _accountService.DeleteUser(userId.GetValueOrDefault()));
 
-			var model = new UsersModel { SortType = sortType, Term = term };
 			FillUsersModel(model);
 
 			return ModelIsValid
@@ -87,12 +86,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
-		public ActionResult BanUser(int? userId, bool? isBanned, SortEnum sortType, string term)
+		public ActionResult BanUser(int? userId, bool? isBanned, UsersModel model)
 		{
 			if (userId.HasValue && isBanned.HasValue)
 				Execute(() => _accountService.BanUser(userId.GetValueOrDefault(), isBanned.Value));
 
-			var model = new UsersModel { SortType = sortType, Term = term };
 			FillUsersModel(model);
 
 			return ModelIsValid
@@ -102,7 +100,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
-		public ActionResult SendMessageForActivate(int? userId, SortEnum sortType, string term)
+		public ActionResult SendMessageForActivate(int? userId, UsersModel model)
 		{
 			if (userId.HasValue)
 			{
@@ -123,7 +121,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				}
 			}
 
-			var model = new UsersModel { SortType = sortType, Term = term };
 			FillUsersModel(model);
 
 			return ModelIsValid
@@ -133,12 +130,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
-		public ActionResult ActivateUser(int? userId, SortEnum sortType, string term)
+		public ActionResult ActivateUser(int? userId, UsersModel model)
 		{
 			if (userId.HasValue)
 				Execute(() => _accountService.ActivateUser(userId.GetValueOrDefault()));
 
-			var model = new UsersModel { SortType = sortType, Term = term };
 			FillUsersModel(model);
 
 			return ModelIsValid
