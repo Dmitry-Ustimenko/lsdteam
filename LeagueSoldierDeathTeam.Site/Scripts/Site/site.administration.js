@@ -10,12 +10,12 @@
 					sendMessageForActivate: '',
 					filterUsers: '',
 					filterRoles: '',
-					changePage: '',
+					refreshGrid: '',
 					loginAs: ''
 				},
 				elements: {
 					tabs: '#tabs',
-					users: '#users-content',
+					users: '#usersContent',
 					containment: '#containment',
 					pager: '#pager'
 				}
@@ -38,7 +38,7 @@
 					site.administation.users.initFilter(sortName, searchInput);
 					site.administation.users.refreshGrid(sortName, searchInput);
 				},
-				
+
 				refreshGrid: function (sortName, searchInput) {
 					site.administation.users.loginAs();
 					site.administation.users.initPager(sortName, searchInput);
@@ -50,10 +50,10 @@
 
 				initPager: function (sortName, searchInput) {
 					$(site.administation.settings.elements.pager).pager(function (pageId) {
-						site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.changePage,
-							{ sortFilter: sortName.data("val"), term: searchInput.val(), pageId: pageId },
+						site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.refreshGrid,
+							[{ name: "SortType", value: sortName.data("val") }, { name: "Term", value: searchInput.val() }, { name: "Pager.PageId", value: pageId }],
 							function () {
-								site.administation.users.init();
+								site.administation.users.refreshGrid(sortName, searchInput);
 							});
 					});
 				},
@@ -86,10 +86,10 @@
 							sortChangeable.width($this.width());
 							sortDropdown.fadeOut("fast");
 
-							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.filterUsers,
-								{ sortFilter: $this.data("val"), term: searchInput.val() },
+							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.refreshGrid,
+								[{ name: "SortType", value: sortName.data("val") }, { name: "Term", value: searchInput.val() }],
 								function () {
-									site.administation.users.init();
+									site.administation.users.refreshGrid(sortName, searchInput);
 								});
 						});
 					});
@@ -103,10 +103,10 @@
 
 					var searchBtn = $(".search-btn");
 					searchBtn.off("click").on("click", function () {
-						site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.filterUsers,
-								{ sortFilter: sortName.data("val"), term: searchInput.val() },
+						site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.refreshGrid,
+								[{ name: "SortType", value: sortName.data("val") }, { name: "Term", value: searchInput.val() }],
 								function () {
-									site.administation.users.init();
+									site.administation.users.refreshGrid(sortName, searchInput);
 								});
 					});
 
@@ -130,9 +130,9 @@
 						$.fn.confirmOverlay("Активация аккаунта", "Подтвердите активацию этого аккаунта", function () {
 							var userId = $this.data("id");
 							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.activateUser,
-								{ userId: userId, sortFilter: sortName.data("val"), term: searchInput.val() },
+								[{ name: "SortType", value: sortName.data("val") }, { name: "Term", value: searchInput.val() }, { name: "userId", value: userId }],
 								function () {
-									site.administation.users.init();
+									site.administation.users.refreshGrid(sortName, searchInput);
 								});
 						});
 					});
@@ -144,9 +144,9 @@
 						$.fn.confirmOverlay("Письмо активации", "Подтвердите отправку письма активации", function () {
 							var userId = $this.data("id");
 							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.sendMessageForActivate,
-								{ userId: userId, sortFilter: sortName.data("val"), term: searchInput.val() },
+								[{ name: "SortType", value: sortName.data("val") }, { name: "Term", value: searchInput.val() }, { name: "userId", value: userId }],
 								function () {
-									site.administation.users.init();
+									site.administation.users.refreshGrid(sortName, searchInput);
 								});
 						});
 					});
@@ -168,9 +168,9 @@
 
 						$.fn.confirmOverlay(title, message, function () {
 							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.banUser,
-								{ userId: userId, isBanned: isBanned, sortFilter: sortName.data("val"), term: searchInput.val() },
+								[{ name: "SortType", value: sortName.data("val") }, { name: "Term", value: searchInput.val() }, { name: "userId", value: userId }, { name: "isBanned", value: isBanned }],
 								function () {
-									site.administation.users.init();
+									site.administation.users.refreshGrid(sortName, searchInput);
 								});
 						});
 					});
@@ -182,15 +182,14 @@
 						$.fn.confirmOverlay("Удаление аккаунта", "Вы действительно хотите удалить аккаунт?", function () {
 							var userId = $this.data("id");
 							site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.deleteUser,
-								{ userId: userId, sortFilter: sortName.data("val"), term: searchInput.val() },
+								[{ name: "SortType", value: sortName.data("val") }, { name: "Term", value: searchInput.val() }, { name: "userId", value: userId }],
 								function () {
-									site.administation.users.init();
-									$(site.administation.settings.elements.containment).find('.draggable[data-id=' + userId + ']').remove();
+									site.administation.users.refreshGrid(sortName, searchInput);
 								});
 						});
 					});
 				},
-				
+
 				loginAs: function () {
 					$('[data-action=login-as]').off("click").on('click', function () {
 						var $this = $(this);

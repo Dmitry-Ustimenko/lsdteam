@@ -259,7 +259,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			var pageData = new PageData<UserData> { PageId = pageId, PageSize = pageSize };
 
 			var data = !string.IsNullOrWhiteSpace(term)
-				? _userRepository.GetQueryableData(o => o.UserName.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
+				? _userRepository.GetQueryableData(o => o.UserName.Contains(term))
 				: _userRepository.GetQueryableData();
 
 			if (data != null)
