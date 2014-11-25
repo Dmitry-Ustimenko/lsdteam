@@ -2861,3 +2861,64 @@ textarea.resize-none {
 			margin: 0;
 			display: inline;
 		}
+
+/* Calendar */
+
+.calendar {
+	height: 260px;
+	padding: 5px;
+}
+
+	.calendar .datepicker {
+		margin: 0;
+	}
+
+	.calendar .datepicker-inline {
+		width: 100%;
+	}
+
+	.calendar .datepicker th.prev, 
+	.calendar .datepicker th.next,
+	.calendar .datepicker th.switch {
+		padding-top: 2px;
+	}
+
+	.calendar .datepicker .datepicker-days td, 
+	.calendar .datepicker .datepicker-days th {
+		width: 45px;
+		height: 28px;
+		border: 1px solid rgb(190, 190, 190);
+	}
+
+	.calendar .datepicker .datepicker-days th.dow {
+		background-color: rgb(224, 224, 224);
+	}
+
+	.calendar .datepicker .datepicker-months th.prev,
+	.calendar .datepicker .datepicker-years th.prev,
+	.calendar .datepicker .datepicker-months th.next,
+	.calendar .datepicker .datepicker-years th.next {
+		width: 60px;
+		height: 28px;
+		border: 1px solid rgb(190, 190, 190);
+	}
+
+	.calendar .datepicker .datepicker-months th.switch,
+	.calendar .datepicker .datepicker-years th.switch {
+		width: 174px;
+		height: 28px;
+		border: 1px solid rgb(190, 190, 190);
+	}
+
+	.calendar .datepicker .datepicker-months > table > tbody > tr > td,
+	.calendar .datepicker .datepicker-years > table > tbody > tr > td {
+		padding-left: 1px;
+	}
+
+	.calendar .datepicker table tr td span {
+		height: 40px;
+		width: 90px;
+		margin: 1px;
+		line-height: 39px;
+		border: 1px solid rgb(190, 190, 190);
+	}
