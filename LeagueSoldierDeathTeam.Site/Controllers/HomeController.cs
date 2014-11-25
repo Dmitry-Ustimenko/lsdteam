@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
+using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Models.Home;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -18,8 +19,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return View(new IndexModel());
 		}
 
-		[Route("forum")]
-		public ActionResult Forum()
+		[AjaxOrChildActionOnly]
+		public ActionResult NewsData()
 		{
 			return View();
 		}
