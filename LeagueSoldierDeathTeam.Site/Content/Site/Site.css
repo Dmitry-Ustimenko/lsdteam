@@ -2867,10 +2867,13 @@ textarea.resize-none {
 .calendar {
 	height: 260px;
 	padding: 5px;
+	padding-top: 4px;
 }
 
 	.calendar .datepicker {
 		margin: 0;
+		box-shadow: 0 0 10px black;
+		background-color: white
 	}
 
 	.calendar .datepicker-inline {
@@ -2921,4 +2924,10 @@ textarea.resize-none {
 		margin: 1px;
 		line-height: 39px;
 		border: 1px solid rgb(190, 190, 190);
+	}
+
+	.datepicker thead tr:first-child th.switch:hover, 
+	.datepicker tfoot tr:first-child th.switch:hover {
+		background-color: inherit;
+		cursor: default;
 	}
