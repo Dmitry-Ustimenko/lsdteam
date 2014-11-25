@@ -18,7 +18,8 @@
 				$(site.home.settings.elements.calendar).datepicker({
 					language: "ru",
 					weekStart: 1,
-					todayHighlight: true
+					todayHighlight: true,
+					activateSwitch: false
 				});
 			},
 		};

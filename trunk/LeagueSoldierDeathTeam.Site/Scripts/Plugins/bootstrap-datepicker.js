@@ -108,6 +108,7 @@
 		this.todayBtn = (options.todayBtn||this.element.data('date-today-btn')||false);
 		this.todayHighlight = (options.todayHighlight||this.element.data('date-today-highlight')||false);
 
+		this.activateSwitch = options.activateSwitch != undefined ? options.activateSwitch : true;
 		this.weekStart = ((options.weekStart||this.element.data('date-weekstart')||dates[this.language].weekStart||0) % 7);
 		this.weekEnd = ((this.weekStart + 6) % 7);
 		this.startDate = -Infinity;
@@ -489,7 +490,9 @@
 					case 'th':
 						switch(target[0].className) {
 							case 'switch':
-								this.showMode(1);
+								if (this.activateSwitch) {
+									this.showMode(1);
+								}
 								break;
 							case 'prev':
 							case 'next':
