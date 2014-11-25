@@ -8,12 +8,14 @@
 				},
 				elements: {
 					slider: '#galleria',
-					calendar: '#calendar'
+					calendar: '#calendar',
+					clock: '#clock'
 				}
 			},
 
 			init: function () {
 				$.fn.slider(site.home.settings.elements.slider);
+				$.fn.clock(site.home.settings.elements.clock);
 
 				$(site.home.settings.elements.calendar).datepicker({
 					language: "ru",

@@ -31,6 +31,32 @@
 	};
 })(jQuery);
 
+
+(function ($) {
+	$.fn.clock = function (containerClockId) {
+		startTime();
+
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			$(containerClockId).html(h + ":" + m + ":" + s);
+			setTimeout(function () { startTime(); }, 500);
+		}
+
+		function checkTime(i) {
+			// add zero in front of numbers < 10
+			if (i < 10) {
+				i = "0" + i;
+			};
+			return i;
+		}
+	};
+})(jQuery);
+
 (function ($) {
 	$.fn.pager = function (callback) {
 		var container = $(this);
