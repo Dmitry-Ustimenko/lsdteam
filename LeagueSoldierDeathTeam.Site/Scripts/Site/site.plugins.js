@@ -165,7 +165,8 @@
 			}).datepicker({
 				format: "dd.mm.yyyy",
 				language: "ru",
-				autoclose: true
+				autoclose: true,
+				weekStart: 1
 			});
 		});
 	};
