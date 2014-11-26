@@ -147,7 +147,11 @@ a {
 }
 
 .width-100percent {
-	width: 100%;
+	width: 100% !important;
+}
+
+.width-50percent {
+	width: 50% !important;
 }
 
 .button {
@@ -3011,9 +3015,11 @@ textarea.resize-none {
 
 .wrap-platforms {
 	padding: 8px;
-	border: 1px solid #616161;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-	border-radius: 3px;
+	padding-left: 0;
+	border: 1px solid #949494;
+	border-right: none;
+	border-left: none;
+	text-align: center;
 }
 
 .platform-tag {
