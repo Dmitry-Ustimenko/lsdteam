@@ -71,14 +71,7 @@
     <Folder Include="Schema Objects\dbo\Programmability\Types\User Defined Table Types" />
     <Folder Include="Schema Objects\dbo\Programmability\Types\User Defined Types CLR" />
     <Folder Include="Schema Objects\dbo\Programmability\Types\XML Schema Collections" />
-    <Folder Include="Schema Objects\dbo\Service Broker" />
-    <Folder Include="Schema Objects\dbo\Service Broker\Queues" />
-    <Folder Include="Schema Objects\dbo\Synonyms" />
     <Folder Include="Schema Objects\dbo\Tables" />
-    <Folder Include="Schema Objects\dbo\Tables\Constraints" />
-    <Folder Include="Schema Objects\dbo\Tables\Indexes" />
-    <Folder Include="Schema Objects\dbo\Tables\Keys" />
-    <Folder Include="Schema Objects\dbo\Tables\Statistics" />
     <Folder Include="Schema Objects\dbo\Tables\Triggers" />
     <Folder Include="Schema Objects\dbo\Views" />
     <Folder Include="Schema Objects\dbo\Views\Indexes" />
@@ -97,6 +90,8 @@
     <None Include="LSD.Staging.publish.xml" />
     <None Include="Scripts\Post-Deployment\Population\003_dboUserExternalInfo.sql" />
     <None Include="Scripts\Post-Deployment\Population\004_dboUserMessageType.sql" />
+    <None Include="Scripts\Post-Deployment\Population\005_dboGameCategory.sql" />
+    <None Include="Scripts\Post-Deployment\Population\006_dboPlatform.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
@@ -122,6 +117,11 @@
     <Build Include="Schema Objects\dbo\Tables\UserMessageType.sql" />
     <Build Include="Schema Objects\dbo\Tables\Triggers\User.trigger.delete.sql" />
     <Build Include="Schema Objects\dbo\Tables\News.table.sql" />
+    <Build Include="Schema Objects\dbo\Tables\GameCategory.sql" />
+    <Build Include="Schema Objects\dbo\Tables\Game.table.sql" />
+    <Build Include="Schema Objects\dbo\Tables\Platform.table.sql" />
+    <Build Include="Schema Objects\dbo\Tables\NewsPlatform.sql" />
+    <Build Include="Schema Objects\dbo\Tables\GamePlatform.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="LSD.refactorlog" />

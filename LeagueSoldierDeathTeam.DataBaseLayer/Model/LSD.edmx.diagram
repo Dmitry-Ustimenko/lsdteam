@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ca7a0fcd105c450b8d175048a461f4aa" Name="Diagram1" ZoomLevel="91">
+      <Diagram DiagramId="ca7a0fcd105c450b8d175048a461f4aa" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="LSDDataModel.Role" Width="1.5" PointX="0.75" PointY="9.375" />
         <EntityTypeShape EntityType="LSDDataModel.Sex" Width="1.5" PointX="6" PointY="11.375" />
         <EntityTypeShape EntityType="LSDDataModel.User" Width="1.5" PointX="3" PointY="7.875" />
@@ -22,6 +22,19 @@
         <AssociationConnector Association="LSDDataModel.FK_UserInfo_User" />
         <AssociationConnector Association="LSDDataModel.FK_UserMessage_UserRecipient" />
         <AssociationConnector Association="LSDDataModel.FK_UserMessage_UserSender" />
+        <EntityTypeShape EntityType="LSDDataModel.Game" Width="1.5" PointX="14.75" PointY="3.875" />
+        <EntityTypeShape EntityType="LSDDataModel.GameCategory" Width="1.5" PointX="12.125" PointY="3.875" />
+        <EntityTypeShape EntityType="LSDDataModel.GamePlatform" Width="1.5" PointX="16.125" PointY="8" />
+        <EntityTypeShape EntityType="LSDDataModel.News" Width="1.5" PointX="9.875" PointY="3.875" />
+        <EntityTypeShape EntityType="LSDDataModel.NewsPlatform" Width="1.5" PointX="10.5" PointY="8.125" />
+        <EntityTypeShape EntityType="LSDDataModel.Platform" Width="1.5" PointX="13.375" PointY="8.25" />
+        <AssociationConnector Association="LSDDataModel.FK_Game_GameCategory" />
+        <AssociationConnector Association="LSDDataModel.FK_GamePlatform_Game" />
+        <AssociationConnector Association="LSDDataModel.FK_News_GameCategory" />
+        <AssociationConnector Association="LSDDataModel.FK_GamePlatform_Platform" />
+        <AssociationConnector Association="LSDDataModel.FK_News_User" />
+        <AssociationConnector Association="LSDDataModel.FK_NewsPlatform_News" />
+        <AssociationConnector Association="LSDDataModel.FK_NewsPlatform_Platform" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

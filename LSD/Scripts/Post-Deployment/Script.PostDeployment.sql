@@ -20,3 +20,5 @@ go
 :r .\Population\002_dboUser.sql
 :r .\Population\003_dboUserExternalInfo.sql
 :r .\Population\004_dboUserMessageType.sql
+:r .\Population\005_dboGameCategory.sql
+:r .\Population\006_dboPlatform.sql
