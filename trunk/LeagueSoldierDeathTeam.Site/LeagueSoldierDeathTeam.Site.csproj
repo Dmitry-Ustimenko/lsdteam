@@ -204,6 +204,7 @@
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\ControllerActionInfo.cs" />
     <Compile Include="Classes\Extensions\Models\BasePagerModelEx.cs" />
+    <Compile Include="Classes\Extensions\Models\EditNewsModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\EditProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\ExternalRegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
