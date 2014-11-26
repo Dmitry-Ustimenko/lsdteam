@@ -21,6 +21,10 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 		[DisplayName("Категория")]
 		public int NewsCategoryId { get; set; }
 
+		public int WriterId { get; set; }
+
+		public string WriterName { get; set; }
+
 		public IEnumerable<NewsCategoryData> NewsCategories { get; set; }
 
 		public IEnumerable<int> PlatformsIds { get; set; }

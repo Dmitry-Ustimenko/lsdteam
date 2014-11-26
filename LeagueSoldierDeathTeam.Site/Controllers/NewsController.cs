@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Models.News;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -52,13 +53,23 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult EditNews(int id)
+		public ActionResult EditNews(int? id)
 		{
-			var model = new EditNewsModel { Id = id };
-			FillEditNewsModel(model);
-			FillResourceEditNewsModel(model);
+			if (id.HasValue)
+			{
+				var model = new EditNewsModel { Id = id.GetValueOrDefault() };
 
-			return View(model);
+				var news = Execute(() => _newsService.GetNews(model.Id.GetValueOrDefault()));
+				if (news == null)
+					return RedirectToAction<NewsController>(o => o.Index());
+
+				model.CopyFrom(news);
+				FillResourceEditNewsModel(model);
+
+				return View(model);
+			}
+
+			return RedirectToAction<NewsController>(o => o.CreateNews());
 		}
 
 		[HttpPost]
@@ -66,8 +77,20 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			if (ModelIsValid)
 			{
+				var data = new NewsData
+				{
+					Id = model.Id.GetValueOrDefault(),
+					Description = model.Description,
+					Title = model.Title,
+					NewsCategoryId = model.NewsCategoryId,
+					WriterId = CurrentUser.Id,
+					PlatformIds = model.PlatformsIds
+				};
 
-				return RedirectToAction<NewsController>(o => o.Index());
+				Execute(() => _newsService.SaveNews(data));
+
+				if (ModelIsValid)
+					return RedirectToAction<NewsController>(o => o.Index());
 			}
 
 			FillResourceEditNewsModel(model);
@@ -78,11 +101,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#endregion
 
 		#region Internal Implementation
-
-		private void FillEditNewsModel(EditNewsModel model)
-		{
-
-		}
 
 		private void FillResourceEditNewsModel(EditNewsModel model)
 		{

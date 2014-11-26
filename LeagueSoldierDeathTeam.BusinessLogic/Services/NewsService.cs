@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Repositories;
@@ -42,6 +43,22 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		#region IAccountService Members
 
+		NewsData INewsService.GetNews(int id)
+		{
+			return _newsRepository.GetData(o => new NewsData
+			{
+				Id = o.Id,
+				Title = o.Title,
+				Description = o.Description,
+				CreateDate = o.CreateDate,
+				CountViews = o.CountViews,
+				WriterId = o.Writer != null ? o.Writer.Id : default(int),
+				WriterName = o.Writer != null ? o.Writer.UserName : string.Empty,
+				NewsCategoryId = o.NewsCategoryId,
+				PlatformIds = o.NewsPlatforms.Select(p => p.Id).ToList()
+			}, o => o.Id == id).SingleOrDefault();
+		}
+
 		void INewsService.SaveNews(NewsData data)
 		{
 			var entity = data.Id != default(int) ? _newsRepository.Query(o => o.Id == data.Id).SingleOrDefault() : new News();
@@ -75,6 +92,30 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				}
 
 				_newsRepository.Add(entity);
+			}
+			else
+			{
+				if (data.PlatformIds.Any())
+				{
+					var validePlatforms = _platformRepository.Query(o => data.PlatformIds.Contains(o.Id)).ToList();
+					var validePlatformIds = validePlatforms.Select(o => o.Id).ToArray();
+
+					var platforms = entity.NewsPlatforms.Select(o => o.Platform).ToList();
+					var platformIds = platforms.Select(o => o.Id).ToArray();
+
+					var newPlatforms = validePlatforms.Where(o => !platformIds.Contains(o.Id)).ToList();
+					var deletePlatforms = entity.NewsPlatforms.Where(o => !validePlatformIds.Contains(o.Platform.Id)).ToList();
+
+					foreach (var newPlatform in newPlatforms)
+					{
+						entity.NewsPlatforms.Add(new NewsPlatform { News = entity, Platform = newPlatform });
+					}
+
+					foreach (var deletePlatform in deletePlatforms)
+					{
+						entity.NewsPlatforms.Remove(deletePlatform);
+					}
+				}
 			}
 
 			UnitOfWork.Commit();
