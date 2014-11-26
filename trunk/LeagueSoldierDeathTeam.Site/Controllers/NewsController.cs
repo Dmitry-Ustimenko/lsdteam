@@ -44,6 +44,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpGet]
+		[Route("create-news")]
 		public ActionResult CreateNews()
 		{
 			var model = new EditNewsModel();
@@ -53,6 +54,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpGet]
+		[Route("edit-news/{id:int?}")]
 		public ActionResult EditNews(int? id)
 		{
 			if (id.HasValue)
@@ -73,6 +75,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
+		[Route("edit-news")]
 		public ActionResult EditNews(EditNewsModel model)
 		{
 			if (ModelIsValid)
