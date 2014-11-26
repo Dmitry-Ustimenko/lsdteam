@@ -52,6 +52,15 @@
   <ItemGroup>
     <Compile Include="Abstractions\DataAccess\IObjectContextProvider.cs" />
     <Compile Include="DataAccess\ObjectContextProvider.cs" />
+    <Compile Include="Model\Game.cs">
+      <DependentUpon>LSD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GameCategory.cs">
+      <DependentUpon>LSD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GamePlatform.cs">
+      <DependentUpon>LSD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\LSD.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,6 +75,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LSD.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\News.cs">
+      <DependentUpon>LSD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\NewsPlatform.cs">
+      <DependentUpon>LSD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Platform.cs">
+      <DependentUpon>LSD.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Role.cs">
       <DependentUpon>LSD.tt</DependentUpon>

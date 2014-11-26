@@ -22,6 +22,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
             this.UserInfoes = new HashSet<UserInfo>();
             this.RecipientMessages = new HashSet<UserMessage>();
             this.SenderMessages = new HashSet<UserMessage>();
+            this.News = new HashSet<News>();
         }
     
         public int Id { get; set; }
@@ -43,5 +44,6 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public virtual ICollection<UserInfo> UserInfoes { get; set; }
         public virtual ICollection<UserMessage> RecipientMessages { get; set; }
         public virtual ICollection<UserMessage> SenderMessages { get; set; }
+        public virtual ICollection<News> News { get; set; }
     }
 }
