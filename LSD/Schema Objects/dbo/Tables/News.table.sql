@@ -5,7 +5,7 @@
     [Description] NVARCHAR(MAX) NOT NULL, 
     [CreateDate] DATETIME NOT NULL, 
     [CountViews] INT NOT NULL, 
-    [GameCategoryId] INT NULL, 
+    [NewsCategoryId] INT NOT NULL, 
     [WriterId] INT NOT NULL, 
     constraint [PK_dboNews] primary key clustered ([Id])
 );
@@ -20,10 +20,10 @@ ALTER TABLE [dbo].[News] CHECK CONSTRAINT [FK_News_User]
 GO
 
 go
-ALTER TABLE [dbo].[News]  WITH CHECK ADD  CONSTRAINT [FK_News_GameCategory] FOREIGN KEY([GameCategoryId])
-REFERENCES [dbo].[GameCategory] ([Id])
+ALTER TABLE [dbo].[News]  WITH CHECK ADD  CONSTRAINT [FK_News_NewsCategory] FOREIGN KEY([NewsCategoryId])
+REFERENCES [dbo].[NewsCategory] ([Id])
 ON UPDATE CASCADE
 ON DELETE NO ACTION
 GO
-ALTER TABLE [dbo].[News] CHECK CONSTRAINT [FK_News_GameCategory]
+ALTER TABLE [dbo].[News] CHECK CONSTRAINT [FK_News_NewsCategory]
 GO

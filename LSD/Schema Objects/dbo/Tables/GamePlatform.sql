@@ -7,6 +7,10 @@
 );
 
 go
+create unique index [UQ_dboGamePlatform_GameId_PlatformId] ON [dbo].[GamePlatform] ([GameId], [PlatformId]);
+go
+
+go
 ALTER TABLE [dbo].[GamePlatform]  WITH CHECK ADD  CONSTRAINT [FK_GamePlatform_Game] FOREIGN KEY([GameId])
 REFERENCES [dbo].[Game] ([Id])
 ON UPDATE CASCADE

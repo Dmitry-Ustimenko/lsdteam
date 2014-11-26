@@ -1,0 +1,10 @@
+﻿@model LeagueSoldierDeathTeam.Site.Models.News.EditNewsModel
+
+@{
+	ViewBag.Title = Model.Id.HasValue ? "Редактирование новости" : "Создание новости";
+}
+
+@using (Html.BeginForm("EditNews", "News", FormMethod.Post))
+{
+
+}

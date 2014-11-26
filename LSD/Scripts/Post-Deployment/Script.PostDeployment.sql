@@ -22,3 +22,4 @@ go
 :r .\Population\004_dboUserMessageType.sql
 :r .\Population\005_dboGameCategory.sql
 :r .\Population\006_dboPlatform.sql
+:r .\Population\007_dboNewsCategory.sql

@@ -7,6 +7,10 @@
 );
 
 go
+create unique index [UQ_dboNewsPlatform_NewsId_PlatformId] ON [dbo].[NewsPlatform] ([NewsId], [PlatformId]);
+go
+
+go
 ALTER TABLE [dbo].[NewsPlatform]  WITH CHECK ADD  CONSTRAINT [FK_NewsPlatform_News] FOREIGN KEY([NewsId])
 REFERENCES [dbo].[News] ([Id])
 ON UPDATE CASCADE
