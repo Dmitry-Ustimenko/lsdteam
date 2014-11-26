@@ -9,7 +9,7 @@
 				form: null
 			},
 			elements: {
-
+				platformIds: '#HiddenPlatformIds'
 			}
 		},
 
@@ -19,6 +19,7 @@
 
 				site.news.initEdit.initEditor();
 				site.news.initEdit.initPlatforms();
+				site.news.initEdit.submitForm();
 			},
 
 			initPlatforms: function () {
@@ -74,6 +75,26 @@
 					}
 
 					return true;
+				});
+			},
+
+			submitForm: function () {
+				var form = $("form");
+				form.on('submit', function (e) {
+					var $this = $(this);
+					var platformIds = [];
+
+					$(".platform-tag").each(function () {
+						var platform = $(this);
+
+						if (platform.data("active")) {
+							platformIds.push(platform.data("id"));
+						}
+					});
+
+					if ($this.valid()) {
+						$(site.news.settings.elements.platformIds).val(platformIds.join(","));
+					}
 				});
 			}
 		},

@@ -1,4 +1,5 @@
-﻿using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+﻿using System.Linq;
+using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Models.News;
 
 namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
@@ -12,7 +13,8 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			model.Description = data.Description;
 			model.WriterName = data.WriterName;
 			model.NewsCategoryId = data.NewsCategoryId;
-			model.PlatformsIds = data.PlatformIds;
+			model.PlatformIds = data.PlatformIds.ToList();
+			model.HiddenPlatformIds = string.Join(",", data.PlatformIds);
 
 			return model;
 		}
