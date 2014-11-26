@@ -49,6 +49,8 @@ footer {
 	bottom: 0;
 	-webkit-transition: opacity 2s ease;
 	-moz-transition: opacity 2s ease;
+	-ms-transition: opacity 2s ease;
+	-o-transition: opacity 2s ease;
 	transition: opacity 2s ease;
 	background: url(/Images/bf4-background.jpg) no-repeat;
 	z-index: -1;
@@ -68,11 +70,15 @@ select:focus,
 textarea:focus {
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
+	-ms-box-shadow: none;
 	box-shadow: none;
 	outline: 0;
 }
 
 textarea {
+	-moz-resize: vertical;
+	-ms-resize: vertical;
+	-o-resize: vertical;
 	resize: vertical;
 }
 
@@ -121,15 +127,17 @@ a {
 }
 
 	#galleria, .galleria-container, .galleria-stage, .galleria-images, #galleria .galleria-image, #galleria .galleria-image img {
+		-ms-border-radius: 5px;
 		border-radius: 5px;
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
 	}
 
 		#galleria .galleria-thumbnails-container .galleria-image, #galleria .galleria-thumbnails-container .galleria-image img {
-			border-radius: 1px;
+			-ms-border-radius: 1px;
 			-moz-border-radius: 1px;
 			-webkit-border-radius: 1px;
+			border-radius: 1px;
 		}
 
 /* Classes */
@@ -145,7 +153,10 @@ a {
 .button {
 	padding: 6px 5px;
 	border: 1px solid #B31919;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+	-ms-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+	-ms-border-radius: 3px;
 	border-radius: 3px;
 	background: #B31919;
 	cursor: pointer;
@@ -153,16 +164,21 @@ a {
 	color: white;
 	font-weight: 700;
 	font-size: 15px;
+	-ms-text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
 }
 
 	.button:hover {
+		-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+		-ms-box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 		box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 	}
 
 
 	.button:active {
 		background: #B31919;
+		-webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
+		-ms-box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
 		box-shadow: inset 0 0 2px rgba(0,0,0,0.6);
 	}
 
@@ -190,6 +206,7 @@ a {
 		}
 
 			.log-off span a:hover {
+				-ms-text-shadow: 2px 2px 2px black, 0 0 0.8em white;
 				text-shadow: 2px 2px 2px black, 0 0 0.8em white;
 			}
 
@@ -199,12 +216,15 @@ a {
 			}
 
 	.log-off > a {
+		-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+		-ms-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
 		box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
 		background: #B31919;
 		font-family: 'Ubuntu', 'Lato', sans-serif;
 		color: white;
 		font-weight: 700;
 		font-size: 15px;
+		-ms-text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
 		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
 		cursor: pointer;
 		display: inline-block;
@@ -216,6 +236,8 @@ a {
 
 		.log-off > a:active {
 			border: 1px solid #191919 !important;
+			-webkit-box-shadow: inset 3px 3px 3px rgba(0,0,0,0.1);
+			-ms-box-shadow: inset 3px 3px 3px rgba(0,0,0,0.1);
 			box-shadow: inset 3px 3px 3px rgba(0,0,0,0.1);
 			padding: 6px;
 		}
@@ -275,6 +297,7 @@ a {
 			-webkit-transition: all 0.4s linear;
 			-moz-transition: all 0.4s linear;
 			-o-transition: all 0.4s linear;
+			-ms-transition: all 0.4s linear;
 			transition: all 0.4s linear;
 		}
 
@@ -294,6 +317,7 @@ a {
 .section-shadow {
 	-moz-box-shadow: 0 0 10px #000;
 	-webkit-box-shadow: 0 0 10px #000;
+	-ms-box-shadow: 0 0 10px #000;
 	box-shadow: 0 0 10px #000;
 }
 
@@ -350,6 +374,7 @@ a {
 }
 
 .section-radius {
+	-ms-border-radius: 5px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -397,6 +422,8 @@ a {
 	height: 40px;
 	width: 100%;
 	border-bottom: 1px solid #fff;
+	-webkit-box-shadow: 0 -2px 2px rgba(0,0,0,0.1) inset;
+	-ms-box-shadow: 0 -2px 2px rgba(0,0,0,0.1) inset;
 	box-shadow: 0 -2px 2px rgba(0,0,0,0.1) inset;
 	background: rgb(255,255,255);
 	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -469,12 +496,15 @@ a {
 		.login-buttons .tab > input {
 			position: relative;
 			border: 1px solid #B31919;
+			-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+			-ms-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
 			box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
 			background: #B31919;
 			font-family: 'Ubuntu', 'Lato', sans-serif;
 			color: white;
 			font-weight: 700;
 			font-size: 15px;
+			-ms-text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
 			text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
 			cursor: pointer;
 			display: block;
@@ -492,12 +522,14 @@ a {
 			.login-buttons .tab .login-form.login {
 				left: -180px;
 				top: 44px;
+				-ms-opacity: 1;
 				opacity: 1;
 			}
 
 			.login-buttons .tab .login-form.register {
 				left: -230px;
 				top: 44px;
+				-ms-opacity: 1;
 				opacity: 1;
 			}
 
@@ -516,6 +548,8 @@ a {
 	right: 110px;
 	background: rgba(20, 20, 20, 0.9);
 	border: 1px solid #191919;
+	-webkit-box-shadow: inset 0 0 2px 1px rgba(255,255,255,0.08), 0 16px 10px -8px rgba(0, 0, 0, 0.6);
+	-ms-box-shadow: inset 0 0 2px 1px rgba(255,255,255,0.08), 0 16px 10px -8px rgba(0, 0, 0, 0.6);
 	box-shadow: inset 0 0 2px 1px rgba(255,255,255,0.08), 0 16px 10px -8px rgba(0, 0, 0, 0.6);
 	z-index: 502;
 }
@@ -567,6 +601,7 @@ a {
 		font-size: 12px;
 		text-transform: uppercase;
 		letter-spacing: 1px;
+		-ms-text-shadow: 0 1px 0 #000;
 		text-shadow: 0 1px 0 #000;
 		text-indent: 10px;
 		font-weight: 700;
@@ -587,7 +622,10 @@ a {
 		background: -webkit-linear-gradient(#1f2124, #27292c);
 		background: linear-gradient(#1f2124, #27292c);
 		border: 1px solid #000;
+		-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+		-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 		box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+		-ms-border-radius: 3px;
 		border-radius: 3px;
 		font-family: 'Ubuntu', 'Lato', sans-serif;
 		color: #fff;
@@ -601,7 +639,10 @@ a {
 		width: 100%;
 		padding: 6px 5px;
 		border: 1px solid #B31919;
+		-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+		-ms-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
 		box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 10px 10px rgba(255,255,255,0.1);
+		-ms-border-radius: 3px;
 		border-radius: 3px;
 		background: #B31919;
 		cursor: pointer;
@@ -609,15 +650,20 @@ a {
 		color: white;
 		font-weight: 700;
 		font-size: 15px;
+		-ms-text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
 		text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
 	}
 
 		.login-form input[type=button]:hover {
+			-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+			-ms-box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 			box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 		}
 
 		.login-form input[type=button]:active {
 			background: #B31919;
+			-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+			-ms-box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
 			box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
 			border-color: #000;
 			border-color: rgba(0,0,0,0.9);
@@ -2959,6 +3005,6 @@ textarea.resize-none {
 	padding: 0 10px;
 	font-size: 17px;
 	background-color: white;
-	-ms-text-shadow: 0px 0px 1px rgb(240, 240, 240);
-	text-shadow: 0px 0px 1px rgb(240, 240, 240);
+	-ms-text-shadow: 0 0 1px rgb(240, 240, 240);
+	text-shadow: 0 0 1px rgb(240, 240, 240);
 }
