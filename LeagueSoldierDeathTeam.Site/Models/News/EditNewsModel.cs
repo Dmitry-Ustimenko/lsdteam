@@ -28,7 +28,9 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 		public IEnumerable<NewsCategoryData> NewsCategories { get; set; }
 
 		[DisplayName("Платформы")]
-		public IEnumerable<int> PlatformsIds { get; set; }
+		public IList<int> PlatformIds { get; set; }
+
+		public string HiddenPlatformIds { get; set; }
 
 		public IEnumerable<PlatformData> Platforms { get; set; }
 
@@ -36,7 +38,8 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 		{
 			NewsCategories = new List<NewsCategoryData>();
 			Platforms = new List<PlatformData>();
-			PlatformsIds = new[] { 1, 4, 5 };
+			PlatformIds = new List<int>();
+			HiddenPlatformIds = string.Empty;
 		}
 	}
 }

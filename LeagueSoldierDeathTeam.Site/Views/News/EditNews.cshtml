@@ -22,6 +22,7 @@
 				{
 					@Html.HiddenFor(m => m.Id)
 					@Html.HiddenFor(m => m.WriterId)
+					@Html.HiddenFor(m => m.HiddenPlatformIds)
 
 					<div class="form-border">
 						<div class="container-item">
@@ -39,12 +40,12 @@
 							</div>
 						</div>
 						<div class="container-item">
-							@Html.LabelFor(m => m.PlatformsIds)
+							@Html.LabelFor(m => m.PlatformIds)
 							<div class="field-container">
 								<div class="wrap-platforms">
 									@foreach (var platform in Model.Platforms)
 									{
-										var isActive = Model.PlatformsIds.Contains(platform.Id);
+										var isActive = Model.PlatformIds.Contains(platform.Id);
 
 										<span class="platform-tag @Html.Raw(isActive ? "active" : string.Empty)" data-active="@Html.Raw(isActive ? "true" : "false")" data-id="@platform.Id">
 											@platform.Name

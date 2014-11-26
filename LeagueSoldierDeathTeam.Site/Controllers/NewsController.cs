@@ -80,6 +80,19 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			if (ModelIsValid)
 			{
+				model.PlatformIds.Clear();
+
+				if (!string.IsNullOrWhiteSpace(model.HiddenPlatformIds))
+				{
+					var platformIds = model.HiddenPlatformIds.Split(',');
+					foreach (var platformId in platformIds)
+					{
+						int id;
+						if (int.TryParse(platformId, out id))
+							model.PlatformIds.Add(id);
+					}
+				}
+
 				var data = new NewsData
 				{
 					Id = model.Id.GetValueOrDefault(),
@@ -87,7 +100,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 					Title = model.Title,
 					NewsCategoryId = model.NewsCategoryId,
 					WriterId = CurrentUser.Id,
-					PlatformIds = model.PlatformsIds
+					PlatformIds = model.PlatformIds
 				};
 
 				Execute(() => _newsService.SaveNews(data));
