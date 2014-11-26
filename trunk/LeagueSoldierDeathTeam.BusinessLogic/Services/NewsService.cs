@@ -55,7 +55,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				WriterId = o.Writer != null ? o.Writer.Id : default(int),
 				WriterName = o.Writer != null ? o.Writer.UserName : string.Empty,
 				NewsCategoryId = o.NewsCategoryId,
-				PlatformIds = o.NewsPlatforms.Select(p => p.Id).ToList()
+				PlatformIds = o.NewsPlatforms.Select(p => p.PlatformId).ToList()
 			}, o => o.Id == id).SingleOrDefault();
 		}
 
