@@ -3008,3 +3008,45 @@ textarea.resize-none {
 	-ms-text-shadow: 0 0 1px rgb(240, 240, 240);
 	text-shadow: 0 0 1px rgb(240, 240, 240);
 }
+
+.wrap-platforms {
+	padding: 8px;
+	border: 1px solid #616161;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+	border-radius: 3px;
+}
+
+.platform-tag {
+	border: 1px solid rgb(181, 181, 181);
+	padding: 2px 5px;
+	cursor: pointer;
+	border-radius: 3px;
+	background-color: rgba(0, 0, 0, 0.05);
+	margin-right: 3px;
+	display: inline-block;
+}
+
+	.platform-tag.active {
+		background-color: rgba(0, 211, 0, 0.15);
+	}
+
+	.platform-tag.active:hover {
+		background-color: rgba(0, 0, 0, 0.08);
+	}
+
+.platform-icon {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	background: url(/Images/platform-active.png) no-repeat;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	-o-transition: all 0.1s linear;
+	-ms-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+	padding-left: 2px;
+}
+
+.platform-tag:hover .platform-icon {
+	background: url(/Images/platform-delete.png) no-repeat;
+}

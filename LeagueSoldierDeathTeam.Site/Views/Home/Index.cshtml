@@ -10,7 +10,10 @@
 
 <div class="section-body-item-60 section-shadow">
 	<div class="section-module-header">
-		<div class="module-title"><a class="module-title-link" href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.Index()))">Новости</a></div>
+		<div class="module-title position-relative width-100percent">
+			<a class="module-title-link" href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.Index()))">Новости</a>
+			<a class="module-title-link position-absolute" style="right: 10px;" href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.CreateNews()))">Создать</a>
+		</div>
 	</div>
 	<div class="section-module-body">
 	</div>

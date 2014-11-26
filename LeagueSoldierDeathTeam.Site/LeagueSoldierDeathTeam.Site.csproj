@@ -338,6 +338,9 @@
     <Content Include="Images\bf4-background.jpg" />
     <Content Include="Images\icons.png" />
     <Content Include="Images\message-select.png" />
+    <Content Include="Images\platform-active.png" />
+    <Content Include="Images\platform-delete.png" />
+    <Content Include="Scripts\Site\site.news.js" />
     <Content Include="Videos\Background\last-stand.mp4" />
     <Content Include="Videos\Background\last-stand.ogg" />
     <Content Include="Videos\Background\last-stand.webm" />
