@@ -17,13 +17,11 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public GameCategory()
         {
             this.Games = new HashSet<Game>();
-            this.News = new HashSet<News>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         public virtual ICollection<Game> Games { get; set; }
-        public virtual ICollection<News> News { get; set; }
     }
 }

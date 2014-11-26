@@ -45,8 +45,15 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="CountViews" Type="int" Nullable="false" />
-          <Property Name="GameCategoryId" Type="int" />
+          <Property Name="NewsCategoryId" Type="int" Nullable="false" />
           <Property Name="WriterId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="NewsPlatform">
           <Key>
@@ -232,15 +239,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_News_GameCategory">
-          <End Role="GameCategory" Type="Self.GameCategory" Multiplicity="0..1" />
+        <Association Name="FK_News_NewsCategory">
+          <End Role="NewsCategory" Type="Self.NewsCategory" Multiplicity="1" />
           <End Role="News" Type="Self.News" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="GameCategory">
+            <Principal Role="NewsCategory">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="News">
-              <PropertyRef Name="GameCategoryId" />
+              <PropertyRef Name="NewsCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -367,6 +374,7 @@
           <EntitySet Name="GameCategory" EntityType="Self.GameCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GamePlatform" EntityType="Self.GamePlatform" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsCategory" EntityType="Self.NewsCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsPlatform" EntityType="Self.NewsPlatform" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Platform" EntityType="Self.Platform" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -398,8 +406,8 @@
             <End Role="Platform" EntitySet="Platform" />
             <End Role="GamePlatform" EntitySet="GamePlatform" />
           </AssociationSet>
-          <AssociationSet Name="FK_News_GameCategory" Association="Self.FK_News_GameCategory">
-            <End Role="GameCategory" EntitySet="GameCategory" />
+          <AssociationSet Name="FK_News_NewsCategory" Association="Self.FK_News_NewsCategory">
+            <End Role="NewsCategory" EntitySet="NewsCategory" />
             <End Role="News" EntitySet="News" />
           </AssociationSet>
           <AssociationSet Name="FK_News_User" Association="Self.FK_News_User">
@@ -444,6 +452,13 @@
     <edmx:ConceptualModels>
       <Schema Namespace="LSDDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Games" EntityType="LSDDataModel.Game" />
+          <EntitySet Name="GameCategories" EntityType="LSDDataModel.GameCategory" />
+          <EntitySet Name="GamePlatforms" EntityType="LSDDataModel.GamePlatform" />
+          <EntitySet Name="News" EntityType="LSDDataModel.News" />
+          <EntitySet Name="NewsCategories" EntityType="LSDDataModel.NewsCategory" />
+          <EntitySet Name="NewsPlatforms" EntityType="LSDDataModel.NewsPlatform" />
+          <EntitySet Name="Platforms" EntityType="LSDDataModel.Platform" />
           <EntitySet Name="Roles" EntityType="LSDDataModel.Role" />
           <EntitySet Name="Sexes" EntityType="LSDDataModel.Sex" />
           <EntitySet Name="Users" EntityType="LSDDataModel.User" />
@@ -453,6 +468,34 @@
           <EntitySet Name="UserMessages" EntityType="LSDDataModel.UserMessage" />
           <EntitySet Name="UserMessageTypes" EntityType="LSDDataModel.UserMessageType" />
           <EntitySet Name="UserResetTokens" EntityType="LSDDataModel.UserResetToken" />
+          <AssociationSet Name="FK_Game_GameCategory" Association="LSDDataModel.FK_Game_GameCategory">
+            <End Role="GameCategory" EntitySet="GameCategories" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GamePlatform_Game" Association="LSDDataModel.FK_GamePlatform_Game">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="GamePlatform" EntitySet="GamePlatforms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GamePlatform_Platform" Association="LSDDataModel.FK_GamePlatform_Platform">
+            <End Role="Platform" EntitySet="Platforms" />
+            <End Role="GamePlatform" EntitySet="GamePlatforms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_News_NewsCategory" Association="LSDDataModel.FK_News_NewsCategory">
+            <End Role="NewsCategory" EntitySet="NewsCategories" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_News_User" Association="LSDDataModel.FK_News_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewsPlatform_News" Association="LSDDataModel.FK_NewsPlatform_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="NewsPlatform" EntitySet="NewsPlatforms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewsPlatform_Platform" Association="LSDDataModel.FK_NewsPlatform_Platform">
+            <End Role="Platform" EntitySet="Platforms" />
+            <End Role="NewsPlatform" EntitySet="NewsPlatforms" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="LSDDataModel.FK_User_Role">
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
@@ -485,41 +528,85 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserMessage" EntitySet="UserMessages" />
           </AssociationSet>
-          <EntitySet Name="Games" EntityType="LSDDataModel.Game" />
-          <EntitySet Name="GameCategories" EntityType="LSDDataModel.GameCategory" />
-          <EntitySet Name="GamePlatforms" EntityType="LSDDataModel.GamePlatform" />
-          <EntitySet Name="News" EntityType="LSDDataModel.News" />
-          <EntitySet Name="NewsPlatforms" EntityType="LSDDataModel.NewsPlatform" />
-          <EntitySet Name="Platforms" EntityType="LSDDataModel.Platform" />
-          <AssociationSet Name="FK_Game_GameCategory" Association="LSDDataModel.FK_Game_GameCategory">
-            <End Role="GameCategory" EntitySet="GameCategories" />
-            <End Role="Game" EntitySet="Games" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GamePlatform_Game" Association="LSDDataModel.FK_GamePlatform_Game">
-            <End Role="Game" EntitySet="Games" />
-            <End Role="GamePlatform" EntitySet="GamePlatforms" />
-          </AssociationSet>
-          <AssociationSet Name="FK_News_GameCategory" Association="LSDDataModel.FK_News_GameCategory">
-            <End Role="GameCategory" EntitySet="GameCategories" />
-            <End Role="News" EntitySet="News" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GamePlatform_Platform" Association="LSDDataModel.FK_GamePlatform_Platform">
-            <End Role="Platform" EntitySet="Platforms" />
-            <End Role="GamePlatform" EntitySet="GamePlatforms" />
-          </AssociationSet>
-          <AssociationSet Name="FK_News_User" Association="LSDDataModel.FK_News_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="News" EntitySet="News" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NewsPlatform_News" Association="LSDDataModel.FK_NewsPlatform_News">
-            <End Role="News" EntitySet="News" />
-            <End Role="NewsPlatform" EntitySet="NewsPlatforms" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NewsPlatform_Platform" Association="LSDDataModel.FK_NewsPlatform_Platform">
-            <End Role="Platform" EntitySet="Platforms" />
-            <End Role="NewsPlatform" EntitySet="NewsPlatforms" />
-          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="GameCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Developer" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Publisher" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecommendedOS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecommendedCPU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecommendedGPU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecommendedRAM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecommendedHDD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GameCategory" Relationship="LSDDataModel.FK_Game_GameCategory" FromRole="Game" ToRole="GameCategory" />
+          <NavigationProperty Name="GamePlatforms" Relationship="LSDDataModel.FK_GamePlatform_Game" FromRole="Game" ToRole="GamePlatform" />
+        </EntityType>
+        <EntityType Name="GameCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Games" Relationship="LSDDataModel.FK_Game_GameCategory" FromRole="GameCategory" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="GamePlatform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameId" Type="Int32" Nullable="false" />
+          <Property Name="PlatformId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="LSDDataModel.FK_GamePlatform_Game" FromRole="GamePlatform" ToRole="Game" />
+          <NavigationProperty Name="Platform" Relationship="LSDDataModel.FK_GamePlatform_Platform" FromRole="GamePlatform" ToRole="Platform" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CountViews" Type="Int32" Nullable="false" />
+          <Property Name="NewsCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="WriterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NewsCategory" Relationship="LSDDataModel.FK_News_NewsCategory" FromRole="News" ToRole="NewsCategory" />
+          <NavigationProperty Name="Writer" Relationship="LSDDataModel.FK_News_User" FromRole="News" ToRole="User" />
+          <NavigationProperty Name="NewsPlatforms" Relationship="LSDDataModel.FK_NewsPlatform_News" FromRole="News" ToRole="NewsPlatform" />
+        </EntityType>
+        <EntityType Name="NewsCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="News" Relationship="LSDDataModel.FK_News_NewsCategory" FromRole="NewsCategory" ToRole="News" />
+        </EntityType>
+        <EntityType Name="NewsPlatform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsId" Type="Int32" Nullable="false" />
+          <Property Name="PlatformId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="LSDDataModel.FK_NewsPlatform_News" FromRole="NewsPlatform" ToRole="News" />
+          <NavigationProperty Name="Platform" Relationship="LSDDataModel.FK_NewsPlatform_Platform" FromRole="NewsPlatform" ToRole="Platform" />
+        </EntityType>
+        <EntityType Name="Platform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GamePlatforms" Relationship="LSDDataModel.FK_GamePlatform_Platform" FromRole="Platform" ToRole="GamePlatform" />
+          <NavigationProperty Name="NewsPlatforms" Relationship="LSDDataModel.FK_NewsPlatform_Platform" FromRole="Platform" ToRole="NewsPlatform" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -551,14 +638,14 @@
           <Property Name="PhotoPath" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="IsBanned" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="LSDDataModel.FK_News_User" FromRole="User" ToRole="News" />
           <NavigationProperty Name="Role" Relationship="LSDDataModel.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="UserActivateTokens" Relationship="LSDDataModel.FK_dboUserActivateToken_dboUser" FromRole="User" ToRole="UserActivateToken" />
           <NavigationProperty Name="UserResetTokens" Relationship="LSDDataModel.FK_dboUserResetToken_dboUser" FromRole="User" ToRole="UserResetToken" />
           <NavigationProperty Name="UserExternalInfoes" Relationship="LSDDataModel.FK_UserExternalInfo_User" FromRole="User" ToRole="UserExternalInfo" />
           <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
-          <NavigationProperty Name="RecipientMessages" Relationship="LSDDataModel.FK_UserMessage_UserRecipient" FromRole="User" ToRole="UserMessage" />
-          <NavigationProperty Name="SenderMessages" Relationship="LSDDataModel.FK_UserMessage_UserSender" FromRole="User" ToRole="UserMessage" />
-          <NavigationProperty Name="News" Relationship="LSDDataModel.FK_News_User" FromRole="User" ToRole="News" />
+          <NavigationProperty Name="RecipientMessage" Relationship="LSDDataModel.FK_UserMessage_UserRecipient" FromRole="User" ToRole="UserMessage" />
+          <NavigationProperty Name="SenderMessage" Relationship="LSDDataModel.FK_UserMessage_UserSender" FromRole="User" ToRole="UserMessage" />
         </EntityType>
         <EntityType Name="UserActivateToken">
           <Key>
@@ -638,6 +725,100 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="LSDDataModel.FK_dboUserResetToken_dboUser" FromRole="UserResetToken" ToRole="User" />
         </EntityType>
+        <Association Name="FK_Game_GameCategory">
+          <End Type="LSDDataModel.GameCategory" Role="GameCategory" Multiplicity="1" />
+          <End Type="LSDDataModel.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="GameCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GamePlatform_Game">
+          <End Type="LSDDataModel.Game" Role="Game" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.GamePlatform" Role="GamePlatform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GamePlatform">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GamePlatform_Platform">
+          <End Type="LSDDataModel.Platform" Role="Platform" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.GamePlatform" Role="GamePlatform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platform">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GamePlatform">
+              <PropertyRef Name="PlatformId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_News_NewsCategory">
+          <End Type="LSDDataModel.NewsCategory" Role="NewsCategory" Multiplicity="1" />
+          <End Type="LSDDataModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="NewsCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_News_User">
+          <End Type="LSDDataModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewsPlatform_News">
+          <End Type="LSDDataModel.News" Role="News" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.NewsPlatform" Role="NewsPlatform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NewsPlatform">
+              <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewsPlatform_Platform">
+          <End Type="LSDDataModel.Platform" Role="Platform" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.NewsPlatform" Role="NewsPlatform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platform">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NewsPlatform">
+              <PropertyRef Name="PlatformId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Type="LSDDataModel.Role" Role="Role" Multiplicity="1" />
           <End Type="LSDDataModel.User" Role="User" Multiplicity="*" />
@@ -742,177 +923,84 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Game">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="GameCategoryId" Type="Int32" Nullable="false" />
-          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Developer" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Publisher" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="RecommendedOS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RecommendedCPU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RecommendedGPU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RecommendedRAM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RecommendedHDD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="GameCategory" Relationship="LSDDataModel.FK_Game_GameCategory" FromRole="Game" ToRole="GameCategory" />
-          <NavigationProperty Name="GamePlatforms" Relationship="LSDDataModel.FK_GamePlatform_Game" FromRole="Game" ToRole="GamePlatform" />
-        </EntityType>
-        <EntityType Name="GameCategory">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Games" Relationship="LSDDataModel.FK_Game_GameCategory" FromRole="GameCategory" ToRole="Game" />
-          <NavigationProperty Name="News" Relationship="LSDDataModel.FK_News_GameCategory" FromRole="GameCategory" ToRole="News" />
-        </EntityType>
-        <EntityType Name="GamePlatform">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GameId" Type="Int32" Nullable="false" />
-          <Property Name="PlatformId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Game" Relationship="LSDDataModel.FK_GamePlatform_Game" FromRole="GamePlatform" ToRole="Game" />
-          <NavigationProperty Name="Platform" Relationship="LSDDataModel.FK_GamePlatform_Platform" FromRole="GamePlatform" ToRole="Platform" />
-        </EntityType>
-        <EntityType Name="News">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CountViews" Type="Int32" Nullable="false" />
-          <Property Name="GameCategoryId" Type="Int32" />
-          <Property Name="WriterId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GameCategory" Relationship="LSDDataModel.FK_News_GameCategory" FromRole="News" ToRole="GameCategory" />
-          <NavigationProperty Name="User" Relationship="LSDDataModel.FK_News_User" FromRole="News" ToRole="User" />
-          <NavigationProperty Name="NewsPlatforms" Relationship="LSDDataModel.FK_NewsPlatform_News" FromRole="News" ToRole="NewsPlatform" />
-        </EntityType>
-        <EntityType Name="NewsPlatform">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NewsId" Type="Int32" Nullable="false" />
-          <Property Name="PlatformId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="News" Relationship="LSDDataModel.FK_NewsPlatform_News" FromRole="NewsPlatform" ToRole="News" />
-          <NavigationProperty Name="Platform" Relationship="LSDDataModel.FK_NewsPlatform_Platform" FromRole="NewsPlatform" ToRole="Platform" />
-        </EntityType>
-        <EntityType Name="Platform">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="GamePlatforms" Relationship="LSDDataModel.FK_GamePlatform_Platform" FromRole="Platform" ToRole="GamePlatform" />
-          <NavigationProperty Name="NewsPlatforms" Relationship="LSDDataModel.FK_NewsPlatform_Platform" FromRole="Platform" ToRole="NewsPlatform" />
-        </EntityType>
-        <Association Name="FK_Game_GameCategory">
-          <End Type="LSDDataModel.GameCategory" Role="GameCategory" Multiplicity="1" />
-          <End Type="LSDDataModel.Game" Role="Game" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GameCategory">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Game">
-              <PropertyRef Name="GameCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GamePlatform_Game">
-          <End Type="LSDDataModel.Game" Role="Game" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="LSDDataModel.GamePlatform" Role="GamePlatform" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Game">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GamePlatform">
-              <PropertyRef Name="GameId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_News_GameCategory">
-          <End Type="LSDDataModel.GameCategory" Role="GameCategory" Multiplicity="0..1" />
-          <End Type="LSDDataModel.News" Role="News" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GameCategory">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="News">
-              <PropertyRef Name="GameCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GamePlatform_Platform">
-          <End Type="LSDDataModel.Platform" Role="Platform" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="LSDDataModel.GamePlatform" Role="GamePlatform" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Platform">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GamePlatform">
-              <PropertyRef Name="PlatformId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_News_User">
-          <End Type="LSDDataModel.User" Role="User" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="LSDDataModel.News" Role="News" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="News">
-              <PropertyRef Name="WriterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NewsPlatform_News">
-          <End Type="LSDDataModel.News" Role="News" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="LSDDataModel.NewsPlatform" Role="NewsPlatform" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="News">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="NewsPlatform">
-              <PropertyRef Name="NewsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NewsPlatform_Platform">
-          <End Type="LSDDataModel.Platform" Role="Platform" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="LSDDataModel.NewsPlatform" Role="NewsPlatform" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Platform">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="NewsPlatform">
-              <PropertyRef Name="PlatformId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LSDDataModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="LSDDataModel.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="RecommendedHDD" ColumnName="RecommendedHDD" />
+                <ScalarProperty Name="RecommendedRAM" ColumnName="RecommendedRAM" />
+                <ScalarProperty Name="RecommendedGPU" ColumnName="RecommendedGPU" />
+                <ScalarProperty Name="RecommendedCPU" ColumnName="RecommendedCPU" />
+                <ScalarProperty Name="RecommendedOS" ColumnName="RecommendedOS" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Developer" ColumnName="Developer" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="GameCategoryId" ColumnName="GameCategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameCategories">
+            <EntityTypeMapping TypeName="LSDDataModel.GameCategory">
+              <MappingFragment StoreEntitySet="GameCategory">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GamePlatforms">
+            <EntityTypeMapping TypeName="LSDDataModel.GamePlatform">
+              <MappingFragment StoreEntitySet="GamePlatform">
+                <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="LSDDataModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
+                <ScalarProperty Name="NewsCategoryId" ColumnName="NewsCategoryId" />
+                <ScalarProperty Name="CountViews" ColumnName="CountViews" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsCategories">
+            <EntityTypeMapping TypeName="LSDDataModel.NewsCategory">
+              <MappingFragment StoreEntitySet="NewsCategory">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsPlatforms">
+            <EntityTypeMapping TypeName="LSDDataModel.NewsPlatform">
+              <MappingFragment StoreEntitySet="NewsPlatform">
+                <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
+                <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Platforms">
+            <EntityTypeMapping TypeName="LSDDataModel.Platform">
+              <MappingFragment StoreEntitySet="Platform">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="LSDDataModel.Role">
               <MappingFragment StoreEntitySet="Role">
@@ -1019,70 +1107,6 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Token" ColumnName="Token" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Games">
-            <EntityTypeMapping TypeName="LSDDataModel.Game">
-              <MappingFragment StoreEntitySet="Game">
-                <ScalarProperty Name="RecommendedHDD" ColumnName="RecommendedHDD" />
-                <ScalarProperty Name="RecommendedRAM" ColumnName="RecommendedRAM" />
-                <ScalarProperty Name="RecommendedGPU" ColumnName="RecommendedGPU" />
-                <ScalarProperty Name="RecommendedCPU" ColumnName="RecommendedCPU" />
-                <ScalarProperty Name="RecommendedOS" ColumnName="RecommendedOS" />
-                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
-                <ScalarProperty Name="Developer" ColumnName="Developer" />
-                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-                <ScalarProperty Name="GameCategoryId" ColumnName="GameCategoryId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GameCategories">
-            <EntityTypeMapping TypeName="LSDDataModel.GameCategory">
-              <MappingFragment StoreEntitySet="GameCategory">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GamePlatforms">
-            <EntityTypeMapping TypeName="LSDDataModel.GamePlatform">
-              <MappingFragment StoreEntitySet="GamePlatform">
-                <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
-                <ScalarProperty Name="GameId" ColumnName="GameId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="News">
-            <EntityTypeMapping TypeName="LSDDataModel.News">
-              <MappingFragment StoreEntitySet="News">
-                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
-                <ScalarProperty Name="GameCategoryId" ColumnName="GameCategoryId" />
-                <ScalarProperty Name="CountViews" ColumnName="CountViews" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NewsPlatforms">
-            <EntityTypeMapping TypeName="LSDDataModel.NewsPlatform">
-              <MappingFragment StoreEntitySet="NewsPlatform">
-                <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
-                <ScalarProperty Name="NewsId" ColumnName="NewsId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Platforms">
-            <EntityTypeMapping TypeName="LSDDataModel.Platform">
-              <MappingFragment StoreEntitySet="Platform">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

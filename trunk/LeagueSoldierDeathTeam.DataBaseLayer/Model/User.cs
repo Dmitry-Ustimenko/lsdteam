@@ -16,13 +16,13 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
     {
         public User()
         {
+            this.News = new HashSet<News>();
             this.UserActivateTokens = new HashSet<UserActivateToken>();
             this.UserResetTokens = new HashSet<UserResetToken>();
             this.UserExternalInfoes = new HashSet<UserExternalInfo>();
             this.UserInfoes = new HashSet<UserInfo>();
-            this.RecipientMessages = new HashSet<UserMessage>();
-            this.SenderMessages = new HashSet<UserMessage>();
-            this.News = new HashSet<News>();
+            this.RecipientMessage = new HashSet<UserMessage>();
+            this.SenderMessage = new HashSet<UserMessage>();
         }
     
         public int Id { get; set; }
@@ -37,13 +37,13 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public int RoleId { get; set; }
         public bool IsBanned { get; set; }
     
+        public virtual ICollection<News> News { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<UserActivateToken> UserActivateTokens { get; set; }
         public virtual ICollection<UserResetToken> UserResetTokens { get; set; }
         public virtual ICollection<UserExternalInfo> UserExternalInfoes { get; set; }
         public virtual ICollection<UserInfo> UserInfoes { get; set; }
-        public virtual ICollection<UserMessage> RecipientMessages { get; set; }
-        public virtual ICollection<UserMessage> SenderMessages { get; set; }
-        public virtual ICollection<News> News { get; set; }
+        public virtual ICollection<UserMessage> RecipientMessage { get; set; }
+        public virtual ICollection<UserMessage> SenderMessage { get; set; }
     }
 }

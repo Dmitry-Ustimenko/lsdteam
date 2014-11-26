@@ -25,6 +25,13 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Game> Games { get; set; }
+        public virtual DbSet<GameCategory> GameCategories { get; set; }
+        public virtual DbSet<GamePlatform> GamePlatforms { get; set; }
+        public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<NewsCategory> NewsCategories { get; set; }
+        public virtual DbSet<NewsPlatform> NewsPlatforms { get; set; }
+        public virtual DbSet<Platform> Platforms { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Sex> Sexes { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -34,11 +41,5 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public virtual DbSet<UserMessage> UserMessages { get; set; }
         public virtual DbSet<UserMessageType> UserMessageTypes { get; set; }
         public virtual DbSet<UserResetToken> UserResetTokens { get; set; }
-        public virtual DbSet<Game> Games { get; set; }
-        public virtual DbSet<GameCategory> GameCategories { get; set; }
-        public virtual DbSet<GamePlatform> GamePlatforms { get; set; }
-        public virtual DbSet<News> News { get; set; }
-        public virtual DbSet<NewsPlatform> NewsPlatforms { get; set; }
-        public virtual DbSet<Platform> Platforms { get; set; }
     }
 }

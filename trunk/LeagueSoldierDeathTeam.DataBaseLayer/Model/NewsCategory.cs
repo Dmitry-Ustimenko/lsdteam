@@ -12,23 +12,16 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class News
+    public partial class NewsCategory
     {
-        public News()
+        public NewsCategory()
         {
-            this.NewsPlatforms = new HashSet<NewsPlatform>();
+            this.News = new HashSet<News>();
         }
     
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public int CountViews { get; set; }
-        public int NewsCategoryId { get; set; }
-        public int WriterId { get; set; }
+        public string Name { get; set; }
     
-        public virtual NewsCategory NewsCategory { get; set; }
-        public virtual User Writer { get; set; }
-        public virtual ICollection<NewsPlatform> NewsPlatforms { get; set; }
+        public virtual ICollection<News> News { get; set; }
     }
 }

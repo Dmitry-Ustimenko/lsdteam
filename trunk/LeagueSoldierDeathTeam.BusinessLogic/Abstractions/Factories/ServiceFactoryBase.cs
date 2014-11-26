@@ -7,5 +7,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories
 		public abstract IAccountService CreateAccountService();
 
 		public abstract IAccountProfileService CreateAccountProfileService();
+
+		public abstract INewsService CreateNewsService();
+
+		public abstract IResourceService CreateResourceService();
 	}
 }

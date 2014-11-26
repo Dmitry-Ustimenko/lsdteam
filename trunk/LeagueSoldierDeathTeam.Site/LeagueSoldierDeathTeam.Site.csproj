@@ -259,6 +259,8 @@
     <Compile Include="Models\LayoutProfileInfoModel.cs" />
     <Compile Include="Models\Mail\MailActivateModel.cs" />
     <Compile Include="Models\Mail\MailTokenModel.cs" />
+    <Compile Include="Models\News\EditNewsModel.cs" />
+    <Compile Include="Models\News\ViewNewsModel.cs" />
     <Compile Include="Models\PagerModel.cs" />
     <Compile Include="Models\Xml\MailHosting.cs" />
     <Compile Include="Modules\Autofac\LibraryModule.cs" />
@@ -501,6 +503,8 @@
     <Content Include="Views\Administration\UsersData.cshtml" />
     <Content Include="Views\Administration\UserRolesData.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\EditNews.cshtml" />
+    <Content Include="Views\News\ViewNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
