@@ -9,15 +9,15 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 	{
 		public int? Id { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "'Заголовок' должен быть введен")]
 		[DisplayName("Заголовок")]
 		public string Title { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "'Описание' должно быть введено")]
 		[DisplayName("Описание")]
 		public string Description { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "'Категория' должна быть введена")]
 		[DisplayName("Категория")]
 		public int NewsCategoryId { get; set; }
 
