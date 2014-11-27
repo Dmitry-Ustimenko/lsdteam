@@ -18,7 +18,7 @@
 				</a>
 			</div>
 			<div class="form-container">
-				@using (Html.BeginForm("EditNews", "News", FormMethod.Post))
+				@using (Html.BeginForm("EditNews", "News", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 				{
 					@Html.HiddenFor(m => m.Id)
 					@Html.HiddenFor(m => m.WriterId)
@@ -29,7 +29,19 @@
 						<div class="container-item">
 							@Html.LabelFor(m => m.Title)
 							<div class="field-container">
-								@Html.TextBoxFor(m => m.Title)
+								@Html.TextBoxFor(m => m.Title, new { @placeholder = "Заголовок" })
+							</div>
+						</div>
+						<div class="container-item">
+							@Html.Label("Превью")
+							<div class="field-container">
+								<div class="file-container">
+									<span class="btn-file">
+										<input type="file" name="ImageUploadFile" id="ImageUploadFile" data-val-required="Файл не выбран" data-val="true" accept="image/x-png, image/gif, image/jpeg">
+									</span>
+									<span class="clear-input"></span>
+									<input class="file-input" id="ImageUploadFileName" type="text" readonly="readonly" placeholder="Выберите фото" />
+								</div>
 							</div>
 						</div>
 						<div class="container-item">

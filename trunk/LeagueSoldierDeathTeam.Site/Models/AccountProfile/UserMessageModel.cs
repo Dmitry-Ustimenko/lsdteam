@@ -15,7 +15,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 		[Required(ErrorMessage = "'Сообщение' должно быть введено")]
 		public string Description { get; set; }
 
-		[DisplayName("Кому")]
+		[DisplayName("Получатель")]
 		[Required(ErrorMessage = "'Получатель' должен быть введен")]
 		public string RecipientName { get; set; }
 	}

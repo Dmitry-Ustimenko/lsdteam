@@ -9,7 +9,9 @@
 				form: null
 			},
 			elements: {
-				platformIds: '#HiddenPlatformIds'
+				platformIds: '#HiddenPlatformIds',
+				imageUploadFile: '#ImageUploadFile',
+				imageUploadFileName: '#ImageUploadFileName'
 			}
 		},
 
@@ -20,6 +22,7 @@
 				site.news.initEdit.initEditor();
 				site.news.initEdit.initPlatforms();
 				site.news.initEdit.submitForm();
+				site.news.initEdit.initUploadContainer();
 			},
 
 			initPlatforms: function () {
@@ -96,6 +99,46 @@
 						$(site.news.settings.elements.platformIds).val(platformIds.join(","));
 					}
 				});
+			},
+
+			initUploadContainer: function () {
+				var $clearInput = $(".clear-input");
+				var $imageUploadFile = $(site.news.settings.elements.imageUploadFile);
+				var $imageUploadFileName = $(site.news.settings.elements.imageUploadFileName);
+
+				$clearInput.off("click").on("click", function () {
+					$imageUploadFileName.val("");
+					$imageUploadFile.val("");
+					$clearInput.hide();
+				});
+
+				$imageUploadFile.on('change', function () {
+					$imageUploadFileName.val($(this).val().replace(/\\/g, '/').replace(/.*\//, ''));
+					$clearInput.show();
+				});
+
+				//$(site.profile.settings.elements.uploadBtn).on("click", function () {
+				//	var $this = $(this);
+				//	var form = $this.closest("form");
+				//	var validationSummary = form.find("[class^=validation-summary-]");
+				//	validationSummary.removeClass("validation-summary-errors").addClass("validation-summary-valid");
+				//	validationSummary.find("ul").html("");
+				//	if (form.valid()) {
+				//		var files = $photoUploadFile.get(0).files;
+				//		if (!files.length)
+				//			return false;
+
+				//		var message = $.fn.validateUploadFile(files[0], { size: 102400 });
+				//		if (message != undefined) {
+				//			validationSummary.removeClass("validation-summary-valid").addClass("validation-summary-errors");
+				//			validationSummary.find("ul").append("<li>" + message + "</li>");
+				//			return false;
+				//		}
+
+				//		return true;
+				//	}
+				//	return false;
+				//});
 			}
 		},
 
