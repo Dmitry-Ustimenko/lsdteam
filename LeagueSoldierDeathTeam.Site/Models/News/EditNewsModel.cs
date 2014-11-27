@@ -24,6 +24,10 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 
 		public HttpPostedFileBase ImageUploadFile { get; set; }
 
+		public string ImagePath { get; set; }
+
+		public string ImageUploadFileName { get; set; }
+
 		public int WriterId { get; set; }
 
 		public string WriterName { get; set; }

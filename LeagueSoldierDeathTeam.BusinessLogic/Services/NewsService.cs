@@ -111,6 +111,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			entity.Title = data.Title;
 			entity.Description = data.Description;
 			entity.NewsCategory = newsCategory;
+			entity.ImagePath = data.ImagePath;
 
 			if (data.Id == default(int))
 			{
