@@ -261,6 +261,7 @@
     <Compile Include="Models\Mail\MailActivateModel.cs" />
     <Compile Include="Models\Mail\MailTokenModel.cs" />
     <Compile Include="Models\News\EditNewsModel.cs" />
+    <Compile Include="Models\News\NewsModel.cs" />
     <Compile Include="Models\News\ViewNewsModel.cs" />
     <Compile Include="Models\PagerModel.cs" />
     <Compile Include="Models\Xml\MailHosting.cs" />
@@ -336,10 +337,13 @@
     <Content Include="Content\Plugins\HtmlEditor\skins\style.css" />
     <Content Include="Content\Plugins\HtmlEditor\xbbcode.css" />
     <Content Include="Images\bf4-background.jpg" />
+    <Content Include="Images\comments.png" />
     <Content Include="Images\icons.png" />
     <Content Include="Images\message-select.png" />
+    <Content Include="Images\new-icons.png" />
     <Content Include="Images\platform-active.png" />
     <Content Include="Images\platform-delete.png" />
+    <Content Include="Images\views.png" />
     <Content Include="Scripts\Site\site.news.js" />
     <Content Include="Videos\Background\last-stand.mp4" />
     <Content Include="Videos\Background\last-stand.ogg" />
@@ -506,9 +510,10 @@
     <Content Include="Views\Shared\_PagerPartial.cshtml" />
     <Content Include="Views\Administration\UsersData.cshtml" />
     <Content Include="Views\Administration\UserRolesData.cshtml" />
-    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\News.cshtml" />
     <Content Include="Views\News\EditNews.cshtml" />
     <Content Include="Views\News\ViewNews.cshtml" />
+    <Content Include="Views\News\NewsData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

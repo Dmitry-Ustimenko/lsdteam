@@ -6,6 +6,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Repositories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Helpers;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.DataBaseLayer.Model;
 
@@ -46,6 +47,40 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		#region IAccountService Members
 
+		PageData<NewsData> INewsService.GetNews(int pageId, int pageSize)
+		{
+			var pageData = new PageData<NewsData> { PageId = pageId, PageSize = pageSize };
+
+			var data = _newsRepository.GetQueryableData();
+
+			if (data != null)
+			{
+				pageData.Count = data.Count();
+
+				pageData.Data = data.OrderByDescending(o => o.CreateDate).Page(pageData.PageId, pageData.PageSize).Select(o => new NewsData
+				{
+					Id = o.Id,
+					Title = o.Title,
+					Description = o.Description,
+					CreateDate = o.CreateDate,
+					CountViews = o.CountViews,
+					WriterId = o.Writer != null ? o.Writer.Id : default(int),
+					WriterName = o.Writer != null ? o.Writer.UserName : string.Empty,
+					NewsCategoryId = o.NewsCategory != null ? o.NewsCategory.Id : default(int),
+					NewsCategoryName = o.NewsCategory != null ? o.NewsCategory.Name : string.Empty,
+					Platforms = o.NewsPlatforms.Select(p => new PlatformData { Id = p.Platform.Id, Name = p.Platform.Name }),
+					ImagePath = o.ImagePath
+				}).ToList();
+
+				foreach (var item in pageData.Data)
+				{
+					item.ShortDescription = item.Description.GetShortDescription(280);
+				}
+			}
+
+			return pageData;
+		}
+
 		NewsData INewsService.GetNews(int id)
 		{
 			return _newsRepository.GetData(o => new NewsData
@@ -58,7 +93,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				WriterId = o.Writer != null ? o.Writer.Id : default(int),
 				WriterName = o.Writer != null ? o.Writer.UserName : string.Empty,
 				NewsCategoryId = o.NewsCategoryId,
-				PlatformIds = o.NewsPlatforms.Select(p => p.PlatformId).ToList()
+				PlatformIds = o.NewsPlatforms.Select(p => p.PlatformId),
+				ImagePath = o.ImagePath
 			}, o => o.Id == id).SingleOrDefault();
 		}
 

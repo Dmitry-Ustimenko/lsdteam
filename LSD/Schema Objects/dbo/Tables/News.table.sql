@@ -7,6 +7,7 @@
     [CountViews] INT NOT NULL, 
     [NewsCategoryId] INT NOT NULL, 
     [WriterId] INT NOT NULL, 
+    [ImagePath] NVARCHAR(250) NULL, 
     constraint [PK_dboNews] primary key clustered ([Id])
 );
 
