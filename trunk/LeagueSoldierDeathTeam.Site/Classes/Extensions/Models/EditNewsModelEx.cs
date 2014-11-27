@@ -15,6 +15,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			model.NewsCategoryId = data.NewsCategoryId;
 			model.PlatformIds = data.PlatformIds.ToList();
 			model.HiddenPlatformIds = string.Join(",", data.PlatformIds);
+			model.ImagePath = data.ImagePath;
 
 			return model;
 		}

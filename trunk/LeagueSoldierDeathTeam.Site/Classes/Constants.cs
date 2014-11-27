@@ -14,6 +14,8 @@
 
 		public const string PhotoDirectoryPath = "/Images/Photos/";
 
+		public const string NewsPreviewsPath = "/Images/NewsPreviews/";
+
 		public const string DateFormat = "dd.MM.yyyy";
 
 		public const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

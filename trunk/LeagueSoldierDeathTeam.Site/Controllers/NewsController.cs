@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
+using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Models.News;
 
@@ -106,20 +112,26 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 					}
 				}
 
-				var data = new NewsData
-				{
-					Id = model.Id.GetValueOrDefault(),
-					Description = model.Description,
-					Title = model.Title,
-					NewsCategoryId = model.NewsCategoryId,
-					WriterId = CurrentUser.Id,
-					PlatformIds = model.PlatformIds
-				};
-
-				Execute(() => _newsService.SaveNews(data));
+				ValidateUploadFile(model);
 
 				if (ModelIsValid)
-					return RedirectToAction<NewsController>(o => o.News());
+				{
+					var data = new NewsData
+					{
+						Id = model.Id.GetValueOrDefault(),
+						Description = model.Description,
+						Title = model.Title,
+						NewsCategoryId = model.NewsCategoryId,
+						WriterId = CurrentUser.Id,
+						PlatformIds = model.PlatformIds,
+						ImagePath = model.ImagePath
+					};
+
+					Execute(() => _newsService.SaveNews(data));
+
+					if (ModelIsValid)
+						return RedirectToAction<NewsController>(o => o.News());
+				}
 			}
 
 			FillResourceEditNewsModel(model);
@@ -141,6 +153,49 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			var pagerData = (Execute(() => _newsService.GetNews(model.Pager.PageId, model.Pager.PageSize)) ?? new PageData<NewsData>());
 			model.CopyFrom(pagerData);
+		}
+
+		private void ValidateUploadFile(EditNewsModel model)
+		{
+			if (model.ImageUploadFile != null && model.ImageUploadFile.FileName != null)
+			{
+				try
+				{
+					if (model.ImageUploadFile.ContentLength > 102400)
+						ModelState.AddModelError(string.Empty, "Размер файла не выше 100кб");
+
+					if (!Constants.AcceptImage.Contains(model.ImageUploadFile.ContentType))
+						ModelState.AddModelError(string.Empty, "Требуемые форматы: *.jpg, *.jpeg, *.png, *.gif");
+
+					if (ModelIsValid)
+					{
+						var image = Image.FromStream(model.ImageUploadFile.InputStream);
+						if (image.Width > 200 || image.Height > 200)
+							ModelState.AddModelError(string.Empty, "Разрешение фото не должно превышать 200х200");
+					}
+
+					if (ModelIsValid)
+					{
+						var fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(model.ImageUploadFile.FileName));
+						var path = Path.Combine(Server.MapPath(Constants.NewsPreviewsPath), Path.GetFileName(fileName));
+						while (System.IO.File.Exists(path))
+						{
+							fileName = string.Concat(StringGeneration.Generate(20), Path.GetExtension(model.ImageUploadFile.FileName));
+						}
+
+						model.ImageUploadFile.SaveAs(path);
+
+						if (!string.IsNullOrWhiteSpace(model.ImagePath) && System.IO.File.Exists(model.ImagePath))
+							System.IO.File.Delete(model.ImagePath);
+
+						model.ImagePath = string.Concat(Constants.NewsPreviewsPath, fileName);
+					}
+				}
+				catch (Exception)
+				{
+					ModelState.AddModelError(string.Empty, "Ошибка при сохранении файла");
+				}
+			}
 		}
 
 		#endregion
