@@ -26,6 +26,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public int CountViews { get; set; }
         public int NewsCategoryId { get; set; }
         public int WriterId { get; set; }
+        public string ImagePath { get; set; }
     
         public virtual NewsCategory NewsCategory { get; set; }
         public virtual User Writer { get; set; }

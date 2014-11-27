@@ -1,0 +1,21 @@
+﻿@model LeagueSoldierDeathTeam.Site.Models.News.NewsModel
+
+@{
+	ViewBag.Title = "Новости";
+}
+
+<div class="transparent-border">
+	<div class="simple-page-body section-shadow">
+		<div class="section-module-header">
+			<div class="module-title">@ViewBag.Title</div>
+		</div>
+		<div class="section-module-body">
+			<div class="news">
+				<div id="content" class="news-body">
+					@{ Html.RenderAction("NewsData", Model); }
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

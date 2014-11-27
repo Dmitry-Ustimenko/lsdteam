@@ -2,12 +2,15 @@
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
 using LeagueSoldierDeathTeam.Site.Models.News;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
+	[AllowAnonymous]
 	public class NewsController : BaseController
 	{
 		#region Private Fields
@@ -32,19 +35,27 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region Actions
 
 		[Route("news")]
-		public ActionResult Index()
+		public ActionResult News()
 		{
-			return View();
+			return View(new NewsModel());
 		}
 
-		[HttpGet]
-		public ActionResult ViewNews()
+		[AjaxOrChildActionOnly]
+		public ActionResult NewsData(NewsModel model)
 		{
-			return View();
+			FillNewsModel(model);
+			return View(model);
 		}
 
-		[HttpGet]
+		[Route("view-news/{id:int?}")]
+		public ActionResult ViewNews(int? id)
+		{
+			return View(new ViewNewsModel());
+		}
+
+
 		[Route("create-news")]
+		[UserAuthorize(UserRoles = Role.Administrator | Role.Moderator)]
 		public ActionResult CreateNews()
 		{
 			var model = new EditNewsModel();
@@ -55,6 +66,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[HttpGet]
 		[Route("edit-news/{id:int?}")]
+		[UserAuthorize(UserRoles = Role.Administrator | Role.Moderator)]
 		public ActionResult EditNews(int? id)
 		{
 			if (id.HasValue)
@@ -63,7 +75,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 				var news = Execute(() => _newsService.GetNews(model.Id.GetValueOrDefault()));
 				if (news == null)
-					return RedirectToAction<NewsController>(o => o.Index());
+					return RedirectToAction<NewsController>(o => o.News());
 
 				model.CopyFrom(news);
 				FillResourceEditNewsModel(model);
@@ -76,6 +88,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[HttpPost]
 		[Route("edit-news/{id:int?}")]
+		[UserAuthorize(UserRoles = Role.Administrator | Role.Moderator)]
 		public ActionResult EditNews(EditNewsModel model)
 		{
 			if (ModelIsValid)
@@ -106,7 +119,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				Execute(() => _newsService.SaveNews(data));
 
 				if (ModelIsValid)
-					return RedirectToAction<NewsController>(o => o.Index());
+					return RedirectToAction<NewsController>(o => o.News());
 			}
 
 			FillResourceEditNewsModel(model);
@@ -122,6 +135,12 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			model.NewsCategories = Execute(() => _newsService.GetNewsGategories()) ?? new List<NewsCategoryData>();
 			model.Platforms = Execute(() => _resourceService.GetPlatforms()) ?? new List<PlatformData>();
+		}
+
+		private void FillNewsModel(NewsModel model)
+		{
+			var pagerData = (Execute(() => _newsService.GetNews(model.Pager.PageId, model.Pager.PageSize)) ?? new PageData<NewsData>());
+			model.CopyFrom(pagerData);
 		}
 
 		#endregion
