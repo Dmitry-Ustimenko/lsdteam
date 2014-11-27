@@ -25,13 +25,13 @@
 						<div class="container-item">
 							@Html.LabelFor(m => m.RecipientName)
 							<div class="field-container">
-								@Html.TextBoxFor(m => m.RecipientName)
+								@Html.TextBoxFor(m => m.RecipientName, new { @placeholder = "Получатель" })
 							</div>
 						</div>
 						<div class="container-item">
 							@Html.LabelFor(m => m.Title)
 							<div class="field-container">
-								@Html.TextBoxFor(m => m.Title)
+								@Html.TextBoxFor(m => m.Title, new { @placeholder = "Заголовок" })
 							</div>
 						</div>
 						<div class="container-item">

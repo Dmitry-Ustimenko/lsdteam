@@ -2935,6 +2935,41 @@ textarea.resize-none {
 			display: inline-block;
 		}
 
+			.simple-page-body .form-container .container-item .field-container .file-container {
+				margin: 0;
+			}
+
+				.simple-page-body .form-container .container-item .field-container .file-container .btn-file {
+					position: absolute;
+					top: 0;
+					width: 30px;
+					height: 34px;
+					display: inline-block;
+					background: url(/Images/browse.png) no-repeat 5px 5px;
+				}
+
+					.simple-page-body .form-container .container-item .field-container .file-container .btn-file input {
+						width: 394px;
+						height: 34px;
+					}
+
+				.simple-page-body .form-container .container-item .field-container .file-container .clear-input {
+					width: 30px;
+					height: 34px;
+					background: url(/Images/clear-input.png) no-repeat 3px 4px;
+					-ms-border-radius: 0 3px 3px 0;
+					border-radius: 0 3px 3px 0;
+					border: 1px solid #616161;
+					right: 394px;
+				}
+
+				.simple-page-body .form-container .container-item .field-container .file-container .file-input {
+					width: 394px;
+					padding-left: 33px;
+					padding-right: 33px;
+					float: none;
+				}
+
 	.simple-page-body .form-container input[type=text],
 	.simple-page-body .form-container input[type=password],
 	.simple-page-body .form-container select,
@@ -2951,6 +2986,10 @@ textarea.resize-none {
 		border-radius: 3px;
 		font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
 		color: black;
+	}
+
+	.simple-page-body .form-container select {
+		padding: 8px 5px 8px 2px;
 	}
 
 	.simple-page-body .form-container input[type=button],
@@ -3068,20 +3107,20 @@ textarea.resize-none {
 	width: 84%;
 }
 
-	.view-message-description .message-title {
-		font-size: 20px;
-		padding-bottom: 6px;
-		padding: 0 170px 6px 170px;
-	}
+.view-message-descriptfile-containerion .message-title {
+	font-size: 20px;
+	padding-bottom: 6px;
+	padding: 0 170px 6px 170px;
+}
 
-	.view-message-description .message-date {
-		color: #4B4B4B;
-		padding-bottom: 8px;
-	}
+.view-message-description .message-date {
+	color: #4B4B4B;
+	padding-bottom: 8px;
+}
 
-	.view-message-description .message-description {
-		text-align: left;
-	}
+.view-message-description .message-description {
+	text-align: left;
+}
 
 /*Pager*/
 
@@ -3242,10 +3281,12 @@ textarea.resize-none {
 .wrap-platforms {
 	padding: 8px;
 	padding-left: 0;
-	border: 1px solid #949494;
+	border: 1px solid #616161;
 	border-right-width: 3px;
 	border-left-width: 3px;
 	text-align: center;
+	-ms-border-radius: 3px;
+	border-radius: 3px;
 }
 
 .platform-tag {

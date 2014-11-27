@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 
 namespace LeagueSoldierDeathTeam.Site.Models.News
@@ -20,6 +21,8 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 		[Required(ErrorMessage = "'Категория' должна быть введена")]
 		[DisplayName("Категория")]
 		public int NewsCategoryId { get; set; }
+
+		public HttpPostedFileBase ImageUploadFile { get; set; }
 
 		public int WriterId { get; set; }
 
