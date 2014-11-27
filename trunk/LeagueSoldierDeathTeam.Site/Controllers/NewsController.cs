@@ -75,7 +75,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
-		[Route("edit-news")]
+		[Route("edit-news/{id:int?}")]
 		public ActionResult EditNews(EditNewsModel model)
 		{
 			if (ModelIsValid)

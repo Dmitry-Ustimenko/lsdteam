@@ -25,18 +25,17 @@
 					@Html.HiddenFor(m => m.HiddenPlatformIds)
 
 					<div class="form-border">
+						@Html.ValidationSummary()
 						<div class="container-item">
 							@Html.LabelFor(m => m.Title)
 							<div class="field-container">
 								@Html.TextBoxFor(m => m.Title)
-								@Html.ValidationMessageFor(m => m.Title)
 							</div>
 						</div>
 						<div class="container-item">
 							@Html.LabelFor(m => m.NewsCategoryId)
 							<div class="field-container">
 								@Html.DropDownListFor(m => m.NewsCategoryId, new SelectList(Model.NewsCategories, "Id", "Name"))
-								@Html.ValidationMessageFor(m => m.NewsCategoryId)
 							</div>
 						</div>
 						<div class="container-item">
@@ -59,7 +58,6 @@
 							@Html.LabelFor(m => m.Description)
 							<div class="field-container">
 								@Html.TextAreaFor(m => m.Description, new { @rows = "10", @class = "resize-none" })
-								@Html.ValidationMessageFor(m => m.Description)
 								<div class="description-preview"></div>
 							</div>
 						</div>

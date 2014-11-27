@@ -23,6 +23,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		private readonly IRepository<NewsCategory> _newsCategoryRepository;
 
+		private readonly IRepository<NewsPlatform> _newsPlatformRepository;
+
 		#endregion
 
 		#region Constructors
@@ -37,6 +39,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			_userRepository = repositoryFactory.CreateRepository<User>();
 			_newsCategoryRepository = repositoryFactory.CreateRepository<NewsCategory>();
 			_platformRepository = repositoryFactory.CreateRepository<Platform>();
+			_newsPlatformRepository = repositoryFactory.CreateRepository<NewsPlatform>();
 		}
 
 		#endregion
@@ -87,7 +90,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 					var validePlatforms = _platformRepository.Query(o => data.PlatformIds.Contains(o.Id)).ToList();
 					foreach (var platform in validePlatforms)
 					{
-						entity.NewsPlatforms.Add(new NewsPlatform { News = entity, Platform = platform });
+						_newsPlatformRepository.Add(new NewsPlatform { News = entity, Platform = platform });
 					}
 				}
 
@@ -108,7 +111,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 					foreach (var newPlatform in newPlatforms)
 					{
-						entity.NewsPlatforms.Add(new NewsPlatform { News = entity, Platform = newPlatform });
+						_newsPlatformRepository.Add(new NewsPlatform { News = entity, Platform = newPlatform });
 					}
 
 					foreach (var deletePlatform in deletePlatforms)
