@@ -21,25 +21,23 @@
 				{
 					@Html.HiddenFor(m => m.MessageId)
 					<div class="form-border">
+						@Html.ValidationSummary()
 						<div class="container-item">
 							@Html.LabelFor(m => m.RecipientName)
 							<div class="field-container">
 								@Html.TextBoxFor(m => m.RecipientName)
-								@Html.ValidationMessageFor(m => m.RecipientName)
 							</div>
 						</div>
 						<div class="container-item">
 							@Html.LabelFor(m => m.Title)
 							<div class="field-container">
 								@Html.TextBoxFor(m => m.Title)
-								@Html.ValidationMessageFor(m => m.Title)
 							</div>
 						</div>
 						<div class="container-item">
 							@Html.LabelFor(m => m.Description)
 							<div class="field-container">
 								@Html.TextAreaFor(m => m.Description, new { @rows = "10", @class = "resize-none" })
-								@Html.ValidationMessageFor(m => m.Description)
 								<div class="description-preview"></div>
 							</div>
 						</div>

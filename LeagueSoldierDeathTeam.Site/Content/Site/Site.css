@@ -2808,7 +2808,7 @@ textarea.resize-none {
 		}
 
 		.simple-page-body .form-container .container-item .field-container {
-			width: 84%;
+			width: 788px;
 			display: inline-block;
 		}
 
@@ -2867,7 +2867,7 @@ textarea.resize-none {
 
 	.simple-page-body .form-container label {
 		display: inline-block;
-		width: 15%;
+		width: 145px;
 		vertical-align: top;
 		padding-top: 6px;
 		padding-left: 3px;
