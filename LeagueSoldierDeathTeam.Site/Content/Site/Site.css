@@ -1042,6 +1042,7 @@ a {
 	.news.home {
 		margin: 0;
 		padding: 10px;
+		min-height: 850px;
 	}
 
 	.news .news-body {
