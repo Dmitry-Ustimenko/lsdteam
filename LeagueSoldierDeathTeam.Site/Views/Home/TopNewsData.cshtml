@@ -25,12 +25,14 @@
 					<span class="news-additional-writer">
 						<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.WriterId)))" target="_blank">@item.WriterName</a>
 					</span>
-					@if ((currentUser.Role == RoleEnum.MainAdministrator || currentUser.Role == RoleEnum.Administrator || currentUser.Role == RoleEnum.Moderator)
-						&& currentUser.Id == item.WriterId)
+					@if (Request.IsAuthenticated && currentUser != null)
 					{
-						<span class="news-additional-writer-edit">
-							<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.EditNews(item.Id)))">Редактировать</a>
-						</span>
+						if (currentUser.Role == RoleEnum.MainAdministrator || currentUser.Role == RoleEnum.Administrator || (currentUser.Role == RoleEnum.Moderator && currentUser.Id == item.WriterId))
+						{
+							<span class="news-additional-writer-edit">
+								<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.EditNews(item.Id)))">Редактировать</a>
+							</span>
+						}
 					}
 				</div>
 				<div class="news-short-description">

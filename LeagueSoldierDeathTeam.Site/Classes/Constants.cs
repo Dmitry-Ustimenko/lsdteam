@@ -32,7 +32,7 @@
 
 		public const int DefaultPageSize = 15;
 
-		public const int NewsPageSize = 10;
+		public const int NewsPageSize = 8;
 
 		public const int LastNewsPageSize = 6;
 

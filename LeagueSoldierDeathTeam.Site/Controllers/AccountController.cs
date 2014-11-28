@@ -71,9 +71,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 					CurrentUser = user;
 					_authenticationService.SignIn(user.Email, model.RememberMe);
 
-					model.ReturnUrl = Request.QueryString.AllKeys.Contains("ReturnUrl")
-						? Request.QueryString["ReturnUrl"]
-						: WebBuilder.BuildActionUrl<HomeController>(o => o.Index());
+					//model.ReturnUrl = Request.QueryString.AllKeys.Contains("ReturnUrl")
+					//	? Request.QueryString["ReturnUrl"]
+					//	: WebBuilder.BuildActionUrl<HomeController>(o => o.Index());
 
 					return Json(model, JsonRequestBehavior.AllowGet);
 				}
