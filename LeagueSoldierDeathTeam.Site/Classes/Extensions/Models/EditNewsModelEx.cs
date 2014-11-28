@@ -12,7 +12,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			model.Title = data.Title;
 			model.Description = data.Description;
 			model.WriterName = data.WriterName;
-			model.NewsCategoryId = data.NewsCategoryId;
+			model.NewsCategoryId = data.NewsCategory.Id;
 			model.PlatformIds = data.PlatformIds.ToList();
 			model.HiddenPlatformIds = string.Join(",", data.PlatformIds);
 			model.ImagePath = data.ImagePath;

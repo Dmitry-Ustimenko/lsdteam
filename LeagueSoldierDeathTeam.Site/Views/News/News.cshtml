@@ -20,7 +20,7 @@
 					@using (Html.BeginForm())
 					{
 						<div class="news-header">
-							<span class="news-categories">
+							<span>
 								Категория:
 								@Html.DropDownListFor(m => m.NewsCategoryId, new SelectList(Model.NewsCategories, "Id", "Name"), "Все")
 								&nbsp;
