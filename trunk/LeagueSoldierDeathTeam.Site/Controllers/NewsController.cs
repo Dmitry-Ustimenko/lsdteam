@@ -48,6 +48,16 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return View(model);
 		}
 
+		[Route("news/{id?}")]
+		public ActionResult NewsFilter(string id)
+		{
+			var model = new NewsModel();
+			FillResourceNewsModel(model);
+			FillFilterParams(model, id);
+
+			return View("News", model);
+		}
+
 		[AjaxOrChildActionOnly]
 		public ActionResult NewsData(NewsModel model)
 		{
@@ -60,7 +70,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			return View(new ViewNewsModel());
 		}
-
 
 		[Route("create-news")]
 		[UserAuthorize(UserRoles = Role.Administrator | Role.Moderator)]
@@ -123,7 +132,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 						Id = model.Id.GetValueOrDefault(),
 						Description = model.Description,
 						Title = model.Title,
-						NewsCategoryId = model.NewsCategoryId,
+						NewsCategory = new NewsCategoryData { Id = model.NewsCategoryId },
 						WriterId = CurrentUser.Id,
 						PlatformIds = model.PlatformIds,
 						ImagePath = model.ImagePath
@@ -159,7 +168,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private void FillNewsModel(NewsModel model)
 		{
-			var pagerData = (Execute(() => _newsService.GetNews(model.NewsCategoryId, model.PlatformId, model.SortId, 280, model.Pager.PageId, model.Pager.PageSize))
+			var pagerData = (Execute(() => _newsService.GetNews(model.NewsCategoryId, model.PlatformId, model.SortId, 250, model.Pager.PageId, model.Pager.PageSize))
 				?? new PageData<NewsData>());
 			model.CopyFrom(pagerData);
 		}
@@ -203,6 +212,26 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				catch (Exception)
 				{
 					ModelState.AddModelError(string.Empty, "Ошибка при сохранении файла");
+				}
+			}
+		}
+
+		private static void FillFilterParams(NewsModel model, string shortId)
+		{
+			if (string.IsNullOrWhiteSpace(shortId))
+				return;
+
+			var equalsPlatforms = model.Platforms.Where(platform => String.Equals(platform.ShortName, shortId, StringComparison.OrdinalIgnoreCase)).ToList();
+			if (equalsPlatforms.Any())
+			{
+				model.PlatformId = equalsPlatforms.First().Id;
+			}
+			else
+			{
+				var equalsCategories = model.NewsCategories.Where(category => String.Equals(category.ShortName, shortId, StringComparison.OrdinalIgnoreCase)).ToList();
+				if (equalsCategories.Any())
+				{
+					model.NewsCategoryId = equalsCategories.First().Id;
 				}
 			}
 		}

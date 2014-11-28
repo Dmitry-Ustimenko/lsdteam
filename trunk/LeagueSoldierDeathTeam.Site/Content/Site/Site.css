@@ -1168,8 +1168,17 @@ a {
 			padding-left: 15px;
 			line-height: 15px;
 			position: absolute;
-			bottom: 0;
+			bottom: 3px;
 		}
+
+			.news .news-container .news-description .news-platforms-category a {
+				color: #555 !important;
+				border-bottom: 1px dotted gray;
+			}
+
+				.news .news-container .news-description .news-platforms-category a:hover {
+					border-bottom: none;
+				}
 
 		.news .news-container .news-description .news-additional a {
 			color: #555 !important;

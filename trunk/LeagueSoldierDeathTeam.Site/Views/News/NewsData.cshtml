@@ -40,9 +40,9 @@
 				<div class="news-platforms-category">
 					@foreach (var platform in item.Platforms)
 					{
-						<span>@platform.Name</span>@:,
+						<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.NewsFilter(platform.ShortName)))">@platform.Name</a>@:,
 					}
-					<span>@item.NewsCategoryName</span>
+					<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.NewsFilter(item.NewsCategory.ShortName)))">@item.NewsCategory.Name</a>
 				</div>
 			</div>
 		</div>

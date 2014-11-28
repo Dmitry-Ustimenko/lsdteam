@@ -11,11 +11,10 @@ declare @t table
 insert into @t([Id], [Name], [ShortName])
 values
 (1, N'Игры', N'Games'),
-(2, N'Железо', N'Hardware'),
-(3, N'Индустрия', N'Industry'),
-(4, N'ПК', N'PC'),
-(5, N'Консоли', N'Console'),
-(6, N'Новости сайта', N'Sitenews')
+(2, N'Индустрия', N'Industry'),
+(3, N'Железо', N'Hardware'),
+(4, N'Консоли', N'Consoles'),
+(5, N'Новости сайта', N'Sitenews')
 --
 merge into [dbo].[NewsCategory] as [target]
 using @t as [source] on [target].[Id] = [source].[Id]

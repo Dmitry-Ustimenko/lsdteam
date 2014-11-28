@@ -70,9 +70,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 					CountViews = o.CountViews,
 					WriterId = o.Writer != null ? o.Writer.Id : default(int),
 					WriterName = o.Writer != null ? o.Writer.UserName : string.Empty,
-					NewsCategoryId = o.NewsCategory != null ? o.NewsCategory.Id : default(int),
-					NewsCategoryName = o.NewsCategory != null ? o.NewsCategory.Name : string.Empty,
-					Platforms = o.NewsPlatforms.Select(p => new PlatformData { Id = p.Platform.Id, Name = p.Platform.Name }),
+					NewsCategory = new NewsCategoryData { Id = o.NewsCategory.Id, Name = o.NewsCategory.Name, ShortName = o.NewsCategory.ShortName },
+					Platforms = o.NewsPlatforms.Select(p => new PlatformData { Id = p.Platform.Id, Name = p.Platform.Name, ShortName = p.Platform.ShortName }),
 					ImagePath = o.ImagePath
 				}).ToList();
 
@@ -96,7 +95,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				CountViews = o.CountViews,
 				WriterId = o.Writer != null ? o.Writer.Id : default(int),
 				WriterName = o.Writer != null ? o.Writer.UserName : string.Empty,
-				NewsCategoryId = o.NewsCategoryId,
+				NewsCategory = new NewsCategoryData { Id = o.NewsCategory.Id, Name = o.NewsCategory.Name, ShortName = o.NewsCategory.ShortName },
 				PlatformIds = o.NewsPlatforms.Select(p => p.PlatformId),
 				ImagePath = o.ImagePath
 			}, o => o.Id == id).SingleOrDefault();
@@ -108,7 +107,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			if (entity == null)
 				throw new ArgumentException("Данной новости не существует.");
 
-			var newsCategory = _newsCategoryRepository.Query(o => o.Id == data.NewsCategoryId).SingleOrDefault();
+			var newsCategory = _newsCategoryRepository.Query(o => o.Id == data.NewsCategory.Id).SingleOrDefault();
 			if (newsCategory == null)
 				throw new ArgumentException("Данной категории не существует.");
 
