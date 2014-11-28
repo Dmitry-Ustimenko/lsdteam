@@ -514,6 +514,7 @@
     <Content Include="Views\News\EditNews.cshtml" />
     <Content Include="Views\News\ViewNews.cshtml" />
     <Content Include="Views\News\NewsData.cshtml" />
+    <Content Include="Views\Home\NewsData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

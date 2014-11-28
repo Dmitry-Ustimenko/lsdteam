@@ -34,6 +34,8 @@
 
 		public const int NewsPageSize = 10;
 
+		public const int LastNewsPageSize = 6;
+
 		public const int CountPagesBothSideCurrPage = 2;
 
 		public const int MaxCountVisiblePages = 7;

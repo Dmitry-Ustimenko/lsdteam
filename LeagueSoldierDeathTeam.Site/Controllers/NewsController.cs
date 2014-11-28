@@ -159,7 +159,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private void FillNewsModel(NewsModel model)
 		{
-			var pagerData = (Execute(() => _newsService.GetNews(model.NewsCategoryId, model.PlatformId, model.SortId, model.Pager.PageId, model.Pager.PageSize))
+			var pagerData = (Execute(() => _newsService.GetNews(model.NewsCategoryId, model.PlatformId, model.SortId, 280, model.Pager.PageId, model.Pager.PageSize))
 				?? new PageData<NewsData>());
 			model.CopyFrom(pagerData);
 		}

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Classes;
 
 namespace LeagueSoldierDeathTeam.Site.Models.Home
@@ -7,9 +8,12 @@ namespace LeagueSoldierDeathTeam.Site.Models.Home
 	{
 		public IEnumerable<ImageModel> SliderImages { get; set; }
 
+		public IEnumerable<NewsData> NewsData { get; set; }
+
 		public IndexModel()
 		{
 			SliderImages = StaticResourse.GetSliderImages();
+			NewsData = new List<NewsData>();
 		}
 	}
 }
