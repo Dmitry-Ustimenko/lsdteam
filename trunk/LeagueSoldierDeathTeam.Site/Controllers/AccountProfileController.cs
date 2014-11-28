@@ -47,6 +47,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region Profile Info
 
 		[HttpGet]
+		[AllowAnonymous]
 		[Route("user-profile-info/{userId:int}")]
 		public ActionResult ProfileInfo(int userId)
 		{

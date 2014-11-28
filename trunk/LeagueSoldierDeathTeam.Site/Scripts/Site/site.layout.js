@@ -231,8 +231,8 @@
 				event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = true);
 			});
 		},
-		
-		enterPressFormEvent: function(form) {
+
+		enterPressFormEvent: function (form) {
 			var btn = form.find("input[type=button]");
 			form.off("keypress").keypress(function (e) {
 				var code = e.keyCode || e.which;
@@ -247,11 +247,13 @@
 			loginForm.find("input[type=button]").on("click", function () {
 				var form = loginForm.find("form");
 				if (form.valid()) {
-					loginForm.loadData(site.layout.settings.urls.login, $.fn.serializeParams(form), null,
-						function () {
-							site.layout.initLoginForm(loginForm);
-							site.layout.initLoginTab(loginForm);
-						});
+					loginForm.loadData(site.layout.settings.urls.login, $.fn.serializeParams(form), function () {
+						window.location.href = "/";
+					}, function () {
+						site.layout.initLoginForm(loginForm);
+						site.layout.initLoginTab(loginForm);
+
+					});
 				}
 			});
 		},

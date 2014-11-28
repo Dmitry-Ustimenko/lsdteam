@@ -30,11 +30,14 @@
 								Сортировка:
 								@Html.DropDownListFor(m => m.SortId, new SelectList(EnumEx.ToDictionary<NewsSort>(), "Key", "Value"))
 							</span>
-							@if (currentUser.Role == RoleEnum.MainAdministrator || currentUser.Role == RoleEnum.Administrator || currentUser.Role == RoleEnum.Moderator)
+							@if (Request.IsAuthenticated && currentUser != null)
 							{
-								<span class="news-write-link">
-									<a class="button" href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.CreateNews()))">Создать</a>
-								</span>
+								if (currentUser.Role == RoleEnum.MainAdministrator || currentUser.Role == RoleEnum.Administrator || currentUser.Role == RoleEnum.Moderator)
+								{
+									<span class="news-write-link">
+										<a class="button" href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.CreateNews()))">Создать</a>
+									</span>
+								}
 							}
 						</div>
 					}
