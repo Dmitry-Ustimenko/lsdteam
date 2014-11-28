@@ -48,7 +48,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		#region IAccountService Members
 
-		PageData<NewsData> INewsService.GetNews(int? newsCategoryId, int? platformId, int newsSortId, int pageId, int pageSize)
+		PageData<NewsData> INewsService.GetNews(int? newsCategoryId, int? platformId, int newsSortId, int cutLength, int pageId, int pageSize)
 		{
 			var pageData = new PageData<NewsData> { PageId = pageId, PageSize = pageSize };
 
@@ -78,7 +78,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 				foreach (var item in pageData.Data)
 				{
-					item.ShortDescription = item.Description.GetShortDescription(280);
+					item.ShortDescription = item.Description.GetShortDescription(cutLength);
 				}
 			}
 

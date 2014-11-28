@@ -1,0 +1,55 @@
+﻿@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
+@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+
+@model IEnumerable<LeagueSoldierDeathTeam.BusinessLogic.Dto.NewsData>
+@{
+	Layout = null;
+	var currentUser = AppContext.Current.CurrentUser;
+}
+
+@if (Model.Any())
+{
+	foreach (var item in Model)
+	{
+		<div class="news-container home">
+			<div class="news-preview home"><img src="@Html.Raw(!string.IsNullOrWhiteSpace(item.ImagePath) ? item.ImagePath : Constants.DefaultPhotoPath)" alt="Превью новости" /></div>
+			<div class="news-description home">
+				<div class="news-title">
+					<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.ViewNews(item.Id)))">@item.Title</a>
+				</div>
+				<div class="news-additional">
+					<span class="news-additional-date">@item.CreateDate.ToShortDateString()</span>
+					<span class="news-additional-views">@item.CountViews</span>
+					<span class="news-additional-comments">Комменты</span>
+					<span class="news-additional-writer">
+						<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.WriterId)))" target="_blank">@item.WriterName</a>
+					</span>
+					@if ((currentUser.Role == RoleEnum.MainAdministrator || currentUser.Role == RoleEnum.Administrator || currentUser.Role == RoleEnum.Moderator)
+						&& currentUser.Id == item.WriterId)
+					{
+						<span class="news-additional-writer-edit">
+							<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.EditNews(item.Id)))">Редактировать</a>
+						</span>
+					}
+				</div>
+				<div class="news-short-description">
+					@item.ShortDescription
+					<a class="full-description-link" href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.ViewNews(item.Id)))"><span>подробнее</span> &gt;</a>
+				</div>
+				<div class="news-platforms-category">
+					@foreach (var platform in item.Platforms)
+					{
+						<span>@platform.Name</span>@:,
+					}
+					<span>@item.NewsCategoryName</span>
+				</div>
+			</div>
+		</div>
+	}
+}
+else
+{
+	<div class="no-result">Новостей не найдено</div>
+}
+
