@@ -1229,8 +1229,27 @@ a {
 				padding-right: 35px;
 			}
 
-		.news .news-header .news-categories {
+.news-tabs {
+	text-transform: none;
+	font-size: 14px;
+	margin-left: 10px;
+	color: #303030;
+	font-style: italic;
+}
+
+	.news-tabs .news-tab {
+		cursor: pointer;
+		margin-right: 3px;
+	}
+
+		.news-tabs .news-tab:hover {
+			color: black;
 		}
+
+	.news-tabs .news-active {
+		border-bottom: 1px dotted #B31919;
+		color: #B31919;
+	}
 
 /* Error Page */
 

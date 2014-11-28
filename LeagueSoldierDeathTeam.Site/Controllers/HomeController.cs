@@ -1,9 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Classes;
+using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Models.Home;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -31,19 +33,24 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		public ActionResult Index()
 		{
-			var model = new IndexModel();
-			FillIndexModel(model);
-			return View(model);
+			return View(new IndexModel());
 		}
+
+		[AjaxOrChildActionOnly]
+		public ActionResult NewsData(int? newsSortId)
+		{
+			return View(GetNewsData(newsSortId.GetValueOrDefault()));
+		}
+
 		#endregion
 
 		#region Internal Implementation
 
-		private void FillIndexModel(IndexModel model)
+		private IEnumerable<NewsData> GetNewsData(int newsSortId)
 		{
-			var pageData = (Execute(() => _newsService.GetNews(null, null, (int)NewsSort.Date, 150, 1, Constants.LastNewsPageSize)))
+			var pageData = (Execute(() => _newsService.GetNews(null, null, newsSortId, 150, 1, Constants.LastNewsPageSize)))
 				?? new PageData<NewsData>();
-			model.NewsData = pageData.Data;
+			return pageData.Data;
 		}
 
 		#endregion

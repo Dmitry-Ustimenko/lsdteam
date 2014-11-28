@@ -11,13 +11,17 @@
 <div class="section-body-item-60 section-shadow">
 	<div class="section-module-header">
 		<div class="module-title">
-			<a class="module-title-link" href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.News()))">Последние новости</a>
+			<a class="module-title-link" href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.News()))">Новости</a>
+			<span class="news-tabs">
+				<span data-type="last" class="news-active news-tab">последние</span>
+				<span data-type="popularity" class="news-tab">популярные</span>
+			</span>
 		</div>
 	</div>
 	<div class="section-module-body">
 		<div class="news home">
 			<div id="content" class="news-body home">
-				@{ Html.RenderPartial("NewsData", Model.NewsData); }
+				@{ Html.RenderAction("NewsData", Model.NewsSortId); }
 			</div>
 		</div>
 	</div>
