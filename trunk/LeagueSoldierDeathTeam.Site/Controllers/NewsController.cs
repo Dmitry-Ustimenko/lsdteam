@@ -61,6 +61,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[AjaxOrChildActionOnly]
+		[Route("news-data")]
 		public ActionResult NewsData(NewsModel model)
 		{
 			FillNewsModel(model);
