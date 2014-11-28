@@ -3,7 +3,7 @@
 	{
 		settings: {
 			urls: {
-
+				refreshGrid: ''
 			},
 			vars: {
 				form: null
@@ -12,7 +12,50 @@
 				platformIds: '#HiddenPlatformIds',
 				imageUploadFile: '#ImageUploadFile',
 				imageUploadFileName: '#ImageUploadFileName',
-				submitBtn: '#submitBtn'
+				submitBtn: '#submitBtn',
+				form: '#form',
+				content: '#content',
+				pager: '#pager'
+			}
+		},
+
+		initGrid: {
+			init: function (settings) {
+				$.extend(true, site.news.settings, settings);
+
+				var $form = $(site.news.settings.elements.form);
+				site.news.settings.vars.form = $form.find("form");
+
+				site.news.initGrid.initNewsGrid();
+				site.news.initGrid.initFilter($form);
+			},
+
+			initNewsGrid: function () {
+				site.news.initGrid.initPager();
+			},
+
+			initPager: function () {
+				$(site.news.settings.elements.pager).pager(function (pageId) {
+					site.news.initGrid.refresh(site.news.settings.elements.content, site.news.settings.urls.refreshGrid,
+						$.fn.serializeParams(site.news.settings.vars.form, [{ name: "Pager.PageId", value: pageId }]),
+						function () {
+							site.news.initGrid.initNewsGrid();
+						});
+				});
+			},
+
+			initFilter: function (form) {
+				form.on("change", function () {
+					site.news.initGrid.refresh(site.news.settings.elements.content, site.news.settings.urls.refreshGrid,
+							$.fn.serializeParams(site.news.settings.vars.form),
+							function () {
+								site.news.initGrid.initNewsGrid();
+							});
+				});
+			},
+
+			refresh: function (content, url, params, callback, callbackError) {
+				$(content).loadData(url, params, callback, callbackError);
 			}
 		},
 

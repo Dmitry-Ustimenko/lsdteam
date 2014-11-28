@@ -43,7 +43,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("news")]
 		public ActionResult News()
 		{
-			return View(new NewsModel());
+			var model = new NewsModel();
+			FillResourceNewsModel(model);
+			return View(model);
 		}
 
 		[AjaxOrChildActionOnly]
@@ -149,9 +151,16 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			model.Platforms = Execute(() => _resourceService.GetPlatforms()) ?? new List<PlatformData>();
 		}
 
+		private void FillResourceNewsModel(NewsModel model)
+		{
+			model.NewsCategories = Execute(() => _newsService.GetNewsGategories()) ?? new List<NewsCategoryData>();
+			model.Platforms = Execute(() => _resourceService.GetPlatforms()) ?? new List<PlatformData>();
+		}
+
 		private void FillNewsModel(NewsModel model)
 		{
-			var pagerData = (Execute(() => _newsService.GetNews(model.Pager.PageId, model.Pager.PageSize)) ?? new PageData<NewsData>());
+			var pagerData = (Execute(() => _newsService.GetNews(model.NewsCategoryId, model.PlatformId, model.SortId, model.Pager.PageId, model.Pager.PageSize))
+				?? new PageData<NewsData>());
 			model.CopyFrom(pagerData);
 		}
 
@@ -170,8 +179,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 					if (ModelIsValid)
 					{
 						var image = Image.FromStream(model.ImageUploadFile.InputStream);
-						if (image.Width > 200 || image.Height > 200)
-							ModelState.AddModelError(string.Empty, "Разрешение фото не должно превышать 200х200");
+						if (image.Width > 150 || image.Height > 150)
+							ModelState.AddModelError(string.Empty, "Разрешение фото не должно превышать 150х150");
 					}
 
 					if (ModelIsValid)

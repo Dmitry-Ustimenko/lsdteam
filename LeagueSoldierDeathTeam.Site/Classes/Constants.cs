@@ -32,6 +32,8 @@
 
 		public const int DefaultPageSize = 15;
 
+		public const int NewsPageSize = 10;
+
 		public const int CountPagesBothSideCurrPage = 2;
 
 		public const int MaxCountVisiblePages = 7;

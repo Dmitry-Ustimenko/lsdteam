@@ -1,7 +1,12 @@
-﻿@model LeagueSoldierDeathTeam.Site.Models.News.NewsModel
+﻿@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
+@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions
+@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.Site.Models.News.NewsModel
 
 @{
 	ViewBag.Title = "Новости";
+	var currentUser = AppContext.Current.CurrentUser;
 }
 
 <div class="transparent-border">
@@ -11,6 +16,29 @@
 		</div>
 		<div class="section-module-body">
 			<div class="news">
+				<div id="form">
+					@using (Html.BeginForm())
+					{
+						<div class="news-header">
+							<span class="news-categories">
+								Категория:
+								@Html.DropDownListFor(m => m.NewsCategoryId, new SelectList(Model.NewsCategories, "Id", "Name"), "Все")
+								&nbsp;
+								Платформа:
+								@Html.DropDownListFor(m => m.PlatformId, new SelectList(Model.Platforms, "Id", "Name"), "Все")
+								&nbsp;
+								Сортировка:
+								@Html.DropDownListFor(m => m.SortId, new SelectList(EnumEx.ToDictionary<NewsSort>(), "Key", "Value"))
+							</span>
+							@if (currentUser.Role == RoleEnum.MainAdministrator || currentUser.Role == RoleEnum.Administrator || currentUser.Role == RoleEnum.Moderator)
+							{
+								<span class="news-write-link">
+									<a class="button" href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.CreateNews()))">Создать</a>
+								</span>
+							}
+						</div>
+					}
+				</div>
 				<div id="content" class="news-body">
 					@{ Html.RenderAction("NewsData", Model); }
 				</div>
@@ -19,3 +47,12 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+	$(document).ready(function () {
+		site.news.initGrid.init({
+			urls: {
+				refreshGrid: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.NewsData(null)))'
+			}
+		});
+	});
+</script>

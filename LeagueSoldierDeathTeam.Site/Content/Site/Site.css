@@ -1039,6 +1039,7 @@ a {
 		border: 1px solid #DADADA;
 		padding: 15px;
 		padding-top: 0;
+		margin-top: 15px;
 	}
 
 	.news .news-container {
@@ -1070,7 +1071,7 @@ a {
 			border: 1px solid #DDD;
 		}
 
-.news .news-container .news-description {
+	.news .news-container .news-description {
 		float: left;
 		width: 787px;
 		padding-left: 15px;
@@ -1099,6 +1100,18 @@ a {
 			padding-top: 5px;
 			padding-bottom: 5px;
 		}
+
+			.news .news-container .news-description .news-short-description .full-description-link {
+				font-size: 10px;
+			}
+
+				.news .news-container .news-description .news-short-description .full-description-link span {
+					border-bottom: 1px dotted darkred;
+				}
+
+				.news .news-container .news-description .news-short-description .full-description-link:hover span {
+					border-bottom: none;
+				}
 
 		.news .news-container .news-description .news-additional {
 			padding-top: 2px;
@@ -1149,11 +1162,35 @@ a {
 			line-height: 15px;
 		}
 
+		.news .news-container .news-description .news-additional .news-additional-writer-edit {
+			background: url(/Images/new-icons.png) no-repeat -17px -61px;
+			padding-left: 15px;
+			padding-right: 5px;
+			line-height: 15px;
+		}
+
 		.news .news-container .news-description .news-additional .news-additional-comments {
 			background: url(/Images/new-icons.png) no-repeat -17px -28px;
 			padding-left: 17px;
 			padding-right: 4px;
 			line-height: 15px;
+		}
+
+	.news .news-header {
+		height: 32px;
+	}
+
+		.news .news-header .news-write-link {
+			float: right;
+			margin-top: 7px;
+		}
+
+			.news .news-header .news-write-link .button {
+				padding-left: 35px;
+				padding-right: 35px;
+			}
+
+		.news .news-header .news-categories {
 		}
 
 /* Error Page */

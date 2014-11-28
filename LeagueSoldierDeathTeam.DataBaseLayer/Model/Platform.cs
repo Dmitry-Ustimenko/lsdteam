@@ -22,6 +22,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public string ShortName { get; set; }
     
         public virtual ICollection<GamePlatform> GamePlatforms { get; set; }
         public virtual ICollection<NewsPlatform> NewsPlatforms { get; set; }

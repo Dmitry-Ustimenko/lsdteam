@@ -2,5 +2,6 @@
 (
 	[Id]			int				not null,
 	[Name]			NVARCHAR(150)	NOT NULL, 
-	constraint [PK_dboNewsCategory] primary key clustered ([Id])
+	[ShortName] NVARCHAR(150) NOT NULL DEFAULT 'category', 
+    constraint [PK_dboNewsCategory] primary key clustered ([Id])
 );
