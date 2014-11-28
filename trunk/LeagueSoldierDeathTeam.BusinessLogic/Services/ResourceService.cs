@@ -38,7 +38,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return _platformRepository.GetData(o => new PlatformData
 			{
 				Id = o.Id,
-				Name = o.Name
+				Name = o.Name,
+				ShortName = o.ShortName
 			}).ToList();
 		}
 

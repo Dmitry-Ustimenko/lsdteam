@@ -6,6 +6,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Repositories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Helpers;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.DataBaseLayer.Model;
@@ -47,17 +48,20 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		#region IAccountService Members
 
-		PageData<NewsData> INewsService.GetNews(int pageId, int pageSize)
+		PageData<NewsData> INewsService.GetNews(int? newsCategoryId, int? platformId, int newsSortId, int pageId, int pageSize)
 		{
 			var pageData = new PageData<NewsData> { PageId = pageId, PageSize = pageSize };
 
-			var data = _newsRepository.GetQueryableData();
+			var data = _newsRepository.GetQueryableData(o => (!newsCategoryId.HasValue || newsCategoryId.Value == o.NewsCategoryId)
+				&& (!platformId.HasValue || o.NewsPlatforms.Select(p => p.PlatformId).Contains(platformId.Value)));
 
 			if (data != null)
 			{
 				pageData.Count = data.Count();
 
-				pageData.Data = data.OrderByDescending(o => o.CreateDate).Page(pageData.PageId, pageData.PageSize).Select(o => new NewsData
+				data = (NewsSort)newsSortId == NewsSort.Popularity ? data.OrderByDescending(o => o.CountViews) : data.OrderByDescending(o => o.CreateDate);
+
+				pageData.Data = data.Page(pageData.PageId, pageData.PageSize).Select(o => new NewsData
 				{
 					Id = o.Id,
 					Title = o.Title,
@@ -153,7 +157,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 					foreach (var deletePlatform in deletePlatforms)
 					{
-						entity.NewsPlatforms.Remove(deletePlatform);
+						_newsPlatformRepository.Delete(deletePlatform);
 					}
 				}
 			}
@@ -166,7 +170,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return _newsCategoryRepository.GetData(o => new NewsCategoryData
 			{
 				Id = o.Id,
-				Name = o.Name
+				Name = o.Name,
+				ShortName = o.ShortName
 			}).ToList();
 		}
 
