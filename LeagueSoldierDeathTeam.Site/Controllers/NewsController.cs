@@ -40,6 +40,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Actions
 
+		[HttpGet]
 		[Route("news")]
 		public ActionResult News()
 		{
@@ -48,6 +49,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return View(model);
 		}
 
+		[HttpGet]
 		[Route("news/{id?}")]
 		public ActionResult NewsFilter(string id)
 		{

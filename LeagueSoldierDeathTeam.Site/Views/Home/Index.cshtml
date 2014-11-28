@@ -22,7 +22,7 @@
 	<div class="section-module-body">
 		<div class="news home">
 			<div id="news-content" class="news-body home">
-				@{ Html.RenderAction("NewsData", Model.NewsSortId); }
+				@{ Html.RenderAction("TopNewsData", Model.NewsSortId); }
 			</div>
 		</div>
 	</div>
@@ -58,7 +58,7 @@
 	jQuery(document).ready(function () {
 		site.home.init({
 			urls: {
-				refreshNews: '@(WebBuilder.BuildActionUrl<HomeController>(m => m.NewsData((int)NewsSort.Date)))'
+				refreshNews: '@(WebBuilder.BuildActionUrl<HomeController>(m => m.TopNewsData((int)NewsSort.Date)))'
 			}
 		});
 	});

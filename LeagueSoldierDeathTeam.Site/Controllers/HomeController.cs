@@ -37,7 +37,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[AjaxOrChildActionOnly]
-		public ActionResult NewsData(int? newsSortId)
+		public ActionResult TopNewsData(int? newsSortId)
 		{
 			return View(GetNewsData(newsSortId.GetValueOrDefault()));
 		}
