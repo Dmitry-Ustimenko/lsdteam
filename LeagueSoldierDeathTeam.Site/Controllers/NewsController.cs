@@ -74,6 +74,20 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return View(new ViewNewsModel());
 		}
 
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		public ActionResult DeleteNews(int? id)
+		{
+			if (id.HasValue)
+			{
+
+
+				return RedirectToAction<NewsController>(o => o.News());
+			}
+
+			return RedirectToAction<NewsController>(o => o.News());
+		}
+
 		[Route("create-news")]
 		[UserAuthorize(UserRoles = Role.Administrator | Role.Moderator)]
 		public ActionResult CreateNews()

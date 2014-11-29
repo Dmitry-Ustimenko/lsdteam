@@ -3,7 +3,8 @@
 	{
 		settings: {
 			urls: {
-				refreshGrid: ''
+				refreshGrid: '',
+				deleteNews: ''
 			},
 			vars: {
 				form: null
@@ -188,7 +189,7 @@
 		initView: {
 			init: function (settings) {
 				$.extend(true, site.news.settings, settings);
-				site.news.initView.parseBBCode();
+				//site.news.initView.parseBBCode();
 			},
 
 			parseBBCode: function () {
