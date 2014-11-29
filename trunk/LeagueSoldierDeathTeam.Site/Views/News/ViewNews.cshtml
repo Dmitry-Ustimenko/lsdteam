@@ -1,6 +1,34 @@
-﻿@model LeagueSoldierDeathTeam.Site.Models.News.ViewNewsModel
+﻿@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.Site.Models.News.ViewNewsModel
 
 @{
 	ViewBag.Title = "Просмотр новости";
 }
+
+<div class="transparent-border">
+	<div class="simple-page-body section-shadow">
+		<div class="section-module-header">
+			<div class="module-title">@ViewBag.Title</div>
+		</div>
+		<div class="section-module-body">
+			<div class="back">
+				<a class="button" href="@(WebBuilder.BuildActionUrl<NewsController>(m => m.News()))">
+					<span class="back-arrow"></span>Вернуться к сообщениям
+				</a>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		site.news.initView.init({
+			urls: {
+				deleteNews: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.DeleteNews(null)))'
+			}
+		});
+	});
+</script>
 
