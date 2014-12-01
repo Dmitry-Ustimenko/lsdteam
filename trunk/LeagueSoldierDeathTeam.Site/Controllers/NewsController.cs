@@ -79,7 +79,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				if (news == null)
 					return RedirectToAction<NewsController>(o => o.News());
 
-				Execute(() => _newsService.ChangeCountViews(news.Id));
+				//Execute(() => _newsService.ChangeCountViews(news.Id));
 				model.CopyFrom(news);
 
 				return View(model);

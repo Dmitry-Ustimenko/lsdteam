@@ -3576,13 +3576,45 @@ textarea.resize-none {
 		border-top: none;
 	}
 
-	.comments .comments-header {
-		font-size: 16px;
-		padding: 5px 10px;
-		background-color: rgba(0, 0, 0, 0.08);
-	}
+		.comments .comments-content .comments-header {
+			font-size: 16px;
+			padding: 5px 10px;
+			background-color: rgba(0, 0, 0, 0.08);
+		}
 
-	.comments .no-result {
-		border: none;
-		margin-bottom: 0;
-	}
+		.comments .comments-content .comments-body {
+		}
+
+		.comments .comments-content .no-result {
+			border: none;
+			margin-bottom: 0;
+		}
+
+		.comments .comments-content .comments-creator .comments-body {
+			margin: 10px;
+			text-align: right;
+		}
+
+			.comments .comments-content .comments-creator .comments-body textarea {
+				width: 100%;
+				padding: 5px;
+				font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+			}
+
+			.comments .comments-content .comments-creator .comments-body .comment-add-btn {
+				display: inline-block;
+				border: 1px solid rgb(169, 169, 169);
+				padding: 4px 15px;
+				cursor: pointer;
+				background-color: rgba(0, 0, 0, 0.05);
+			}
+
+				.comments .comments-content .comments-creator .comments-body .comment-add-btn:hover {
+					background-color: rgb(236, 236, 236);
+				}
+
+				.comments .comments-content .comments-creator .comments-body .comment-add-btn:active {
+					-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+					-ms-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+					box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+				}
