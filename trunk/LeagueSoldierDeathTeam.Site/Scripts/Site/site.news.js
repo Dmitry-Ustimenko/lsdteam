@@ -66,6 +66,7 @@
 
 				site.news.initEdit.initEditor();
 				site.news.initEdit.initPlatforms();
+				site.news.initEdit.initAnnotationLimit();
 				site.news.initEdit.submitForm();
 				site.news.initEdit.initUploadContainer();
 			},
@@ -96,6 +97,10 @@
 					$description.markItUp(mySettings);
 					site.news.initEdit.parseBBCode($description);
 				}
+			},
+
+			initAnnotationLimit: function () {
+				$.fn.lenghtLimit($("[data-type=annotation]"), $(".annotation-length"), 150);
 			},
 
 			parseBBCode: function (description) {
