@@ -52,6 +52,8 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 			Platforms = new List<PlatformData>();
 			PlatformIds = new List<int>();
 			HiddenPlatformIds = string.Empty;
+			Annotation = string.Empty;
+			Description = string.Empty;
 		}
 	}
 }
