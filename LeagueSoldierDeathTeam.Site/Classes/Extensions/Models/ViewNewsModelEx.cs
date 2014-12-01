@@ -15,7 +15,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			model.NewsCategoryId = data.NewsCategory.Id;
 			model.Platforms = data.Platforms;
 			model.ImagePath = data.ImagePath;
-			model.CreateDate = data.CreateDate.ToShortDateString();
+			model.CreateDate = data.CreateDate;
 			model.CountViews = ++data.CountViews;
 			model.NewsCategory = data.NewsCategory;
 

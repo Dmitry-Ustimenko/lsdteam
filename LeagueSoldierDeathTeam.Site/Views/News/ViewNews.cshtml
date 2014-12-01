@@ -27,7 +27,7 @@
 					<div class="view-news-info">
 						<div class="view-news-title">@Model.Title</div>
 						<div class="view-news-additional-info">
-							<span class="view-news-date">@Model.CreateDate</span>
+							<span class="view-news-date">@Model.CreateDate.ToString("dd MMMM yyyy г. HH:mm:ss")</span>
 							<span class="view-news-views">@Model.CountViews</span>
 							<span class="view-news-comments">Комменты</span>
 							<span class="view-news-writer">
@@ -50,10 +50,13 @@
 						@foreach (var platform in Model.Platforms)
 						{
 							<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.NewsFilter(platform.ShortName)))">@platform.Name</a>@:,
-							}
+						}
 						<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.NewsFilter(Model.NewsCategory.ShortName)))">@Model.NewsCategory.Name</a>
 					</span>
 				</div>
+			</div>
+			<div id="comments">
+				@{ Html.RenderPartial("_CommentFeedPartial", Model.CommentData); }
 			</div>
 		</div>
 	</div>

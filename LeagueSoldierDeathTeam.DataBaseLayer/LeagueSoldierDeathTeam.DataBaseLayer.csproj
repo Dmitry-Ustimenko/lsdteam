@@ -52,6 +52,9 @@
   <ItemGroup>
     <Compile Include="Abstractions\DataAccess\IObjectContextProvider.cs" />
     <Compile Include="DataAccess\ObjectContextProvider.cs" />
+    <Compile Include="Model\Comment.cs">
+      <DependentUpon>LSD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Game.cs">
       <DependentUpon>LSD.tt</DependentUpon>
     </Compile>
@@ -80,6 +83,9 @@
       <DependentUpon>LSD.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\NewsCategory.cs">
+      <DependentUpon>LSD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\NewsComment.cs">
       <DependentUpon>LSD.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\NewsPlatform.cs">

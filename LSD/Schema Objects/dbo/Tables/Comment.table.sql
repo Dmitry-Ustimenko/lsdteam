@@ -5,5 +5,6 @@
     [CreateDate] DATETIME NOT NULL, 
     [WriterId] INT NOT NULL,
 	[Rate] int not null,
+    [ModifierDate] DATETIME NOT NULL, 
     constraint [PK_dboComment] primary key clustered ([Id])
 );
