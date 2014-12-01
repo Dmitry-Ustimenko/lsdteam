@@ -1060,7 +1060,7 @@ a {
 
 	.news .news-container {
 		border-right: 0;
-		height: 150px;
+		height: 140px;
 		float: none;
 		overflow: hidden;
 		padding-top: 15px;
@@ -1094,7 +1094,7 @@ a {
 
 		.news .news-container .news-preview img {
 			width: 150px;
-			height: 115px;
+			height: 105px;
 			-webkit-box-shadow: 4px 4px 4px #999;
 			-ms-box-shadow: 4px 4px 4px #999;
 			box-shadow: 4px 4px 4px #999;
@@ -1105,18 +1105,20 @@ a {
 			-webkit-box-shadow: 3px 3px 12px #999;
 			-ms-box-shadow: 3px 3px 12px #999;
 			box-shadow: 3px 3px 12px #999;
+			margin-top: 1px;
 		}
 
 	.news .news-container .news-description {
 		float: left;
 		width: 787px;
 		padding-left: 15px;
-		height: 118px;
+		height: 110px;
 		position: relative;
 	}
 
 		.news .news-container .news-description.home {
 			width: 528px;
+			height: 115px;
 		}
 
 		.news .news-container .news-description .news-title {
@@ -1225,6 +1227,116 @@ a {
 			line-height: 15px;
 		}
 
+.view-news {
+	padding: 10px;
+	padding-top: 0;
+}
+
+	.view-news .view-news-body {
+		padding: 10px;
+		border: 1px solid #DADADA;
+	}
+
+		.view-news .view-news-body .view-news-preview {
+			float: left;
+			padding-right: 10px;
+		}
+
+			.view-news .view-news-body .view-news-preview img {
+				width: 150px;
+				height: 105px;
+				-webkit-box-shadow: 4px 4px 4px #999;
+				-ms-box-shadow: 4px 4px 4px #999;
+				box-shadow: 4px 4px 4px #999;
+				border: 1px solid #DDD;
+			}
+
+		.view-news .view-news-body .view-news-info {
+			float: left;
+		}
+
+			.view-news .view-news-body .view-news-info .view-news-additional-info {
+				font-size: 11px;
+				color: #555;
+				padding-top: 2px;
+			}
+
+			.view-news .view-news-body .view-news-info .view-news-title {
+				font-size: 18px;
+				font-weight: 400;
+			}
+
+			.view-news .view-news-body .view-news-info .view-news-date {
+				background: url(/Images/new-icons.png) no-repeat -2px -1276px;
+				text-decoration: none;
+				padding-left: 15px;
+				padding-right: 5px;
+				line-height: 15px;
+			}
+
+			.view-news .view-news-body .view-news-info .view-news-views {
+				background: url(/Images/new-icons.png) no-repeat -17px -13px;
+				padding-left: 17px;
+				padding-right: 5px;
+				line-height: 15px;
+			}
+
+			.view-news .view-news-body .view-news-info .view-news-comments {
+				background: url(/Images/new-icons.png) no-repeat -17px -28px;
+				padding-left: 17px;
+				padding-right: 4px;
+				line-height: 15px;
+			}
+
+			.view-news .view-news-body .view-news-info span a {
+				color: #555 !important;
+				border-bottom: 1px dotted gray;
+			}
+
+				.view-news .view-news-body .view-news-info span a:hover {
+					border-bottom: none;
+				}
+
+			.view-news .view-news-body .view-news-info .view-news-writer {
+				background: url(/Images/new-icons.png) no-repeat -17px -44px;
+				padding-left: 15px;
+				padding-right: 5px;
+				line-height: 15px;
+			}
+
+			.view-news .view-news-body .view-news-info .view-news-writer-edit {
+				background: url(/Images/new-icons.png) no-repeat -17px -61px;
+				padding-left: 15px;
+				padding-right: 5px;
+				line-height: 15px;
+			}
+
+		.view-news .view-news-body .view-news-description {
+			clear: both;
+			padding-top: 5px;
+		}
+
+		.view-news .view-news-body .view-news-platforms-category {
+			background: url(/Images/new-icons.png) no-repeat -17px -125px;
+			padding-left: 15px;
+			padding-top: 3px;
+			line-height: 15px;
+			font-size: 11px;
+			color: #555;
+			margin-top: 5px;
+			border-top: 1px solid #dadada;
+			display: inline-block;
+		}
+
+			.view-news .view-news-body .view-news-platforms-category a {
+				color: #555 !important;
+				border-bottom: 1px dotted gray;
+			}
+
+				.view-news .view-news-body .view-news-platforms-category a:hover {
+					border-bottom: none;
+				}
+
 .annotation-label {
 	padding-top: 22px !important;
 }
@@ -1277,9 +1389,6 @@ a {
 		color: #B31919;
 	}
 
-.view-news {
-	height: 100px;
-}
 
 /* Error Page */
 
@@ -1460,10 +1569,10 @@ a {
 
 .back-arrow {
 	background: url(/Images/arrow-back.png) no-repeat top center;
-	width: 13px;
-	height: 13px;
+	width: 20px;
+	height: 11px;
 	display: inline-block;
-	margin-right: 7px;
+	margin-right: 4px;
 }
 
 .clear-input {

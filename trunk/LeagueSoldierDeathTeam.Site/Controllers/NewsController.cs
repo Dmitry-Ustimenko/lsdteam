@@ -71,7 +71,21 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("view-news/{id:int?}")]
 		public ActionResult ViewNews(int? id)
 		{
-			return View(new ViewNewsModel());
+			if (id.HasValue)
+			{
+				var model = new ViewNewsModel { Id = id.GetValueOrDefault() };
+
+				var news = Execute(() => _newsService.GetNews(model.Id.GetValueOrDefault()));
+				if (news == null)
+					return RedirectToAction<NewsController>(o => o.News());
+
+				Execute(() => _newsService.ChangeCountViews(news.Id));
+				model.CopyFrom(news);
+
+				return View(model);
+			}
+
+			return RedirectToAction<NewsController>(o => o.News());
 		}
 
 		[HttpPost]

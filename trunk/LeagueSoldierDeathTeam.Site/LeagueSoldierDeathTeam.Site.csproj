@@ -210,6 +210,7 @@
     <Compile Include="Classes\Extensions\Models\RegisterModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\UserMessageModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\UserProfileModelEx.cs" />
+    <Compile Include="Classes\Extensions\Models\ViewNewsModelEx.cs" />
     <Compile Include="Classes\Extensions\RussianTimeEx.cs" />
     <Compile Include="Classes\Extensions\StringGeneration.cs" />
     <Compile Include="Classes\Factories\ContextFactory.cs" />

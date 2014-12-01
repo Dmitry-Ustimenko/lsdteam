@@ -1,9 +1,11 @@
-﻿@using LeagueSoldierDeathTeam.Site.Classes
+﻿@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
+@using LeagueSoldierDeathTeam.Site.Classes
 @using LeagueSoldierDeathTeam.Site.Controllers
 @model LeagueSoldierDeathTeam.Site.Models.News.ViewNewsModel
 
 @{
 	ViewBag.Title = "Просмотр новости";
+	var currentUser = AppContext.Current.CurrentUser;
 }
 
 <div class="transparent-border">
@@ -14,11 +16,44 @@
 		<div class="section-module-body">
 			<div class="back">
 				<a class="button" href="@(WebBuilder.BuildActionUrl<NewsController>(m => m.News()))">
-					<span class="back-arrow"></span>Вернуться к сообщениям
+					<span class="back-arrow"></span>Вернуться к новостям
 				</a>
 			</div>
 			<div class="view-news">
-				
+				<div class="view-news-body">
+					<div class="view-news-preview">
+						<img src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.ImagePath) ? Model.ImagePath : Constants.DefaultPhotoPath)" alt="Превью новости" />
+					</div>
+					<div class="view-news-info">
+						<div class="view-news-title">@Model.Title</div>
+						<div class="view-news-additional-info">
+							<span class="view-news-date">@Model.CreateDate</span>
+							<span class="view-news-views">@Model.CountViews</span>
+							<span class="view-news-comments">Комменты</span>
+							<span class="view-news-writer">
+								<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(Model.WriterId)))" target="_blank">@Model.WriterName</a>
+							</span>
+							@if (Request.IsAuthenticated && currentUser != null)
+							{
+								if (currentUser.Role == RoleEnum.MainAdministrator || currentUser.Role == RoleEnum.Administrator
+									|| (currentUser.Role == RoleEnum.Moderator && currentUser.Id == Model.WriterId))
+								{
+									<span class="view-news-writer-edit">
+										<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.EditNews(Model.Id)))">Редактировать</a>
+									</span>
+								}
+							}
+						</div>
+					</div>
+					<div class="view-news-description">@Model.Description</div>
+					<span class="view-news-platforms-category">
+						@foreach (var platform in Model.Platforms)
+						{
+							<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.NewsFilter(platform.ShortName)))">@platform.Name</a>@:,
+							}
+						<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.NewsFilter(Model.NewsCategory.ShortName)))">@Model.NewsCategory.Name</a>
+					</span>
+				</div>
 			</div>
 		</div>
 	</div>
