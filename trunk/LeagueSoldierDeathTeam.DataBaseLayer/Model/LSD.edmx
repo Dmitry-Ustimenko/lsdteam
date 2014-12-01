@@ -48,6 +48,7 @@
           <Property Name="NewsCategoryId" Type="int" Nullable="false" />
           <Property Name="WriterId" Type="int" Nullable="false" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+          <Property Name="Annotation" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="NewsCategory">
           <Key>
@@ -583,6 +584,7 @@
           <NavigationProperty Name="Writer" Relationship="LSDDataModel.FK_News_User" FromRole="News" ToRole="User" />
           <NavigationProperty Name="NewsPlatforms" Relationship="LSDDataModel.FK_NewsPlatform_News" FromRole="News" ToRole="NewsPlatform" />
           <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Annotation" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="NewsCategory">
           <Key>
@@ -972,6 +974,7 @@
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="LSDDataModel.News">
               <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="Annotation" ColumnName="Annotation" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="WriterId" ColumnName="WriterId" />
                 <ScalarProperty Name="NewsCategoryId" ColumnName="NewsCategoryId" />

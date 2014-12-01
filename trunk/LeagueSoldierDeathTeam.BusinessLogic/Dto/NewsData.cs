@@ -9,8 +9,6 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 
 		public string Title { get; set; }
 
-		public string ShortDescription { get; set; }
-
 		public string Description { get; set; }
 
 		public DateTime CreateDate { get; set; }
@@ -28,5 +26,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public IEnumerable<PlatformData> Platforms { get; set; }
 
 		public string ImagePath { get; set; }
+
+		public string Annotation { get; set; }
 	}
 }

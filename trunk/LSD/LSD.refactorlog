@@ -56,4 +56,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="NewsCategoryId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="afa987e5-4624-4d4a-81be-9b105ee2e541" ChangeDateTime="12/01/2014 07:14:29">
+    <Property Name="ElementName" Value="[dbo].[News].[ShortDescription]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[News]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Annotation" />
+  </Operation>
 </Operations>

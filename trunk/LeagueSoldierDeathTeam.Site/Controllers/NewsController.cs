@@ -152,7 +152,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 						NewsCategory = new NewsCategoryData { Id = model.NewsCategoryId },
 						WriterId = CurrentUser.Id,
 						PlatformIds = model.PlatformIds,
-						ImagePath = model.ImagePath
+						ImagePath = model.ImagePath,
+						Annotation = model.Annotation
 					};
 
 					Execute(() => _newsService.SaveNews(data));
@@ -185,7 +186,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private void FillNewsModel(NewsModel model)
 		{
-			var pagerData = (Execute(() => _newsService.GetNews(model.NewsCategoryId, model.PlatformId, model.SortId, 250, model.Pager.PageId, model.Pager.PageSize))
+			var pagerData = (Execute(() => _newsService.GetNews(model.NewsCategoryId, model.PlatformId, model.SortId, model.Pager.PageId, model.Pager.PageSize))
 				?? new PageData<NewsData>());
 			model.CopyFrom(pagerData);
 		}

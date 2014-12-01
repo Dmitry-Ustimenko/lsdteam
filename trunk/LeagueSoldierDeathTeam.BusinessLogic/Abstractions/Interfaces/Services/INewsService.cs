@@ -7,7 +7,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 	{
 		NewsData GetNews(int id);
 
-		PageData<NewsData> GetNews(int? newsCategoryId, int? platformId, int newsSortId, int cutLength, int pageId, int pageSize);
+		PageData<NewsData> GetNews(int? newsCategoryId, int? platformId, int newsSortId, int pageId, int pageSize);
 
 		void SaveNews(NewsData data);
 

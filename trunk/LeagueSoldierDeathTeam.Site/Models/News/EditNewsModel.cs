@@ -26,6 +26,11 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 
 		public string ImagePath { get; set; }
 
+		[Required(ErrorMessage = "'Аннотация' должна быть введена")]
+		[MaxLength(150, ErrorMessage = "'Аннотация' не должна превышать 150 символов")]
+		[DisplayName("Аннотация")]
+		public string Annotation { get; set; }
+
 		public string ImageUploadFileName { get; set; }
 
 		public int WriterId { get; set; }

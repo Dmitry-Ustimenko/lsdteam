@@ -68,6 +68,13 @@
 							</div>
 						</div>
 						<div class="container-item">
+							@Html.LabelFor(m => m.Annotation)
+							<div class="field-container">
+								@Html.TextAreaFor(m => m.Annotation, new { @rows = "3", @class = "resize-none" })
+								<div class="description-preview"></div>
+							</div>
+						</div>
+						<div class="container-item">
 							@Html.LabelFor(m => m.Description)
 							<div class="field-container">
 								@Html.TextAreaFor(m => m.Description, new { @rows = "10", @class = "resize-none" })
