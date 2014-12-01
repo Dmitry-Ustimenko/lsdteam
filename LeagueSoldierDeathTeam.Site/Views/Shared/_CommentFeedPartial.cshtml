@@ -7,13 +7,24 @@
 <div class="comments">
 	<div class="comments-content">
 		<div class="comments-header">Комментарии</div>
-		@if (Model.Any())
-		{
-			<div></div>
-		}
-		else
-		{
-			<div class="no-result">Нет комментариев</div>
-		}
+		<div class="comments-body">
+			@if (Model.Any())
+			{
+				<div></div>
+			}
+			else
+			{
+				<div class="no-result">Нет комментариев</div>
+			}
+		</div>
+		<div class="comments-creator">
+			<div class="comments-header">Новый комментарий</div>
+			<div class="comments-body">
+				@Html.TextArea("CommentDescription", new { @rows = "5", @class = "resize-none", @data_type = "comment-description" })
+				<span class="comment-add-btn" data-type="preview">Предпросмотр</span>
+				<span class="comment-add-btn" data-type="add">Добавить</span>
+				<div class="description-preview"></div>
+			</div>
+		</div>
 	</div>
 </div>
