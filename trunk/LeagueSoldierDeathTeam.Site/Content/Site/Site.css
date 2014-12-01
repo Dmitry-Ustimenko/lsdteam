@@ -958,8 +958,8 @@ a {
 	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 	-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 	box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-	-ms-border-radius: 3px;
-	border-radius: 3px;
+	/*-ms-border-radius: 3px;
+	border-radius: 3px;*/
 	font-family: 'Ubuntu', 'Lato', sans-serif;
 	color: black;
 }
@@ -1865,6 +1865,8 @@ a {
 			background: #B31919;
 			font-family: 'Ubuntu', 'Lato', sans-serif;
 			color: white;
+			-ms-border-radius: 3px;
+			border-radius: 3px;
 			font-weight: 700;
 			font-size: 15px;
 			-ms-text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
@@ -3222,8 +3224,8 @@ textarea.resize-none {
 		-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 		-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 		box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-		-ms-border-radius: 3px;
-		border-radius: 3px;
+		/*-ms-border-radius: 3px;
+		border-radius: 3px;*/
 		font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
 		color: black;
 	}
