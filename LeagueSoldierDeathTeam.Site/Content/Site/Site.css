@@ -1261,6 +1261,10 @@ a {
 		color: #B31919;
 	}
 
+.view-news {
+	height: 100px;
+}
+
 /* Error Page */
 
 .error-page-body {

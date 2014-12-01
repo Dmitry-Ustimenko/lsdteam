@@ -48,7 +48,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		#region IAccountService Members
 
-		PageData<NewsData> INewsService.GetNews(int? newsCategoryId, int? platformId, int newsSortId, int cutLength, int pageId, int pageSize)
+		PageData<NewsData> INewsService.GetNews(int? newsCategoryId, int? platformId, int newsSortId, int pageId, int pageSize)
 		{
 			var pageData = new PageData<NewsData> { PageId = pageId, PageSize = pageSize };
 
@@ -72,13 +72,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 					WriterName = o.Writer != null ? o.Writer.UserName : string.Empty,
 					NewsCategory = new NewsCategoryData { Id = o.NewsCategory.Id, Name = o.NewsCategory.Name, ShortName = o.NewsCategory.ShortName },
 					Platforms = o.NewsPlatforms.Select(p => new PlatformData { Id = p.Platform.Id, Name = p.Platform.Name, ShortName = p.Platform.ShortName }),
-					ImagePath = o.ImagePath
+					ImagePath = o.ImagePath,
+					Annotation = o.Annotation
 				}).ToList();
-
-				foreach (var item in pageData.Data)
-				{
-					item.ShortDescription = item.Description.GetShortDescription(cutLength);
-				}
 			}
 
 			return pageData;
@@ -97,7 +93,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				WriterName = o.Writer != null ? o.Writer.UserName : string.Empty,
 				NewsCategory = new NewsCategoryData { Id = o.NewsCategory.Id, Name = o.NewsCategory.Name, ShortName = o.NewsCategory.ShortName },
 				PlatformIds = o.NewsPlatforms.Select(p => p.PlatformId),
-				ImagePath = o.ImagePath
+				ImagePath = o.ImagePath,
+				Annotation = o.Annotation
 			}, o => o.Id == id).SingleOrDefault();
 		}
 
@@ -115,6 +112,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			entity.Description = data.Description;
 			entity.NewsCategory = newsCategory;
 			entity.ImagePath = data.ImagePath;
+			entity.Annotation = data.Annotation;
 
 			if (data.Id == default(int))
 			{

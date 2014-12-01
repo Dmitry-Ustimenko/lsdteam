@@ -48,7 +48,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private IEnumerable<NewsData> GetNewsData(int newsSortId)
 		{
-			var pageData = (Execute(() => _newsService.GetNews(null, null, newsSortId, 150, 1, Constants.LastNewsPageSize)))
+			var pageData = (Execute(() => _newsService.GetNews(null, null, newsSortId, 1, Constants.LastNewsPageSize)))
 				?? new PageData<NewsData>();
 			return pageData.Data;
 		}

@@ -16,6 +16,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			model.PlatformIds = data.PlatformIds.ToList();
 			model.HiddenPlatformIds = string.Join(",", data.PlatformIds);
 			model.ImagePath = data.ImagePath;
+			model.Annotation = data.Annotation;
 
 			return model;
 		}
