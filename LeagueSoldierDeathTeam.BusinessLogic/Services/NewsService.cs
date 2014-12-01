@@ -93,6 +93,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				WriterName = o.Writer != null ? o.Writer.UserName : string.Empty,
 				NewsCategory = new NewsCategoryData { Id = o.NewsCategory.Id, Name = o.NewsCategory.Name, ShortName = o.NewsCategory.ShortName },
 				PlatformIds = o.NewsPlatforms.Select(p => p.PlatformId),
+				Platforms = o.NewsPlatforms.Select(p => new PlatformData { Id = p.Platform.Id, Name = p.Platform.Name, ShortName = p.Platform.ShortName }),
 				ImagePath = o.ImagePath,
 				Annotation = o.Annotation
 			}, o => o.Id == id).SingleOrDefault();
@@ -170,6 +171,18 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				Name = o.Name,
 				ShortName = o.ShortName
 			}).ToList();
+		}
+
+		void INewsService.ChangeCountViews(int id)
+		{
+			var entity = _newsRepository.Query(o => o.Id == id).SingleOrDefault();
+			if (entity == null) return;
+
+			var count = entity.CountViews + 1;
+			if (count > Int32.MaxValue) return;
+
+			entity.CountViews = count;
+			UnitOfWork.Commit();
 		}
 
 		#endregion

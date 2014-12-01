@@ -194,11 +194,11 @@
 		initView: {
 			init: function (settings) {
 				$.extend(true, site.news.settings, settings);
-				//site.news.initView.parseBBCode();
+				site.news.initView.parseBBCode();
 			},
 
 			parseBBCode: function () {
-				var $newsDescription = $('.news-description');
+				var $newsDescription = $('.view-news-description');
 
 				if ($newsDescription != undefined) {
 					var htmlContent = $.fn.bbcodeParser($newsDescription.html());

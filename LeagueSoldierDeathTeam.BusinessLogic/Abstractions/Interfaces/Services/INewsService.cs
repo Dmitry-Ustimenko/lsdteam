@@ -12,5 +12,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 		void SaveNews(NewsData data);
 
 		IEnumerable<NewsCategoryData> GetNewsGategories();
+
+		void ChangeCountViews(int id);
 	}
 }
