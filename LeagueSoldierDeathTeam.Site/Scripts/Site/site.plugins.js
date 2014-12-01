@@ -31,6 +31,25 @@
 	};
 })(jQuery);
 
+(function ($) {
+	$.fn.lenghtLimit = function (txtBox, lengthBox, lenght) {
+		if (txtBox != undefined && lengthBox != undefined) {
+			txtBox.on("input keyup paste cut", function () {
+				if (typeof (lenght) == "number") {
+					var leftCharacters = lenght - txtBox.val().length;
+					if (leftCharacters < 0) {
+						lengthBox.addClass("darkred");
+					} else {
+						lengthBox.removeClass("darkred");
+					}
+
+					lengthBox.html(leftCharacters);
+				}
+			});
+		}
+	};
+})(jQuery);
+
 
 (function ($) {
 	$.fn.clock = function (containerClockId) {

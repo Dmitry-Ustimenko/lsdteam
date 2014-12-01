@@ -8,7 +8,7 @@
     [NewsCategoryId] INT NOT NULL, 
     [WriterId] INT NOT NULL, 
     [ImagePath] NVARCHAR(250) NULL, 
-    [Annotation] NVARCHAR(200) NOT NULL DEFAULT 'Аннотация', 
+    [Annotation] NVARCHAR(200) NOT NULL DEFAULT 'Annotation', 
     constraint [PK_dboNews] primary key clustered ([Id])
 );
 

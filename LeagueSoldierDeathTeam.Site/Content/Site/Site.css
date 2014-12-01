@@ -1225,19 +1225,35 @@ a {
 			line-height: 15px;
 		}
 
-	.news .news-header {
-		height: 32px;
+.annotation-label {
+	padding-top: 22px !important;
+}
+
+.annotation-limit {
+	float: right;
+	font-style: italic;
+	font-size: 12px;
+	display: inline-block;
+	margin-bottom: 2px;
+}
+
+	.annotation-limit .annotation-length {
+		color: green;
 	}
 
-		.news .news-header .news-write-link {
-			float: right;
-			margin-top: 7px;
-		}
+.news .news-header {
+	height: 32px;
+}
 
-			.news .news-header .news-write-link .button {
-				padding-left: 35px;
-				padding-right: 35px;
-			}
+	.news .news-header .news-write-link {
+		float: right;
+		margin-top: 7px;
+	}
+
+		.news .news-header .news-write-link .button {
+			padding-left: 35px;
+			padding-right: 35px;
+		}
 
 .news-tabs {
 	text-transform: none;

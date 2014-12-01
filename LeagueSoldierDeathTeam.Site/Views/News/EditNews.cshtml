@@ -41,7 +41,7 @@
 										<input type="file" name="ImageUploadFile" id="ImageUploadFile" accept="image/x-png, image/gif, image/jpeg">
 									</span>
 									<span class="clear-input"></span>
-									@Html.TextBoxFor(m => m.ImageUploadFileName, new { @class = "file-input", @readonly = "readonly", @placeholder = "Выберите фото" })
+									@Html.TextBoxFor(m => m.ImageUploadFileName, new { @class = "file-input", @readonly = "readonly", @placeholder = "Выберите превью" })
 								</div>
 							</div>
 						</div>
@@ -68,10 +68,10 @@
 							</div>
 						</div>
 						<div class="container-item">
-							@Html.LabelFor(m => m.Annotation)
+							@Html.LabelFor(m => m.Annotation, new { @class = "annotation-label" })
 							<div class="field-container">
-								@Html.TextAreaFor(m => m.Annotation, new { @rows = "3", @class = "resize-none" })
-								<div class="description-preview"></div>
+								<span class="annotation-limit">Осталось: <span class="annotation-length">@(150 - Model.Annotation.Length)</span></span>
+								@Html.TextAreaFor(m => m.Annotation, new { @rows = "3", @class = "resize-none", @data_type = "annotation" })
 							</div>
 						</div>
 						<div class="container-item">
