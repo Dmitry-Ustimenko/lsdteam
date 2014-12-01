@@ -34,8 +34,8 @@
 
 .markItUpContainer .markItUpEditor {
 	border-top: none !important;
-	-ms-border-radius: 0 0 3px 3px !important;
-	border-radius: 0 0 3px 3px !important;
+	/*-ms-border-radius: 0 0 3px 3px !important;
+	border-radius: 0 0 3px 3px !important;*/
 }
 
 .markItUpPreviewFrame {
@@ -68,7 +68,7 @@
 /* first row of buttons */
 .markItUpHeader {
 	height: 28px;
-	border-radius: 3px 3px 0 0;
+	/*border-radius: 3px 3px 0 0;*/
 	border: 1px solid #616161;
 	border-bottom: 1px solid #919191;
 	background: rgb(255,255,255);
