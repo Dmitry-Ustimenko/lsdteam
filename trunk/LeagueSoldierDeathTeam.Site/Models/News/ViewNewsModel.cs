@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 
 namespace LeagueSoldierDeathTeam.Site.Models.News
 {
-	public class ViewNewsModel
+	public class ViewNewsModel : BaseCommentModel
 	{
 		public int? Id { get; set; }
 
@@ -15,7 +16,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 
 		public string ImagePath { get; set; }
 
-		public string CreateDate { get; set; }
+		public DateTime CreateDate { get; set; }
 
 		public int WriterId { get; set; }
 

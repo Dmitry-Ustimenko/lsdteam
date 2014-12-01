@@ -1230,11 +1230,13 @@ a {
 .view-news {
 	padding: 10px;
 	padding-top: 0;
+	padding-bottom: 0;
 }
 
 	.view-news .view-news-body {
 		padding: 10px;
 		border: 1px solid #DADADA;
+		border-bottom: none;
 	}
 
 		.view-news .view-news-body .view-news-preview {
@@ -3562,3 +3564,25 @@ textarea.resize-none {
 .platform-tag:hover .platform-icon {
 	background: url(/Images/platform-delete.png) no-repeat;
 }
+
+.comments {
+	margin: 0 10px;
+	padding: 10px 0;
+	padding-top: 0;
+}
+
+	.comments .comments-content {
+		border: 1px solid #dadada;
+		border-top: none;
+	}
+
+	.comments .comments-header {
+		font-size: 16px;
+		padding: 5px 10px;
+		background-color: rgba(0, 0, 0, 0.08);
+	}
+
+	.comments .no-result {
+		border: none;
+		margin-bottom: 0;
+	}

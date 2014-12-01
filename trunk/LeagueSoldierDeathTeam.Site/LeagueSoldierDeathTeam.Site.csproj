@@ -253,6 +253,7 @@
     <Compile Include="Models\Account\RegisterSuccessfullModel.cs" />
     <Compile Include="Models\Administration\AdministrationModel.cs" />
     <Compile Include="Models\Administration\UsersModel.cs" />
+    <Compile Include="Models\BaseCommentModel.cs" />
     <Compile Include="Models\BasePagerModel.cs" />
     <Compile Include="Models\ImagesModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -516,6 +517,7 @@
     <Content Include="Views\News\ViewNews.cshtml" />
     <Content Include="Views\News\NewsData.cshtml" />
     <Content Include="Views\Home\TopNewsData.cshtml" />
+    <Content Include="Views\Shared\_CommentFeedPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

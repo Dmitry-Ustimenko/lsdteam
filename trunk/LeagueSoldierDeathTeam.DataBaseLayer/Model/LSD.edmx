@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="LSDDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="WriterId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="int" Nullable="false" />
+          <Property Name="ModifierDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Game">
           <Key>
             <PropertyRef Name="Id" />
@@ -57,6 +68,14 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="ShortName" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsId" Type="int" Nullable="false" />
+          <Property Name="CommentId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="NewsPlatform">
           <Key>
@@ -269,6 +288,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_NewsComment_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NewsComment" Type="Self.NewsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NewsComment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewsComment_News">
+          <End Role="News" Type="Self.News" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NewsComment" Type="Self.NewsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NewsComment">
+              <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NewsPlatform_News">
           <End Role="News" Type="Self.News" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -374,11 +421,13 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="LSDDataModelStoreContainer">
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GameCategory" EntityType="Self.GameCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GamePlatform" EntityType="Self.GamePlatform" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsCategory" EntityType="Self.NewsCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsComment" EntityType="Self.NewsComment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsPlatform" EntityType="Self.NewsPlatform" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Platform" EntityType="Self.Platform" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -417,6 +466,14 @@
           <AssociationSet Name="FK_News_User" Association="Self.FK_News_User">
             <End Role="User" EntitySet="User" />
             <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewsComment_Comment" Association="Self.FK_NewsComment_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="NewsComment" EntitySet="NewsComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewsComment_News" Association="Self.FK_NewsComment_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="NewsComment" EntitySet="NewsComment" />
           </AssociationSet>
           <AssociationSet Name="FK_NewsPlatform_News" Association="Self.FK_NewsPlatform_News">
             <End Role="News" EntitySet="News" />
@@ -532,6 +589,16 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserMessage" EntitySet="UserMessages" />
           </AssociationSet>
+          <EntitySet Name="Comments" EntityType="LSDDataModel.Comment" />
+          <EntitySet Name="NewsComments" EntityType="LSDDataModel.NewsComment" />
+          <AssociationSet Name="FK_NewsComment_Comment" Association="LSDDataModel.FK_NewsComment_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="NewsComment" EntitySet="NewsComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewsComment_News" Association="LSDDataModel.FK_NewsComment_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="NewsComment" EntitySet="NewsComments" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Game">
           <Key>
@@ -585,6 +652,7 @@
           <NavigationProperty Name="NewsPlatforms" Relationship="LSDDataModel.FK_NewsPlatform_News" FromRole="News" ToRole="NewsPlatform" />
           <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Annotation" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NewsComments" Relationship="LSDDataModel.FK_NewsComment_News" FromRole="News" ToRole="NewsComment" />
         </EntityType>
         <EntityType Name="NewsCategory">
           <Key>
@@ -931,6 +999,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WriterId" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Int32" Nullable="false" />
+          <Property Name="ModifierDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="NewsComments" Relationship="LSDDataModel.FK_NewsComment_Comment" FromRole="Comment" ToRole="NewsComment" />
+        </EntityType>
+        <EntityType Name="NewsComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsId" Type="Int32" Nullable="false" />
+          <Property Name="CommentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comment" Relationship="LSDDataModel.FK_NewsComment_Comment" FromRole="NewsComment" ToRole="Comment" />
+          <NavigationProperty Name="News" Relationship="LSDDataModel.FK_NewsComment_News" FromRole="NewsComment" ToRole="News" />
+        </EntityType>
+        <Association Name="FK_NewsComment_Comment">
+          <End Type="LSDDataModel.Comment" Role="Comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.NewsComment" Role="NewsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NewsComment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewsComment_News">
+          <End Type="LSDDataModel.News" Role="News" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LSDDataModel.NewsComment" Role="NewsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NewsComment">
+              <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1119,6 +1237,27 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Token" ColumnName="Token" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="LSDDataModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="ModifierDate" ColumnName="ModifierDate" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsComments">
+            <EntityTypeMapping TypeName="LSDDataModel.NewsComment">
+              <MappingFragment StoreEntitySet="NewsComment">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="NewsId" ColumnName="NewsId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

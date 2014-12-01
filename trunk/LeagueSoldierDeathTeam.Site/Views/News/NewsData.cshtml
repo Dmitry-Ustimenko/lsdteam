@@ -19,7 +19,7 @@
 					<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.ViewNews(item.Id)))">@item.Title</a>
 				</div>
 				<div class="news-additional">
-					<span class="news-additional-date">@item.CreateDate.ToShortDateString()</span>
+					<span class="news-additional-date">@item.CreateDate.ToLongDateString()</span>
 					<span class="news-additional-views">@item.CountViews</span>
 					<span class="news-additional-comments">Комменты</span>
 					<span class="news-additional-writer">

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<LeagueSoldierDeathTeam.BusinessLogic.Dto.CommentData>
+
+@{
+	Layout = null;
+}
+
+<div class="comments">
+	<div class="comments-content">
+		<div class="comments-header">Комментарии</div>
+		@if (Model.Any())
+		{
+			<div></div>
+		}
+		else
+		{
+			<div class="no-result">Нет комментариев</div>
+		}
+	</div>
+</div>

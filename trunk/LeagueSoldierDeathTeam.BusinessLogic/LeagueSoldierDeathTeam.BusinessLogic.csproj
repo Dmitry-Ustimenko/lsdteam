@@ -73,6 +73,7 @@
     <Compile Include="Abstractions\Interfaces\Services\IAccountService.cs" />
     <Compile Include="Classes\Enums\RoleEnum.cs" />
     <Compile Include="Classes\Enums\SexEnum.cs" />
+    <Compile Include="Dto\CommentData.cs" />
     <Compile Include="Dto\NewsCategoryData.cs" />
     <Compile Include="Dto\NewsData.cs" />
     <Compile Include="Dto\PlatformData.cs" />
