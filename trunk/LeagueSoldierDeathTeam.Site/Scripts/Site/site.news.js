@@ -196,16 +196,7 @@
 			init: function (settings) {
 				$.extend(true, site.news.settings, settings);
 				site.news.initView.parseBBCode();
-				site.news.initView.initNewCommment();
-			},
-
-			initNewCommment: function () {
-				var $description = $(site.news.settings.elements.commentDescription);
-
-				if ($description != undefined) {
-					$description.markItUp(myCommentSettings);
-					site.news.initView.parseCommentPreviewBBCode();
-				}
+				$.fn.initNewCommment();
 			},
 
 			parseBBCode: function () {
@@ -217,37 +208,6 @@
 
 					$.fn.slideSpoiler($newsDescription);
 				}
-			},
-
-			parseCommentPreviewBBCode: function () {
-				var $description = $(site.news.settings.elements.commentDescription);
-				var $descriptionPreview = $(".description-preview");
-				var $descriptionFooter = $(".markItUpFooter");
-				var $previewLink = $("[data-type=preview]");
-
-				$previewLink.off("click").on("click", function () {
-					if ($descriptionPreview != undefined) {
-						var htmlContent = $.fn.bbcodeCustomParser($description.val());
-						if (htmlContent != undefined && htmlContent.trim() != '') {
-							$descriptionPreview.html(htmlContent);
-							$descriptionPreview.fadeIn("fast");
-							$descriptionFooter.fadeIn("fast");
-
-							$.fn.slideSpoiler($descriptionPreview);
-						}
-					}
-				});
-
-				$description.keypress(function (e) {
-					e = e || window.event;
-
-					if (e.shiftKey && (e.which == 13 || e.keyCode == 13)) {
-						$previewLink.click();
-						return false;
-					}
-
-					return true;
-				});
 			},
 		}
 	};

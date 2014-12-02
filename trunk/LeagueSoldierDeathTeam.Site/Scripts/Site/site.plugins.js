@@ -112,6 +112,49 @@
 })(jQuery);
 
 (function ($) {
+	$.fn.parseCommentPreviewBBCode = function (description) {
+		var $descriptionPreview = $(".description-preview");
+		var $descriptionFooter = $(".markItUpFooter");
+		var $previewLink = $("[data-type=preview]");
+
+		$previewLink.off("click").on("click", function () {
+			if ($descriptionPreview != undefined) {
+				var htmlContent = $.fn.bbcodeCustomParser(description.val());
+				if (htmlContent != undefined && htmlContent.trim() != '') {
+					$descriptionPreview.html(htmlContent);
+					$descriptionPreview.fadeIn("fast");
+					$descriptionFooter.fadeIn("fast");
+
+					$.fn.slideSpoiler($descriptionPreview);
+				}
+			}
+		});
+
+		description.keypress(function (e) {
+			e = e || window.event;
+
+			if (e.shiftKey && (e.which == 13 || e.keyCode == 13)) {
+				$previewLink.click();
+				return false;
+			}
+
+			return true;
+		});
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.initNewCommment = function () {
+		var $description = $("#CommentDescription");
+
+		if ($description != undefined) {
+			$description.markItUp(myCommentSettings);
+			$.fn.parseCommentPreviewBBCode($description);
+		}
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.slideSpoiler = function (content) {
 		var $spoilers;
 		if (content != undefined) {
