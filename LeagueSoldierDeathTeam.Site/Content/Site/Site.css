@@ -3593,7 +3593,7 @@ textarea.resize-none {
 
 			.comments .comments-content .comments-creator .comments-body .comments-btn {
 				text-align: right;
-				margin-top: 1px;
+				margin-top: 2px;
 			}
 
 			.comments .comments-content .comments-creator .comments-body textarea {
@@ -3632,7 +3632,7 @@ textarea.resize-none {
 
 			.comments .comments-content .comments-creator .comments-body .description-preview {
 				border: 1px solid #8E8E8E !important;
-				margin-bottom: 3px;
+				margin-bottom: 4px;
 				margin-top: 2px;
 				min-height: 160px;
 				max-height: 450px;
