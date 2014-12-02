@@ -196,15 +196,15 @@
 			init: function (settings) {
 				$.extend(true, site.news.settings, settings);
 				site.news.initView.parseBBCode();
-				//site.news.initView.initAddDescription();
+				site.news.initView.initNewCommment();
 			},
 
-			initAddDescription: function () {
+			initNewCommment: function () {
 				var $description = $(site.news.settings.elements.commentDescription);
 
 				if ($description != undefined) {
-					$description.markItUp(mySettings);
-					//site.news.initEdit.parseBBCode($description);
+					$description.markItUp(myCommentSettings);
+					site.news.initView.parsePreviewBBCode();
 				}
 			},
 
@@ -222,6 +222,7 @@
 			parsePreviewBBCode: function () {
 				var $description = $(site.news.settings.elements.commentDescription);
 				var $descriptionPreview = $(".description-preview");
+				var $descriptionFooter = $(".markItUpFooter");
 				var $previewLink = $("[data-type=preview]");
 
 				$previewLink.off("click").on("click", function () {
@@ -230,6 +231,7 @@
 						if (htmlContent != undefined && htmlContent.trim() != '') {
 							$descriptionPreview.html(htmlContent);
 							$descriptionPreview.fadeIn("fast");
+							$descriptionFooter.fadeIn("fast");
 
 							$.fn.slideSpoiler($descriptionPreview);
 						}

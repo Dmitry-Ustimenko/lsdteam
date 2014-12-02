@@ -3281,8 +3281,6 @@ textarea.resize-none {
 	}
 
 .simple-page-body .description-preview {
-	-ms-border-radius: 3px;
-	border-radius: 3px;
 	margin-top: 3px;
 	border: 1px solid #616161;
 	font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
@@ -3584,9 +3582,6 @@ textarea.resize-none {
 			background-color: rgba(0, 0, 0, 0.08);
 		}
 
-		.comments .comments-content .comments-body {
-		}
-
 		.comments .comments-content .no-result {
 			border: none;
 			margin-bottom: 0;
@@ -3594,8 +3589,12 @@ textarea.resize-none {
 
 		.comments .comments-content .comments-creator .comments-body {
 			margin: 10px;
-			text-align: right;
 		}
+
+			.comments .comments-content .comments-creator .comments-body .comments-btn {
+				text-align: right;
+				margin-top: 1px;
+			}
 
 			.comments .comments-content .comments-creator .comments-body textarea {
 				width: 100%;
@@ -3619,4 +3618,91 @@ textarea.resize-none {
 					-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
 					-ms-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
 					box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+				}
+
+			.comments .comments-content .comments-creator .comments-body .markItUpHeader {
+				border: 1px solid rgb(169, 169, 169) !important;
+			}
+
+			.comments .comments-content .comments-creator .comments-body .comment-description.markItUpEditor {
+				height: 156px !important;
+				border: 1px solid rgb(169, 169, 169) !important;
+				border-top: none !important;
+			}
+
+			.comments .comments-content .comments-creator .comments-body .description-preview {
+				border: 1px solid rgb(169, 169, 169) !important;
+				margin-bottom: 3px;
+				margin-top: 2px;
+				height: 160px;
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpFooter {
+				display: none;
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton1 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/bold.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton2 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/italic.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton3 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/underline.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton4 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/strike.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton5 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/justify.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton6 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/right.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton7 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/center.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton8 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/left.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton9 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/picture.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton10 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/link.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton11 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/youtube.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton12 ul li a {
+				background-image: none;
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton13 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/quotes.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton14 a {
+				background-image: url(/Content/Plugins/HtmlEditor/sets/images/code.png);
+			}
+
+			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton15 {
+				padding: 6px 6px 5px 6px;
+			}
+
+				.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton15 a {
+					background-image: url(/Content/Plugins/HtmlEditor/sets/images/spoiler.png);
+					width: 15px;
+					height: 15px;
 				}

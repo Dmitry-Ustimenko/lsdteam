@@ -157,6 +157,7 @@
 .markItUp .emoticon ul a {
 	width: 93px; /*width: 70px;*/
 	/*height: 70px;*/
+	text-align: left;
 }
 
 .markItUp .emoticon ul li a {

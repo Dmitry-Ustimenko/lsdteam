@@ -20,10 +20,12 @@
 		<div class="comments-creator">
 			<div class="comments-header">Новый комментарий</div>
 			<div class="comments-body">
-				@Html.TextArea("CommentDescription", new { @rows = "5", @class = "resize-none", @data_type = "comment-description" })
-				<span class="comment-add-btn" data-type="preview">Предпросмотр</span>
-				<span class="comment-add-btn" data-type="add">Добавить</span>
+				@Html.TextArea("CommentDescription", new { @rows = "9", @class = "resize-none comment-description", @data_type = "comment-description" })
 				<div class="description-preview"></div>
+				<div class="comments-btn">
+					<span class="comment-add-btn" data-type="preview">Предпросмотр</span>
+					<span class="comment-add-btn" data-type="add">Добавить</span>
+				</div>
 			</div>
 		</div>
 	</div>
