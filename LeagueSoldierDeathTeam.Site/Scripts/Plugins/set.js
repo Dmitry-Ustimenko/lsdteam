@@ -94,33 +94,34 @@
 		{ name: 'Горизонтальная линия', openWith: '[hr]' }
 	]
 },
-	myCommentSettings = {
-		previewAutoRefresh: false,
-		previewParser: function (content) {
-			return $.fn.bbcodeParser(content);
-		},
-		markupSet: [
-		{ name: 'Жирный', display: false, key: 'B', openWith: '[b]', closeWith: '[/b]' },
-		{ name: 'Наклонный', display: false, key: 'I', openWith: '[i]', closeWith: '[/i]' },
-		{ name: 'Подчеркнутый', display: false, key: 'U', openWith: '[u]', closeWith: '[/u]' },
-		{ name: 'Зачеркнутый', display: false, key: 'S', openWith: '[s]', closeWith: '[/s]' },
-		{ separator: '---------------' },
-		{ name: 'Выровнять по ширине', display: false, openWith: '[align=justify]', closeWith: '[/align]' },
-		{ name: 'Выровнять вправо', display: false, openWith: '[align=right]', closeWith: '[/align]' },
-		{ name: 'Выровнять по центру', display: false, openWith: '[align=center]', closeWith: '[/align]' },
-		{ name: 'Выровнять влево', display: false, openWith: '[align=left]', closeWith: '[/align]' },
-		{ separator: '---------------' },
-		{ name: 'Картинка', display: false, key: 'P', replaceWith: '[img][![Адрес картинки::!:http://]!][/img]' },
-		{ name: 'Ссылка', display: false, key: 'L', openWith: '[url=[![Адрес сайта::!:http://]!]]', closeWith: '[/url]' },
-		{ name: 'Youtube', display: false, key: 'Y', replaceWith: '[youtube][![Youtube адрес::!:http://]!][/youtube]' },
-		{
-			name: 'Смайлики', display: false, className: 'emoticon', dropMenu: [
-				{ name: 'В разработке', openWith: '', className: '' }
-			]
-		},
-		{ separator: '---------------' },
-		{ name: 'Цитата', display: false, openWith: '[quote]', closeWith: '[/quote]' },
-		{ name: 'Код', display: false, openWith: '[code]', closeWith: '[/code]' },
-		{ name: 'Спойлер', display: false, openWith: '[spoiler]', closeWith: '[/spoiler]' }
+
+myCommentSettings = {
+	previewAutoRefresh: false,
+	previewParser: function (content) {
+		return $.fn.bbcodeParser(content);
+	},
+	markupSet: [
+	{ name: 'Жирный', display: false, key: 'B', openWith: '[b]', closeWith: '[/b]' },
+	{ name: 'Наклонный', display: false, key: 'I', openWith: '[i]', closeWith: '[/i]' },
+	{ name: 'Подчеркнутый', display: false, key: 'U', openWith: '[u]', closeWith: '[/u]' },
+	{ name: 'Зачеркнутый', display: false, key: 'S', openWith: '[s]', closeWith: '[/s]' },
+	{ separator: '---------------' },
+	{ name: 'Выровнять по ширине', display: false, openWith: '[align=justify]', closeWith: '[/align]' },
+	{ name: 'Выровнять вправо', display: false, openWith: '[align=right]', closeWith: '[/align]' },
+	{ name: 'Выровнять по центру', display: false, openWith: '[align=center]', closeWith: '[/align]' },
+	{ name: 'Выровнять влево', display: false, openWith: '[align=left]', closeWith: '[/align]' },
+	{ separator: '---------------' },
+	{ name: 'Картинка', display: false, key: 'P', replaceWith: '[img][![Адрес картинки::!:http://]!][/img]' },
+	{ name: 'Ссылка', display: false, key: 'L', openWith: '[url=[![Адрес сайта::!:http://]!]]', closeWith: '[/url]' },
+	{ name: 'Youtube', display: false, key: 'Y', replaceWith: '[youtube][![Youtube адрес::!:http://]!][/youtube]' },
+	{
+		name: 'Смайлики', display: false, className: 'emoticon', dropMenu: [
+			{ name: 'В разработке', openWith: '', className: '' }
 		]
-	}
+	},
+	{ separator: '---------------' },
+	{ name: 'Цитата', display: false, openWith: '[quote]', closeWith: '[/quote]' },
+	{ name: 'Код', display: false, openWith: '[code]', closeWith: '[/code]' },
+	{ name: 'Спойлер', display: false, openWith: '[spoiler]', closeWith: '[/spoiler]' }
+	]
+}

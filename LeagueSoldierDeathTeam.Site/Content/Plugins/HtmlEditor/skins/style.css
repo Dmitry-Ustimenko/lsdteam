@@ -69,8 +69,8 @@
 .markItUpHeader {
 	height: 28px;
 	/*border-radius: 3px 3px 0 0;*/
-	border: 1px solid #616161;
-	border-bottom: 1px solid #919191;
+	border:1px solid #8E8E8E;
+	border-bottom: 1px solid #8E8E8E;
 	background: rgb(255,255,255);
 	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
