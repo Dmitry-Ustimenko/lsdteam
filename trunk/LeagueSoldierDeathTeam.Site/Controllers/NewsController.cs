@@ -12,6 +12,7 @@ using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
+using LeagueSoldierDeathTeam.Site.Models;
 using LeagueSoldierDeathTeam.Site.Models.News;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -86,6 +87,39 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			}
 
 			return RedirectToAction<NewsController>(o => o.News());
+		}
+
+		[AjaxOrChildActionOnly]
+		[Route("news-comment-data")]
+		public ActionResult NewsCommentData(int? id)
+		{
+			var model = new CommentModel
+			{
+				ContentId = id.GetValueOrDefault()
+			};
+			FillCommentModel(model);
+			return View(model);
+		}
+
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		[Route("add-news-comment")]
+		public ActionResult AddNewComment(CommentModel model)
+		{
+			var comment = new CommentData
+			{
+				CreateDate = DateTime.UtcNow,
+				Description = model.CommentDescription,
+				ModifierDate = DateTime.UtcNow,
+				Rate = default(int),
+				Writer = new UserData { Id = CurrentUser.Id }
+			};
+
+			Execute(() => _newsService.AddNewsComment(model.ContentId, comment));
+
+			FillCommentModel(model);
+
+			return View("NewsCommentData", model);
 		}
 
 		[HttpPost]
@@ -203,6 +237,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			var pagerData = (Execute(() => _newsService.GetNews(model.NewsCategoryId, model.PlatformId, model.SortId, model.Pager.PageId, model.Pager.PageSize))
 				?? new PageData<NewsData>());
 			model.CopyFrom(pagerData);
+		}
+
+		private void FillCommentModel(CommentModel model)
+		{
+			model.Data = Execute(() => _newsService.GetNewsComments(model.ContentId)) ?? new List<CommentData>();
 		}
 
 		private void ValidateUploadFile(EditNewsModel model)

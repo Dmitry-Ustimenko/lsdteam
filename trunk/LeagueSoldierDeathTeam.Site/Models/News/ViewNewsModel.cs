@@ -4,7 +4,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 
 namespace LeagueSoldierDeathTeam.Site.Models.News
 {
-	public class ViewNewsModel : BaseCommentModel
+	public class ViewNewsModel
 	{
 		public int? Id { get; set; }
 

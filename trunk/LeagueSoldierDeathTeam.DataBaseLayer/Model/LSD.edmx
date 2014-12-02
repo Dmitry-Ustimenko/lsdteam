@@ -194,6 +194,18 @@
           <Property Name="Token" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dboUserActivateToken_dboUser">
           <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -439,6 +451,10 @@
           <EntitySet Name="UserMessage" EntityType="Self.UserMessage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMessageType" EntityType="Self.UserMessageType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserResetToken" EntityType="Self.UserResetToken" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
           <AssociationSet Name="FK_dboUserActivateToken_dboUser" Association="Self.FK_dboUserActivateToken_dboUser">
             <End Role="User" EntitySet="User" />
             <End Role="UserActivateToken" EntitySet="UserActivateToken" />
@@ -599,6 +615,10 @@
             <End Role="News" EntitySet="News" />
             <End Role="NewsComment" EntitySet="NewsComments" />
           </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="LSDDataModel.FK_Comment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Game">
           <Key>
@@ -722,6 +742,7 @@
           <NavigationProperty Name="UserInfoes" Relationship="LSDDataModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
           <NavigationProperty Name="RecipientMessage" Relationship="LSDDataModel.FK_UserMessage_UserRecipient" FromRole="User" ToRole="UserMessage" />
           <NavigationProperty Name="SenderMessage" Relationship="LSDDataModel.FK_UserMessage_UserSender" FromRole="User" ToRole="UserMessage" />
+          <NavigationProperty Name="Comments" Relationship="LSDDataModel.FK_Comment_User" FromRole="User" ToRole="Comment" />
         </EntityType>
         <EntityType Name="UserActivateToken">
           <Key>
@@ -1010,6 +1031,7 @@
           <Property Name="Rate" Type="Int32" Nullable="false" />
           <Property Name="ModifierDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="NewsComments" Relationship="LSDDataModel.FK_NewsComment_Comment" FromRole="Comment" ToRole="NewsComment" />
+          <NavigationProperty Name="Writer" Relationship="LSDDataModel.FK_Comment_User" FromRole="Comment" ToRole="User" />
         </EntityType>
         <EntityType Name="NewsComment">
           <Key>
@@ -1046,6 +1068,18 @@
             </Principal>
             <Dependent Role="NewsComment">
               <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Type="LSDDataModel.User" Role="User" Multiplicity="1" />
+          <End Type="LSDDataModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="WriterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

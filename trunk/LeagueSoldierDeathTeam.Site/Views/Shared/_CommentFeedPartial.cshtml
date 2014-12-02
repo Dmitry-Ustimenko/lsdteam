@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LeagueSoldierDeathTeam.BusinessLogic.Dto.CommentData>
+﻿@model LeagueSoldierDeathTeam.Site.Models.CommentModel
 
 @{
 	Layout = null;
@@ -8,9 +8,9 @@
 	<div class="comments-content">
 		<div class="comments-header">Комментарии</div>
 		<div class="comments-body">
-			@if (Model.Any())
+			@if (Model.Data.Any())
 			{
-				<div></div>
+				<div>Коммент</div>
 			}
 			else
 			{
@@ -19,14 +19,19 @@
 		</div>
 		<div class="comments-creator">
 			<div class="comments-header">Новый комментарий</div>
-			<div class="comments-body">
-				@Html.TextArea("CommentDescription", new { @rows = "9", @class = "resize-none comment-description", @data_type = "comment-description" })
-				<div class="description-preview"></div>
-				<div class="comments-btn">
-					<span class="comment-add-btn" data-type="preview">Предпросмотр</span>
-					<span class="comment-add-btn" data-type="add">Добавить</span>
+			@using (Html.BeginForm())
+			{
+				@Html.HiddenFor(m => m.ContentId)
+				<div class="comments-body">
+					@Html.ValidationSummary()
+					@Html.TextAreaFor(m => m.CommentDescription, new { @rows = "9", @class = "resize-none comment-description", @data_type = "comment-description" })
+					<div class="description-preview"></div>
+					<div class="comments-btn">
+						<span class="comment-add-btn" data-type="preview">Предпросмотр</span>
+						<span class="comment-add-btn" data-type="add">Добавить</span>
+					</div>
 				</div>
-			</div>
+			}
 		</div>
 	</div>
 </div>
