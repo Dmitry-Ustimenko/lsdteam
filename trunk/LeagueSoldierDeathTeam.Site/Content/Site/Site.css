@@ -3592,6 +3592,8 @@ textarea.resize-none {
 		}
 
 			.comments .comments-content .comments-body .comment {
+				clear: both;
+				border: 1px solid #dadada;
 			}
 
 				.comments .comments-content .comments-body .comment .comment-writer {
