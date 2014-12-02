@@ -204,7 +204,7 @@
 
 				if ($description != undefined) {
 					$description.markItUp(myCommentSettings);
-					site.news.initView.parsePreviewBBCode();
+					site.news.initView.parseCommentPreviewBBCode();
 				}
 			},
 
@@ -219,7 +219,7 @@
 				}
 			},
 
-			parsePreviewBBCode: function () {
+			parseCommentPreviewBBCode: function () {
 				var $description = $(site.news.settings.elements.commentDescription);
 				var $descriptionPreview = $(".description-preview");
 				var $descriptionFooter = $(".markItUpFooter");
@@ -227,7 +227,7 @@
 
 				$previewLink.off("click").on("click", function () {
 					if ($descriptionPreview != undefined) {
-						var htmlContent = $.fn.bbcodeParser($description.val());
+						var htmlContent = $.fn.bbcodeCustomParser($description.val());
 						if (htmlContent != undefined && htmlContent.trim() != '') {
 							$descriptionPreview.html(htmlContent);
 							$descriptionPreview.fadeIn("fast");

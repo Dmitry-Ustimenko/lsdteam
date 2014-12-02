@@ -954,7 +954,7 @@ a {
 	padding: 8px 5px;
 	margin-bottom: 10px;
 	font-size: 12px;
-	border: 1px solid #616161;
+	border: 1px solid #8E8E8E;
 	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 	-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 	box-shadow: 0 1px 0 rgba(255,255,255,0.1);
@@ -3220,7 +3220,7 @@ textarea.resize-none {
 		width: 100%;
 		padding: 8px 5px;
 		font-size: 13px;
-		border: 1px solid #616161;
+		border: 1px solid #8E8E8E;
 		-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 		-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 		box-shadow: 0 1px 0 rgba(255,255,255,0.1);
@@ -3282,7 +3282,7 @@ textarea.resize-none {
 
 .simple-page-body .description-preview {
 	margin-top: 3px;
-	border: 1px solid #616161;
+	border: 1px solid #8E8E8E;
 	font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
 	max-height: 600px;
 	display: none;
@@ -3604,7 +3604,7 @@ textarea.resize-none {
 
 			.comments .comments-content .comments-creator .comments-body .comment-add-btn {
 				display: inline-block;
-				border: 1px solid rgb(169, 169, 169);
+				border: 1px solid #8E8E8E;
 				padding: 4px 15px;
 				cursor: pointer;
 				background-color: rgba(0, 0, 0, 0.05);
@@ -3621,20 +3621,21 @@ textarea.resize-none {
 				}
 
 			.comments .comments-content .comments-creator .comments-body .markItUpHeader {
-				border: 1px solid rgb(169, 169, 169) !important;
+				border: 1px solid #8E8E8E !important;
 			}
 
 			.comments .comments-content .comments-creator .comments-body .comment-description.markItUpEditor {
 				height: 156px !important;
-				border: 1px solid rgb(169, 169, 169) !important;
+				border: 1px solid #8E8E8E !important;
 				border-top: none !important;
 			}
 
 			.comments .comments-content .comments-creator .comments-body .description-preview {
-				border: 1px solid rgb(169, 169, 169) !important;
+				border: 1px solid #8E8E8E !important;
 				margin-bottom: 3px;
 				margin-top: 2px;
-				height: 160px;
+				min-height: 160px;
+				max-height: 450px;
 			}
 
 			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpFooter {
