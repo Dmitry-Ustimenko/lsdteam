@@ -4,7 +4,8 @@
 		settings: {
 			urls: {
 				refreshGrid: '',
-				deleteNews: ''
+				deleteNews: '',
+				addNewsComment: ''
 			},
 			vars: {
 				form: null
@@ -17,7 +18,8 @@
 				form: '#form',
 				content: '#content',
 				pager: '#pager',
-				commentDescription: '#CommentDescription'
+				commentDescription: '#CommentDescription',
+				comments: '#comments'
 			}
 		},
 
@@ -196,7 +198,11 @@
 			init: function (settings) {
 				$.extend(true, site.news.settings, settings);
 				site.news.initView.parseBBCode();
-				$.fn.initNewCommment();
+				site.news.initView.initComments();
+			},
+
+			initComments: function () {
+				$.fn.initNewCommment(site.news.settings.elements.comments, site.news.settings.urls.addNewsComment);
 			},
 
 			parseBBCode: function () {

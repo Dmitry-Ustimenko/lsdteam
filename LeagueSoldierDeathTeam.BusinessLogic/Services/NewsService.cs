@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess.Repositories;
@@ -27,6 +26,10 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 		private readonly IRepository<NewsPlatform> _newsPlatformRepository;
 
+		private readonly IRepository<Comment> _commentRepository;
+
+		private readonly IRepository<NewsComment> _newsCommentRepository;
+
 		#endregion
 
 		#region Constructors
@@ -42,6 +45,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			_newsCategoryRepository = repositoryFactory.CreateRepository<NewsCategory>();
 			_platformRepository = repositoryFactory.CreateRepository<Platform>();
 			_newsPlatformRepository = repositoryFactory.CreateRepository<NewsPlatform>();
+			_commentRepository = repositoryFactory.CreateRepository<Comment>();
+			_newsCommentRepository = repositoryFactory.CreateRepository<NewsComment>();
 		}
 
 		#endregion
@@ -183,6 +188,53 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 
 			entity.CountViews = count;
 			UnitOfWork.Commit();
+		}
+
+		void INewsService.AddNewsComment(int newsId, CommentData data)
+		{
+			var news = _newsRepository.Query(o => o.Id == newsId).SingleOrDefault();
+			if (news == null)
+				throw new ArgumentException("Данной новости не существует");
+
+			var writer = _userRepository.Query(o => o.Id == data.Writer.Id).SingleOrDefault();
+			if (writer == null)
+				throw new ArgumentException("Данного пользователя не существует");
+
+			var comment = new Comment
+			{
+				CreateDate = data.CreateDate,
+				Description = data.Description,
+				ModifierDate = data.ModifierDate,
+				Rate = data.Rate,
+				Writer = writer
+			};
+
+			_commentRepository.Add(comment);
+			_newsCommentRepository.Add(new NewsComment { News = news, Comment = comment });
+
+			UnitOfWork.Commit();
+		}
+
+		IEnumerable<CommentData> INewsService.GetNewsComments(int newsId)
+		{
+			var news = _newsRepository.Query(o => o.Id == newsId).SingleOrDefault();
+			if (news == null)
+				throw new ArgumentException("Данной новости не существует");
+
+			var comments = news.NewsComments.Select(o => new CommentData
+			{
+				Id = o.Comment.Id,
+				Description = o.Comment.Description,
+				CreateDate = o.Comment.CreateDate,
+				ModifierDate = o.Comment.ModifierDate,
+				Rate = o.Comment.Rate,
+				Writer = o.Comment.Writer != null
+					? new UserData { Id = o.Comment.Writer.Id, UserName = o.Comment.Writer.UserName, PhotoPath = o.Comment.Writer.PhotoPath }
+					: new UserData(),
+				ContentId = o.NewsId
+			}).ToList();
+
+			return comments;
 		}
 
 		#endregion

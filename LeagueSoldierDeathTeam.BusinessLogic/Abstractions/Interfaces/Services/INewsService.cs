@@ -14,5 +14,9 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 		IEnumerable<NewsCategoryData> GetNewsGategories();
 
 		void ChangeCountViews(int id);
+
+		void AddNewsComment(int newsId, CommentData data);
+
+		IEnumerable<CommentData> GetNewsComments(int newsId);
 	}
 }

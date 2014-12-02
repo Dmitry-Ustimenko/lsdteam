@@ -144,13 +144,25 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.initNewCommment = function () {
+	$.fn.initNewCommment = function (content, url) {
 		var $description = $("#CommentDescription");
+		var $addCommentBtn = $("[data-type=add]");
+		var form = $addCommentBtn.closest("form");
 
 		if ($description != undefined) {
 			$description.markItUp(myCommentSettings);
 			$.fn.parseCommentPreviewBBCode($description);
 		}
+
+		$addCommentBtn.off("click").on("click", function () {
+			if (form.valid()) {
+				var params = $.fn.serializeParams(form);
+
+				$(content).loadData(url, params, function () {
+					$.fn.initNewCommment(content, url);
+				});
+			}
+		});
 	};
 })(jQuery);
 

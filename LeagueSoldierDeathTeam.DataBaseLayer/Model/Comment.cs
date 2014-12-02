@@ -27,5 +27,6 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public System.DateTime ModifierDate { get; set; }
     
         public virtual ICollection<NewsComment> NewsComments { get; set; }
+        public virtual User Writer { get; set; }
     }
 }
