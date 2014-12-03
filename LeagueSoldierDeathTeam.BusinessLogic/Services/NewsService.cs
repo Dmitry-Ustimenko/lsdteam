@@ -230,7 +230,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				ModifierDate = o.Comment.ModifierDate,
 				Rate = o.Comment.Rate,
 				Writer = o.Comment.Writer != null
-					? new UserData { Id = o.Comment.Writer.Id, UserName = o.Comment.Writer.UserName, PhotoPath = o.Comment.Writer.PhotoPath }
+					? new UserData { Id = o.Comment.Writer.Id, UserName = o.Comment.Writer.UserName, PhotoPath = o.Comment.Writer.PhotoPath, RoleId = o.Comment.Writer.RoleId }
 					: new UserData(),
 				ContentId = o.NewsId
 			}).OrderByDescending(o => o.CreateDate).ToList();

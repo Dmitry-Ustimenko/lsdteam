@@ -144,7 +144,7 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.initNewCommment = function (url) {
+	$.fn.initNewComment = function (url) {
 		var $description = $("#CommentDescription");
 		var $addCommentBtn = $("[data-type=add]");
 		var form = $addCommentBtn.closest("form");
@@ -160,7 +160,7 @@
 				var params = $.fn.serializeParams(form);
 				$("#comment-feed").loadData(url, params, function () {
 					$description.val("");
-					$.fn.parseCommentFeedBBCode();
+					$.fn.initCommentFeed();
 
 					$('html, body').animate({
 						scrollTop: commentsHeader.offset().top - 38
@@ -168,6 +168,12 @@
 				});
 			}
 		});
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.changeCommentRate = function () {
+
 	};
 })(jQuery);
 
@@ -191,7 +197,7 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.parseCommentFeedBBCode = function () {
+	$.fn.initCommentFeed = function () {
 		var $feed = $("#comment-feed");
 
 		$feed.find(".comment > .comment-description-rate > .description").each(function () {
