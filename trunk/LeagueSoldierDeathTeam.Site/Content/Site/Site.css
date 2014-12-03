@@ -3599,20 +3599,70 @@ textarea.resize-none {
 
 				.comments .comments-content .comments-body .comment .comment-writer {
 					display: inline-block;
-					width: 12%;
+					width: 13%;
 					height: inherit;
 				}
 
 					.comments .comments-content .comments-body .comment .comment-writer .comment-writer-photo {
-						width: 50px;
-						height: 50px;
+						width: 60px;
+						height: 60px;
+						-webkit-box-shadow: 3px 3px 5px rgba(153, 153, 153, 0.8);
+						-ms-box-shadow: 3px 3px 5px rgba(153, 153, 153, 0.8);
+						box-shadow: 3px 3px 5px rgba(153, 153, 153, 0.8);
+						border: 1px solid #DDD;
 					}
+
+					.comments .comments-content .comments-body .comment .comment-writer .comment-writer-name {
+						width: 100px;
+						display: inline-block;
+						padding: 2px;
+						padding-top: 0;
+					}
+
+					.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions {
+						width: 100px;
+					}
+
+						.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a {
+							border: 1px solid #dadada;
+							display: inline-block;
+							height: 25px;
+							width: 100px;
+							padding: 2px;
+							position: relative;
+							background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+							background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(221, 221, 221, 1) 100%);
+							background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgbargba(221, 221, 221, 1)));
+							background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
+							background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
+							background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
+							background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
+							filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+						}
+
+							.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a:active {
+								-webkit-box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15);
+								-ms-box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15);
+								box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15);
+							}
+
+							.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a span:first-child {
+								position: absolute;
+								top: 3px;
+								left: 3px;
+							}
+
+							.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a span:last-child {
+								position: absolute;
+								right: 2px;
+								top: 2px;
+							}
 
 				.comments .comments-content .comments-body .comment .comment-description-rate {
 					display: inline-block;
-					width: 87%;
+					width: 86%;
 					vertical-align: top;
-					margin-top: -2px;
+					margin-top: -5px;
 				}
 
 					.comments .comments-content .comments-body .comment .comment-description-rate .comment-date {
@@ -3647,7 +3697,7 @@ textarea.resize-none {
 						display: inline-block;
 						width: 89%;
 						vertical-align: top;
-						margin-top: 1px;
+						margin-top: 3px;
 					}
 
 					.comments .comments-content .comments-body .comment .comment-description-rate .rate {

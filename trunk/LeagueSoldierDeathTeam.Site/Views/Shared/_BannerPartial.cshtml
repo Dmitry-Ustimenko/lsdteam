@@ -1,4 +1,5 @@
-﻿@using LeagueSoldierDeathTeam.Site.Classes
+﻿@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
+@using LeagueSoldierDeathTeam.Site.Classes
 
 @{
 	Layout = null;
@@ -6,21 +7,20 @@
 }
 
 <span class="banner">
-	@if (currentUser.IsMainAdmin)
+	@switch (currentUser.Role)
 	{
-		<img src="/Images/main-admin-banner.png" alt="Баннер" />
-	}
-	else if (currentUser.IsAdmin)
-	{
+		case RoleEnum.MainAdministrator:
+			<img src="/Images/main-admin-banner.png" alt="Баннер" />
+			break;
+		case RoleEnum.Administrator:
 		<img src="/Images/admin-banner.png" alt="Баннер" />
-	}
-	else if (currentUser.IsModerator)
-	{
+			break;
+		case RoleEnum.Moderator:
 		<img src="/Images/moderator-banner.png" alt="Баннер" />
-	}
-	else
-	{
+			break;
+		default:
 		<img src="/Images/user-banner.png" alt="Баннер" />
+			break;
 	}
 </span>
 
