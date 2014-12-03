@@ -24,7 +24,7 @@ namespace LeagueSoldierDeathTeam.DataBaseLayer.Model
         public System.DateTime CreateDate { get; set; }
         public int WriterId { get; set; }
         public int Rate { get; set; }
-        public System.DateTime ModifierDate { get; set; }
+        public Nullable<System.DateTime> ModifierDate { get; set; }
     
         public virtual ICollection<NewsComment> NewsComments { get; set; }
         public virtual User Writer { get; set; }

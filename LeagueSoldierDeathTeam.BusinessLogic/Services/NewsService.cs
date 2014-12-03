@@ -78,7 +78,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 					NewsCategory = new NewsCategoryData { Id = o.NewsCategory.Id, Name = o.NewsCategory.Name, ShortName = o.NewsCategory.ShortName },
 					Platforms = o.NewsPlatforms.Select(p => new PlatformData { Id = p.Platform.Id, Name = p.Platform.Name, ShortName = p.Platform.ShortName }),
 					ImagePath = o.ImagePath,
-					Annotation = o.Annotation
+					Annotation = o.Annotation,
+					CountComments = o.NewsComments.Count
 				}).ToList();
 			}
 
@@ -100,7 +101,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				PlatformIds = o.NewsPlatforms.Select(p => p.PlatformId),
 				Platforms = o.NewsPlatforms.Select(p => new PlatformData { Id = p.Platform.Id, Name = p.Platform.Name, ShortName = p.Platform.ShortName }),
 				ImagePath = o.ImagePath,
-				Annotation = o.Annotation
+				Annotation = o.Annotation,
+				CountComments = o.NewsComments.Count
 			}, o => o.Id == id).SingleOrDefault();
 		}
 
@@ -204,7 +206,6 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			{
 				CreateDate = data.CreateDate,
 				Description = data.Description,
-				ModifierDate = data.ModifierDate,
 				Rate = data.Rate,
 				Writer = writer
 			};
@@ -232,7 +233,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 					? new UserData { Id = o.Comment.Writer.Id, UserName = o.Comment.Writer.UserName, PhotoPath = o.Comment.Writer.PhotoPath }
 					: new UserData(),
 				ContentId = o.NewsId
-			}).ToList();
+			}).OrderByDescending(o => o.CreateDate).ToList();
 
 			return comments;
 		}

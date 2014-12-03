@@ -12,7 +12,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 
 		public DateTime CreateDate { get; set; }
 
-		public DateTime ModifierDate { get; set; }
+		public DateTime? ModifierDate { get; set; }
 
 		public int Rate { get; set; }
 

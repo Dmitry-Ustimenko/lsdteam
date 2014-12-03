@@ -1,0 +1,38 @@
+﻿@model IEnumerable<LeagueSoldierDeathTeam.BusinessLogic.Dto.CommentData>
+@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions
+@using LeagueSoldierDeathTeam.Site.Classes
+@{
+	Layout = null;
+}
+
+@if (Model.Any())
+{
+	foreach (var comment in Model)
+	{
+		<div class="comment" id="@(string.Format("comment-{0}-hash", comment.Id))">
+			<div class="comment-writer">
+				<img class="comment-writer-photo" src="@Html.Raw(!string.IsNullOrWhiteSpace(comment.Writer.PhotoPath) ? comment.Writer.PhotoPath : Constants.DefaultPhotoPath)" alt="Фото">
+				<div>@comment.Writer.UserName</div>
+			</div>
+			<div class="comment-description-rate">
+				<div class="comment-date">
+					<span class="comment-link">
+						<span class="comment-link-hash">#</span>
+						<input class="comment-link-input" readonly="readonly" type="text" value="@(string.Concat(Request.Url.AbsoluteUri, string.Format("#comment-{0}", comment.Id)))" />
+					</span>
+					@(comment.CreateDate.TodayYesterday(Constants.BelarusTimeZone))
+					@if (comment.ModifierDate.HasValue)
+					{
+						@(string.Format("(изменен: {0})", comment.ModifierDate.Value.TodayYesterday(Constants.BelarusTimeZone)))
+					}
+				</div>
+				<div class="description">@comment.Description</div>
+				<div class="rate">@comment.Rate</div>
+			</div>
+		</div>
+	}
+}
+else
+{
+	<div class="no-result">Нет комментариев</div>
+}

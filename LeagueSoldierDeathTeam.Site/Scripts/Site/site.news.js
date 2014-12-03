@@ -202,7 +202,8 @@
 			},
 
 			initComments: function () {
-				$.fn.initNewCommment(site.news.settings.elements.comments, site.news.settings.urls.addNewsComment);
+				$.fn.initNewCommment(site.news.settings.urls.addNewsComment);
+				$.fn.parseCommentFeedBBCode();
 			},
 
 			parseBBCode: function () {

@@ -3,44 +3,37 @@
 
 @{
 	Layout = null;
+	var currentUser = AppContext.Current.CurrentUser;
 }
 
 <div class="comments">
 	<div class="comments-content">
-		<div class="comments-header">Комментарии</div>
-		<div class="comments-body">
-			@if (Model.Data.Any())
+		<div class="comments-header" id="comments-header-hash">Комментарии</div>
+		<div class="comments-body" id="comment-feed">
+			@{Html.RenderPartial("_CommentDataPartial", Model.Data);}
+		</div>
+		<div class="comments-creator">
+			<div class="comments-header">Новый комментарий</div>
+			@if (Request.IsAuthenticated && currentUser != null)
 			{
-				foreach (var comment in Model.Data)
+				using (Html.BeginForm())
 				{
-					<div class="comment">
-						<div class="comment-writer">
-							<img class="comment-writer-photo" src="@Html.Raw(!string.IsNullOrWhiteSpace(comment.Writer.PhotoPath) ? comment.Writer.PhotoPath : Constants.DefaultPhotoPath)" alt="Фото">
-							<div>@comment.Writer.UserName</div>
+					@Html.HiddenFor(m => m.ContentId)
+					<div class="comments-body">
+						@Html.ValidationSummary()
+						@Html.TextAreaFor(m => m.CommentDescription, new { @rows = "9", @class = "resize-none comment-description", @data_type = "comment-description" })
+						<div class="description-preview"></div>
+						<div class="comments-btn">
+							<span class="comment-add-btn" data-type="preview">Предпросмотр</span>
+							<span class="comment-add-btn" data-type="add">Добавить</span>
 						</div>
-						<div>@comment.Description</div>
-						<div>@comment.Rate</div>
 					</div>
 				}
 			}
 			else
 			{
-				<div class="no-result">Нет комментариев</div>
-			}
-		</div>
-		<div class="comments-creator">
-			<div class="comments-header">Новый комментарий</div>
-			@using (Html.BeginForm())
-			{
-				@Html.HiddenFor(m => m.ContentId)
 				<div class="comments-body">
-					@Html.ValidationSummary()
-					@Html.TextAreaFor(m => m.CommentDescription, new { @rows = "9", @class = "resize-none comment-description", @data_type = "comment-description" })
-					<div class="description-preview"></div>
-					<div class="comments-btn">
-						<span class="comment-add-btn" data-type="preview">Предпросмотр</span>
-						<span class="comment-add-btn" data-type="add">Добавить</span>
-					</div>
+					Вы должны зарегистрироваться для того, чтобы оставлять комментарии.
 				</div>
 			}
 		</div>
