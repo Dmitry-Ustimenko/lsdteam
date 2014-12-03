@@ -519,6 +519,7 @@
     <Content Include="Views\Home\TopNewsData.cshtml" />
     <Content Include="Views\Shared\_CommentFeedPartial.cshtml" />
     <Content Include="Views\News\NewsCommentData.cshtml" />
+    <Content Include="Views\Shared\_CommentDataPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

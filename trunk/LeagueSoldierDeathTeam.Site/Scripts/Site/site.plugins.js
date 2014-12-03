@@ -144,10 +144,11 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.initNewCommment = function (content, url) {
+	$.fn.initNewCommment = function (url) {
 		var $description = $("#CommentDescription");
 		var $addCommentBtn = $("[data-type=add]");
 		var form = $addCommentBtn.closest("form");
+		var commentsHeader = $("#comments-header-hash");
 
 		if ($description != undefined) {
 			$description.markItUp(myCommentSettings);
@@ -157,11 +158,58 @@
 		$addCommentBtn.off("click").on("click", function () {
 			if (form.valid()) {
 				var params = $.fn.serializeParams(form);
+				$("#comment-feed").loadData(url, params, function () {
+					$description.val("");
+					$.fn.parseCommentFeedBBCode();
 
-				$(content).loadData(url, params, function () {
-					$.fn.initNewCommment(content, url);
+					$('html, body').animate({
+						scrollTop: commentsHeader.offset().top - 38
+					}, "fast");
 				});
 			}
+		});
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.checkCommentHash = function () {
+		if (window.location.hash != undefined && window.location.hash.trim() != '') {
+			if (window.location.hash == "#comments-header") {
+				$('html, body').animate({
+					scrollTop: $(window.location.hash + "-hash").offset().top - 38
+				}, 0);
+			} else {
+				var rgx = new RegExp("^#comment-+[0-9]+$", "i");
+				if (rgx.test(window.location.hash)) {
+					$('html, body').animate({
+						scrollTop: $(window.location.hash + "-hash").offset().top - 38
+					}, 0);
+				}
+			}
+		}
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.parseCommentFeedBBCode = function () {
+		var $feed = $("#comment-feed");
+
+		$feed.find(".comment > .comment-description-rate > .description").each(function () {
+			var $this = $(this);
+			$this.html($.fn.bbcodeCustomParser($this.html()));
+		});
+
+		$(".comments .comment-link-hash").each(function () {
+			var $this = $(this);
+
+			$this.off("click").on("click", function () {
+				var input = $this.closest(".comment-link").find(".comment-link-input");
+				if (input.is(":visible")) {
+					input.fadeOut("fast");
+				} else {
+					input.fadeIn("fast").select();
+				}
+			});
 		});
 	};
 })(jQuery);

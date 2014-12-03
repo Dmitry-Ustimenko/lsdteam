@@ -14,7 +14,7 @@
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="WriterId" Type="int" Nullable="false" />
           <Property Name="Rate" Type="int" Nullable="false" />
-          <Property Name="ModifierDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifierDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Game">
           <Key>
@@ -1029,7 +1029,7 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="WriterId" Type="Int32" Nullable="false" />
           <Property Name="Rate" Type="Int32" Nullable="false" />
-          <Property Name="ModifierDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifierDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="NewsComments" Relationship="LSDDataModel.FK_NewsComment_Comment" FromRole="Comment" ToRole="NewsComment" />
           <NavigationProperty Name="Writer" Relationship="LSDDataModel.FK_Comment_User" FromRole="Comment" ToRole="User" />
         </EntityType>

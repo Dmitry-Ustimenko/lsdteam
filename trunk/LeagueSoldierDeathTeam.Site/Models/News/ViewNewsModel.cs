@@ -24,6 +24,8 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 
 		public int CountViews { get; set; }
 
+		public int CountComments { get; set; }
+
 		public NewsCategoryData NewsCategory { get; set; }
 
 		public IList<int> PlatformIds { get; set; }

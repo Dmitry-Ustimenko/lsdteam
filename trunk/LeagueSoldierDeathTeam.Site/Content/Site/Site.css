@@ -3592,17 +3592,68 @@ textarea.resize-none {
 		}
 
 			.comments .comments-content .comments-body .comment {
-				clear: both;
 				border: 1px solid #dadada;
+				padding: 10px;
+				margin-bottom: 5px;
 			}
 
 				.comments .comments-content .comments-body .comment .comment-writer {
-					float: left;
+					display: inline-block;
+					width: 12%;
+					height: inherit;
 				}
 
 					.comments .comments-content .comments-body .comment .comment-writer .comment-writer-photo {
 						width: 50px;
 						height: 50px;
+					}
+
+				.comments .comments-content .comments-body .comment .comment-description-rate {
+					display: inline-block;
+					width: 87%;
+					vertical-align: top;
+					margin-top: -2px;
+				}
+
+					.comments .comments-content .comments-body .comment .comment-description-rate .comment-date {
+						color: rgb(150, 150, 150);
+						font-size: 10px;
+						height: 16px;
+						line-height: 19px;
+					}
+
+						.comments .comments-content .comments-body .comment .comment-description-rate .comment-date .comment-link {
+							cursor: pointer;
+							display: inline-block;
+						}
+
+						.comments .comments-content .comments-body .comment .comment-description-rate .comment-date .comment-link-hash {
+							cursor: pointer;
+							display: inline-block;
+							line-height: 18px;
+						}
+
+						.comments .comments-content .comments-body .comment .comment-description-rate .comment-date .comment-link .comment-link-input {
+							height: 16px;
+							cursor: text;
+							display: none;
+						}
+
+						.comments .comments-content .comments-body .comment .comment-description-rate .comment-date .comment-link:hover {
+							color: #B31919;
+						}
+
+					.comments .comments-content .comments-body .comment .comment-description-rate .description {
+						display: inline-block;
+						width: 89%;
+						vertical-align: top;
+						margin-top: 1px;
+					}
+
+					.comments .comments-content .comments-body .comment .comment-description-rate .rate {
+						display: inline-block;
+						width: 10%;
+						vertical-align: top;
 					}
 
 		.comments .comments-content .comments-creator {

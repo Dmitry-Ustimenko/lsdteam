@@ -24,6 +24,7 @@
 			var $registerForm = $(site.layout.settings.elements.register);
 
 			$.fn.initCheckbox();
+			$.fn.checkCommentHash();
 			site.layout.backgroundSlider();
 			site.layout.clearSocialHash();
 			site.layout.topPage();

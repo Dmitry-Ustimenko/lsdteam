@@ -15,6 +15,8 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 
 		public int CountViews { get; set; }
 
+		public int CountComments { get; set; }
+
 		public NewsCategoryData NewsCategory { get; set; }
 
 		public int WriterId { get; set; }

@@ -102,6 +102,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
+		[Authorize]
 		[AjaxOrChildActionOnly]
 		[Route("add-news-comment")]
 		public ActionResult AddNewComment(CommentModel model)
@@ -110,7 +111,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			{
 				CreateDate = DateTime.UtcNow,
 				Description = model.CommentDescription,
-				ModifierDate = DateTime.UtcNow,
 				Rate = default(int),
 				Writer = new UserData { Id = CurrentUser.Id }
 			};
@@ -119,7 +119,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			FillCommentModel(model);
 
-			return View("NewsCommentData", model);
+			return ModelIsValid
+				? (ActionResult)View("_CommentDataPartial", model.Data)
+				: JsonErrorResult();
 		}
 
 		[HttpPost]
