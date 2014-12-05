@@ -3599,7 +3599,7 @@ textarea.resize-none {
 
 				.comments .comments-content .comments-body .comment .comment-writer {
 					display: inline-block;
-					width: 13%;
+					width: 14%;
 					height: inherit;
 				}
 
@@ -3638,6 +3638,7 @@ textarea.resize-none {
 							background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
 							background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
 							filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+							margin-top: -2px;
 						}
 
 							.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a:active {
@@ -3660,7 +3661,7 @@ textarea.resize-none {
 
 				.comments .comments-content .comments-body .comment .comment-description-rate {
 					display: inline-block;
-					width: 86%;
+					width: 85%;
 					vertical-align: top;
 					margin-top: -5px;
 				}
@@ -3704,6 +3705,21 @@ textarea.resize-none {
 						display: inline-block;
 						width: 10%;
 						vertical-align: top;
+					}
+
+					.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-inc,
+					.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-dec {
+						width: 12px;
+						height: 12px;
+						display: inline-block;
+					}
+
+					.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-inc {
+						background: url(/Images/glyphicons-halflings.png) no-repeat -409px -97px
+					}
+
+					.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-dec {
+						background: url(/Images/glyphicons-halflings.png) no-repeat -409px -97px
 					}
 
 		.comments .comments-content .comments-creator {

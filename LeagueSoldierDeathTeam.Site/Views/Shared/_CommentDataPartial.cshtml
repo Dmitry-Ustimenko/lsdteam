@@ -24,13 +24,13 @@
 							<img src="/Images/main-admin-banner-mini.png" alt="Баннер" />
 							break;
 						case RoleEnum.Administrator:
-							<img src="/Images/admin-banner-mini.png" alt="Баннер" />
+						<img src="/Images/admin-banner-mini.png" alt="Баннер" />
 							break;
 						case RoleEnum.Moderator:
-							<img src="/Images/moderator-banner-mini.png" alt="Баннер" />
+						<img src="/Images/moderator-banner-mini.png" alt="Баннер" />
 							break;
 						default:
-							<img src="/Images/user-banner-mini.png" alt="Баннер" />
+						<img src="/Images/user-banner-mini.png" alt="Баннер" />
 							break;
 					}
 				</div>
@@ -61,7 +61,11 @@
 					}
 				</div>
 				<div class="description">@comment.Description</div>
-				<div class="rate">@comment.Rate</div>
+				<div class="rate">
+					<span class="rate-dec"></span>
+					@comment.Rate
+					<span class="rate-inc"></span>
+				</div>
 			</div>
 		</div>
 	}
