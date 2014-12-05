@@ -3640,6 +3640,7 @@ textarea.resize-none {
 .comments .comments-content .no-result {
 	border: none;
 	margin-bottom: 0;
+	padding: 0;
 }
 
 .comments .comments-content .comments-body {
