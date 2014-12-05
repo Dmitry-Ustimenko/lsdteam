@@ -100,15 +100,15 @@
 .datepicker table tr td.today:hover,
 .datepicker table tr td.today.disabled,
 .datepicker table tr td.today.disabled:hover {
-  background-color: #fde19a;
-  background-image: -moz-linear-gradient(top, #fdd49a, #fdf59a);
-  background-image: -ms-linear-gradient(top, #fdd49a, #fdf59a);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdd49a), to(#fdf59a));
-  background-image: -webkit-linear-gradient(top, #fdd49a, #fdf59a);
-  background-image: -o-linear-gradient(top, #fdd49a, #fdf59a);
-  background-image: linear-gradient(top, #fdd49a, #fdf59a);
+  background-color: #FFE1B7;
+  background-image: -moz-linear-gradient(top, #FFE1B7, #fdf59a);
+  background-image: -ms-linear-gradient(top, #FFE1B7, #fdf59a);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFE1B7), to(#fdf59a));
+  background-image: -webkit-linear-gradient(top, #FFE1B7, #fdf59a);
+  background-image: -o-linear-gradient(top, #FFE1B7, #fdf59a);
+  background-image: linear-gradient(top, #FFE1B7, #fdf59a);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdd49a', endColorstr='#fdf59a', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFE1B7', endColorstr='#fdf59a', GradientType=0);
   border-color: #fdf59a #fdf59a #fbed50;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);

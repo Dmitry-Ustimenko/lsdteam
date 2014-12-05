@@ -48,11 +48,12 @@
 					</a>
 				</div>
 			</div>
-			<div class="comment-description-rate">
+			<div class="comment-description-wrap">
 				<div class="comment-date">
 					<span class="comment-link">
 						<span class="comment-link-hash">#</span>
-						<input class="comment-link-input" readonly="readonly" type="text" value="@(string.Concat(Request.Url.AbsoluteUri, string.Format(" #comment-{0}", comment.Id)))" />
+						<input class="comment-link-input" readonly="readonly" type="text"
+							   value="@(string.Concat(WebBuilder.BuildActionUrl<NewsController>(m => m.ViewNews(comment.ContentId), null, string.Format("comment-{0}", comment.Id), true)))" />
 					</span>
 					@(comment.CreateDate.TodayYesterday(Constants.BelarusTimeZone))
 					@if (comment.ModifierDate.HasValue)
@@ -61,10 +62,12 @@
 					}
 				</div>
 				<div class="description">@comment.Description</div>
-				<div class="rate">
-					<span class="rate-dec"></span>
-					@comment.Rate
-					<span class="rate-inc"></span>
+			</div>
+			<div class="comment-rate">
+				<div class="comment-rate-wrap">
+					<span class="rate-dec" data-comment-id="@comment.Id"></span>
+					<span class="rate-val @Html.Raw(comment.Rate > 0 ? "green" : comment.Rate < 0 ? "darkred" : "gray")">@comment.RateString</span>
+					<span class="rate-inc" data-comment-id="@comment.Id"></span>
 				</div>
 			</div>
 		</div>

@@ -3582,280 +3582,371 @@ textarea.resize-none {
 			background-color: rgba(0, 0, 0, 0.08);
 		}
 
-		.comments .comments-content .no-result {
-			border: none;
-			margin-bottom: 0;
-		}
-
-		.comments .comments-content .comments-body {
-			margin: 10px;
-		}
-
-			.comments .comments-content .comments-body .comment {
-				border: 1px solid #dadada;
-				padding: 10px;
-				margin-bottom: 5px;
-			}
-
-				.comments .comments-content .comments-body .comment .comment-writer {
-					display: inline-block;
-					width: 14%;
-					height: inherit;
-				}
-
-					.comments .comments-content .comments-body .comment .comment-writer .comment-writer-photo {
-						width: 60px;
-						height: 60px;
-						-webkit-box-shadow: 3px 3px 5px rgba(153, 153, 153, 0.8);
-						-ms-box-shadow: 3px 3px 5px rgba(153, 153, 153, 0.8);
-						box-shadow: 3px 3px 5px rgba(153, 153, 153, 0.8);
-						border: 1px solid #DDD;
-					}
-
-					.comments .comments-content .comments-body .comment .comment-writer .comment-writer-name {
-						width: 100px;
-						display: inline-block;
-						padding: 2px;
-						padding-top: 0;
-					}
-
-					.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions {
-						width: 100px;
-					}
-
-						.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a {
-							border: 1px solid #dadada;
-							display: inline-block;
-							height: 25px;
-							width: 100px;
-							padding: 2px;
-							position: relative;
-							background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-							background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(221, 221, 221, 1) 100%);
-							background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgbargba(221, 221, 221, 1)));
-							background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
-							background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
-							background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
-							background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
-							filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-							margin-top: -2px;
-						}
-
-							.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a:active {
-								-webkit-box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15);
-								-ms-box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15);
-								box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15);
-							}
-
-							.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a span:first-child {
-								position: absolute;
-								top: 3px;
-								left: 3px;
-							}
-
-							.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a span:last-child {
-								position: absolute;
-								right: 2px;
-								top: 2px;
-							}
-
-				.comments .comments-content .comments-body .comment .comment-description-rate {
-					display: inline-block;
-					width: 85%;
-					vertical-align: top;
-					margin-top: -5px;
-				}
-
-					.comments .comments-content .comments-body .comment .comment-description-rate .comment-date {
-						color: rgb(150, 150, 150);
-						font-size: 10px;
-						height: 16px;
-						line-height: 19px;
-					}
-
-						.comments .comments-content .comments-body .comment .comment-description-rate .comment-date .comment-link {
-							cursor: pointer;
-							display: inline-block;
-						}
-
-						.comments .comments-content .comments-body .comment .comment-description-rate .comment-date .comment-link-hash {
-							cursor: pointer;
-							display: inline-block;
-							line-height: 18px;
-						}
-
-						.comments .comments-content .comments-body .comment .comment-description-rate .comment-date .comment-link .comment-link-input {
-							height: 16px;
-							cursor: text;
-							display: none;
-						}
-
-						.comments .comments-content .comments-body .comment .comment-description-rate .comment-date .comment-link:hover {
-							color: #B31919;
-						}
-
-					.comments .comments-content .comments-body .comment .comment-description-rate .description {
-						display: inline-block;
-						width: 89%;
-						vertical-align: top;
-						margin-top: 3px;
-					}
-
-					.comments .comments-content .comments-body .comment .comment-description-rate .rate {
-						display: inline-block;
-						width: 10%;
-						vertical-align: top;
-					}
-
-						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-inc,
-						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-dec {
-							width: 16px;
-							height: 16px;
-							display: inline-block;
-							cursor: pointer;
-						}
-
-						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-inc {
-							background: url(/Images/plus-minus-rate.png) no-repeat -16px 0;
-						}
-
-						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-dec {
-							background: url(/Images/plus-minus-rate.png) no-repeat -16px -16px;
-						}
-
-						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-inc:hover {
-							background: url(/Images/plus-minus-rate.png) no-repeat 0 0;
-						}
-
-						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-dec:hover {
-							background: url(/Images/plus-minus-rate.png) no-repeat 0 -16px;
-						}
-
-						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-inc:active {
-							background: url(/Images/plus-minus-rate.png) no-repeat -32px 0;
-						}
-
-						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-dec:active {
-							background: url(/Images/plus-minus-rate.png) no-repeat -32px -16px;
-						}
-
-		.comments .comments-content .comments-creator {
-			clear: both;
-		}
-
-			.comments .comments-content .comments-creator .comments-body .comments-btn {
-				text-align: right;
-				margin-top: 2px;
-			}
-
-			.comments .comments-content .comments-creator .comments-body textarea {
-				width: 100%;
-				padding: 5px;
-				font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
-			}
-
-			.comments .comments-content .comments-creator .comments-body .comment-add-btn {
+			.comments .comments-content .comments-header .comment-refresh {
+				background: url(/Images/refresh.png) no-repeat;
 				display: inline-block;
-				border: 1px solid #8E8E8E;
-				padding: 4px 15px;
+				width: 13px;
+				height: 13px;
+				margin-left: 5px;
+				-ms-opacity: 0.83;
+				opacity: 0.83;
 				cursor: pointer;
-				background-color: rgba(0, 0, 0, 0.05);
 			}
 
-				.comments .comments-content .comments-creator .comments-body .comment-add-btn:hover {
-					background-color: rgb(236, 236, 236);
+				.comments .comments-content .comments-header .comment-refresh:hover {
+					-ms-opacity: 1;
+					opacity: 1;
+					-webkit-animation: rotation 2.2s linear infinite;
+					-moz-animation: rotation 2.2s linear infinite;
+					-ms-animation: rotation 2.2s linear infinite;
 				}
 
-				.comments .comments-content .comments-creator .comments-body .comment-add-btn:active {
-					-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
-					-ms-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
-					box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+@-webkit-keyframes rotation {
+	0% {
+		-webkit-transform: rotate(0);
+	}
+
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@-moz-keyframes rotation {
+	0% {
+		-moz-transform: rotate(0);
+	}
+
+	100% {
+		-moz-transform: rotate(360deg);
+	}
+}
+
+@-ms-keyframes rotation {
+	0% {
+		-ms-transform: rotate(0);
+	}
+
+	100% {
+		-ms-transform: rotate(360deg);
+	}
+}
+
+.comments .comments-content .no-result {
+	border: none;
+	margin-bottom: 0;
+}
+
+.comments .comments-content .comments-body {
+	margin: 10px;
+}
+
+	.comments .comments-content .comments-body .comment {
+		border: 1px solid #dadada;
+		padding: 10px;
+		margin-bottom: 5px;
+		position: relative;
+	}
+
+		.comments .comments-content .comments-body .comment .comment-writer {
+			display: inline-block;
+			width: 130px;
+			height: inherit;
+		}
+
+			.comments .comments-content .comments-body .comment .comment-writer .comment-writer-photo {
+				width: 60px;
+				height: 60px;
+				-webkit-box-shadow: 3px 3px 5px rgba(153, 153, 153, 0.8);
+				-ms-box-shadow: 3px 3px 5px rgba(153, 153, 153, 0.8);
+				box-shadow: 3px 3px 5px rgba(153, 153, 153, 0.8);
+				border: 1px solid #DDD;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-writer .comment-writer-name {
+				width: 100px;
+				display: inline-block;
+				padding: 2px;
+				padding-top: 0;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions {
+				width: 100px;
+			}
+
+				.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a {
+					border: 1px solid #dadada;
+					display: inline-block;
+					height: 25px;
+					width: 100px;
+					padding: 2px;
+					position: relative;
+					background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+					background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(221, 221, 221, 1) 100%);
+					background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgbargba(221, 221, 221, 1)));
+					background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
+					background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
+					background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
+					background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(221, 221, 221, 1) 100%);
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+					margin-top: -2px;
 				}
 
-			.comments .comments-content .comments-creator .comments-body .markItUpHeader {
-				border: 1px solid #8E8E8E !important;
+					.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a:active {
+						-webkit-box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15);
+						-ms-box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15);
+						box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15);
+					}
+
+					.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a span:first-child {
+						position: absolute;
+						top: 3px;
+						left: 3px;
+					}
+
+					.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions a span:last-child {
+						position: absolute;
+						right: 2px;
+						top: 2px;
+					}
+
+		.comments .comments-content .comments-body .comment .comment-description-wrap {
+			display: inline-block;
+			width: 695px;
+			vertical-align: top;
+			margin-top: -5px;
+		}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date {
+				color: rgb(150, 150, 150);
+				font-size: 10px;
+				height: 16px;
+				line-height: 19px;
 			}
 
-			.comments .comments-content .comments-creator .comments-body .comment-description.markItUpEditor {
-				height: 156px !important;
-				border: 1px solid #8E8E8E !important;
-				border-top: none !important;
-			}
-
-			.comments .comments-content .comments-creator .comments-body .description-preview {
-				border: 1px solid #8E8E8E !important;
-				margin-bottom: 4px;
-				margin-top: 2px;
-				min-height: 160px;
-				max-height: 450px;
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpFooter {
-				display: none;
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton1 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/bold.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton2 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/italic.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton3 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/underline.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton4 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/strike.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton5 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/justify.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton6 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/right.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton7 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/center.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton8 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/left.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton9 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/picture.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton10 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/link.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton11 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/youtube.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton12 ul li a {
-				background-image: none;
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton13 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/quotes.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton14 a {
-				background-image: url(/Content/Plugins/HtmlEditor/sets/images/code.png);
-			}
-
-			.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton15 {
-				padding: 6px 6px 5px 6px;
-			}
-
-				.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton15 a {
-					background-image: url(/Content/Plugins/HtmlEditor/sets/images/spoiler.png);
-					width: 15px;
-					height: 15px;
+				.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link {
+					cursor: pointer;
+					display: inline-block;
 				}
+
+				.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link-hash {
+					cursor: pointer;
+					display: inline-block;
+					line-height: 18px;
+				}
+
+				.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link .comment-link-input {
+					height: 16px;
+					cursor: text;
+					display: none;
+					width: 200px;
+				}
+
+				.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link:hover {
+					color: #B31919;
+				}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .description {
+				display: inline-block;
+				vertical-align: top;
+				margin-top: 3px;
+			}
+
+		.comments .comments-content .comments-body .comment .comment-rate {
+			display: inline-block;
+			top: 0;
+			right: 0;
+			position: absolute;
+			border: 1px solid #dadada;
+			border-top: none;
+			border-right: none;
+			padding: 8px 5px;
+		}
+
+			.comments .comments-content .comments-body .comment .comment-rate .comment-rate-wrap {
+				height: 17px;
+				-moz-min-width: 80px;
+				-ms-min-width: 80px;
+				-o-min-width: 80px;
+				-webkit-min-width: 80px;
+				min-width: 80px;
+				text-align: center;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-rate .rate-val {
+				display: inline-block;
+				vertical-align: top;
+				font-weight: bold;
+				font-size: 12px;
+				line-height: 16px;
+				font-family: Tahoma, Arial, Helvetica, sans-serif, monospace;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-rate .rate-inc,
+			.comments .comments-content .comments-body .comment .comment-rate .rate-dec {
+				width: 16px;
+				height: 16px;
+				display: inline-block;
+				cursor: pointer;
+			}
+
+				.comments .comments-content .comments-body .comment .comment-rate .rate-inc.disable,
+				.comments .comments-content .comments-body .comment .comment-rate .rate-dec.disable {
+					cursor: default;
+					-ms-opacity: 0.4;
+					opacity: 0.4;
+				}
+
+					.comments .comments-content .comments-body .comment .comment-rate .rate-inc.disable:hover,
+					.comments .comments-content .comments-body .comment .comment-rate .rate-inc.disable:active {
+						background: url(/Images/plus-minus-rate.png) no-repeat -16px 0;
+					}
+
+					.comments .comments-content .comments-body .comment .comment-rate .rate-dec.disable:hover,
+					.comments .comments-content .comments-body .comment .comment-rate .rate-dec.disable:active {
+						background: url(/Images/plus-minus-rate.png) no-repeat -16px -16px;
+					}
+
+			.comments .comments-content .comments-body .comment .comment-rate .rate-inc {
+				background: url(/Images/plus-minus-rate.png) no-repeat -16px 0;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-rate .rate-dec {
+				background: url(/Images/plus-minus-rate.png) no-repeat -16px -16px;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-rate .rate-inc:hover {
+				background: url(/Images/plus-minus-rate.png) no-repeat 0 0;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-rate .rate-dec:hover {
+				background: url(/Images/plus-minus-rate.png) no-repeat 0 -16px;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-rate .rate-inc:active {
+				background: url(/Images/plus-minus-rate.png) no-repeat -32px 0;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-rate .rate-dec:active {
+				background: url(/Images/plus-minus-rate.png) no-repeat -32px -16px;
+			}
+
+.comments .comments-content .comments-creator {
+	clear: both;
+}
+
+	.comments .comments-content .comments-creator .comments-body .comments-btn {
+		text-align: right;
+		margin-top: 2px;
+	}
+
+	.comments .comments-content .comments-creator .comments-body textarea {
+		width: 100%;
+		padding: 5px;
+		font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	}
+
+	.comments .comments-content .comments-creator .comments-body .comment-add-btn {
+		display: inline-block;
+		border: 1px solid #8E8E8E;
+		padding: 4px 15px;
+		cursor: pointer;
+		background-color: rgba(0, 0, 0, 0.05);
+	}
+
+		.comments .comments-content .comments-creator .comments-body .comment-add-btn:hover {
+			background-color: rgb(236, 236, 236);
+		}
+
+		.comments .comments-content .comments-creator .comments-body .comment-add-btn:active {
+			-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+			-ms-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+			box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+		}
+
+	.comments .comments-content .comments-creator .comments-body .markItUpHeader {
+		border: 1px solid #8E8E8E !important;
+	}
+
+	.comments .comments-content .comments-creator .comments-body .comment-description.markItUpEditor {
+		height: 156px !important;
+		border: 1px solid #8E8E8E !important;
+		border-top: none !important;
+	}
+
+	.comments .comments-content .comments-creator .comments-body .description-preview {
+		border: 1px solid #8E8E8E !important;
+		margin-bottom: 4px;
+		margin-top: 2px;
+		min-height: 160px;
+		max-height: 450px;
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpFooter {
+		display: none;
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton1 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/bold.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton2 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/italic.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton3 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/underline.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton4 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/strike.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton5 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/justify.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton6 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/right.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton7 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/center.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton8 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/left.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton9 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/picture.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton10 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/link.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton11 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/youtube.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton12 ul li a {
+		background-image: none;
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton13 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/quotes.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton14 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/code.png);
+	}
+
+	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton15 {
+		padding: 6px 6px 5px 6px;
+	}
+
+		.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton15 a {
+			background-image: url(/Content/Plugins/HtmlEditor/sets/images/spoiler.png);
+			width: 15px;
+			height: 15px;
+		}
