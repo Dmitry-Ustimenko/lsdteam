@@ -67,7 +67,8 @@
 		site.news.initView.init({
 			urls: {
 				deleteNews: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.DeleteNews(null)))',
-				addNewsComment: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.AddNewComment(null)))'
+				addNewsComment: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.AddNewComment(null)))',
+				refreshNewsFeed: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.NewsCommentFeed(null)))'
 			}
 		});
 	});

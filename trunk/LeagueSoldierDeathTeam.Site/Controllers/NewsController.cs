@@ -102,6 +102,19 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpPost]
+		[AjaxOrChildActionOnly]
+		[Route("news-comment-feed")]
+		public ActionResult NewsCommentFeed(int? id)
+		{
+			var model = new CommentModel { ContentId = id.GetValueOrDefault() };
+			FillCommentModel(model);
+
+			return ModelIsValid
+				? (ActionResult)View("_CommentDataPartial", model.Data)
+				: JsonErrorResult();
+		}
+
+		[HttpPost]
 		[Authorize]
 		[AjaxOrChildActionOnly]
 		[Route("add-news-comment")]

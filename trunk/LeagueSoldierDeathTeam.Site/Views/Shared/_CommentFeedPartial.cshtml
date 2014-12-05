@@ -8,7 +8,10 @@
 
 <div class="comments">
 	<div class="comments-content">
-		<div class="comments-header" id="comments-header-hash">Комментарии<span class="comment-refresh" data-type="refresh-comments"></span></div>
+		<div class="comments-header" id="comments-header-hash">
+			Комментарии
+			<span class="comment-refresh" data-type="refresh-comments" data-content-id="@Model.ContentId"></span>
+		</div>
 		<div class="comments-body" id="comment-feed">
 			@{Html.RenderPartial("_CommentDataPartial", Model.Data);}
 		</div>
