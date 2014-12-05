@@ -3582,7 +3582,7 @@ textarea.resize-none {
 			background-color: rgba(0, 0, 0, 0.08);
 		}
 
-			.comments .comments-content .comments-header .comment-refresh {
+			.comments .comments-content .comments-header .comments-refresh {
 				background: url(/Images/refresh.png) no-repeat;
 				display: inline-block;
 				width: 13px;
@@ -3592,13 +3592,20 @@ textarea.resize-none {
 				cursor: pointer;
 			}
 
-				.comments .comments-content .comments-header .comment-refresh:hover {
+				.comments .comments-content .comments-header .comments-refresh:hover {
 					-ms-opacity: 1;
 					opacity: 1;
 					-webkit-animation: rotation 2.2s linear infinite;
 					-moz-animation: rotation 2.2s linear infinite;
 					-ms-animation: rotation 2.2s linear infinite;
 				}
+
+			.comments .comments-content .comments-header .comments-refresh-complete {
+				color: green;
+				font-style: italic;
+				display: none;
+				font-size: 13px;
+			}
 
 @-webkit-keyframes rotation {
 	0% {
