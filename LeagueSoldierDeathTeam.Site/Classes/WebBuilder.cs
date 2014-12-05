@@ -16,52 +16,61 @@ namespace LeagueSoldierDeathTeam.Site.Classes
 	{
 		private static readonly ConcurrentDictionary<string, string> UrlCache = new ConcurrentDictionary<string, string>();
 
-		public static string GetFullUrl<TController>(Expression<Action<TController>> action) where TController : Controller
-		{
-			var actionInfo = ControllerActionInfo.Create(action);
-			var data = BuildUrl(actionInfo.ActionName, actionInfo.ControllerName, actionInfo.RouteValues);
-			return string.Concat(AppConfig.HostName, data);
-		}
-
-		public static string BuildActionUrl<TController>(Expression<Action<TController>> action, bool? secure = null)
+		public static string BuildActionUrl<TController>(Expression<Action<TController>> action, bool fullUrl = false)
 			where TController : Controller
 		{
 			var actionInfo = ControllerActionInfo.Create(action);
-			return BuildUrl(actionInfo.ActionName, actionInfo.ControllerName, actionInfo.RouteValues, secure);
+			var url = BuildUrl(actionInfo.ActionName, actionInfo.ControllerName, actionInfo.RouteValues);
+			return fullUrl ? string.Concat(AppConfig.HostName, url) : url;
 		}
 
-		public static string BuildActionUrl<TController>(Expression<Action<TController>> action, IDictionary<string, object> routeValues, bool? secure = null)
+		public static string BuildActionUrl<TController>(Expression<Action<TController>> action, IDictionary<string, object> routeValues, bool fullUrl = false)
 			where TController : Controller
 		{
 			var actionInfo = ControllerActionInfo.Create(action);
-			return BuildUrl(actionInfo.ActionName, actionInfo.ControllerName, new RouteValueDictionary(routeValues ?? new Dictionary<string, object>()), secure);
+			var url = BuildUrl(actionInfo.ActionName, actionInfo.ControllerName, routeValues);
+			return fullUrl ? string.Concat(AppConfig.HostName, url) : url;
 		}
 
-		public static string BuildUrl(string actionName, string controllerName, IDictionary<string, object> routeValues, bool? secure = false, IDictionary<string, string> queryParameters = null)
+		public static string BuildActionUrl<TController>(Expression<Action<TController>> action, IDictionary<string, object> routeValues, string fragment, bool fullUrl = false)
+			where TController : Controller
 		{
-			return BuildUrl(null, secure, actionName, controllerName, new RouteValueDictionary(routeValues ?? new Dictionary<string, object>()), queryParameters);
+			var actionInfo = ControllerActionInfo.Create(action);
+			var url = BuildUrl(actionInfo.ActionName, actionInfo.ControllerName, routeValues);
+			var fullFragment = !string.IsNullOrWhiteSpace(fragment) ? string.Concat("#", fragment) : string.Empty;
+
+			return fullUrl ? string.Concat(AppConfig.HostName, url, fullFragment) : string.Concat(url, fullFragment);
 		}
 
-		public static string BuildUrl(string routeName, bool? secure, string actionName, string controllerName, RouteValueDictionary routeValues, IDictionary<string, string> queryParameters)
+		private static string BuildUrl(string actionName, string controllerName, IDictionary<string, object> routeValues, IDictionary<string, string> queryParameters = null)
+		{
+			return BuildUrl(actionName, controllerName, new RouteValueDictionary(routeValues ?? new Dictionary<string, object>()), queryParameters);
+		}
+
+		private static string BuildUrl(string actionName, string controllerName, RouteValueDictionary routeValues, IDictionary<string, string> queryParameters)
 		{
 			string cacheKey = null;
 			string result = null;
 			if (routeValues == null || routeValues.Count == 0)
 			{
-				cacheKey = GetUrlCacheKey(routeName, actionName, controllerName);
+				cacheKey = GetUrlCacheKey(null, actionName, controllerName);
 				UrlCache.TryGetValue(cacheKey, out result);
 			}
 
 			if (result == null)
 			{
-				result = UrlHelper.GenerateUrl(routeName, actionName, controllerName, routeValues, RouteTable.Routes, ContextFactory.GetHttpContext().Request.RequestContext, false);
-				if (cacheKey != null)
-					UrlCache.TryAdd(cacheKey, result);
+				var request = ContextFactory.GetHttpContext().Request;
+				if (request != null)
+				{
+					result = UrlHelper.GenerateUrl(null, actionName, controllerName, routeValues, RouteTable.Routes, request.RequestContext, false);
+
+					if (cacheKey != null)
+						UrlCache.TryAdd(cacheKey, result);
+				}
 			}
 
 			if (result == null)
 				return string.Empty;
-
 
 			if (queryParameters == null || queryParameters.Count == 0)
 				return result;
@@ -82,6 +91,8 @@ namespace LeagueSoldierDeathTeam.Site.Classes
 			return sb.Append(routeName).Append('.').Append(controllerName).Append('.').Append(actionName).ToString();
 		}
 
+		#region HttpContext
+
 		public static HttpContext GetHttpContext()
 		{
 			var uriBuilder = new UriBuilder(AppConfig.HostName);
@@ -97,5 +108,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes
 		{
 			return httpRequest != null ? new HttpRequestWrapper(httpRequest) : null;
 		}
+
+		#endregion
 	}
 }

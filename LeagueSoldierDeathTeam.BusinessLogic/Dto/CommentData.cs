@@ -16,6 +16,14 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 
 		public int Rate { get; set; }
 
+		public string RateString
+		{
+			get
+			{
+				return string.Format("{0}{1}", Rate > 0 ? "+" : Rate < 0 ? "-" : string.Empty, Math.Abs(Rate));
+			}
+		}
+
 		public int ContentId { get; set; }
 
 		public CommentData()

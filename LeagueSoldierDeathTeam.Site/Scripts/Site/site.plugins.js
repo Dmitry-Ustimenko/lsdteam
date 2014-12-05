@@ -15,10 +15,10 @@
 	$.fn.serializeParams = function (form, additionalParams) {
 		var params = $(form).serializeArray();
 
-		if (additionalParams != undefined && typeof (additionalParams) == "object") {
+		if (additionalParams != undefined && typeof (additionalParams) == 'object') {
 			for (var i = 0; i < additionalParams.length; i++) {
 				var param = additionalParams[i];
-				if (typeof (param == "object") && param.name != undefined && param.value != undefined) {
+				if (typeof (param == 'object') && param.name != undefined && param.value != undefined) {
 					params.push({
 						name: param.name,
 						value: param.value
@@ -34,13 +34,13 @@
 (function ($) {
 	$.fn.lenghtLimit = function (txtBox, lengthBox, lenght) {
 		if (txtBox != undefined && lengthBox != undefined) {
-			txtBox.on("input keyup paste cut", function () {
-				if (typeof (lenght) == "number") {
+			txtBox.on('input keyup paste cut', function () {
+				if (typeof (lenght) == 'number') {
 					var leftCharacters = lenght - txtBox.val().length;
 					if (leftCharacters < 0) {
-						lengthBox.addClass("darkred");
+						lengthBox.addClass('darkred');
 					} else {
-						lengthBox.removeClass("darkred");
+						lengthBox.removeClass('darkred');
 					}
 
 					lengthBox.html(leftCharacters);
@@ -79,7 +79,7 @@
 (function ($) {
 	$.fn.pager = function (callback) {
 		var container = $(this);
-		container.find("span[data-page]").on("click", function () {
+		container.find('span[data-page]').on('click', function () {
 			var page = $(this);
 			if (page.hasClass('currentPage') || page.hasClass('disabledPrevNext'))
 				return;
@@ -113,17 +113,17 @@
 
 (function ($) {
 	$.fn.parseCommentPreviewBBCode = function (description) {
-		var $descriptionPreview = $(".description-preview");
-		var $descriptionFooter = $(".markItUpFooter");
-		var $previewLink = $("[data-type=preview]");
+		var $descriptionPreview = $('.description-preview');
+		var $descriptionFooter = $('.markItUpFooter');
+		var $previewLink = $('[data-type=preview]');
 
-		$previewLink.off("click").on("click", function () {
+		$previewLink.off('click').on('click', function () {
 			if ($descriptionPreview != undefined) {
 				var htmlContent = $.fn.bbcodeCustomParser(description.val());
 				if (htmlContent != undefined && htmlContent.trim() != '') {
 					$descriptionPreview.html(htmlContent);
-					$descriptionPreview.fadeIn("fast");
-					$descriptionFooter.fadeIn("fast");
+					$descriptionPreview.fadeIn('fast');
+					$descriptionFooter.fadeIn('fast');
 
 					$.fn.slideSpoiler($descriptionPreview);
 				}
@@ -146,25 +146,25 @@
 (function ($) {
 	$.fn.initNewComment = function (url) {
 		var $description = $("#CommentDescription");
-		var $addCommentBtn = $("[data-type=add]");
-		var form = $addCommentBtn.closest("form");
-		var commentsHeader = $("#comments-header-hash");
+		var $addCommentBtn = $('[data-type=add]');
+		var form = $addCommentBtn.closest('form');
+		var commentsHeader = $('#comments-header-hash');
 
 		if ($description != undefined) {
 			$description.markItUp(myCommentSettings);
 			$.fn.parseCommentPreviewBBCode($description);
 		}
 
-		$addCommentBtn.off("click").on("click", function () {
+		$addCommentBtn.off('click').on('click', function () {
 			if (form.valid()) {
 				var params = $.fn.serializeParams(form);
-				$("#comment-feed").loadData(url, params, function () {
-					$description.val("");
+				$('#comment-feed').loadData(url, params, function () {
+					$description.val('');
 					$.fn.initCommentFeed();
 
 					$('html, body').animate({
 						scrollTop: commentsHeader.offset().top - 38
-					}, "fast");
+					}, 'fast');
 				});
 			}
 		});
@@ -180,15 +180,15 @@
 (function ($) {
 	$.fn.checkCommentHash = function () {
 		if (window.location.hash != undefined && window.location.hash.trim() != '') {
-			if (window.location.hash == "#comments-header") {
+			if (window.location.hash == '#comments-header') {
 				$('html, body').animate({
 					scrollTop: $(window.location.hash + "-hash").offset().top - 38
 				}, 0);
 			} else {
-				var rgx = new RegExp("^#comment-+[0-9]+$", "i");
+				var rgx = new RegExp('^#comment-+[0-9]+$', "i");
 				if (rgx.test(window.location.hash)) {
 					$('html, body').animate({
-						scrollTop: $(window.location.hash + "-hash").offset().top - 38
+						scrollTop: $(window.location.hash + '-hash').offset().top - 38
 					}, 0);
 				}
 			}
@@ -198,24 +198,60 @@
 
 (function ($) {
 	$.fn.initCommentFeed = function () {
-		var $feed = $("#comment-feed");
+		var $feed = $('#comment-feed');
 
-		$feed.find(".comment > .comment-description-rate > .description").each(function () {
+		$feed.find('.comment > .comment-description-wrap > .description').each(function () {
 			var $this = $(this);
 			$this.html($.fn.bbcodeCustomParser($this.html()));
 		});
 
-		$(".comments .comment-link-hash").each(function () {
+		var hashLinks = $('.comment .comment-link');
+		hashLinks.find('.comment-link-hash').each(function () {
 			var $this = $(this);
 
-			$this.off("click").on("click", function () {
-				var input = $this.closest(".comment-link").find(".comment-link-input");
-				if (input.is(":visible")) {
-					input.fadeOut("fast");
+			$this.off('click').on('click', function () {
+				var input = $this.closest('.comment-link').find('.comment-link-input');
+				if (input.is(':visible')) {
+					input.hide();
 				} else {
-					input.fadeIn("fast").select();
+					hashLinks.find('.comment-link-input:visible').each(function () {
+						$(this).hide();
+					});
+
+					input.fadeIn('fast').select()
+						.off('click').on('click', function () {
+							input.select();
+						});
 				}
 			});
+		});
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.refreshCommentFeed = function () {
+		var $description = $("#CommentDescription");
+		var $refreshCommentBtn = $('[data-type=refresh-comments]');
+		var form = $addCommentBtn.closest('form');
+		var commentsHeader = $('#comments-header-hash');
+
+		if ($description != undefined) {
+			$description.markItUp(myCommentSettings);
+			$.fn.parseCommentPreviewBBCode($description);
+		}
+
+		$addCommentBtn.off('click').on('click', function () {
+			if (form.valid()) {
+				var params = $.fn.serializeParams(form);
+				$('#comment-feed').loadData(url, params, function () {
+					$description.val('');
+					$.fn.initCommentFeed();
+
+					$('html, body').animate({
+						scrollTop: commentsHeader.offset().top - 38
+					}, 'fast');
+				});
+			}
 		});
 	};
 })(jQuery);
@@ -226,34 +262,34 @@
 		if (content != undefined) {
 			$spoilers = content.find(".xbbcode-spoiler");
 		} else {
-			$spoilers = $(".xbbcode-spoiler");
+			$spoilers = $('.xbbcode-spoiler');
 		}
 
 		$spoilers.each(function () {
 			var spoiler = $(this);
 
 			if (spoiler != undefined) {
-				var header = spoiler.find("> .xbbcode-spoiler-head");
-				var slide = spoiler.find("> .xbbcode-spoiler-slide");
-				var footer = slide.find("> .xbbcode-spoiler-footer");
+				var header = spoiler.find('> .xbbcode-spoiler-head');
+				var slide = spoiler.find('> .xbbcode-spoiler-slide');
+				var footer = slide.find('> .xbbcode-spoiler-footer');
 
-				var headerIcon = header.find("[data-id=header-icon]");
+				var headerIcon = header.find('[data-id=header-icon]');
 
-				header.off("click").on("click", function () {
+				header.off('click').on('click', function () {
 					slideFun();
 				});
 
-				footer.off("click").on("click", function () {
+				footer.off('click').on('click', function () {
 					slideFun();
 				});
 
 				function slideFun() {
-					if (slide.is(":visible")) {
+					if (slide.is(':visible')) {
 						slide.slideUp();
 					} else {
 						slide.slideDown();
 					}
-					headerIcon.toggleClass("xbbcode-open-icon xbbcode-close-icon");
+					headerIcon.toggleClass('xbbcode-open-icon xbbcode-close-icon');
 				}
 			}
 		});
@@ -265,7 +301,7 @@
 		options = options || {};
 		var exp = options.expires;
 
-		if (typeof exp == "number" && exp) {
+		if (typeof exp == 'number' && exp) {
 			var date = new Date();
 			date.setDate(date.getDate() + exp);
 			exp = options.expires = date;
@@ -276,12 +312,12 @@
 
 		value = encodeURIComponent(value);
 
-		var updatedCookie = name + "=" + value;
+		var updatedCookie = name + '=' + value;
 		for (var propName in options) {
-			updatedCookie += "; " + propName;
+			updatedCookie += '; ' + propName;
 			var propValue = options[propName];
 			if (propValue !== true)
-				updatedCookie += "=" + propValue;
+				updatedCookie += '=' + propValue;
 		}
 
 		document.cookie = updatedCookie;
@@ -291,7 +327,7 @@
 (function ($) {
 	$.fn.cookieGet = function (name) {
 		var matches = document.cookie.match(new RegExp(
-			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+			'(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
 		));
 		return matches ? decodeURIComponent(matches[1]) : undefined;
 	};
@@ -299,7 +335,7 @@
 
 (function ($) {
 	$.fn.cookieDelete = function (name) {
-		$.fn.cookieSet(name, "", { expires: -1 });
+		$.fn.cookieSet(name, '', { expires: -1 });
 	};
 })(jQuery);
 
