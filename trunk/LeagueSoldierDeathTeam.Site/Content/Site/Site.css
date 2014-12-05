@@ -3766,6 +3766,7 @@ textarea.resize-none {
 			border-top: none;
 			border-right: none;
 			padding: 8px 5px;
+			background-color: rgba(0, 0, 0, 0.03);
 		}
 
 			.comments .comments-content .comments-body .comment .comment-rate .comment-rate-wrap {
