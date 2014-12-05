@@ -235,6 +235,9 @@
 		$refreshCommentBtn.off('click').on('click', function () {
 			$('#comment-feed').loadData(url, { id: $refreshCommentBtn.data('content-id') }, function () {
 				$.fn.initCommentFeed();
+
+				setTimeout("$('.comments-refresh-complete').fadeIn('normal')", 100);
+				setTimeout("$('.comments-refresh-complete').fadeOut('slow')", 2000);
 			});
 		});
 	};
