@@ -229,29 +229,13 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.refreshCommentFeed = function () {
-		var $description = $("#CommentDescription");
+	$.fn.refreshCommentFeed = function (url) {
 		var $refreshCommentBtn = $('[data-type=refresh-comments]');
-		var form = $addCommentBtn.closest('form');
-		var commentsHeader = $('#comments-header-hash');
 
-		if ($description != undefined) {
-			$description.markItUp(myCommentSettings);
-			$.fn.parseCommentPreviewBBCode($description);
-		}
-
-		$addCommentBtn.off('click').on('click', function () {
-			if (form.valid()) {
-				var params = $.fn.serializeParams(form);
-				$('#comment-feed').loadData(url, params, function () {
-					$description.val('');
-					$.fn.initCommentFeed();
-
-					$('html, body').animate({
-						scrollTop: commentsHeader.offset().top - 38
-					}, 'fast');
-				});
-			}
+		$refreshCommentBtn.off('click').on('click', function () {
+			$('#comment-feed').loadData(url, { id: $refreshCommentBtn.data('content-id') }, function () {
+				$.fn.initCommentFeed();
+			});
 		});
 	};
 })(jQuery);

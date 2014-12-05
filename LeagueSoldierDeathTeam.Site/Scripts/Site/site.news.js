@@ -5,7 +5,8 @@
 			urls: {
 				refreshGrid: '',
 				deleteNews: '',
-				addNewsComment: ''
+				addNewsComment: '',
+				refreshNewsFeed: ''
 			},
 			vars: {
 				form: null
@@ -202,6 +203,7 @@
 			},
 
 			initComments: function () {
+				$.fn.refreshCommentFeed(site.news.settings.urls.refreshNewsFeed);
 				$.fn.initNewComment(site.news.settings.urls.addNewsComment);
 				$.fn.initCommentFeed();
 			},
