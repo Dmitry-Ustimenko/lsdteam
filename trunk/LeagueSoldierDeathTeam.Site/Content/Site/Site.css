@@ -3713,28 +3713,30 @@ textarea.resize-none {
 							height: 16px;
 							display: inline-block;
 							cursor: pointer;
-							opacity: 0.95;
 						}
 
-							.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-inc:hover,
-							.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-dec:hover {
-								opacity: 1;
-							}
-
 						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-inc {
-							background: url(/Images/plus-minus-rate.png) no-repeat 0 0;
+							background: url(/Images/plus-minus-rate.png) no-repeat -16px 0;
 						}
 
 						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-dec {
+							background: url(/Images/plus-minus-rate.png) no-repeat -16px -16px;
+						}
+
+						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-inc:hover {
+							background: url(/Images/plus-minus-rate.png) no-repeat 0 0;
+						}
+
+						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-dec:hover {
 							background: url(/Images/plus-minus-rate.png) no-repeat 0 -16px;
 						}
 
 						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-inc:active {
-							background: url(/Images/plus-minus-rate.png) no-repeat -16px 0;
+							background: url(/Images/plus-minus-rate.png) no-repeat -32px 0;
 						}
 
 						.comments .comments-content .comments-body .comment .comment-description-rate .rate .rate-dec:active {
-							background: url(/Images/plus-minus-rate.png) no-repeat -16px -16px;
+							background: url(/Images/plus-minus-rate.png) no-repeat -32px -16px;
 						}
 
 		.comments .comments-content .comments-creator {
