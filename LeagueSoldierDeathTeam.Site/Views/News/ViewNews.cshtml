@@ -38,8 +38,11 @@
 								if (currentUser.Role == RoleEnum.MainAdministrator || currentUser.Role == RoleEnum.Administrator
 									|| (currentUser.Role == RoleEnum.Moderator && currentUser.Id == Model.WriterId))
 								{
-									<span class="view-news-writer-edit">
+									<span class="view-news-edit">
 										<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.EditNews(Model.Id)))">Редактировать</a>
+									</span>
+									<span class="view-news-delete">
+										<a data-action="delete-news" data-id="@Model.Id" href="@Constants.JavaScriptVoid">Удалить</a>
 									</span>
 								}
 							}

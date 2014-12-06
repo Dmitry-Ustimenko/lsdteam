@@ -6,6 +6,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
+using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions.Models;
@@ -156,10 +157,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 					CurrentUser = user;
 					_authenticationService.SignIn(user.Email, false);
 
-					return RedirectToAction<HomeController>(o => o.Index());
+					return JsonRedirectToAction(WebBuilder.BuildActionUrl<HomeController>(o => o.Index()));
 				}
 			}
-			return RedirectToAction<AdministrationController>(o => o.Index());
+
+			return JsonRedirectToAction(WebBuilder.BuildActionUrl<AdministrationController>(o => o.Index()));
 		}
 
 		#endregion

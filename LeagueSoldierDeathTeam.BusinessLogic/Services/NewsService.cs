@@ -238,6 +238,16 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			return comments;
 		}
 
+		public void DeleteNews(int id)
+		{
+			var news = _newsRepository.Query(o => o.Id == id).SingleOrDefault();
+			if (news == null)
+				throw new ArgumentException("Данной новости не существует");
+
+			_newsRepository.Delete(news);
+			UnitOfWork.Commit();
+		}
+
 		#endregion
 
 		#region Internal Implementation

@@ -46,8 +46,10 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 						}
 						else {
 							if (data.Status != undefined && data.Status == "Error") {
+								$.fn.alertOverlay("Ошибка", data.Message != undefined ? data.Message : "При обработке запроса произошла ошибка.");
+
 								if (typeof (callbackError) == 'function') {
-									callbackError(data.Message != undefined ? data.Message : "При обработке запроса произошла ошибка.");
+									callbackError(data);
 								}
 							}
 							else if (typeof (callback) == 'function') {
