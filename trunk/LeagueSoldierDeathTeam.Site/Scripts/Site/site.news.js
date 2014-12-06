@@ -200,6 +200,17 @@
 				$.extend(true, site.news.settings, settings);
 				site.news.initView.parseBBCode();
 				site.news.initView.initComments();
+				site.news.initView.deleteNews();
+			},
+
+			deleteNews: function () {
+				$('[data-action=delete-news]').off('click').on('click', function () {
+					var $this = $(this);
+					$.fn.confirmOverlay("Удаление новости", "Вы действительно хотите удалить новость", function () {
+						var id = $this.data("id");
+						site.ajax.post(site.news.settings.urls.deleteNews, { id: id });
+					});
+				});
 			},
 
 			initComments: function () {

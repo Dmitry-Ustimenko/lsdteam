@@ -12,6 +12,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Factories;
+using LeagueSoldierDeathTeam.Site.Models;
 using Microsoft.Web.Mvc;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
@@ -100,6 +101,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			Logger.WriteEmergency(filterContext.Exception);
 			base.OnException(filterContext);
+		}
+
+		protected JsonResult JsonRedirectToAction(string url)
+		{
+			return Json(new BaseModel { ReturnUrl = url }, JsonRequestBehavior.AllowGet);
 		}
 
 		protected JsonResult JsonErrorResult(string message = null)

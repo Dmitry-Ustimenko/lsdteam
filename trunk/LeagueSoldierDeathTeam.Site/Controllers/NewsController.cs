@@ -139,16 +139,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
+		[Route("news-delete")]
 		public ActionResult DeleteNews(int? id)
 		{
-			if (id.HasValue)
-			{
+			Execute(() => _newsService.DeleteNews(id.GetValueOrDefault()));
 
-
-				return RedirectToAction<NewsController>(o => o.News());
-			}
-
-			return RedirectToAction<NewsController>(o => o.News());
+			return ModelIsValid
+				? JsonRedirectToAction(WebBuilder.BuildActionUrl<NewsController>(o => o.News()))
+				: JsonErrorResult("Ошибка при удалении новости");
 		}
 
 		[Route("create-news")]

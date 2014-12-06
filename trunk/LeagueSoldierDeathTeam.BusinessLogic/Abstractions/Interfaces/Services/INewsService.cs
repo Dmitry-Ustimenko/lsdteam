@@ -18,5 +18,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services
 		void AddNewsComment(int newsId, CommentData data);
 
 		IEnumerable<CommentData> GetNewsComments(int newsId);
+
+		void DeleteNews(int id);
 	}
 }

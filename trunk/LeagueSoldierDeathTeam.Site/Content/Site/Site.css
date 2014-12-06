@@ -1306,8 +1306,15 @@ a {
 				line-height: 15px;
 			}
 
-			.view-news .view-news-body .view-news-info .view-news-writer-edit {
+			.view-news .view-news-body .view-news-info .view-news-edit {
 				background: url(/Images/new-icons.png) no-repeat -17px -61px;
+				padding-left: 15px;
+				padding-right: 5px;
+				line-height: 15px;
+			}
+
+			.view-news .view-news-body .view-news-info .view-news-delete {
+				background: url(/Images/new-icons.png) no-repeat -1px -418px;
 				padding-left: 15px;
 				padding-right: 5px;
 				line-height: 15px;
