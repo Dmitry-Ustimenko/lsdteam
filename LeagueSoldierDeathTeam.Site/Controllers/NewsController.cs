@@ -139,6 +139,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
+		[UserAuthorize(UserRoles = Role.Administrator | Role.Moderator)]
 		[Route("news-delete")]
 		public ActionResult DeleteNews(int? id)
 		{
