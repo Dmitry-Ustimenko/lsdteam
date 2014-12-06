@@ -62,6 +62,14 @@
 					}
 				</div>
 				<div class="description">@comment.Description</div>
+				<div class="comment-reply" data-writer="@(string.Format("[b]{0}[/b], ", comment.Writer.UserName))">
+					<span class="reply-icon"></span>
+					ответить
+				</div>
+				<div class="comment-quote" data-description="@(string.Format("[quote='{0}']{1}[/quote]", comment.Writer.UserName, comment.Description))">
+					<span class="reply-quote"></span>
+					цицировать
+				</div>
 			</div>
 			<div class="comment-rate">
 				<div class="comment-rate-wrap">

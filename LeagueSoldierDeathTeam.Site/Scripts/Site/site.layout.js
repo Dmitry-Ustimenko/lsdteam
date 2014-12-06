@@ -25,7 +25,7 @@
 
 			$.fn.initCheckbox();
 			$.fn.checkCommentHash();
-			site.layout.backgroundSlider();
+			//site.layout.backgroundSlider();
 			site.layout.clearSocialHash();
 			site.layout.topPage();
 			site.layout.fixedMenu();

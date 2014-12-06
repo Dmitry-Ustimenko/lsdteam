@@ -3679,8 +3679,8 @@ textarea.resize-none {
 			.comments .comments-content .comments-body .comment .comment-writer .comment-writer-name {
 				width: 100px;
 				display: inline-block;
-				padding: 2px;
-				padding-top: 0;
+				padding: 3px 0;
+				padding-top: 2px;
 			}
 
 			.comments .comments-content .comments-body .comment .comment-writer .comment-writer-actions {
@@ -3730,40 +3730,80 @@ textarea.resize-none {
 			margin-top: -5px;
 		}
 
-			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date {
-				color: rgb(150, 150, 150);
-				font-size: 10px;
-				height: 16px;
-				line-height: 19px;
+		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-reply,
+		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-quote {
+			visibility: visible;
+		}
+
+		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-reply,
+		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-quote {
+			margin-top: 10px;
+			margin-bottom: 5px;
+			cursor: pointer;
+			font-size: 12px;
+			font-style: italic;
+			-ms-opacity: 0.6;
+			opacity: 0.6;
+			display: inline-block;
+			visibility: hidden;
+			margin-right: 5px;
+		}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-reply:hover,
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-quote:hover {
+				-ms-opacity: 1;
+				opacity: 1;
 			}
 
-				.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link {
-					cursor: pointer;
-					display: inline-block;
-				}
-
-				.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link-hash {
-					cursor: pointer;
-					display: inline-block;
-					line-height: 18px;
-				}
-
-				.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link .comment-link-input {
-					height: 16px;
-					cursor: text;
-					display: none;
-					width: 200px;
-				}
-
-				.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link:hover {
-					color: #B31919;
-				}
-
-			.comments .comments-content .comments-body .comment .comment-description-wrap .description {
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-reply .reply-icon {
+				background: url(/Images/new-icons.png) no-repeat -36px -73px;
 				display: inline-block;
-				vertical-align: top;
-				margin-top: 3px;
+				width: 12px;
+				height: 14px;
 			}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-quote .reply-quote {
+				background: url(/Images/new-icons.png) no-repeat -15px -73px;
+				display: inline-block;
+				width: 16px;
+				height: 14px;
+			}
+
+		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date {
+			color: rgb(150, 150, 150);
+			font-size: 10px;
+			height: 16px;
+			line-height: 19px;
+		}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link {
+				cursor: pointer;
+				display: inline-block;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link-hash {
+				cursor: pointer;
+				display: inline-block;
+				line-height: 18px;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link .comment-link-input {
+				height: 16px;
+				cursor: text;
+				display: none;
+				width: 200px;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link:hover {
+				color: #B31919;
+			}
+
+		.comments .comments-content .comments-body .comment .comment-description-wrap .description {
+			display: inline-block;
+			vertical-align: top;
+			margin-top: 5px;
+			width: 100%;
+		}
 
 		.comments .comments-content .comments-body .comment .comment-rate {
 			display: inline-block;
