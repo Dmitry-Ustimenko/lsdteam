@@ -172,10 +172,15 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				if (news == null)
 					return RedirectToAction<NewsController>(o => o.News());
 
-				model.CopyFrom(news);
-				FillResourceEditNewsModel(model);
+				if (CurrentUser.IsMainAdmin || CurrentUser.IsAdmin || (CurrentUser.IsModerator && CurrentUser.Id == news.WriterId))
+				{
+					model.CopyFrom(news);
+					FillResourceEditNewsModel(model);
 
-				return View(model);
+					return View(model);
+				}
+
+				return RedirectToAction<NewsController>(o => o.CreateNews());
 			}
 
 			return RedirectToAction<NewsController>(o => o.CreateNews());
