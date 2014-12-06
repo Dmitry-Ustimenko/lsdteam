@@ -11,6 +11,7 @@ using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Classes;
+using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Factories;
 using LeagueSoldierDeathTeam.Site.Models;
 using Microsoft.Web.Mvc;
@@ -19,17 +20,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 {
 	public class BaseController : Controller
 	{
-		protected IAppContext AppContext { get; private set; }
-
-		protected HttpContextBase HttpContextBase
-		{
-			get
-			{
-				return ContextFactory.GetHttpContext();
-			}
-		}
-
-		protected ServiceFactoryBase ServiceFactory { get; private set; }
+		#region Private Fields
 
 		private readonly IAccountService _accountService;
 
@@ -37,11 +28,33 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private bool _disposeAppContext;
 
+		#endregion
+
+		#region Properties
+
+		protected ServiceFactoryBase ServiceFactory { get; private set; }
+
+		protected IAppContext AppContext { get; private set; }
+
+		protected HttpContextBase HttpContextBase
+		{
+			get { return ContextFactory.GetHttpContext(); }
+		}
+
 		protected UserData CurrentUser
 		{
 			get { return AppContext.CurrentUser; }
 			set { AppContext.CurrentUser = value; }
 		}
+
+		protected bool ModelIsValid
+		{
+			get { return ModelState.IsValid; }
+		}
+
+		#endregion
+
+		#region Constructors
 
 		public BaseController(ServiceFactoryBase serviceFactory)
 		{
@@ -53,19 +66,53 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			_accountProfileService = serviceFactory.CreateAccountProfileService();
 		}
 
-		protected override void Dispose(bool disposing)
+
+		#endregion
+
+		#region Common Actions
+
+		
+
+		#endregion
+
+		#region Public Methods
+
+		public static RedirectToRouteResult RedirectToAction<T>(Expression<Action<T>> action, RouteValueDictionary values = null)
+			where T : Controller
 		{
-			base.Dispose(disposing);
-			if (!disposing)
-				return;
+			var body = action.Body as MethodCallExpression;
+			if (body == null)
+				throw new ArgumentException("Expression must be a method call.");
+			if (body.Object != action.Parameters[0])
+				throw new ArgumentException("Method call must target lambda argument.");
 
-			if (AppContext == null)
-				return;
+			var actionName = body.Method.Name;
+			var attributes = body.Method.GetCustomAttributes(typeof(ActionNameAttribute), false);
+			if (attributes.Length > 0)
+			{
+				var actionNameAttr = (ActionNameAttribute)attributes[0];
+				actionName = actionNameAttr.Name;
+			}
 
-			if (_disposeAppContext)
-				Classes.AppContext.Current = null;
-			AppContext = null;
+			var controllerName = typeof(T).Name;
+			if (controllerName.EndsWith("Controller", StringComparison.OrdinalIgnoreCase))
+				controllerName = controllerName.Remove(controllerName.Length - 10, 10);
+
+			var defaults = LinkBuilder.BuildParameterValuesFromExpression(body) ?? new RouteValueDictionary();
+
+			values = values ?? new RouteValueDictionary();
+			values.Add("controller", controllerName);
+			values.Add("action", actionName);
+
+			foreach (var pair in defaults.Where(p => p.Value != null))
+				values.Add(pair.Key, pair.Value);
+
+			return new RedirectToRouteResult(values);
 		}
+
+		#endregion
+
+		#region Protected Methods
 
 		protected override void OnAuthorization(AuthorizationContext authorizationContext)
 		{
@@ -101,6 +148,15 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			Logger.WriteEmergency(filterContext.Exception);
 			base.OnException(filterContext);
+		}
+
+		protected void Private(int userId, bool adminAccess = false)
+		{
+			if (adminAccess && (CurrentUser.IsMainAdmin || CurrentUser.IsAdmin))
+				return;
+
+			if (!CurrentUser.IsMe(userId))
+				ModelState.AddModelError(string.Empty, "Недостаточно прав");
 		}
 
 		protected JsonResult JsonRedirectToAction(string url)
@@ -176,7 +232,23 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return default(T);
 		}
 
-		protected bool ModelIsValid { get { return ModelState.IsValid; } }
+		protected override void Dispose(bool disposing)
+		{
+			base.Dispose(disposing);
+			if (!disposing)
+				return;
+
+			if (AppContext == null)
+				return;
+
+			if (_disposeAppContext)
+				Classes.AppContext.Current = null;
+			AppContext = null;
+		}
+
+		#endregion
+
+		#region Internel Implementation
 
 		private static string GetParamName(string paramName)
 		{
@@ -187,48 +259,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			var paramNameIndex = message.IndexOf("Parameter name:", StringComparison.Ordinal);
 			return paramNameIndex > 0 ? message.Substring(0, paramNameIndex) : message;
-		}
-
-		public static RedirectToRouteResult RedirectToAction<T>(Expression<Action<T>> action, RouteValueDictionary values = null)
-			where T : Controller
-		{
-			var body = action.Body as MethodCallExpression;
-			if (body == null)
-				throw new ArgumentException("Expression must be a method call.");
-			if (body.Object != action.Parameters[0])
-				throw new ArgumentException("Method call must target lambda argument.");
-
-			var actionName = body.Method.Name;
-			var attributes = body.Method.GetCustomAttributes(typeof(ActionNameAttribute), false);
-			if (attributes.Length > 0)
-			{
-				var actionNameAttr = (ActionNameAttribute)attributes[0];
-				actionName = actionNameAttr.Name;
-			}
-
-			var controllerName = typeof(T).Name;
-			if (controllerName.EndsWith("Controller", StringComparison.OrdinalIgnoreCase))
-				controllerName = controllerName.Remove(controllerName.Length - 10, 10);
-
-			var defaults = LinkBuilder.BuildParameterValuesFromExpression(body) ?? new RouteValueDictionary();
-
-			values = values ?? new RouteValueDictionary();
-			values.Add("controller", controllerName);
-			values.Add("action", actionName);
-
-			foreach (var pair in defaults.Where(p => p.Value != null))
-				values.Add(pair.Key, pair.Value);
-
-			return new RedirectToRouteResult(values);
-		}
-
-		protected void Private(int userId, bool adminAccess = false)
-		{
-			if (adminAccess && (CurrentUser.IsMainAdmin || CurrentUser.IsAdmin))
-				return;
-
-			if (!CurrentUser.IsMe(userId))
-				ModelState.AddModelError(string.Empty, "Недостаточно прав");
 		}
 
 		private void AnalyzeSqlException(Exception exception)
@@ -242,5 +272,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				ModelState.AddModelError("Error", Constants.ErrorMessage);
 			}
 		}
+
+		#endregion
 	}
 }
