@@ -17,7 +17,7 @@
 			@{Html.RenderPartial("_CommentDataPartial", Model.Data);}
 		</div>
 		<div class="comments-creator">
-			<div class="comments-header">Новый комментарий</div>
+			<div class="comments-header" id="new-comment">Новый комментарий</div>
 			@if (Request.IsAuthenticated && currentUser != null)
 			{
 				using (Html.BeginForm())

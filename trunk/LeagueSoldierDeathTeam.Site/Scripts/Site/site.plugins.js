@@ -225,6 +225,30 @@
 				}
 			});
 		});
+
+		$('.comment-reply').each(function () {
+			var $this = $(this);
+			$this.off('click').on('click', function () {
+				var newDescription = $("#CommentDescription");
+				newDescription.val($this.data("writer") + newDescription.val());
+
+				$('html, body').animate({
+					scrollTop: $("#new-comment").offset().top - 38
+				}, 'fast');
+			});
+		});
+
+		$('.comment-quote').each(function () {
+			var $this = $(this);
+			$this.off('click').on('click', function () {
+				var newDescription = $("#CommentDescription");
+				newDescription.val(newDescription.val() + $this.data("description"));
+
+				$('html, body').animate({
+					scrollTop: $("#new-comment").offset().top - 38
+				}, 'fast');
+			});
+		});
 	};
 })(jQuery);
 
