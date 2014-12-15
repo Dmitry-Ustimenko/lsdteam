@@ -32,11 +32,14 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 
 		public IEnumerable<PlatformData> Platforms { get; set; }
 
+		public IEnumerable<NewsData> PreviousNews { get; set; }
+
 		public ViewNewsModel()
 		{
 			NewsCategory = new NewsCategoryData();
 			Platforms = new List<PlatformData>();
 			PlatformIds = new List<int>();
+			PreviousNews = new List<NewsData>();
 		}
 	}
 }

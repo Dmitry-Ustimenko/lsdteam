@@ -81,7 +81,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 					return RedirectToAction<NewsController>(o => o.News());
 
 				//Execute(() => _newsService.ChangeCountViews(news.Id));
-				model.CopyFrom(news);
+				FillViewNewsModel(model, news);
 
 				return View(model);
 			}
@@ -238,6 +238,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#endregion
 
 		#region Internal Implementation
+
+		private void FillViewNewsModel(ViewNewsModel model, NewsData data)
+		{
+			var previousNews = (Execute(() => _newsService.GetNews(null, null, (int)NewsSort.Date, 1, Constants.LastNewsPageSize)) ?? new PageData<NewsData>());
+			model.PreviousNews = previousNews.Data;
+
+			model.CopyFrom(data);
+		}
 
 		private void FillResourceEditNewsModel(EditNewsModel model)
 		{

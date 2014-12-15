@@ -58,6 +58,17 @@
 					</span>
 				</div>
 			</div>
+			<div class="previous-news">
+				<div class="previous-news-content">
+					<div class="previous-news-header">Предыдущие новости:</div>
+					<div class="previous-news-body">
+						@foreach (var item in Model.PreviousNews)
+						{
+
+						}
+					</div>
+				</div>
+			</div>
 			<div id="comments">
 				@{ Html.RenderAction("NewsCommentData", Model.Id); }
 			</div>
