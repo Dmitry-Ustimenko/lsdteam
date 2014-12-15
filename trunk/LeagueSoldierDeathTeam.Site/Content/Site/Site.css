@@ -1346,6 +1346,26 @@ a {
 					border-bottom: none;
 				}
 
+.previous-news {
+	margin: 0 10px;
+}
+
+	.previous-news .previous-news-content {
+		border: 1px solid #dadada;
+		border-top: none;
+		border-bottom: none;
+	}
+
+	.previous-news .previous-news-header {
+		font-size: 16px;
+		padding: 5px 10px;
+		background-color: rgba(0, 0, 0, 0.08);
+	}
+
+	.previous-news .previous-news-body {
+		margin: 10px;
+	}
+
 .annotation-label {
 	padding-top: 22px !important;
 }
