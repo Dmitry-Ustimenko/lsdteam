@@ -115,7 +115,7 @@ select {
 	input[type=password]:focus,
 	select:focus,
 	textarea:focus {
-		border: 1px solid rgb(120, 120, 120);
+		border: 1px solid rgb(120, 120, 120) !important;
 	}
 
 input[type=text]:focus, input[type=password]:focus {
@@ -969,8 +969,26 @@ a {
 	cursor: pointer;
 }
 
+.simple-page-body .form textarea {
+	width: 165px;
+	padding: 8px 6px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	border: 1px solid #AAAAAA;
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+	-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+	font-family: 'Ubuntu', 'Lato', sans-serif;
+	color: black;
+	-moz-resize: vertical;
+	-ms-resize: vertical;
+	-o-resize: vertical;
+	resize: vertical;
+}
+
 .simple-page-body .form input[type=text],
 .simple-page-body .form input[type=password],
+.simple-page-body .form textarea,
 .simple-page-body .form select {
 	float: right;
 }

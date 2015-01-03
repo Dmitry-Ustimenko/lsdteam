@@ -16,7 +16,7 @@
 		</p>
 		<p class="clearfix">
 			@Html.LabelFor(model => model.AboutMe)
-			@Html.TextBoxFor(model => model.AboutMe, new { @placeholder = "Интересы" })
+			@Html.TextAreaFor(model => model.AboutMe, new { @placeholder = "Интересы", @rows = "3" })
 		</p>
 		<p class="clearfix">
 			@Html.LabelFor(model => model.DateBirth)
