@@ -32,6 +32,41 @@
 })(jQuery);
 
 (function ($) {
+	$.fn.sortDropdown = function (sortName, callback) {
+		var sortChangeable = $(".sort-changeable");
+		var sortDropdown = $(".sort-dropdown");
+
+		sortName.off("click").on("click", function () {
+			if (sortDropdown.is(":hidden"))
+				sortDropdown.fadeIn("fast");
+			else
+				sortDropdown.fadeOut("fast");
+		});
+
+		$(document).click(function (event) {
+			var $eventTarget = $(event.target);
+			if (!$eventTarget.closest(".sort-changeable").length)
+				sortDropdown.fadeOut("fast");
+			event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = true);
+		});
+
+		sortDropdown.find("li").each(function () {
+			var $this = $(this);
+			$this.off("click").on("click", function () {
+				sortName.text($this.text());
+				sortName.data("val", $this.data("val"));
+				sortChangeable.width($this.width());
+				sortDropdown.fadeOut("fast");
+
+				if (typeof (callback) == "function") {
+					callback(sortName);
+				}
+			});
+		});
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.lenghtLimit = function (txtBox, lengthBox, lenght) {
 		if (txtBox != undefined && lengthBox != undefined) {
 			txtBox.on('input keyup paste cut', function () {
@@ -158,7 +193,7 @@
 
 		$addCommentBtn.off('click').on('click', function () {
 			if (form.valid()) {
-				var params = $.fn.serializeParams(form);
+				var params = $.fn.serializeParams(form, [{ name: "SortType", value: $('.sort-name').data("val") }]);
 				$('#comment-feed').loadData(url, params, function () {
 					$description.val('');
 					$.fn.initCommentFeed();
@@ -266,7 +301,16 @@
 		var $refreshCommentBtn = $('[data-type=refresh-comments]');
 
 		$refreshCommentBtn.off('click').on('click', function () {
-			$('#comment-feed').loadData(url, { id: $refreshCommentBtn.data('content-id') }, function () {
+			$('#comment-feed').loadData(url, { id: $refreshCommentBtn.data('content-id'), sortType: $('.sort-name').data("val") }, function () {
+				$.fn.initCommentFeed();
+
+				setTimeout("$('.comments-refresh-complete').fadeIn('normal')", 100);
+				setTimeout("$('.comments-refresh-complete').fadeOut('slow')", 2000);
+			});
+		});
+
+		$.fn.sortDropdown($('.sort-name'), function (name) {
+			$('#comment-feed').loadData(url, { id: $refreshCommentBtn.data('content-id'), sortType: name.data("val") }, function () {
 				$.fn.initCommentFeed();
 
 				setTimeout("$('.comments-refresh-complete').fadeIn('normal')", 100);

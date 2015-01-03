@@ -61,37 +61,12 @@
 			},
 
 			initFilter: function (sortName, searchInput) {
-				var sortChangeable = $(".sort-changeable");
-				var sortDropdown = $(".sort-dropdown");
-
-				sortName.off("click").on("click", function () {
-					if (sortDropdown.is(":hidden"))
-						sortDropdown.fadeIn("fast");
-					else
-						sortDropdown.fadeOut("fast");
-				});
-
-				$(document).click(function (event) {
-					var $eventTarget = $(event.target);
-					if (!$eventTarget.closest(".sort-changeable").length)
-						sortDropdown.fadeOut("fast");
-					event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = true);
-				});
-
-				sortDropdown.find("li").each(function () {
-					var $this = $(this);
-					$this.off("click").on("click", function () {
-						sortName.text($this.text());
-						sortName.data("val", $this.data("val"));
-						sortChangeable.width($this.width());
-						sortDropdown.fadeOut("fast");
-
-						site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.refreshUsersGrid,
-							[{ name: "SortType", value: sortName.data("val") }, { name: "Term", value: searchInput.val() }],
-							function () {
-								site.administation.users.refreshGrid(sortName, searchInput);
-							});
-					});
+				$.fn.sortDropdown(sortName, function (name) {
+					site.administation.users.refresh(site.administation.settings.elements.users, site.administation.settings.urls.refreshUsersGrid,
+						[{ name: "SortType", value: name.data("val") }, { name: "Term", value: searchInput.val() }],
+						function () {
+							site.administation.users.refreshGrid(name, searchInput);
+						});
 				});
 
 				var clearBtn = $(".clear-btn");

@@ -93,10 +93,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("news-comment-data")]
 		public ActionResult NewsCommentData(int? id)
 		{
-			var model = new CommentModel
-			{
-				ContentId = id.GetValueOrDefault()
-			};
+			var model = new CommentModel { ContentId = id.GetValueOrDefault() };
 			FillCommentModel(model);
 			return View(model);
 		}
@@ -104,9 +101,14 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[HttpPost]
 		[AjaxOrChildActionOnly]
 		[Route("news-comment-feed")]
-		public ActionResult NewsCommentFeed(int? id)
+		public ActionResult NewsCommentFeed(int? id, CommentSortEnum sortType)
 		{
-			var model = new CommentModel { ContentId = id.GetValueOrDefault() };
+			var model = new CommentModel
+			{
+				ContentId = id.GetValueOrDefault(),
+				SortType = sortType
+			};
+
 			FillCommentModel(model);
 
 			return ModelIsValid
@@ -268,7 +270,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private void FillCommentModel(CommentModel model)
 		{
-			model.Data = Execute(() => _newsService.GetNewsComments(model.ContentId)) ?? new List<CommentData>();
+			model.Data = Execute(() => _newsService.GetNewsComments(model.ContentId, model.SortType)) ?? new List<CommentData>();
 		}
 
 		private void ValidateUploadFile(EditNewsModel model)
