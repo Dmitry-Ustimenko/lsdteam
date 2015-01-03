@@ -12,6 +12,7 @@
 			Комментарии
 			<span class="comments-refresh" data-type="refresh-comments" data-content-id="@Model.ContentId"></span>
 			<span class="comments-refresh-complete">Обновлено</span>
+			<span class="comments-new-comment-link">Новый комментарий</span>
 		</div>
 		<div class="comments-body" id="comment-feed">
 			@{Html.RenderPartial("_CommentDataPartial", Model.Data);}
