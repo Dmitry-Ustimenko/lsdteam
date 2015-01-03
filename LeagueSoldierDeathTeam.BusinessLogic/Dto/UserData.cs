@@ -25,6 +25,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Dto
 		public bool IsAdmin { get { return RoleId == (int)RoleEnum.Administrator; } }
 		public bool IsModerator { get { return RoleId == (int)RoleEnum.Moderator; } }
 		public bool IsUser { get { return RoleId == (int)RoleEnum.User; } }
+		public bool IsMainRole { get { return RoleId != (int)RoleEnum.User; } }
 
 		public UserExternalInfoData UserExternalInfo { get; set; }
 
