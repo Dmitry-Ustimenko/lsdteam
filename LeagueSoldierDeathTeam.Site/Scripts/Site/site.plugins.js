@@ -149,6 +149,7 @@
 		var $addCommentBtn = $('[data-type=add]');
 		var form = $addCommentBtn.closest('form');
 		var commentsHeader = $('#comments-header-hash');
+		var $newCommentLink = $('.comments-new-comment-link');
 
 		if ($description != undefined) {
 			$description.markItUp(myCommentSettings);
@@ -167,6 +168,14 @@
 					}, 'fast');
 				});
 			}
+		});
+
+		$newCommentLink.off('click').on('click', function () {
+			$('html, body').animate({
+				scrollTop: $('#new-comment').offset().top - 38
+			}, 'fast');
+
+			$description.focus();
 		});
 	};
 })(jQuery);

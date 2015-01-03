@@ -3672,6 +3672,19 @@ textarea.resize-none {
 				font-size: 13px;
 			}
 
+			.comments .comments-content .comments-header .comments-new-comment-link {
+				display: inline-block;
+				cursor: pointer;
+				border-bottom: 1px dotted gray;
+				font-size: 13px;
+				float: right;
+				margin-top: 1px;
+			}
+
+			.comments .comments-content .comments-header .comments-new-comment-link:hover {
+				border-bottom: none;
+			}
+
 @-webkit-keyframes rotation {
 	0% {
 		-webkit-transform: rotate(0);
