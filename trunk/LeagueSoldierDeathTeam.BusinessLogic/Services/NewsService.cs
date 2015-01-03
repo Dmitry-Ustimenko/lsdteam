@@ -216,6 +216,19 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			UnitOfWork.Commit();
 		}
 
+		public void DeleteNewsComment(int id, bool haveRights, int currentUserId)
+		{
+			var comment = _commentRepository.Query(o => o.Id == id).SingleOrDefault();
+			if (comment == null)
+				throw new ArgumentException("Данного комментария не существует");
+
+			if (!haveRights && comment.WriterId != currentUserId)
+				return;
+
+			_commentRepository.Delete(comment);
+			UnitOfWork.Commit();
+		}
+
 		IEnumerable<CommentData> INewsService.GetNewsComments(int newsId, CommentSortEnum sortType)
 		{
 			var news = _newsRepository.Query(o => o.Id == newsId).SingleOrDefault();

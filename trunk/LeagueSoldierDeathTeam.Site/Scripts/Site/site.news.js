@@ -6,7 +6,8 @@
 				refreshGrid: '',
 				deleteNews: '',
 				addNewsComment: '',
-				refreshNewsFeed: ''
+				refreshNewsFeed: '',
+				deleteNewsComment: ''
 			},
 			vars: {
 				form: null
@@ -214,9 +215,9 @@
 			},
 
 			initComments: function () {
-				$.fn.refreshCommentFeed(site.news.settings.urls.refreshNewsFeed);
-				$.fn.initNewComment(site.news.settings.urls.addNewsComment);
-				$.fn.initCommentFeed();
+				$.fn.refreshCommentFeed(site.news.settings.urls.refreshNewsFeed, site.news.settings.urls.deleteNewsComment);
+				$.fn.initNewComment(site.news.settings.urls.addNewsComment, site.news.settings.urls.deleteNewsComment);
+				$.fn.initCommentFeed(site.news.settings.urls.deleteNewsComment);
 			},
 
 			parseBBCode: function () {
