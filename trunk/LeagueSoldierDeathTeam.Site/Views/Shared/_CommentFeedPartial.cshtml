@@ -1,4 +1,5 @@
-﻿@using LeagueSoldierDeathTeam.Site.Classes
+﻿@using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums
+@using LeagueSoldierDeathTeam.Site.Classes
 @model LeagueSoldierDeathTeam.Site.Models.CommentModel
 
 @{
@@ -13,6 +14,19 @@
 			<span class="comments-refresh" data-type="refresh-comments" data-content-id="@Model.ContentId"></span>
 			<span class="comments-refresh-complete">Обновлено</span>
 			<span class="comments-new-comment-link">Новый комментарий</span>
+			<div class="comments-filter">
+				<div class="sort">
+					Начинать:
+					<div class="sort-changeable">
+						<span data-val="@CommentSortEnum.New" class="sort-name">с новых</span>
+						<ul class="sort-dropdown">
+							<li data-val="@CommentSortEnum.New">с новых</li>
+							<li data-val="@CommentSortEnum.Old">со старых</li>
+							<li data-val="@CommentSortEnum.Popular">с лучших</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="comments-body" id="comment-feed">
 			@{Html.RenderPartial("_CommentDataPartial", Model.Data);}

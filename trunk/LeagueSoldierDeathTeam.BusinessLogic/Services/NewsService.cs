@@ -216,7 +216,7 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 			UnitOfWork.Commit();
 		}
 
-		IEnumerable<CommentData> INewsService.GetNewsComments(int newsId)
+		IEnumerable<CommentData> INewsService.GetNewsComments(int newsId, CommentSortEnum sortType)
 		{
 			var news = _newsRepository.Query(o => o.Id == newsId).SingleOrDefault();
 			if (news == null)
@@ -235,7 +235,15 @@ namespace LeagueSoldierDeathTeam.BusinessLogic.Services
 				ContentId = o.NewsId
 			}).OrderByDescending(o => o.CreateDate).ToList();
 
-			return comments;
+			switch (sortType)
+			{
+				case CommentSortEnum.Old:
+					return comments.OrderBy(o => o.CreateDate).ToList();
+				case CommentSortEnum.Popular:
+					return comments.OrderByDescending(o => o.Rate);
+				default:
+					return comments;
+			}
 		}
 
 		public void DeleteNews(int id)

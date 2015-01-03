@@ -2704,125 +2704,135 @@ span.checker-span {
 	margin: 20px 0 10px 0;
 }
 
-	.ui-widget-content .filter .sort,
-	.ui-widget-content .filter .sort-role {
-		float: left;
-		margin-top: 5px;
-		margin-bottom: 5px;
-		position: relative;
-		outline: none;
-		cursor: pointer;
-	}
+.sort,
+.sort-role {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
+	font-size: 13px !important;
+}
 
-		.ui-widget-content .filter .sort .sort-changeable,
-		.ui-widget-content .filter .sort-role .sort-role-changeable {
-			position: absolute;
-			top: 0;
-			left: 83px;
-			width: 120px;
-			display: inline-block;
-			padding-left: 5px;
-		}
+.sort,
+.sort-role {
+	float: left;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	position: relative;
+	outline: none;
+	cursor: pointer;
+}
 
-		.ui-widget-content .filter .sort-role .sort-role-changeable {
-			left: 81px;
-		}
-
-			.ui-widget-content .filter .sort .sort-changeable .sort-name,
-			.ui-widget-content .filter .sort-role .sort-role-changeable .sort-role-name {
-				font-style: italic;
-				border-bottom: 1px dotted;
-			}
-
-		.ui-widget-content .filter .sort .sort-dropdown,
-		.ui-widget-content .filter .sort-role .sort-role-dropdown {
-			position: absolute;
-			top: 25px;
-			left: 0;
-			background: #fff;
-			list-style: none;
-			font-weight: normal;
-			width: 115px;
-			padding: 5px 0 5px 0;
-			border: 1px solid #a8acad;
-			display: none;
-		}
-
-		.ui-widget-content .filter .sort-role .sort-role-dropdown {
-			width: 131px;
-		}
-
-			.ui-widget-content .filter .sort .sort-dropdown:before,
-			.ui-widget-content .filter .sort-role .sort-role-dropdown:before {
-				left: 10px;
-			}
-
-			.ui-widget-content .filter .sort .sort-dropdown:before,
-			.ui-widget-content .filter .sort-role .sort-role-dropdown:before {
-				content: "";
-				position: absolute;
-				border-left: 6px solid transparent;
-				border-right: 6px solid transparent;
-				border-bottom: 6px solid #5d5d5d;
-				top: -6px;
-			}
-
-			.ui-widget-content .filter .sort .sort-dropdown li,
-			.ui-widget-content .filter .sort-role .sort-role-dropdown li {
-				padding-left: 5px;
-				cursor: pointer;
-			}
-
-				.ui-widget-content .filter .sort .sort-dropdown li:hover,
-				.ui-widget-content .filter .sort-role .sort-role-dropdown li:hover {
-					background-color: #ECECEC;
-				}
-
-	.ui-widget-content .filter .search, .ui-widget-content .filter .role-search {
-		float: right;
-		width: 171px;
-		border: 1px solid #a8acad;
-		margin-top: 0;
-		margin-bottom: 5px;
-	}
-
-	.ui-widget-content .filter .search-btn, .ui-widget-content .filter .role-search-btn {
-		background: url(/Images/icon_search.png) no-repeat 2px 1px #FFF;
-		border-left: 1px solid #a8acad;
+	.sort .sort-changeable,
+	.sort-role .sort-role-changeable {
+		position: absolute;
+		top: 0;
+		left: 83px;
+		width: 120px;
 		display: inline-block;
-		float: right;
-		width: 22px;
-		height: 22px;
-		cursor: pointer;
+		padding-left: 5px;
 	}
 
-	.ui-widget-content .filter .clear-btn, .ui-widget-content .filter .role-clear-btn {
-		background: url(/Images/clear-input.png) no-repeat 0 -1px #FFF;
-		border: 1px solid #a8acad;
-		border-right: none;
-		display: none;
-		float: right;
-		width: 22px;
-		height: 24px;
-		cursor: pointer;
+	.sort-role .sort-role-changeable {
+		left: 81px;
 	}
 
-		.ui-widget-content .filter .search-btn:active,
-		.ui-widget-content .filter .clear-btn:active,
-		.ui-widget-content .filter .role-search-btn:active,
-		.ui-widget-content .filter .role-clear-btn:active {
-			-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
-			-ms-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
-			box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+		.sort .sort-changeable .sort-name,
+		.sort-role .sort-role-changeable .sort-role-name {
+			font-style: italic;
+			border-bottom: 1px dotted;
 		}
 
-	.ui-widget-content .filter .search input, .ui-widget-content .filter .role-search input {
-		border: 0;
-		width: 143px;
-		padding: 3px;
-		padding-left: 5px;
-		padding-right: 0;
-		margin: 0;
+	.sort .sort-dropdown,
+	.sort-role .sort-role-dropdown {
+		position: absolute;
+		top: 25px;
+		left: 0;
+		background: #fff;
+		list-style: none;
+		font-weight: normal;
+		width: 115px;
+		padding: 5px 0 5px 0;
+		border: 1px solid #a8acad;
+		display: none;
+	}
+
+	.sort-role .sort-role-dropdown {
+		width: 131px;
+	}
+
+		.sort .sort-dropdown:before,
+		.sort-role .sort-role-dropdown:before {
+			left: 10px;
+		}
+
+		.sort .sort-dropdown:before,
+		.sort-role .sort-role-dropdown:before {
+			content: "";
+			position: absolute;
+			border-left: 6px solid transparent;
+			border-right: 6px solid transparent;
+			border-bottom: 6px solid #5d5d5d;
+			top: -6px;
+		}
+
+		.sort .sort-dropdown li,
+		.sort-role .sort-role-dropdown li {
+			padding-left: 5px;
+			cursor: pointer;
+		}
+
+			.sort .sort-dropdown li:hover,
+			.sort-role .sort-role-dropdown li:hover {
+				background-color: #ECECEC;
+			}
+
+.ui-widget-content .filter .search, .ui-widget-content .filter .role-search {
+	float: right;
+	width: 171px;
+	border: 1px solid #a8acad;
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+
+.ui-widget-content .filter .search-btn, .ui-widget-content .filter .role-search-btn {
+	background: url(/Images/icon_search.png) no-repeat 2px 1px #FFF;
+	border-left: 1px solid #a8acad;
+	display: inline-block;
+	float: right;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+}
+
+.ui-widget-content .filter .clear-btn, .ui-widget-content .filter .role-clear-btn {
+	background: url(/Images/clear-input.png) no-repeat 0 -1px #FFF;
+	border: 1px solid #a8acad;
+	border-right: none;
+	display: none;
+	float: right;
+	width: 22px;
+	height: 24px;
+	cursor: pointer;
+}
+
+	.ui-widget-content .filter .search-btn:active,
+	.ui-widget-content .filter .clear-btn:active,
+	.ui-widget-content .filter .role-search-btn:active,
+	.ui-widget-content .filter .role-clear-btn:active {
+		-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+		-ms-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+		box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+	}
+
+.ui-widget-content .filter .search input, .ui-widget-content .filter .role-search input {
+	border: 0;
+	width: 143px;
+	padding: 3px;
+	padding-left: 5px;
+	padding-right: 0;
+	margin: 0;
+}
+
+	.ui-widget-content .filter .search input, .ui-widget-content .filter .role-search input:focus {
+		border: none !important;
 	}
 
 .ui-widget-content .users .pager {
@@ -3647,6 +3657,25 @@ textarea.resize-none {
 			background-color: rgba(0, 0, 0, 0.08);
 		}
 
+			.comments .comments-content .comments-header .sort {
+				float: none;
+				display: inline-block;
+				position: static;
+				margin: 0;
+			}
+
+			.comments .comments-content .comments-header .sort-changeable {
+				position: relative;
+				width: auto;
+				left: 0;
+				padding: 0;
+			}
+
+			.comments .comments-content .comments-header .sort .sort-dropdown, .sort-role .sort-role-dropdown {
+				width: 85px;
+				z-index: 499;
+			}
+
 			.comments .comments-content .comments-header .comments-refresh {
 				background: url(/Images/refresh.png) no-repeat;
 				display: inline-block;
@@ -3681,8 +3710,12 @@ textarea.resize-none {
 				margin-top: 1px;
 			}
 
-			.comments .comments-content .comments-header .comments-new-comment-link:hover {
-				border-bottom: none;
+				.comments .comments-content .comments-header .comments-new-comment-link:hover {
+					border-bottom: none;
+				}
+
+			.comments .comments-content .comments-header .comments-filter {
+				margin: 2px 0;
 			}
 
 @-webkit-keyframes rotation {

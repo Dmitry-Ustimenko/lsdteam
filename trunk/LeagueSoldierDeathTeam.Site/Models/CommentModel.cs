@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
 using LeagueSoldierDeathTeam.BusinessLogic.Dto;
 
 namespace LeagueSoldierDeathTeam.Site.Models
@@ -17,11 +18,14 @@ namespace LeagueSoldierDeathTeam.Site.Models
 
 		public int Rate { get; set; }
 
+		public CommentSortEnum SortType { get; set; }
+
 		public IEnumerable<CommentData> Data { get; set; }
 
 		public CommentModel()
 		{
 			Data = new List<CommentData>();
+			SortType = CommentSortEnum.New;
 		}
 	}
 }

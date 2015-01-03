@@ -82,7 +82,7 @@
 			urls: {
 				deleteNews: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.DeleteNews(null)))',
 				addNewsComment: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.AddNewComment(null)))',
-				refreshNewsFeed: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.NewsCommentFeed(null)))'
+				refreshNewsFeed: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.NewsCommentFeed(null, CommentSortEnum.New)))'
 			}
 		});
 	});
