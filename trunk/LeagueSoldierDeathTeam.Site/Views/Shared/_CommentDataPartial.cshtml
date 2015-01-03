@@ -5,6 +5,7 @@
 @using LeagueSoldierDeathTeam.Site.Controllers
 @{
 	Layout = null;
+	var currentUser = AppContext.Current.CurrentUser;
 }
 
 @if (Model.Any())
@@ -35,7 +36,7 @@
 					}
 				</div>
 				<div class="comment-writer-actions">
-					@if (Request.IsAuthenticated && AppContext.Current.CurrentUser != null)
+					@if (Request.IsAuthenticated && currentUser != null)
 					{
 						<a target="_blank" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.CreateMessage(), new Dictionary<string, object> { { "name", comment.Writer.UserName } }))">
 							<span>ЛС</span>
@@ -62,7 +63,7 @@
 					}
 				</div>
 				<div class="description">@comment.Description</div>
-				@if (Request.IsAuthenticated && AppContext.Current.CurrentUser != null)
+				@if (Request.IsAuthenticated && currentUser != null)
 				{
 					<div class="comment-reply" data-writer="@(string.Format("[b]{0}[/b], ", comment.Writer.UserName))">
 						<span class="reply-icon"></span>
@@ -72,6 +73,13 @@
 						<span class="reply-quote"></span>
 						цицировать
 					</div>
+					if (currentUser.IsMainRole || comment.Writer.Id == currentUser.Id)
+					{
+						<div class="comment-delete" data-id="@comment.Id">
+							<span class="comment-delete-icon"></span>
+							удалить
+						</div>
+					}
 				}
 			</div>
 			<div class="comment-rate">

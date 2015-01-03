@@ -345,6 +345,7 @@
     <Content Include="Images\main-admin-banner-mini.png" />
     <Content Include="Images\message-select.png" />
     <Content Include="Images\moderator-banner-mini.png" />
+    <Content Include="Images\new-icons-delete.png" />
     <Content Include="Images\new-icons.png" />
     <Content Include="Images\platform-active.png" />
     <Content Include="Images\platform-delete.png" />

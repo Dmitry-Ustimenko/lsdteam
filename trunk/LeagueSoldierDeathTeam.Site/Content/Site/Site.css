@@ -3835,12 +3835,14 @@ textarea.resize-none {
 		}
 
 		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-reply,
-		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-quote {
+		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-quote,
+		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-delete {
 			visibility: visible;
 		}
 
 		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-reply,
-		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-quote {
+		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-quote,
+		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-delete {
 			margin-top: 10px;
 			margin-bottom: 5px;
 			cursor: pointer;
@@ -3854,9 +3856,14 @@ textarea.resize-none {
 		}
 
 			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-reply:hover,
-			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-quote:hover {
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-quote:hover,
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-delete:hover {
 				-ms-opacity: 1;
 				opacity: 1;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-delete:hover {
+				color: #B31919 !important;
 			}
 
 			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-reply .reply-icon {
@@ -3871,6 +3878,19 @@ textarea.resize-none {
 				display: inline-block;
 				width: 16px;
 				height: 14px;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-delete .comment-delete-icon {
+				background: url(/Images/new-icons.png) no-repeat -2px -418px;
+				display: inline-block;
+				width: 10px;
+				height: 11px;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-delete:hover .comment-delete-icon {
+				background: url(/Images/new-icons-delete.png) no-repeat;
+				width: 10px;
+				height: 10px;
 			}
 
 		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date {
