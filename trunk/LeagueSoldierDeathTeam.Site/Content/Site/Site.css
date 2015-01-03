@@ -82,9 +82,28 @@ textarea {
 	resize: vertical;
 }
 
+input[type=text],
+input[type=password],
+input[type=button],
+input[type=submit],
+button[type=submit],
 select {
-	font-size: 14px;
-	padding: 6px;
+	width: 165px;
+	padding: 8px 6px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	border: 1px solid #AAAAAA;
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+	-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+	/*-ms-border-radius: 3px;
+	border-radius: 3px;*/
+	font-family: 'Ubuntu', 'Lato', sans-serif;
+	color: black;
+}
+
+select {
+	padding: 8px 2px;
 }
 
 	select:hover {
@@ -93,6 +112,13 @@ select {
 
 	select option:hover {
 		cursor: pointer;
+	}
+
+	input[type=text]:focus,
+	input[type=password]:focus,
+	select:focus,
+	textarea:focus {
+		border: 1px solid rgb(120, 120, 120);
 	}
 
 input[type=text]:focus, input[type=password]:focus {
@@ -949,19 +975,7 @@ a {
 .simple-page-body .form input[type=text],
 .simple-page-body .form input[type=password],
 .simple-page-body .form select {
-	width: 165px;
 	float: right;
-	padding: 8px 5px;
-	margin-bottom: 10px;
-	font-size: 12px;
-	border: 1px solid #8E8E8E;
-	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-	-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-	box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-	/*-ms-border-radius: 3px;
-	border-radius: 3px;*/
-	font-family: 'Ubuntu', 'Lato', sans-serif;
-	color: black;
 }
 
 .simple-page-body .form input[type=button], .simple-page-body .form input[type=submit] {
@@ -1385,6 +1399,11 @@ a {
 .news .news-header {
 	height: 32px;
 }
+
+	.news .news-header select {
+		padding: 6px;
+		font-size: 14px;
+	}
 
 	.news .news-header .news-write-link {
 		float: right;
@@ -2788,6 +2807,7 @@ span.checker-span {
 		padding: 3px;
 		padding-left: 5px;
 		padding-right: 0;
+		margin: 0;
 	}
 
 .ui-widget-content .users .pager {
@@ -2898,6 +2918,7 @@ span.checker-span {
 
 select[data-type=role] {
 	padding: 4px;
+	margin: 0;
 }
 
 .green {
@@ -3040,6 +3061,9 @@ textarea.resize-none {
 
 	.messages .message-types select {
 		width: 200px;
+		font-size: 14px;
+		padding: 6px;
+		margin: 0;
 	}
 
 	.messages .message-write-link {
@@ -3228,7 +3252,7 @@ textarea.resize-none {
 					background: url(/Images/clear-input.png) no-repeat 3px 4px;
 					-ms-border-radius: 0 3px 3px 0;
 					border-radius: 0 3px 3px 0;
-					border: 1px solid #616161;
+					border: 1px solid #aaaaaa;
 					right: 394px;
 				}
 
@@ -3247,7 +3271,6 @@ textarea.resize-none {
 		width: 100%;
 		padding: 8px 5px;
 		font-size: 13px;
-		border: 1px solid #8E8E8E;
 		-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 		-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
 		box-shadow: 0 1px 0 rgba(255,255,255,0.1);
@@ -3309,7 +3332,7 @@ textarea.resize-none {
 
 .simple-page-body .description-preview {
 	margin-top: 3px;
-	border: 1px solid #8E8E8E;
+	border: 1px solid #AAAAAA;
 	font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
 	max-height: 600px;
 	display: none;
@@ -3812,6 +3835,7 @@ textarea.resize-none {
 				cursor: text;
 				display: none;
 				width: 200px;
+				padding: 0;
 			}
 
 			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-date .comment-link:hover {
@@ -3928,7 +3952,7 @@ textarea.resize-none {
 
 	.comments .comments-content .comments-creator .comments-body .comment-add-btn {
 		display: inline-block;
-		border: 1px solid #8E8E8E;
+		border: 1px solid #AAAAAA;
 		padding: 4px 15px;
 		cursor: pointer;
 		background-color: rgba(0, 0, 0, 0.05);
@@ -3945,17 +3969,22 @@ textarea.resize-none {
 		}
 
 	.comments .comments-content .comments-creator .comments-body .markItUpHeader {
-		border: 1px solid #8E8E8E !important;
+		border: 1px solid #AAAAAA !important;
 	}
 
 	.comments .comments-content .comments-creator .comments-body .comment-description.markItUpEditor {
 		height: 156px !important;
-		border: 1px solid #8E8E8E !important;
+		border: 1px solid #AAAAAA !important;
 		border-top: none !important;
 	}
 
+		.comments .comments-content .comments-creator .comments-body .comment-description.markItUpEditor:focus {
+			border: 1px solid rgb(120,120,120) !important;
+			border-top: none !important;
+		}
+
 	.comments .comments-content .comments-creator .comments-body .description-preview {
-		border: 1px solid #8E8E8E !important;
+		border: 1px solid #AAAAAA !important;
 		margin-bottom: 4px;
 		margin-top: 2px;
 		min-height: 160px;
