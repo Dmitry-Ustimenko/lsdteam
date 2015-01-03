@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -134,6 +135,26 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			FillCommentModel(model);
 
+			return ModelIsValid
+				? (ActionResult)View("_CommentDataPartial", model.Data)
+				: JsonErrorResult();
+		}
+
+		[HttpPost]
+		[Authorize]
+		[AjaxOrChildActionOnly]
+		[Route("delete-news-comment")]
+		public ActionResult DeleteComment(int? id, int? contentId, CommentSortEnum sortType)
+		{
+			Execute(() => _newsService.DeleteNewsComment(id.GetValueOrDefault(), CurrentUser.IsMainRole, CurrentUser.Id));
+
+			var model = new CommentModel
+			{
+				ContentId = contentId.GetValueOrDefault(),
+				SortType = sortType
+			};
+
+			FillCommentModel(model);
 			return ModelIsValid
 				? (ActionResult)View("_CommentDataPartial", model.Data)
 				: JsonErrorResult();

@@ -179,69 +179,7 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.initNewComment = function (url) {
-		var $description = $("#CommentDescription");
-		var $addCommentBtn = $('[data-type=add]');
-		var form = $addCommentBtn.closest('form');
-		var commentsHeader = $('#comments-header-hash');
-		var $newCommentLink = $('.comments-new-comment-link');
-
-		if ($description != undefined) {
-			$description.markItUp(myCommentSettings);
-			$.fn.parseCommentPreviewBBCode($description);
-		}
-
-		$addCommentBtn.off('click').on('click', function () {
-			if (form.valid()) {
-				var params = $.fn.serializeParams(form, [{ name: "SortType", value: $('.sort-name').data("val") }]);
-				$('#comment-feed').loadData(url, params, function () {
-					$description.val('');
-					$.fn.initCommentFeed();
-
-					$('html, body').animate({
-						scrollTop: commentsHeader.offset().top - 38
-					}, 'fast');
-				});
-			}
-		});
-
-		$newCommentLink.off('click').on('click', function () {
-			$('html, body').animate({
-				scrollTop: $('#new-comment').offset().top - 38
-			}, 'fast');
-
-			$description.focus();
-		});
-	};
-})(jQuery);
-
-(function ($) {
-	$.fn.changeCommentRate = function () {
-
-	};
-})(jQuery);
-
-(function ($) {
-	$.fn.checkCommentHash = function () {
-		if (window.location.hash != undefined && window.location.hash.trim() != '') {
-			if (window.location.hash == '#comments-header') {
-				$('html, body').animate({
-					scrollTop: $(window.location.hash + "-hash").offset().top - 38
-				}, 0);
-			} else {
-				var rgx = new RegExp('^#comment-+[0-9]+$', "i");
-				if (rgx.test(window.location.hash)) {
-					$('html, body').animate({
-						scrollTop: $(window.location.hash + '-hash').offset().top - 38
-					}, 0);
-				}
-			}
-		}
-	};
-})(jQuery);
-
-(function ($) {
-	$.fn.initCommentFeed = function () {
+	$.fn.initCommentFeed = function (deleteUrl) {
 		var $feed = $('#comment-feed');
 
 		$feed.find('.comment > .comment-description-wrap > .description').each(function () {
@@ -293,16 +231,95 @@
 				}, 'fast');
 			});
 		});
+
+		$.fn.initDeleteComment(deleteUrl);
 	};
 })(jQuery);
 
 (function ($) {
-	$.fn.refreshCommentFeed = function (url) {
+	$.fn.initNewComment = function (addUrl, deleteUrl) {
+		var $description = $("#CommentDescription");
+		var $addCommentBtn = $('[data-type=add]');
+		var form = $addCommentBtn.closest('form');
+		var commentsHeader = $('#comments-header-hash');
+		var $newCommentLink = $('.comments-new-comment-link');
+
+		if ($description != undefined) {
+			$description.markItUp(myCommentSettings);
+			$.fn.parseCommentPreviewBBCode($description);
+		}
+
+		$addCommentBtn.off('click').on('click', function () {
+			if (form.valid()) {
+				var params = $.fn.serializeParams(form, [{ name: "SortType", value: $('.sort-name').data("val") }]);
+				$('#comment-feed').loadData(addUrl, params, function () {
+					$description.val('');
+					$.fn.initCommentFeed(deleteUrl);
+
+					$('html, body').animate({
+						scrollTop: commentsHeader.offset().top - 38
+					}, 'fast');
+				});
+			}
+		});
+
+		$newCommentLink.off('click').on('click', function () {
+			$('html, body').animate({
+				scrollTop: $('#new-comment').offset().top - 38
+			}, 'fast');
+
+			$description.focus();
+		});
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.initDeleteComment = function (deleteUrl) {
+		$('[data-type=delete-comment]').each(function () {
+			var $this = $(this);
+			$this.off('click').on('click', function () {
+				$.fn.confirmOverlay("Удаление комментария", "Вы действительно хотите удалить данный комментарий?", function () {
+					$('#comment-feed').loadData(deleteUrl, { id: $this.data("id"), sortType: $('.sort-name').data("val") }, function () {
+						$.fn.initCommentFeed(deleteUrl);
+					});
+				});
+			});
+		});
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.changeCommentRate = function () {
+
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.checkCommentHash = function () {
+		if (window.location.hash != undefined && window.location.hash.trim() != '') {
+			if (window.location.hash == '#comments-header') {
+				$('html, body').animate({
+					scrollTop: $(window.location.hash + "-hash").offset().top - 38
+				}, 0);
+			} else {
+				var rgx = new RegExp('^#comment-+[0-9]+$', "i");
+				if (rgx.test(window.location.hash)) {
+					$('html, body').animate({
+						scrollTop: $(window.location.hash + '-hash').offset().top - 38
+					}, 0);
+				}
+			}
+		}
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.refreshCommentFeed = function (refreshUrl, deleteUrl) {
 		var $refreshCommentBtn = $('[data-type=refresh-comments]');
 
 		$refreshCommentBtn.off('click').on('click', function () {
-			$('#comment-feed').loadData(url, { id: $refreshCommentBtn.data('content-id'), sortType: $('.sort-name').data("val") }, function () {
-				$.fn.initCommentFeed();
+			$('#comment-feed').loadData(refreshUrl, { id: $refreshCommentBtn.data('content-id'), sortType: $('.sort-name').data("val") }, function () {
+				$.fn.initCommentFeed(deleteUrl);
 
 				setTimeout("$('.comments-refresh-complete').fadeIn('normal')", 100);
 				setTimeout("$('.comments-refresh-complete').fadeOut('slow')", 2000);
@@ -310,8 +327,8 @@
 		});
 
 		$.fn.sortDropdown($('.sort-name'), function (name) {
-			$('#comment-feed').loadData(url, { id: $refreshCommentBtn.data('content-id'), sortType: name.data("val") }, function () {
-				$.fn.initCommentFeed();
+			$('#comment-feed').loadData(refreshUrl, { id: $refreshCommentBtn.data('content-id'), sortType: name.data("val") }, function () {
+				$.fn.initCommentFeed(deleteUrl);
 
 				setTimeout("$('.comments-refresh-complete').fadeIn('normal')", 100);
 				setTimeout("$('.comments-refresh-complete').fadeOut('slow')", 2000);
