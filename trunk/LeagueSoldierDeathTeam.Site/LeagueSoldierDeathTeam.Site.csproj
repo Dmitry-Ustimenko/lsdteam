@@ -353,6 +353,7 @@
     <Content Include="Images\refresh.png" />
     <Content Include="Images\user-banner-mini.png" />
     <Content Include="Images\views.png" />
+    <Content Include="Scripts\Site\site.comments.js" />
     <Content Include="Scripts\Site\site.news.js" />
     <Content Include="Videos\Background\last-stand.mp4" />
     <Content Include="Videos\Background\last-stand.ogg" />
