@@ -1349,6 +1349,14 @@ a {
 				line-height: 15px;
 			}
 
+				.view-news .view-news-body .view-news-info .view-news-delete:hover {
+					background: url(/Images/new-icons-delete.png) no-repeat 0 1px;
+				}
+
+					.view-news .view-news-body .view-news-info .view-news-delete:hover a {
+						color: #B31919 !important;
+					}
+
 		.view-news .view-news-body .view-news-description {
 			clear: both;
 			padding-top: 5px;
