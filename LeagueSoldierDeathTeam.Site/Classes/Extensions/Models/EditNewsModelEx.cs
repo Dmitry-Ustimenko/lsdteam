@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.Business.Dto;
 using LeagueSoldierDeathTeam.Site.Models.News;
 
 namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models

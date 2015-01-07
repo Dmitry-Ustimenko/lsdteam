@@ -1,4 +1,4 @@
-﻿using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+﻿using LeagueSoldierDeathTeam.Business.Dto;
 using LeagueSoldierDeathTeam.Site.Models.Account;
 
 namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models

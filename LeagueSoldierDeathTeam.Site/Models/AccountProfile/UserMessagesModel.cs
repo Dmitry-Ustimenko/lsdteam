@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions;
-using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.Business.Classes.Enums;
+using LeagueSoldierDeathTeam.Business.Classes.Extensions;
+using LeagueSoldierDeathTeam.Business.Dto;
 
 namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 {

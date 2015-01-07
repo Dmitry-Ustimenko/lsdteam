@@ -2,7 +2,7 @@
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.Business.Classes.Enums;
 using LeagueSoldierDeathTeam.Site.Controllers;
 
 namespace LeagueSoldierDeathTeam.Site.Classes.Attributes

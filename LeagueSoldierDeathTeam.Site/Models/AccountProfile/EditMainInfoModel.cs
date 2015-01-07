@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions;
+using LeagueSoldierDeathTeam.Business.Classes.Enums;
+using LeagueSoldierDeathTeam.Business.Classes.Extensions;
 
 namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 {

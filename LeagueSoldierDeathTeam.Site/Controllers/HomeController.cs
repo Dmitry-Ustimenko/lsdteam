@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
-using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
-using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.Business.Dto;
 using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Models.Home;

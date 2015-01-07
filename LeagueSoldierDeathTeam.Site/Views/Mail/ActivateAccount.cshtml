@@ -6,7 +6,7 @@
 	Layout = "~/Views/Mail/LayoutMail.cshtml";
 	var viewModel = (MailActivateModel)ViewBag.Model;
 	ViewBag.Subject = "Активация аккаунта";
-	var link = WebBuilder.GetFullUrl<AccountController>(o => o.ActivateAccount(viewModel.Token));
+	var link = WebBuilder.BuildActionUrl<AccountController>(o => o.ActivateAccount(viewModel.Token), true);
 }
 
 <div>

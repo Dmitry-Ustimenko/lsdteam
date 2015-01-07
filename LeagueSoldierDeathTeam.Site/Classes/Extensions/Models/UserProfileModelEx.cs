@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Extensions;
-using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.Business.Classes.Extensions;
+using LeagueSoldierDeathTeam.Business.Dto;
 using LeagueSoldierDeathTeam.Site.Models.AccountProfile;
 
 namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models

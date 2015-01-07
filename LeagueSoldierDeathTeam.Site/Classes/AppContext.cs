@@ -1,4 +1,4 @@
-﻿using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+﻿using LeagueSoldierDeathTeam.Business.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Factories;
 

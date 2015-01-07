@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
-using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.Business.Classes.Enums;
+using LeagueSoldierDeathTeam.Business.Dto;
 using LeagueSoldierDeathTeam.Site.Classes;
 
 namespace LeagueSoldierDeathTeam.Site.Models.News

@@ -537,13 +537,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LeagueSoldierDeathTeam.BusinessLogic\LeagueSoldierDeathTeam.BusinessLogic.csproj">
+    <ProjectReference Include="..\LeagueSoldierDeathTeam.Business\LeagueSoldierDeathTeam.Business.csproj">
       <Project>{99f6abd6-2d0d-4a59-b29f-9024d23fa4c3}</Project>
-      <Name>LeagueSoldierDeathTeam.BusinessLogic</Name>
+      <Name>LeagueSoldierDeathTeam.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LeagueSoldierDeathTeam.DataBaseLayer\LeagueSoldierDeathTeam.DataBaseLayer.csproj">
+    <ProjectReference Include="..\LeagueSoldierDeathTeam.DataBase\LeagueSoldierDeathTeam.DataBase.csproj">
       <Project>{c4910c69-e2e4-4f85-847d-32175ffc718b}</Project>
-      <Name>LeagueSoldierDeathTeam.DataBaseLayer</Name>
+      <Name>LeagueSoldierDeathTeam.DataBase</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
