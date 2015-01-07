@@ -4,10 +4,7 @@
 		settings: {
 			urls: {
 				refreshGrid: '',
-				deleteNews: '',
-				addNewsComment: '',
-				refreshNewsFeed: '',
-				deleteNewsComment: ''
+				deleteNews: ''
 			},
 			vars: {
 				form: null
@@ -200,7 +197,6 @@
 			init: function (settings) {
 				$.extend(true, site.news.settings, settings);
 				site.news.initView.parseBBCode();
-				site.news.initView.initComments();
 				site.news.initView.deleteNews();
 			},
 
@@ -212,12 +208,6 @@
 						site.ajax.post(site.news.settings.urls.deleteNews, { id: id });
 					});
 				});
-			},
-
-			initComments: function () {
-				$.fn.refreshCommentFeed(site.news.settings.urls.refreshNewsFeed, site.news.settings.urls.deleteNewsComment);
-				$.fn.initNewComment(site.news.settings.urls.addNewsComment, site.news.settings.urls.deleteNewsComment);
-				$.fn.initCommentFeed(site.news.settings.urls.deleteNewsComment);
 			},
 
 			parseBBCode: function () {
