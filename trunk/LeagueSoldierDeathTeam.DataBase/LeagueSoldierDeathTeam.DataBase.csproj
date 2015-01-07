@@ -7,8 +7,8 @@
     <ProjectGuid>{C4910C69-E2E4-4F85-847D-32175FFC718B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LeagueSoldierDeathTeam.DataBaseLayer</RootNamespace>
-    <AssemblyName>LeagueSoldierDeathTeam.DataBaseLayer</AssemblyName>
+    <RootNamespace>LeagueSoldierDeathTeam.DataBase</RootNamespace>
+    <AssemblyName>LeagueSoldierDeathTeam.DataBase</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -53,73 +53,73 @@
     <Compile Include="Abstractions\DataAccess\IObjectContextProvider.cs" />
     <Compile Include="DataAccess\ObjectContextProvider.cs" />
     <Compile Include="Model\Comment.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Game.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\GameCategory.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\GamePlatform.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\LSD.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LSD.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\LSD.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\LSD.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LSD.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\LSDModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LSDModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LSDModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LSDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\News.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\NewsCategory.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\NewsComment.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\NewsPlatform.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Platform.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Role.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Sex.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\User.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserActivateToken.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserExternalInfo.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserInfo.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserMessage.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserMessageType.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserResetToken.cs">
-      <DependentUpon>LSD.tt</DependentUpon>
+      <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -132,18 +132,18 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LSD.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\LSD.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LSD.edmx</DependentUpon>
-      <LastGenOutput>LSD.Context.cs</LastGenOutput>
-    </None>
     <None Include="Model\LSD.edmx.diagram">
       <DependentUpon>LSD.edmx</DependentUpon>
     </None>
-    <None Include="Model\LSD.tt">
+    <None Include="Model\LSDModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LSDModel.Context.cs</LastGenOutput>
       <DependentUpon>LSD.edmx</DependentUpon>
-      <LastGenOutput>LSD.cs</LastGenOutput>
+    </None>
+    <None Include="Model\LSDModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LSDModel.cs</LastGenOutput>
+      <DependentUpon>LSD.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

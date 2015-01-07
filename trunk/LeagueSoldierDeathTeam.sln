@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueSoldierDeathTeam.BusinessLogic", "LeagueSoldierDeathTeam.BusinessLogic\LeagueSoldierDeathTeam.BusinessLogic.csproj", "{99F6ABD6-2D0D-4A59-B29F-9024D23FA4C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueSoldierDeathTeam.Business", "LeagueSoldierDeathTeam.Business\LeagueSoldierDeathTeam.Business.csproj", "{99F6ABD6-2D0D-4A59-B29F-9024D23FA4C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueSoldierDeathTeam.DataBaseLayer", "LeagueSoldierDeathTeam.DataBaseLayer\LeagueSoldierDeathTeam.DataBaseLayer.csproj", "{C4910C69-E2E4-4F85-847D-32175FFC718B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueSoldierDeathTeam.DataBase", "LeagueSoldierDeathTeam.DataBase\LeagueSoldierDeathTeam.DataBase.csproj", "{C4910C69-E2E4-4F85-847D-32175FFC718B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueSoldierDeathTeam.Site", "LeagueSoldierDeathTeam.Site\LeagueSoldierDeathTeam.Site.csproj", "{7E3FEC7C-AA4F-4773-BE44-C5E09E29207A}"
 EndProject

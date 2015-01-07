@@ -1,10 +1,10 @@
 ﻿using Autofac;
-using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
-using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.DataAccess;
-using LeagueSoldierDeathTeam.BusinessLogic.DataAccess;
-using LeagueSoldierDeathTeam.BusinessLogic.Factories;
-using LeagueSoldierDeathTeam.DataBaseLayer.Abstractions.DataAccess;
-using LeagueSoldierDeathTeam.DataBaseLayer.DataAccess;
+using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.DataAccess;
+using LeagueSoldierDeathTeam.Business.DataAccess;
+using LeagueSoldierDeathTeam.Business.Factories;
+using LeagueSoldierDeathTeam.DataBase.Abstractions.DataAccess;
+using LeagueSoldierDeathTeam.DataBase.DataAccess;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
 using LeagueSoldierDeathTeam.Site.Classes;

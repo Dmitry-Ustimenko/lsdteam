@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ca7a0fcd105c450b8d175048a461f4aa" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="LSDDataModel.Game" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="LSDDataModel.GameCategory" Width="1.5" PointX="2.875" PointY="1.5" />
+        <EntityTypeShape EntityType="LSDDataModel.GamePlatform" Width="1.5" PointX="8.875" PointY="1.125" />
+        <EntityTypeShape EntityType="LSDDataModel.News" Width="1.5" PointX="6.375" PointY="5.875" />
+        <EntityTypeShape EntityType="LSDDataModel.NewsCategory" Width="1.5" PointX="9" PointY="5.625" />
+        <EntityTypeShape EntityType="LSDDataModel.NewsPlatform" Width="1.5" PointX="0.625" PointY="6.5" />
+        <EntityTypeShape EntityType="LSDDataModel.Platform" Width="1.5" PointX="2.625" PointY="4.5" />
+        <EntityTypeShape EntityType="LSDDataModel.Role" Width="1.5" PointX="0.75" PointY="9" />
+        <EntityTypeShape EntityType="LSDDataModel.Sex" Width="1.5" PointX="10.125" PointY="13.75" />
+        <EntityTypeShape EntityType="LSDDataModel.User" Width="1.5" PointX="3.5" PointY="8.375" />
+        <EntityTypeShape EntityType="LSDDataModel.UserActivateToken" Width="1.5" PointX="2.75" PointY="14.5" />
+        <EntityTypeShape EntityType="LSDDataModel.UserExternalInfo" Width="1.5" PointX="6.75" PointY="12.625" />
+        <EntityTypeShape EntityType="LSDDataModel.UserInfo" Width="1.5" PointX="13" PointY="8.5" />
+        <EntityTypeShape EntityType="LSDDataModel.UserMessage" Width="1.5" PointX="10.375" PointY="7.625" />
+        <EntityTypeShape EntityType="LSDDataModel.UserMessageType" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="LSDDataModel.UserResetToken" Width="1.5" PointX="0.875" PointY="11.625" />
+        <AssociationConnector Association="LSDDataModel.FK_Game_GameCategory" />
+        <AssociationConnector Association="LSDDataModel.FK_GamePlatform_Game" />
+        <AssociationConnector Association="LSDDataModel.FK_GamePlatform_Platform" />
+        <AssociationConnector Association="LSDDataModel.FK_News_NewsCategory" />
+        <AssociationConnector Association="LSDDataModel.FK_News_User" />
+        <AssociationConnector Association="LSDDataModel.FK_NewsPlatform_News" />
+        <AssociationConnector Association="LSDDataModel.FK_NewsPlatform_Platform" />
+        <AssociationConnector Association="LSDDataModel.FK_User_Role" />
+        <AssociationConnector Association="LSDDataModel.FK_UserInfo_Sex" />
+        <AssociationConnector Association="LSDDataModel.FK_dboUserActivateToken_dboUser" />
+        <AssociationConnector Association="LSDDataModel.FK_dboUserResetToken_dboUser" />
+        <AssociationConnector Association="LSDDataModel.FK_UserExternalInfo_User" />
+        <AssociationConnector Association="LSDDataModel.FK_UserInfo_User" />
+        <AssociationConnector Association="LSDDataModel.FK_UserMessage_UserRecipient" />
+        <AssociationConnector Association="LSDDataModel.FK_UserMessage_UserSender" />
+        <EntityTypeShape EntityType="LSDDataModel.Comment" Width="1.5" PointX="14.875" PointY="4.25" />
+        <EntityTypeShape EntityType="LSDDataModel.NewsComment" Width="1.5" PointX="11.875" PointY="4.375" />
+        <AssociationConnector Association="LSDDataModel.FK_NewsComment_Comment" />
+        <AssociationConnector Association="LSDDataModel.FK_NewsComment_News" />
+        <AssociationConnector Association="LSDDataModel.FK_Comment_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

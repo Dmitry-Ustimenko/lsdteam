@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Factories;
-using LeagueSoldierDeathTeam.BusinessLogic.Abstractions.Interfaces.Services;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
+using LeagueSoldierDeathTeam.Business.Classes.Enums;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes.Services;
 using LeagueSoldierDeathTeam.Site.Classes;

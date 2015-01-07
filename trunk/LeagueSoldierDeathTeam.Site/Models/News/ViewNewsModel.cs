@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+using LeagueSoldierDeathTeam.Business.Dto;
 
 namespace LeagueSoldierDeathTeam.Site.Models.News
 {

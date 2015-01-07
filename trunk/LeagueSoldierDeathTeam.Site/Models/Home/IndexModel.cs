@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
+using LeagueSoldierDeathTeam.Business.Classes.Enums;
 using LeagueSoldierDeathTeam.Site.Classes;
 
 namespace LeagueSoldierDeathTeam.Site.Models.Home

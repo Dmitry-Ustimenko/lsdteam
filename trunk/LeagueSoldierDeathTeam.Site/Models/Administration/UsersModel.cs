@@ -1,5 +1,5 @@
-﻿using LeagueSoldierDeathTeam.BusinessLogic.Classes.Enums;
-using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+﻿using LeagueSoldierDeathTeam.Business.Classes.Enums;
+using LeagueSoldierDeathTeam.Business.Dto;
 
 namespace LeagueSoldierDeathTeam.Site.Models.Administration
 {

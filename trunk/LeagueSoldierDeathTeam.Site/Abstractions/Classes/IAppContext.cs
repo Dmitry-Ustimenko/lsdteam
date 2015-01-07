@@ -1,4 +1,4 @@
-﻿using LeagueSoldierDeathTeam.BusinessLogic.Dto;
+﻿using LeagueSoldierDeathTeam.Business.Dto;
 
 namespace LeagueSoldierDeathTeam.Site.Abstractions.Classes
 {
