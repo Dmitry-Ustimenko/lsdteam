@@ -2,6 +2,7 @@
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
+	[AllowAnonymous]
 	public class ErrorController : Controller
 	{
 		[Route("error/{httpCode:int}/{message?}")]

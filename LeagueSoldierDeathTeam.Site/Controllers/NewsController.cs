@@ -17,7 +17,7 @@ using LeagueSoldierDeathTeam.Site.Models.News;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
-	[AllowAnonymous]
+	[UserAuthorize]
 	public class NewsController : BaseController
 	{
 		#region Private Fields
@@ -41,7 +41,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Actions
 
+		#region News
+
 		[HttpGet]
+		[AllowAnonymous]
 		[Route("news")]
 		public ActionResult News()
 		{
@@ -51,6 +54,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[HttpGet]
+		[AllowAnonymous]
 		[Route("news/{id?}")]
 		public ActionResult NewsFilter(string id)
 		{
@@ -62,6 +66,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		}
 
 		[AjaxOrChildActionOnly]
+		[AllowAnonymous]
 		[Route("news-data")]
 		public ActionResult NewsData(NewsModel model)
 		{
@@ -69,109 +74,11 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			return View(model);
 		}
 
-		[Route("view-news/{id:int?}")]
-		public ActionResult ViewNews(int? id)
-		{
-			if (id.HasValue)
-			{
-				var model = new ViewNewsModel { Id = id.GetValueOrDefault() };
+		#endregion
 
-				var news = Execute(() => _newsService.GetNews(model.Id.GetValueOrDefault()));
-				if (news == null)
-					return RedirectToAction<NewsController>(o => o.News());
+		#region Edit News
 
-				//Execute(() => _newsService.ChangeCountViews(news.Id));
-				FillViewNewsModel(model, news);
-
-				return View(model);
-			}
-
-			return RedirectToAction<NewsController>(o => o.News());
-		}
-
-		[AjaxOrChildActionOnly]
-		[Route("news-comment-data")]
-		public ActionResult NewsCommentData(int? id)
-		{
-			var model = new CommentModel { ContentId = id.GetValueOrDefault() };
-			FillCommentModel(model);
-			return View(model);
-		}
-
-		[HttpPost]
-		[AjaxOrChildActionOnly]
-		[Route("news-comment-feed")]
-		public ActionResult NewsCommentFeed(int? id, CommentSortEnum sortType)
-		{
-			var model = new CommentModel
-			{
-				ContentId = id.GetValueOrDefault(),
-				SortType = sortType
-			};
-
-			FillCommentModel(model);
-
-			return ModelIsValid
-				? (ActionResult)View("_CommentDataPartial", model.Data)
-				: JsonErrorResult();
-		}
-
-		[HttpPost]
-		[Authorize]
-		[AjaxOrChildActionOnly]
-		[Route("add-news-comment")]
-		public ActionResult AddNewComment(CommentModel model)
-		{
-			var comment = new CommentData
-			{
-				CreateDate = DateTime.UtcNow,
-				Description = model.CommentDescription,
-				Rate = default(int),
-				Writer = new UserData { Id = CurrentUser.Id }
-			};
-
-			Execute(() => _newsService.AddNewsComment(model.ContentId, comment));
-
-			FillCommentModel(model);
-
-			return ModelIsValid
-				? (ActionResult)View("_CommentDataPartial", model.Data)
-				: JsonErrorResult();
-		}
-
-		[HttpPost]
-		[Authorize]
-		[AjaxOrChildActionOnly]
-		[Route("delete-news-comment")]
-		public ActionResult DeleteComment(int? id, int? contentId, CommentSortEnum sortType)
-		{
-			Execute(() => _newsService.DeleteNewsComment(id.GetValueOrDefault(), CurrentUser.IsMainRole, CurrentUser.Id));
-
-			var model = new CommentModel
-			{
-				ContentId = contentId.GetValueOrDefault(),
-				SortType = sortType
-			};
-
-			FillCommentModel(model);
-			return ModelIsValid
-				? (ActionResult)View("_CommentDataPartial", model.Data)
-				: JsonErrorResult();
-		}
-
-		[HttpPost]
-		[AjaxOrChildActionOnly]
-		[UserAuthorize(UserRoles = Role.Administrator | Role.Moderator)]
-		[Route("news-delete")]
-		public ActionResult DeleteNews(int? id)
-		{
-			Execute(() => _newsService.DeleteNews(id.GetValueOrDefault()));
-
-			return ModelIsValid
-				? JsonRedirectToAction(WebBuilder.BuildActionUrl<NewsController>(o => o.News()))
-				: JsonErrorResult("Ошибка при удалении новости");
-		}
-
+		[HttpGet]
 		[Route("create-news")]
 		[UserAuthorize(UserRoles = Role.Administrator | Role.Moderator)]
 		public ActionResult CreateNews()
@@ -256,6 +163,117 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			return View(model);
 		}
+
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		[UserAuthorize(UserRoles = Role.Administrator | Role.Moderator)]
+		[Route("news-delete")]
+		public ActionResult DeleteNews(int? id)
+		{
+			Execute(() => _newsService.DeleteNews(id.GetValueOrDefault()));
+
+			return ModelIsValid
+				? JsonRedirectToAction(WebBuilder.BuildActionUrl<NewsController>(o => o.News()))
+				: JsonErrorResult("Ошибка при удалении новости");
+		}
+
+		[HttpGet]
+		[AllowAnonymous]
+		[Route("view-news/{id:int?}")]
+		public ActionResult ViewNews(int? id)
+		{
+			if (id.HasValue)
+			{
+				var model = new ViewNewsModel { Id = id.GetValueOrDefault() };
+
+				var news = Execute(() => _newsService.GetNews(model.Id.GetValueOrDefault()));
+				if (news == null)
+					return RedirectToAction<NewsController>(o => o.News());
+
+				//Execute(() => _newsService.ChangeCountViews(news.Id));
+				FillViewNewsModel(model, news);
+
+				return View(model);
+			}
+
+			return RedirectToAction<NewsController>(o => o.News());
+		}
+
+		#endregion
+
+		#region News Comments
+
+		[HttpPost]
+		[AllowAnonymous]
+		[AjaxOrChildActionOnly]
+		[Route("news-comment-feed")]
+		public ActionResult NewsCommentFeed(int? id, CommentSortEnum sortType)
+		{
+			var model = new CommentModel
+			{
+				ContentId = id.GetValueOrDefault(),
+				SortType = sortType
+			};
+
+			FillCommentModel(model);
+
+			return ModelIsValid
+				? (ActionResult)View("_CommentDataPartial", model.Data)
+				: JsonErrorResult();
+		}
+
+		[AllowAnonymous]
+		[AjaxOrChildActionOnly]
+		[Route("news-comment-data")]
+		public ActionResult NewsCommentData(int? id)
+		{
+			var model = new CommentModel { ContentId = id.GetValueOrDefault() };
+			FillCommentModel(model);
+			return View(model);
+		}
+
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		[Route("add-news-comment")]
+		public ActionResult AddNewComment(CommentModel model)
+		{
+			var comment = new CommentData
+			{
+				CreateDate = DateTime.UtcNow,
+				Description = model.CommentDescription,
+				Rate = default(int),
+				Writer = new UserData { Id = CurrentUser.Id }
+			};
+
+			Execute(() => _newsService.AddNewsComment(model.ContentId, comment));
+
+			FillCommentModel(model);
+
+			return ModelIsValid
+				? (ActionResult)View("_CommentDataPartial", model.Data)
+				: JsonErrorResult();
+		}
+
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		[Route("delete-news-comment")]
+		public ActionResult DeleteComment(int? id, int? contentId, CommentSortEnum sortType)
+		{
+			Execute(() => _newsService.DeleteNewsComment(id.GetValueOrDefault(), CurrentUser.IsMainRole, CurrentUser.Id));
+
+			var model = new CommentModel
+			{
+				ContentId = contentId.GetValueOrDefault(),
+				SortType = sortType
+			};
+
+			FillCommentModel(model);
+			return ModelIsValid
+				? (ActionResult)View("_CommentDataPartial", model.Data)
+				: JsonErrorResult();
+		}
+
+		#endregion
 
 		#endregion
 
