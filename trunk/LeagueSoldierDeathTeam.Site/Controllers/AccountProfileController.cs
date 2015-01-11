@@ -20,7 +20,7 @@ using LeagueSoldierDeathTeam.Site.Models.AccountProfile;
 
 namespace LeagueSoldierDeathTeam.Site.Controllers
 {
-	[Authorize]
+	[UserAuthorize]
 	public class AccountProfileController : BaseController
 	{
 		#region Private Fields

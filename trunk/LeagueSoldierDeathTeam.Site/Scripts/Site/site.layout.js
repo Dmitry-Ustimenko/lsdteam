@@ -40,7 +40,7 @@
 		initErrorPage: function (settings) {
 			$.extend(true, site.layout.settings, settings);
 
-			site.layout.backgroundSlider();
+			//site.layout.backgroundSlider();
 		},
 
 		backgroundSlider: function () {
