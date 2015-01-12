@@ -182,18 +182,27 @@
 	$.fn.checkCommentHash = function () {
 		if (window.location.hash != undefined && window.location.hash.trim() != '') {
 			if (window.location.hash == '#comments-header') {
-				$('html, body').animate({
-					scrollTop: $(window.location.hash + "-hash").offset().top - 38
-				}, 0);
+				$.fn.animateScrollTop(window.location.hash + "-hash", 0);
 			} else {
 				var rgx = new RegExp('^#comment-+[0-9]+$', "i");
 				if (rgx.test(window.location.hash)) {
-					$('html, body').animate({
-						scrollTop: $(window.location.hash + '-hash').offset().top - 38
-					}, 0);
+					$.fn.animateScrollTop(window.location.hash + "-hash", 0);
 				}
 			}
 		}
+	};
+})(jQuery);
+
+(function ($) {
+	$.fn.animateScrollTop = function (element, speed) {
+		var spd = 'normal';
+		if (typeof (speed) == 'number' || speed == 'slow' || speed == 'normal' || speed == 'fast') {
+			spd = speed;
+		}
+
+		$('html, body').animate({
+			scrollTop: $(element).offset().top - $('table.menu').height()
+		}, spd);
 	};
 })(jQuery);
 

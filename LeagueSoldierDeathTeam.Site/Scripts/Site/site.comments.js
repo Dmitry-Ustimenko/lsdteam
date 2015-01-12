@@ -59,9 +59,8 @@
 						var newDescription = $(site.comments.settings.elements.commentDescription);
 						newDescription.val($this.data("writer") + newDescription.val());
 
-						$('html, body').animate({
-							scrollTop: $(site.comments.settings.elements.newComment).offset().top - 38
-						}, 'fast');
+						$.fn.animateScrollTop(site.comments.settings.elements.newComment, 'fast');
+						newDescription.focus();
 					});
 				});
 
@@ -71,9 +70,8 @@
 						var newDescription = $(site.comments.settings.elements.commentDescription);
 						newDescription.val(newDescription.val() + $this.data("description"));
 
-						$('html, body').animate({
-							scrollTop: $(site.comments.settings.elements.newComment).offset().top - 38
-						}, 'fast');
+						$.fn.animateScrollTop(site.comments.settings.elements.newComment, 'fast');
+						newDescription.focus();
 					});
 				});
 
@@ -99,12 +97,8 @@
 			},
 
 			initGoToCommentsHeader: function () {
-				var commentsHeader = $(site.comments.settings.elements.commentsHeaderHash);
-
 				$('[data-action=go-to-comments-header]').off("click").on("click", function () {
-					$('html, body').animate({
-						scrollTop: commentsHeader.offset().top - 38
-					}, 'fast');
+					$.fn.animateScrollTop(site.comments.settings.elements.commentsHeaderHash, 'fast');
 				});
 			},
 
@@ -112,7 +106,6 @@
 				var $description = $(site.comments.settings.elements.commentDescription);
 				var $addCommentBtn = $('[data-type=add]');
 				var form = $addCommentBtn.closest('form');
-				var commentsHeader = $(site.comments.settings.elements.commentsHeaderHash);
 				var $newCommentLink = $('.comments-new-comment-link');
 
 				if ($description != undefined) {
@@ -127,18 +120,13 @@
 							$description.val('');
 							site.comments.initCommentsFeed();
 
-							$('html, body').animate({
-								scrollTop: commentsHeader.offset().top - 38
-							}, 'fast');
+							$.fn.animateScrollTop(site.comments.settings.elements.commentsHeaderHash, 'fast');
 						});
 					}
 				});
 
 				$newCommentLink.off('click').on('click', function () {
-					$('html, body').animate({
-						scrollTop: $(site.comments.settings.elements.newComment).offset().top - 38
-					}, 'fast');
-
+					$.fn.animateScrollTop(site.comments.settings.elements.newComment, 'fast');
 					$description.focus();
 				});
 			},
