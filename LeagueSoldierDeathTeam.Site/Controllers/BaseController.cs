@@ -68,12 +68,6 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#endregion
 
-		#region Common Actions
-
-		
-
-		#endregion
-
 		#region Public Methods
 
 		public static RedirectToRouteResult RedirectToAction<T>(Expression<Action<T>> action, RouteValueDictionary values = null)
