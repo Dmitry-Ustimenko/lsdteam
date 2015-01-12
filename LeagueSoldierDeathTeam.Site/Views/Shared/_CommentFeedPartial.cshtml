@@ -13,7 +13,10 @@
 			Комментарии
 			<span class="comments-refresh" data-type="refresh-comments" data-content-id="@Model.ContentId"></span>
 			<span class="comments-refresh-complete">Обновлено</span>
-			<span class="comments-new-comment-link">Новый комментарий</span>
+			@if (!Model.BlockComments)
+			{
+				<span class="comments-new-comment-link">Новый комментарий</span>
+			}
 			<div class="comments-filter">
 				<div class="sort">
 					Начинать:
@@ -29,30 +32,40 @@
 			</div>
 		</div>
 		<div class="comments-body" id="comment-feed">
-			@{Html.RenderPartial("_CommentDataPartial", Model.Data);}
+			@{Html.RenderPartial("_CommentDataPartial", Model);}
 		</div>
 		<div class="comments-creator">
-			<div class="comments-header" id="new-comment">Новый комментарий</div>
-			@if (Request.IsAuthenticated && currentUser != null)
+			@if (!Model.BlockComments)
 			{
-				using (Html.BeginForm())
+				<div class="comments-header" id="new-comment">Новый комментарий</div>
+
+				if (Request.IsAuthenticated && currentUser != null)
 				{
-					@Html.HiddenFor(m => m.ContentId)
-					<div class="comments-body">
-						@Html.ValidationSummary()
-						@Html.TextAreaFor(m => m.CommentDescription, new { @rows = "9", @class = "resize-none comment-description", @data_type = "comment-description" })
-						<div class="description-preview"></div>
-						<div class="comments-btn">
-							<span class="comment-add-btn" data-type="preview">Предпросмотр</span>
-							<span class="comment-add-btn" data-type="add">Добавить</span>
+					using (Html.BeginForm())
+					{
+						@Html.HiddenFor(m => m.ContentId)
+						<div class="comments-body">
+							@Html.ValidationSummary()
+							@Html.TextAreaFor(m => m.CommentDescription, new { @rows = "9", @class = "resize-none comment-description", @data_type = "comment-description" })
+							<div class="description-preview"></div>
+							<div class="comments-btn">
+								<span class="comment-add-btn" data-type="preview">Предпросмотр</span>
+								<span class="comment-add-btn" data-type="add">Добавить</span>
+							</div>
 						</div>
+					}
+				}
+				else
+				{
+					<div class="comments-body">
+						Вы должны зарегистрироваться для того, чтобы оставлять комментарии.
 					</div>
 				}
 			}
 			else
 			{
 				<div class="comments-body">
-					Вы должны зарегистрироваться для того, чтобы оставлять комментарии.
+					<div class="comments-body-block">Комментирование было заблокировано</div>
 				</div>
 			}
 		</div>

@@ -60,6 +60,7 @@
           <Property Name="WriterId" Type="int" Nullable="false" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
           <Property Name="Annotation" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="BlockComments" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="NewsCategory">
           <Key>
@@ -673,6 +674,7 @@
           <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Annotation" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="NewsComments" Relationship="LSDDataModel.FK_NewsComment_News" FromRole="News" ToRole="NewsComment" />
+          <Property Name="BlockComments" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="NewsCategory">
           <Key>
@@ -1126,6 +1128,7 @@
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="LSDDataModel.News">
               <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="BlockComments" ColumnName="BlockComments" />
                 <ScalarProperty Name="Annotation" ColumnName="Annotation" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="WriterId" ColumnName="WriterId" />

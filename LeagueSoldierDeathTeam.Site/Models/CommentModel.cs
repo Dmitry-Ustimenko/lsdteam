@@ -18,6 +18,8 @@ namespace LeagueSoldierDeathTeam.Site.Models
 
 		public int Rate { get; set; }
 
+		public bool BlockComments { get; set; }
+
 		public CommentSortEnum SortType { get; set; }
 
 		public IEnumerable<CommentData> Data { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using LeagueSoldierDeathTeam.Business.Classes.Enums;
 using LeagueSoldierDeathTeam.Business.Dto;
+using LeagueSoldierDeathTeam.Business.Dto.DtoWrapper;
 
 namespace LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services
 {
@@ -20,7 +21,7 @@ namespace LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services
 
 		void DeleteNewsComment(int id, bool haveRights, int currentUserId);
 
-		IEnumerable<CommentData> GetNewsComments(int newsId, CommentSortEnum sortType);
+		CommentsWrapper GetNewsComments(int newsId, CommentSortEnum sortType);
 
 		void DeleteNews(int id);
 	}

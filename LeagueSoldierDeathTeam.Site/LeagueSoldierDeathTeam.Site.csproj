@@ -204,6 +204,7 @@
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\ControllerActionInfo.cs" />
     <Compile Include="Classes\Extensions\Models\BasePagerModelEx.cs" />
+    <Compile Include="Classes\Extensions\Models\CommentModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\EditNewsModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\EditProfileModelEx.cs" />
     <Compile Include="Classes\Extensions\Models\ExternalRegisterModelEx.cs" />
@@ -340,6 +341,7 @@
     <Content Include="Content\Plugins\HtmlEditor\xbbcode.css" />
     <Content Include="Images\admin-banner-mini.png" />
     <Content Include="Images\bf4-background.jpg" />
+    <Content Include="Images\block-icon.png" />
     <Content Include="Images\comments.png" />
     <Content Include="Images\icons.png" />
     <Content Include="Images\main-admin-banner-mini.png" />

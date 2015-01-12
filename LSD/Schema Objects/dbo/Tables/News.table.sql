@@ -9,6 +9,7 @@
     [WriterId] INT NOT NULL, 
     [ImagePath] NVARCHAR(250) NULL, 
     [Annotation] NVARCHAR(200) NOT NULL DEFAULT 'Annotation', 
+    [BlockComments] BIT NOT NULL DEFAULT 0, 
     constraint [PK_dboNews] primary key clustered ([Id])
 );
 

@@ -19,6 +19,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Extensions.Models
 			model.CountViews = ++data.CountViews;
 			model.NewsCategory = data.NewsCategory;
 			model.CountComments = data.CountComments;
+			model.BlockComments = data.BlockComments;
 
 			return model;
 		}
