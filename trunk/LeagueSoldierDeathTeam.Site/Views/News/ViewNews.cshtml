@@ -29,7 +29,9 @@
 						<div class="view-news-additional-info">
 							<span class="view-news-date">@Model.CreateDate.ToString("d MMMM yyyy г. HH:mm")</span>
 							<span class="view-news-views">@Model.CountViews</span>
-							<span class="view-news-comments">@Model.CountComments</span>
+							<span class="view-news-comments">
+								<a data-action="go-to-comments-header" href="@Constants.JavaScriptVoid">@Model.CountComments</a>
+							</span>
 							<span class="view-news-writer">
 								<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(Model.WriterId)))" target="_blank">@Model.WriterName</a>
 							</span>

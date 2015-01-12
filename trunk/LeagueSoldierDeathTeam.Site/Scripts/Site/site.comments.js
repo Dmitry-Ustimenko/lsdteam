@@ -20,6 +20,7 @@
 
 				site.comments.initCommentsFeed();
 				site.comments.initNewComment();
+				site.comments.initGoToCommentsHeader();
 				site.comments.refreshCommentsFeed();
 			},
 
@@ -95,6 +96,16 @@
 
 			changeCommentRate: function () {
 
+			},
+
+			initGoToCommentsHeader: function () {
+				var commentsHeader = $(site.comments.settings.elements.commentsHeaderHash);
+
+				$('[data-action=go-to-comments-header]').off("click").on("click", function () {
+					$('html, body').animate({
+						scrollTop: commentsHeader.offset().top - 38
+					}, 'fast');
+				});
 			},
 
 			initNewComment: function () {
