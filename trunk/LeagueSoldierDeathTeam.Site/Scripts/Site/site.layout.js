@@ -62,7 +62,7 @@
 			});
 
 			$.vegas('slideshow', {
-				delay: 10000,
+				delay: 15000,
 				backgrounds: backgrounds
 			})('overlay', {
 				src: '/Images/13.png'
