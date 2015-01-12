@@ -8,6 +8,7 @@ using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Classes.Enums;
 using LeagueSoldierDeathTeam.Business.Dto;
+using LeagueSoldierDeathTeam.Business.Dto.DtoWrapper;
 using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Extensions;
@@ -149,13 +150,18 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 						WriterId = CurrentUser.Id,
 						PlatformIds = model.PlatformIds,
 						ImagePath = model.ImagePath,
-						Annotation = model.Annotation
+						Annotation = model.Annotation,
+						BlockComments = model.BlockComments
 					};
 
 					Execute(() => _newsService.SaveNews(data));
 
 					if (ModelIsValid)
-						return RedirectToAction<NewsController>(o => o.News());
+					{
+						return data.Id == default(int)
+							? RedirectToAction<NewsController>(o => o.News())
+							: RedirectToAction<NewsController>(o => o.ViewNews(data.Id));
+					}
 				}
 			}
 
@@ -218,7 +224,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			FillCommentModel(model);
 
 			return ModelIsValid
-				? (ActionResult)View("_CommentDataPartial", model.Data)
+				? (ActionResult)View("_CommentDataPartial", model)
 				: JsonErrorResult();
 		}
 
@@ -308,7 +314,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private void FillCommentModel(CommentModel model)
 		{
-			model.Data = Execute(() => _newsService.GetNewsComments(model.ContentId, model.SortType)) ?? new List<CommentData>();
+			var commentsWrap = Execute(() => _newsService.GetNewsComments(model.ContentId, model.SortType)) ?? new CommentsWrapper();
+			model.CopyFrom(commentsWrap);
 		}
 
 		private void ValidateUploadFile(EditNewsModel model)

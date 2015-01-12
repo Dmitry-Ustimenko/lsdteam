@@ -29,6 +29,7 @@ namespace LeagueSoldierDeathTeam.DataBase.Model
         public int WriterId { get; set; }
         public string ImagePath { get; set; }
         public string Annotation { get; set; }
+        public bool BlockComments { get; set; }
     
         public virtual NewsCategory NewsCategory { get; set; }
         public virtual User Writer { get; set; }

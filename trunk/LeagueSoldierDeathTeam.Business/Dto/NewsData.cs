@@ -30,5 +30,7 @@ namespace LeagueSoldierDeathTeam.Business.Dto
 		public string ImagePath { get; set; }
 
 		public string Annotation { get; set; }
+
+		public bool BlockComments { get; set; }
 	}
 }

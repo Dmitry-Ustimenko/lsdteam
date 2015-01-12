@@ -8,6 +8,7 @@ using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Classes.Enums;
 using LeagueSoldierDeathTeam.Business.Classes.Helpers;
 using LeagueSoldierDeathTeam.Business.Dto;
+using LeagueSoldierDeathTeam.Business.Dto.DtoWrapper;
 using LeagueSoldierDeathTeam.DataBase.Model;
 
 namespace LeagueSoldierDeathTeam.Business.Services
@@ -79,7 +80,8 @@ namespace LeagueSoldierDeathTeam.Business.Services
 					Platforms = o.NewsPlatforms.Select(p => new PlatformData { Id = p.Platform.Id, Name = p.Platform.Name, ShortName = p.Platform.ShortName }),
 					ImagePath = o.ImagePath,
 					Annotation = o.Annotation,
-					CountComments = o.NewsComments.Count
+					CountComments = o.NewsComments.Count,
+					BlockComments = o.BlockComments
 				}).ToList();
 			}
 
@@ -102,7 +104,8 @@ namespace LeagueSoldierDeathTeam.Business.Services
 				Platforms = o.NewsPlatforms.Select(p => new PlatformData { Id = p.Platform.Id, Name = p.Platform.Name, ShortName = p.Platform.ShortName }),
 				ImagePath = o.ImagePath,
 				Annotation = o.Annotation,
-				CountComments = o.NewsComments.Count
+				CountComments = o.NewsComments.Count,
+				BlockComments = o.BlockComments
 			}, o => o.Id == id).SingleOrDefault();
 		}
 
@@ -121,6 +124,7 @@ namespace LeagueSoldierDeathTeam.Business.Services
 			entity.NewsCategory = newsCategory;
 			entity.ImagePath = data.ImagePath;
 			entity.Annotation = data.Annotation;
+			entity.BlockComments = data.BlockComments;
 
 			if (data.Id == default(int))
 			{
@@ -202,6 +206,9 @@ namespace LeagueSoldierDeathTeam.Business.Services
 			if (writer == null)
 				throw new ArgumentException("Данного пользователя не существует");
 
+			if (news.BlockComments)
+				throw new ArgumentException("Добавление комментариев заблокировано");
+
 			var comment = new Comment
 			{
 				CreateDate = data.CreateDate,
@@ -229,11 +236,13 @@ namespace LeagueSoldierDeathTeam.Business.Services
 			UnitOfWork.Commit();
 		}
 
-		IEnumerable<CommentData> INewsService.GetNewsComments(int newsId, CommentSortEnum sortType)
+		CommentsWrapper INewsService.GetNewsComments(int newsId, CommentSortEnum sortType)
 		{
 			var news = _newsRepository.Query(o => o.Id == newsId).SingleOrDefault();
 			if (news == null)
 				throw new ArgumentException("Данной новости не существует");
+
+			var commentsWrap = new CommentsWrapper { ContentId = news.Id, BlockComments = news.BlockComments };
 
 			var comments = news.NewsComments.Select(o => new CommentData
 			{
@@ -251,12 +260,17 @@ namespace LeagueSoldierDeathTeam.Business.Services
 			switch (sortType)
 			{
 				case CommentSortEnum.Old:
-					return comments.OrderBy(o => o.CreateDate).ToList();
+					commentsWrap.Data = comments.OrderBy(o => o.CreateDate).ToList();
+					break;
 				case CommentSortEnum.Popular:
-					return comments.OrderByDescending(o => o.Rate);
+					commentsWrap.Data = comments.OrderByDescending(o => o.Rate);
+					break;
 				default:
-					return comments;
+					commentsWrap.Data = comments;
+					break;
 			}
+
+			return commentsWrap;
 		}
 
 		public void DeleteNews(int id)

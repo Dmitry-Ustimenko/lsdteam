@@ -42,6 +42,14 @@
 									</span>
 									<span class="clear-input"></span>
 									@Html.TextBoxFor(m => m.ImageUploadFileName, new { @class = "file-input", @readonly = "readonly", @placeholder = "Выберите превью" })
+									<span class="checkbox float-right margin-top-9">
+										<span class="checker">
+											<span>
+												@Html.CheckBoxFor(m => m.BlockComments)
+											</span>
+										</span>
+										<span>Заблокировать комментарии</span>
+									</span>
 								</div>
 							</div>
 						</div>
