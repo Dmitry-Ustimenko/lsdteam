@@ -256,7 +256,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			FillCommentModel(model);
 
 			return ModelIsValid
-				? (ActionResult)View("_CommentDataPartial", model.Data)
+				? (ActionResult)View("_CommentDataPartial", model)
 				: JsonErrorResult();
 		}
 
@@ -275,7 +275,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			FillCommentModel(model);
 			return ModelIsValid
-				? (ActionResult)View("_CommentDataPartial", model.Data)
+				? (ActionResult)View("_CommentDataPartial", model)
 				: JsonErrorResult();
 		}
 
