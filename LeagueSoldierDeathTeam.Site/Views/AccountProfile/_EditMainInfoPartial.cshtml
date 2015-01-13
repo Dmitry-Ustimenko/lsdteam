@@ -22,7 +22,7 @@
 						@Html.CheckBoxFor(m => m.ShowEmail)
 					</span>
 				</span>
-				<span>Показывать Email</span>
+				<span>@Html.LabelFor(m => m.ShowEmail)</span>
 			</span>
 			@Html.TextBoxFor(model => model.UpdateUserEmail, new { @placeholder = "Электронная почта" })
 		</p>
