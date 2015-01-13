@@ -77,6 +77,10 @@
 						</div>
 						if (currentUser.IsMainRole || comment.Writer.Id == currentUser.Id)
 						{
+							<div class="comment-edit" data-type="delete-edit" data-id="@comment.Id">
+								<span class="comment-edit-icon"></span>
+								редактировать
+							</div>
 							<div class="comment-delete" data-type="delete-comment" data-id="@comment.Id">
 								<span class="comment-delete-icon"></span>
 								удалить

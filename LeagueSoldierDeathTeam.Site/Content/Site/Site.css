@@ -3865,13 +3865,15 @@ textarea.resize-none {
 
 		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-reply,
 		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-quote,
-		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-delete {
+		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-delete,
+		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-edit {
 			visibility: visible;
 		}
 
 		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-reply,
 		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-quote,
-		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-delete {
+		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-delete,
+		.comments .comments-content .comments-body .comment .comment-description-wrap .comment-edit {
 			margin-top: 10px;
 			margin-bottom: 5px;
 			cursor: pointer;
@@ -3881,12 +3883,14 @@ textarea.resize-none {
 			opacity: 0.6;
 			display: inline-block;
 			visibility: hidden;
-			margin-right: 5px;
+			margin-right: 3px;
+			color: #555;
 		}
 
 			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-reply:hover,
 			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-quote:hover,
-			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-delete:hover {
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-delete:hover,
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-edit:hover {
 				-ms-opacity: 1;
 				opacity: 1;
 			}
@@ -3904,6 +3908,13 @@ textarea.resize-none {
 
 			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-quote .reply-quote {
 				background: url(/Images/new-icons.png) no-repeat -15px -73px;
+				display: inline-block;
+				width: 16px;
+				height: 14px;
+			}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-edit .comment-edit-icon {
+				background: url(/Images/new-icons.png) no-repeat -14px -59px;
 				display: inline-block;
 				width: 16px;
 				height: 14px;
