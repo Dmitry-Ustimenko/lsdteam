@@ -3863,6 +3863,27 @@ textarea.resize-none {
 			margin-top: -5px;
 		}
 
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-view-wrapper {
+			}
+
+			.comments .comments-content .comments-body .comment .comment-description-wrap .comment-edit-wrapper {
+				margin-top: 5px;
+			}
+
+				.comments .comments-content .comments-body .comment .comment-description-wrap .comment-edit-wrapper .comments-body {
+					margin: 0;
+				}
+
+					.comments .comments-content .comments-body .comment .comment-description-wrap .comment-edit-wrapper .comments-body .comment-cancel-btn {
+						cursor: pointer;
+						border-bottom: 1px dotted gray;
+					}
+
+						.comments .comments-content .comments-body .comment .comment-description-wrap .comment-edit-wrapper .comments-body .comment-cancel-btn:hover {
+							color: #B31919;
+							border-bottom: 1px dotted #B31919;
+						}
+
 		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-reply,
 		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-quote,
 		.comments .comments-content .comments-body .comment:hover .comment-description-wrap .comment-delete,
@@ -4067,124 +4088,124 @@ textarea.resize-none {
 		background: url(/Images/block-icon.png) #FDF4DD no-repeat 306px 11px;
 	}
 
-	.comments .comments-content .comments-creator .comments-body .comments-btn {
-		text-align: right;
-		margin-top: 2px;
+.comments .comments-content .comments-body .comments-btn {
+	text-align: right;
+	margin-top: 2px;
+}
+
+.comments .comments-content .comments-body textarea {
+	width: 100%;
+	padding: 5px;
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.comments .comments-content .comments-body .comment-add-btn {
+	display: inline-block;
+	border: 1px solid #AAAAAA;
+	padding: 4px 15px;
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+	.comments .comments-content .comments-body .comment-add-btn:hover {
+		background-color: rgb(236, 236, 236);
 	}
 
-	.comments .comments-content .comments-creator .comments-body textarea {
-		width: 100%;
-		padding: 5px;
-		font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	.comments .comments-content .comments-body .comment-add-btn:active {
+		-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+		-ms-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+		box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
 	}
 
-	.comments .comments-content .comments-creator .comments-body .comment-add-btn {
-		display: inline-block;
-		border: 1px solid #AAAAAA;
-		padding: 4px 15px;
-		cursor: pointer;
-		background-color: rgba(0, 0, 0, 0.05);
-	}
+.comments .comments-content .comments-body .markItUpHeader {
+	border: 1px solid #AAAAAA !important;
+}
 
-		.comments .comments-content .comments-creator .comments-body .comment-add-btn:hover {
-			background-color: rgb(236, 236, 236);
-		}
+.comments .comments-content .comments-body .comment-description.markItUpEditor {
+	height: 156px !important;
+	border: 1px solid #AAAAAA !important;
+	border-top: none !important;
+}
 
-		.comments .comments-content .comments-creator .comments-body .comment-add-btn:active {
-			-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
-			-ms-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
-			box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
-		}
-
-	.comments .comments-content .comments-creator .comments-body .markItUpHeader {
-		border: 1px solid #AAAAAA !important;
-	}
-
-	.comments .comments-content .comments-creator .comments-body .comment-description.markItUpEditor {
-		height: 156px !important;
-		border: 1px solid #AAAAAA !important;
+	.comments .comments-content .comments-body .comment-description.markItUpEditor:focus {
+		border: 1px solid rgb(120,120,120) !important;
 		border-top: none !important;
 	}
 
-		.comments .comments-content .comments-creator .comments-body .comment-description.markItUpEditor:focus {
-			border: 1px solid rgb(120,120,120) !important;
-			border-top: none !important;
-		}
+.comments .comments-content .comments-body .description-preview {
+	border: 1px solid #AAAAAA !important;
+	margin-bottom: 4px;
+	margin-top: 2px;
+	min-height: 160px;
+	max-height: 450px;
+}
 
-	.comments .comments-content .comments-creator .comments-body .description-preview {
-		border: 1px solid #AAAAAA !important;
-		margin-bottom: 4px;
-		margin-top: 2px;
-		min-height: 160px;
-		max-height: 450px;
+.comments .comments-content .comments-body .markItUp .markItUpFooter {
+	display: none;
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton1 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/bold.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton2 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/italic.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton3 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/underline.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton4 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/strike.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton5 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/justify.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton6 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/right.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton7 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/center.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton8 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/left.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton9 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/picture.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton10 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/link.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton11 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/youtube.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton12 ul li a {
+	background-image: none;
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton13 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/quotes.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton14 a {
+	background-image: url(/Content/Plugins/HtmlEditor/sets/images/code.png);
+}
+
+.comments .comments-content .comments-body .markItUp .markItUpButton15 {
+	padding: 6px 6px 5px 6px;
+}
+
+	.comments .comments-content .comments-body .markItUp .markItUpButton15 a {
+		background-image: url(/Content/Plugins/HtmlEditor/sets/images/spoiler.png);
+		width: 15px;
+		height: 15px;
 	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpFooter {
-		display: none;
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton1 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/bold.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton2 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/italic.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton3 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/underline.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton4 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/strike.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton5 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/justify.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton6 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/right.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton7 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/center.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton8 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/left.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton9 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/picture.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton10 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/link.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton11 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/youtube.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton12 ul li a {
-		background-image: none;
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton13 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/quotes.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton14 a {
-		background-image: url(/Content/Plugins/HtmlEditor/sets/images/code.png);
-	}
-
-	.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton15 {
-		padding: 6px 6px 5px 6px;
-	}
-
-		.comments .comments-content .comments-creator .comments-body .markItUp .markItUpButton15 a {
-			background-image: url(/Content/Plugins/HtmlEditor/sets/images/spoiler.png);
-			width: 15px;
-			height: 15px;
-		}
