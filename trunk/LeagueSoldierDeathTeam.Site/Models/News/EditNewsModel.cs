@@ -33,6 +33,7 @@ namespace LeagueSoldierDeathTeam.Site.Models.News
 
 		public string ImageUploadFileName { get; set; }
 
+		[DisplayName("Заблокировать комментарии")]
 		public bool BlockComments { get; set; }
 
 		public int WriterId { get; set; }
