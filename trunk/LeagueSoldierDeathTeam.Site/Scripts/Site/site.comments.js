@@ -4,12 +4,14 @@
 			settings: {
 				urls: {
 					addComment: '',
+					editComment: '',
 					deleteComment: '',
 					refreshComments: ''
 				},
 				elements: {
 					commentFeed: '#comment-feed',
 					commentDescription: '#CommentDescription',
+					editCommentDescription: '#EditCommentDescription',
 					newComment: '#new-comment',
 					commentsHeaderHash: '#comments-header-hash'
 				}
@@ -20,6 +22,7 @@
 
 				site.comments.initCommentsFeed();
 				site.comments.initNewComment();
+				site.comments.initEditComment();
 				site.comments.initGoToCommentsHeader();
 				site.comments.refreshCommentsFeed();
 			},
@@ -27,7 +30,7 @@
 			initCommentsFeed: function () {
 				var $feed = $(site.comments.settings.elements.commentFeed);
 
-				$feed.find('.comment > .comment-description-wrap > .description').each(function () {
+				$feed.find('.comment .description').each(function () {
 					var $this = $(this);
 					$this.html($.fn.bbcodeCustomParser($this.html()));
 				});
@@ -99,6 +102,30 @@
 			initGoToCommentsHeader: function () {
 				$('[data-action=go-to-comments-header]').off("click").on("click", function () {
 					$.fn.animateScrollTop(site.comments.settings.elements.commentsHeaderHash, 'fast');
+				});
+			},
+
+			initEditComment: function (commentId) {
+				var $editDescription = $(site.comments.settings.elements.editCommentDescription);
+				var $editCommentBtn = $('[data-type=edit]');
+				var $cancelCommentBtn = $('[data-type=cancel]');
+				var form = $editCommentBtn.closest('form');
+
+				if ($editDescription != undefined) {
+					$editDescription.markItUp(myCommentSettings);
+				}
+
+				$editCommentBtn.off('click').on('click', function () {
+					if (form.valid()) {
+						var params = $.fn.serializeParams(form);
+						$("#" + commentId).loadData(site.comments.settings.urls.editComment, params, function () {
+
+						});
+					}
+				});
+
+				$cancelCommentBtn.off('click').on('click', function () {
+
 				});
 			},
 
