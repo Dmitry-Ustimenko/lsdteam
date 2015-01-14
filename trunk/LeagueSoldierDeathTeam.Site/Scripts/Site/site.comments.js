@@ -27,10 +27,13 @@
 				site.comments.refreshCommentsFeed();
 			},
 
-			initCommentsFeed: function () {
+			initCommentsFeed: function (commentId) {
+				if (commentId == undefined)
+					commentId = '';
+
 				var $feed = $(site.comments.settings.elements.commentFeed);
 
-				$feed.find('.comment .description').each(function () {
+				$feed.find(commentId + '.comment .description').each(function () {
 					var $this = $(this);
 					$this.html($.fn.bbcodeCustomParser($this.html()));
 				});
@@ -56,7 +59,7 @@
 					});
 				});
 
-				$('.comment-reply').each(function () {
+				$(commentId + '.comment .comment-reply').each(function () {
 					var $this = $(this);
 					$this.off('click').on('click', function () {
 						var newDescription = $(site.comments.settings.elements.commentDescription);
@@ -67,7 +70,7 @@
 					});
 				});
 
-				$('.comment-quote').each(function () {
+				$(commentId + '.comment .comment-quote').each(function () {
 					var $this = $(this);
 					$this.off('click').on('click', function () {
 						var newDescription = $(site.comments.settings.elements.commentDescription);
@@ -78,13 +81,13 @@
 					});
 				});
 
-				site.comments.initDeleteComment();
-				site.comments.initCommentRate();
-				site.comments.initEditComment();
+				site.comments.initDeleteComment(commentId);
+				site.comments.initCommentRate(commentId);
+				site.comments.initEditComment(commentId);
 			},
 
-			initDeleteComment: function () {
-				$('[data-action=delete-comment]').each(function () {
+			initDeleteComment: function (commentId) {
+				$(commentId + '.comment [data-action=delete-comment]').each(function () {
 					var $this = $(this);
 					$this.off('click').on('click', function () {
 						$.fn.confirmOverlay("Удаление комментария", "Вы действительно хотите удалить данный комментарий?", function () {
@@ -96,8 +99,8 @@
 				});
 			},
 
-			initEditComment: function () {
-				$('[data-action=edit-comment]').each(function () {
+			initEditComment: function (commentId) {
+				$(commentId + '.comment [data-action=edit-comment]').each(function () {
 					var $this = $(this);
 
 					var commentDescriptionWrap = $this.closest(".comment-description-wrap");
@@ -121,8 +124,10 @@
 							editCommentBtn.off('click').on('click', function () {
 								if (form.valid()) {
 									var params = $.fn.serializeParams(form);
-									$("#comment-" + $this.data("id") + "-hash").loadData(site.comments.settings.urls.editComment, params, function () {
-										site.comments.initCommentsFeed();
+									var commentContainerId = "#comment-" + $this.data("id") + "-hash";
+
+									$(commentContainerId).loadData(site.comments.settings.urls.editComment, params, function () {
+										site.comments.initCommentsFeed(commentContainerId);
 									});
 								}
 							});
@@ -131,7 +136,7 @@
 				});
 			},
 
-			initCommentRate: function () {
+			initCommentRate: function (commentId) {
 
 			},
 
