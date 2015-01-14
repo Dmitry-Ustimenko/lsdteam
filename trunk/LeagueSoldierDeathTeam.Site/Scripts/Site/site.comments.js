@@ -4,6 +4,7 @@
 			settings: {
 				urls: {
 					addComment: '',
+					getCommentDesription: '',
 					editComment: '',
 					deleteComment: '',
 					refreshComments: ''
@@ -22,7 +23,6 @@
 
 				site.comments.initCommentsFeed();
 				site.comments.initNewComment();
-				site.comments.initEditComment();
 				site.comments.initGoToCommentsHeader();
 				site.comments.refreshCommentsFeed();
 			},
@@ -80,6 +80,7 @@
 
 				site.comments.initDeleteComment();
 				site.comments.changeCommentRate();
+				site.comments.initEditComment();
 			},
 
 			initDeleteComment: function () {
@@ -112,30 +113,30 @@
 					var commentDescriptionWrap = $this.closest(".comment-description-wrap");
 					var commentViewWrapper = commentDescriptionWrap.find(".comment-view-wrapper");
 					var commentEditWrapper = commentDescriptionWrap.find(".comment-edit-wrapper");
-					var originalDescription = commentDescriptionWrap.find('[data-type=original-description]');
-					var editDescription = commentDescriptionWrap.find('[data-type=edit-comment-description]');
-					var editCommentBtn = commentDescriptionWrap.find('[data-type=edit]');
-					var cancelCommentBtn = commentDescriptionWrap.find('[data-type=cancel]');
 
 					$this.off('click').on('click', function () {
-						editDescription.val(originalDescription.val());
+						commentEditWrapper.loadData(site.comments.settings.urls.getCommentDesription, { id: $this.data("id") }, function () {
+							commentViewWrapper.hide();
+							commentEditWrapper.show();
 
-						commentViewWrapper.hide();
-						commentEditWrapper.show();
-					});
+							var editCommentBtn = commentDescriptionWrap.find('[data-type=edit]');
+							var cancelCommentBtn = commentDescriptionWrap.find('[data-type=cancel]');
+							var form = editCommentBtn.closest('form');
 
-					cancelCommentBtn.off('click').on('click', function () {
-						commentViewWrapper.show();
-						commentEditWrapper.hide();
-					});
+							cancelCommentBtn.off('click').on('click', function () {
+								commentViewWrapper.show();
+								commentEditWrapper.hide().html("");
+							});
 
-					editCommentBtn.off('click').on('click', function () {
-						//if (form.valid()) {
-						//	var params = $.fn.serializeParams(form);
-						//	$("#" + commentId).loadData(site.comments.settings.urls.editComment, params, function () {
-
-						//	});
-						//}
+							editCommentBtn.off('click').on('click', function () {
+								if (form.valid()) {
+									var params = $.fn.serializeParams(form);
+									$("#comment-" + $this.data("id") + "-hash").loadData(site.comments.settings.urls.editComment, params, function () {
+										site.comments.initCommentsFeed();
+									});
+								}
+							});
+						});
 					});
 				});
 			},

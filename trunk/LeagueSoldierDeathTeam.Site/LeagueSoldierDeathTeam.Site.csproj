@@ -255,6 +255,7 @@
     <Compile Include="Models\Administration\AdministrationModel.cs" />
     <Compile Include="Models\Administration\UsersModel.cs" />
     <Compile Include="Models\BasePagerModel.cs" />
+    <Compile Include="Models\CommentEditModel.cs" />
     <Compile Include="Models\CommentItemModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\ImagesModel.cs" />
@@ -534,6 +535,7 @@
     <Content Include="Views\Shared\_CommentDataItemPartial.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Shared\_CommentEditPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

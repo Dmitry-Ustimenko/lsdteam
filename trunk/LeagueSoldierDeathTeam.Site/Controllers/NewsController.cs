@@ -243,6 +243,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[Route("add-news-comment")]
 		public ActionResult AddNewComment(CommentModel model)
 		{
+			if (model.CommentDescription.Length < 2)
+				return JsonErrorResult("Слишком короткий комментарий");
+
 			var comment = new CommentData
 			{
 				CreateDate = DateTime.UtcNow,

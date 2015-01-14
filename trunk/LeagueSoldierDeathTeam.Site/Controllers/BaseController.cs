@@ -11,6 +11,7 @@ using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Dto;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Classes;
+using LeagueSoldierDeathTeam.Site.Classes.Attributes;
 using LeagueSoldierDeathTeam.Site.Classes.Factories;
 using LeagueSoldierDeathTeam.Site.Models;
 using Microsoft.Web.Mvc;
@@ -24,6 +25,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		private readonly IAccountService _accountService;
 
 		private readonly IAccountProfileService _accountProfileService;
+
+		private readonly IResourceService _resourceService;
 
 		private bool _disposeAppContext;
 
@@ -63,8 +66,49 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 			_accountService = serviceFactory.CreateAccountService();
 			_accountProfileService = serviceFactory.CreateAccountProfileService();
+			_resourceService = serviceFactory.CreateResourceService();
 		}
 
+
+		#endregion
+
+		#region Common Actions
+
+		#region Comments
+
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		public ActionResult GetEditCommentContainer(int? id)
+		{
+			var comment = Execute(() => _resourceService.GetComment(id.GetValueOrDefault())) ?? new CommentData();
+			var model = new CommentEditModel { Id = comment.Id, Description = comment.Description };
+
+			return ModelIsValid
+				? (ActionResult)View("_CommentEditPartial", model)
+				: JsonErrorResult();
+		}
+
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		public ActionResult EditComment(CommentEditModel model)
+		{
+			if (model.Description.Length < 2)
+				return JsonErrorResult("Слишком короткий комментарий");
+
+			var data = new CommentData
+			{
+				Id = model.Id,
+				Description = model.Description
+			};
+
+			var comment = Execute(() => _resourceService.SaveComment(data));
+
+			return ModelIsValid
+				? (ActionResult)View("_CommentDataItemPartial", new CommentItemModel { CommentItem = comment })
+				: JsonErrorResult();
+		}
+
+		#endregion
 
 		#endregion
 
