@@ -63,7 +63,6 @@
 					}
 				</div>
 				<div class="comment-view-wrapper">
-					<input type="hidden" data-type="original-description" value="@comment.Description" />
 					<div class="description">@comment.Description</div>
 					@if (!Model.BlockComments)
 					{
@@ -91,21 +90,7 @@
 						}
 					}
 				</div>
-				<div class="comment-edit-wrapper">
-					@using (Html.BeginForm())
-					{
-						@Html.HiddenFor(m => m.ContentId)
-						<div class="comments-body">
-							@Html.ValidationSummary()
-							@Html.TextArea("Description", new { @rows = "9", @class = "resize-none comment-description", @data_type = "edit-comment-description" })
-							<div class="comments-btn">
-								<span class="comment-add-btn" data-type="edit">Изменить</span>
-								или
-								<span class="comment-cancel-btn" data-type="cancel">отменить</span>
-							</div>
-						</div>
-					}
-				</div>
+				<div class="comment-edit-wrapper"></div>
 			</div>
 			<div class="comment-rate">
 				<div class="comment-rate-wrap">

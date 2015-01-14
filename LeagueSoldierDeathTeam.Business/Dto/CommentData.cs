@@ -10,6 +10,8 @@ namespace LeagueSoldierDeathTeam.Business.Dto
 
 		public UserData Writer { get; set; }
 
+		public int WriterId { get; set; }
+
 		public DateTime CreateDate { get; set; }
 
 		public DateTime? ModifierDate { get; set; }

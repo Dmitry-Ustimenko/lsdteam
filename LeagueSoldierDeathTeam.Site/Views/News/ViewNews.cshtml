@@ -89,8 +89,10 @@
 		site.comments.init({
 			urls: {
 				addComment: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.AddNewComment(null)))',
+				editComment: '@(WebBuilder.BuildActionUrl<BaseController>(m => m.EditComment(null)))',
 				deleteComment: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.DeleteComment(null, Model.Id, CommentSortEnum.New)))',
-				refreshComments: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.NewsCommentFeed(null, CommentSortEnum.New)))'
+				refreshComments: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.NewsCommentFeed(null, CommentSortEnum.New)))',
+				getCommentDesription: '@(WebBuilder.BuildActionUrl<BaseController>(m => m.GetEditCommentContainer(null)))'
 			}
 		});
 	});
