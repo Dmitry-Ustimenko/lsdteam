@@ -79,7 +79,7 @@
 				});
 
 				site.comments.initDeleteComment();
-				site.comments.changeCommentRate();
+				site.comments.initCommentRate();
 				site.comments.initEditComment();
 			},
 
@@ -93,16 +93,6 @@
 							});
 						});
 					});
-				});
-			},
-
-			changeCommentRate: function () {
-
-			},
-
-			initGoToCommentsHeader: function () {
-				$('[data-action=go-to-comments-header]').off("click").on("click", function () {
-					$.fn.animateScrollTop(site.comments.settings.elements.commentsHeaderHash, 'fast');
 				});
 			},
 
@@ -138,6 +128,16 @@
 							});
 						});
 					});
+				});
+			},
+
+			initCommentRate: function () {
+
+			},
+
+			initGoToCommentsHeader: function () {
+				$('[data-action=go-to-comments-header]').off("click").on("click", function () {
+					$.fn.animateScrollTop(site.comments.settings.elements.commentsHeaderHash, 'fast');
 				});
 			},
 
