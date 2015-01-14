@@ -11,7 +11,7 @@
 				elements: {
 					commentFeed: '#comment-feed',
 					commentDescription: '#CommentDescription',
-					editCommentDescription: '#EditCommentDescription',
+					editCommentDescription: '#Description',
 					newComment: '#new-comment',
 					commentsHeaderHash: '#comments-header-hash'
 				}
@@ -83,7 +83,7 @@
 			},
 
 			initDeleteComment: function () {
-				$('[data-type=delete-comment]').each(function () {
+				$('[data-action=delete-comment]').each(function () {
 					var $this = $(this);
 					$this.off('click').on('click', function () {
 						$.fn.confirmOverlay("Удаление комментария", "Вы действительно хотите удалить данный комментарий?", function () {
@@ -105,27 +105,38 @@
 				});
 			},
 
-			initEditComment: function (commentId) {
-				var $editDescription = $(site.comments.settings.elements.editCommentDescription);
-				var $editCommentBtn = $('[data-type=edit]');
-				var $cancelCommentBtn = $('[data-type=cancel]');
-				var form = $editCommentBtn.closest('form');
+			initEditComment: function () {
+				$('[data-action=edit-comment]').each(function () {
+					var $this = $(this);
 
-				if ($editDescription != undefined) {
-					$editDescription.markItUp(myCommentSettings);
-				}
+					var commentDescriptionWrap = $this.closest(".comment-description-wrap");
+					var commentViewWrapper = commentDescriptionWrap.find(".comment-view-wrapper");
+					var commentEditWrapper = commentDescriptionWrap.find(".comment-edit-wrapper");
+					var originalDescription = commentDescriptionWrap.find('[data-type=original-description]');
+					var editDescription = commentDescriptionWrap.find('[data-type=edit-comment-description]');
+					var editCommentBtn = commentDescriptionWrap.find('[data-type=edit]');
+					var cancelCommentBtn = commentDescriptionWrap.find('[data-type=cancel]');
 
-				$editCommentBtn.off('click').on('click', function () {
-					if (form.valid()) {
-						var params = $.fn.serializeParams(form);
-						$("#" + commentId).loadData(site.comments.settings.urls.editComment, params, function () {
+					$this.off('click').on('click', function () {
+						editDescription.val(originalDescription.val());
 
-						});
-					}
-				});
+						commentViewWrapper.hide();
+						commentEditWrapper.show();
+					});
 
-				$cancelCommentBtn.off('click').on('click', function () {
+					cancelCommentBtn.off('click').on('click', function () {
+						commentViewWrapper.show();
+						commentEditWrapper.hide();
+					});
 
+					editCommentBtn.off('click').on('click', function () {
+						//if (form.valid()) {
+						//	var params = $.fn.serializeParams(form);
+						//	$("#" + commentId).loadData(site.comments.settings.urls.editComment, params, function () {
+
+						//	});
+						//}
+					});
 				});
 			},
 

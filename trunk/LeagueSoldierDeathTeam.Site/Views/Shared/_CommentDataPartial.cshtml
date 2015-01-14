@@ -54,7 +54,7 @@
 					<span class="comment-link">
 						<span class="comment-link-hash">#</span>
 						<input class="comment-link-input" readonly="readonly" type="text"
-							   value="@(string.Concat(WebBuilder.BuildActionUrl<NewsController>(m => m.ViewNews(comment.ContentId), null, string.Format("comment-{0}", comment.Id), true)))" />
+							   value="@(WebBuilder.BuildActionUrl<NewsController>(m => m.ViewNews(comment.ContentId), null, string.Format("comment-{0}", comment.Id), true))" />
 					</span>
 					@(comment.CreateDate.TodayYesterday(Constants.BelarusTimeZone))
 					@if (comment.ModifierDate.HasValue)
@@ -63,6 +63,7 @@
 					}
 				</div>
 				<div class="comment-view-wrapper">
+					<input type="hidden" data-type="original-description" value="@comment.Description" />
 					<div class="description">@comment.Description</div>
 					@if (!Model.BlockComments)
 					{
@@ -78,11 +79,11 @@
 							</div>
 							if (currentUser.IsMainRole || comment.Writer.Id == currentUser.Id)
 							{
-								<div class="comment-edit" data-type="delete-edit" data-id="@comment.Id">
+								<div class="comment-edit" data-action="edit-comment" data-id="@comment.Id">
 									<span class="comment-edit-icon"></span>
 									редактировать
 								</div>
-								<div class="comment-delete" data-type="delete-comment" data-id="@comment.Id">
+								<div class="comment-delete" data-action="delete-comment" data-id="@comment.Id">
 									<span class="comment-delete-icon"></span>
 									удалить
 								</div>
@@ -96,7 +97,7 @@
 						@Html.HiddenFor(m => m.ContentId)
 						<div class="comments-body">
 							@Html.ValidationSummary()
-							@Html.TextArea("EditCommentDescription", new { @rows = "9", @class = "resize-none comment-description", @data_type = "edit-comment-description" })
+							@Html.TextArea("Description", new { @rows = "9", @class = "resize-none comment-description", @data_type = "edit-comment-description" })
 							<div class="comments-btn">
 								<span class="comment-add-btn" data-type="edit">Изменить</span>
 								или
