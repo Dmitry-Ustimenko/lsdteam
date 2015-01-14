@@ -1,0 +1,98 @@
+﻿@using LeagueSoldierDeathTeam.Business.Classes.Enums
+@using LeagueSoldierDeathTeam.Business.Classes.Extensions
+@using LeagueSoldierDeathTeam.Site.Classes
+@using LeagueSoldierDeathTeam.Site.Controllers
+@model LeagueSoldierDeathTeam.Site.Models.CommentItemModel
+@{
+	Layout = null;
+	var comment = Model.CommentItem;
+	var currentUser = AppContext.Current.CurrentUser;
+}
+
+<div class="comment-writer">
+	<div class="comment-writer-info">
+		<img class="comment-writer-photo" src="@Html.Raw(!string.IsNullOrWhiteSpace(comment.Writer.PhotoPath) ? comment.Writer.PhotoPath : Constants.DefaultPhotoPath)" alt="Фото">
+		<span class="comment-writer-name">@comment.Writer.UserName</span>
+	</div>
+	<div>
+		@switch (comment.Writer.Role)
+		{
+			case RoleEnum.MainAdministrator:
+				<img src="/Images/main-admin-banner-mini.png" alt="Баннер" />
+				break;
+			case RoleEnum.Administrator:
+			<img src="/Images/admin-banner-mini.png" alt="Баннер" />
+				break;
+			case RoleEnum.Moderator:
+			<img src="/Images/moderator-banner-mini.png" alt="Баннер" />
+				break;
+			default:
+			<img src="/Images/user-banner-mini.png" alt="Баннер" />
+				break;
+		}
+	</div>
+	<div class="comment-writer-actions">
+		@if (Request.IsAuthenticated && currentUser != null)
+		{
+			<a target="_blank" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.CreateMessage(), new Dictionary<string, object> { { "name", comment.Writer.UserName } }))">
+				<span>ЛС</span>
+				<span class="private-message-icon"></span>
+			</a>
+		}
+		<a target="_blank" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(m => m.ProfileInfo(comment.Writer.Id)))">
+			<span>Профиль</span>
+			<span class="profile-icon"></span>
+		</a>
+	</div>
+</div>
+<div class="comment-description-wrap">
+	<div class="comment-date">
+		<span class="comment-link">
+			<span class="comment-link-hash">#</span>
+			<input class="comment-link-input" readonly="readonly" type="text"
+				   value="@(WebBuilder.BuildActionUrl<NewsController>(m => m.ViewNews(comment.ContentId), null, string.Format("comment-{0}", comment.Id), true))" />
+		</span>
+		@(comment.CreateDate.TodayYesterday(Constants.BelarusTimeZone))
+		@if (comment.ModifierDate.HasValue)
+		{
+			@(string.Format("(изменен: {0})", comment.ModifierDate.Value.TodayYesterday(Constants.BelarusTimeZone)))
+		}
+	</div>
+	<div class="comment-view-wrapper">
+		<div class="description">@comment.Description</div>
+		@if (!Model.BlockComments)
+		{
+			if (Request.IsAuthenticated && currentUser != null)
+			{
+				<div class="comment-reply" data-writer="@(string.Format("[b]{0}[/b], ", comment.Writer.UserName))">
+					<span class="reply-icon"></span>
+					ответить
+				</div>
+				<div class="comment-quote" data-description="@(string.Format("[quote='{0}']{1}[/quote]", comment.Writer.UserName, comment.Description))">
+					<span class="reply-quote"></span>
+					цицировать
+				</div>
+				if (currentUser.IsMainRole || comment.Writer.Id == currentUser.Id)
+				{
+					<div class="comment-edit" data-action="edit-comment" data-id="@comment.Id">
+						<span class="comment-edit-icon"></span>
+						редактировать
+					</div>
+					<div class="comment-delete" data-action="delete-comment" data-id="@comment.Id">
+						<span class="comment-delete-icon"></span>
+						удалить
+					</div>
+				}
+			}
+		}
+	</div>
+	<div class="comment-edit-wrapper"></div>
+</div>
+<div class="comment-rate">
+	<div class="comment-rate-wrap">
+		<span class="rate-dec" data-comment-id="@comment.Id"></span>
+		<span class="rate-val @Html.Raw(comment.Rate > 0 ? "green" : comment.Rate < 0 ? "darkred" : "gray")">@comment.RateString</span>
+		<span class="rate-inc" data-comment-id="@comment.Id"></span>
+	</div>
+</div>
+

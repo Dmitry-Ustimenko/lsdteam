@@ -255,6 +255,7 @@
     <Compile Include="Models\Administration\AdministrationModel.cs" />
     <Compile Include="Models\Administration\UsersModel.cs" />
     <Compile Include="Models\BasePagerModel.cs" />
+    <Compile Include="Models\CommentItemModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\ImagesModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -530,6 +531,9 @@
     <Content Include="Views\Shared\_CommentFeedPartial.cshtml" />
     <Content Include="Views\News\NewsCommentData.cshtml" />
     <Content Include="Views\Shared\_CommentDataPartial.cshtml" />
+    <Content Include="Views\Shared\_CommentDataItemPartial.cshtml">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
