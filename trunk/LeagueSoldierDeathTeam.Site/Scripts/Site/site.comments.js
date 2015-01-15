@@ -129,10 +129,12 @@
 								}
 							});
 
+							var description = commentDescriptionWrap.find('[data-type=edit-comment-description]');
+							description.markItUp(myCommentSettings);
+
 							commentViewWrapper.hide();
 							commentEditWrapper.show();
 
-							var description = commentDescriptionWrap.find('[data-type=edit-comment-description]');
 							description[0].selectionStart = description.val().length;
 							description[0].selectionEnd = description.val().length;
 							description[0].focus();
