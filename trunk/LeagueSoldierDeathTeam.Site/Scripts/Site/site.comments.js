@@ -109,9 +109,6 @@
 
 					$this.off('click').on('click', function () {
 						commentEditWrapper.loadData(site.comments.settings.urls.getCommentDesription, { id: $this.data("id") }, function () {
-							commentViewWrapper.hide();
-							commentEditWrapper.show();
-
 							var editCommentBtn = commentDescriptionWrap.find('[data-type=edit]');
 							var cancelCommentBtn = commentDescriptionWrap.find('[data-type=cancel]');
 							var form = editCommentBtn.closest('form');
@@ -131,6 +128,14 @@
 									});
 								}
 							});
+
+							commentViewWrapper.hide();
+							commentEditWrapper.show();
+
+							var description = commentDescriptionWrap.find('[data-type=edit-comment-description]');
+							description[0].selectionStart = description.val().length;
+							description[0].selectionEnd = description.val().length;
+							description[0].focus();
 						});
 					});
 				});
