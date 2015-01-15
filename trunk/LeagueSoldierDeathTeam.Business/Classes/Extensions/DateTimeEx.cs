@@ -31,6 +31,8 @@ namespace LeagueSoldierDeathTeam.Business.Classes.Extensions
 
 		public static string TodayYesterday(this DateTime date, string timeZone)
 		{
+			date = date.UtcToTimeZone(timeZone);
+
 			if (date.Date == DateTime.UtcNow.UtcToTimeZone(timeZone).Date)
 				return date.ToString("сегодня в HH:mm");
 
