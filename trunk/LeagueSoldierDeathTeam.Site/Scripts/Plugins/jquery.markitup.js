@@ -212,13 +212,11 @@
 						for (j = levels.length - 1; j >= 0; j--) {
 							t += levels[j] + "-";
 						}
-						li = $('<li class="markItUpButton markItUpButton' + t + (i) + ' ' + (button.className || '') + '"><a href="" ' + key + ' title="' + title + '">' + (button.display || button.display == undefined ? (button.name || '') : '') + '</a></li>')
+						li = $('<li class="markItUpButton markItUpButton' + t + (i) + ' ' + (button.className || '') + '"><a href="javascript:void();" ' + key + ' title="' + title + '">' + (button.display || button.display == undefined ? (button.name || '') : '') + '</a></li>')
 						.bind("contextmenu.markItUp", function () { // prevent contextmenu on mac and allow ctrl+click
 							return false;
 						}).bind('click.markItUp', function (e) {
 							e.preventDefault();
-						}).bind("focusin.markItUp", function () {
-							$$.focus();
 						}).bind('mouseup', function () {
 							if (button.call) {
 								eval(button.call)();
