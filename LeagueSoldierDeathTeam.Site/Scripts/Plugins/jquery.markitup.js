@@ -470,7 +470,7 @@
 
 			// get the selection
 			function get() {
-				textarea.focus();
+				//textarea.focus();
 
 				scrollPosition = textarea.scrollTop;
 				if (document.selection) {
