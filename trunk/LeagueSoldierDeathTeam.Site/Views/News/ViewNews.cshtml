@@ -60,17 +60,27 @@
 					</span>
 				</div>
 			</div>
-			<div class="previous-news">
-				<div class="previous-news-content">
-					<div class="previous-news-header">Предыдущие новости:</div>
-					<div class="previous-news-body">
-						@foreach (var item in Model.PreviousNews)
-						{
-
-						}
+			@if (Model.PreviousNews.Any())
+			{
+				<div class="previous-news">
+					<div class="previous-news-content">
+						<div class="previous-news-header">Предыдущие новости:</div>
+						<div class="previous-news-body">
+							@foreach (var item in Model.PreviousNews)
+							{
+								<div>
+									<img src="@item.ImagePath" />
+									<span>@item.Title</span>
+									<span>@item.Annotation</span>
+									<span>@item.CreateDate</span>
+									<span>@item.CountViews</span>
+									<span>@item.CountComments</span>
+								</div>
+							}
+						</div>
 					</div>
 				</div>
-			</div>
+			}
 			<div id="comments">
 				@{ Html.RenderAction("NewsCommentData", Model.Id); }
 			</div>

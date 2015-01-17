@@ -11,6 +11,8 @@ namespace LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services
 
 		PageData<NewsData> GetNews(int? newsCategoryId, int? platformId, int newsSortId, int pageId, int pageSize);
 
+		IEnumerable<NewsData> GetPreviousNews(int newsId, int newsCount);
+
 		void SaveNews(NewsData data);
 
 		IEnumerable<NewsCategoryData> GetNewsGategories();
