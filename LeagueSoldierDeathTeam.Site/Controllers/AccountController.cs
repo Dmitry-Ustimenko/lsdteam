@@ -142,9 +142,10 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		#region External Login
 
 		[HttpPost]
-		[AjaxOrChildActionOnly]
+		[Route("external-login")]
 		public ActionResult ExternalLogin(string provider, string returnUrl)
 		{
+			Session["crutch"] = "crutch";
 			return new ChallengeResult(provider, WebBuilder.BuildActionUrl<AccountController>(o => o.ExternalLoginCallback(returnUrl, provider)));
 		}
 

@@ -1,4 +1,4 @@
-﻿@using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
+﻿@using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post, new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
 {
 	<span class="social-facebook-label">Войти с помощью facebook&nbsp;&reg;</span>
 	<button type="submit" class="social-facebook-button" id="Facebook" name="provider" value="Facebook"></button>
