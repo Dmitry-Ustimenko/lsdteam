@@ -290,9 +290,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		private void FillViewNewsModel(ViewNewsModel model, NewsData data)
 		{
-			var previousNews = (Execute(() => _newsService.GetNews(null, null, (int)NewsSort.Date, 1, Constants.LastNewsPageSize)) ?? new PageData<NewsData>());
-			model.PreviousNews = previousNews.Data;
-
+			model.PreviousNews = Execute(() => _newsService.GetPreviousNews(model.Id.GetValueOrDefault(), Constants.PreviousNewsCount)) ?? new List<NewsData>();
 			model.CopyFrom(data);
 		}
 

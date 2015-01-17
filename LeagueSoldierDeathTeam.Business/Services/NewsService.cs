@@ -88,6 +88,26 @@ namespace LeagueSoldierDeathTeam.Business.Services
 			return pageData;
 		}
 
+		public IEnumerable<NewsData> GetPreviousNews(int newsId, int newsCount)
+		{
+			var entity = _newsRepository.Query(o => o.Id == newsId).SingleOrDefault();
+			if (entity == null)
+				throw new ArgumentException("Данной новости не существует");
+
+			var data = _newsRepository.GetQueryableData(o => o.CreateDate < entity.CreateDate).OrderByDescending(o => o.CreateDate).Take(newsCount);
+
+			return data.Select(o => new NewsData
+			{
+				Id = o.Id,
+				Title = o.Title,
+				CreateDate = o.CreateDate,
+				CountViews = o.CountViews,
+				ImagePath = o.ImagePath,
+				Annotation = o.Annotation,
+				CountComments = o.NewsComments.Count
+			}).ToList();
+		}
+
 		NewsData INewsService.GetNews(int id)
 		{
 			return _newsRepository.GetData(o => new NewsData
