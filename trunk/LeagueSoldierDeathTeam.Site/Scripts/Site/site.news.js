@@ -111,12 +111,10 @@
 
 				$previewLink.off("click").on("click", function () {
 					if ($descriptionPreview != undefined) {
-						var htmlContent = $.fn.bbcodeParser(description.val());
-						if (htmlContent != undefined && htmlContent.trim() != '') {
-							$descriptionPreview.html(htmlContent);
-							$descriptionPreview.fadeIn("fast");
+						$.fn.bbcodeParser($descriptionPreview, description.val());
 
-							$.fn.slideSpoiler($descriptionPreview);
+						if ($descriptionPreview.html() != undefined && $descriptionPreview.html().trim() != '') {
+							$descriptionPreview.fadeIn("fast");
 						}
 					}
 				});
@@ -214,10 +212,7 @@
 				var $newsDescription = $('.view-news-description');
 
 				if ($newsDescription != undefined) {
-					var htmlContent = $.fn.bbcodeParser($newsDescription.html());
-					$newsDescription.html(htmlContent);
-
-					$.fn.slideSpoiler($newsDescription);
+					$.fn.bbcodeParser($newsDescription, $newsDescription.html());
 				}
 			},
 		}

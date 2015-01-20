@@ -35,7 +35,8 @@
 
 				$feed.find(commentId + '.comment .description').each(function () {
 					var $this = $(this);
-					$this.html($.fn.bbcodeCustomParser($this.html()));
+
+					$.fn.bbcodeCustomParser($this, $this.html());
 				});
 
 				var hashLinks = $('.comment .comment-link');
@@ -161,7 +162,7 @@
 
 				if ($description != undefined) {
 					$description.markItUp(myCommentSettings);
-					$.fn.parseCommentPreviewBBCode($description);
+					site.comments.initNewCommentPreview($description);
 				}
 
 				$addCommentBtn.off('click').on('click', function () {
@@ -179,6 +180,33 @@
 				$newCommentLink.off('click').on('click', function () {
 					$.fn.animateScrollTop(site.comments.settings.elements.newComment, 'fast');
 					$description.focus();
+				});
+			},
+
+			initNewCommentPreview: function (description) {
+				var $descriptionPreview = $('.description-preview');
+				var $descriptionFooter = $('.markItUpFooter');
+				var $previewLink = $('[data-type=preview]');
+
+				$previewLink.off('click').on('click', function () {
+					if ($descriptionPreview != undefined) {
+						$.fn.bbcodeCustomParser($descriptionPreview, description.val());
+						if ($descriptionPreview.html() != undefined && $descriptionPreview.html().trim() != '') {
+							$descriptionPreview.fadeIn('fast');
+							$descriptionFooter.fadeIn('fast');
+						}
+					}
+				});
+
+				description.keypress(function (e) {
+					e = e || window.event;
+
+					if (e.shiftKey && (e.which == 13 || e.keyCode == 13)) {
+						$previewLink.click();
+						return false;
+					}
+
+					return true;
 				});
 			},
 

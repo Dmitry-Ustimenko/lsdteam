@@ -30,26 +30,24 @@
 					site.message.initEdit.parseBBCode($description);
 				}
 			},
-			
+
 			parseBBCode: function (description) {
 				var $descriptionPreview = $(".description-preview");
 				var $previewLink = $(".preview-link");
 
-				$previewLink.off("click").on("click", function() {
+				$previewLink.off("click").on("click", function () {
 					if ($descriptionPreview != undefined) {
-						var htmlContent = $.fn.bbcodeParser(description.val());
-						if (htmlContent != undefined && htmlContent.trim() != '') {
-							$descriptionPreview.html(htmlContent);
+						$.fn.bbcodeParser($descriptionPreview, description.val());
+
+						if ($descriptionPreview.html() != undefined && $descriptionPreview.html().trim() != '') {
 							$descriptionPreview.fadeIn("fast");
-							
-							$.fn.slideSpoiler($descriptionPreview);
 						}
 					}
 				});
 
 				description.keypress(function (e) {
 					e = e || window.event;
-					
+
 					if (e.shiftKey && (e.which == 13 || e.keyCode == 13)) {
 						$previewLink.click();
 						return false;
@@ -67,15 +65,12 @@
 				site.message.initView.deleteMessage();
 				site.message.initView.parseBBCode();
 			},
-			
+
 			parseBBCode: function () {
 				var $messageDescription = $('.message-description');
 
 				if ($messageDescription != undefined) {
-					var htmlContent = $.fn.bbcodeParser($messageDescription.html());
-					$messageDescription.html(htmlContent);
-					
-					$.fn.slideSpoiler($messageDescription);
+					$.fn.bbcodeParser($messageDescription, $messageDescription.html());
 				}
 			},
 

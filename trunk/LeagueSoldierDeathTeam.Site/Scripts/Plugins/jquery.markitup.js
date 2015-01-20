@@ -586,9 +586,9 @@
 					var cssLink = $("<link/>", { rel: "stylesheet", href: "../Content/Plugins/HtmlEditor/xbbcode.css", type: "text/css" });
 					$(previewWindow.document.head).append(cssLink);
 					
-					$(previewWindow.document).ready(function () {
-						$.fn.slideSpoiler($(previewWindow.document));
-					});
+					//$(previewWindow.document).ready(function () {
+					//	$.fn.slideSpoiler($(previewWindow.document));
+					//});
 
 					previewWindow.document.close();
 					previewWindow.document.documentElement.scrollTop = sp;
