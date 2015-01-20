@@ -125,56 +125,34 @@
 })(jQuery);
 
 (function ($) {
-	$.fn.bbcodeParser = function (content) {
+	$.fn.bbcodeParser = function (container, content) {
 		var htmlContent = XBBCODE.process({
 			text: content,
 			addInLineBreaks: true
 		}).html;
 
-		return htmlContent.replace(/&#91;hr&#93;/g, "<hr/>").replace(/\[hr\]/g, "<hr/>");
+		htmlContent = htmlContent.replace(/&#91;hr&#93;/g, "<hr/>").replace(/\[hr\]/g, "<hr/>");
+
+		if (container != undefined) {
+			container.html(htmlContent);
+			$.fn.slideSpoiler(container);
+		}
 	};
 })(jQuery);
 
 (function ($) {
-	$.fn.bbcodeCustomParser = function (content) {
+	$.fn.bbcodeCustomParser = function (container, content) {
 		var htmlContent = XBBCODECustom.process({
 			text: content,
 			addInLineBreaks: true
 		}).html;
 
-		return htmlContent.replace(/&#91;hr&#93;/g, "<hr/>").replace(/\[hr\]/g, "<hr/>");
-	};
-})(jQuery);
+		htmlContent = htmlContent.replace(/&#91;hr&#93;/g, "<hr/>").replace(/\[hr\]/g, "<hr/>");
 
-(function ($) {
-	$.fn.parseCommentPreviewBBCode = function (description) {
-		var $descriptionPreview = $('.description-preview');
-		var $descriptionFooter = $('.markItUpFooter');
-		var $previewLink = $('[data-type=preview]');
-
-		$previewLink.off('click').on('click', function () {
-			if ($descriptionPreview != undefined) {
-				var htmlContent = $.fn.bbcodeCustomParser(description.val());
-				if (htmlContent != undefined && htmlContent.trim() != '') {
-					$descriptionPreview.html(htmlContent);
-					$descriptionPreview.fadeIn('fast');
-					$descriptionFooter.fadeIn('fast');
-
-					$.fn.slideSpoiler($descriptionPreview);
-				}
-			}
-		});
-
-		description.keypress(function (e) {
-			e = e || window.event;
-
-			if (e.shiftKey && (e.which == 13 || e.keyCode == 13)) {
-				$previewLink.click();
-				return false;
-			}
-
-			return true;
-		});
+		if (container != undefined) {
+			container.html(htmlContent);
+			$.fn.slideSpoiler(container);
+		}
 	};
 })(jQuery);
 
