@@ -29,11 +29,10 @@ body {
 	border: 1px solid black;
 	padding: 0;
 	clear: both;
+	margin: 3px 0;
 }
 
-.xbbcode-spoiler-slide {
-	
-}
+.xbbcode-spoiler-slide { }
 
 .xbbcode-spoiler-head, .xbbcode-spoiler-footer {
 	padding: 4px;
@@ -49,7 +48,6 @@ body {
 
 .xbbcode-spoiler-body {
 	padding: 5px;
-	border-bottom: 1px solid black;
 	border-top: 1px solid black;
 }
 

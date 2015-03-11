@@ -199,7 +199,7 @@
 			if (spoiler != undefined) {
 				var header = spoiler.find('> .xbbcode-spoiler-head');
 				var slide = spoiler.find('> .xbbcode-spoiler-slide');
-				var footer = slide.find('> .xbbcode-spoiler-footer');
+				//var footer = slide.find('> .xbbcode-spoiler-footer');
 
 				var headerIcon = header.find('[data-id=header-icon]');
 
@@ -207,9 +207,9 @@
 					slideFun();
 				});
 
-				footer.off('click').on('click', function () {
-					slideFun();
-				});
+				//footer.off('click').on('click', function () {
+				//	slideFun();
+				//});
 
 				function slideFun() {
 					if (slide.is(':visible')) {
