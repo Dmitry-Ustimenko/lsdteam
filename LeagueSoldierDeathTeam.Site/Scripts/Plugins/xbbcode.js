@@ -429,7 +429,7 @@ var XBBCODE = (function () {
 		},
 		"spoiler": {
 			openTag: function (params, content) {
-				var spoilerName = 'Скрытый текст';
+				var spoilerName = 'cкрытый текст';
 
 				if (params != undefined) {
 					spoilerName = params.substr(2, params.length - 3) || 'spoiler';
@@ -440,7 +440,7 @@ var XBBCODE = (function () {
 					'<div class="xbbcode-spoiler-slide xbbcode-spoiler-close"><div class="xbbcode-spoiler-body">';
 			},
 			closeTag: function (params, content) {
-				return '</div><div class="xbbcode-spoiler-footer"><span class="xbbcode-close-icon"></span>Закрыть</div></div></div>';
+				return '</div></div></div>';
 			}
 		},
 		"*": {
@@ -939,7 +939,7 @@ var XBBCODECustom = (function () {
 		},
 		"spoiler": {
 			openTag: function (params, content) {
-				var spoilerName = 'Скрытый текст';
+				var spoilerName = 'cкрытый текст';
 
 				if (params != undefined) {
 					spoilerName = params.substr(2, params.length - 3) || 'spoiler';
@@ -950,7 +950,7 @@ var XBBCODECustom = (function () {
 					'<div class="xbbcode-spoiler-slide xbbcode-spoiler-close"><div class="xbbcode-spoiler-body">';
 			},
 			closeTag: function (params, content) {
-				return '</div><div class="xbbcode-spoiler-footer"><span class="xbbcode-close-icon"></span>Закрыть</div></div></div>';
+				return '</div></div></div>';
 			}
 		}
 	};
