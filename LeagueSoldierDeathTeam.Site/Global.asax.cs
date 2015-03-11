@@ -67,7 +67,9 @@ namespace LeagueSoldierDeathTeam.Site
 
 			var httpRequestWrapper = WebBuilder.GetHttpRequestWrapper(Request);
 			if (httpRequestWrapper.IsAjaxRequest())
+			{
 				Response.StatusCode = httpCode;
+			}
 			else
 			{
 				Server.ClearError();

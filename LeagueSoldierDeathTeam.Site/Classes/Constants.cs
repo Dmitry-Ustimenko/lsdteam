@@ -41,5 +41,7 @@
 		public const int CountPagesBothSideCurrPage = 2;
 
 		public const int MaxCountVisiblePages = 7;
+
+		public const int AnnotationCharactersLimit = 180;
 	}
 }

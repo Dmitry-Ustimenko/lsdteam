@@ -7,8 +7,9 @@
 				deleteNews: ''
 			},
 			vars: {
-				form: null
-			},
+				form: null,
+				annotationCharactersLimit: null
+},
 			elements: {
 				platformIds: '#HiddenPlatformIds',
 				imageUploadFile: '#ImageUploadFile',
@@ -102,7 +103,7 @@
 			},
 
 			initAnnotationLimit: function () {
-				$.fn.lenghtLimit($("[data-type=annotation]"), $(".annotation-length"), 150);
+				$.fn.lenghtLimit($("[data-type=annotation]"), $(".annotation-length"), site.news.settings.vars.annotationCharactersLimit);
 			},
 
 			parseBBCode: function (description) {

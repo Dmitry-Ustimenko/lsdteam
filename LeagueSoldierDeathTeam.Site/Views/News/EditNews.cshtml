@@ -78,7 +78,7 @@
 						<div class="container-item">
 							@Html.LabelFor(m => m.Annotation, new { @class = "annotation-label" })
 							<div class="field-container">
-								<span class="annotation-limit">Осталось: <span class="annotation-length">@(150 - Model.Annotation.Length)</span></span>
+								<span class="annotation-limit">Осталось: <span class="annotation-length">@(Constants.AnnotationCharactersLimit - Model.Annotation.Length)</span></span>
 								@Html.TextAreaFor(m => m.Annotation, new { @rows = "3", @class = "resize-none", @data_type = "annotation" })
 							</div>
 						</div>
@@ -103,6 +103,12 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		site.news.initEdit.init();
+		var annotationCharactersLimit = @Html.Raw(@Constants.AnnotationCharactersLimit)
+
+		site.news.initEdit.init({
+			vars: {
+				annotationCharactersLimit: annotationCharactersLimit
+			}
+		});
 	});
 </script>
