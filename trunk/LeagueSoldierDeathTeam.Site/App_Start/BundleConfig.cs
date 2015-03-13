@@ -15,26 +15,13 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				));
 
 			bundles.Add(new ScriptBundle("~/bundles/js").Include(
-				"~/Scripts/Plugins/galleria-1.3.5.js",
-				"~/Scripts/Plugins/bootstrap.js",
-				"~/Scripts/Plugins/bootstrap-datepicker.js",
-				"~/Scripts/Plugins/bootstrap-datepicker.ru.js",
-				"~/Scripts/Plugins/jquery.vegas.js",
-				"~/Scripts/Plugins/jquery.markitup.js",
-				"~/Scripts/Plugins/set.js",
-				"~/Scripts/Plugins/xbbcode.js",
+				"~/Scripts/Plugins/*.js",
 
 				"~/Scripts/Site/site.js",
 				"~/Scripts/Site/site.ajax.js",
 				"~/Scripts/Site/site.plugins.js",
 				"~/Scripts/Site/site.layout.js",
-				"~/Scripts/Site/site.comments.js",
-				"~/Scripts/Site/site.home.js",
-				"~/Scripts/Site/site.profile.js",
-				"~/Scripts/Site/site.administration.js",
-				"~/Scripts/Site/site.messages.js",
-				"~/Scripts/Site/site.message.js",
-				"~/Scripts/Site/site.news.js"
+				"~/Scripts/Site/Page/*.js"
 				));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
