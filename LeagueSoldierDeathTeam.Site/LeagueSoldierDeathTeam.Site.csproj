@@ -359,8 +359,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\Site\site.comments.js" />
-    <Content Include="Scripts\Site\site.news.js" />
+    <Content Include="Scripts\Site\Page\site.comments.js" />
+    <Content Include="Scripts\Site\Page\site.news.js" />
     <Content Include="Videos\Background\last-stand.mp4" />
     <Content Include="Videos\Background\last-stand.ogg" />
     <Content Include="Videos\Background\last-stand.webm" />
@@ -444,9 +444,9 @@
     <Content Include="Scripts\Plugins\jquery.vegas.js" />
     <Content Include="Scripts\Plugins\set.js" />
     <Content Include="Scripts\Plugins\xbbcode.js" />
-    <Content Include="Scripts\Site\site.message.js" />
-    <Content Include="Scripts\Site\site.messages.js" />
-    <Content Include="Scripts\Site\site.profile.js" />
+    <Content Include="Scripts\Site\Page\site.message.js" />
+    <Content Include="Scripts\Site\Page\site.messages.js" />
+    <Content Include="Scripts\Site\Page\site.profile.js" />
     <Content Include="Templates\preview.html" />
     <Content Include="Xml\MailHosting.xml">
       <SubType>Designer</SubType>
@@ -459,7 +459,7 @@
     <Content Include="Scripts\Plugins\galleria-1.3.5.js" />
     <Content Include="Scripts\Plugins\galleria.classic.js" />
     <Content Include="Scripts\Site\site.ajax.js" />
-    <Content Include="Scripts\Site\site.home.js" />
+    <Content Include="Scripts\Site\Page\site.home.js" />
     <Content Include="Scripts\Site\site.js" />
     <Content Include="Scripts\Site\site.layout.js" />
     <Content Include="Scripts\Site\site.plugins.js" />
@@ -507,7 +507,7 @@
     <Content Include="Views\Shared\_ProfileInfoPartial.cshtml" />
     <Content Include="Views\Shared\_BannerPartial.cshtml" />
     <Content Include="Views\Administration\Index.cshtml" />
-    <Content Include="Scripts\Site\site.administration.js" />
+    <Content Include="Scripts\Site\Page\site.administration.js" />
     <Content Include="Views\AccountProfile\Messages.cshtml" />
     <Content Include="Views\AccountProfile\MessagesData.cshtml" />
     <Content Include="Views\AccountProfile\EditMessage.cshtml" />
