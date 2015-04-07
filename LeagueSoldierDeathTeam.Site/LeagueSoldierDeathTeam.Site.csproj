@@ -334,6 +334,7 @@
     <Content Include="Content\Plugins\HtmlEditor\skins\images\submenu.png" />
     <Content Include="Content\Plugins\HtmlEditor\skins\style.css" />
     <Content Include="Content\Plugins\HtmlEditor\xbbcode.css" />
+    <Content Include="Content\Site\global.css" />
     <Content Include="Images\admin-banner-mini.png" />
     <Content Include="Images\bf4-background.jpg" />
     <Content Include="Images\block-icon.png" />
@@ -369,7 +370,7 @@
     <Content Include="Content\Plugins\jquery.vegas.css" />
     <Content Include="Content\Plugins\modal-responsive.css" />
     <Content Include="Content\Plugins\modal.css" />
-    <Content Include="Content\Site\Site.css" />
+    <Content Include="Content\Site\site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\11.png" />

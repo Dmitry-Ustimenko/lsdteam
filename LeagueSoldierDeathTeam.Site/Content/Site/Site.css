@@ -1,47 +1,4 @@
-﻿/* Tags */
-
-body {
-	font: 13px Verdana, Tahoma, Arial, Helvetica, sans-serif;
-	background: url(/Images/background_body.png);
-	padding: 0;
-	margin: 0;
-	z-index: 1;
-}
-
-@media screen and (min-width: 1440px) {
-	body {
-		min-height: 1300px;
-	}
-}
-
-@media screen and (min-width: 1080px) {
-	body {
-		min-height: 950px;
-	}
-}
-
-img {
-	border: 0 none;
-	max-width: 1920px;
-	max-height: 1200px;
-}
-
-hr {
-	margin-top: 5px;
-	background-color: #000000;
-}
-
-footer {
-	margin-top: 10px;
-}
-
-	footer p {
-		text-align: center;
-		color: white;
-		min-height: 30px;
-	}
-
-.body-background {
+﻿.body-background {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -59,91 +16,6 @@ footer {
 	.body-background video {
 		outline: none;
 	}
-
-input[type=text]:focus,
-input[type=password]:focus,
-input[type=button]:focus,
-input[type=submit]:focus,
-button[type=submit]:focus,
-a:focus,
-select:focus,
-textarea:focus {
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	-ms-box-shadow: none;
-	box-shadow: none;
-	outline: 0;
-}
-
-textarea {
-	-moz-resize: vertical;
-	-ms-resize: vertical;
-	-o-resize: vertical;
-	resize: vertical;
-}
-
-input[type=text],
-input[type=password],
-select {
-	width: 165px;
-	padding: 8px 6px;
-	margin-bottom: 10px;
-	font-size: 12px;
-	border: 1px solid #AAAAAA;
-	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-	-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-	box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-	/*-ms-border-radius: 3px;
-	border-radius: 3px;*/
-	font-family: 'Ubuntu', 'Lato', sans-serif;
-	color: black;
-}
-
-select {
-	padding: 8px 2px;
-}
-
-	select:hover {
-		cursor: pointer;
-	}
-
-	select option:hover {
-		cursor: pointer;
-	}
-
-	input[type=text]:focus,
-	input[type=password]:focus,
-	select:focus,
-	textarea:focus {
-		border: 1px solid rgb(120, 120, 120) !important;
-	}
-
-input[type=text]:focus, input[type=password]:focus {
-	color: black;
-}
-
-input[type=button]:focus {
-	color: white;
-}
-
-input[type=text]:focus::-webkit-input-placeholder, input[type=password]:focus::-webkit-input-placeholder {
-	color: transparent !important;
-}
-
-input[type=text]:focus::-moz-placeholder, input[type=password]:focus::-moz-placeholder {
-	color: transparent !important;
-}
-
-input[type=text]:focus::-ms-input-placeholder, input[type=password]:focus::-ms-input-placeholder {
-	color: transparent !important;
-}
-
-a {
-	text-decoration: none;
-	color: #B31919;
-}
-
-/* Id */
 
 #galleria {
 	height: 400px;
@@ -1425,6 +1297,18 @@ a {
 		padding: 10px;
 	}
 
+	.previous-news .previous-news-body a {
+		color: black;
+	}
+
+	.previous-news .previous-news-body a:hover {
+		color: #B31919;
+	}
+
+	.previous-news .previous-news-body .previous-news-spec {
+		margin-top: 2px
+	}
+
 .annotation-label {
 	padding-top: 22px !important;
 }
@@ -1809,7 +1693,7 @@ a {
 }
 
 .profile-tabs label[for=tab-change-pass] {
-	left: 433px;
+	left: 459px;
 }
 
 .profile-tabs label[for=tab-role-manager] {
@@ -3702,7 +3586,7 @@ textarea.resize-none {
 			}
 
 			.comments .comments-content .comments-header .sort .sort-dropdown, .sort-role .sort-role-dropdown {
-				width: 85px;
+				width: 130px;
 				z-index: 499;
 			}
 
