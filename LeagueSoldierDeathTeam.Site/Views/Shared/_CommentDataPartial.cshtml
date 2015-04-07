@@ -64,30 +64,33 @@
 				</div>
 				<div class="comment-view-wrapper">
 					<div class="description">@comment.Description</div>
+					
 					@if (!Model.BlockComments)
 					{
-						if (Request.IsAuthenticated && currentUser != null)
-						{
-							<div class="comment-reply" data-writer="@(string.Format("[b]{0}[/b], ", comment.Writer.UserName))">
-								<span class="reply-icon"></span>
-								ответить
-							</div>
-							<div class="comment-quote" data-description="@(string.Format("[quote='{0}']{1}[/quote]", comment.Writer.UserName, comment.Description))">
-								<span class="reply-quote"></span>
-								цицировать
-							</div>
-							if (currentUser.IsMainRole || comment.Writer.Id == currentUser.Id)
+						<div class="comment-actions">
+							@if (Request.IsAuthenticated && currentUser != null)
 							{
-								<div class="comment-edit" data-action="edit-comment" data-id="@comment.Id">
-									<span class="comment-edit-icon"></span>
-									редактировать
+								<div class="comment-reply" data-writer="@(string.Format("[b]{0}[/b], ", comment.Writer.UserName))">
+									<span class="reply-icon"></span>
+									ответить
 								</div>
-								<div class="comment-delete" data-action="delete-comment" data-id="@comment.Id">
-									<span class="comment-delete-icon"></span>
-									удалить
+								<div class="comment-quote" data-description="@(string.Format("[quote='{0}']{1}[/quote]", comment.Writer.UserName, comment.Description))">
+									<span class="reply-quote"></span>
+									цицировать
 								</div>
+								if (currentUser.IsMainRole || comment.Writer.Id == currentUser.Id)
+								{
+									<div class="comment-edit" data-action="edit-comment" data-id="@comment.Id">
+										<span class="comment-edit-icon"></span>
+										редактировать
+									</div>
+									<div class="comment-delete" data-action="delete-comment" data-id="@comment.Id">
+										<span class="comment-delete-icon"></span>
+										удалить
+									</div>
+								}
 							}
-						}
+						</div>
 					}
 				</div>
 				<div class="comment-edit-wrapper"></div>
