@@ -64,17 +64,22 @@
 			{
 				<div class="previous-news">
 					<div class="previous-news-content">
-						<div class="previous-news-header">Предыдущие новости:</div>
+						<div class="previous-news-header">Предыдущие новости</div>
 						<div class="previous-news-body">
 							@foreach (var item in Model.PreviousNews)
 							{
-								<div>
-									<img src="@item.ImagePath" />
-									<span>@item.Title</span>
-									<span>@item.Annotation</span>
-									<span>@item.CreateDate</span>
-									<span>@item.CountViews</span>
-									<span>@item.CountComments</span>
+								<div class="large-4 column">
+									<a target="_blank" href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.ViewNews(item.Id)))">
+										<img class="preview-image float-left" src="@item.ImagePath" alt="Превью" />
+										<span>@item.Title</span>
+									</a>
+									<div class="previous-news-spec">
+										<span class="date">@item.CreateDate.ToShortDateString()</span>
+										<div>
+											<span class="views-count">@item.CountViews</span>
+											<span class="comments-count">@item.CountComments</span>
+										</div>
+									</div>
 								</div>
 							}
 						</div>
