@@ -105,7 +105,8 @@ namespace LeagueSoldierDeathTeam.Business.Services
 				ImagePath = o.ImagePath,
 				Annotation = o.Annotation,
 				CountComments = o.NewsComments.Count,
-				WriterName = o.Writer != null ? o.Writer.UserName : string.Empty
+				WriterName = o.Writer != null ? o.Writer.UserName : string.Empty,
+				WriterId = o.WriterId
 			}).ToList();
 		}
 
