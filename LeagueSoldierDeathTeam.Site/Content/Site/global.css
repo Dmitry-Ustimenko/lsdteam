@@ -187,7 +187,7 @@ a {
 	margin-right: 10px;
 }
 
-.date, .views-count, .comments-count {
+.date, .views-count, .comments-count, .writer {
 	background: url(/Images/new-icons.png) no-repeat -2px -1276px;
 	padding-left: 15px;
 	padding-right: 5px;
@@ -196,6 +196,16 @@ a {
 	color: #555;
 }
 
+	.comments-count a, .writer a {
+		color: #555 !important;
+		border-bottom: 1px dotted gray !important;
+		font-weight: normal !important;
+	}
+
+		.comments-count a:hover, .writer a:hover {
+			border-bottom: none !important;
+		}
+
 .views-count {
 	background: url(/Images/new-icons.png) no-repeat -17px -13px;
 	padding-left: 17px;
@@ -203,5 +213,10 @@ a {
 
 .comments-count {
 	background: url(/Images/new-icons.png) no-repeat -17px -28px;
+	padding-left: 17px;
+}
+
+.writer {
+	background: url(/Images/new-icons.png) no-repeat -17px -44px;
 	padding-left: 17px;
 }
