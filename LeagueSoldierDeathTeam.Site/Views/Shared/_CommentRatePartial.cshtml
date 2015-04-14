@@ -1,0 +1,11 @@
+﻿@model LeagueSoldierDeathTeam.Business.Dto.CommentData
+
+@{
+	Layout = null;
+}
+
+<div class="comment-rate-wrap">
+	<span class="rate-dec" data-action="dec-rate" data-comment-id="@Model.Id"></span>
+	<span class="rate-val @Html.Raw(Model.Rate > 0 ? "green" : Model.Rate < 0 ? "darkred" : "gray")">@Model.RateString</span>
+	<span class="rate-inc" data-action="inc-rate" data-comment-id="@Model.Id"></span>
+</div>

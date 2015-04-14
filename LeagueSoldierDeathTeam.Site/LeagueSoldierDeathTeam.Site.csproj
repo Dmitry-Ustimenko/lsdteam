@@ -528,6 +528,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Shared\_CommentEditPartial.cshtml" />
+    <Content Include="Views\Shared\_CommentRatePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

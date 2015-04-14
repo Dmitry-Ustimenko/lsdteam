@@ -7,7 +7,9 @@
 					getCommentDesription: '',
 					editComment: '',
 					deleteComment: '',
-					refreshComments: ''
+					refreshComments: '',
+					incCommentRate: '',
+					decCommentRate: ''
 				},
 				elements: {
 					commentFeed: '#comment-feed',
@@ -22,6 +24,7 @@
 				$.extend(true, site.comments.settings, settings);
 
 				site.comments.initCommentsFeed();
+				site.comments.initCommentRate();
 				site.comments.initNewComment();
 				site.comments.initGoToCommentsHeader();
 				site.comments.refreshCommentsFeed();
@@ -83,7 +86,6 @@
 				});
 
 				site.comments.initDeleteComment(commentId);
-				site.comments.initCommentRate(commentId);
 				site.comments.initEditComment(commentId);
 			},
 
@@ -144,8 +146,26 @@
 				});
 			},
 
-			initCommentRate: function (commentId) {
+			initCommentRate: function () {
+				$('[data-action="inc-rate"]').off("click").on("click", function () {
+					var $this = $(this);
+					var commentId = $this.data("id");
+					var $container = $this.closest('[data-type="comment-rate"]');
 
+					$container.loadData(site.comments.settings.urls.incCommentRate, { commentId: commentId }, function () {
+						site.comments.initCommentRate();
+					});
+				});
+
+				$('[data-action="dec-rate"]').off("click").on("click", function () {
+					var $this = $(this);
+					var commentId = $this.data("id");
+					var $container = $this.closest('[data-type="comment-rate"]');
+
+					$container.loadData(site.comments.settings.urls.decCommentRate, { commentId: commentId }, function () {
+						site.comments.initCommentRate();
+					});
+				});
 			},
 
 			initGoToCommentsHeader: function () {
