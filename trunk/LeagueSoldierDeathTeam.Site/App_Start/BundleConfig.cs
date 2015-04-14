@@ -38,7 +38,7 @@ namespace LeagueSoldierDeathTeam.Site.App_Start
 				"~/Content/Plugins/HtmlEditor/xbbcode.css",
 
 				"~/Content/Site/global.css",
-				"~/Content/Site/site.css"
+				"~/Content/Site/Site.css"
 				));
 		}
 	}

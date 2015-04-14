@@ -68,7 +68,7 @@
 						<div class="previous-news-body">
 							@foreach (var item in Model.PreviousNews)
 							{
-								<div class="large-4 column">
+								<div class="large-4 column previous-news-item">
 									<a target="_blank" href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.ViewNews(item.Id)))">
 										<img class="preview-image float-left" src="@item.ImagePath" alt="Превью" />
 										<span>@item.Title</span>
@@ -77,7 +77,12 @@
 										<span class="date">@item.CreateDate.ToShortDateString()</span>
 										<div>
 											<span class="views-count">@item.CountViews</span>
-											<span class="comments-count">@item.CountComments</span>
+											<span class="comments-count">
+												<a href="@(WebBuilder.BuildActionUrl<NewsController>(o => o.ViewNews(item.Id)) + "#comments-header")">@item.CountComments</a>
+											</span>
+											<span class="writer">
+												<a href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(item.WriterId)))" target="_blank">@item.WriterName</a>
+											</span>
 										</div>
 									</div>
 								</div>
