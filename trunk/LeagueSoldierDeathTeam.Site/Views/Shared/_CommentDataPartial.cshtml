@@ -64,7 +64,7 @@
 				</div>
 				<div class="comment-view-wrapper">
 					<div class="description">@comment.Description</div>
-					
+
 					@if (!Model.BlockComments)
 					{
 						<div class="comment-actions">
@@ -95,12 +95,8 @@
 				</div>
 				<div class="comment-edit-wrapper"></div>
 			</div>
-			<div class="comment-rate">
-				<div class="comment-rate-wrap">
-					<span class="rate-dec" data-comment-id="@comment.Id"></span>
-					<span class="rate-val @Html.Raw(comment.Rate > 0 ? "green" : comment.Rate < 0 ? "darkred" : "gray")">@comment.RateString</span>
-					<span class="rate-inc" data-comment-id="@comment.Id"></span>
-				</div>
+			<div data-type="comment-rate" class="comment-rate">
+				@{Html.RenderPartial("_CommentRatePartial", comment);}
 			</div>
 		</div>
 	}

@@ -112,7 +112,9 @@
 				editComment: '@(WebBuilder.BuildActionUrl<BaseController>(m => m.EditComment(null)))',
 				deleteComment: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.DeleteComment(null, Model.Id, CommentSortEnum.New)))',
 				refreshComments: '@(WebBuilder.BuildActionUrl<NewsController>(m => m.NewsCommentFeed(null, CommentSortEnum.New)))',
-				getCommentDesription: '@(WebBuilder.BuildActionUrl<BaseController>(m => m.GetEditCommentContainer(null)))'
+				getCommentDesription: '@(WebBuilder.BuildActionUrl<BaseController>(m => m.GetEditCommentContainer(null)))',
+				incCommentRate: '@(WebBuilder.BuildActionUrl<BaseController>(m => m.IncCommentRate(null)))',
+				decCommentRate: '@(WebBuilder.BuildActionUrl<BaseController>(m => m.DecCommentRate(null)))'
 			}
 		});
 	});

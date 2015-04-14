@@ -108,6 +108,27 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 				: JsonErrorResult();
 		}
 
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		public ActionResult IncCommentRate(int? commentId)
+		{
+
+
+			return ModelIsValid
+				? (ActionResult)View("_CommentRatePartial", new CommentData())
+				: JsonErrorResult();
+		}
+
+		[HttpPost]
+		[AjaxOrChildActionOnly]
+		public ActionResult DecCommentRate(int? commentId)
+		{
+
+			return ModelIsValid
+				? (ActionResult)View("_CommentRatePartial", new CommentData())
+				: JsonErrorResult();
+		}
+
 		#endregion
 
 		#endregion
