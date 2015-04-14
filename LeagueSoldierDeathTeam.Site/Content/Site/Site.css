@@ -1288,9 +1288,12 @@
 	}
 
 	.previous-news .previous-news-header {
-		font-size: 16px;
+		font-size: 15px;
 		padding: 5px 10px;
+		padding-bottom: 6px;
 		background-color: rgba(0, 0, 0, 0.08);
+		border-bottom: 2px solid #dadada;
+		border-top: 2px solid #dadada;
 	}
 
 	.previous-news .previous-news-body {
@@ -3580,9 +3583,12 @@ textarea.resize-none {
 	}
 
 		.comments .comments-content .comments-header {
-			font-size: 16px;
+			font-size: 15px;
 			padding: 5px 10px;
+			padding-bottom: 6px;
 			background-color: rgba(0, 0, 0, 0.08);
+			border-bottom: 2px solid #dadada;
+			border-top: 2px solid #dadada;
 		}
 
 			.comments .comments-content .comments-header .sort {
