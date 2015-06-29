@@ -43,5 +43,6 @@ namespace LeagueSoldierDeathTeam.DataBase.Model
         public virtual DbSet<UserResetToken> UserResetTokens { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<NewsComment> NewsComments { get; set; }
+        public virtual DbSet<UserComment> UserComments { get; set; }
     }
 }

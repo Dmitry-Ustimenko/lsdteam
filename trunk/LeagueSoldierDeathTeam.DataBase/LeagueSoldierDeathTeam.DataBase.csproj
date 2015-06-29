@@ -104,6 +104,9 @@
     <Compile Include="Model\UserActivateToken.cs">
       <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\UserComment.cs">
+      <DependentUpon>LSDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\UserExternalInfo.cs">
       <DependentUpon>LSDModel.tt</DependentUpon>
     </Compile>

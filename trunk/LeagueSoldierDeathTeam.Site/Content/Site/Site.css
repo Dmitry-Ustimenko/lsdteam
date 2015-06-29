@@ -1263,7 +1263,7 @@
 			line-height: 15px;
 			font-size: 11px;
 			color: #555;
-			margin-top: 5px;
+			margin-top: 15px;
 			border-top: 1px solid #dadada;
 			display: inline-block;
 		}
@@ -1297,8 +1297,8 @@
 	}
 
 	.previous-news .previous-news-body {
-		padding: 10px;
-		padding-bottom: 12px;
+		padding: 10px 10px 0 10px;
+		margin-bottom: -2px;
 	}
 
 		.previous-news .previous-news-body a {
@@ -1313,6 +1313,7 @@
 
 		.previous-news .previous-news-body .previous-news-item {
 			position: relative;
+			margin-bottom: 15px;
 		}
 
 			.previous-news .previous-news-body .previous-news-item .previous-news-spec {
@@ -3940,23 +3941,6 @@ textarea.resize-none {
 				opacity: 0.85;
 			}
 
-				.comments .comments-content .comments-body .comment .comment-rate .rate-inc.disable,
-				.comments .comments-content .comments-body .comment .comment-rate .rate-dec.disable {
-					cursor: default;
-					-ms-opacity: 0.4;
-					opacity: 0.4;
-				}
-
-					.comments .comments-content .comments-body .comment .comment-rate .rate-inc.disable:hover,
-					.comments .comments-content .comments-body .comment .comment-rate .rate-inc.disable:active {
-						background: url(/Images/plus-minus-rate.png) no-repeat -16px 0;
-					}
-
-					.comments .comments-content .comments-body .comment .comment-rate .rate-dec.disable:hover,
-					.comments .comments-content .comments-body .comment .comment-rate .rate-dec.disable:active {
-						background: url(/Images/plus-minus-rate.png) no-repeat -16px -16px;
-					}
-
 			.comments .comments-content .comments-body .comment .comment-rate .rate-inc {
 				background: url(/Images/plus-minus-rate.png) no-repeat -16px 0;
 			}
@@ -3985,9 +3969,30 @@ textarea.resize-none {
 				background: url(/Images/plus-minus-rate.png) no-repeat -32px -16px;
 			}
 
+			.comments .comments-content .comments-body .comment .comment-rate .rate-inc.disable,
+			.comments .comments-content .comments-body .comment .comment-rate .rate-dec.disable {
+				cursor: default;
+				-ms-opacity: 0.4;
+				opacity: 0.4;
+			}
+
+				.comments .comments-content .comments-body .comment .comment-rate .rate-inc.disable:hover,
+				.comments .comments-content .comments-body .comment .comment-rate .rate-inc.disable:active {
+					background: url(/Images/plus-minus-rate.png) no-repeat -16px 0;
+				}
+
+				.comments .comments-content .comments-body .comment .comment-rate .rate-dec.disable:hover,
+				.comments .comments-content .comments-body .comment .comment-rate .rate-dec.disable:active {
+					background: url(/Images/plus-minus-rate.png) no-repeat -16px -16px;
+				}
+
 .comments .comments-content .comments-creator {
 	clear: both;
 }
+
+	.comments .comments-content .comments-creator .markItUpResizeHandle {
+		cursor: default;
+	}
 
 	.comments .comments-content .comments-creator .comments-body .comments-body-block {
 		padding: 10px;

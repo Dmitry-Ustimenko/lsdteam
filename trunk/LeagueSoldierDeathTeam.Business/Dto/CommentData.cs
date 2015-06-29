@@ -26,6 +26,8 @@ namespace LeagueSoldierDeathTeam.Business.Dto
 			}
 		}
 
+		public bool? IsInc { get; set; }
+
 		public int ContentId { get; set; }
 
 		public CommentData()

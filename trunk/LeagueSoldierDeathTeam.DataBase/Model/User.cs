@@ -24,6 +24,7 @@ namespace LeagueSoldierDeathTeam.DataBase.Model
             this.RecipientMessage = new HashSet<UserMessage>();
             this.SenderMessage = new HashSet<UserMessage>();
             this.Comments = new HashSet<Comment>();
+            this.UserComments = new HashSet<UserComment>();
         }
     
         public int Id { get; set; }
@@ -47,5 +48,6 @@ namespace LeagueSoldierDeathTeam.DataBase.Model
         public virtual ICollection<UserMessage> RecipientMessage { get; set; }
         public virtual ICollection<UserMessage> SenderMessage { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<UserComment> UserComments { get; set; }
     }
 }

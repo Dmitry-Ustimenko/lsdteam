@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.LoggedUser;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Classes.Enums;
 using LeagueSoldierDeathTeam.Business.Dto;
@@ -31,8 +32,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Constructors
 
-		public NewsController(ServiceFactoryBase serviceFactory)
-			: base(serviceFactory)
+		public NewsController(ILoggedUserProvider loggedUserProvider, ServiceFactoryBase serviceFactory)
+			: base(loggedUserProvider, serviceFactory)
 		{
 			_newsService = ServiceFactory.CreateNewsService();
 			_resourceService = serviceFactory.CreateResourceService();

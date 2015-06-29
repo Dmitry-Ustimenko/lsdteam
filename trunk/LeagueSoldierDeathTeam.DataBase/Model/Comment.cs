@@ -17,6 +17,7 @@ namespace LeagueSoldierDeathTeam.DataBase.Model
         public Comment()
         {
             this.NewsComments = new HashSet<NewsComment>();
+            this.UserComments = new HashSet<UserComment>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,6 @@ namespace LeagueSoldierDeathTeam.DataBase.Model
     
         public virtual ICollection<NewsComment> NewsComments { get; set; }
         public virtual User Writer { get; set; }
+        public virtual ICollection<UserComment> UserComments { get; set; }
     }
 }

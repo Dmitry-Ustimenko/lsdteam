@@ -149,7 +149,7 @@
 			initCommentRate: function () {
 				$('[data-action="inc-rate"]').off("click").on("click", function () {
 					var $this = $(this);
-					var commentId = $this.data("id");
+					var commentId = $this.data("comment-id");
 					var $container = $this.closest('[data-type="comment-rate"]');
 
 					$container.loadData(site.comments.settings.urls.incCommentRate, { commentId: commentId }, function () {
@@ -159,7 +159,7 @@
 
 				$('[data-action="dec-rate"]').off("click").on("click", function () {
 					var $this = $(this);
-					var commentId = $this.data("id");
+					var commentId = $this.data("comment-id");
 					var $container = $this.closest('[data-type="comment-rate"]');
 
 					$container.loadData(site.comments.settings.urls.decCommentRate, { commentId: commentId }, function () {

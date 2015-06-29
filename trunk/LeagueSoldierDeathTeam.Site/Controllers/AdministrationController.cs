@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.LoggedUser;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Classes.Enums;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
@@ -33,8 +34,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Constructors
 
-		public AdministrationController(ServiceFactoryBase serviceFactory, IAuthenticationService authenticationService, IMailer mailer)
-			: base(serviceFactory)
+		public AdministrationController(ILoggedUserProvider loggedUserProvider, ServiceFactoryBase serviceFactory, IAuthenticationService authenticationService, IMailer mailer)
+			: base(loggedUserProvider, serviceFactory)
 		{
 			_accountService = serviceFactory.CreateAccountService();
 

@@ -7,8 +7,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.LoggedUser;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Dto;
+using LeagueSoldierDeathTeam.Business.LoggedUser;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
 using LeagueSoldierDeathTeam.Site.Classes;
 using LeagueSoldierDeathTeam.Site.Classes.Attributes;
@@ -29,6 +31,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		private readonly IResourceService _resourceService;
 
 		private bool _disposeAppContext;
+
+		private readonly ILoggedUserProvider _loggedUserProvider;
 
 		#endregion
 
@@ -58,11 +62,15 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Constructors
 
-		public BaseController(ServiceFactoryBase serviceFactory)
+		public BaseController(ILoggedUserProvider loggedUserProvider, ServiceFactoryBase serviceFactory)
 		{
 			if (serviceFactory == null)
 				throw new ArgumentNullException("serviceFactory");
 			ServiceFactory = serviceFactory;
+
+			if (loggedUserProvider == null)
+				throw new ArgumentNullException("loggedUserProvider");
+			_loggedUserProvider = loggedUserProvider;
 
 			_accountService = serviceFactory.CreateAccountService();
 			_accountProfileService = serviceFactory.CreateAccountProfileService();
@@ -112,21 +120,30 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		[AjaxOrChildActionOnly]
 		public ActionResult IncCommentRate(int? commentId)
 		{
-
+			var rate = Execute(() => _resourceService.IncCommentRate(commentId.GetValueOrDefault()));
 
 			return ModelIsValid
-				? (ActionResult)View("_CommentRatePartial", new CommentData())
-				: JsonErrorResult();
+				? (ActionResult)View("_CommentRatePartial", new CommentData
+				{
+					Id = commentId.GetValueOrDefault(),
+					Rate = rate,
+					IsInc = true
+				}) : JsonErrorResult();
 		}
 
 		[HttpPost]
 		[AjaxOrChildActionOnly]
 		public ActionResult DecCommentRate(int? commentId)
 		{
+			var rate = Execute(() => _resourceService.DecCommentRate(commentId.GetValueOrDefault()));
 
 			return ModelIsValid
-				? (ActionResult)View("_CommentRatePartial", new CommentData())
-				: JsonErrorResult();
+				? (ActionResult)View("_CommentRatePartial", new CommentData
+				{
+					Id = commentId.GetValueOrDefault(),
+					Rate = rate,
+					IsInc = false
+				}) : JsonErrorResult();
 		}
 
 		#endregion
@@ -199,6 +216,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			{
 				Execute(() => _accountService.UpdateLastActivity(CurrentUser.Id));
 				Execute(() => CurrentUser.InboxMessageCount = _accountProfileService.GetUserMessageCount(CurrentUser.Id));
+
+				_loggedUserProvider.LoggedUser = new LoggedUser { CurrentUserId = CurrentUser.Id };
 			}
 		}
 
@@ -224,9 +243,20 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		protected JsonResult JsonErrorResult(string message = null)
 		{
+			var errors = GetModelStateErrors(ModelState);
+			if (!string.IsNullOrWhiteSpace(errors))
+			{
+				message = errors;
+			}
+
 			return string.IsNullOrWhiteSpace(message)
 				? Json(new { Status = Constants.ErrorStatus }, JsonRequestBehavior.AllowGet)
 				: Json(new { Status = Constants.ErrorStatus, Message = message }, JsonRequestBehavior.AllowGet);
+		}
+
+		public static string GetModelStateErrors(ModelStateDictionary modelState)
+		{
+			return string.Join("; ", modelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
 		}
 
 		protected bool Execute(Action action)

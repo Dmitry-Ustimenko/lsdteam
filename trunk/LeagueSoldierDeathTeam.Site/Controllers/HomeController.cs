@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.LoggedUser;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Dto;
 using LeagueSoldierDeathTeam.Site.Classes;
@@ -20,8 +21,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Constructors
 
-		public HomeController(ServiceFactoryBase serviceFactory)
-			: base(serviceFactory)
+		public HomeController(ILoggedUserProvider loggedUserProvider, ServiceFactoryBase serviceFactory)
+			: base(loggedUserProvider, serviceFactory)
 		{
 			_newsService = serviceFactory.CreateNewsService();
 		}
