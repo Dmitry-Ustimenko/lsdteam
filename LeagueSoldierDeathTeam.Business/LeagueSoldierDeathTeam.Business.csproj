@@ -51,9 +51,11 @@
   <ItemGroup>
     <Compile Include="Abstractions\Factories\RepositoryFactoryBase.cs" />
     <Compile Include="Abstractions\Interfaces\DataAccess\IUnitOfWork.cs" />
+    <Compile Include="Abstractions\Interfaces\LoggedUser\ILoggedUser.cs" />
     <Compile Include="Abstractions\Interfaces\Services\IAccountProfileService.cs" />
     <Compile Include="Abstractions\Interfaces\Services\INewsService.cs" />
     <Compile Include="Abstractions\Interfaces\Services\IResourceService.cs" />
+    <Compile Include="Abstractions\Interfaces\LoggedUser\ILoggedUserProvider.cs" />
     <Compile Include="Classes\Config\AppConfig.cs" />
     <Compile Include="Classes\Enums\CommentSortEnum.cs" />
     <Compile Include="Classes\Enums\MessageTypeEnum.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="Dto\NewsData.cs" />
     <Compile Include="Dto\PlatformData.cs" />
     <Compile Include="Dto\SexData.cs" />
+    <Compile Include="Dto\UserCommentData.cs" />
     <Compile Include="Dto\UserInfoData.cs" />
     <Compile Include="Dto\UserMessageData.cs" />
     <Compile Include="Dto\PageData.cs" />
@@ -96,6 +99,8 @@
     <Compile Include="Services\Parameters\PasswordResetParams.cs" />
     <Compile Include="Services\ResourceService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="LoggedUser\LoggedUser.cs" />
+    <Compile Include="LoggedUser\LoggedUserProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LeagueSoldierDeathTeam.DataBase\LeagueSoldierDeathTeam.DataBase.csproj">

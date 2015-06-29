@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.DataAccess.Repositories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.LoggedUser;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Classes.Enums;
 using LeagueSoldierDeathTeam.Business.Classes.Helpers;
@@ -24,8 +25,8 @@ namespace LeagueSoldierDeathTeam.Business.Services
 
 		#region Constructors
 
-		public AccountProfileService(IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
-			: base(unitOfWork)
+		public AccountProfileService(ILoggedUserProvider loggedUserProvider, IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
+			: base(loggedUserProvider, unitOfWork)
 		{
 			if (repositoryFactory == null)
 				throw new ArgumentNullException("repositoryFactory");

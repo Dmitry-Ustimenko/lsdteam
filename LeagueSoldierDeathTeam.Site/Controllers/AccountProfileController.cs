@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.LoggedUser;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Classes.Enums;
 using LeagueSoldierDeathTeam.Business.Classes.Extensions;
@@ -33,8 +34,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Constructors
 
-		public AccountProfileController(ServiceFactoryBase serviceFactory)
-			: base(serviceFactory)
+		public AccountProfileController(ILoggedUserProvider loggedUserProvider, ServiceFactoryBase serviceFactory)
+			: base(loggedUserProvider, serviceFactory)
 		{
 			_accountService = serviceFactory.CreateAccountService();
 			_accountProfileService = serviceFactory.CreateAccountProfileService();

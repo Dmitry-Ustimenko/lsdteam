@@ -10,5 +10,9 @@ namespace LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services
 		CommentData GetComment(int id);
 
 		CommentData SaveComment(CommentData data);
+
+		int IncCommentRate(int commentId);
+
+		int DecCommentRate(int commentId);
 	}
 }

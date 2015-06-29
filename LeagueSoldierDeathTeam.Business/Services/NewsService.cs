@@ -4,6 +4,7 @@ using System.Linq;
 using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.DataAccess.Repositories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.LoggedUser;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Classes.Enums;
 using LeagueSoldierDeathTeam.Business.Classes.Helpers;
@@ -18,25 +19,20 @@ namespace LeagueSoldierDeathTeam.Business.Services
 		#region Private Fields
 
 		private readonly IRepository<User> _userRepository;
-
 		private readonly IRepository<News> _newsRepository;
-
 		private readonly IRepository<Platform> _platformRepository;
-
 		private readonly IRepository<NewsCategory> _newsCategoryRepository;
-
 		private readonly IRepository<NewsPlatform> _newsPlatformRepository;
-
 		private readonly IRepository<Comment> _commentRepository;
-
 		private readonly IRepository<NewsComment> _newsCommentRepository;
+		private readonly IRepository<UserComment> _userCommentRepository;
 
 		#endregion
 
 		#region Constructors
 
-		public NewsService(IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
-			: base(unitOfWork)
+		public NewsService(ILoggedUserProvider loggedUserProvider, IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
+			: base(loggedUserProvider, unitOfWork)
 		{
 			if (repositoryFactory == null)
 				throw new ArgumentNullException("repositoryFactory");
@@ -48,6 +44,7 @@ namespace LeagueSoldierDeathTeam.Business.Services
 			_newsPlatformRepository = repositoryFactory.CreateRepository<NewsPlatform>();
 			_commentRepository = repositoryFactory.CreateRepository<Comment>();
 			_newsCommentRepository = repositoryFactory.CreateRepository<NewsComment>();
+			_userCommentRepository = repositoryFactory.CreateRepository<UserComment>();
 		}
 
 		#endregion
@@ -278,6 +275,19 @@ namespace LeagueSoldierDeathTeam.Business.Services
 					: new UserData(),
 				ContentId = o.NewsId
 			}).OrderByDescending(o => o.CreateDate).ToList();
+
+			var commentIds = comments.Select(o => o.Id).ToArray();
+			var userComments = _userCommentRepository.GetData(o => new UserCommentData
+			{
+				UserId = o.UserId,
+				CommentId = o.CommentId,
+				IsInc = o.IsIncrement
+			}, o => o.UserId == CurrentUserId && commentIds.Contains(o.CommentId)).ToDictionary(o => o.CommentId, o => o.IsInc);
+
+			foreach (var comment in comments.Where(comment => userComments.ContainsKey(comment.Id)))
+			{
+				comment.IsInc = userComments[comment.Id];
+			}
 
 			switch (sortType)
 			{

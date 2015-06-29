@@ -2,10 +2,16 @@
 
 @{
 	Layout = null;
+
+	var isInc = Model.IsInc.HasValue && Model.IsInc.Value;
+	var isDec = Model.IsInc.HasValue && !Model.IsInc.Value;
+
+	var incDataAction = isInc ? string.Empty : "data-action=inc-rate";
+	var decDataAction = isDec ? string.Empty : "data-action=dec-rate";
 }
 
 <div class="comment-rate-wrap">
-	<span class="rate-dec" data-action="dec-rate" data-comment-id="@Model.Id"></span>
+	<span class="rate-dec @Html.Raw(isDec ? "disable" : string.Empty)" @decDataAction data-comment-id="@Model.Id"></span>
 	<span class="rate-val @Html.Raw(Model.Rate > 0 ? "green" : Model.Rate < 0 ? "darkred" : "gray")">@Model.RateString</span>
-	<span class="rate-inc" data-action="inc-rate" data-comment-id="@Model.Id"></span>
+	<span class="rate-inc @Html.Raw(isInc ? "disable" : string.Empty)" @incDataAction data-comment-id="@Model.Id"></span>
 </div>

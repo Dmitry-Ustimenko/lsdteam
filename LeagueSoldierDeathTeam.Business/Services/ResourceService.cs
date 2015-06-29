@@ -4,6 +4,7 @@ using System.Linq;
 using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.DataAccess;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.DataAccess.Repositories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.LoggedUser;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Dto;
 using LeagueSoldierDeathTeam.DataBase.Model;
@@ -17,13 +18,14 @@ namespace LeagueSoldierDeathTeam.Business.Services
 		private readonly IRepository<Platform> _platformRepository;
 		private readonly IRepository<Comment> _commentRepository;
 		private readonly IRepository<User> _userRepository;
+		private readonly IRepository<UserComment> _userCommentRepository;
 
 		#endregion
 
 		#region Constructors
 
-		public ResourceService(IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
-			: base(unitOfWork)
+		public ResourceService(ILoggedUserProvider loggedUserProvider, IUnitOfWork unitOfWork, RepositoryFactoryBase repositoryFactory)
+			: base(loggedUserProvider, unitOfWork)
 		{
 			if (repositoryFactory == null)
 				throw new ArgumentNullException("repositoryFactory");
@@ -31,6 +33,7 @@ namespace LeagueSoldierDeathTeam.Business.Services
 			_platformRepository = repositoryFactory.CreateRepository<Platform>();
 			_commentRepository = repositoryFactory.CreateRepository<Comment>();
 			_userRepository = repositoryFactory.CreateRepository<User>();
+			_userCommentRepository = repositoryFactory.CreateRepository<UserComment>();
 		}
 
 		#endregion
@@ -62,6 +65,10 @@ namespace LeagueSoldierDeathTeam.Business.Services
 			if (comment == null)
 				throw new ArgumentException("Данного комментария не существует.");
 
+			var userComment = _userCommentRepository.Query(o => o.CommentId == id && o.UserId == CurrentUserId).FirstOrDefault();
+			if (userComment != null)
+				comment.IsInc = userComment.IsIncrement;
+
 			return comment;
 		}
 
@@ -91,6 +98,80 @@ namespace LeagueSoldierDeathTeam.Business.Services
 			comment.Writer = writer;
 
 			return comment;
+		}
+
+		int IResourceService.IncCommentRate(int commentId)
+		{
+			var comment = _commentRepository.Query(o => o.Id == commentId).SingleOrDefault();
+			if (comment == null)
+				throw new ArgumentException("Данного комментария не существует.");
+
+			var rate = comment.Rate;
+
+			var userComment = _userCommentRepository.Query(o => o.UserId == CurrentUserId && o.CommentId == commentId).SingleOrDefault();
+			if (userComment == null)
+			{
+				_userCommentRepository.Add(new UserComment
+				{
+					CommentId = commentId,
+					UserId = CurrentUserId,
+					IsIncrement = true
+				});
+
+				rate = rate + 1;
+			}
+			else
+			{
+				if (userComment.IsIncrement)
+				{
+					throw new ArgumentException("Вы уже одобрили этот комментарий.");
+				}
+
+				userComment.IsIncrement = true;
+				rate = rate + 2;
+			}
+
+			comment.Rate = rate;
+
+			UnitOfWork.Commit();
+			return rate;
+		}
+
+		int IResourceService.DecCommentRate(int commentId)
+		{
+			var comment = _commentRepository.Query(o => o.Id == commentId).SingleOrDefault();
+			if (comment == null)
+				throw new ArgumentException("Данного комментария не существует.");
+
+			var rate = comment.Rate;
+
+			var userComment = _userCommentRepository.Query(o => o.UserId == CurrentUserId && o.CommentId == commentId).SingleOrDefault();
+			if (userComment == null)
+			{
+				_userCommentRepository.Add(new UserComment
+				{
+					CommentId = commentId,
+					UserId = CurrentUserId,
+					IsIncrement = false
+				});
+
+				rate = rate - 1;
+			}
+			else
+			{
+				if (!userComment.IsIncrement)
+				{
+					throw new ArgumentException("Вы уже осудили этот комментарий.");
+				}
+
+				userComment.IsIncrement = false;
+				rate = rate - 2;
+			}
+
+			comment.Rate = rate;
+
+			UnitOfWork.Commit();
+			return rate;
 		}
 
 		#endregion

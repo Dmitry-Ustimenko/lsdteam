@@ -1,8 +1,10 @@
 ﻿using Autofac;
 using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.DataAccess;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.LoggedUser;
 using LeagueSoldierDeathTeam.Business.DataAccess;
 using LeagueSoldierDeathTeam.Business.Factories;
+using LeagueSoldierDeathTeam.Business.LoggedUser;
 using LeagueSoldierDeathTeam.DataBase.Abstractions.DataAccess;
 using LeagueSoldierDeathTeam.DataBase.DataAccess;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
@@ -33,6 +35,8 @@ namespace LeagueSoldierDeathTeam.Site.Modules.Autofac
 			builder.RegisterType<RepositoryFactory>().As<RepositoryFactoryBase>().InstancePerLifetimeScope();
 
 			builder.RegisterType<ServiceFactory>().As<ServiceFactoryBase>().InstancePerLifetimeScope();
+
+			builder.RegisterType<LoggedUserProvider>().As<ILoggedUserProvider>().InstancePerLifetimeScope();
 		}
 
 		#endregion

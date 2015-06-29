@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using LeagueSoldierDeathTeam.Business.Abstractions.Factories;
+using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.LoggedUser;
 using LeagueSoldierDeathTeam.Business.Abstractions.Interfaces.Services;
 using LeagueSoldierDeathTeam.Business.Services.Parameters;
 using LeagueSoldierDeathTeam.Site.Abstractions.Classes;
@@ -38,8 +39,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		#region Constructors
 
-		public AccountController(ServiceFactoryBase serviceFactory, IAuthenticationService authenticationService, IMailer mailer)
-			: base(serviceFactory)
+		public AccountController(ILoggedUserProvider loggedUserProvider, ServiceFactoryBase serviceFactory, IAuthenticationService authenticationService, IMailer mailer)
+			: base(loggedUserProvider, serviceFactory)
 		{
 			if (mailer == null)
 				throw new ArgumentNullException("mailer");

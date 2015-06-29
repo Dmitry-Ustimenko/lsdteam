@@ -41,6 +41,9 @@
         <AssociationConnector Association="LSDDataModel.FK_NewsComment_Comment" />
         <AssociationConnector Association="LSDDataModel.FK_NewsComment_News" />
         <AssociationConnector Association="LSDDataModel.FK_Comment_User" />
+        <EntityTypeShape EntityType="LSDDataModel.UserComment" Width="1.5" PointX="17.125" PointY="7.875" />
+        <AssociationConnector Association="LSDDataModel.FK_UserComment_Comment" />
+        <AssociationConnector Association="LSDDataModel.FK_UserComment_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -34,7 +34,7 @@
 
 		public const int NewsPageSize = 8;
 
-		public const int PreviousNewsCount = 3;
+		public const int PreviousNewsCount = 6;
 
 		public const int LastNewsPageSize = 6;
 
