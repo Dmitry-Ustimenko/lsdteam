@@ -4122,3 +4122,66 @@ textarea.resize-none {
 		width: 15px;
 		height: 15px;
 	}
+
+.ui-tooltip {
+	max-width: 505px;
+}
+
+.ui-tooltip, .arrow:after {
+	background: rgb(60, 60, 60);
+	border: 1px solid rgb(222, 222, 222);
+}
+
+.ui-tooltip {
+	padding: 8px 15px;
+	color: white;
+	font-size: 20px !important;
+	-webkit-box-shadow: 0 0 7px black;
+	-ms-box-shadow: 0 0 7px black;
+	box-shadow: 0 0 7px black;
+}
+
+.ui-widget, .ui-widget * {
+	font-size: 14px !important;
+}
+
+.arrow {
+	width: 70px;
+	height: 16px;
+	overflow: hidden;
+	position: absolute;
+	left: 50%;
+	margin-left: -35px;
+	bottom: -16px;
+}
+
+	.arrow.top {
+		top: -16px;
+		bottom: auto;
+	}
+
+	.arrow.left {
+		left: 20%;
+	}
+
+	.arrow:after {
+		content: "";
+		position: absolute;
+		left: 20px;
+		top: -20px;
+		width: 25px;
+		height: 25px;
+		-webkit-box-shadow: 6px 5px 9px -9px black;
+		-ms-box-shadow: 6px 5px 9px -9px black;
+		box-shadow: 6px 5px 9px -9px black;
+		-webkit-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
+
+	.arrow.top:after {
+		bottom: -20px;
+		top: auto;
+	}

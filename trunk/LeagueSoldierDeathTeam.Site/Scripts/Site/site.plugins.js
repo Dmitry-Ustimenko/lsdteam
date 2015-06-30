@@ -284,6 +284,24 @@
 })(jQuery);
 
 (function ($) {
+	$.fn.initTooltip = function () {
+		$('[data-type="tooltip"]').tooltip({
+			position: {
+				my: "left top+13", at: "left bottom",
+				using: function (position, feedback) {
+					$(this).css(position);
+					$("<div>")
+					  .addClass("arrow")
+					  .addClass(feedback.vertical)
+					  .addClass(feedback.horizontal)
+					  .appendTo(this);
+				}
+			}
+		});
+	};
+})(jQuery);
+
+(function ($) {
 	$.fn.applyDatepicker = function () {
 		var container = $(this);
 

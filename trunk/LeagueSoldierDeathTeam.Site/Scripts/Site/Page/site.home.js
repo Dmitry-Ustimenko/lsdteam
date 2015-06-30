@@ -40,6 +40,8 @@
 							function () {
 								$("[data-type=news-sort].news-active").removeClass("news-active");
 								$this.addClass("news-active");
+
+								$.fn.initTooltip();
 							});
 					});
 				});
