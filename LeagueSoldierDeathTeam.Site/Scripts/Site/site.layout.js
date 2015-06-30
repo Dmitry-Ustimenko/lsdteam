@@ -25,6 +25,7 @@
 
 			$.fn.initCheckbox();
 			$.fn.checkCommentHash();
+			$.fn.initTooltip();
 			//site.layout.backgroundSlider();
 			site.layout.clearSocialHash();
 			site.layout.topPage();
