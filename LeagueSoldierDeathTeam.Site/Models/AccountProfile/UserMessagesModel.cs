@@ -13,6 +13,8 @@ namespace LeagueSoldierDeathTeam.Site.Models.AccountProfile
 
 		public IDictionary<int, string> MessageTypes { get; set; }
 
+		public int UnReadMessages { get; set; }
+
 		public UserMessagesModel()
 		{
 			MessageTypeId = (int)MessageTypeEnum.Inbox;

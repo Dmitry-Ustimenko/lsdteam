@@ -126,7 +126,7 @@
 			initGlobalMessageCount: function () {
 				if ($(site.messages.settings.elements.messageType).val() == "Inbox") {
 					var globalMessageCount = $("[data-type=global-message-count]");
-					var ureadCount = $("#ureadMessages").val();
+					var ureadCount = $("#unReadMessages").val();
 
 					globalMessageCount.text(ureadCount);
 					if (ureadCount == '0')

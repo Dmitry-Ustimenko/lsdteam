@@ -499,8 +499,9 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			var pagerData = (Execute(() => _accountProfileService.GetUserMessages(CurrentUser.Id, model.MessageTypeId, model.Pager.PageId, model.Pager.PageSize))
 				?? new PageData<UserMessageData>());
-			
+
 			model.CopyFrom(pagerData);
+			model.UnReadMessages = Execute(() => _accountProfileService.GetUserMessageCount(CurrentUser.Id));
 		}
 
 		private bool FillUserMessageModel(UserMessageModel model, bool isQuoteMessage)

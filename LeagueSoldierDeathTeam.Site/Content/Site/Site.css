@@ -1573,7 +1573,7 @@
 .clear-input {
 	position: absolute;
 	display: inline-block;
-	width: 22px;
+	width: 24px;
 	height: 26px;
 	background: url(/Images/clear-input.png) no-repeat top center;
 	background-color: white;
@@ -1628,9 +1628,9 @@
 	box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
 }
 
-.file-input {
+input[type="text"].file-input {
 	width: 165px;
-	padding: 3px;
+	padding: 5px 29px 4px 5px;
 	float: right;
 }
 
@@ -4139,10 +4139,6 @@ textarea.resize-none {
 	-webkit-box-shadow: 0 0 7px black;
 	-ms-box-shadow: 0 0 7px black;
 	box-shadow: 0 0 7px black;
-}
-
-.ui-widget, .ui-widget * {
-	font-size: 14px !important;
 }
 
 .arrow {
