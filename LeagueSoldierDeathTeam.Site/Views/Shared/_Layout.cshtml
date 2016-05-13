@@ -44,7 +44,7 @@
 			</div>
 		</div>
 		@{Html.RenderPartial("_MenuPartial");}
-		@if (Request.IsAuthenticated && AppContext.Current.CurrentUser != null)
+		@if (Request.IsAuthenticated && AppContextCustom.Current.CurrentUser != null)
 		{
 			Html.RenderPartial("_ProfileInfoPartial");
 		}

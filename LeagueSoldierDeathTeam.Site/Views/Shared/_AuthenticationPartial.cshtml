@@ -9,7 +9,7 @@
 {
 	<div class="log-off">
 		<span>
-			Добро пожаловать,&nbsp;<a data-type="auth-name" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(AppContext.Current.CurrentUser.Id)))">@AppContext.Current.CurrentUser.UserName</a>&nbsp;
+			Добро пожаловать,&nbsp;<a data-type="auth-name" href="@(WebBuilder.BuildActionUrl<AccountProfileController>(o => o.ProfileInfo(AppContextCustom.Current.CurrentUser.Id)))">@AppContextCustom.Current.CurrentUser.UserName</a>&nbsp;
 		</span>
 		<a href="@(WebBuilder.BuildActionUrl<AccountController>(o => o.LogOff()))">Выйти</a>
 	</div>

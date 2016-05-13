@@ -5,7 +5,7 @@
 @model IEnumerable<LeagueSoldierDeathTeam.Business.Dto.NewsData>
 @{
 	Layout = null;
-	var currentUser = AppContext.Current.CurrentUser;
+	var currentUser = AppContextCustom.Current.CurrentUser;
 }
 
 @if (Model.Any())

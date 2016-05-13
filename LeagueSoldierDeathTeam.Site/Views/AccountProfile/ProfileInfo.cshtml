@@ -5,7 +5,7 @@
 
 @{
 	ViewBag.Title = "Профиль пользователя";
-	var currentUser = AppContext.Current.CurrentUser;
+	var currentUser = AppContextCustom.Current.CurrentUser;
 	var isMainAdminOrAdmin = currentUser != null && (currentUser.IsMainAdmin || currentUser.IsAdmin);
 	var isAdminOrMe = currentUser != null && (isMainAdminOrAdmin || currentUser.IsMe(Model.UserId));
 }

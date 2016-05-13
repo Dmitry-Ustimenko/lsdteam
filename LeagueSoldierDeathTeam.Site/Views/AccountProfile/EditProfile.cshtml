@@ -48,7 +48,7 @@
 		</div>
 	</div>
 </div>
-@Html.Hidden("IsMe", AppContext.Current.CurrentUser.IsMe(Model.UserId), new { @data_type = "isme" })
+@Html.Hidden("IsMe", AppContextCustom.Current.CurrentUser.IsMe(Model.UserId), new { @data_type = "isme" })
 <script type="text/javascript">
 	$(document).ready(function () {
 		site.profile.initEditInfo.init({

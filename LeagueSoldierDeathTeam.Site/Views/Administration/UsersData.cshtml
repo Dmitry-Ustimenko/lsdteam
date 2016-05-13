@@ -49,7 +49,7 @@
 									}
 								</a>
 							}
-							@if (AppContext.Current.CurrentUser.IsMainAdmin)
+							@if (AppContextCustom.Current.CurrentUser.IsMainAdmin)
 							{
 								<a class="delete" data-action="delete" data-id="@item.Id" href="@Constants.JavaScriptVoid">Удалить</a>
 								if (item.IsActive)

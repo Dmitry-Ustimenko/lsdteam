@@ -53,7 +53,7 @@
 								<span data-val="@RoleEnum.None" class="sort-role-name">всех</span>
 								<ul class="sort-role-dropdown">
 									<li data-val="@RoleEnum.None" data-type="name">всех</li>
-									@if (AppContext.Current.CurrentUser.IsMainAdmin)
+									@if (AppContextCustom.Current.CurrentUser.IsMainAdmin)
 									{
 										<li data-val="@RoleEnum.Administrator" data-type="name">администраторов</li>
 									}

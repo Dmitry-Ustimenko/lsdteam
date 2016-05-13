@@ -5,7 +5,7 @@
 @using LeagueSoldierDeathTeam.Site.Controllers
 @{
 	Layout = null;
-	var currentUser = AppContext.Current.CurrentUser;
+	var currentUser = AppContextCustom.Current.CurrentUser;
 }
 
 @if (Model.Data.Any())

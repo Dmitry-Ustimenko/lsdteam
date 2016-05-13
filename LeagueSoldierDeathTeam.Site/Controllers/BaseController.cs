@@ -40,7 +40,7 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		protected ServiceFactoryBase ServiceFactory { get; private set; }
 
-		protected IAppContext AppContext { get; private set; }
+		protected IAppContextCustom AppContextCustomCustom { get; private set; }
 
 		protected HttpContextBase HttpContextBase
 		{
@@ -49,8 +49,8 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 
 		protected UserData CurrentUser
 		{
-			get { return AppContext.CurrentUser; }
-			set { AppContext.CurrentUser = value; }
+			get { return AppContextCustomCustom.CurrentUser; }
+			set { AppContextCustomCustom.CurrentUser = value; }
 		}
 
 		protected bool ModelIsValid
@@ -193,13 +193,13 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 		{
 			base.OnAuthorization(authorizationContext);
 
-			AppContext = Classes.AppContext.Current;
-			if (AppContext != null)
+			AppContextCustomCustom = Classes.AppContextCustom.Current;
+			if (AppContextCustomCustom != null)
 				return;
 
 			_disposeAppContext = true;
-			AppContext = new AppContext();
-			Classes.AppContext.Current = AppContext;
+			AppContextCustomCustom = new AppContextCustom();
+			Classes.AppContextCustom.Current = AppContextCustomCustom;
 
 			if (CurrentUser == null && authorizationContext.HttpContext.User != null && authorizationContext.HttpContext.Request.IsAuthenticated)
 			{
@@ -326,12 +326,12 @@ namespace LeagueSoldierDeathTeam.Site.Controllers
 			if (!disposing)
 				return;
 
-			if (AppContext == null)
+			if (AppContextCustomCustom == null)
 				return;
 
 			if (_disposeAppContext)
-				Classes.AppContext.Current = null;
-			AppContext = null;
+				Classes.AppContextCustom.Current = null;
+			AppContextCustomCustom = null;
 		}
 
 		#endregion

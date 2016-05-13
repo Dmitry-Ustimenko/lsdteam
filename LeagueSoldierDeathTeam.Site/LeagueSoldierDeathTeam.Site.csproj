@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -180,7 +181,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\Classes\IAppContext.cs">
+    <Compile Include="Abstractions\Classes\IAppContextCustom.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Abstractions\Classes\IMailer.cs" />
@@ -190,7 +191,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Classes\AppConfig.cs" />
-    <Compile Include="Classes\AppContext.cs" />
+    <Compile Include="Classes\AppContextCustom.cs" />
     <Compile Include="Classes\Attributes\AjaxOrChildActionOnly.cs" />
     <Compile Include="Classes\Attributes\UserAuthorize.cs" />
     <Compile Include="Classes\ChallengeResult.cs" />

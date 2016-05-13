@@ -16,7 +16,7 @@ namespace LeagueSoldierDeathTeam.Site.Classes.Attributes
 			if (httpContext == null)
 				throw new ArgumentNullException("httpContext");
 
-			var currentUser = AppContext.Current.CurrentUser;
+			var currentUser = AppContextCustom.Current.CurrentUser;
 			if (!httpContext.Request.IsAuthenticated || currentUser == null)
 				return false;
 
